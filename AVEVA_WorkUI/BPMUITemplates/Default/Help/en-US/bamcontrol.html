@@ -1,0 +1,68 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> BAM Control </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="BAM Control">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('49333');highlight('49342')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<table class="relatedtopics aboveheading" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "48">
+<p class="bodytext"><a href="javascript:expand('49333');highlight('49342')" onclick="loadTOC()" target="_self"><img id="f544" src="544.jpg" class="embeddedicon" alt="Book Contents" height="17" width="59" vspace="0" hspace="0" align="bottom" border="0"></a></p></td>
+<td width= "48">
+<p class="bodytext"><a href="indexpage.html" target="TOC"><img id="f547" src="547.jpg" class="embeddedicon" alt="Book Index" height="17" width="59" vspace="0" hspace="0" align="bottom" border="0"></a></p></td>
+</tr>
+</table>
+<h2 id="t49342" class="heading2">BAM Control</h2>
+<p class="paragraph">The Business Activity Monitoring (BAM) control provides features that can be used by a process administrator to monitor and control various instances of the workflow(s) in a repository. It provides a graphical representation of the various instances of the workflows using three different views.</p>
+<p class="procedureheading">To add BAM control using a panel:</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Before adding the Process Designer control in a panel,&nbsp;<a id="h50251" class="jumplive" title="Creating an ASP.NET Project in Visual Studio .NET 2012" href="creatinganaspnetprojectinvisualstudionet20082010.html" target="_self">Creating an ASP.NET Project in Visual Studio .NET 2012</a>.</li><li class="steptestdonotuse">Go to <b class="uicontrol">BAM.aspx.cs</b> page.</li><li class="steptestdonotuse">Ensure that you have initialized the User Context object as per the steps given in&nbsp;<a id="h50255" class="jumplive" title="Creating User Context" href="creatingusercontext.html" target="_self">Creating User Context</a></li><li class="steptestdonotuse">In the underlying code, create a new instance of control and add the instance to the panel in the&nbsp;Page_Load, as in the example below. <p class="codeblock1">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(&quot;ListRepo&quot;);//Repository name </p>
+<p class="codeblock1">object loggedinUserId = &quot;4952ffff-e0db-401b-bb7d-70a0fec1df07&quot;;</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;);</p>
+<p class="codeblock1">Skelta.BAM.UserControls.BAMControl bam = new Skelta.BAM.UserControls.BAMControl();</p>
+<p class="codeblock1">bam.ApplicationName =&nbsp;userContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">bam.ID = &quot;BAM&quot;;</p>
+<p class="codeblock1">bam.UserIdString =&nbsp;userContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">bam.Height = unit.Percentage(100);</p>
+<p class="codeblock1">bam.Width = Unit.Percentage(100);</p>
+<p class="codeblock1">Panel1.Controls.Add(bam);</p>
+</li><li class="steptestdonotuse">If the bin folder does not exist in the user project (D:\Develop\SkeltaTestSite), create the bin folder under user project (D:\Develop\SkeltaTestSite).</li><li class="steptestdonotuse">Copy&nbsp;<b class="uicontrol">ComponentArt.Charting.WebChart.dll</b>&nbsp;and&nbsp;<b class="uicontrol">ComponentArt.Charting.lic</b>&nbsp;from ..\AVEVA\Work Tasks\Web\EnterpriseConsole\bin to bin(D:\Develop\SkeltaTestSite\bin) folder of the user project.</li><li class="steptestdonotuse">Create &quot;TempReports&quot; folder under the project. <br>This step is required because temporary data (Example like Output files generated at the time of exporting &nbsp;the report ) of BAM reports is stored in the &quot;TempReports&quot; folder.</li><li class="steptestdonotuse">Create BAM Reports folder in path ..\AVEVA\Work Tasks.</li><li class="steptestdonotuse">Provide complete &quot;Access rights&quot; to NETWORK SERVICE account to the folders specified below in Windows Server 2003 machine. In the case of Windows XP, provide full &quot;Access rights&quot; to ASP.NET Machine account to the same folders specified below.<ol class="substep"><li class="substep">TempReports - Which is under project.</li><li class="substep">Image folder - Exists in the path .<b class="filepath">.\AVEVA\Work Tasks\Web\BPMUITemplates\Default\BAM&nbsp;folder</b></li><li class="substep">BAMReports - Exists in the path ..<b class="filepath">\AVEVA\Work Tasks</b></li></ol></li></ol><p class="paragraph"></p>
+<p class="subheading">Properties that can be set for BAM control:</p>
+<ul class="ulitem"><li class="ulitem">ApplicationName&nbsp;- Provide application name or repository name to get information about workflow status.</li><li class="ulitem">UserIdString&nbsp;- Provide&nbsp;UserIdString&nbsp;of the actor to get the status of workflow where the actor is part of workflow.&nbsp;Click&nbsp;<a id="h50255_2" class="jumplive" title="Creating User Context" href="creatingusercontext.html" target="_self">Creating User Context</a>&nbsp;to view the different UserIdString formats.</li><li class="ulitem">WorkflowNames&nbsp;- Provides filtering so that the status of only the workflows specified in the&nbsp;WorkflowNames&nbsp;property only be displayed.</li><li class="ulitem">ShowCategories&nbsp;- Shows only those categories as mentioned in the&nbsp;ShowCategories&nbsp;property, i.e. the categories as shown in the left pane of the BAM Reports (Dashboard, Analyze).</li></ul><p class="note"><strong class="notelabel">Note:</strong> The BAM Control properties&nbsp;ShowNodes, HideNodes,&nbsp;and&nbsp;ShowTree&nbsp;are obsolete and should not be used with AVEVA AVEVA Work Tasks latest version.</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="showingofspecificworkflowinstancesinbamcontrol.html" target="_self">Showing of Specific Workflow Instances in BAM Control</a></p></td>
+</tr>
+</table>
+
+
+<input id="topicId" type="hidden" value="49342" />
+<input id="topicDescription" type="hidden" value="BAM Control" />
+<input id="footer-modified" type="hidden" value="Last modified: 6/24/2015 12:42:17 PM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

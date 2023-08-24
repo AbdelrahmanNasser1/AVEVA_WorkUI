@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Use Static Members of the Class? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488170" class="heading4">How to Use Static Members of the Class?</h4>
+<p class="paragraph"></p>
+<p class="paragraph">This example shows how to use static members of the class in SOA Property Editor/Expression Editor. To use Static members, there is no need to create the instance of the class. After registering an assembly into the SOA Assembly list, all the static members of the registered class will get loaded into the SOA Property Editor/Expression editor and can make use of the same for passing the parameter.</p>
+<p class="subheading">Static methods of a class in SOA Property Editor:</p>
+<p class="subheading"></p>
+<p class="paragraphimage"><img id="f52802" src="52802.png" class="embeddedimage100%scalinglive" alt="" height="214" width="554" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">Static methods of a class in Expression Editor:</p>
+<p class="subheading"></p>
+<p class="paragraphimage"><img id="f52803" src="52803.png" class="embeddedimage100%scalinglive" alt="" height="215" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="codesamples1.html" target="_self">SOA</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Enterprise Console Control (EC Plug-in) </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602045" class="heading3">Enterprise Console Control (EC Plug-in)</h3>
+<p class="paragraph">The <b class="uicontrol">Body</b> property of all human activities has an EC plug-in. Click the <b class="uicontrol">Enterprise Console Explorer</b> (plug-in) icon to get the required URL. </p>
+<p class="note"><strong class="notelabel">Note:</strong> This is applicable only if, <b class="uicontrol">Sent Notification Email</b> property is set to<b class="uicontrol"> Yes-HTML</b> or <b class="uicontrol">Yes</b>.</p>
+<p class="paragraph">To compose the body text, perform the following steps:</p>
+<ol class="step"><li class="step"><b class="uicontrol">Body</b>: Click the <b class="uicontrol">Edit</b> button in Body property, to open the <b class="uicontrol">Body Property</b> window. <ol class="substep"><li class="substep">Compose the body text. </li><li class="substep">To get a direct Work Item details view link, click the <b class="uicontrol">Enterprise Console Explorer</b> (plug-in) icon to select the required URL and then click <b class="uicontrol">Select</b> as shown in the following figure.</li></ol><p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187077" src="187077.png" alt="" height="366" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="paragraph">In a client-server scenario, the Enterprise Console site name is same for the client and server web site. To differentiate the Enterprise console site name of the client and the server, the<b class="uicontrol"> SiteAliasName</b> column is used in the <b class="uicontrol">SKWebSite </b>table.</p>
+<p class="paragraph">Example: Assume that there are four machines: <b class="uicontrol">Telematics Server</b>, <b class="uicontrol">Telematics DB Server</b>, <b class="uicontrol">Telematics Client</b> and <b class="uicontrol">Telematics DB Client</b>. </p>
+<p class="paragraph"><b class="uicontrol">Telematics Server</b> is connected to the Farm and 'n' number of Enterprise Console sites are created on the Telematics Server machine. By default the machine will be named as 'Server-1'. Telematics DB Server is connected to the Farm and 'n' number of Enterprise Console sites are created on the Telematics DB Server machine. By default the machine will be named as 'Server-2' and so on.</p>
+<p class="paragraph">Telematics Client is connected to the Farm and 'n' number of Enterprise Console sites are created on the Telematics Client machine. By default the machine will be named as 'Client-1'. Telematics DB Client is connected to the Farm and 'n' number of Enterprise Console sites are created on the Telematics DB Client machine. By default the machine will be named as 'Client-2' and so on.</p>
+<p class="paragraph">The pictorial diagram of the above explanation is shown below.</p>
+<p class="paragraph"><img id="f187078" src="187078.png" alt="" height="700" width="341" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">How to change Enterprise Console Alias Name?</p>
+<ol class="step"><li class="step">Go to the Farm Database. </li><li class="step">Open the<b class="uicontrol"> SKWebSite</b> table. </li><li class="step">Change the required Enterprise Console site alias name. Make sure that the name is unique across the machines. Example: If you want to change Enterprise Console alias name from Server-1 to Telematics Server, then you have to change the entry across the table in the SiteAliasName column to Telematics Server wherever Server-1 entry exists.<p class="stepinfo">Before Changing </p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187079" src="187079.png" alt="" height="190" width="556" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">After changing the entry</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187080" src="187080.png" alt="" height="190" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">After renaming the web site name, once again you need to reconfigure the Body property wherever this placeholder has been used in a workflows. </p>
+<p class="stepinfo"><strong class="notelabel">Note:</strong> If the workflow is imported from the other machine then make sure that the Enterprise Console name should be same while selecting URL in the EC plug-in window. If it is not the same then follow the steps instructed above to change the Enterprise Console site alias name.</p>
+</li><li class="step">The composed mail as shown in the following figure.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187081" src="187081.png" alt="" height="396" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click <b class="uicontrol">Update</b> of the Body window property to save the contents.</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="HumanActivities.html" target="_self">Human Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,298 @@
+/* Microsoft Office 2003 Toolbar Skin Stylesheet */
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+body
+{
+	/**/
+}
+/* normal button */
+.graphics_radbutton_normal 
+{	
+	height: 22px !important;
+	width: 22px !important;
+	padding: 1px;
+}
+
+.graphics_radbutton_hover
+{
+	background-image: url(Img/btnHoverBg.gif);
+	background-repeat: repeat-x;
+	background-color: #bbbbbb;	
+	border: solid 1px #000080;
+	cursor: default;
+	height: 22px !important;
+	width: 22px !important;
+}
+
+.graphics_radbutton_disabled
+{
+	background-color: transparent;
+	border: none;
+	filter: alpha(opacity=40) !important;
+	-moz-opacity: .40;/* Mozilla */
+	cursor: no-drop;
+	height: 22px !important;
+	width: 22px !important;
+	padding: 1px;
+}
+.graphics_radbutton_mousedown
+{
+	background-image: url(Img/btnMouseDown.gif);
+	background-repeat: repeat-x;
+	background-color: #ffd38e;
+	border: solid 1px #000080;
+	cursor: default;
+	height: 22px !important;
+	width: 22px !important;
+}
+/* end normal button */
+
+/* toggle button */
+.graphics_radtbutton_normal 
+{
+	background-color: transparent;
+	border: none;
+	cursor: default;
+	height: 22px !important;
+	width: 22px !important;
+}
+
+.graphics_radtbutton_hover
+{
+	background-image: url(Img/btnHoverBg.gif);
+	background-repeat: repeat-x;
+	background-color: #bbbbbb;	
+	border: solid 1px #000080;
+	cursor: default;
+	height: 22px !important;
+	width: 22px !important;
+}
+
+.graphics_radtbutton_toggled, .graphics_radtbutton_hover_toggled
+{
+	background-image: url(Img/btnMouseDown.gif);
+	background-repeat: repeat-x;
+	background-color: #ffd38e;
+	border: solid 1px #000080;
+	cursor: default;
+	height: 22px !important;
+	width: 22px !important;
+}
+
+.graphics_radtbutton_disabled
+{
+	background-color: transparent;
+	border: none;
+	cursor: default;
+}
+
+.graphics_radtbutton_mousedown
+{
+	background-image: url(Img/btnMouseDown.gif);
+	background-repeat: repeat-x;
+	background-color: #ffd38e;
+	border: solid 1px #000080;
+	cursor: default;
+	height: 22px !important;
+	width: 22px !important;
+}
+/* end toggle button */
+
+/* horizontal toobar */
+.graphics_radtoolbar_horizontal
+{
+	background-image: url(Img/bg-level2.gif);
+	background-color: #ddecfe;
+	background-repeat: repeat-x;
+	font-size: 8pt;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	border-collapse:collapse;
+	height: 28px;
+}
+/* end horizontal toobar */
+
+/* vertical toobar */
+.graphics_radtoolbar_vertical
+{
+	font-size: 10pt;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	border-collapse: collapse;
+	padding-left: 1px;
+	padding-right: 1px;
+}	
+/* end vertical toobar */
+
+/* horizonatal toolbar grips */
+/* left */
+.graphics_radtoolbar_left
+{
+	background-repeat: no-repeat;
+	width: 6px;
+}
+/* right */
+.graphics_radtoolbar_right
+{
+	background-repeat: no-repeat;
+	width: 8px;
+}
+/* end horizonatal toolbar grips */
+
+/* vertical toolbar grips */
+/* top */
+.graphics_radtoolbar_top
+{
+	background-image: url(Img/toolbarLeftV.gif);
+	background-repeat: no-repeat;
+	height: 8px;
+}
+/* bottom */
+.graphics_radtoolbar_bot
+{
+	background-image: url(Img/toolbarRightV.gif);
+	background-repeat: no-repeat;
+	height: 8px;
+}
+/* end vertical toolbar grips */
+/* separators */
+/* horizontal */
+.graphics_radseparator_h
+{
+	background-image: url(Img/separator_h.gif);
+	background-color: transparent;
+	background-repeat: repeat-y;
+	width: 2px;
+	height: 20px;
+	margin-left:2px;
+	margin-right:1px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+/* vertical */
+.graphics_radseparator_v
+{
+	background-image: url(Img/separator_v.gif);
+	background-repeat: repeat-x;
+	height: 2px;
+	font-size: 2px;
+	width: 22px;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+/* end separators */
+
+/* margins fix */
+.graphics_radbutton_normal IMG, .graphics_radbutton_normal SPAN, .graphics_radbutton_hover SPAN
+{
+	margin-top: 0px;
+}
+.graphics_radbutton_hover IMG, .graphics_radtbutton_hover IMG
+{
+	margin-top: 0px;
+}
+.graphics_radtbutton_mousedown IMG, .graphics_radtbutton_mousedown SPAN, .graphics_radtbutton_toggled IMG, .graphics_radtbutton_hover_toggled IMG
+{
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+.graphics_radtbutton_normal IMG, .graphics_radtbutton_normal SPAN, .graphics_radtbutton_hover SPAN
+{
+	margin-top: 0px;
+}
+.graphics_radbutton_mousedown IMG, .graphics_radbutton_mousedown SPAN
+{
+	margin-top: 0px;
+	margin-left: 0px;
+}
+.graphics_radbutton_disabled IMG
+{
+	margin-top: 1px;
+}
+
+/* buttons with text and images */
+/* normal */
+.graphics_radbutton_text_normal, .graphics_radtbutton_text_normal
+{
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 11px;
+	color: #4d4d4d;
+	height: 22px !important;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+/* hover */
+.graphics_radbutton_text_hover, .graphics_radtbutton_text_hover
+{
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 11px;
+	color: #000;
+	cursor: default;
+	border: solid 1px #000080;
+	background-image: url(Img/btnHoverBg.gif);
+	background-repeat: repeat-x;
+	background-color: #bbbbbb;
+	height: 22px !important;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+/* mousedown */
+.graphics_radbutton_text_mousedown, .graphics_radtbutton_text_mousedown, .graphics_radtbutton_text_toggled, .graphics_radtbutton_text_hover_toggled
+{
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 11px;
+	color: #000;
+	cursor: default;
+	border: solid 1px #000080;
+	background-image: url(Img/btnMouseDown.gif);
+	background-repeat: repeat-x;
+	background-color: #bbbbbb;
+	height: 22px !important;
+	padding-left: 1px;
+	padding-right: 1px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+/* button text */
+.graphics_radbutton_text_normal SPAN, .graphics_radbutton_text_hover SPAN, .graphics_radbutton_text_mousedown SPAN, .graphics_radtbutton_text_normal SPAN, .graphics_radtbutton_text_hover SPAN, .graphics_radtbutton_text_mousedown SPAN, .graphics_radtbutton_text_toggled SPAN, .graphics_radtbutton_text_hover_toggled SPAN
+{
+	display: inline-block;
+	margin-top: 2px;
+	float: left;
+}
+.graphics_radbutton_text_normal IMG, .graphics_radbutton_text_hover IMG, .graphics_radbutton_text_mousedown IMG, .graphics_radtbutton_text_normal IMG, .graphics_radtbutton_text_hover IMG, .graphics_radtbutton_text_mousedown IMG, .graphics_radtbutton_text_toggled IMG, .graphics_radtbutton_text_hover_toggled IMG
+{
+	margin-top: 2px;
+	float: left;
+}
+.graphics_toolbar_text
+{
+	font-size: 9px;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+
+/* button with text and image */

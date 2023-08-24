@@ -1,0 +1,109 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Skelta.Repository.Web.CodeBehind.WebLoggerMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %>AVEVA Work Tasks Logger</title>
+
+    <script src="../../Common/JavaScripts/jquery.min.js"></script>
+	 <script src="../../Common/JavaScripts/bootstrap.min.js" type="text/javascript"></script>
+	 <script src="../../Common/JavaScripts/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="../../Common/JavaScripts/AutoLogoff.js"></script>
+	<script src="../../CommonUXControls/scripts/window/se.ui.min.js"></script>
+	
+	<style>
+	.informationDiv{
+		margin-left: 5%;
+		display: inline-flex;
+		margin-top: 20px;
+		font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+		color: rgba(0,0,0,0.87);
+	}
+	.warningDiv,.errorDiv{
+		margin-left: 10%;
+		display: inline-flex;
+		margin-top: 20px;
+		margin-left: 20px;
+		font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+		color: rgba(0,0,0,0.87);
+	}
+	</style>
+	    <script>
+        var idleInterval;
+        var IDLETIME_SESSIONKEY = "SE_userIdleTime";
+        if(typeof(Storage) !== "undefined" && window.location.href.indexOf('FromArchestrA') < 0) {
+            localStorage.setItem(IDLETIME_SESSIONKEY,0);
+        }
+
+        function StartTimer(){
+            idleInterval = setInterval(timerIncrement, 10000);
+        }
+
+        function timerIncrement() {
+            var currentIdleTime = Number(localStorage.getItem(IDLETIME_SESSIONKEY));
+            currentIdleTime = Number(currentIdleTime) + 10;
+            localStorage.setItem(IDLETIME_SESSIONKEY,currentIdleTime.toString());
+            LogOffUser();
+        }
+        </script>
+</head>
+<body class="loggerBody">
+    <form runat="server">
+	<%= System.Web.Helpers.AntiForgery.GetHtml() %>
+		<link href="<%=ThemeURL%>Common/StyleSheet/Global.css" rel="stylesheet" />
+		<link href="<%=ThemeURL%>Common/StyleSheet/bootstrap-datepicker.min.css" rel="Stylesheet" type="text/css" />
+		<link href="<%=ThemeURL%>CommonUXControls/StyleSheet/se.ui.min.css" rel="stylesheet" />
+        <asp:ScriptManager runat="server">
+        </asp:ScriptManager>
+
+		<div class="header-greenband">
+			<div class="weblogger-product-title"><%=productHeader%></div>
+			<div class="sep-title">                
+                <img src="<%$ReplaceTemplateExpn:WorkItemList/Images/Separator.png%>" runat="server" class="sep-img"/>
+            </div>
+             
+            <div class="application-title"><%=enterpriseTitle%></div>
+
+            <div class="logoutMenu">  	
+			   <asp:ImageButton  ID="LogoutIcon" runat="server" ImageUrl="<%$ReplaceTemplateExpn:WorkItemList/Images/logoutdark.png%>" CssClass="webLoggerIcon" ToolTip="Log Out" OnClick="LogOutUser" />
+            </div>
+
+			<div class="historyMenuLogger">
+				<a runat="server" href="~/BPMUITemplates/Default/Repository/Site/HistoryLogger.aspx" title="History Logger">			
+                <img src="<%$ReplaceTemplateExpn:WorkItemList/Images/History.png%>" runat="server" id="HistoryIcon" class="webLoggerIcon"/>
+				</a>
+				<a runat="server" class="historyTab"></a>
+            </div>
+			<div class="liveMenuLogger">
+				<a runat="server" href="~/BPMUITemplates/Default/Repository/Site/LiveLogger.aspx" title="Live Logger">			
+                <img src="<%$ReplaceTemplateExpn:WorkItemList/Images/Live.png%>" runat="server" id="LiveIcon" class="webLoggerIcon"/>
+				</a>
+				<a runat="server" class="liveTab"></a>
+            </div>		
+		  </div>
+        		
+        <div class="mainContentDiv">
+            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+		<div>
+			<div class="informationDiv">
+			<img src="<%$ReplaceTemplateExpn:WorkItemList/Images/Information_Icon.svg%>" runat="server" id="informationIcon" style="height: 24px; width: 24px; padding-right: 10px"/>
+			<%=information%>
+			</div>
+			<div class="warningDiv">
+			<img src="<%$ReplaceTemplateExpn:WorkItemList/Images/Warning_Icon.svg%>" runat="server" id="warningIcon" style="height: 24px; width: 24px; padding-right: 10px"/>
+			<%=warning%>
+			</div>
+			<div class="errorDiv">
+			<img src="<%$ReplaceTemplateExpn:WorkItemList/Images/Error_Icon.svg%>" runat="server" id="errorIcon" style="height: 24px; width: 24px; padding-right: 10px"/>
+			<%=error%>
+			</div>
+		</div>
+    </form>
+	</div>
+</body>
+</html>

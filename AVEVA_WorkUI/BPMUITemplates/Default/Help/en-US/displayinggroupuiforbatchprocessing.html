@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Enabling Multi-Select Option in Work Item List </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t482481" class="heading5">Enabling Multi-Select Option in Work Item List</h5>
+<p class="paragraph">When the <b class="uicontrol">DisplayGroupUI</b> property is enabled, an additional button <b class="uicontrol">Enable Multi Select</b>&nbsp;is displayed in the Work items list. This property is a powerful feature that expedites processing of similar items in a batch.</p>
+<p class="paragraph">The <b class="uicontrol">Enable Multi Select</b> button provides users with options of acting on items as a batch. An additional option is made available when the items are grouped.</p>
+<p class="subheading">Enable Multi Select Option in Work items list</p>
+<p class="stepinfo"></p>
+<p class="paragraphimage"><img id="f46852" src="46852.png" class="embeddedimage100%scalinglive" alt="" height="134" width="542" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="note"><strong class="notelabel">Note</strong>: The Multi Select option is not supported for <b class="uicontrol">Resource Set</b> activity, <b class="uicontrol">Information</b> activity, and<b class="uicontrol"> InvokeForm</b> activity.</p>
+<p class="paragraph"></p>
+<p class="subheading">Work Item List in Multi Select Mode</p>
+<p class="paragraph">On clicking the <b class="uicontrol">Enable Multi Select</b> button, the Work items list interface is displayed in the multi-select mode with check boxes for each item. The user can enter comments that are applied to all the selections. The options for acting upon the selection depend on the type and stage of processing that the selected items are in.</p>
+<p class="paragraph"><b class="uicontrol">Example 1:</b> A user has multiple new work items that have the subject Approval of Vendor Invoices. The user can enable multi-select, then select all the items that he wants to take the ownership of. He can then select the <b class="uicontrol">Take Ownership</b> option in the drop-down to take the ownership of the selected items in a single click.</p>
+<p class="paragraph"></p>
+<p class="subheading">Work Item List with Multi-Select Enabled</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46855" src="46855.png" class="embeddedimage100%scalinglive" alt="" height="254" width="553" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

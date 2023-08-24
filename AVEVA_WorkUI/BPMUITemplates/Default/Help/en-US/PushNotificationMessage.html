@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Setting Notification Type </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t550002" class="heading4">Setting Notification Type</h4>
+<p class="paragraph">In&nbsp;<b class="uicontrol">Work Tasks Pro Push Notification Activity</b>,&nbsp;you can configure different types of notification based on the device being used. You can choose to continue with the default notification type or customize the notification type.</p>
+<p class="paragraph">To use the default notification type, set the option&nbsp;<b class="uicontrol">'Apply Default Notification Setting'</b>&nbsp;as&nbsp;<b class="uicontrol">Yes</b>. Default notification for iOS is&nbsp;<b class="uicontrol">Alert</b>&nbsp;and for Windows 8.1 it is&nbsp;<b class="uicontrol">Tile</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51405" src="51405.jpg" class="embeddedimage100%scalinglive" alt="" height="217" width="450" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">Configuring Custom Notification Type</p>
+<ol class="step"><li class="step">Click the edit icon in<b class="uicontrol">&nbsp;Notification Type</b>&nbsp;property. The&nbsp;<b class="uicontrol">Notification Type Setting</b>&nbsp;is displayed.</li><li class="step">Select&nbsp;<b class="uicontrol">No</b>&nbsp;for the option&nbsp;<b class="uicontrol">'Apply Default Notification Setting'</b>. The option of&nbsp;<b class="uicontrol">Device and Notification Type</b>&nbsp;is now available for selection.<p class="stepinfo">The default selection for the option<b class="uicontrol">&nbsp;'Apply Default Setting'</b>&nbsp;is <b class="uicontrol">Yes</b>.</p>
+</li><li class="step">Select the operating system used on your device and then select the&nbsp;<b class="uicontrol">Notification Type</b>.<ul class="ulsubitem"><li class="ulsubitem">iOS operating system, supports only the default notification specific to iOS.</li><li class="ulsubitem">For Windows 8.1 operating system, the available notification types are&nbsp;<b class="uicontrol">Tile</b>&nbsp;and&nbsp;<b class="uicontrol">Toast</b><ul class="ulsubsubitem"><li class="ulsubsubitem">When&nbsp;<b class="uicontrol">Tile</b>&nbsp;is selected the notifications are displayed on tile of the application</li><li class="ulsubsubitem">When&nbsp;<b class="uicontrol">Toast</b>&nbsp;is selected the notifications are displayed as pop-up notifications</li></ul></li></ul></li></ol><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> <b class="uicontrol">Push Notification</b> activity will continue to execute successfully even after unregistering for notification from the <b class="uicontrol">Farm Configuration Wizard</b>. In such cases, unpublish the workflow, unregister for notification from the <b class="uicontrol">Farm Configuration Wizard</b>, and then republish the workflow.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="WorkTasksPushNotification.html" target="_self">Work Tasks Pro Push Notification Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

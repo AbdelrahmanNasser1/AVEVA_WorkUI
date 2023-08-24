@@ -1,0 +1,21 @@
+<root>
+  <tools>
+    <tool name="Cut" shortcut="CTRL+X"/>
+    <tool name="Copy" shortcut="CTRL+C"/>
+    <tool name="Paste" shortcut="CTRL+V"/>
+    <tool name="Undo" shortcut="CTRL+Z"/>
+    <tool name="Redo" shortcut="CTRL+Y"/>
+    <tool name="Bold" shortcut="CTRL+B"/>
+    <tool name="Italic" shortcut="CTRL+I"/>
+    <tool name="Underline" shortcut="CTRL+U"/>
+    <tool name="Print" shortcut="CTRL+P"/>
+  </tools>
+  <tools>
+    <tool name="FormatBlock"/>
+    <tool name="FontName"/>
+    <tool name="FontSize"/>
+    <tool separator="true"/>
+    <tool name="ForeColor"/>
+    <tool name="BackColor"/>
+  </tools>
+</root>

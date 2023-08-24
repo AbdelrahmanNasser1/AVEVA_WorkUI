@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Scheduler Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t488922" class="heading3">Scheduler Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Scheduler Activity can be used to schedule a task at a specified time, set on the basis of weekly, daily as well as hourly schedules. The output of the activity can be linked to the next activity. There is an option to set the recurrence count so that the user can restrict the number of recurrences.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Scheduler activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right click menu for the Scheduler activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51231" src="51231.png" class="embeddedimage100%scalinglive" alt="" height="552" width="258" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Scheduler Details</b> - The Scheduler Details property allows the user to specify the time settings for scheduling the specific workflow activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Scheduler Details property</p>
+<ol class="step"><li class="step">To specify the Scheduler Details, click the button for the 'Scheduler Details' property to open the property window.</li><li class="step">Click on one of the three tabs - <b class="uicontrol">Weekly</b>, <b class="uicontrol">Time Span</b>, and <b class="uicontrol">Date Criteria</b> - to set the corresponding property value.</li><li class="step">By default, the first tab, i.e. <b class="uicontrol">Weekly</b>, is selected and the corresponding user interface is shown. You can specify the weekly schedule settings here.</li><li class="step">Select the day of the week on which the activity is to be scheduled from the Time drop down.</li><li class="step">Next specify the time at which the scheduled activity should be executed on the selected day in the <b class="uicontrol">hh:mm:ss</b> field in the &quot;hh:mm:ss&quot; format.</li><li class="step">Now, click the <b class="uicontrol">Recurring?</b> check box to schedule the activity to recur.</li><li class="step">If it is to recur more than once, specify the count in the <b class="uicontrol">Recurrence Factor/Count</b> field.<ul class="ulsubitem"><li class="ulsubitem">If the count is set to '0' then the activity keeps on recurring.</li><li class="ulsubitem">If it is set to '2' the activity ends after the second recurrence.</li><li class="ulsubitem">If it is set to '1' or 'NO' the activity recurs only once.</li></ul></li><li class="step">If the <b class="uicontrol">Time Span</b> tab is clicked, it displays the corresponding user interface. You can specify a time span for the execution of the activity here.</li><li class="step">Enter the time interval of the schedule in the first field, in the &quot;d.hh:mm:ss&quot; format, where &quot;d&quot; denotes the number of days the schedule is set for while the time setting denotes the number of hours, minutes, or seconds. For example, if this value is set as 0.00:30:00, the activity will be executed every 30 minutes. If it is set as 1.00:30:00, the activity will be executed every 1 day and 30 minutes or 24 hours and 30 minutes.</li><li class="step">Click the <b class="uicontrol">Recurring?</b> check box to schedule the activity to recur.</li><li class="step">If it is to recur more than once, specify the count in the <b class="uicontrol">Recurrence Factor/Count</b> field.</li><li class="step">If the <b class="uicontrol">Date Criteria</b> tab is clicked, it displays the corresponding user interface. You can specify a date based schedule here.</li><li class="step">Here, the date value can be selected using Content or Variable collection or by entering discrete values.</li><li class="step">After specifying the value you must select one of two options - &quot;Initiate before&quot; or &quot;Initiate after&quot; - from the next drop down and then specify the time interval in number of days in the field provided.</li><li class="step">After making all the schedule settings, click <b class="uicontrol">Update</b> to save the settings.</li></ol><p class="paragraph">See <a id="h51234" class="jump-currentwindowlive" title="Scheduler: Scheduler Details" href="sched-schedulerdetails1.html" target="_self">Scheduler: Scheduler Details</a>&nbsp;for a detailed description of the Scheduler Details property window.</p>
+<p class="paragraph"><b class="uicontrol">Output Path</b>&nbsp;- The Output Path property allows the user to specify the output path that can be used to link to the next activity, and can be treated as the output of the Scheduler activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Scheduler Activity does not have any standard return value. It will output the value specified by the user in the Output Path property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Example for scheduling an activity on every Monday at 10.30 a.m:</strong></p>
+<p class="paragraph"><strong class="strong">Step 1:</strong> Design a workflow as shown in figure.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51232" src="51232.png" class="embeddedimage100%scalinglive" alt="" height="300" width="266" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+<p class="paragraph"><strong class="strong">Step 2:</strong> Click the 'Scheduler Details' property and select Scheduler Details, following image appears.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51233" src="51233.png" class="embeddedimage100%scalinglive" alt="" height="143" width="530" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="paragraph"><strong class="strong">Step 3:</strong> Select a day and set the time and click on the <b class="uicontrol">Update</b> button to save the settings.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 4</strong>: Set the value for Output Path.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 5:</strong> Set Actor for approval.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a>&nbsp;for more details.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The pause and Resume functionality of Workflow is not supported in this activity.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="sched-schedulerdetails1.html" target="_self">Scheduler: Scheduler Details</a></p><p class="relateditem"><a href="reschedulefailedtasks1.html" target="_self">Reschedule Failed Tasks</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+ </body>
+ </html>

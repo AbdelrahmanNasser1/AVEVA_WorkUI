@@ -1,0 +1,4 @@
+FormWidget_BASEGRID_Property_MODIFIEDROWS:Modified Rows
+FormWidget_BASEGRID_Script_ONINITIALIZE:On Initialize
+@@WidgetBaseGridErrorParsingData@@:Error parsing data
+@@WidgetBaseGridErrorParsingNotify@@:Error parsing notify object

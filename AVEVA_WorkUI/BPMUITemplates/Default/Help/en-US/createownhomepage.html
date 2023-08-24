@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating Custom Page </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t598272" class="heading5">Creating Custom Page</h5>
+<p class="paragraph">Custom home pages can be created according to the organizational requirements and needs. The section below gives details on how to create Custom Home Page.</p>
+<p class="procedureheading">Creating a new custom home page:</p>
+<ol class="step"><li class="step">Right click on the folder in solution explorer, where you want to create a new custom home page, or click on&nbsp;<strong class="strong">File </strong>&gt; <strong class="strong">New </strong>&gt; <strong class="strong">File</strong>&nbsp;in Visual Studio.</li><li class="step">Specify the page name, for example&nbsp;CustomHomePage.aspx,&nbsp;and click <strong class="strong">Add</strong>.</li><li class="step">Include the following Register directive for the WebPartManager. <p class="stepinfo">&lt;%@ Register Src=&quot;~/BPMUITemplates/Default/Repository/Site/WebPartManager.ascx&quot; TagName=&quot;ECWebPartManager&quot; TagPrefix=&quot;wpm&quot; %&gt;</p>
+</li><li class="step">Provide the html for the page layout and place the web part zones in an appropriate order.</li><li class="step">Apply the styles and specify names and labels for them.<p class="stepinfo">Create a table to define the web part zones in an appropriate order. Add the class&nbsp;&quot;ContainerWebPartZone&quot; to the container of the web part zone, refer image below. This class will ensure that the height and width of the web part is adjusted to the height and width of its web zone .</p>
+<p class="stepinfo"><img id="f47188" src="47188.png" class="embeddedimage100%scalinglive" alt="" height="335" width="581" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo">In the above image&nbsp;&lt;td&gt;&nbsp;is the container of the web part zone and the class within the container is highlighted.</p>
+</li><li class="step">Specify the below property to the Page directive:<p class="stepinfo">EnableEventValidation=&quot;false&quot;</p>
+</li><li class="step">The&nbsp;ECWebPartManager&nbsp;user control should be the first control in the page:<p class="stepinfo">&lt;wpm:ECWebPartManager&nbsp;ID=&quot;ECWebPartManager1&quot;&nbsp;runat=&quot;server&quot;&nbsp;/&gt;</p>
+</li><li class="step">Create a navigation menu for the new home page<ol class="substep"><li class="substep">Navigate to&nbsp;<strong class="strong">Repository Settings</strong> &gt; <strong class="strong">Advanced Settings</strong> &gt; <strong class="strong">Manage Navigation List</strong>.</li><li class="substep">Click on <strong class="strong">Navigation</strong> and specify the details.</li></ol></li><li class="step">Log out and Login, as the Enterprise Console menu is cached.</li><li class="step">Drill down the menu and click on it.</li><li class="step">A blank page with only the Webparts Settings option will be displayed.<p class="stepinfo">The page is blank, as only the web part zone(place holders) have been added and not the web parts. Web Parts have to be added through the&nbsp;Webparts Settings&nbsp;option, the following steps will give you details on how to add web parts:</p>
+</li><li class="step">Expand&nbsp;Webparts Settings&nbsp;at the top left corner, to view the toolbar.</li><li class="step">Select the Web Part, which you want to add to the page from the&nbsp;Select Web Part&nbsp;drop down.</li><li class="step">Select the Web Part Zone, to which you want to add the selected web part from the&nbsp;Select Zone&nbsp;drop down. Click&nbsp;<strong class="strong">Add Web Part</strong>&nbsp;button.</li></ol><p class="paragraph">The web part will be added to the selected web part zone.</p>
+<p class="paragraph">Similarly you can add other web parts to the other web part zones.</p>
+<p class="paragraph">After adding the controls and specifying the proper width and height, the custom home page looks like the image given below:</p>
+<p class="subheading">Setting up the custom home page as the landing page (Dashboard) for the logged-in user:</p>
+<p class="paragraph">We need to make an entry into the SKEWebPartTemplates and SKEWebPartLayouts tables to reflect the custom home page in &#8216;Default Home Page&#8217; right.</p>
+<p class="codeblock1">insert into SKEWebPartTemplates values(NEWID(), '&lt;ApplicationName&gt;', '&lt;HomePage Name&gt;', '&lt;HomePage Path&gt;', 'User')</p>
+<p class="codeblock1">insert into SKEWebPartLayouts values(NEWID(), '&lt;TemplateId&gt;', '&lt;HomePage Name&gt;', null, &nbsp;'&lt;ApplicationName&gt;', GETUTCDATE())</p>
+<p class="paragraph">Example:</p>
+<p class="codeblock1">insert into SKEWebPartTemplates values(NEWID(), 'Bata7Repo', 'Custom home page', '~/BPMUITemplates/Default/Repository/Site/CustomHomePage.aspx', 'User')</p>
+<p class="codeblock1">insert into SKEWebPartLayouts values(NEWID(), '980D6D0E-137C-46AF-8417-81BD7F1D52A7', 'Custom home page', null, &nbsp;'Bata7Repo', GETUTCDATE())</p>
+<p class="paragraph">After that we can edit the security group and set the custom home page as the Default Home page. Then when the user logs-in Enterprise Console, he will be landed to the Custom home page.</p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> To use the <b class="uicontrol">Fill Form</b> web part in the custom ASPX page include the following script in that page.<br><span class="userinput">&lt;script&gt;</span><br><span class="userinput">function open_win(path)</span><br><span class="userinput">{</span><br><span class="userinput">OpenWindow(path);</span><br><span class="userinput">}</span><br><span class="userinput">&lt;/script&gt;</span></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

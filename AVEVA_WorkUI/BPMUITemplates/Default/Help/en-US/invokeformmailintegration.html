@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Mail Integration Scenario </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601964" class="heading4">Invoke Form - Mail Integration Scenario</h4>
+<p class="paragraph">AVEVA Work Tasks provides a powerful feature to integrate the invoked form in a mail. This is useful for user to get a direct link to AVEVA Work Tasks Form as an email. Without logging into Enterprise Console, the user can click the link that will open Forms in a browser.</p>
+<p class="subheading">Pre-requisites</p>
+<ol class="olitem"><li class="olitem">To configure your machine IP address for &nbsp;receiving emails, see&nbsp;<a id="h50958" class="jump-currentwindowlive" title="Configuring Farm Configuration Wizard for Receiving Emails" href="configurationforreceivingemails.html" target="_self">Configuring Farm Configuration Wizard for Receiving Emails</a>.</li><li class="olitem">The&nbsp;<b class="uicontrol">Send Notification Email</b>&nbsp;property should be set to&nbsp;<b class="uicontrol">Yes</b>&nbsp;for this activity.</li></ol><p class="subheading">Scenario Description:</p>
+<p class="paragraph">Consider a scenario where the manager has to approve or reject the leave application, sent by the subordinates. Where the manager requires direct link to access this leave application form which is filled by the subordinate as an email.</p>
+<p class="subheading">Scenario Requirements:</p>
+<p class="paragraph">Design a form called 'Leave Form' with following controls and invoke this form using Invoke Form activity.</p>
+<ul class="ulitem"><li class="ulitem">Employee Name&nbsp;(Text Input control)</li><li class="ulitem">From Date&nbsp;(Date Input control)</li><li class="ulitem">To Date&nbsp;(Date Input control)</li><li class="ulitem">Reason&nbsp;(Text Input Control)</li><li class="ulitem">Grid</li><li class="ulitem">BaseForm</li><li class="ulitem">Approve&nbsp;(Button)</li><li class="ulitem">Reject&nbsp;(Button)</li></ul><p class="paragraph">There are two ways to send notification mail:</p>
+<ol class="olitem"><li class="olitem"><a id="h50959" class="jump-currentwindowlive" title="Using 'Body' Property" href="usingbodyproperty.html" target="_self">Using Body property</a></li><li class="olitem"><a id="h50960" class="jump-currentwindowlive" title="Using 'Template Path' Property" href="usingtemplatepathproperty.html" target="_self">Using Template Path property</a></li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="usingbodyproperty.html" target="_self">Using 'Body' Property</a></p><p class="relateditem"><a href="usingtemplatepathproperty.html" target="_self">Using 'Template Path' Property</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script type="text/javascript" src="js/paho-mqtt-min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaFormsUtils = skelta.forms.utilities;
+        var skeltaUtility = skelta.utilities;
+        var logger = skeltaFormsUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, listId, mode, viewAndViewModel;
+        var mqtt, dropQos; 
+        var mqttProtocolVersion = 4;
+        var isFormFinishclick;
+        function IsNullOrEmpty(value)
+        {
+            return skeltaUtility.isUndefined(value) || skeltaUtility.isEmpty(value);
+        }
+
+        function TestMqttConnection(control, isEventFromFinishClick)
+        {
+            if (!control.topLevelForm.validateForm(true, false))
+            {
+                return;
+            }            
+            isFormFinishclick = isEventFromFinishClick;
+            var connectionDetail = null;    
+            skeltaUtils.showLoader();
+            var optionValue = control.findByXmlNode("Anonymous").value;
+            var mqttConnectionName = control.findByXmlNode("Title").value;
+            var userId = null, passcode = null;
+
+            if (optionValue === "False")
+            {
+                userId = control.findByXmlNode("UserId").value;
+                passcode = GetDecryptedString(control.findByXmlNode("Password"));
+            }
+                       
+            var uniqueId = GetUniqueClientId(control.findByXmlNode("ClientIdPrefix"));
+            control.findByXmlNode("MqttVersion").value = mqttProtocolVersion;
+
+            connectionDetail = {
+                host: control.findByXmlNode("Host").value,
+                port: parseInt(control.findByXmlNode("Port").value),
+                webSocketEndPath: control.findByXmlNode("WebSocketEndPointPath").value,
+                userId: userId,
+                password: passcode,
+                clientId: uniqueId,
+                onConnect: isEventFromFinishClick ? onConnectSubmitForm : onConnectSucessMsg,
+                onFailure: onFailure,
+                onMessageArrived: function (message) { },
+                onConnectionLost: function (responseObject) { },
+                topics: [],
+                source: "CreateMqttConnection",
+                connectionName: mqttConnectionName,
+                connectionSecured: (control.findByXmlNode("Secured").value === "True"),
+                mqttVersion: mqttProtocolVersion
+            };
+
+            try
+            {
+                mqtt = new skelta.Mqtt(connectionDetail);
+                mqtt.connect();
+            }
+            catch (exception)
+            {
+                skeltaFormsUtils.pageLoadComplete("");
+                var connectionFailed = skelta.localize.getString("Mqtt_TestConnection_Failed");
+                logger.logError(connectionFailed + ":" + exception.message);
+                skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_SaveMsg_title"), connectionFailed);
+            }
+        }
+
+        function GetDecryptedString(control)
+        {
+            var passresult = null;
+            var jsonObject = skeltaFormsUtils.createJsonRequestHelper({
+                "encryptedString": control.value,
+                "encryptionMode": "1"
+            });
+
+            skeltaFormsUtils.callServerMethod("GET",
+                "NextGenFormService.aspx/GetDecrytedString",
+                "application/json; charset=utf-8",
+                jsonObject,
+                "html",
+                function (result) { passresult = result; },
+                getDecryptedStringFailed,
+                null,
+                false);
+            return passresult;
+        }
+
+        function getDecryptedStringFailed(result)
+        {
+            skeltaFormsUtils.pageLoadComplete("");
+            var retrievemsg = skelta.localize.getString("Mqtt_Pass_Retrieve");
+            skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Retrieve_Error_title"),
+                retrievemsg,
+                null,
+                retrievemsg + "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+            logger.logError(retrievemsg + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function GetUniqueClientId(control)
+        {
+            var clientUniqueId = skeltaFormsUtils.getGuId();
+            var clientIdPrefix = control.value;
+            if (!skeltaUtility.isUndefined(clientIdPrefix) && !skeltaUtility.isEmpty(clientIdPrefix))
+            {
+                clientUniqueId = clientIdPrefix + clientUniqueId;
+            }
+            return clientUniqueId;
+        }
+
+        function onConnectSucessMsg()
+        {                       
+            skeltaFormsUtils.pageLoadComplete("");
+            var connectionSuccessful = skelta.localize.getString("Mqtt_TestConnection_Successful");
+            skeltaFormsUtils.showAlert(skelta.localize.getString("Mqtt_SaveMsg_title"), connectionSuccessful);
+            try
+            {
+                mqtt.disconnect();
+            }
+            catch (e)
+            {
+                logger.logError(e.message);
+            }
+        }
+
+        function onFailure(responseObject)
+        {          
+            if (mqttProtocolVersion === 4)
+            {
+                mqttProtocolVersion = 3;
+                TestMqttConnection(control, isFormFinishclick);
+            }
+            else
+            {
+                skeltaFormsUtils.pageLoadComplete("");
+                if (responseObject.errorCode !== 0)
+                {
+                    var connectionFailed = skelta.localize.getString("Mqtt_TestConnection_Failed");
+                    logger.logError(connectionFailed + ":" + responseObject.errorMessage);
+                    skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_SaveMsg_title"), connectionFailed);
+                }
+            }
+        }
+
+        function enableDisableUserNameAndPassword(control)
+        {
+            var optionValue = control.value;
+            if (optionValue === "True")
+            {
+                control.findByXmlNode("UserId").value = "";
+                control.findByXmlNode("Password").value = "";
+                control.findByXmlNode("UserId").enable = false;
+                control.findByXmlNode("Password").enable = false;
+                control.findByXmlNode("UserId").isMandatory = false;
+                control.findByXmlNode("Password").isMandatory = false;
+            }
+            else
+            {
+                control.findByXmlNode("UserId").enable = true;
+                control.findByXmlNode("Password").enable = true;
+                control.findByXmlNode("UserId").isMandatory = true;
+                control.findByXmlNode("Password").isMandatory = true;
+            }
+        }
+
+        function GetRadWindow()
+        {
+            var oWindow = null;
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+            return oWindow;
+        }
+
+        function closeWin()
+        {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function onConnectSubmitForm()
+        {       
+            viewModelObject.topLevelForm.records()[0].submitClick();
+        }
+
+        function onSave(inputParameterObject, eventArgs)
+        {
+            skeltaUtils.showLoader();
+            var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                "instanceXml": skeltaFormsUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                "secured": paramlcsuri,
+            });
+
+            try
+            {
+                skeltaFormsUtils.callServerMethod("POST", "MqttConnectionService.aspx/SaveMqttConnection", "application/json; charset=utf-8", jsonHelper, "json", newFormSubmitSucceeded, newFormSubmitFailed, function () { skeltaFormsUtils.pageLoadComplete(""); });
+            }
+            catch (e)
+            {
+                var saveErrorMsg = skelta.localize.getString("Mqtt_Save_Error");
+                skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Save_Error_title"),
+                    saveErrorMsg,
+                    null);
+                logger.logError(saveErrorMsg + ": " + e.message);
+            }
+        }
+
+        function newFormSubmitSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+
+            if (res.IsSuccess === true)
+            {
+                skeltaFormsUtils.showAlert(skelta.localize.getString("Mqtt_SaveMsg_title"),
+                    skelta.localize.getString("Mqtt_SaveMsg"), closeWin);
+            }
+            else
+            {
+                var errorSaveMsg = skelta.localize.getString("Mqtt_Save_Error");
+                skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Save_Error_title"),
+                    errorSaveMsg,
+                    null);
+                logger.logError(errorSaveMsg);
+                logger.logError(res.ErrorMessage.replaceString("\\", "", false, true));
+            }
+        }
+
+        function newFormSubmitFailed(result)
+        {
+            var saveErrorMsg = skelta.localize.getString("Mqtt_Save_Error");
+            skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Save_Error_title"),
+                saveErrorMsg,
+                null);
+            logger.logError(saveErrorMsg);
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function checkLookupAccessRights(lcsuri)
+        {
+            var params = skeltaFormsUtils.createJsonRequestHelper({
+                "secured": lcsuri,
+                "rightCodes": mode === "new" ? ["ActionCreate"] : ["ActionEdit"]
+            });
+
+            skeltaFormsUtils.callServerMethod("GET", "MqttConnectionService.aspx/CheckSecurityAndGetPageDefaults", "application/json; charset=utf-8", params, "json", onEventAccessSucceeded, null, null, false);
+        }
+
+        function onEventAccessSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                var retrieveError = skelta.localize.getString("Mqtt_Retrieve_Error");
+                skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Retrieve_Error_title"),
+                    retrieveError,
+                    function ()
+                    {
+                        skeltaFormsUtils.pageLoadComplete("");
+                    },
+                    result.ErrorMessage.replaceString("\\", "", false, true));
+                logger.logError(retrieveError);
+                logger.logError(result.ErrorMessage.replaceString("\\", "", false, true));
+                return false;
+            }
+            else
+            {
+                var clientData = $.parseJSON(result.Result);
+                applicationName = clientData.fAppName;
+                listId = clientData.fId;
+                skelta.userContext.setUserContextFor("appN", clientData.fAppName);
+                skeltaFormsUtils.loadPageDefault();
+                getNewMqttConnectionDefinition();
+                var chkAnonymous = viewModelObject.topLevelForm.findByXmlNode("Anonymous");
+                if (mode === "new")
+                {
+                    document.title = skelta.localize.getString("Mqtt_New_Connection");
+                }
+                else if (mode === "Edit")
+                {
+                    document.title = skelta.localize.getString("Mqtt_Edit_Connection");
+                    var uniqueKey = skeltaFormsUtils.getFormUniqueKey(applicationName, listId + "_Mqtt", "");
+                    viewModelObject = skeltaFormsUtils.getViewModelObject(uniqueKey);
+                    viewModelObject.topLevelForm.findByXmlNode("Title").readOnly = true;
+                    enableDisableUserNameAndPassword(chkAnonymous);
+                }
+                else if (mode === "View")
+                {
+                    document.title = skelta.localize.getString("Mqtt_View_Connection");
+                    enableDisableUserNameAndPassword(chkAnonymous);
+                    viewModelObject.topLevelForm.findByXmlNode("UserId").readOnly = true;
+                    viewModelObject.topLevelForm.findByXmlNode("Password").readOnly = true;
+                }
+
+                var oWindow = GetRadWindow();
+                if (oWindow)
+                {
+                    oWindow.set_title(document.title);
+                }
+
+            }
+        }
+
+        function getNewMqttConnectionDefinition()
+        {
+            var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                "secured": paramlcsuri
+            });
+            skeltaFormsUtils.callServerMethod("GET", "MqttConnectionService.aspx/GetNewMqttConnection", "application/json; charset=utf-8", jsonHelper, "html", newEventSucceeded, newEventFailed, function () { skeltaFormsUtils.pageLoadComplete(""); }, false);
+        }
+
+        function newEventSucceeded(resultData)
+        {
+            viewAndViewModel = resultData;
+            var pageMode = skeltaFormsUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+            if (mode === "Edit" || mode === "View")
+            {
+                var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                    "secured": paramlcsuri
+                });
+
+                skeltaFormsUtils.callServerMethod("GET", "MqttConnectionService.aspx/GetInstanceXmlMqttConnection", "application/json; charset=utf-8", jsonHelper, "json", getInstanceXmlSucceeded, getInstanceXmlFailed, getInstanceXmlCompleted, false);
+            }
+            else
+            {
+                var uniqueKey = skeltaFormsUtils.getFormUniqueKey(applicationName, listId + "_Mqtt", "");
+                skeltaFormsUtils.createDataModelObject(uniqueKey);
+                $("#viewModel").html(viewAndViewModel);
+                viewModelObject = skeltaFormsUtils.getViewModelObject(uniqueKey);
+                viewModelObject.onSave.subscribeEvent(onSave);
+                viewModelObject.onCancel.subscribeEvent(closeWin);
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+                $("#viewModel")[0].style.display = "";
+            }
+        }
+
+        function getInstanceXmlSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            var uniqueKey = skeltaFormsUtils.getFormUniqueKey(applicationName, listId + "_Mqtt", "");
+            skeltaFormsUtils.createDataModelObject(uniqueKey);
+            skeltaFormsUtils.setDataModelObject(uniqueKey, skeltaFormsUtils.getJSONObjectFromXml(res));
+
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaFormsUtils.getViewModelObject(uniqueKey);
+
+            var pageMode = skeltaFormsUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+
+            if (mode == "View")
+            {
+                viewModelObject.topLevelForm._readEditAddBehaviour(1);
+                $("." + cssClasses.sfFooter).hide();
+            }
+
+            viewModelObject.onSave.subscribeEvent(onSave);
+            viewModelObject.onCancel.subscribeEvent(closeWin);
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function getInstanceXmlCompleted()
+        {
+            skeltaFormsUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlFailed(result)
+        {
+            var errorMsg = skelta.localize.getString("Mqtt_InstanceXML_Retrieve_Error")
+                .replace("<@application@>", applicationName)
+                .replace("<@listid@>", listId);
+            skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Retrieve_Error_title"),
+                skelta.localize.getString("Mqtt_Retrieve_Error"),
+                null,
+                errorMsg + "<br/>" + result.status + ' ' + result.statusText
+                + "<br/>" + result.responseText);
+            logger.logError(errorMsg + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function newEventFailed(result)
+        {
+            var retrievemsg = skelta.localize.getString("Mqtt_Retrieve_Error");
+            skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Retrieve_Error_title"),
+                retrievemsg,
+                null,
+                retrievemsg + "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+            logger.logError(retrievemsg + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        $(document).ready(function ()
+        {
+            paramlcsuri = skeltaFormsUtils.getUrlParameterValue(window, 'lcsuri');
+            var pageMode = skeltaFormsUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+            try
+            {
+                var spinnerEl = skeltaFormsUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkLookupAccessRights(paramlcsuri);
+            }
+            catch (exception)
+            {
+                var loaderrormsg = skelta.localize.getString("Mqtt_Load_Error");
+                skeltaFormsUtils.showError(skelta.localize.getString("Mqtt_Retrieve_Error_title"),
+                    loaderrormsg,
+                    null,
+                    exception.message);
+                logger.logError(loaderrormsg + ' ' + exception.message);
+            }
+        });
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        se.ui.messageDialog.setGlobalOptions({
+            localization: {
+                closeButtonCaption: skelta.localize.getString("se_ui_messagedialog_close_caption"),
+                okButtonCaption: skelta.localize.getString("se_ui_messagedialog_ok_caption"),
+                cancelButtonCaption: skelta.localize.getString("se_ui_messagedialog_cancel_caption"),
+                showDetailsCaption: skelta.localize.getString("se_ui_messagedialog_showdetails_caption"),
+                hideDetailsCaption: skelta.localize.getString("se_ui_messagedialog_hidedetails_caption")
+            }
+        });
+    </script>
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+</body>
+</html>

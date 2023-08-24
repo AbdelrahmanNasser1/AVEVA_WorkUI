@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Queue Multi-Select and Reassign Queue Work Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t611102" class="heading3">Queue Multi-Select and Reassign Queue Work Items</h3>
+<p class="subheading">Queue Multi Select</p>
+<p class="paragraph">The queue multi-select feature allows you to select multiple queue items. You can pick the queue items from the work item Inbox and assign them to actors. You can plan the queue items so that they are scheduled for the time specified and assigned to actors once the time elapses. You can also recall already allocated items so that they get back to the respective queues.</p>
+<p class="paragraph">Showing the multi select capability for the Queue item tasks in Work items list control is controlled by the Work item list Control Property -&nbsp;<b class="uicontrol">EnableMultiSelectByDefaultForQueue</b>. Based on this property, the set user can control the visibility of the multi-select check boxes for the queue view.</p>
+<p class="paragraph">If the property <strong class="strong">EnableMultiSelectByDefaultForQueue</strong> is set to False for the Work items list control, then the queue multi-select option is controlled by the <b class="uicontrol">DisplayGroupUI</b> property of the Work items list control. On click of the <b class="uicontrol">Enable Multi Select</b> icon, check boxes will be enabled for selecting multiple queue items.&nbsp;&nbsp;</p>
+<p class="paragraph">The following image shows the Queue multi-select option in Work items list control:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46832" src="46832.png" class="embeddedimage100%scalinglive" alt="" height="43" width="564" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="note"><strong class="notelabel">Note:</strong> The options for performing queue operations are displayed in the <b class="uicontrol">Inbox, </b>based on the runtime access rights defined for a role in Queue Management. For more information about setting role priority, see <a id="h269226" class="" title="Adding Participants to the Queue" href="addingparticipantstothequeue1.html" target="_self">Set Role Priority</a>.</p>
+<p class="paragraphimage"></p>
+<p class="subheading">Reassigning Queue Work Items</p>
+<p class="paragraph">This option enables you to reassign queue work items through the context menu. Also, the scenario of reassigning multiple queue work items is achieved by clicking Reassign Queue Items in the multi-select mode.</p>
+<p class="paragraph">Reassigning of queue work items functionality is achieved through the context menu of the queue work items list.</p>
+<p class="paragraph">The following image shows reassigning queue work items:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46833" src="46833.png" class="embeddedimage100%scalinglive" alt="" height="146" width="558" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Multiple reassigning of queue work items is achieved by clicking the <b class="uicontrol">Reassign Queue Item</b> button with the multi select mode enabled.</p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

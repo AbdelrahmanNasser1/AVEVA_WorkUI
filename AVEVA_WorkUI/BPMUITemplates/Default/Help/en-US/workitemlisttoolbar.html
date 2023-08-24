@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Items List Toolbar </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t597308" class="heading4">Work Items List Toolbar</h4>
+<p class="paragraph">The Work items list toolbar has options that enable users to manage how work items are delivered, when they are delivered and to assign alternate actors in their absence. An additional option for queue enables queue owners to access the settings to their queues.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46827" src="46827.jpg" class="embeddedimage100%scalinglive" alt="" height="45" width="256" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Show Queue:</b> This option opens the appropriate Queue Control window for the folder from which it is accessed. To open the main&nbsp;<a id="h46668" class="jump-currentwindowlive" title="Queue Management" href="queuemanagement.html" target="_self">Queue Management</a>&nbsp;window with the list of all queues, select Inbox and click the Show queue icon. To open the&nbsp;<a id="h46710" class="jump-currentwindowlive" title="Participants Tab" href="participantstab.html" target="_self">Participants Tab</a>&nbsp;window for a queue, select the queue folder and click the icon.</li><li class="ulitem"><b class="uicontrol">Show alternate actor:</b> This option opens the <b class="uicontrol">Alternate Actors</b> setting window, which can also be accessed from the Process Designer. See&nbsp;<a id="h46830" class="jump-currentwindow-customtextlive" title="Alternate Actors" href="alternateactors.html" target="_self">Alternate Actors</a>&nbsp;for more details.</li><li class="ulitem"><b class="uicontrol">Show resource calendar:</b> This option opens the <b class="uicontrol">Resource Calendar</b> window for the active resource. You can set the resource calendar preferences here. See&nbsp;<a id="h46687" class="jump-currentwindowlive" title="Resource Calendar" href="resourcecalendar.html" target="_self">Resource Calendar</a>&nbsp;for more details.</li><li class="ulitem"><b class="uicontrol">Set preferences:</b> This option allows actors to set preferences for the delivery of work items. It opens the Personal Work item delivery preferences window, where you can disable the delivery channels that you do not wish to receive the work items on.</li><li class="ulitem">To disable a channel, select the check box corresponding to it. For example, if you are traveling and may not have access to the web, select the&nbsp;<b class="uicontrol">WebWorkList</b>&nbsp;option to stop work items from being delivered in the Work items list. Click&nbsp;<b class="uicontrol">Set Preferences</b>&nbsp;to save.</li></ul><p class="paragraph">This option also allows users to specify the language settings for the user interface. In&nbsp;<b class="uicontrol">Select the culture language</b>,&nbsp;select the language.&nbsp;Click&nbsp;<b class="uicontrol">Set Culture</b>&nbsp;to set the language preference. </p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46828" src="46828.jpg" class="embeddedimage100%scalinglive" alt="" height="250" width="537" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;The&nbsp;<b class="uicontrol">Culture</b>&nbsp;drop-down displays a list of languages. However, for the preference to take effect, the language strings for the corresponding language must be available in AVEVA Work Tasks folders. AVEVA Work Tasks does not provide default support for all languages in the drop-down.</p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><b class="uicontrol">Enable Multi Select</b>&nbsp;-&nbsp;The Enable Multi Select button provides users with options of acting on items as a batch. An additional option is made available when the items are grouped.&nbsp;</p>
+<p class="paragraphimage">&nbsp;<img id="f46829" src="46829.jpg" class="embeddedimage100%scalinglive" alt="" height="77" width="165" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage">The Multi Select option is not supported for&nbsp;<b class="uicontrol">Resource Set</b>&nbsp;activity,&nbsp;<b class="uicontrol">Information</b>&nbsp;activity, and&nbsp;<b class="uicontrol">InvokeForm</b>&nbsp;activity.</p>
+<p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

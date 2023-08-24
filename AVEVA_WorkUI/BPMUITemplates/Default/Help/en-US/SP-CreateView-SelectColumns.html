@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> Create View: Select Columns </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('672291');expand('605006');expand('671945');expand('63806');expand('612841');highlight('487608')}">
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+//-- Conditional BETA statement
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+//-- End conditional BETA statement
+//-- Script to fix in-topic table spacing 
+	var AllTables = document.getElementsByTagName("table");
+	len = AllTables.length;
+	if (len > 0) {
+		for (var i = 0; i < len; i++){
+			if(AllTables[i].className == "tableintopic") {
+				var Cells = AllTables[i].getElementsByTagName("td");
+				var Headers = AllTables[i].getElementsByTagName("th");
+				cellLength = Cells.length;
+				headerLength = Headers.length;
+				for (var j = 0; j < cellLength; j++) {
+					Cells[j].style.paddingLeft = "5pt";
+					Cells[j].style.paddingRight = "5pt";
+				};
+				for (var k = 0; k < headerLength; k++) {
+					Headers[k].style.paddingLeft = "5pt";
+					Headers[k].style.paddingRight = "5pt";
+				};
+			};
+		};
+	};
+//-- End in-topic table spacing
+</script>
+
+<h6 id="t487608" class="heading6">Create View: Select Columns</h6>
+<p class="paragraph">The columns in a view can provide, at a glance, the information that you need for list or library items. This can eliminate the need to open each item to see the item details. Columns, in combination with other features of views, such as filters, can help you see only the information that is most important to your work. This is especially helpful if the list or library contains lots of items.</p>
+<p class="paragraph">This property is used to select the required columns of the list to be displayed in the view. Click <b class="uicontrol">Close </b>after selecting the required columns. This is a mandatory property.</p>
+<p class="paragraphimage"><img id="f65085" src="65085.png" class="embeddedimage100%scalinglive" alt="" height="306" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f65086" src="65086.png" class="embeddedimage100%scalinglive" alt="" height="310" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="createviewactivity1.html" target="_self">Create View Activity</a></p></td>
+</tr>
+</table>
+
+
+<input id="topicId" type="hidden" value="487608" />
+<input id="topicDescription" type="hidden" value="Create View: Select Columns" />
+<input id="footer-modified" type="hidden" value="Last modified: 9/16/2017 11:14:14 AM" />
+</body>
+</html>

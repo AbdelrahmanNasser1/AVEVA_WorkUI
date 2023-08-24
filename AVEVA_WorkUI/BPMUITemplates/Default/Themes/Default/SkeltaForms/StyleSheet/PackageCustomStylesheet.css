@@ -1,0 +1,45 @@
+tr[style="visibility:hidden;display:none;"] + tr > td[colspan="2"]:empty
+{
+     display: none !important;
+}
+
+tr[style="display: none; visibility: hidden;"] + tr > td[colspan="2"]:empty
+{
+     display: none !important;
+}
+
+td.sf-gridcell > table > tbody > tr > td > span.sf-formfirstlabel {
+    font-weight: normal !important;
+}
+
+td.sf-subformtitle {
+    font-size:14px;
+}
+
+tbody > tr > td.sf-appendrow > a {
+    padding-left: 2% !important;
+    color: #2066b1 !important;
+    font-family:'Segoe UI','Helvetica','Arial','sans-serif','Tahoma' !important;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal !important;
+    margin: 0;
+}
+
+tbody > tr > td.sf-appendrowsimple > a {
+    padding-left: 3% !important;
+    color: #2066b1 !important;
+    font-family:'Segoe UI','Helvetica','Arial','sans-serif','Tahoma' !important;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal !important;
+    margin: 0;
+}
+
+.sf-formfirstlabel {
+    font-weight:normal !important;
+}

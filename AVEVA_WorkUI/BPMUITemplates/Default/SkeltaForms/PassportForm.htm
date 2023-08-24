@@ -1,0 +1,728 @@
+﻿<!DOCTYPE html>
+<html style="height:100%; overflow:auto;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Passport Application</title>
+    <!--<link rel="stylesheet" href="StyleSheet/Html5Reset.css" type="text/css" />-->
+    <link rel="Stylesheet" href="StyleSheet/redmond/jquery-ui-1.8.23.custom.css" type="text/css" />
+    <link rel="stylesheet" href="StyleSheet/SkeltaForm.css" type="text/css" />
+    <link rel="Stylesheet" href="StyleSheet/SkeltaTabs.css" type="text/css" />
+    <script type="text/javascript" language="javascript">
+        //
+        // IE browsers do not support indexOf method for an Array. Hence 
+        // we add it below after performing the check on the existence of
+        // the same.
+        //
+        if (!Array.prototype.indexOf)
+        {
+            Array.prototype.indexOf = function (obj, start)
+            {
+                for (var i = (start || 0), j = this.length; i < j; i++)
+                {
+                    if (this[i] === obj)
+                    {
+                        return i;
+                    }
+                }
+                return -1;
+            };
+        }
+    </script>
+    <script src="javascript/jquery-1.8.0.min.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/knockout-2.1.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/xml2json.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/jquery-ui-1.8.23.min.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/SkeltaCore.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/Skelta.Utilities.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/Skelta.Forms.Utilities.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/SkeltaFormsKO.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/Skelta.Forms.Controls.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/jshint.js" type="text/javascript" language="javascript"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <style type="text/css">
+        .gridCSS
+        {
+            padding: 1em;
+            background-color: #EEEEDD;
+            border: 1px solid #CCC;
+            max-width: 98%;
+            height: auto;
+            overflow: auto;
+        }
+        .gridCSS input
+        {
+            font-family: Arial;
+        }
+        .gridCSS b
+        {
+            font-weight: bold;
+        }
+        .gridCSS p
+        {
+            margin-top: 0.9em;
+            margin-bottom: 0.9em;
+        }
+        .gridCSS select[multiple]
+        {
+            width: 100%;
+            height: 8em;
+        }
+        .gridCSS h2
+        {
+            margin-top: 0.4em;
+        }
+        .formVisibility[aria-visible=true]
+        {
+            display:block;
+            visibility:visible;
+        }
+        .formVisibility[aria-visible=false]
+        {
+            display:none;
+            visibility:hidden;
+        }
+    </style>
+    
+</head>
+<body style="height:100%; overflow:auto; margin:0;border:0">
+    
+    <div style="width: 100%;">
+        <a class="sf-appendrow" href="/EnterpriseConsole/BPMUITemplates/Default/Repository/Site/HomePage3.aspx">
+            Back to Main Page</a></div>
+    <div style="width: 99%; height: 100%;" data-bind="foreach: Main.Items">
+    <div class="formVisibility" style="width: 100%; height: 100%;" data-bind="visible: !PopupForm.Visible()">
+        <div style="width: 100%;">
+            <span class="sf-paneltitle" data-bind="text:P1.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left">
+                    <span class="sf-formfirstlabelinset" data-bind="text:D1.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <select data-bind="options: D1.Options, optionsText: 'optiontext', value: D1.SelectedValue">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;" data-bind="visible: C1.Visible">
+                <div style="width: 40%; float: left; display: inline;">
+                    <span class="sf-formfirstlabelinset" style="display: inline;" data-bind="text:C1.TagName">
+                    </span><span style="display: inline; position: relative;" data-bind="SpanClass: C1.SpanClass">
+                    </span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach:C1.options">
+                    <div style="width: 100%;">
+                        <label>
+                            <input type="checkbox" data-bind="value: $data.optionvalue, checked: $parent.C1.selectedOptions, event: { change: $parent.C1.ondatachange}" />
+                            <span data-bind="text: $data.optiontext"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;" data-bind="visible: C2.Visibility">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:C2.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: C2.SpanClass"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text:C2.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach:C2.options">
+                    <label>
+                        <input type="checkbox" data-bind="value: $data.optionvalue, checked: $parent.C2.selectedOptions, event: {change: $parent.C2.ondatachange}" />
+                        <span data-bind="text: $data.optiontext"></span>
+                    </label>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: R1.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: R1.SpanClass"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach: R1.options">
+                    <label>
+                        <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.R1.selectedOptions, event: {change: $parent.R1.ondatachange}" />
+                        <span data-bind="text: $data.optiontext"></span>
+                    </label>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: R2.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: R2.SpanClass"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach: R2.options">
+                    <label>
+                        <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.R2.selectedOptions, event: {change: $parent.R2.ondatachange}" />
+                        <span data-bind="text: $data.optiontext"></span>
+                    </label>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:R3.TagName"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text:R3.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach: R3.options">
+                    <label>
+                        <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.R3.selectedOptions, event: {change: $parent.R3.ondatachange}" />
+                        <span data-bind="text: $data.optiontext"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <span class="sf-paneltitle" data-bind="text: P2.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:T1.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: T1.SpanClass"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text: T1.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: T1.Value" style="width: 30%; border: 1px solid" />
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:T2.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: T2.Value" style="width: 30%; border: 1px solid" />
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:D2.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: D2.SpanClass"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text: D2.Description">
+                -->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <!--<input data-bind="datepicker: D2, datepickerOptions: { minDate: new Date() }" />-->
+                    <input type="date" id="dtPicker" data-bind="value: D2.Value" />
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;" id="divPlaceOfBirth">
+            <span class="sf-paneltitle" data-bind="text: P3.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: T3.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: T3.SpanClass"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: T3.Value" style="width: 30%; border: 1px solid" />
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left; overflow: hidden;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: D3.TagName"></span><span style="display: inline;
+                        position: relative;" data-bind="SpanClass: D3.SpanClass"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text: D3.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <select data-bind="options: D3.options, optionsText: 'CountryName', value: D3.SelectedOptions, optionsCaption: 'Select'">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left; overflow: hidden;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: State_TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <select data-bind="options: State_options, optionsText: 'StateName', value: State_SelectedOptions, optionsCaption: 'Select'">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span style="display: inline; position: relative;" data-bind="SpanClass: D4.SpanClass">
+                    </span><span class="sf-formfirstlabelinset" data-bind="text: D4.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <select data-bind="options: D4.options, optionsText: 'optiontext', value: D4.selectedOptions">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span style="display: inline; position: relative;" data-bind="SpanClass: D5.SpanClass">
+                    </span><span class="sf-formfirstlabelinset" data-bind="text: D5.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <select data-bind="options: D5.options, optionsText: 'optiontext', value: D5.SelectedOptions">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span style="display: inline; position: relative;" data-bind="SpanClass: D6.SpanClass">
+                    </span><span class="sf-formfirstlabelinset" data-bind="text: D6.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <select data-bind="options: D6.options, optionsText: 'optiontext', value: D6.SelectedOptions">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:A1.TagName"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text: A1.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: A1.Value" />
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:A2.TagName"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text: A2.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: A2.Value" />
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span style="display: inline; position: relative;" data-bind="SpanClass: D7.SpanClass">
+                    </span><span class="sf-formfirstlabelinset" data-bind="text: D7.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <select data-bind="options: D7.options, optionsText: 'optiontext', value: D7.SelectedOptions">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span style="display: inline; position: relative;" data-bind="SpanClass: T4.SpanClass">
+                    </span><span class="sf-formfirstlabelinset" data-bind="text: T4.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <input data-bind="value: T4.Value" />
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:B1.TagName"></span>
+                    <!--<span class="sf-formlabeldescription" data-bind="text:B1.Description"></span>-->
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach: B1.options">
+                    <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.B1.selectedOptions, event: {change: $parent.B1.ondatachange}" />
+                    <label data-bind="text: $data.optiontext">
+                    </label>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: D8.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <select data-bind="options: D8.options, optionsText: 'optiontext', value: D8.SelectedOptions">
+                    </select>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:B2.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach: B2.options">
+                    <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.B2.selectedOptions, event: {change: $parent.B2.ondatachange}" />
+                    <label data-bind="text: $data.optiontext">
+                    </label>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: T5.TagName"></span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table;">
+                    <input data-bind="value: T5.Value" />
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <span class="sf-paneltitle" data-bind="text: P5.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%;" id="divReference" class='gridCSS'>
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: G1.TagName">
+                </div>
+                <div class='liveExample'>
+                    <p>
+                        You have asked for <span data-bind='text: G1.Items().length'>&nbsp;</span> Reference(s)</p>
+                    <table class="sf-gridtable" data-bind='visible: G1.Items().length > 0'>
+                        <thead>
+                            <tr>
+                                <th class="sf-gridheading">
+                                    Name
+                                </th>
+                                <th class="sf-gridheading">
+                                    Email
+                                </th>
+                                <th class="sf-gridheading">
+                                    Relation
+                                </th>
+                                <th class="sf-gridheading">
+                                    Gender
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind='foreach: G1.Items'>
+                            <tr data-bind="click: selectedRowClick, css: { 'sf-gridselectedrow': IsRowHighlighted() == true }, clickBubble:false">
+                                <td class="sf-gridcell">
+                                    <input data-bind='value: T7.Value, uniqueName: true, disable: T7.Disable, executeOnFocus: selectedRowClick' />
+                                </td>
+                                <td class="sf-gridcell">
+                                    <input data-bind='value: E1.Value, uniqueName: true, executeOnFocus: selectedRowClick'
+                                        placeholder="enter your email" />
+                                </td>
+                                <td class="sf-gridcell">
+                                    <select data-bind="options: D9.Options, optionsText: 'optiontext', value: D9.selectedOptions, executeOnFocus: selectedRowClick">
+                                    </select>
+                                </td>
+                                <td class="sf-gridcell">
+                                    <div data-bind="foreach: R4.Options" style="border: 1px solid">
+                                        <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.R4.selectedOptions, executeOnFocus: $parent.selectedRowClick" />
+                                        <label data-bind="text: $data.optiontext">
+                                        </label>
+                                    </div>
+                                </td>
+                                <!--<td class="sf-gridcell">
+                                    <a class="sf-appendrow" href='#' data-bind='click: $parent.G1.RemoveItem, clickBubble:false'>Delete</a>
+                                </td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a class="sf-appendrow" href='#' data-bind='click: G1.AddNewItem, clickBubble:false'>
+                        Add Reference</a> <a class="sf-appendrow" href='#' data-bind="click: G1.RemoveSelection, clickBubble:false">
+                            Remove References</a>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <span class="sf-paneltitle" data-bind="text: P7.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%;" id="div1" class='gridCSS'>
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text: G2.TagName">
+                </div>
+                <div class='liveExample'>
+                    <table class="sf-gridtable" data-bind='visible: G2.Items().length > 0'>
+                        <thead>
+                            <tr>
+                                <th class="sf-gridheading">
+                                    Verification Date
+                                </th>
+                                <th class="sf-gridheading">
+                                    Verification Expense
+                                </th>
+                                <th class="sf-gridheading">
+                                    Total Expense
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind='foreach: G2.Items'>
+                            <tr data-bind="click: selectedRowClick, css: { 'sf-gridselectedrow': IsRowHighlighted() == true }, clickBubble:false">
+                                <td class="sf-gridcell">
+                                    <input type="date" id="dtVerificationDtls" data-bind='value: D10.Value, executeOnFocus: selectedRowClick' />
+                                </td>
+                                <td class="sf-gridcell">
+                                    <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+                                        display: inline-block">
+                                        <div style="width: 100%;" class=''>
+                                            <div class='liveExample'>
+                                                <table class="sf-gridtable" data-bind='visible: G3.Items().length > 0'>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="sf-gridheading">
+                                                                Referral Name
+                                                            </th>
+                                                            <th class="sf-gridheading">
+                                                                Food Expense
+                                                            </th>
+                                                            <th class="sf-gridheading">
+                                                                Travel Expense
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody data-bind='foreach: G3.Items'>
+                                                        <tr data-bind="click: selectedRowClick, css: { 'sf-gridselectedrow': IsRowHighlighted() == true }, clickBubble:false">
+                                                            <td class="sf-gridcell">
+                                                                <select data-bind="options: D11.Options, optionsText: 'optiontext', value: D11.selectedOptions, executeOnFocus: selectedRowClick">
+                                                                </select>
+                                                            </td>
+                                                            <td class="sf-gridcell">
+                                                                <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+                                                                    display: inline-block">
+                                                                    <div style="width: 100%;" class=''>
+                                                                        <div class='liveExample'>
+                                                                            <table class="sf-gridtable" data-bind='visible: G4.Items().length > 0'>
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="sf-gridheading">
+                                                                                            Type
+                                                                                        </th>
+                                                                                        <th class="sf-gridheading">
+                                                                                            Amount
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody data-bind='foreach: G4.Items'>
+                                                                                    <tr data-bind="click: selectedRowClick, css: { 'sf-gridselectedrow': IsRowHighlighted() == true }, clickBubble:false">
+                                                                                        <td class="sf-gridcell">
+                                                                                            <select data-bind="options: D12.Options, optionsText: 'optiontext', value: D12.selectedOptions, executeOnFocus: selectedRowClick">
+                                                                                            </select>
+                                                                                        </td>
+                                                                                        <td class="sf-gridcell">
+                                                                                            <input type="number" data-bind='value: N1.Value, uniqueName: true, executeOnFocus: selectedRowClick'
+                                                                                                placeholder="enter amount" />
+                                                                                        </td>
+                                                                                        <!--<td class="sf-gridcell">
+                                                                                            <a class="sf-appendrow" href='#' data-bind='click: $parent.G4.RemoveItem, clickBubble:false'>Delete</a>
+                                                                                        </td>-->
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <h5 data-bind="visible: referralFoodExpenseTotal() > 0">
+                                                                                Reference Food Expense Total: $<span data-bind="text: referralFoodExpenseTotal().toFixed(2)"></span>
+                                                                            </h5>
+                                                                            <a class="sf-appendrow" href='#' data-bind='click: G4.AddNewItem, clickBubble:false'>
+                                                                                Add Food Expense</a> <a class="sf-appendrow" href='#' data-bind="click: G4.RemoveSelection, clickBubble:false">
+                                                                                    Remove Food Expenses</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="sf-gridcell">
+                                                                <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+                                                                    display: inline-block">
+                                                                    <div style="width: 100%;" class=''>
+                                                                        <div class='liveExample'>
+                                                                            <table class="sf-gridtable" data-bind='visible: G5.Items().length > 0'>
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="sf-gridheading">
+                                                                                            Type
+                                                                                        </th>
+                                                                                        <th class="sf-gridheading">
+                                                                                            Amount
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody data-bind='foreach: G5.Items'>
+                                                                                    <tr data-bind="click: selectedRowClick, css: { 'sf-gridselectedrow': IsRowHighlighted() == true }, clickBubble:false">
+                                                                                        <td class="sf-gridcell">
+                                                                                            <select data-bind="options: D13.Options, optionsText: 'optiontext', value: D13.selectedOptions, executeOnFocus: selectedRowClick">
+                                                                                            </select>
+                                                                                        </td>
+                                                                                        <td class="sf-gridcell">
+                                                                                            <input type="number" data-bind='value: N2.Value, uniqueName: true, executeOnFocus: selectedRowClick'
+                                                                                                placeholder="enter amount" />
+                                                                                        </td>
+                                                                                        <!--<td class="sf-gridcell">
+                                                                                            <a class="sf-appendrow" href='#' data-bind='click: $parent.G5.RemoveItem, clickBubble:false'>Delete</a>
+                                                                                        </td>-->
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <h5 data-bind="visible: referralTravelExpenseTotal() > 0">
+                                                                                Reference Travel Expense Total: $<span data-bind="text: referralTravelExpenseTotal().toFixed(2)"></span>
+                                                                            </h5>
+                                                                            <a class="sf-appendrow" href='#' data-bind='click: G5.AddNewItem, clickBubble:false'>
+                                                                                Add Travel Expense</a> <a class="sf-appendrow" href='#' data-bind="click: G5.RemoveSelection, clickBubble:false">
+                                                                                    Remove Travel Expenses</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="sf-gridcell">
+                                                                <h5 data-bind="visible: (referralTravelExpenseTotal() + referralFoodExpenseTotal()) > 0">
+                                                                    Reference Total: $<span data-bind="text: (referralTravelExpenseTotal() + referralFoodExpenseTotal()).toFixed(2)"></span>
+                                                                </h5>
+                                                            </td>
+                                                            <!--<td class="sf-gridcell">
+                                                                <a class="sf-appendrow" href='#' data-bind='click: $parent.G3.RemoveItem, clickBubble:false'>Delete</a>
+                                                            </td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <a class="sf-appendrow" href='#' data-bind='click: G3.AddNewItem, clickBubble:false'>
+                                                    Add Verification Expense</a> <a class="sf-appendrow" href='#' data-bind="click: G3.RemoveSelection, clickBubble:false">
+                                                        Remove Verification Expense</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="sf-gridcell">
+                                    <input data-bind='value: T8.Value, executeOnFocus: selectedRowClick' />
+                                    <h5 data-bind="text:H1.Value, visible: H1.Value().length > 0">
+                                    </h5>
+                                </td>
+                                <!--<td class="sf-gridcell">
+                                    <a class="sf-appendrow" href='#' data-bind='click: $parent.G2.RemoveItem, clickBubble:false'>Delete</a>
+                                </td>-->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a class="sf-appendrow" href='#' data-bind='click: G2.AddItem, clickBubble:false'>Add
+                        Verification Details</a> <a class="sf-appendrow" href='#' data-bind="click: G2.RemoveSelection, clickBubble:false">
+                            Remove Verification Details</a>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;">
+            <span class="sf-paneltitle" data-bind="text: P8.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%; float: left; vertical-align: middle">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:T9.TagName" style="vertical-align: middle">
+                    </span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: T9.Value()" style="width: 12%; border: 1px solid" />
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Tabs Implementation -->
+
+        <div class="tabsContainer" data-bind="with: T10">
+            <div class="tabSelector">
+                <ul>
+			        <li data-bind="attr: {'aria-selected': Tabs()[0].IsSelected}"><a data-bind="click: function() { SelectedTabIndex(0); }, clickBubble:false"><span class="sf-formfirstlabelinset" data-bind="text:Tabs()[0].TagName" style="vertical-align: middle"></span></a></li>
+                    <li data-bind="attr: {'aria-selected': Tabs()[1].IsSelected}"><a data-bind="click: function() { SelectedTabIndex(1); }, clickBubble:false"><span class="sf-formfirstlabelinset" data-bind="text:Tabs()[1].TagName" style="vertical-align: middle"></span></a></li>
+                    <li data-bind="attr: {'aria-selected': Tabs()[2].IsSelected}"><a data-bind="click: function() { SelectedTabIndex(2); }, clickBubble:false"><span class="sf-formfirstlabelinset" data-bind="text:Tabs()[2].TagName" style="vertical-align: middle"></span></a></li>
+		        </ul>
+            </div>
+	        <div class="tabsPanel">
+                <div data-bind="with: Tabs()[0]">
+                <div class="panel" data-bind="attr: {'aria-selected': IsSelected}">
+                    
+                    <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+                        display: inline-block" data-bind="with: Items()[0]">
+                        <div style="width: 100%; float: left; vertical-align: middle">
+                            <div style="width: 40%; float: left;">
+                                <span class="sf-formfirstlabelinset" data-bind="text:T14.TagName" style="vertical-align: middle">
+                                </span>
+                            </div>
+                            <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                                <input data-bind="value: T14.Value()" style="width: 12%; border: 1px solid" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+                <div data-bind="with: Tabs()[1]">
+                <div class="panel" data-bind="attr: {'aria-selected': IsSelected}">
+                    
+                    <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+                        display: inline-block" data-bind="with: Items()[0]">
+                        <div style="width: 100%; float: left; vertical-align: middle">
+                            <div style="width: 40%; float: left;">
+                                <span class="sf-formfirstlabelinset" data-bind="text:T15.TagName" style="vertical-align: middle">
+                                </span>
+                            </div>
+                            <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                                <input data-bind="value: T15.Value()" style="width: 12%; border: 1px solid" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+                <div data-bind="with: Tabs()[2]">
+                <div class="panel" data-bind="attr: {'aria-selected': IsSelected}">
+                    
+                    <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+                        display: inline-block" data-bind="with: Items()[0]">
+                        <div style="width: 100%; float: left; vertical-align: middle">
+                            <div style="width: 40%; float: left;">
+                                <span class="sf-formfirstlabelinset" data-bind="text:T16.TagName" style="vertical-align: middle">
+                                </span>
+                            </div>
+                            <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                                <input data-bind="value: T16.Value()" style="width: 12%; border: 1px solid" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+	        </div>
+        </div>
+        
+        <div style="width: 100%;">
+            <div style="width: 40%; float: left;">
+                <span class="sf-formfirstlabelinset" data-bind="text:R5.TagName"></span>
+            </div>
+            <div class="sf-formfirstbody" style="width: 59%; display: inline-table" data-bind="foreach: R5.options">
+                <div data-bind="click: $parent.R5.ondatachange, clickBubble: false">
+                    <input type="radio" data-bind="value: $data.optionvalue, checked: $parent.R5.selectedOptions" />
+                    <label data-bind="text: $data.optiontext">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- End of Tabs Implementation -->
+
+        
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%; float: left; vertical-align: middle">
+                <div style="width: 40%; float: left;">
+                    <span class="sf-formfirstlabelinset" data-bind="text:T16.TagName" style="vertical-align: middle">
+                    </span>
+                </div>
+                <div class="sf-formfirstbody" style="width: 59%; display: inline-table">
+                    <input data-bind="value: T16.Value" style="width: 12%; border: 1px solid" />
+                    <button data-bind="click: T16.Click"></button>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 100%;">
+            <span class="sf-paneltitle" data-bind="text: P6.TagName"></span>
+        </div>
+        <div style="width: 100%; border: 1; border-style: solid; border-width: 1px; border-color: Black;
+            display: inline-block">
+            <div style="width: 100%;">
+                <div class="sf-formfirstbody" style="width: 100%; display: inline-table; float:right">
+                    <input type="submit" data-bind="click: submitClicked" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Popup Implementation -->
+
+    <div class="formVisibility" data-bind="visible: PopupForm.Visible" style="width:100%;height:100%">
+        <iframe id="PopupFormFrame" data-bind="attr: {src: PopupForm.Url, valueParam: PopupForm.Value, state: PopupForm.State, buttonClicked: PopupForm.ButtonClicked}" style="width:100%; height:100%;" seamless></iframe>
+    </div>
+
+    <!-- End of Popup Implementation -->
+    </div>
+
+    
+
+    <script type="text/javascript" language="javascript" src="javascript/PassportFormNew2.js">
+    </script>
+    <script type="text/javascript" language="javascript">
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h1 id="t601950" class="heading1">Work Activity</h1>
+<p class="paragraph"><strong class="strong">Activity description:</strong></p>
+<p class="paragraph">The Work Activity is used in the AVEVA Work Tasks workflow process design in cases where custom activities are required. This activity can be configured using XML configuration files and HTML templates allowing a high degree of flexibility in defining its functionality.</p>
+<p class="paragraph">These configuration files are located in the ..\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Actions\WorkAction folder. The Work activity can be configured with Action Outputs, Input Variables, and Output Variables.</p>
+<p class="paragraph"><strong class="strong">Application Scenarios:</strong></p>
+<p class="paragraph">A typical application scenario would be a Performance Appraisal Workflow where different user-interfaces will have to be shown to evaluators and those being evaluated. The Work activity with its role-based user-interfaces will help implement this functionality.</p>
+<p class="paragraph"><strong class="strong">Workflow Variables for Work:</strong></p>
+<p class="paragraph"><strong class="strong">Steps to define variables for use in the Work activity</strong></p>
+<p class="paragraph">This section describes how to define variables for use in Work activities. It gives the syntax for creating the variables and typical examples for different cases.</p>
+<p class="paragraph"><strong class="strong">Variables for capturing WorkItemIds</strong></p>
+<p class="paragraph">The Work Item Id's for the Work work item can be retrieved using a variable of type array, with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+CurrentActivity.Name+'WorkItemIds'.</strong></p>
+<p class="paragraph">For example, <strong class="strong">^WorkActivityWorkItemIds.</strong></p>
+<p class="paragraph"><strong class="strong">Variables for capturing All Actors' Details</strong></p>
+<p class="paragraph">The details of the actor(s) to whom the Work work item gets assigned can be accessed by declaring a variable of type array with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+CurrentActivity.Name+'ActingUsers'</strong></p>
+<p class="paragraph">For example, ^WorkActivityActingUsers.</p>
+<p class="paragraph"><strong class="strong">Variables for capturing Responding Actors' Details</strong></p>
+<p class="paragraph">The details of the actors' responding to the Work work item can be accessed by declaring a variable of type resource with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+HWSActivity.ActivityName+'RespondingUser'</strong></p>
+<p class="paragraph">For example, ^WorkActivityRespondingUser.</p>
+<p class="paragraph">This variable stores the responded user information. If it is more than one user, it will retrieve the last user details.</p>
+<p class="paragraph">Note: For a single user, you can declare this variable as Resource type. If task is assigned to more than one user and to get all responded users information, then declare this variable as array.</p>
+<p class="paragraph"><strong class="strong">Variables for capturing Comments</strong></p>
+<p class="paragraph">Comments entered in a Work work item can be retrieved using a variable with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+_WorkItem.CurrentActivity.Name+'CommentWork'</strong></p>
+<p class="paragraph">For example, <strong class="strong">^WorkActivityCommentWork.</strong></p>
+<p class="paragraph"><strong class="strong">Variables for assigning queue system variable</strong></p>
+<p class="paragraph">To assign queues instead of setting the queue through Assign Queue property, add a variable with a name prefixed by '^', with the following syntax:</p>
+<p class="paragraph"><strong class="strong">&quot;^&quot;+ CurrentActivity.Name + &quot;_QueueVariable&quot;.</strong></p>
+<p class="paragraph">For example, if the activity name is 'Approval1' then declare the variable as ^Approval1_QueueVariable in the Start activity with the Type as String. Using the &quot;Update Variable&quot; activity, assign the queue-id (GUID) for this variable in the workflow.</p>
+<p class="paragraph">To assign multiple queues, specify the queue-ids with semicolon (;) separator. Skelta.HWS.Queue.QueueCollection class can be used to retrieve queue information.</p>
+<p class="paragraph"><strong class="strong">Variable for Queue Acting Users</strong></p>
+<p class="paragraph">You can declare an array type variable to get updated information about the name of the actor to whom an activity gets assigned from a queue.</p>
+<p class="paragraph">In the Workflow Variables, define the variable in the following format:</p>
+<p class="paragraph"><strong class="strong">^+CurrentActivityName+'QueueActingUsers'</strong> </p>
+<p class="paragraph">Ex: ^HRFormQueueActingUsers</p>
+<p class="paragraph">HRForm is the activity name.</p>
+<p class="paragraph">For example the value of the user who acts on the HRForm activity will be stored in the variable. The Approval1 task will be assigned to the same user.</p>
+<p class="paragraph"><strong class="strong">Variable for storing timeout warning value</strong></p>
+<p class="paragraph">Suppose if you want to store the timeout warning value for Work activity in your workflow. The naming convention for the system variable to be declared is</p>
+<p class="paragraph"><strong class="strong">^&lt;ActivityName&gt;ResponseByWarningTimeout</strong></p>
+<p class="paragraph">The value returned by the variable will be in UTC format. For multiple user scenarios the highest timeout value calculated for a user will be available in the variable.</p>
+<p class="note"><strong class="notelabel">Note:</strong> Multiple timeout warnings cannot be tracked using this feature.</p>
+<p class="paragraph"><strong class="strong">Activity Properties:</strong></p>
+<p class="paragraph">The Work activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Work activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f612555" src="612555.png" alt="" height="750" width="500" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b>&nbsp;- This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b>&nbsp;- This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Display Name</b>&nbsp;- This property specifies name to be displayed for the activity in the Work Item List.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property need not be set if the display name is already configured in the Actions.xml. The name entered here overrides any display name that is configured for this activity in the Actions.xml file.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Delivery Channels</b>&nbsp;- This property is used to specify the delivery channels to deliver this activity to the assigned actor(s). Multiple channels can be specified giving the actor(s) different options to act on the work item.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Delivery Channels property</p>
+<ol class="step"><li class="step">To select the Delivery Channels, click the button for the 'Delivery Channels' property to open the property window. </li><li class="step">In this window, the Delivery Channels that have been configured are listed on the left along with a check box against each channel. Click and select the check box corresponding to the channel you wish to select. You can select multiple channels by selecting the respective check box. </li><li class="step">Click the <b class="uicontrol">Save Channels</b> button. </li></ol><p class="paragraph">See&nbsp;Work - Delivery Channel&nbsp;for a detailed description of the Delivery Channels property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">AdvanceUI Fields</strong>&nbsp;- The property is used to specify the advance UI fields of the Work activity. These fields, which define the Work activity, include the input variables, activity outputs and output variables. In addition, the AdvanceUI template can be specified along with the GroupUI template. The Work activity can be configured to be Role-based or Non-Role-based with the Role-based version allowing the flexibility of exposing different sets of fields according to the role selected. To assign activity outputs, click the 'AdvanceUI Fields' button in the Properties pane for the Work activity. A new window pops up. In this window, specify whether the activity will be Role-based or Non-Role-based using the radio buttons provided, and proceed to specify the UI fields in subsequent windows. </p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set for the action to be used in the workflow.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the AdvanceUI Fields property</p>
+<ol class="step"><li class="step">To specify the AdvanceUI fields for the Work activity to be assigned, click the button for the 'AdvanceUI Fields' property to open the property window.</li><li class="step">In this window, select the type of work activity &#8211; Role Based or General &#8211; using the <b class="uicontrol">Role Based View</b> or <b class="uicontrol">General View</b> radio buttons. Click the <b class="uicontrol">Next</b> button to go to the next window to add the activity details. </li><li class="step">If you select General View, you will open the Action Outputs setting window for the General View. </li><li class="step">Specify the Advance UI XML configuration file in the <b class="uicontrol">File Name</b> field and the GroupUI HTML Template file in theGroupUI File Name field at the top of this window. </li><li class="step">After specifying these values click on one of the radio buttons to view the corresponding parameter window. The Activity Output radio button is selected by default and the corresponding controls are displayed in the lower half of the window. </li><li class="step">Map the outputs of the activity with the possible outputs and specify whether the output is a task completion maker using these parameters. Click Save Action Outputs to save the settings. </li><li class="step">Click Template Placeholders to open the corresponding window.</li><li class="step">In this window, specify the values to assign to the template placeholders by selecting from the value type and value drop downs. Click Save Template Placeholders to save the settings. </li><li class="step">Click the Output Variables radio buttons to display the corresponding parameters. Specify the output variable and the HTML element mapped to it here. Click Save Output Variables to save the settings. </li><li class="step">If you select Role Based View in step 2, add a new role using the fields in the Role Definition window that is displayed. Click Define Filter to open the parameters to define the participant filter for the role. This needs to be done only for the first instance when the Work activity is being used. Click Next to go to the next step. </li><li class="step">Select the role for which the view is being configured from the Role drop down. </li><li class="step">Configure the parameters as described in steps 4 through 10 for the selected role. </li></ol><p class="paragraph">See&nbsp;Work - AdvanceUI Fields&nbsp;for a detailed description of the AdvanceUI Fields property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Work Item Fields&nbsp;</strong>- This property is used to add the Work Item Fields to be used to display application data as well as value in variables and content in the Work Item List when this action is executed. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph">Steps to set the Work Item Fields property</p>
+<ol class="step"><li class="step">To select the Work Item Fields, click the button for the 'Work Item Fields' property to open the property window. </li><li class="step">In this window, the Work Item Fields that have been set are listed in a grid. Click a row to select the corresponding Work Item Field. </li><li class="step">Right-click the row, and select &quot;SetWorkItemField&quot; from the context menu to set it.&nbsp;&nbsp;</li></ol><p class="paragraph">See&nbsp;Work - Work Item Fields&nbsp;for a detailed description of the Work Item Fields property window.</p>
+<p class="paragraph"></p>
+<p class="subheading">Actors </p>
+<p class="paragraph">The properties in the Actors group have been described below. You can use these properties to specify the actors who will work on the activity and related properties. </p>
+<p class="paragraph"><strong class="strong">Assign Actor(s</strong>)&nbsp;- This property specifies the actor(s) who has to take up the Work activity. It is tagged with the Ignore Unavailable Actors property which in turn is tagged with Alternate Actor Allowed. This will be explained in detail later. </p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Mandatory&nbsp;(This property must be set if the activity is to be assigned to any resource(s).)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Assign Actor(s) property</p>
+<ol class="step"><li class="step">To specify the actors, click the button for the 'Assign Actor(s)' property to open the property window. </li><li class="step">In this window, build an expression to select the actors using the actors properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression. <p class="stepinfo">Add the condition to the expression by clicking Add. This will display the expression to the text area. </p>
+<p class="stepinfo">You can remove a condition already added to the expression by clicking Undo. </p>
+<p class="stepinfo">You can also clear an existing expression if necessary by clicking Clear. This is useful if you want to clear large expressions in the text area in order to build a new expression. </p>
+<p class="stepinfo">After building the expression, click Update to save it.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo">See&nbsp;Work - Assign Actor(s)&nbsp;for a detailed description of the Assign Actor(s) property window. </p>
+</li></ol><p class="paragraph">See the <i class="emphasis">Using XML Variables</i> section in the&nbsp;About XML Variables &nbsp;topic for details on how to use the XMLVariables to build the expression. <br></p>
+<p class="paragraph"><strong class="strong">Assign Queue(s)</strong>&nbsp;- This property specifies the queue(s) to which the Task activity is to be assigned. </p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to be assigned to any Queue(s).)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Assign Queue(s) property</p>
+<ol class="step"><li class="step">To specify the queue(s), click the button for the 'Assign Queue(s)' property to open the property window. </li><li class="step">In this window, select the queue(s) from the Available Queues list box. You can select multiple queues by selecting with the </li><li class="step">After selecting the required queue(s) click the [&gt;] button to move it to the Selected Queues list box. You can click the [&gt;&gt;] button to select all the queue(s) and move them to the Selected Queues list box. </li><li class="step">You can remove any queue from the selected list by selecting it and clicking the [&lt;] button. You can remove all the queues by clicking the [&lt;&lt;] button. After adding the required queue(s), click Assign to assign the activity to the selection. </li><li class="step">Click Close to close the window without saving the selection.   </li></ol><p class="paragraph">See&nbsp;Work - Assign Queue(s)&nbsp;for a detailed description of the Assign Queue(s) property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Min. Ownerships [% or Number]</strong>&nbsp;- This property, which can be specified as a number or percentage, is the minimum number of actors who should take ownership of the Work assignment. This property is related to the 'Timeout warning for Ownership' and 'Timeout for Ownership' properties. To illustrate, when 'Timeout for Ownership' is reached, the activity first checks if the ownership count is less than Min.Ownerships (if it is set). If it is, the work item will be removed from all Work Item lists. If the 'Min.Ownerships' has already been satisfied, then the work item will be removed from the Work Item lists of those who have not taken ownership. If the Min.Ownerships value is 0, then the activity checks if the ownership count is less than Max.Ownerships (if it is set). If it is, the work item will be removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership. If both Min.Ownerships and Max.Ownerships are set to 0, then there should be at least one actor taking ownership within the set time, otherwise the work item will be removed from all Work Item lists. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.) <br>Max. Ownerships [% or Number]&nbsp;- This property, which can be specified as a number or percentage, is the maximum number of actors who should take ownership of the Work request. If 'Timeout for Ownership' is specified and achieved, and the 'Min.Ownerships' is also satisfied, then the activity waits for action from those who have taken ownership. If the Min.Ownerships value is set to 0, then it checks if the ownership count is less than</p>
+<p class="paragraph">Max.Ownerships. If it is, the work item will be removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership. If both Min.Ownerships and Max.Ownerships are set to 0, then there should be at least one actor taking ownership within the set time, otherwise the work item will be removed from all Work Item lists. Property Type: Optional&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.) <br></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Enable Take Ownership?</strong> - If this property is set to Yes, then the actor is provided with a Take Ownership option in the Work items list to take ownership of the task. If you do not not required the Take Ownership option in the Work items list, then set this property as No. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional </strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> By default, this property is set as Yes.</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Enable Take Ownership? property</p>
+<ol class="step"><li class="step">Select Yes or No from the Enable Take Ownership? drop-down list. &nbsp;</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Re-Assign Allowed?</strong>&nbsp;- If this property is set then the actor is provided with a Re-Assign option. Using this the actor can forward the work item to another actor. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Notification Contents</strong> - The properties in the Notification Contents group have been described below. You can use these properties to specify the content used to notify actors about the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Subject</strong>&nbsp;- This is the subject of the Work assignment. The subject can be customized for each actor.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optiona</strong>l&nbsp;(This property need not be set. If it is not set, the default subject line from the Actions.xml file is displayed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Subject property</p>
+<ol class="step"><li class="step">To specify the subject, click the button for the 'Subject' property to open the property window. </li><li class="step">In this window, enter the subject text directly in the text editor. If you want to customize the subject you can do so using the Field controls to add resource property values. For example, to add a subject that includes the email id of the actor submitting the Task, you can do as follows: Type in the text &quot;Submitted By&quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.Email&quot; from the two drop downs for Field and click Append. This will add the placeholder for the variable after the text entered in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the email id. </li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the subject, click Update to save it.</li><li class="step">Click Close to close the window without saving the subject.&nbsp;</li></ol><p class="paragraph">See&nbsp;Work - Subject&nbsp;for a detailed description of the Subject property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Body</strong>&nbsp;- This is the actual message of the Work sent to the actors. The message body can be customized for each actor. There is an&nbsp;Enterprise Console Explorer(plug-in) icon in the Body property window to get the Work item details URL. See&nbsp;Enterprise Console Control (EC Plug-in)  for more information.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type:</strong> <strong class="strong">Optional&nbsp;</strong>(This property need not be set.)</p>
+<p class="paragraph">Steps to set the Body property</p>
+<ol class="step"><li class="step">To specify the message body, click the button for the 'Body' property to open the property window. </li><li class="step">In this window, enter the body text directly in the text editor. </li><li class="step">If you want to customize the body you can do so using the Field controls to add resource property values. For example, to add a body that includes the name of the actor submitting the Task, you can do as follows: Type in the text &quot;Hi, Please act on the task assigned to you by&quot;. Next select &quot;Variable&quot; and &quot;Variable.SubmittedBy.name&quot; from the two drop downs for Field and click Append. This will add the placeholder for the variable after the text entered in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the name. </li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the body, click Update to save it.</li><li class="step">Click Close to close the window without saving the body. </li></ol><p class="paragraph">See&nbsp;Work - Body&nbsp;for a detailed description of the&nbsp;Body&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">From Email Address?</strong>&nbsp;- This property is used to specify the email address from which notification messages will be sent for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. If it is not set, the default value in Activities.xml will be used.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Hide Responses?&nbsp;</strong>- If this property is set to 'No', then actors can see the responses of other actors in a group Work scenario. To view these responses i.e., ownerships, Works or rejections, select the 'Take Ownership' button. This will open a new pop up with the responses of other actors who have taken ownership. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Priority</strong>&nbsp;- This property is set to indicate the priority of the Work assignment. Enter the values 0-33 to set as Low, 34-66 for Medium, or 67-99 for High. The default value is set to 34. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Send Notification Email</strong>&nbsp;- If this property is set to 'Yes', then notification emails will be sent to the actors. If it is set to 'Yes-HTML', then the emails will be sent in HTML format. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.) </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Notify if alternate actor is considered&nbsp;</strong>&nbsp;- If this property is set to 'Yes', then notification emails will be sent to the actors when an alternate actor is considered. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Redirect URL</strong>&nbsp;- This property is used to get the URL of the web page to redirect the client to, in the case of synchronous execution of the activity.&nbsp;</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional&nbsp;</strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Redirect URL property</p>
+<ol class="step"><li class="step">To specify the Redirect URL, click the button for the 'Redirect URL' property to open the property window.</li><li class="step">In this window, enter the Redirect URL directly in the text editor. </li><li class="step">If you want to customize the Redirect URL you can do so using the Field controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for Field, and clicking Append. This will add the placeholder for the variable in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the URL. </li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the Redirect URL, click Update to save it.</li><li class="step">Click Close to close the window without saving the Redirect URL.&nbsp;&nbsp;</li></ol><p class="paragraph">See&nbsp;Work - Redirect URL  for a detailed description of the&nbsp;Redirect URL&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Custom Document View URL</strong>&nbsp;- This property is used to get the URL of the page to which the custom document dlls does a post. The data posted to the page are application, workflow, executionid, executiondetailsid, and workitemid. The posted data can be retrieved as Request.Form[&quot;workitemid&quot;]. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional&nbsp;</strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Custom Document View URL property</p>
+<ol class="step"><li class="step">To specify the Custom Document View URL, click the button for the 'Custom Document View URL' property to open the property window. </li><li class="step">In this window enter the Custom Document View URL directly in the text editor. </li><li class="step">If you want to customize the Custom Document View URL you can do so using the Field controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for Field, and clicking Append. This will add the placeholder for the variable in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the URL. You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the Custom Document View URL, click Update to save it. </li><li class="step">Click Close to close the window without saving the Custom Document View URL.&nbsp;&nbsp;</li></ol><p class="paragraph">See&nbsp;Work - Custom Document View URL&nbsp;for a detailed description of the&nbsp;Custom Document View URL&nbsp;property window. </p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Decision Influencers</strong> </p>
+<p class="paragraph">The properties in the Decision Influencers group have been described below. You can use these properties to specify some parameters that influence the outcome of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Max Actors Required for WorkAssignment Completion [% or Number]&nbsp;</strong>- This property is used to check what percentage or number of actors should take an action for Work. Decision on the Work is taken only after the specified number or percentage of resource(s) have taken the action. The activity waits for the actors' action until the 'Timeout for action' is reached. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Min Actors Required for WorkAssignment Completion [% or Number]</strong>&nbsp;- This property specifies the minimum number of actors to act on the Work before the 'Timeout Warning for Action'. If the action limit is reached before the 'Timeout Warning for Action' then the warning message is not shown.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Ignore Unavailable Actors?</strong>&nbsp;- If this property is set to 'No', when the Work activity is assigned to the actors list a check is first done to see whether the actor is available. If the actor is not available then a check is made for an alternate actor assigned to the unavailable actor. Simultaneously, the value of the property 'Alternate Actor Allowed' is checked. If that is also set, then the Work is assigned to this actor. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Alternate Actor Allowed?</strong>&nbsp;- This property is set to assign a particular Work to an alternate actor in the absence or unavailability of any actor. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Escalation &amp; Timeout </strong></p>
+<p class="paragraph">The properties in the Escalation &amp; Timeout group have been described below. You can use these properties to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Set Calendar for Timeout</strong>&nbsp;- This property is used to specify the calendar to be used to determine activity timeouts. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Steps to Set Calendar for Timeout</strong></p>
+<ol class="step"><li class="step">To specify the calendar for timeout, click the button for the 'Set Calendar for Timeout' property to open the property window. </li><li class="step">In this window select the required calendar by clicking on the calendar name in the tree structure. </li><li class="step">Click Set Calendar to set the selected calendar. </li><li class="step">You can specify that a resource calendar should be used, if available, by clicking to select the corresponding check box.</li></ol><p class="paragraph">See&nbsp;Work - Set Calendar for Timeout&nbsp;for a detailed description of the Set Calendar for Timeout property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Minimum available time for Activity</strong>&nbsp;- This property is used to check the availability of an actor to whom a task must be assigned while executing the activity. The availability check for the actor is done based on the Calendar settings (Global or Resource Calendar). If the time taken to complete the task is within the value set for the <b class="uicontrol">Minimum available time for Activity </b> property, then the task will be assigned to that actor. However, if the time taken to complete the task exceeds the value set for the <b class="uicontrol">Minimum available time for Activity</b> property, then the task will be assigned based on the values set for the <b class="uicontrol">Ignore Unavailable Actors?</b> and <b class="uicontrol">Alternate Actor Allowed?</b> properties. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout Warning for Ownerships</strong>&nbsp;- This property specifies the time at which a warning is provided to a actors to take ownership of the work item assigned to him/her. If the actors do not take ownership within this time the engine is notified with a warning. Thus if 'Min.Ownerships' is set, and it is not satisfied before the given time then a warning is sent. If Min.Ownerships is 0, it will check for Max.Ownerships. If the ownership count does not reach the Max.Ownerships value within the set time, a warning is sent. If both Min.Ownerships and Max.Ownerships are not set, this property is ignored. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional&nbsp;</strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout for Ownerships</strong>&nbsp;- This property specifies the time until which actors are allowed to take ownership, i.e. the time until which the Work activity will wait for actors to take ownership. If Min.Ownerships is set and is not reached, the work item is removed from all work item lists. If Min.Ownerships is 0, it will check if ownership count is less than Max.Ownerships. If it is, the work item is removed from all work item lists. Else the work item will be removed from the work item lists of those who have taken ownership. The work item will remain in the work item list of those who have taken ownership and wait for action from them.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional&nbsp;</strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Understand how Ownership Properties relate to each other:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">Work activity is assigned to the actors in the Work assignment list by the workflow engine. Work activity has a default property set that at least one actor has to make a Take Ownership of the activity. </li><li class="ulitem">A drop down interface has been provided for the actor to Take Ownership. However, the actor can act on the Work without taking ownership first, in which case ownership will be considered to be done, i.e. if the actor acts upon the Work activity without taking ownership, then it is considered as an ownership with action taken.</li><li class="ulitem">After the actor has taken ownership, a link is provided to the actor, which opens a pop up with the details of the other actors. This is again tagged with the 'Hide Responses?' property. The link will be provided only If 'Hide Responses?' is set as 'No'. The pop up will have details like Actor name, Ownership Status, Action taken, Comments. </li><li class="ulitem">If the 'Min.Ownerships' property is set and the Ownership count has reached the set limit [percentage or number] then the 'Timeout Warning For Ownership' property is not considered. </li><li class="ulitem">If the 'Min.Ownerships' property is set and the ownership count has reached the set limit [percentage or number] and the 'Time Out For Ownership' is also reached then the work item is removed from other approvers' work item lists and the work item waits for action from those who have taken ownership. </li><li class="ulitem">If the 'Min.Ownerships' limit is not reached for the Work action, and the 'Timeout Warning For Ownership' has been exceeded then the actor is notified with a warning by including an email or an information activity, with the Timeout Warning for Ownership link to it. </li><li class="ulitem">If 'Timeout For Ownerships' is set, if the Work activity has not reached the minimum limit (Min.Ownerships) and the 'Time Out For Ownerships' has been reached, then the work item is removed from the work item lists of all the actors. </li><li class="ulitem">If 'Min.Ownerships' = 0 and if 'Max.Ownerships' is set, the activity waits for actors to take ownership or action until the 'Time Out For Ownership' is reached (if this is set). </li><li class="ulitem">If none of the Ownership properties are set then the activity waits until the actor takes ownership or acts upon it.&nbsp;&nbsp;</li><li class="ulitem">Timeout Warning for Activity&nbsp;- This property specifies when a reminder has to be provided for the actors to act on the Work request, if the action count has not been reached. If properties such as Max.Ownerships, Affirmative Action for Work (AAA), and Action Limit (AL) are set, once the property values are reached then a warning is sent to the actor. When the timeout is reached, the following checks are made: If AL is set, when the action count i.e. the no. of Works or rejections (AC) &lt; AL, then a warning is sent. If AL = 0 and AAA is set, and when AC &lt; AAA, then a warning is sent to the participant.</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in setting escalations.) </p>
+<p class="paragraph"><strong class="strong">Timeout for Activity</strong>&nbsp;- This property's value is used to decide until what time the activity should wait for the actors' action. If properties such as Max.Ownerships, AAA, AL are set, once the property values are reached the work item is removed from the work item lists of all the actors. When the timeout is reached, the following checks are made: If AL is set, when the action count i.e. the no. of Works or rejections (AC) &lt; AL, then the timeout for action is performed and the work item is removed from all work item lists. If AC &gt; AL, it checks with the no. of Works or 'decision count' (DC) and AAA. If DC &gt;= AAA (if it is set), the activity is considered approved; otherwise, it is rejected. If AAA = 0 and if DC &gt;= AL, the action is considered completed. If AL = 0 and AC &lt; AAA, then the timeout for action is performed and the work item is removed from all work item lists. If AL = 0 and AC &gt; AAA, it will check with DC. If DC &gt; AAA it is completed. If AL = 0 and AAA = 0, then if DC is at least 1, then it is considered completed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional&nbsp;</strong>(This property needs to be set only if necessary. It is useful in setting escalations.) </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Multiple TimeOut Warning</strong>&nbsp;- This is used to set recurring timeout warnings that will be sent to the actors who have to take action. To set multiple timeout warnings, click the 'Multiple TimeOut Warning' button in the Properties pane for the Work activity. A new window pops up. In this window, set the interval for the recurring warning as well as the output message. You can also set the Recurring Time Interval. This can be used to set a different recurring time out after the first timeout happens. For example, if 'Time Interval' for the property is set as 7 days and 'Recurring Time Interval' is set as 2 days, then the first time out will happen after 7 days and there will be a recurring time out every second day after the seventh day (first) time out.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Multiple Timeout Warning property</p>
+<ol class="step"><li class="step">To set the multiple timeout warning, click the button for the 'Multiple Timeout Warning' property to open the property window. </li><li class="step">Enter the time interval for the timeout in the Time Interval field. </li><li class="step">Select &quot;Yes&quot; from the drop down for the Recurring? field if you want the timeout warning to recur. Select &quot;No&quot; otherwise. </li><li class="step">Enter the output message corresponding to the timeout warning in the Output field. </li><li class="step">Enter the time interval for the recurring timeout in the Recurring Time Interval field. </li><li class="step">After entering the content details, click Add Row to add this timeout setting and display a new row for entering another timeout setting. </li><li class="step">Remove rows if necessary by selecting them and clicking Remove Selected. </li><li class="step">After specifying the timeout settings, click Update.</li></ol><p class="paragraph">See&nbsp;Work - Multiple Timeout Warning&nbsp;for a detailed description of the&nbsp;Multiple TimeOut Warning&nbsp;property window. </p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity. Loop through this action if output is&nbsp;- This property is used to specify the condition for looping the activity by selecting an activity output from the drop down. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Miscellaneous</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Redirection Enabled?</strong> -&nbsp;This property enables redirection. When this property is set to Yes, the workflow redirects the user &nbsp;to the URL in the Redirect URL &nbsp;property in the next activity. </p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong> The Work Activity returns the following values - </p>
+<p class="paragraph"><strong class="strong">Action Completed:</strong> Displayed when all the actors have taken part.  </p>
+<p class="paragraph"><strong class="strong">Action Completed Affirmative Percentage Not Reached</strong>: Displayed when all the actors have not taken part. </p>
+<p class="paragraph"><strong class="strong">Not Enough Resources to Take Acknowledge:</strong> Displayed when the filter condition did not yield enough actors to whom the request can be sent.</p>
+<p class="paragraph"><strong class="strong">Timeout - Take Acknowledge:</strong> Displayed when the specified minimum number of actors did not take ownership of the request in the given time.</p>
+<p class="paragraph"><strong class="strong">Timeout - Action:</strong> Displayed when some or all of the specified actors did not perform the required action in the given time. </p>
+<p class="paragraph"><strong class="strong">Timeout Warning</strong> - Take Acknowledge: Displayed when a warning is generated that the specified minimum actors have not taken ownership of the request in the given time. </p>
+<p class="paragraph"><strong class="strong">Timeout Warning </strong>- Action: Displayed when a warning for timeout is generated because some or all the actors did not perform the required action in the given time. </p>
+<p class="note"><strong class="notelabel">Note:</strong> The following outputs will return only if user assigned tasks to a queue user. </p>
+<p class="paragraph"><strong class="strong">Resource Unavailable for Queue </strong>-&nbsp;If a queue is assigned to a task &amp; if there are no resources available in the queue then this output will get triggered. </p>
+<p class="paragraph"><strong class="strong">TimeOut for Queue Task</strong> -&nbsp;This output will get triggered when the task in the queue is not picked by any users within the queue escalation time resulting the completion of that task.</p>
+<p class="paragraph"><strong class="strong">Timeout Warning -Queue</strong> -&nbsp;This output will get triggered when the task in the queue is not picked by any users within the queue escalation time resulting in sending a warning out put. However, the task will still be sleeping.  </p>
+<p class="paragraph"><strong class="strong">Timeout Warning -Queue Participant</strong> -&nbsp;This output will get triggered when the task in the queue is picked by user but still not acted on that task within the queue escalation time out settings resulting in triggering a warning output. However, the task will still be sleeping.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior </strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.  </p>
+<p class="paragraph">See Mapped Error Outputs&nbsp;for more details.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

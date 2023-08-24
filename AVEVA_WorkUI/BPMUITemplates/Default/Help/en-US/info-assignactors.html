@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Info - Assign Actor(s) </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49460" class="heading4">Info - Assign Actor(s)</h4>
+<p class="subheading">Assign Actor(s) Property Window</p>
+<p class="paragraph">You can set the actors to whom the Information work item is to be sent in this property window. To open this window, click the button for the 'Assign Actor(s)' property.</p>
+<p class="paragraph">See&nbsp;<a id="h50543" class="jump-currentwindowlive" title="Assigning a Task to a Manager" href="assigningatasktoamanager.html" target="_self">Assigning a Task to a Manager</a>&nbsp;for more details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50537" src="50537.png" class="embeddedimage100%scalinglive" alt="" height="254" width="580" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The Assign Actor window provides the flexibility of assigning actors either by building an expression or through User lookup, Role lookup or Workflow Initiator. This window has a set of radio buttons and drop downs to select the actor and different parameters required to build an expression to identify the actor(s). You can also find related buttons next to the drop downs.</p>
+<p class="subheading">Different Methods of Assigning an Actor</p>
+<ul class="ulitem"><li class="ulitem">Assigning an Actor by building an expression: <br>Filter Condition&nbsp;is the default option that is selected when the Assign Actor window is accessed. This option allows you to build an expression to identify the actor. The section below explains how the set of drop down buttons helps you choose different parameters required to build and expression.<ul class="ulsubitem"><li class="ulsubitem">The Providers drop-down- You can select the required provider from the Providers drop-down.</li><li class="ulsubitem">The Attribute drop down - You can select the attribute to be used to identify the actor, e.g., &quot;AdministratorId&quot;, in this drop down.</li><li class="ulsubitem">The Operator drop down - You can select the operator for the expression here. E.g., &quot;=&quot;</li><li class="ulsubitem">The Value type drop down - You can select the type of value to assign to the attribute in the expression. You can specify Variable, Content, Value, or XMLVariables here.</li><li class="ulsubitem">The Value text box/drop down - You can specify the actual value to assign to the attribute. The control displayed depends on the option selected in the preceding drop down.</li><li class="ulsubitem">If you had selected &quot;Value&quot;, it will display a text box here. You can enter a discrete value in this box to complete the expression.</li><li class="ulsubitem">If you had selected &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot;, there will be a drop down instead of the field. This drop down will have the variable collection or content collection or XMLVariables collection from which you can select an appropriate option.</li><li class="ulsubitem">The Logical operator drop down - You can select logical operators from this drop down to build compound expressions. The options available are &quot;End&quot;, &quot;And&quot;, &quot;Or&quot;, &quot;')' And&quot;, and &quot;')' Or&quot;. You can select &quot;End&quot; to complete the expression.<ul class="ulsubsubitem"><li class="ulsubsubitem"><b class="uicontrol">Add</b>&nbsp;- You can click this button to add the new expression to the text area.</li><li class="ulsubsubitem"><b class="uicontrol">Undo</b>&nbsp;- You can click this button to remove a condition you have added to the expression.</li></ul></li></ul></li></ul><p class="paragraph">At the bottom of the window you will find the following buttons:</p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Clear</b>&nbsp;- You can click this button to clear the expression shown in the text area. This is useful when you want to build a new expression.</li><li class="ulsubitem"><b class="uicontrol">Update</b>&nbsp;- You can click this button to save the expression that has been added to the text area.</li></ul><ul class="ulitem"><li class="ulitem">Assigning an Actor through User Lookup</li></ul><p class="paragraph">Through the&nbsp;User Lookup&nbsp;you can search and select user(s). This automatically builds the expression and the same is updated in the text area. Follow the steps given below to assign an actor through User Lookup</p>
+<ol class="step"><li class="step">Select the&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;option.</li><li class="step">The<b class="uicontrol">&nbsp;User Lookup</b>&nbsp;dialog is displayed, search and select the required actor.<p class="stepinfo">&nbsp;<br><img id="f50538" src="50538.png" class="embeddedimage100%scalinglive" alt="" height="385" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>&nbsp;in the&nbsp;User Lookup&nbsp;dialog and verify the Assign Actor window. </li><li class="step">In the&nbsp;Assign Actor&nbsp;window, you will see that an expression is displayed, refer the image below: </li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>&nbsp;in the Assign Actor(s) window to update the selected actor(s) in the&nbsp;Assign Actor&nbsp;property. Actor(s) selected through User Lookup will be updated in the Assign Actor property.</li></ol><ul class="ulitem"><li class="ulitem">Assigning an Actor through Role Lookup</li></ul><p class="paragraph">Through the&nbsp;<b class="uicontrol">Role Lookup</b>&nbsp;you can search and select a specific role. This automatically builds the expression and the same is &nbsp;updated in the text area. Follow the steps given below to assign an actor through Role Lookup</p>
+<ol class="step"><li class="step">Select the&nbsp;<b class="uicontrol">Role Lookup</b>&nbsp;option.</li><li class="step">The&nbsp;<b class="uicontrol">Role Lookup</b>&nbsp;dialog is displayed, search and select for the &nbsp;required role.<p class="stepinfo"></p>
+<p class="stepinfo">&nbsp;<br><img id="f50540" src="50540.png" class="embeddedimage100%scalinglive" alt="" height="338" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>&nbsp;in the&nbsp;<b class="uicontrol">Role Lookup</b>&nbsp;dialog and verify the Assign Actor window. <br>In the&nbsp;<b class="uicontrol">Assign Actor</b>&nbsp;window, you will see that an expression is displayed, refer the image below:<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f50541" src="50541.png" class="embeddedimage100%scalinglive" alt="" height="188" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>&nbsp;in the Assign Actor(s) window to update the&nbsp;<b class="uicontrol">Assign Actor</b>&nbsp;property.</li></ol><ul class="ulitem"><li class="ulitem">Assigning an Actor through Workflow Initiator</li></ul><p class="paragraph">Selecting the&nbsp;<b class="uicontrol">Workflow Initiator</b>&nbsp;allows you to assign the task to the Workflow Initiator, that is the user who closes the workflow. An expression is built automatically and updated in the text area of Assign Actor window, refer the image below:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50542" src="50542.png" class="embeddedimage100%scalinglive" alt="" height="194" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="information1.html" target="_self">Information Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

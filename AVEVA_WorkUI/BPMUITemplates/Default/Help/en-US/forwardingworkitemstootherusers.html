@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Forwarding Work Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t597315" class="heading4">Forwarding Work Items</h4>
+<p class="paragraph">In AVEVA Work Tasks, you can view the work items in two different modes.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Normal View</b>:&nbsp;In the normal view, you can see all the assigned work items.</li><li class="ulitem"><b class="uicontrol">Manager View</b>:&nbsp;In the manager view, you can see all the assigned work items in addition to all the work items assigned to the users reporting to the reportees.</li></ul><p class="paragraph">In both these views, you have the provision to forward the work items.</p>
+<p class="paragraph"></p>
+<p class="paragraph">Apart from <b class="uicontrol">Inbox</b>, the following users should be able to view and forward the work items from the <b class="uicontrol">Manage Work items</b> in the <b class="uicontrol">Enterprise Console</b>:</p>
+<ul class="ulitem"><li class="ulitem">Owner of the workflows</li><li class="ulitem">Users who are not owners of the workflows, but part of the default Administrator security group.</li></ul><p class="paragraph"></p>
+<p class="procedureheading">To open Manage Work Items:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;icon, click&nbsp;<b class="uicontrol">Tools</b>, and then click&nbsp;<b class="uicontrol">Manage Work items</b>.</li><li class="step">By default repository configuration, only the users who belong to the Administrator security group will be able to see this menu item.</li></ol><p class="paragraph"></p>
+<p class="procedureheading">To View 'Manage Work items' in the Enterprise Console</p>
+<p class="paragraph">To view the<b class="uicontrol">&nbsp;Manage Work items</b>&nbsp;option in the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;menu, you must have the&nbsp;<b class="uicontrol">Can Consume Item</b>&nbsp;right for&nbsp;<b class="uicontrol">Manage Work item</b>&nbsp;list item (<b class="uicontrol">ec_menu_forward_work item</b>) in the&nbsp;<b class="uicontrol">Manage Navigation List</b>&nbsp;of repository settings.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46858" src="46858.jpg" class="embeddedimage100%scalinglive" alt="" height="582" width="549" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><img id="f46859" src="46859.png" class="embeddedimage100%scalinglive" alt="" height="309" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">For details about the Manage Navigation List, see&nbsp;<a id="h46861" class="jump-currentwindowlive" title="Manage Navigation List" href="managenavigationlist.html" target="_self">Manage Navigation List</a>.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Forward Work Items</p>
+<p class="paragraph">To forward work items, you must have the&nbsp;<b class="uicontrol">Can Forward Work Item</b>&nbsp;right.&nbsp;For example, if the user belongs to the security group <b class="uicontrol">Administrator</b>, the <b class="uicontrol">Can Forward Work Item</b> right should be enabled for the Administrator security group.</p>
+<p class="procedureheading">To forward work items to other users:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;icon, click&nbsp;<b class="uicontrol">Tools</b>, and then click&nbsp;<b class="uicontrol">Manage Work items</b>. The&nbsp;<b class="uicontrol">Manage Work items</b>&nbsp;page appears. <br>In the&nbsp;<b class="uicontrol">Manage Work items</b>&nbsp;page, you can see the work items of all the workflows owned by you. <br></li><li class="step">Select the required work item(s) to forward to a different user.  <br></li><li class="step">Click&nbsp;<b class="uicontrol">Forward</b>. Alternatively, right-click the work item and then click&nbsp;<b class="uicontrol">Forward</b>. The&nbsp;<b class="uicontrol">Select a user and forward the work item(s)</b>&nbsp;dialog box appears. <br></li><li class="step">Click the&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;icon to select a user. The&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;dialog box appears. Select only one user at a time to forward work item(s). <br></li><li class="step">Search and enter the user name.</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.  <br></li><li class="step">Click&nbsp;<b class="uicontrol">Forward</b>. The selected work item gets assigned to the selected user and the information is updated in the grid.</li></ol><p class="paragraph"></p>
+<p class="subheading">Kill Work Items</p>
+<p class="paragraph">To kill or abort work items, the user should have the&nbsp;<b class="uicontrol">Can Kill Work Item</b>&nbsp;right.&nbsp;For example, if the user belongs to the security group <b class="uicontrol">Administrator</b>, the <b class="uicontrol">Can Kill Work Item</b> right should be enabled for the Administrator security group.</p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

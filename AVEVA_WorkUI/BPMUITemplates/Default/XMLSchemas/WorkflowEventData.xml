@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<WorkflowEventData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<AlertType>EventBind</AlertType>
+<EventType>OnPublish</EventType>
+<WorkflowAssociation>
+<ListId>00000000-0000-0000-0000-000000000000</ListId>
+<ListItemId>00000000-0000-0000-0000-000000000000</ListItemId>
+
+</WorkflowAssociation>
+<User>
+<Id>skelta\moncyp</Id>
+<Name>SKELTA\MONCYP</Name>
+</User>
+
+</WorkflowEventData>

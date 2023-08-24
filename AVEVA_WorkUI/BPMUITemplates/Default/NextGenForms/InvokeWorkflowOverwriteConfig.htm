@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Invoke Workflow Overwrite Configuration</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject;
+        var configError = "";
+        var workflowName = "", workflowVersion = "", editPageVm, selectedOverwriteOption = "";
+        var popupWindow = null;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                configError = skeltaUtils.getUrlParameterValue(window, 'ConfigError');
+                skeltaUtils.loadPageDefault();
+                loadWorkflowConfiguration();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFInvokeWFOverWriteConfigPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormsNGFInvokeWFOverWriteConfigPageError") + '\n' + exception.message);
+            }
+        });
+
+        function closeWorkflowConfig()
+        {
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").src = "";
+        }
+
+        function updateWorkflowDetails(inputParameterObject, eventArgs)
+        {
+            //Update server
+            skeltaUtils.showLoader();
+            selectedOverwriteOption = viewModelObject.findById("_sys_Forms_overwriteConfig").value;
+
+            var workflowInstancesAction = "";
+            if (selectedOverwriteOption === "UnpublishCurrentVersion" && !skeltaUtils.isUndefined(viewModelObject.findById("_sys_Forms_runningInstances")))
+            {
+                workflowInstancesAction = viewModelObject.findById("_sys_Forms_runningInstances").value;
+            } else if (selectedOverwriteOption === "SelectDraftVersion")
+            {
+                workflowInstancesAction = viewModelObject.findById("_sys_Forms_workflowVersion").value;
+            }
+
+            var xmlVar = editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value;
+            var gridId = editPageVm.topLevelForm.findByXmlNode("DataGridId").value;
+            var schema = editPageVm.topLevelForm.findByXmlNode("Schema").value;
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "workflow": workflowName,
+                "workflowVersion": workflowVersion,
+                "action": selectedOverwriteOption,
+                "schema": schema,
+                "gridId": gridId,
+                "xmlVar": xmlVar,
+                "runningInstanceAction": workflowInstancesAction
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/InvokeWorkflowUpdateConfig", "application/json; charset=utf-8", jsonHelper, "json", overwriteConfigSuccess, fail, closeWorkflowConfig, false);
+        }
+
+        function overwriteConfigSuccess(resultData)
+        {
+            var result = JSON.parse(resultData.d);
+            if (result.IsSuccess == false)
+            {
+                skeltaUtils.showError(document.title, result.ErrorMessage);
+            }
+            else
+            {
+                if (selectedOverwriteOption === "UseCurrentVersion")
+                {
+                    //Do Nothing. XML Variable have been over written
+                }
+                else if (selectedOverwriteOption === "CreateDraftVersion")
+                {
+                    var newVersionCreated = result.Result;
+                    editPageVm.topLevelForm.findByXmlNode("WorkflowWithVersion").value = workflowName + "~" + newVersionCreated;
+                }
+                else if (selectedOverwriteOption === "UnpublishCurrentVersion")
+                {
+                    skeltaUtils.showAlert(document.title, result.Result);
+                }
+                else if (selectedOverwriteOption === "SelectDraftVersion")
+                {
+                    var draftVersionSelected = result.Result;
+                    editPageVm.topLevelForm.findByXmlNode("WorkflowWithVersion").value = workflowName + "~" + draftVersionSelected;
+                }
+                else if (selectedOverwriteOption === "CreateMappingSchema")
+                {
+                    var topDiv = $(parent.document).find("#mapingFrameDiv");
+                    if (!skeltaUtils.isUndefined(topDiv))
+                    {
+                        var mappingFrame = topDiv.find(".skpopup_maindivPopupForm").find("iframe");
+                        mappingFrame.attr("src", "../Repository/Site/" + "FormXmlMapping.htm");
+                        topDiv.show();
+                    }
+                }
+            }
+        }
+
+        function loadWorkflowConfiguration()
+        {
+            editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            var workflowDetails = editPageVm.topLevelForm.findByXmlNode("WorkflowWithVersion").value;
+            if (workflowDetails !== "")
+            {
+                var workflowAndVersion = workflowDetails.split("~");
+                workflowName = workflowAndVersion[0];
+                workflowVersion = workflowAndVersion[1];
+            }
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "workflow": workflowName,
+                "configError": configError
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetInvokeWorkflowOverwriteConfigForm", "application/json; charset=utf-8", jsonHelper, "json", success, fail, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function success(resultData)
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_WOC", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            document.getElementById("viewAndViewModel").value = resultData.d;
+            document.title = skelta.localize.getString("FormsNGFInvokeWFOverWriteConfigPageTitle");
+
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            viewModelObject.onSave.subscribeEvent(updateWorkflowDetails);
+            viewModelObject.onCancel.subscribeEvent(closeWorkflowConfig);
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFInvokeWFOverWriteConfigPageError"), null, result.status + '<br>' + result.statusText + '<br>' + result.responseText);
+            logger.logError(skelta.localize.getString("FormsNGFInvokeWFOverWriteConfigPageError") + '\n' + result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

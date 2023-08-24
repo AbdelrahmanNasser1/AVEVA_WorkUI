@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.Menu-DisabledItemStyle-Over {
+    background-color: WhiteSmoke;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 8.25pt;
+    font-weight: normal;
+    border: 1px #FFBD69 solid;
+    color: Gray;
+}
+.Menu-DisabledItemStyle-Normal {
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 8.25pt;
+    font-weight: normal;
+    color: Silver;
+}
+.Menu-CheckedItemStyle-Over
+{
+    background-color: #999;
+    border: 1px #ccc solid;
+}
+.Menu-CheckedItemStyle-Normal
+{
+    background-color: #999;
+    border: 1px #ccc solid;
+}
+.Menu-Separator
+{
+    border-top: 1px #CCCCCC solid;
+}
+.Menu-FrameStyle
+{
+    background-color: White;
+    border: 1px #666666 solid;
+}
+.Menu-ItemStyle-Over {
+    background-color: #e9ebfc;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 8.25pt;
+    font-weight: normal;
+    border: 0px #FFBD69 solid;
+}
+.Menu-ItemStyle-Normal {
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 8.25pt;
+    font-weight: normal;
+}

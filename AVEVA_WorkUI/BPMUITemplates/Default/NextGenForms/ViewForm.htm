@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>View Form</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script>
+        var skeltaFormLoadStartTime = new Date();
+    </script>
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <script type="text/javascript">
+
+        var dataModel = null;
+        var flag = true;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var popupWindow = null;
+        var extFormParam = {};
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                window.setTimeout(function ()
+                {
+                    // timeout of 0ms have been given for the initialize method to be called only after loader is visible
+                    skeltaUtils.initializeViewForm();
+                }, 0);
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFInitializeForm") + exception.message);
+                logger.logError(skelta.localize.getString("FormNGFInitializeForm") + exception.message);
+                skeltaUtils.pageLoadComplete("");
+            }
+        });
+    </script>
+</body>
+</html>

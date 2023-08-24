@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using the Escalation Email Wizard </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601411" class="heading4">Using the Escalation Email Wizard</h4>
+<p class="paragraph">The <b class="uicontrol">AVEVA Work Tasks Escalation Email Wizard</b> can be used to set the escalation properties for the activity. You can access this wizard by selecting the&nbsp;<b class="uicontrol">Setup Escalations</b>&nbsp;option from the context menu of Human Activities, such as like Approval, Checklist.</p>
+<p class="paragraph">The following image shows launching setup Escalations Wizard:</p>
+<p class="paragraph"><img id="f47351" src="47351.jpg" class="embeddedimage100%scalinglive" alt="" height="393" width="439" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">Setting the Properties through the Wizard</p>
+<p class="paragraph"><strong class="strong">Step 1: Setting the Escalation Conditions</strong></p>
+<p class="paragraph">When you right-click a resource activity and select the &quot;Escalation Email Wizard&quot; option from the menu, the window shown below, corresponding to the first step of the wizard, is displayed. In this step the wizard guides you through the process for setting the escalation conditions for the activity. These conditions will determine at what point the task will be escalated. You can set the time limit for escalation in the first field. Specify the value in the &quot;dd.hh:mm:ss&quot; format. The task will be escalated after this time elapses without any action by the assigned actor. You can choose to repeat the escalation by selecting &quot;Yes&quot; in the corresponding drop down. In this case, you must also specify the time interval between the two escalations in the corresponding field, again in the &quot;dd.hh:mm:ss&quot; format. If you select &quot;No&quot; in the repeated escalation drop down, this field cannot be accessed. Finally, you must specify the unique message describing the escalation in the last field in this window. This can be any meaningful message that clearly describes the escalation. The example in the image below shows &quot;Escalated to PM&quot;. After selecting the resources, click the&nbsp;<b class="uicontrol">Next</b>&nbsp;button to go to the next step in the Actors Selection Wizard.</p>
+<p class="paragraph">The following dialog box shows how to set the Escalation Conditions:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47352" src="47352.jpg" class="embeddedimage100%scalinglive" alt="" height="301" width="652" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><strong class="strong">Step 2: Selecting the Actors for the Escalation</strong></p>
+<p class="paragraph">When you click the&nbsp;<b class="uicontrol">Next</b>&nbsp;button in the first window of the Escalation Email Wizard, the window shown below is displayed. In this step, the wizard guides you through the process of selecting the actors to whom the task will be escalated. You can search for resources by specifying a search parameter. You can specify a value corresponding to user-related parameters like &quot;Employee Name&quot; or &quot;Role in Project&quot; partially or fully in the field provided and click the&nbsp;Search&nbsp;button to start the search. You can change the parameter by selecting from the drop down here. The resources brought up in the search are displayed in the<b class="uicontrol">&nbsp;Available Resources</b>&nbsp;list box. You can add resources to the&nbsp;<b class="uicontrol">Selected Resources</b>&nbsp;list by selecting the resource name in the first list and clicking the [&gt;] button. To add all resources, click the [&gt;&gt;] button. Similarly, you can use the [&lt;] button to remove a resource from the selected resources list, or the [&lt;&lt;] button to clear all the selected resources. After setting the limits, click the&nbsp;<b class="uicontrol">Next</b>&nbsp;button to go to the next step. If you need to make any changes to the values specified in the previous step, click the&nbsp;<b class="uicontrol">Previous</b>&nbsp;button.</p>
+<p class="paragraph">The following dialog box shows how to selecting the actors:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46697" src="46697.jpg" class="embeddedimage100%scalinglive" alt="" height="467" width="591" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 3: Setting up the Escalation Email</strong></p>
+<p class="paragraph">When you click&nbsp;<b class="uicontrol">Next</b>&nbsp;button in the second window of the Escalation Email Wizard, the window shown below is displayed. In this step, the wizard guides you through the setting of the senders Email Id, the subject of the email and its content in the corresponding fields. To save the escalation values that you have set in the wizard, click&nbsp;<b class="uicontrol">Finish</b>. This will save the new values and close the wizard. If you prefer not to save the values, click<b class="uicontrol">&nbsp;Close</b>&nbsp;to exit the wizard. If you need to make any changes to the values specified in the previous step(s), click&nbsp;<b class="uicontrol">Previous</b>.</p>
+<p class="paragraph">The following dialog box shows how to set up the Escalation Email:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f47353" src="47353.jpg" class="embeddedimage100%scalinglive" alt="" height="308" width="650" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

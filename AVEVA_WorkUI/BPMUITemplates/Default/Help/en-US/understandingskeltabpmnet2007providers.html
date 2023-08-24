@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Providers for Controls </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h1 id="t602233" class="heading1">Providers for Controls</h1>
+<p class="paragraph">AVEVA Work Tasks supports providers of different types that deliver the basic functionality for the Controls.</p>
+<p class="paragraph">The following list describes the providers:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Channel Provider</b>:&nbsp;Used to configure channels.</li><li class="ulitem"><b class="uicontrol">Form Provider</b>:&nbsp;Used to configure forms.</li><li class="ulitem"><b class="uicontrol">Push Dispatch Provider</b>:&nbsp;Used to configure the push-type (automatic) dispatch pattern in Queues.</li><li class="ulitem"><b class="uicontrol">Pull Dispatch Provider</b>:&nbsp;Used to configure the pull-type (automatic) dispatch pattern in Queues.</li><li class="ulitem"><b class="uicontrol">Work hour Provider</b>:&nbsp;Used to configure calendars.</li><li class="ulitem"><b class="uicontrol">XML Storage Provider</b>:&nbsp;Used to configure the XML Variables.</li><li class="ulitem"><b class="uicontrol">UserEntity</b>:&nbsp;Used to configure the entity provider.</li><li class="ulitem"><b class="uicontrol">UserDSProvider</b>:&nbsp;Used to configure the entity Data Source Provider.</li><li class="ulitem"><b class="uicontrol">ContentHandler</b>:&nbsp;Used to configure the Content Handler provider.</li><li class="ulitem"><b class="uicontrol">Wizard</b>:&nbsp;Used to configure the Wizard provider.</li></ul><p class="paragraph"></p>
+<p class="paragraph">AVEVA Work Tasks provides ready-to-use providers, out-of-the-box for all the&nbsp;seven types&nbsp;it supports. In addition, AVEVA Work Tasks provides the infrastructure to build different types of custom providers.<br></p>
+<p class="paragraph"></p>
+<table class="tableintopic" width="584" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableheader">Provider Type</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableheader">Namespace</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableheader">Interface</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Role Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Skelta.Core</p>
+<p class="tableparagraph">&nbsp;Skelta.Entity</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;ISkeltaRoleProvider</p>
+<p class="tableparagraph">&nbsp;IRoleEntityProvider</p>
+<p class="tableparagraph">&nbsp;ISkeltaAddInProvider</p>
+<p class="tableparagraph">IRoleEntityDataSourceProvider</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Channel Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Skelta.HWS.WorkListChannel</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IWorkListChannel</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Form Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Skelta.HWS.WorkListChannel</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IWorkItemForm</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Push Dispatch Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Skelta.HWS.Queue</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IPushDispatchProvider</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Pull Dispatch Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Skelta.HWS.Queue</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IPullDispatchProvider</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Work hour Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Skelta.HWS.Calendar</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IWorkHoursProvider</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;XML Storage Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Workflow.NET.Interfaces</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IXmlStorageType</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">User Entity</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">Skelta.Entity.UserEntityProvider</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;ISkeltaAddInProvider   </p>
+<p class="tableparagraph">&nbsp;IEntityProvider</p>
+<p class="tableparagraph">&nbsp;IUserEntityProvider</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">UserDSProvider</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Workflow.NET</p>
+<p class="tableparagraph">&nbsp;Skelta.Entity</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IEntityDataSourceProvider</p>
+<p class="tableparagraph">&nbsp;IUserEntityDataSourceProvider</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Contenthandler</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Workflow.NET</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;IContentHandler</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Wizard</p>
+</td>
+<td style="border:1px solid #010101;" width="220"><p class="tableparagraph">&nbsp;Workflow.NET</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">-</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"><strong class="strong">Creating Custom Providers</strong></p>
+<p class="paragraph">You can create your own custom providers by implementing the respective interface along with the&nbsp;ISkeltaAddInProvider&nbsp;interface available under the&nbsp;Skelta.Core&nbsp;namespace.</p>
+<p class="paragraph">The following code shows a typical implementation of a custom provider:</p>
+<p class="codeblock1">using Skelta.Core;</p>
+<p class="codeblock1">namespace myApp.myRoleProvider</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">public class myRoleProvider : ISkeltaRoleProvider, ISkeltaAddInProvider</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">// Implementation of ISkeltaRoleProvider Members</p>
+<p class="codeblock1">// Implementation of ISkeltaAddInProvider Members</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="paragraph">The custom provider should be registered in the SKAddInProviders table for AVEVA Work Tasks to recognize it and offer the desired runtime functionality.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<table class="tableintopic" width="588" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableheader">Column Name</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableheader">Type</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;Id</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;Guid</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Unique ID of the provider.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;Type</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;nvarchar(20)</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Type identification of provider.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;Name</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;nvarchar(100)</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Provider name.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;Description</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;nvarchar(150)</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Provider description.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;ClassName</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;nvarchar(200)</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Class Name implementing the interface.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;Assembly</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;nvarchar(500)</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Assembly name with relative or complete file system path.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;Settings</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;nvarchar(max)</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Configuration settings known the provider.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;IsGacAssembly</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;bit</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Determines assembly resides in Global Assembly Cache.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;IsDefault</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;bit</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Determines if the value is default.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="118"><p class="tableparagraph">&nbsp;IsGlobal</p>
+</td>
+<td style="border:1px solid #010101;" width="116"><p class="tableparagraph">&nbsp;bit</p>
+</td>
+<td style="border:1px solid #010101;" width="354"><p class="tableparagraph">Determines if the value is global.</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph">The settings column is used to store specific settings required for the providers functionality. That is, the provider can access the settings stored in this column and perform the desired routine. The providers&nbsp;ID&nbsp;and settings&nbsp;are available as properties through the&nbsp;ISkeltaAddInProvider&nbsp;interface implementation.</p>
+<p class="paragraph">If the provider requires settings for each application or workflow, the provider registration should also happen in the&nbsp;SKAddInProvidersSettings&nbsp;table.</p>
+<p class="paragraph">Use the following query to register the Provider in the&nbsp;SKAddInProviders&nbsp;table:</p>
+<p class="codeblock1">INSERT INTO [SKAddInProviders]([Type],[Name],[Description],[ClassName],[Assembly],[Settings],[IsGacAssembly],[LastUpdatedDatetime]) VALUES (Provider,&lt;your Provider name&gt;,&lt;your Provider description&gt;,&lt;your project name(which contains YourProvider.cs)&gt;,&lt;location of your project dll (which contains YourProvider.cs)&gt; ,'' ,0,getdate())</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="paragraph">The structure of this table supports the storing of an application or a workflow as shown below.</p>
+<p class="paragraph"></p>
+<table class="tableintopic" width="580" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableheader">Column Name</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableheader">Type</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableparagraph">&nbsp;Id</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableparagraph">&nbsp;Guid</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableparagraph">Unique ID of the settings.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableparagraph">&nbsp;Application</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableparagraph">&nbsp;nvarchar(50)</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableparagraph">Application name</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableparagraph">&nbsp;Workflow</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableparagraph">&nbsp;nvarchar(50)</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableparagraph">Workflow name.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableparagraph">&nbsp;AddInProviderId</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableparagraph">&nbsp;Guid</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableparagraph">Provider ID.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableparagraph">&nbsp;Settings</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableparagraph">nvarchar(max)</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableparagraph">Configuration settings known to the provider.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="133"><p class="tableparagraph">&nbsp;IsDefault</p>
+</td>
+<td style="border:1px solid #010101;" width="112"><p class="tableparagraph">&nbsp;bit</p>
+</td>
+<td style="border:1px solid #010101;" width="335"><p class="tableparagraph">Determines if the value is default.</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"></p>
+<p class="paragraph">The provider infrastructure tries to look for any specific settings of the matching application or workflow, and returns the value accordingly, when the Settings property is accessed.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

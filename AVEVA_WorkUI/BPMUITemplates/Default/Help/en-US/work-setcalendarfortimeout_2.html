@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Configuring Farm Configuration Wizard for Sending SMS </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601994" class="heading4">Configuring Farm Configuration Wizard for Sending SMS</h4>
+<p class="paragraph">The SendSMS Activity can be configured to send SMSs by making the following <b class="uicontrol">SMS Config</b> settings in the Configuration Wizard: </p>
+<ol class="step"><li class="step"><b class="uicontrol">Resource Fields</b> <p class="stepinfo">This is for mapping resource fields(Users Properties) for sending SMS. There are three fields. They are Email, MobilePhoneProvider, and SMSNumber are mapped to the table.</p>
+<p class="stepinfo">Email - Mail id of the user. This field will take input from Users Properties of specified field in this field. </p>
+<p class="stepinfo">MobilePhoneProvider - Service Provider. This field will take input from Users Properties of specified field in this field. </p>
+<p class="stepinfo">SMS Number - Number of cell in which SMS to be sent. This field will take input from Users Properties of specified field in this field. </p>
+<p class="stepinfo">Example: For the List, the Email, MobilePhoneProvider, and SMSNumber will take input from Email, Mobile Phone Provider and SMS Number respectively from the User properties.</p>
+</li><li class="step"><b class="uicontrol">SMS Sending Connection Types</b> <p class="stepinfo">Currently three Connection Types are supported:</p>
+<p class="stepinfo">GSM - You can send a SMS through a direct GSM modem or GSM phone.</p>
+<p class="stepinfo">EmailProvider - You can send a SMS by specifying connection types.</p>
+<p class="stepinfo">SMSPatternMatch - Each service provider has their SMS pattern to identify easily. </p>
+<p class="stepinfo">Example: Hutch - Hutch number starts from 9886.*</p>
+<p class="stepinfo">Airtel - Airtel number starts from 9845.*, 9980.* etc.</p>
+<p class="stepinfo"><strong class="strong">Provider Configuration</strong></p>
+<p class="stepinfo">This is for Connection Type specific configuration settings. If you are using a provider other than the default provider specified here, you will have to add the details here. Currently three Connection Types are supported &#8211; SMSPatternMatch, GSM, and EmailProvider. Under each Connection Type, apart from their configuration details, two compulsory nodes &#8211; SMSMessengerAssembly &amp; SMSMessengerClass &#8211; have to be specified. This is the class which sends SMS for each provider. This class should implement ISMSSender interface.</p>
+<p class="stepinfo">The following are some examples for setting ProviderConfiguration:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f573043" src="573043.png" alt="" height="388" width="609" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="note"><strong class="notelabel">Note:</strong> As an alternative, &quot;Nokia 6310i Modem&quot; can be replaced by &quot;COM 1&quot;, provided the Nokia phone is connected on COM1.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f573044" src="573044.png" alt="" height="390" width="607" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">Here are some details about values in the above example:</p>
+<p class="stepinfo"><b class="uicontrol">DeviceSettings</b> - 8 databits, no parity, 1 stopbit</p>
+<p class="stepinfo"><b class="uicontrol">Provider Type</b> - Standard TAP provider</p>
+<p class="stepinfo">You can specify '0' for UCP Provider, '2' for TAP provider, 'no request' for LineFeed and '3' for TAP provider, 'no request' for EOT.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f573045" src="573045.png" alt="" height="389" width="611" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step"><strong class="strong">Connection Sequences</strong> <p class="stepinfo">This is the sequence in which the AVEVA Work Tasks Engine will choose the provider for sending SMS.</p>
+<p class="stepinfo">For Example:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f573046" src="573046.png" alt="" height="392" width="608" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="paragraph">The AVEVA Work Tasks Engine will try to send SMS using GSM Provider. If this fails, then it will try sending the SMS using other providers in this order: SMSPatternMatch and EmailProvider. </p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="384"><p class="tableheader">Provider</p>
+</td>
+<td style="border:1px solid #010101;" width="192"><p class="tableheader">Priority</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">GSM</p>
+</td>
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph">1</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">SMSPatternMatch</p>
+</td>
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph">2</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">EmailProvider</p>
+</td>
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph">3</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="configuringcommunicationactivities1.html" target="_self">Configuring Communication Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

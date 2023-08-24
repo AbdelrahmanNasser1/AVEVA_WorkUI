@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> CheckList - HTML template </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t489000" class="heading4">CheckList - HTML template</h4>
+<p class="subheading">HTML template Property Window</p>
+<p class="paragraph">You can specify a html template for the CheckList activity in this property window. To access this window, click the edit button in the 'HTML template' property.</p>
+<p class="paragraph">In this property window, you can write your own html template for Check-List activity or you can use the default Check-List activity template for customizing the email.</p>
+<p class="paragraph">See &nbsp;Using 'HTML Template' property of Check-List Activity&nbsp;for more information.</p>
+<p class="paragraph"><img id="f50563" src="50563.png" class="embeddedimage100%scalinglive" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has a text editor to enter the body text. You can do this either by entering a html template directly in the text editor or by using the&nbsp;Field&nbsp;controls at the top of the window. These controls are described below:</p>
+<ul class="ulitem"><li class="ulitem">The Value type drop down - You can select the type of value here. You can specify Variable, Content, Value, or XMLVariables here.</li><li class="ulitem">The Value text box/drop down - You can specify the actual value of the message body. The control displayed depends on the option selected in the first drop-down. If you had selected &quot;Value&quot;, it will display a text box here. You can enter the body text in this box. If you had selected &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot;, there will be a drop-down instead of the field. This drop-down will have the variable collection or content collection or XMLVariables collection from which you can select an appropriate option to assign the body.</li><li class="ulitem"><b class="uicontrol">Append</b>&nbsp;- You can click this button to add the specified value, variable or content to the text editor.</li></ul><p class="paragraph">The text tool bar above the text editor allows you to manage and format the html template. It has the following text tools &#8211;</p>
+<ul class="ulitem"><li class="ulitem">Cut (Ctrl+X) - to cut text</li><li class="ulitem">Copy (Ctrl+C) - to copy text</li><li class="ulitem">Paste (Ctrl+V) - to paste text</li><li class="ulitem">Undo (Ctrl+Z) - to undo the last action</li><li class="ulitem">Redo (Ctrl+Y) - to redo the last action</li><li class="ulitem">Repeat Last Command (F4) - to repeat the last command that was executed</li></ul><p class="paragraph">It also has the following formatting and other tools &#8211;</p>
+<ul class="ulitem"><li class="ulitem">Bold (Ctrl+B) - to make text bold</li><li class="ulitem">Italic (Ctrl+I) - to italicize text</li><li class="ulitem">Underline (Ctrl+U) - to underline text</li><li class="ulitem">Font Name - to select the font for the body</li><li class="ulitem">Size - to specify the font size</li><li class="ulitem">Paragraph Style - to select a paragraph style</li><li class="ulitem">Zoom - to zoom in and zoom out the view</li><li class="ulitem">Foreground Color - to set text color</li><li class="ulitem">Background Color - to set the background color</li><li class="ulitem">Print - to print the text</li></ul><p class="paragraph">At the bottom of the window you will find the following buttons:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>&nbsp;- Click this button to save the HTML template</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- Click this button to close this window</li></ul><p class="paragraph">To set this property, do the following steps:</p>
+<ol class="step"><li class="step">To specify the HTML template, click the edit icon to open the property window.</li><li class="step">In the<b class="uicontrol">&nbsp;HTML template</b>&nbsp;window, provide template which should be in html format. If you are pasting a copied html content, then right-click the&nbsp;<b class="uicontrol">HTML template</b>&nbsp;window and paste it as &quot;<b class="uicontrol">Paste Plain Text</b>&quot;.<p class="stepinfo"><img id="f50564" src="50564.png" class="embeddedimage100%scalinglive" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50563_1" src="50563.png" class="embeddedimage100%scalinglive" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="checklistaction1.html" target="_self">Checklist Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

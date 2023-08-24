@@ -1,0 +1,402 @@
+﻿@font-face {
+    font-family: "Roboto";
+    src: url("../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.MenuItem
+{
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size:10px;
+	padding: 4px 0px;
+	margin:1px;
+	font-color:black;
+	
+}
+.MenuGroup
+{ 	
+	background-color:#ffffff;
+	border-style:solid;
+	border-width:1px;
+	border-color:black; 
+	cursor:pointer;
+	cursor:hand;
+}
+.MenuItemOver
+{
+	background-color:#cccccc;
+	cursor:hand;
+	font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size:10px;
+	color: white;
+	padding: 4px 0px;
+	margin:1px;
+}
+
+.BodyContent
+{
+	clear: both;
+	border-right: rgb(145,155,156) 1px solid;
+	padding-right: 10px;
+	border-top: rgb(145,155,156) 1px solid;
+	padding-left: 10px;
+	z-index: 2;
+	background: rgb(252,252,254);
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee, GradientType=0) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=2, Direction=135);
+	padding-bottom: 10px;
+	font: 11px "Roboto", "Segoe UI", "Arial", "Verdana";
+	border-left: rgb(145,155,156) 1px solid;
+	color: black;
+	padding-top: 10px;
+	border-bottom: rgb(145,155,156) 1px solid;
+	position: relative;
+	top: -2px;
+}
+
+.hyperText1 { 
+    TEXT-DECORATION: none;color: black; 
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size:10px;
+	padding: 4px 0px;
+	margin:1px;
+	font-color:black;
+ }
+
+/*.Header
+{
+	clear: both;
+	border-right: rgb(145,155,156) 1px solid;
+	padding-right: 10px;
+	border-top: rgb(145,155,156) 1px solid;
+	padding-left: 10px;
+	z-index: 2;
+	background: rgb(252,252,254);
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee, GradientType=0) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=2, Direction=135);
+	padding-bottom: 2px;
+	font: 11px "Roboto", "Segoe UI", "Arial", "Verdana";
+	border-left: rgb(145,155,156) 1px solid;
+	color: black;
+	padding-top: 2px;
+	border-bottom: rgb(145,155,156) 1px solid;
+	position: relative;
+	top: -2px;
+}*/
+.SelectStyle
+{
+	border-right: gainsboro 1px solid;
+	border-top: gainsboro 1px solid;
+	font-size: 8pt;
+	border-left: gainsboro 1px solid;	
+	color: black;
+	border-bottom: gainsboro 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";	
+	overflow:auto;
+}
+.TextboxStyle 
+{
+	border-right: #7a96df 1px solid;
+	border-top: #7a96df 1px solid;
+	font-size: 8pt;
+	border-left: #7a96df 1px solid;	
+	color: black;
+	border-bottom: #7a96df 1px solid;
+}
+.ButtonStyle
+{
+	border-right: lightsteelblue 1px solid;
+	border-top: lightsteelblue 1px solid;
+	font-weight: normal;
+	font-size: 8pt;
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee, GradientType=0) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=1, Direction=175);
+	border-left: lightsteelblue 1px solid;
+	color: black;
+	border-bottom: lightsteelblue 0px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: lightgrey;
+}
+.ContentText
+{
+	font-size: 8pt;
+	color: black;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.tab
+{
+    border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	font-weight: normal;
+	font-size: 8pt;
+	border-left: darkgray 1px solid;
+	border-bottom: darkgray 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: whitesmoke;
+	text-decoration: none;
+	color: black;
+}
+.tabSelected
+{
+	border-right: white 1px solid;
+	border-top: white 1px solid;
+	font-weight: bold;
+	font-size: 8pt;
+	border-left: white 1px solid;
+	color: white;
+	border-bottom: white 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: darkgray;
+	text-decoration: none;
+}
+.tab-content
+{
+    CLEAR: both;
+    BORDER-RIGHT: #919b9c 1px solid;
+    PADDING-RIGHT: 10px;
+    BORDER-TOP: #919b9c 1px solid;
+    PADDING-LEFT: 10px;
+    Z-INDEX: 2;
+    BACKGROUND: #fcfcfe;
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee, GradientType=0) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=2, Direction=135);
+    PADDING-BOTTOM: 10px;
+    FONT: 11px "Roboto", "Segoe UI", "Arial", "Verdana";
+    BORDER-LEFT: #919b9c 1px solid;
+    COLOR: black;
+    PADDING-TOP: 10px;
+    BORDER-BOTTOM: #919b9c 1px solid;
+    POSITION: relative;
+    TOP: -2px
+}
+.ColorHeader
+{
+	border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	font-weight: normal;
+	font-size: 8pt;
+	border-left: darkgray 1px solid;
+	color: black;
+	border-bottom: darkgray 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: gainsboro;
+}
+.ClickStyle
+{
+	border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	font-size: 8pt;
+	border-left: darkgray 1px solid;
+	color: black;
+	border-bottom: darkgray 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.BlurStyle
+{
+	border-right: white 1px solid;
+	border-top: white 1px solid;
+	font-size: 8pt;
+	border-left: white 1px solid;
+	color: black;
+	border-bottom: darkgray 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 8pt;
+	color: black;
+	
+}
+.gridtableinputs
+{
+    FONT-SIZE: 11px;
+    FONT-FAMILY: "Roboto", "Segoe UI", "Arial", "Verdana";
+	border: 1 solid white;
+}
+.AnchorText
+{
+	font-size: 8pt;
+	color: black;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	text-decoration: none;
+}
+.DisabledDTCText
+{
+	font-size: 8pt;
+	color: darkgray;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.EnabledDTCText
+{
+	border-right: gainsboro 1px solid;
+	border-top: gainsboro 1px solid;
+	font-size: 8pt;
+	border-left: gainsboro 1px solid;
+	color: black;
+	border-bottom: gainsboro 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.LinkDTCText
+{
+	border-right: cornflowerblue 1px solid;
+	border-top: cornflowerblue 1px solid;
+	font-size: 8pt;
+	text-transform: capitalize;
+	border-left: cornflowerblue 1px solid;
+	color: black;
+	border-bottom: cornflowerblue 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: whitesmoke;
+	text-decoration: none;
+}
+.menuitems
+{
+	padding-right: 10px;
+	padding-left: 15px;
+	padding-bottom: 5px;
+	text-transform: capitalize;
+	padding-top: 5px;
+}
+.skin2
+{
+	border-right: gainsboro 1px solid;
+	border-top: gainsboro 1px solid;
+	font-size: 8pt;
+	visibility: hidden;
+	border-left: gainsboro 1px solid;
+	width: 165px;
+	cursor: hand;
+	border-bottom: gainsboro 1px solid;
+	filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee, GradientType=0) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=2, Direction=135);
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	position: absolute;
+	background-color: whitesmoke;
+	alink: white;
+	avisited: white;
+	ahover: black;
+	font-color: white;
+}
+.ErrorMessageStyle
+{
+	font-weight: normal;
+	font-size: 8pt;
+	text-transform: capitalize;
+	color: red;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.NoExpressionStyle
+{
+	border-right: #ff6666 1px solid;
+	border-top: #ff6666 1px solid;
+	font-size: 8pt;
+	border-left: #ff6666 1px solid;
+	border-bottom: #ff6666 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.input-button {
+		font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+		font-size: 11px;
+		border: 1px inset #447392;
+		color: #2A3B66;
+		width:auto;
+		height: 19px;
+}
+
+.header2 {
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	height: 22px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	background: url(../images/top-bg.gif);
+	height: 22px;
+}
+
+
+TD.TableContainer
+{
+	border:0px solid #256194;
+}
+.ClickStyle
+{
+	border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	font-size: 8pt;
+	border-left: darkgray 1px solid;
+	color: black;
+	border-bottom: darkgray 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.BlurStyle
+{
+	border-right: white 1px solid;
+	border-top: white 1px solid;
+	font-size: 8pt;
+	border-left: white 1px solid;
+	color: black;
+	border-bottom: darkgray 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.EditableDiv
+{
+	FONT-WEIGHT: normal; 
+	FONT-SIZE: 8pt; 
+	MARGIN: 0px; 
+	OVERFLOW: auto; 
+	WIDTH: 100%; 
+	CURSOR: text; 
+	FONT-FAMILY: "Roboto", "Segoe UI", "Arial", "Verdana"; 
+	HEIGHT: 150px;
+	DIRECTION: ltr;	
+	LINE-HEIGHT: 8pt;
+	VERTICAL-ALIGN: baseline;
+}
+.NoCellExpressionStyle
+{
+	border-right: blue 1px solid;
+	border-top: blue 1px solid;
+	font-size: 8pt;
+	border-left: blue 1px solid;
+	border-bottom: blue 1px solid;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: #f5f5f5;
+	text-decoration: none;
+}
+A
+{
+	text-decoration:none;
+}
+.ErrorMessageStyle
+{
+	font-weight: normal;
+	font-size: 8pt;
+	text-transform: capitalize;
+	color: red;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.ConfirmMessageStyle
+{
+	font-weight: normal;
+	font-size: 8pt;
+	text-transform: capitalize;
+	color: Blue;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.NewTableContainer
+{
+	border:1px solid #666666;
+}

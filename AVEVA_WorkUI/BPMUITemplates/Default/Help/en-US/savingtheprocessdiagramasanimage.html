@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Saving the Process Diagram as Image </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t598325" class="heading3">Saving the Process Diagram as Image</h3>
+<p class="paragraph">AVEVA Work Tasks allows you to save the process diagrams as images in different formats from the menu. In the earlier versions, you could right-click on the process diagram and save it as a BMP image.</p>
+<ul class="ulitem"><li class="ulitem">You can select&nbsp;<b class="uicontrol">Save As EMF</b> Image&nbsp;to save the diagram as an image in the EMF (Enhanced Meta File) format. This is a vector format, which is ideal for printing or embedding in MS Office applications.</li><li class="ulitem">You can select&nbsp;<b class="uicontrol">Save As PNG Image</b>&nbsp;to save the diagram as a PNG image. This is useful when you need to capture the process diagram images for use on the web.</li></ul><p class="paragraph">See also,&nbsp;<a id="h47298" class="jump-currentwindow-customtextlive" title="Saving File as EMF Image" href="saveasemfimage.html" target="_self">Save As EMF Image</a>&nbsp;and&nbsp;<a id="h47299" class="jump-currentwindow-customtextlive" title="Saving File as PNG Image" href="saveaspngimage.html" target="_self">Save As PNG Image.</a></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

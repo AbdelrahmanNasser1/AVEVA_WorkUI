@@ -1,0 +1,169 @@
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+.RadMenu_SkeltaMenu {
+    /*white-space: normal !important;*/
+    z-Index: 10010 !important;
+}
+
+div.RadMenu_SkeltaMenu .rmGroup:before {
+    width: 0px; /*remove the colored stripe from the left side*/
+}
+
+div.RadMenu_SkeltaMenu .rmGroup .rmLink {
+    padding-left: 20px; /*remove the text padding from the left side*/
+}
+
+div.RadMenu_SkeltaMenu .rmGroup .rmSeparator {
+    margin-left: 20px; /*stretch the separator*/
+}
+
+.RadMenu_SkeltaMenu .rmTemplate {
+    background-color: #F7F7F7 !important;
+}
+
+.RadMenu_SkeltaMenu .rmRootGroup {
+    border: 0 !important;
+}
+
+    .RadMenu_SkeltaMenu .rmRootGroup.rmVertical {
+        background-image: none;
+    }
+
+    .RadMenu_SkeltaMenu .rmRootGroup .rmItem {
+        /*border-color: #fff;*/
+        border: 0 !important;
+        font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+        font-size: 14px;
+        padding-right: 15px !important;
+        height: 40px !important;
+    }
+
+    .RadMenu_SkeltaMenu .rmRootGroup .rmRootLink:hover {
+        border: 0 !important;
+    }
+
+    .RadMenu_SkeltaMenu .rmRootGroup .rmSelected > .rmRootLink,
+    .RadMenu_SkeltaMenu .rmRootGroup .rmExpanded > .rmRootLink {
+        border: 0 !important;
+    }
+
+    .RadMenu_SkeltaMenu .rmRootGroup .rmFocused > .rmLink {
+        border: 0 !important;
+        background-color: #ffffff;
+    }
+
+.RadMenu_SkeltaMenu .rmGroup,
+.RadMenu_SkeltaMenu .rmMultiColumn,
+.RadMenu_SkeltaMenu .rmPopup {
+    border-color: #E6E6E6;
+    color: #333333;
+    background-color: #ffffff;
+    background-image: none !important;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    padding: 1px 0px 1px 0px !important;
+}
+
+.RadMenu_SkeltaMenu .rmContent {
+    padding-left: 20px !important;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+    font-size: 14px;
+    padding-right: 15px !important;
+}
+
+.RadMenu_SkeltaMenu .rmGroup .rmLink {
+    border-radius: 0px;
+    height: 40px !important;
+    padding-top: 15px !important;
+    padding-bottom: 0px !important;
+    padding-right: 15px !important;
+    padding-left: 20px !important;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+    font-size: 16px;
+}
+
+    .RadMenu_SkeltaMenu .rmGroup .rmLink:hover,
+    .RadMenu_SkeltaMenu .rmGroup .rmToggle:hover {
+        background-color: #E6E6E6;
+        height: 40px !important;
+    }
+
+.RadMenu_SkeltaMenu .rmGroup .rmSelected > .rmLink,
+.RadMenu_SkeltaMenu .rmGroup .rmExpanded > .rmLink,
+.RadMenu_SkeltaMenu .rmGroup .rmSelected > .rmLink .rmToggle,
+.RadMenu_SkeltaMenu .rmGroup .rmExpanded > .rmLink .rmToggle {
+    background-color: #E6E6E6;
+}
+
+.RadMenu_SkeltaMenu .rmGroup .rmFocused > .rmLink,
+.RadMenu_SkeltaMenu .rmGroup .rmFocused > .rmLink .rmToggle {
+    background-color: #E6E6E6;
+}
+
+.RadMenu_SkeltaMenu .rmSeparator {
+    border-color: #cdcdcd;
+}
+
+.RadMenu_SkeltaMenu .rmGroup .rmSeparator {
+    border-color: #cccccc;
+}
+
+.RadMenu_SkeltaMenu .rmArrow {
+    border-color: #d9d9d9;
+    background-color: #f2f2f2;
+}
+
+    .RadMenu_SkeltaMenu .rmArrow:hover {
+        background-color: #E6E6E6;
+    }
+
+.RadMenu_SkeltaMenu .rmShadows .rmGroup {
+    box-shadow: 3px 3px 5px #cccccc;
+}
+
+.RadMenu_SkeltaMenu .rmGroup:before,
+.RadMenu_SkeltaMenu .rmMultiColumn:before,
+.RadMenu_SkeltaMenu .rmScrollWrap > .rmHorizontal:before,
+.RadMenu_SkeltaMenu .rmScrollWrap > .rmVertical:before {
+    border-color: transparent;
+    background-color: #e6e6e6;
+}
+
+.MenuUserName {
+    color: #000;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+    text-align: left;
+    font-size: 18px;
+}
+
+.MenuRepoDetails {
+    color: #626469;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+    font-size: 14px;
+}

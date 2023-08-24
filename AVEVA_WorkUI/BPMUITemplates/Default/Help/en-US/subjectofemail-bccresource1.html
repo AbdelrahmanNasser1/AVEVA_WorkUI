@@ -1,0 +1,55 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> Email: Body </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="Email: Body">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('49627');expand('49626');expand('49354');highlight('49632')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<h4 id="t49632" class="heading4">Email: Body</h4>
+<p class="paragraph">You can specify a message Body for the Email in this property window. To open this window, click the button for the 'Body' property.</p>
+<p class="paragraph">The following image shows the Email Body property dialog box:</p>
+<p class="paragraph"><img id="f51278" src="51278.png" class="embeddedimage100%scalinglive" alt="" height="277" width="644" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has a text editor to enter the body text. You can do this either by entering a discrete value directly in the text editor or by using the&nbsp;<b class="uicontrol">Field</b>&nbsp;controls at the top of the window. These controls are described below:</p>
+<ul class="ulitem"><li class="ulitem">The Value type drop down - You can select the type of value here. You can specify Variable, Content, Value, or XMLVariables here.</li><li class="ulitem">The Value text box/ drop down - You can specify the actual value of the message body. The control displayed depends on the option selected in the first drop down. If you had selected &quot;Value&quot;, it will display a text box here. You can enter the body text in this box. If you had selected &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot; instead, there will be a drop down instead of the field. This drop down will have the variable collection or content collection or XMLVariables collection from which you can select an appropriate option to assign the body.</li><li class="ulitem"><b class="uicontrol">Append</b>&nbsp;- You can click this button to add the specified value, variable or content to the text editor.</li></ul><p class="paragraph"><strong class="strong">Tip:</strong> You can specify the body using a combination of discrete value and variable or content. This helps in personalizing the email body for each actor. For example, you can specify the salutation line in the message body as &quot;Hello &lt;%#Variable.SubmittedBy.name%&gt;,&quot;. Here, the string &quot;Hello&quot; must be typed directly in the text editor. The second half of the salutation is a placeholder, which will be replaced by the variable value during run-time. This must be added by selecting the appropriate variable option from the&nbsp;Field&nbsp;drop down and clicking&nbsp;Append. The rest of the message body can be typed in the editor. This will result in the same email message going to different actors with their respective names in the salutation line.</p>
+<p class="paragraph">The text tool bar above the text editor allows you to manage and format the body text. It has the following text tools &#8211;</p>
+<ul class="ulitem"><li class="ulitem">Cut (Ctrl+X) - to cut text</li><li class="ulitem">Copy (Ctrl+C) - to copy text</li><li class="ulitem">Paste (Ctrl+V) - to paste text</li><li class="ulitem">Undo (Ctrl+Z) - to undo the last action</li><li class="ulitem">Redo (Ctrl+Y) - to undo the last action</li><li class="ulitem">Repeat Last Command (F4) - to repeat the last command that was executed</li></ul><p class="paragraph">It also has the following formatting &amp; other tools &#8211;</p>
+<ul class="ulitem"><li class="ulitem">Bold (Ctrl+B) - to make text bold</li><li class="ulitem">Italic (Ctrl+I) - to italicize text</li><li class="ulitem">Underline (Ctrl+U) - to underline text</li><li class="ulitem">Font Name - to select the font for the body</li><li class="ulitem">Size - to specify the font size</li><li class="ulitem">Paragraph Style - to select a paragraph style</li><li class="ulitem">Zoom - to zoom in and zoom out the view</li><li class="ulitem">Foreground Color - to set text color</li><li class="ulitem">Background Color - to set the background color</li><li class="ulitem">Print - to print the text</li></ul><p class="paragraph">At the bottom of the window you will find the following buttons:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>&nbsp;- You can click this button to save the message body.</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- You can click this button to close this window.</li></ul><p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="emailaction1.html" target="_self">Email Activity</a></p><p class="relateditem"><a href="email-to1.html" target="_self">Email: ToResource</a></p><p class="relateditem"><a href="email-bccresource1.html" target="_self">Email: BCC Resource</a></p><p class="relateditem"><a href="email-ccresource1.html" target="_self">Email: CCResource</a></p><p class="relateditem"><a href="email-subject1.html" target="_self">Email: Subject</a></p><p class="relateditem"><a href="email-attachreports11.html" target="_self">Email: Attach Reports</a></p><p class="relateditem"><a href="gmail-mailchannel.html" target="_self">Gmail: MailChannel</a></p></td>
+</tr>
+</table>
+
+
+
+<input id="topicId" type="hidden" value="49632" />
+<input id="topicDescription" type="hidden" value="Email: Body" />
+<input id="footer-modified" type="hidden" value="Last modified: 4/27/2015 1:14:35 PM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

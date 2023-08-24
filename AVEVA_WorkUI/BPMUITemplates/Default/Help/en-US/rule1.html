@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Rule Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601983" class="heading3">Rule Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Rule Activity allows complex rules or expressions to be built into the workflow. The expression will either result in 'true' or 'false'. The workflow engine evaluates the expression and assigns the result (true/false) to the output. The engine determines the path of the workflow from the output.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Rule activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right click menu for the Rule activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f489264" src="489264.png" alt="" height="321" width="252" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.</p>
+<p class="paragraph">)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The property in the Configuration group has been described below. You can use this property to specify the decisions.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Condition</b> - This property allows the user to frame complex expressions for the workflow execution. The expression results either in 'true' or 'false'. The workflow engine, after evaluating the expression and getting the result, decides on the path for the activity, as per the process design.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the Condition property</p>
+<ol class="step"><li class="step">To specify the condition for the Rule activity, click the button for the 'Condition' property to open the property window.</li><li class="step">In this window, build a complex expression for the rule using the fields provided. Select a type of value (Variable, Content, XMLVariables) from the first drop down list, then select the corresponding value from the second drop down. This forms the left-hand side of the rule condition expression. Next, select the operator for the condition from the third drop down. Finally, select the type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the respective drop downs to add the right-hand side of the rule condition expression. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression in the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it. </li></ol><p class="paragraph">See <a id="h51163" class="jump-currentwindowlive" title="Rule - Condition" href="rule-condition.html" target="_self">Rule - Condition</a>&nbsp;for a detailed description of the Condition property window.</p>
+<p class="paragraph">See the Using XML Variables section in the&nbsp;About the XML Variable User Interface&nbsp;topic for details on how to use the XMLVariables to build the expression.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Rule Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">True</b>: Displayed when the rule condition is true</p>
+<p class="paragraph"><b class="uicontrol">False</b>: Displayed when the rule condition is false</p>
+<p class="paragraph"></p>
+<p class="subheading">Example for a Rule Activity:</p>
+<p class="paragraph"><strong class="strong">Step 1</strong>:&nbsp;Design a workflow as shown in the following figure.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51160" src="51160.png" class="embeddedimage100%scalinglive" alt="" height="282" width="589" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 2:</strong>&nbsp;In the Start Activity declare a variable Salary.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 3:</strong>&nbsp;In the 'Set Variable' property of Update variable activity, perform the following actions:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">In the&nbsp;first drop-down, select Variable.Salary.</li><li class="ulitem">Type a value. For Example, 3000.</li><li class="ulitem">Click&nbsp;<b class="uicontrol">OK</b>.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51161" src="51161.png" class="embeddedimage100%scalinglive" alt="" height="200" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ul><p class="paragraph"><strong class="strong">Step 4:</strong>&nbsp;In the Condition property of Rule Activity, &nbsp;perform the following actions:</p>
+<ul class="ulitem"><li class="ulitem">In the&nbsp;first drop-down, select Variable.Salary.</li><li class="ulitem">Second drop-down, &nbsp;select '&gt;' .</li><li class="ulitem">Third drop-down, select 'Value'.</li><li class="ulitem">In the adjacent text box, enter a variable. For Example, 2000.</li><li class="ulitem">In the last drop-down, select AND.</li><li class="ulitem">Click&nbsp;<b class="uicontrol">Add</b>.</li><li class="ulitem">Once again, in the first drop-down, select Variable.Salary.</li><li class="ulitem">Second drop-down, select '&lt;'.</li><li class="ulitem">Third drop-down, select 'Value'.</li><li class="ulitem">In the adjacent text box, enter a variable. For Example, 6000.</li><li class="ulitem">In the last drop-down, select END.</li><li class="ulitem">Click&nbsp;<b class="uicontrol">Add</b>.</li><li class="ulitem">Click&nbsp;<b class="uicontrol">Update</b>. The entry would look as the following:</li></ul><p class="paragraph">[Variable.Salary]&gt;2000 And Variable.Salary&lt;6000</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51162" src="51162.png" class="embeddedimage100%scalinglive" alt="" height="118" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 5:</strong>&nbsp;On the link connecting the right logger, select False and display an error message.</p>
+<p class="paragraph"><strong class="strong">Step 6:</strong>&nbsp;On the link connecting the left logger, select True and display the value of the variable.Salary.</p>
+<p class="paragraph">Output: The Variable.Salary will be updated to 3000, and in the rule condition the condition will be checked. The rule activity will return true and execute the logger at the bottom of the rule activity displaying the value of the variable Salary in the&nbsp;Logger Console.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="rule-condition.html" target="_self">Rule - Condition</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

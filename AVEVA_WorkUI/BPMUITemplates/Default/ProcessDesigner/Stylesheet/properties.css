@@ -1,0 +1,175 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.propertycategory
+{
+	color:#000000;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 12px;
+	/*background-image: url(../graphics/properties/PD-bg-skelta-properties.png);*/
+    background-color:#cccccc;
+	height: 20px;
+	vertical-align: middle;
+	padding-top: 3px;
+	padding-bottom: 0px;
+	cursor:pointer;
+	padding-left: 2px;
+}
+.propertycategorydiv
+{
+	padding-bottom: 5px;
+}
+
+.propertiesboxtable {
+    background: #889CD5;
+    font-size: 15px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: Black;
+}
+.propertiesboxheading {
+    background: Black;
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: White;
+    font-weight: bolder;
+    text-align: center;
+}
+.propertiesboxactionselect {
+    font-size: 11px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-weight: normal;
+}
+
+.propertiesboxpropertytable {
+    background: Silver;
+    font-size: 15px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: Black;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    border-bottom-style: none;
+}
+.propertiesboxpropertyextraspace {
+    background: #C4D2FB;
+    font-size: 15px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: Black;
+}
+.propertiesboxpropertybuttonstable {
+    background: #C4D2FB;
+    font-size: 15px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: Black;
+}
+
+.propertiesboxinputs {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    text-decoration: none;
+    border: 0px #737373 solid;
+    width: 100%;
+}
+.propertiesboxlinknode {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    text-decoration: none;
+    border: 0px #737373 solid;
+    background-color: White;
+    height: 35px;
+}
+.propertiesboxselect {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-weight: normal;
+}
+.propertiesboxpropertytitle {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 2px;
+    border-left-color: black;
+    border-right-style: none;
+    border-left-style: none;
+    border-right-color: black;
+    font-style: normal;
+    padding-left: 2px;
+    height: 26px;
+    display: block;
+    vertical-align: middle;
+    border-top: #666 1px;
+}
+
+.propertiesboxpropertyExpText {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    color: black;
+    padding-top: 0px;
+    border-left-color: black;
+    border-right-style: none;
+    border-left-style: none;
+    border-right-color: black;
+    font-style: normal;
+    padding-left: 5px;
+    display: block;
+    vertical-align: middle;
+    padding-top: 0px;
+    border-top: lightskyblue 1px;
+}
+
+.propertiesboxinputdiv
+{
+	border-right: darkgray 1px solid;
+	border-top: darkgray 1px solid;
+	border-left: darkgray 1px solid;
+	border-bottom: darkgray 1px solid;
+	margin-left: 2px;
+	width: 98%;
+}
+
+.propertiesboxinputstable {
+    background: White;
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: Black;
+}
+.propertiesboxinputbutton {
+    FONT-SIZE: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    background-color: #cccccc;
+    color: White;
+    border-color: #ccc;
+}
+.RadComboBoxDropDown_AWTCombobox {
+    font-size: 12px !important;
+}
+
+.RadComboBox_AWTCombobox .rcbInput {
+    font-size: 12px !important;
+    line-height: normal !important;
+}

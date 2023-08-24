@@ -1,0 +1,96 @@
+﻿<!doctype html>
+<html class="skpopup">
+<head>
+    <title>Pop-Up Form</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script>
+        var skeltaFormLoadStartTime = new Date();
+    </script>
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var parentFormName = "";
+        var parentItemId = "";
+        var parentVersionStamp = "";
+        var parentViewModel;
+        var popupObjectInstance;
+        var isStagingViewAndViewModel = false;
+        var isOpenedInNewWindow = false;
+        var extFormParam = {};
+        var popupControlId = "";
+
+        popupControlId = skeltaUtils.getUrlParameterValue(window, 'controlid');
+
+        if (skeltaUtils.getUrlParameterValue(window, 'pageName') === "PreviewForm")
+        {
+            isStagingViewAndViewModel = true;
+        }
+
+        var isInNewWindow = skeltaUtils.getUrlParameterValue(window, 'isNewWindow');
+        if (!skeltaUtils.isUndefined(isInNewWindow) && isInNewWindow === "1")
+        {
+            isOpenedInNewWindow = true;
+        }
+
+        var parentUniqueKey = skeltaUtils.getFormUniqueKey(skeltaUtils.getUrlParameterValue(window, 'appN'),
+            skeltaUtils.getUrlParameterValue(window, 'parentItemId'),
+            skeltaUtils.getUrlParameterValue(window, 'parentVstamp'));
+
+        if (isOpenedInNewWindow === true)
+        {
+            parentViewModel = window.opener["viewModelObject_" + parentUniqueKey];
+        }
+        else
+        {
+            parentViewModel = window.parent["viewModelObject_" + parentUniqueKey];
+        }
+
+        popupObjectInstance = parentViewModel.topLevelForm.popupObjectItem;
+
+
+        window.onunload = function ()
+        {
+            if (!skeltaUtils.isUndefined(window.opener))
+            {
+                var parentWindowModalOverlay = window.opener.document.getElementById("skloader");
+                if (!skeltaUtils.isUndefined(parentWindowModalOverlay))
+                {
+                    $(parentWindowModalOverlay).attr("data-skloader", "0");
+                    $(parentWindowModalOverlay).empty();
+                }
+            }
+        };
+
+        $(document).ready(function ()
+        {
+            skeltaUtils.initializePopupform();
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="0" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: hidden; height: 0px; width: 0px;"></textarea>
+</body>
+</html>

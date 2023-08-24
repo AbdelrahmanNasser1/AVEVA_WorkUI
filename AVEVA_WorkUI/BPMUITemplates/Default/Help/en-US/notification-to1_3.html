@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for Event: List ID </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49687" class="heading4">Wait for Event: List ID</h4>
+<p class="paragraph">You can select the list name and list item for which the workflow has to be associated in this property window. To open this window, click the edit button for the 'List ID' property. </p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f187158" src="187158.png" alt="" height="153" width="500" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The window has following fields:</p>
+<p class="paragraph"><b class="uicontrol">List Name</b> - This allows you to select list name from the drop-down list.</p>
+<p class="paragraph"><b class="uicontrol">Submit</b> - Clicking this will save the List ID and List Item ID in the respective properties.</p>
+<p class="paragraph"><b class="uicontrol">Close</b> - Clicking this will close the window.</p>
+<p class="procedureheading">To set the List ID or List Item ID:</p>
+<ol class="step"><li class="step">Select event scope as 'List', if you want only List Id. </li><li class="step">Click <b class="uicontrol">Save</b> in the <b class="uicontrol">Activity Properties</b> window. </li><li class="step">Click the edit button to open the List ID property window. The following screen is displayed.<p class="stepinfo"></p>
+<p class="stepinfo"> <img id="f187159" src="187159.png" alt="" height="153" width="500" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Select list name from the drop-down list. </li><li class="step">Click <b class="uicontrol">Submit</b> to display list id of the selected list in the List ID property. </li><li class="step">The List Id in the <b class="uicontrol">List ID</b> fields respectively. </li><li class="step">Select event scope as 'ListItem', if you want both List Id and List Item Id. </li><li class="step">Click <b class="uicontrol">Save</b> in the <b class="uicontrol">Activity Properties</b> window. </li><li class="step">Click the edit button to open the List ID property window. </li><li class="step">Select list name from the drop-down list. For example, select Users from the List Name. </li><li class="step">After selecting list name, List Item field will be displayed. </li><li class="step">Select List item from the <b class="uicontrol">List item</b> drop-down list. For example, select 'George' user from the available users. </li><li class="step">Click <b class="uicontrol">Submit</b>. </li><li class="step">The List Id and List Item Id will be displayed in the <b class="uicontrol">List ID</b> and<b class="uicontrol"> List Item ID</b> fields respectively. </li></ol><p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="WaitForEventActivity.html" target="_self">Wait for Event Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

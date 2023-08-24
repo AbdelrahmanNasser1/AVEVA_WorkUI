@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Adding Participants to the Queue </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t597305" class="heading3">Adding Participants to the Queue</h3>
+<p class="paragraph">You can add Users or Roles as participants in the queue. You can also set the priority for a role.</p>
+<p class="subheading">To add users to the queue:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Participants</b>&nbsp;tab, click&nbsp;<b class="uicontrol">Add Users</b>. The&nbsp;<b class="uicontrol">Add Users</b>&nbsp;page appears.</li><li class="step">Click the&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;icon. The&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;page appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Search for</b>&nbsp;box, specify the name or part of the name. A list of user(s) is displayed in the<b class="uicontrol">&nbsp;Available Resources</b>&nbsp;box.</li><li class="step">From the&nbsp;<b class="uicontrol">Available Resources</b>&nbsp;list, select the required user name and then click the&nbsp;[&gt;]&nbsp;icon to add the name to the&nbsp;<b class="uicontrol">Selected Users</b>&nbsp;list.</li><li class="step">Repeat the steps 3 and 4 to add more users.</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.</li></ol><p class="subheading">To add roles to the queue:</p>
+<ol class="step"><li class="step">In the<b class="uicontrol">&nbsp;Participants</b>&nbsp;tab, click&nbsp;<b class="uicontrol">Add Roles</b>. The&nbsp;<b class="uicontrol">Add Roles</b>&nbsp;page appears.</li><li class="step">Click the&nbsp;<b class="uicontrol">Role Lookup</b>&nbsp;icon. The&nbsp;<b class="uicontrol">Role Lookup</b>&nbsp;page appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Search</b>&nbsp;box, specify the role that you want to add. A list of role(s) is displayed in the&nbsp;<b class="uicontrol">Available Roles</b>&nbsp;box.</li><li class="step">From the&nbsp;<b class="uicontrol">Available Roles</b>&nbsp;list, select the required role and then click the&nbsp;[&gt;]&nbsp;icon to add the role to the&nbsp;<b class="uicontrol">Selected Roles</b>&nbsp;list.</li><li class="step">Repeat the steps 3 and 4 to add more roles.</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.<p class="note"><strong class="notelabel">Note:</strong>&nbsp;<b class="uicontrol">AVEVA Work Tasks</b> requires a database setting to synchronize the users who are participants of a queue by virtue of their role, if the role changes in the resource database.&nbsp;For more information, <i class="emphasis">see the&nbsp;Synchronizing Roles of Queue Participants&nbsp;topic in the&nbsp;Developer Guide</i>.</p>
+</li></ol><p class="paragraph"><b class="uicontrol">Tip:</b>&nbsp;You can add all the users (or all the roles) at once by clicking the&nbsp;<b class="uicontrol">[&gt;&gt;]</b>&nbsp;icon in the respective window.</p>
+<p class="paragraph"></p>
+<p class="subheading">To set the priority for roles:</p>
+<p class="paragraph">When you associate a user to a role, the user gets the access rights configured for the role. If the user is associated to multiple roles, you can define the priority for a role. The role priority determines which role takes precedence. The user gets the access rights of the role with the lowest priority value.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the<b class="uicontrol">&nbsp;Participants</b>&nbsp;tab, select the role for which you want to set the priority. </li><li class="step">Right-click the role and select <strong class="strong">Set Priority</strong> from the context menu. The <strong class="strong">Role Priority</strong> dialog box appears.<p class="limage"><img id="f269224" src="269224.png" class="embeddedimage100%scalinglive" alt="SetRolePriority" height="444" width="483" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="limage"></p>
+<p class="lcontinue">In the&nbsp;<b class="uicontrol">Role Name</b>&nbsp;field, the name of the role for which you want to set the priority is displayed.</p>
+</li><li class="step">In the <strong class="strong">Priority</strong> field, type the value to indicate the priority of the role. <p class="lcontinue">You can specify the value from &quot;1&quot; to &quot;9999&quot;. The default priority value for a role is &quot;9999&quot; and for a user is &quot;0&quot;.</p>
+<p class="lcontinue">Set the value to a lower number if you want the role to have a higher priority.</p>
+<p class="lnote"><strong class="notelabel">Note:</strong> <br>- It is recommended to specify the priority value in multiples of 10.<br>- If a user is part of multiple roles, the role with the lowest priority value takes the highest precedence for determining the access rights.<br>- If a user is added as a direct participant to the queue, then the access rights defined for the user take precedence, even if the user is associated to a different role. <br>  However, if the user is not added as a direct participant to the queue, the access rights for the user are based on the priority value of the roles.</p>
+</li><li class="step">Click <b class="uicontrol">Save</b>. The priority is set for the role.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

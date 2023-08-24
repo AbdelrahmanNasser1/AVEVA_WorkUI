@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Storing the Instant Messenger ID for the User </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t601999" class="heading6">Storing the Instant Messenger ID for the User</h6>
+<p class="paragraph">Notification messages can be sent to the Users Instant Messenger Id which is specified in the User List. The section below gives details of storing the IM Id for a User in&nbsp;AVEVA Work Tasks&nbsp;List provider.</p>
+<ol class="step"><li class="step">Log on to the&nbsp;<b class="uicontrol">Enterprise Console</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Settings</b>, and then click&nbsp;<b class="uicontrol">Users</b>. <br><br>&nbsp;<img id="f51341" src="51341.jpg" class="embeddedimage100%scalinglive" alt="" height="465" width="498" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Select the&nbsp;AVEVA Work Tasks&nbsp;user to whom you want to send the notification. Set the IM Id field of the selected user with the destination Messenger Id like&nbsp;destination@hotmail.com.  <p class="stepinfo">This IM Id is used to send notification to the user.</p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="ConfigurationofInstantMessageNotification.html" target="_self">Configuration of Instant Message Notification</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

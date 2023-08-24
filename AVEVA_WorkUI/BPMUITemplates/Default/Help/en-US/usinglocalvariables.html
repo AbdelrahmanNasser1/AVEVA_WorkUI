@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Local Variables </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h1 id="t488191" class="heading1">Using Local Variables</h1>
+<p class="paragraph">The Local Variable stores the values set by the incoming action. The values that are set for such variables are visible only to the subsequent actions.</p>
+<p class="paragraph"><strong class="strong">Example Scenario:</strong></p>
+<p class="paragraph">The following image explains the use of a local variable 'X' in a workflow.</p>
+<p class="paragraph"><br></p>
+<p class="paragraphimage"><img id="f52336" src="52336.png" class="embeddedimage100%scalinglive" alt="" height="226" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+<p class="paragraph">The variable is added to the first action 'A'. Action 'A' initially sets the value of the variable 'X' to 0. The action 'B' sets a value 1 to the variable 'X' and 'C' sets a value 2. All the immediate actions after 'B' will get the value 1 from the variable 'X', while the actions after 'C' will get the value 2 from the same variable 'X'. Any changes made by any action to a Local Variable will be visible only to the actions that occur immediately after it.</p>
+<p class="paragraph"><strong class="strong">Example of Local Variable Usage</strong></p>
+<p class="paragraph">Add local variable to the&nbsp;Start&nbsp;action only. Prefix the name of the local variables with '@'.</p>
+<p class="paragraph">Call the&nbsp;Context.SaveVariables&nbsp;method to persist the state of the variables. A new field is added to the&nbsp;SWExecutionDetails&nbsp;table to persist the local variables.</p>
+<p class="paragraph">The local variables are loaded for an action using&nbsp;Context.LoadLocalVariables (executionDetailsId)&nbsp;method.</p>
+<p class="paragraph">The local variables can be accessed at run time by the actions through the&nbsp;Variables collection of the Context object.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

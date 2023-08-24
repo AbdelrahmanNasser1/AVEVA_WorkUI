@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using the Process Map Image for Navigation </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t598335" class="heading2">Using the Process Map Image for Navigation</h2>
+<p class="paragraphimage">AVEVA Work Tasks displays a <b class="uicontrol">Process Map Image</b>, which you can use to navigate large processes. You can access this process map by clicking the <b class="uicontrol">Zoom</b> tool in the<b class="uicontrol"> Process Designer</b> tool bar.</p>
+<p class="paragraph">The following image shows the <b class="uicontrol">Process Map</b> image for navigation:</p>
+<p class="paragraph"><img id="f47359" src="47359.png" class="embeddedimage100%scalinglive" alt="" height="174" width="475" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The<b class="uicontrol"> Process Map Image</b> shows the process diagram as an image. You can save the displayed image as a PNG or BMP file. You can navigate large and complex processes using the click-able activity icons in this <b class="uicontrol">Process Map</b> image. You can click any icon and go to the corresponding activity in the design mosaic of the Process Designer. You can zoom in and out of the Process Diagram by selecting the appropriate percentage from the&nbsp;<b class="uicontrol">Zoom Level</b>. The image shown below is displayed at 50% zoom. You can click&nbsp;<b class="uicontrol">Refresh</b>&nbsp;to refresh the Process Image displayed in this window.</p>
+<p class="paragraph">The following image shows the Process image zoomed:</p>
+<p class="paragraph"><img id="f47360" src="47360.png" class="embeddedimage100%scalinglive" alt="" height="240" width="459" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Print Form Source Configuration</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject, editPageVm;
+        var popupWindow = null;
+        var propertyXmlNode = skeltaUtils.getUrlParameterValue(window, 'xmlNode');
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                skeltaUtils.loadPageDefault();
+                loadPrintFormSourceConfiguration();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showAlert("Error in getting the new form. " + exception.message);
+                logger.logError("Error in getting the new form. " + exception.message);
+            }
+        });
+
+        function loadPrintFormSourceConfiguration()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "formName": skeltaUtils.getUrlParameterValue(window, 'fName')
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetPrintConfigForm", "application/json; charset=utf-8", jsonHelper, "json", success, fail, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function success(resultData)
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_SF", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+
+            var formDetails = editPageVm.topLevelForm.findByXmlNode(propertyXmlNode).value;
+            if (formDetails !== "")
+            {
+                var formAndVersion = formDetails.split("~");
+
+                var valueJson = ({
+                    Form: formAndVersion[0],
+                    FormVersion: formAndVersion[1]
+                });
+
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, valueJson);
+            }
+
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            viewModelObject.onSave.subscribeEvent(updateFormDetails);
+            viewModelObject.onCancel.subscribeEvent(closeFormDetailsConfig);
+
+            var formVersionControl = viewModelObject.findByXmlNode("FormVersion");
+            var formVersionOptions = formVersionControl.options;
+            var isOptionValid = false;
+
+            for (var index in formVersionOptions)
+            {
+                if (formVersionOptions.optionvalue === formVersionControl._value.peek())
+                {
+                    isOptionValid = true;
+                    break;
+                }
+            }
+
+            if (!isOptionValid)
+            {
+                formVersionControl.value = "0";
+            }
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showAlert(result.status + ' ' + result.statusText + ' ' + result.responseText);
+            logger.logError(result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function closeFormDetailsConfig()
+        {
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").src = "";
+        }
+
+        function updateFormDetails(inputParameterObject, eventArgs)
+        {
+            var selectedForm = viewModelObject.findById("_sys_Forms_form").value;
+            var selectedVersion = viewModelObject.findById("_sys_Forms_formVersion").value;
+            
+            editPageVm.topLevelForm.findByXmlNode(propertyXmlNode).value = selectedForm + "~" + selectedVersion;
+
+            closeFormDetailsConfig();
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Introduction to 'XML Iterator' XML Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t476447" class="heading4">Introduction to 'XML Iterator' XML Variable</h4>
+<p class="paragraph">XML Iterator Variables allows you to define variables for repeating XML elements and attributes. This variable type represents a collection of XML nodes at any level in the XML Variable schema. It allows you to perform actions on XML nodes such as looping through XML nodes and deriving the value of a specific node at any location.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The XML Iterator type option is available only if another variable of XML Document type exists<br></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">XML Variable of &nbsp;type 'XML Iterator':</p>
+<p class="paragraph">When the variable type is changed to&nbsp;<b class="uicontrol">XML Iterator</b>, following extra properties are displayed as seen in the image below. </p>
+<p class="paragraph"><img id="f50443" src="50443.png" class="embeddedimage100%scalinglive" alt="" height="90" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Property Description:</p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableheader">'XML Iterator' XML Variable Property</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph">XML Variable</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">All variables of type XML Document and XML Iterator are listed for selection. &nbsp;Select the parent XML Variable. &nbsp;The parent variable of an XML Iterator variable can be another XML Iterator Variable.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph">Node Select</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">Only nodes in the parent variable are displayed in this drop-down. Select the node that the variable represents.</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"><br></p>
+<p class="paragraph">See&nbsp;<a id="h50444" class="jump-currentwindowlive" title="Creating XML Variable of Type 'XML Iterator'" href="configuringxmldocumenttypevariables.html" target="_self">Creating XML Variable of Type 'XML Iterator'</a>&nbsp;for more information.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="configuringxmldocumenttypevariables.html" target="_self">Creating XML Variable of Type 'XML Iterator'</a></p><p class="relateditem"><a href="usingxmliteratortypevariables.html" target="_self">Using 'XML Iterator' Type Variables</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

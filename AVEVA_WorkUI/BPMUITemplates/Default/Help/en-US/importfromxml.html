@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Import from XML </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t598329" class="heading3">Import from XML</h3>
+<p class="paragraph">You can import process designs saved as valid XML files. This can be used to import and modify a process design to create a new one.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">To import a process definition XML file:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">From the <b class="uicontrol">Tools</b> menu, select the <b class="uicontrol">Import</b> option. </li><li class="step">In the window that opens, enter the name of the XML Process definition file in the field provided. Alternatively, click on the <b class="uicontrol">Browse</b> button to select a valid process definition XML file.</li><li class="step">After selecting a process definition XML file, click on the <strong class="strong">Import </strong>button to import it.</li></ol><p class="paragraph">This imports the selected XML process definition.</p>
+<p class="paragraph">See also,&nbsp;<a id="h47300" class="jump-currentwindowlive" title="Importing Process Definition XML File" href="import.html" target="_self">Import</a></p>
+<p class="paragraph">Refer to chapter&nbsp;<i class="emphasis">Importing</i><b class="uicontrol"> </b><i class="emphasis">BPMN Process Models from Microsoft Visio</i>&nbsp;in the&nbsp;<i class="emphasis">Developer Guide</i>.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

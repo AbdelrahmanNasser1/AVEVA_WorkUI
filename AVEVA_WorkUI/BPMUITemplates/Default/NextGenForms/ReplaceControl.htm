@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Replace Control</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var skeltaUtils = skelta.forms.utilities;
+        var skeltaLocalize = skelta.localize;
+        var logger = skeltaUtils.getLogger();
+        var cacheKey, AddEditCriteria, sfdcontainer, listName, designermode, versionstamp, paramApplicationName;
+        var workItemViewAndViewModel, paramUserId, paramlcsuri;
+        var dataModel = null;
+        var viewModelObject, startTime, endTime;
+        var popupWindow = null;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                AddEditCriteria = skeltaUtils.getUrlParameterValue(window, 'AddEditCriteria');
+                paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+                checkFormsAccessRights(paramlcsuri, "Web");
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFReplaceControlPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormNGFReplaceControlPageError") + exception.message);
+            }
+
+        });
+
+        function checkFormsAccessRightsSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showAlert(document.title, result.ErrorMessage, function () { closeReplaceWindow(); });
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            }
+            else
+            {
+                sfdcontainer = skeltaUtils.getUrlParameterValue(window, 'sfdcontainer');
+                skelta.userContext.setUserContextFor("appN", window.parent.skelta.userContext.getUserContextFor("appN"));
+                skelta.userContext.setUserContextFor("uId", window.parent.skelta.userContext.getUserContextFor("uId"));
+                skelta.userContext.setUserContextFor("fName", window.parent.skelta.userContext.getUserContextFor("fName"));
+                skelta.userContext.setUserContextFor("vStamp", window.parent.skelta.userContext.getUserContextFor("vStamp"));
+                skelta.userContext.setUserContextFor("itemId", window.parent.skelta.userContext.getUserContextFor("itemId"));
+                skelta.userContext.setUserContextFor("listName", window.parent.skelta.userContext.getUserContextFor("listName"));
+
+                paramApplicationName = skelta.userContext.getUserContextFor("appN");
+                paramUserId = skelta.userContext.getUserContextFor("uId");
+                paramFormName = skelta.userContext.getUserContextFor("fName");
+                versionstamp = skelta.userContext.getUserContextFor("vStamp");
+                cacheKey = skelta.userContext.getUserContextFor("itemId");
+                listName = skelta.userContext.getUserContextFor("listName");
+                skeltaUtils.loadPageDefault();
+                document.title = skelta.localize.getString("FormNGFReplaceControlTitle");
+                loadReplaceControlSelection();
+            }
+        }
+
+        function checkFormsAccessRights(lcsuri, deviceType)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": ["ActionEdit"],
+                "deviceType": deviceType
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetCurrentContextWithSecurityCheck", "application/json; charset=utf-8", params, "json", checkFormsAccessRightsSucceeded, null, null, false);
+        }
+
+        function loadReplaceControlSelection()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "cacheKey": cacheKey,
+                "listName": listName,
+                "versionStamp": versionstamp,
+                "containerId": sfdcontainer,
+                "target": "",
+                "applicationName": paramApplicationName,
+                "userId": paramUserId
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetNewControlSelection", "application/json; charset=utf-8", jsonHelper, "html", newControlSelectionSucceeded, newControlSelectionFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function closeReplaceWindow()
+        {
+            parent.document.getElementById("replaceframe").attributes["data-skrcw"].value = 0;
+            window.top.$('#replaceframe').attr('src', '');
+            window.top.$('#designwrapper').css("visibility", "hidden");
+        }
+
+        function replaceControl(inputParameterObject, eventArgs)
+        {
+            var convJSONXml = new X2JS();
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": val,
+                "cacheKey": cacheKey,
+                "listName": listName,
+                "version": versionstamp,
+                "selectedControl": sfdcontainer,
+                "applicationName": paramApplicationName,
+                "userId": paramUserId
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/ReplaceSelectedControl", "application/json; charset=utf-8", jsonHelper, "html", updateViewSuccess, updateViewFailed, null);
+        }
+
+        function updateViewSuccess(data)
+        {
+            var jsonData = $.parseJSON(data);
+
+            if (jsonData.ErrorMessage && jsonData.ErrorMessage != "")
+            {
+                skeltaUtils.showError(document.title, jsonData.ErrorMessage);
+                logger.logError(jsonData.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return;
+            }
+
+            parent.document.getElementById("replaceframe").attributes["data-skrcw"].value = 0;
+            window.top.$('#replaceframe').attr('src', '');
+            window.top.$('#designwrapper').css("visibility", "hidden");
+
+            parent.updateViewComplete(data);            
+        }
+
+        function updateViewFailed(jqXHR, textStatus, err)
+        {
+            skeltaUtils.showError(document.title, err);
+            logger.logError(err);
+        }
+
+        function newControlSelectionSucceeded(resultData)
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_RC", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            skeltaUtils.createDataModelObject(uniqueKey);
+            var response = JSON.parse(resultData);
+            $("#viewModel").html(response.vm);
+            if (response.pcc && response.pcc.length > 0)
+            {
+                var problematicCustomControls = JSON.stringify(response.pcc);
+                logger.logError(problematicCustomControls);
+            }
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            viewModelObject.onSave.subscribeEvent(replaceControl);
+            viewModelObject.onCancel.subscribeEvent(closeReplaceWindow);
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function newControlSelectionFailed(err)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFReplaceControlPageError"), closeReplaceWindow, skeltaUtils.getAjaxErrorDetailsMessage(err, '<br>'));
+            logger.logError(skelta.localize.getString("FormNGFReplaceControlPageError") + '\n' + skeltaUtils.getAjaxErrorDetailsMessage(err, '\n'));
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

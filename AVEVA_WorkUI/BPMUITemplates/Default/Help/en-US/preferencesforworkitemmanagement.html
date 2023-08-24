@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Preferences for Work Item Management </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t597314" class="heading4">Preferences for Work Item Management</h4>
+<p class="paragraph">When the volume of work items is high, it is essential to minimize the processing time as much as possible. <b class="uicontrol">AVEVA Work Tasks</b> provides properties at the control level to set preferences for work item management. These properties enable you to expedite processing by defining how the work items can be managed and acted upon.</p>
+<p class="paragraph">The two properties for work item management are as follows:</p>
+<ul class="ulitem"><li class="ulitem"><a id="h109672" class="jump-currentwindowlive" title="Auto-ownership on Row Click" href="customizingworkitemmanagement.html" target="_self">Auto-ownership on Row Click</a>: This property enables you to allow users to take ownership of a work item by clicking on the item in the Work items list. If this property is set to true, the option Take Ownership in the Manage Work Items field in <b class="uicontrol">Work Item Details</b> will not be available.</li><li class="ulitem"><a id="h109676" class="jump-currentwindowlive" title="Enabling Multi-Select Option in Work Item List" href="displayinggroupuiforbatchprocessing.html" target="_self">Enabling Multi-Select Option in Work Item List</a>: This property provides users with an option to select multiple work items for processing in a batch. For example, selecting multiple work items for approval.<p class="note"><strong class="notelabel">Note:</strong> The default view of the Work items list in the Enterprise Console cannot be customized. The above customization applies only to the work items lists are created by embedding the Work Item List Control in an ASPX page. For more information about using AVEVA Work Tasks Controls as a part of a project, see <i class="emphasis">Using AVEVA Work Tasks Controls in Applications </i>in the<i class="emphasis"> AVEVA Work Tasks Developer Guide</i>.</p>
+</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="customizingworkitemmanagement.html" target="_self">Auto-ownership on Row Click</a></p><p class="relateditem"><a href="displayinggroupuiforbatchprocessing.html" target="_self">Enabling Multi-Select Option in Work Item List</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

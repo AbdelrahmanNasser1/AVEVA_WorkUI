@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Activity Templates </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t597295" class="heading4">Activity Templates</h4>
+<p class="paragraph">The sequence of steps provided through AVEVA Work Tasks Wizards can be saved as a template. You can use the activity templates to save a common set of actions that can be applied to multiple processes as a template. For example, if all routine HR tasks require the HR Manager's approval, this process can be saved as a template and used whenever required. The option to save the wizard as a template appears as the last step.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">To save the activity as a template:</p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step"><b class="uicontrol">Save process as a new template</b>: Select Yes to save the template.</li><li class="step"><b class="uicontrol">Template Name:</b> Enter the template name. Template names must not have spaces.</li><li class="step"><b class="uicontrol">Display Name:</b> Enter the display name.</li><li class="step"><b class="uicontrol">Template Description:</b> Enter the template description.</li></ol><p class="paragraph">Templates can be used in other wizards. The&nbsp;<b class="uicontrol">Link to an existing template</b>&nbsp;option is displayed in the&nbsp;<b class="uicontrol">Define Actions</b>&nbsp;window as the path that the workflow must take after completion of the activity being setup.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+ </body>
+ </html>

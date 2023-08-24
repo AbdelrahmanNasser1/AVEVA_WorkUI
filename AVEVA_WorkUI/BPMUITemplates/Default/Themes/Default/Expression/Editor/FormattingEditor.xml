@@ -1,0 +1,21 @@
+<root>
+	<tools>
+		<tool name="Bold" enabled="false"/>
+		<tool name="Italic" enabled="false"/>
+		<tool name="Underline" enabled="false"/>
+		<tool separator="false"/>
+		<tool name="JustifyLeft" enabled="false"/>
+		<tool name="JustifyCenter" enabled="false"/>
+		<tool name="JustifyRight" enabled="false" />
+		<tool name="JustifyFull" enabled="false"/>
+		<tool name="FontName" enabled="false" />
+		<tool name="FontSize" enabled="false" />
+	</tools>
+	
+	 <contextMenus>
+		<contextMenu forElement="*" enabled="false">
+		</contextMenu>
+		<contextMenu forElement="a" enabled="false">
+		</contextMenu>
+	</contextMenus>	
+</root>

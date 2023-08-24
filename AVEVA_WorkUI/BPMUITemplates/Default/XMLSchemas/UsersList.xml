@@ -1,0 +1,19 @@
+<ListMainForm IsTableVersioned="False" DefaultField="Title" UniqueField="" EnableRecordIds="True" LockEnabled="False" UniqueTitle="True" ShowAllStandardColumns="False" OldTableName="" TableName="SKEUsers" TableId="772c41ce-d790-418f-90fb-fc6410c9df67" Id="_sys_users_list_skeltadynamiclist" XmlNodeBoundTo="Users" Name="Users" IsFolderSupported="False" xmlns="clr-namespace:Skelta.Forms.Core.Controls;assembly:Skelta.Forms.Core" xmlns:R="clr-namespace:System;assembly:mscorlib" xmlns:x="http://uri.skelta.com/default/serializer">
+  <Controls>
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="Title" XmlNodeBoundTo="@Title" Name="Title" Id="_sys_users_title" DisplayInLookup="True" AllowSorting="True" IsLookupTitle="True" GridCaption="Title" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="Password" XmlNodeBoundTo="@Password" Name="Password" Id="_sys_users_password" DisplayInGrid="False" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="Description" XmlNodeBoundTo="@Description" Name="Description" Id="_sys_users_desc" DisplayInGrid="False" DisplayInLookup="True" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="Email" XmlNodeBoundTo="@Email" Name="Email" Id="_sys_users_email" DisplayInLookup="True" GridDisplayIndex="200" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="Department" XmlNodeBoundTo="@Department" Name="Department" Id="_sys_users_department" DisplayInLookup="True" GridDisplayIndex="300" GridDisplayWidth="100" />
+    <ListLookupInput BoundToDbColumnType="Text" SetDataSource="_sys_manager_lookup" SetDataSourceValues="4f81736f-821f-47e3-a20a-2eedd337cda4" ForeignKeyQuery="(SELECT DISTINCT [SKEUsers].[Title] FROM [SKEUsers] WHERE SKEUsers.Id = [t1].[Manager]) [sk_usermanager_Title]" DisplayInGridAs="sk_usermanager_Title" MappedParentControl="" MappedParentControlName=""  LookUpWindowaTitle="" LookUpWindowDescription="" LookUpWindowWidth="0" LookUpWindowHeight="0" RenderDropDownControl="True"  BoundToTableField="Manager" DisplayInLookup="True" GridDisplayIndex="400" XmlNodeBoundTo="@Manager" Name="Manager" Id="_sys_users_manager">
+      <BoundToTableFieldType>
+        <x:type typename="System.Guid" />
+      </BoundToTableFieldType>
+    </ListLookupInput>
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="Role" XmlNodeBoundTo="@Role" Name="Role" Id="_sys_users_role" DisplayInLookup="True" GridDisplayIndex="500" GridDisplayWidth="100" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="MobilePhoneProvider" XmlNodeBoundTo="@MobilePhoneProvider" Name="Mobile Phone Provider" Id="_sys_users_smsprovider" DisplayInLookup="True" GridDisplayIndex="500" GridDisplayWidth="150" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="SMSNumber" XmlNodeBoundTo="@SMSNumber" Name="SMS Number" Id="_sys_users_smsnumber" DisplayInLookup="True" GridDisplayIndex="500" GridDisplayWidth="100" />
+    <ListTextDataItem DisplayInGridAs="{x:Null}" BoundToTableField="IMID" XmlNodeBoundTo="@IMID" Name="IM ID" Id="_sys_users_imid" DisplayInLookup="True" GridDisplayIndex="500" GridDisplayWidth="100" />
+  </Controls>
+</ListMainForm>
+

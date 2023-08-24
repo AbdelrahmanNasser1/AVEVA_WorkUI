@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Human Activities </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t597289" class="heading4">Human Activities</h4>
+<p class="paragraph">You can use the&nbsp;<b class="uicontrol">Human Activities (Approval)</b> wizard&nbsp;to create single or multi-level approvals required in your process. AVEVA Work Tasks provides default approval templates to expedite the approval process.</p>
+<p class="paragraphimage"><img id="f46764" src="46764.png" class="embeddedimage100%scalinglive" alt="" height="35" width="526" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">You can invoke the Wizards in the Process Designer. You can access the wizard menu by any of the following methods:</p>
+<p class="subheading">Tool Bar Menu&nbsp;</p>
+<p class="paragraphimage"><img id="f611224" src="611224.png" alt="" height="345" width="502" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">Right-Click any Human Activity</p>
+<p class="paragraphimage"><img id="f46767" src="46767.jpg" class="embeddedimage100%scalinglive" alt="" height="340" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="procedureheading">To create single or multi-level approvals using the wizard:</p>
+<ol class="step"><li class="step">Start a new wizard. The <strong class="strong">Welcome to </strong><b class="uicontrol">AVEVA Work Tasks</b><strong class="strong"> Wizard</strong> window appears.</li><li class="step">Click the <b class="uicontrol">Human Activities</b> tab on the left panel.</li><li class="step">Select <b class="uicontrol">Approval</b> icon on the right panel.</li><li class="step">Click <b class="uicontrol">Next</b>. The <b class="uicontrol">New Approval Action Wizard</b> appears. </li><li class="step">Click <b class="uicontrol">Next</b>. The Define New Approval Process&nbsp;&#8211;&nbsp;Approvers&nbsp;window appears. </li><li class="step">Enter the following details:<p class="stepinfo"><b class="uicontrol">Name:</b> Name for the wizard.</p>
+<p class="stepinfo"><b class="uicontrol">Select Approver(s):</b> Select the approver (s) from the User Lookup list.&nbsp;This field is mandatory.</p>
+<p class="limage"><b class="uicontrol">Subject:</b> Subject for the approval task.&nbsp;Open the <b class="uicontrol">Subject</b> window.&nbsp;Select a variable, content, or XML variable, and then click <b class="uicontrol">Append</b>.&nbsp;Variables other than user variables&nbsp;must be defined as variables in the workflow Start Activity.&nbsp;The following  image shows the use of a variable in the subject line: <br><img id="f46769" src="46769.png" class="embeddedimage100%scalinglive" alt="" height="173" width="574" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><b class="uicontrol">Body:</b> Body for the approval task.&nbsp;Open the Body window. Select a variable, content, or XML variable, and then click Append.&nbsp;Variables other than user variables&nbsp;must be defined as variables in the workflow Start Activity.&nbsp;</p>
+<p class="stepinfo"><b class="uicontrol">Item is deemed to be approved when:</b> Enter the percentage of approvals required to deem the task as approved.&nbsp;This is required to be set, if number of approvers exceeds 1.</p>
+<p class="stepinfo"><b class="uicontrol">Must all approvers act on the approval item:</b> Select whether all approvers must act and respond to the approval task. If all approvers are not required to act, and the percentage in the above field is set to 100%, the task is deemed to be approved if 100% of the approvers who respond to the task approved it.</p>
+</li><li class="step">Click <b class="uicontrol">Next</b>&nbsp;to set the reminder.&nbsp;A reminder will be sent at the specified time to specified users if the approvers have not taken ownership of the task.</li><li class="step">Click <b class="uicontrol">Next</b>&nbsp;to <b class="uicontrol">set&nbsp;escalations</b>.&nbsp;An escalation email is sent to the specified users if the approvers have not responded to the approval task.</li><li class="step">Click <b class="uicontrol">Next</b> to specify the actions that the workflow must take if the result of the task is one of the following options:<p class="stepinfo">The process is approved</p>
+<p class="stepinfo">The process is rejected</p>
+<p class="stepinfo">There are not enough resources to acknowledge the process</p>
+<p class="stepinfo">The available set of actions are as follows:</p>
+<p class="stepinfo"><i class="emphasis">Do nothing, I will add the step manually</i>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p class="stepinfo"><i class="emphasis">Link to another wizard</i>:&nbsp;This will bring up the selected wizard for defining the next set of activities</p>
+<p class="stepinfo"><i class="emphasis">Link to an existing template:</i>&nbsp;This will link the current approval activity to the set of activities specified in the&nbsp;selected template.</p>
+<p class="stepinfo"><i class="emphasis">Link to an existing activity:</i>&nbsp;This will allow you to link to one of the other activities existing in the workflow - this option is applicable only if the workflow has a process defined and it is being modified.</p>
+<p class="stepinfo"><i class="emphasis">Select a new approval wizard:</i>&nbsp;This will bring up another approval wizard for defining the next set of activities. </p>
+<p class="stepinfo"><br></p>
+</li><li class="step">You could also save this as template and use it in other applications. The sequence of steps provided through AVEVA Work Tasks Wizards can be saved as a template.&nbsp;Activity templates allow saving of a common set of actions that can be applied to multiple processes as a template.&nbsp;For example, if all routine HR tasks require approval by the HR Manager, this process can be saved as a template and used when required. The option to save the wizard as a template appears as the last step. </li><li class="step">You can access the saved template as shown in the following image: <p class="limage"><br><img id="f611225" src="611225.png" alt="" height="227" width="400" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><br><b class="uicontrol">Using Templates:</b> Templates can be used in other wizards.&nbsp;The Link to existing template option is displayed in the Define Actions window as the path that the workflow must take after completion of the activity being setup.&nbsp;For example, if Leave Approval task is rejected, the next sequence of activities can be defined by linking to a template. <br></p>
+</li></ol><p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

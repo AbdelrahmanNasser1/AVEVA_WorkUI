@@ -1,0 +1,463 @@
+﻿@font-face
+{
+    font-family: SkeltaMobileFont;
+    src: local("-apple-system"), url('../../../../fonts/Roboto/Roboto-Regular.ttf') format('truetype') !important;
+}
+
+*:not(.k-icon):not(select),
+select option
+{
+    font-family: SkeltaMobileFont !important;
+    font-weight: normal;
+}
+
+html:not(.skauie) [data-skimv="0"]
+{
+    display: none !important;
+}
+
+html:not(.skauie) [data-skimv="1"]
+{
+    display: block !important;
+}
+
+.skh
+{
+    padding: 10px !important;
+    padding-left: calc(10px + env(safe-area-inset-left)) !important;
+    padding-right: calc(10px + env(safe-area-inset-right)) !important;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    text-align: center;
+}
+
+html:not(.skpopup) .skh .skbb
+{
+    background-image: url('../svg/header_back.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 24px 24px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    float: left;
+}
+
+.skh .sktt
+{
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    font-size: 20px;
+    width: calc(100% - 30px);
+    color: #000;
+    text-align: left;
+}
+
+.skf
+{
+    background-color: #ffffff;
+}
+
+html:not(.skpopup) .skf
+{
+    padding-bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+    padding-right: calc(8px + env(safe-area-inset-right)) !important;
+}
+
+.skfmd
+{
+    border: none;
+}
+
+.skfas.skcp > div
+{
+    padding-left: env(safe-area-inset-left) !important;
+    padding-right: env(safe-area-inset-right) !important;
+}
+
+button, input[type=submit]
+{
+    font-size: 14px;
+}
+
+    button, input[type=button], input[type=reset], input[type=submit], ::-webkit-file-upload-button, .skbtn, .skbtnti,
+    button:hover, input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover, .skbtn:hover, .skbtnti:hover,
+    [data-sksal="1"], [data-sksal="1"] > div, [data-sksal="1"] > div > .skbtn, [data-sksal="1"] > div > .skbtni,
+    [data-sksal="1"]:hover, [data-sksal="1"]:hover > div, [data-sksal="1"]:hover > div > .skbtn, [data-sksal="1"]:hover > div > .skbtni
+    {
+        font-weight: 500;
+        font-size: 14px;
+        font-style: inherit;
+        font-variant: inherit;
+        font-family: inherit;
+        text-decoration: none;
+        overflow: hidden;
+        outline: none;
+        -webkit-appearance: none;
+    }
+
+::-webkit-file-upload-button
+{
+    min-height: 36px;
+    min-width: 88px;
+}
+
+.skbtni, .skbtni:hover
+{
+    padding: 0 !important;
+}
+
+.skbtn[data-skbtnsz="1"], .skbtni[data-skbtnsz="1"], .skbtnti[data-skbtnsz="1"], .skbtnti[data-skbtnsz="1"] > div > .skbtni
+{
+    min-height: 30px;
+    line-height: 30px;
+    min-width: 30px !important;
+}
+
+a
+{
+    color: #4D5EE0;
+}
+
+.skm_bb
+{
+    background-image: url('../svg/header_back.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    height: 30px !important;
+    width: 30px !important;
+    background-size: 24px 24px;
+    float: left;
+    padding: 0;
+}
+
+.skm_h
+{
+    color: #000 !important;
+    text-align: left !important;
+    padding: 0 15px !important;
+    height: 30px !important;
+    line-height: 33px !important;
+    width: calc(100% - 60px) !important;
+    margin: 0 !important;
+    float: left !important;
+}
+
+.skm_ar,
+.skm_dr
+{
+    background-image: url('../svg/command_add.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    float: left;
+    min-width: 20px;
+    min-height: 20px;
+    margin-top: 5px;
+}
+
+.skm_dr
+{
+    background-image: url('../svg/command_delete.svg');
+}
+
+.ski:focus:not(.k-input)
+{
+    outline: none !important;
+    border: 1px solid #4D5EE0;
+}
+
+/*Attachment control*/
+input[type=file]
+{
+    padding: 0 2px 0 0;
+}
+
+/*List control*/
+.skli
+{
+    appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+    -webkit-appearance: none;
+    padding-right: 25px;
+}
+
+html:not(.k-edge) .skli
+{
+    background-image: url('../svg/command_expand_down.svg') !important;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    background-position: 98% center;
+    background-position: right 5px center;
+    max-height: 27px;
+    height: 27px;
+}
+
+/*Data Lookup control*/
+.sklm
+{
+    line-height: 25px;
+}
+
+html:not(.skauie) .sklm
+{
+    display: block;
+}
+
+.sklid
+{
+    padding: 5px;
+    position: relative;
+}
+
+.skmlr
+{
+    padding: 0px 8px;
+    height: 30px !important;
+    line-height: 30px;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+
+    .skmlr:active, .skmlrs
+    {
+        background-color: #2066B1;
+        color: #ffffff;
+    }
+
+.skllm
+{
+    border-top: 1px solid #a7a7aa;
+    background-color: #f6f6f7;
+    height: 47px !important;
+    line-height: 47px !important;
+    padding: 0 15px;
+}
+
+.skllmt
+{
+    text-align: left;
+    color: #000;
+    padding-left: 8px;
+    display: inline-block;
+    float: left;
+}
+
+.sklms
+{
+    text-align: right;
+    color: #000;
+    padding-right: 8px;
+    display: inline-block;
+    float: right;
+}
+
+    .sklms[data-mlse="0"]
+    {
+        color: #999999;
+    }
+
+.skml .skls
+{
+    top: 6px;
+    right: 6px;
+    height: 25px;
+}
+
+[data-skimv="0"] > .skls,
+[data-skimv="0"] > .skllc
+{
+    top: 0;
+    height: 27px;
+    width: 27px;
+}
+
+.skls
+{
+    background-color: #e0e1dd;
+    background-image: url('../svg/command_search.svg');
+    background-position: center center;
+    border-left: #CCC;
+    width: 25px;
+    height: 25px;
+}
+
+.skldmc
+{
+    top: 4px;
+    right: 8px;
+    height: 25px;
+}
+
+.sklsmc
+{
+    top: 4px;
+    right: 7px;
+    height: 25px;
+}
+
+[data-skimv="0"] > .sklld,
+.skml .sklld
+{
+    top: 6px;
+    right: 28px;
+    height: 25px;
+}
+
+/*User lookup and Role lookup control*/
+.ulrllookup[data-skttp="UserLookUp"],
+.ulrllookup[data-skttp="UserLookUp"]:hover, .ulrllookup[data-skttp="UserLookUp"]:active,
+.ulrllookup[data-skttp="UserLookUp"]:not([disabled="true"]):hover
+{
+    background-color: #666666;
+    background-image: url('../svg/control_userlookup.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}
+
+.ulrllookup[data-skttp="RoleLookUp"],
+.ulrllookup[data-skttp="RoleLookUp"]:hover, .ulrllookup[data-skttp="RoleLookUp"]:active,
+.ulrllookup[data-skttp="RoleLookUp"]:not([disabled="true"]):hover
+{
+    background-color: #666666;
+    background-image: url('../svg/control_rolelookup.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}
+
+[data-bind*="roleLookUpTemplate"] .skpopup_overlay, [data-bind*="userLookUpTemplate"] .skpopup_overlay
+{
+    display: none !important;
+}
+
+.popuptemplate
+{
+    background-color: #fff;
+}
+
+.skpopup_maindiv
+{
+    top: 0;
+    left: 0;
+    height: 100% !important;
+    width: 100% !important;
+    position: fixed;
+    margin: 0;
+}
+
+.skpopup_scrollview
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 50px;
+    height: auto;
+    width: 100%;
+    max-height: 100%;
+}
+
+    .skpopup_scrollview .skm_bb
+    {
+        display: block;
+    }
+
+    .skpopup_scrollview + .skf
+    {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+    }
+
+        .skpopup_scrollview + .skf > [data-skbtn="cancel"]
+        {
+            display: none !important;
+        }
+
+/*Grid control*/
+.skcn[data-skimf="0"] > .skcfw[data-skimv="1"],
+.skcn[data-skimf="0"] > .sktcw[data-skimv="1"],
+.skgmv, .skm_r
+{
+    background-image: url('../svg/command_expand.svg');
+    background-repeat: no-repeat;
+}
+
+/*Dropdown control, Lookup control dropdown mode and list control*/
+.skdd, .skld
+{
+    background-image: url('../svg/command_expand_down.svg') !important;
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+}
+
+.skbft, .skpopup_maindivPopupForm, .skgmvt
+{
+    height: 100% !important;
+    width: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+}
+
+.skc
+{
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+html.k-safari input[type="radio"],
+html.k-safari input[type="checkbox"]
+{
+    background-color: #666;
+}
+
+::-webkit-scrollbar
+{
+    -webkit-overflow-scrolling: auto;
+    width: 5px;
+}
+
+::-webkit-scrollbar-button
+{
+    height: 5px;
+    -webkit-overflow-scrolling: auto;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-overflow-scrolling: auto;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: #999999;
+    border-radius: 2px;
+    -webkit-overflow-scrolling: auto;
+}
+
+[data-sksal="1"]>div, [data-sksal="1"]:hover > div, .skbtn[data-sksal="1"], .skbtnti[data-sksal="1"], .skbtnti[data-sksal="1"]>div>.skbtni, .skbtnti[data-sksal="1"]>div>.skbtn, .skbtn[data-sksal="1"]:hover, .skbtnti[data-sksal="1"]:hover, .skbtnti[data-sksal="1"]:hover>div>*, [data-skbtn="cancel"][data-sksal="1"], [data-skbtn="cancel"][data-sksal="1"]>div>.skbtn, [data-skbtn="cancel"][data-sksal="1"]:hover, [data-skbtn="cancel"][data-sksal="1"]:hover>div>.skbtn
+{
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+b, h1, h2, h3, h4, h5, h6
+{
+	font-weight: bold !important;
+}

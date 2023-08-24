@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="../../Common/JavaScripts/spin.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/knockout.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/xml2json.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../NextGenForms//js/aes-min.js"></script>
+    <script src="../../NextGenForms/app/Skelta.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/kendo.all.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/knockout-kendo.min.js" type="text/javascript"></script>
+    <script src="../../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style>
+        .skelimg {
+            margin-left: 6px;
+            height: 25px;
+            width: 25px;
+            background-repeat: no-repeat;
+            background-image: url(../../NextGenForms/images/NGF-Sprites-DesignTime-img.png);
+            background-position: -210px -1873px;
+        }
+
+        .skiflx {
+            display: inline-block;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            min-height: 25px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var deviceOS = "Web";
+        skelta.serverUrl = "../../NextGenForms/";
+        var columnTitle, lookupId, columnType, viewModelObject, gridColumnSettingsXml, gcsuri, applicationName
+        document.title = "Column Settings"; //skelta.localize.getString("grideditable_DataGridColumnSettings_title");
+        function GetDataGridColumnSettingsUI()
+        {
+            try
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "gcsuri": gcsuri,
+                });
+
+                skeltaUtils.callServerMethod("GET", "../../NextGenForms/DataGridColumnEditService.aspx/GetDataGridColumnSettingsUI", "application/json; charset=utf-8",
+                    jsonHelper, "json", Succeeded, GridColumnSettingsFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (err)
+            {
+                console.log(err);
+            }
+        }
+
+        function setValueToControl(id, value)
+        {
+            viewModelObject.findById(id)._value(value ? value : "");
+        }
+
+        function proceedClick(inputParameterObject, eventArgs)
+        {
+            var convJSONXml = new X2JS();
+            var columnInstanceXml = convJSONXml.json2xml_str($.parseJSON(inputParameterObject.InstanceJSON));
+
+            updateColumnSettingsInstanceXml(columnInstanceXml, window.parent.document.getElementById("hdnColumnSettings1").value)
+
+            skelta.forms.utilities.hideLoader();
+            closeWin();
+        }
+
+        function updateColumnSettingsInstanceXml(columnInstanceXml, gridConfigColumnSettingsXml)
+        {
+            try
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "columnInstanceXml": columnInstanceXml,
+                    "columnSettingsXml": gridConfigColumnSettingsXml,
+                    "gcsuri": gcsuri,
+                });
+
+                skeltaUtils.callServerMethod("POST", "../../NextGenForms/DataGridColumnEditService.aspx/UpdateColumnSettingsIngridConfigurationInstanceXml", "application/json; charset=utf-8",
+                    jsonHelper, "json", ColumnSettingsUpdateSucceeded, GridColumnSettingsFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (err)
+            {
+                console.log(err);
+            }
+        }
+
+        function getColumnSettingsInstanceXml(gridConfigColumnSettingsXml)
+        {
+            try
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "columnSettingsXml": gridConfigColumnSettingsXml,
+                    "gcsuri": gcsuri
+                });
+
+                skeltaUtils.callServerMethod("POST", "../../NextGenForms/DataGridColumnEditService.aspx/GetColumnInstanceXml", "application/json; charset=utf-8",
+                    jsonHelper, "json", ColumnSettingsGetXmlSucceeded, GridColumnSettingsFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+            }
+            catch (err)
+            {
+                console.log(err);
+            }
+        }
+
+        function ColumnSettingsGetXmlSucceeded(resultData)
+        {
+            if (resultData.d != "" && resultData.d != "Error")
+            {
+                var gridColumnSettingsXml = resultData.d;
+                if (!skeltaUtils.isUndefined(gridColumnSettingsXml) && gridColumnSettingsXml != "")
+                {
+                    var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, "DataGridColumnSettings", "");
+                    skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(gridColumnSettingsXml));
+                }
+            }
+        }
+
+        function GetRadWindow()
+        {
+            var oWindow = null;
+            if (window.frameElement != null)
+                oWindow = window.frameElement.radWindow;
+            return oWindow;
+        }
+
+        function closeWin()
+        {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function ColumnSettingsUpdateSucceeded(resultData)
+        {
+            if (resultData.d != "" && resultData.d != "Error")
+            {
+                window.parent.document.getElementById("hdnColumnSettings1").value = resultData.d;
+            }
+        }
+
+        function Succeeded(resultData)
+        {
+            if (resultData.d != "" && resultData.d != "Error")
+            {
+                var data = resultData.d;
+                applicationName = data.app;
+
+                var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, "DataGridColumnSettings", "");
+
+                if (!skeltaUtils.isUndefined(parent.document.getElementById("hdnColumnSettings1").value) && parent.document.getElementById("hdnColumnSettings1").value != "")
+                {
+                    skeltaUtils.createDataModelObject(uniqueKey);
+
+                    getColumnSettingsInstanceXml(parent.document.getElementById("hdnColumnSettings1").value);
+                }
+
+                $("#viewModel").html(data.cs);
+                $("#viewModel")[0].style.display = "";
+                //viewModelObject.topLevelForm.initializeFocus(0);
+                $("#skloader").attr('data-skloader', 0);
+
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                viewModelObject.onSave.subscribeEvent(proceedClick);
+                viewModelObject.onCancel.subscribeEvent(closeWin);
+            }
+        }
+
+        function GridColumnSettingsFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("DataGridEColumnSettingsErrorLoading"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(skelta.localize.getString("DataGridEColumnSettingsErrorLoading") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        $(document).ready(function ()
+        {
+            skelta.DeviceOS = "Web";
+            gcsuri = skeltaUtils.getUrlParameterValue(window, 'gcsuri');
+            skeltaUtils.loadPageDefault();
+            GetDataGridColumnSettingsUI();
+        });
+    </script>
+</head >
+                <body style="margin: 0;">
+                    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+                    <form class="sksa">
+                        <div id="viewModel" style="display: none;">
+                        </div>
+                    </form>
+                    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+                </body>
+</html >

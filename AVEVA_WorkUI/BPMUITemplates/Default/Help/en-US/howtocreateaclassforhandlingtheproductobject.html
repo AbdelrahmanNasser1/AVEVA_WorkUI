@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Create a Class for Handling the 'Product' Object? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t602338" class="heading5">How to Create a Class for Handling the 'Product' Object?</h5>
+<p class="paragraph">The scenario explained in the previous page can be designed by following the steps given in the examples in the next few pages.</p>
+<p class="subheading">Creating a Class for Handling the 'Product' Object</p>
+<p class="note"><strong class="notelabel">Note:</strong> You can make use of any existing class to build the scenario.</p>
+<p class="paragraph">'Product' class: Product information.</p>
+<p class="paragraph">'OrderLineCalculator' class: Operations performed on 'Product' object.</p>
+<p class="note"><strong class="notelabel">Note:</strong> Only the objects that can be serialized can be persisted in long running workflows. Objects that need to be stored in the&nbsp;AVEVA Work Tasks&nbsp;variables should be marked as 'Serializable'.</p>
+<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1">namespace Product</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Product Class</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">[Serializable] &nbsp;</p>
+<p class="codeblock1">public class Product</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">string _code = string.Empty;</p>
+<p class="codeblock1">string _name = string.Empty;</p>
+<p class="codeblock1">string _description = string.Empty;</p>
+<p class="codeblock1">double _unitPrice = 0.0;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Product code</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">public string Code</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _code; }</p>
+<p class="codeblock1">set { _code = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Product name</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">public string Name</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _name; }</p>
+<p class="codeblock1">set { _name = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Product Description</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">public string Description</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _description; }</p>
+<p class="codeblock1">set { _description = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Price</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">public double UnitPrice</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _unitPrice; }</p>
+<p class="codeblock1">set { _unitPrice = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public Product(string code, string name, string description, double price)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">this._code = code;</p>
+<p class="codeblock1">this._name = name;</p>
+<p class="codeblock1">this._description = description;</p>
+<p class="codeblock1">this._unitPrice = price;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Order Class</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">public class OrderLineCalculate</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">public OrderLineCalculate() { }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Get Total amount to be paid</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;product&quot;&gt;Product&lt;/param&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;quantity&quot;&gt;Quantity&lt;/param&gt;</p>
+<p class="codeblock1">/// &lt;returns&gt;Total Price to be paid&lt;/returns&gt;</p>
+<p class="codeblock1">public double GetAmount(Product product, int quantity)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return (product.UnitPrice * quantity);</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="paragraph">&nbsp;</p>
+<ol class="step"><li class="step">Using the above code creates an assembly. For e.g. Product.dll</li><li class="step">Place the assembly in the SOA folder, the folder from which the SOA assemblies are registered. For e.g. M:\SOA\Assemblies\Product.dll.</li><li class="step">Register the folder (M:\SOA\Assemblies) in the&nbsp;AVEVA Work Tasks&nbsp;Object Access folder.</li><li class="step">Register the 'Product' assembly [Product.dll] in SOA Assemblies from the SOA folder.</li><li class="step">The registered assembly will get displayed in the SOA assembly list.</li></ol><p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="SOAObjectSupport.html" target="_self">SOA Object Support</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

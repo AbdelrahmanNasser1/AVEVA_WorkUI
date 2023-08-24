@@ -1,0 +1,116 @@
+/* Body tag */
+body {background: url(../images/stripe-bg.png); padding: 0px; margin: 0px;word-wrap:break-word; -webkit-touch-callout:none; font-family: "Helvetica Neue";font-weight: lighter;}
+
+/* Any anchor tag */
+a{ text-decoration:none;}
+
+/* Footer Div */
+.footer{left:0; bottom:0; position:fixed; 
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#8f8e8f), color-stop( 50%, #555555), color-stop(50%, #404040), to(#272728)); 	margin: 0px; height: 44px; font-size: 17px; text-shadow: 0px -1px 1px #000; border-bottom: 1px solid black; color: white; padding: 0px 0px 0px 0px; text-align: center; width:100%; z-index:100;vertical-align:middle;-webkit-touch-callout:none;}
+
+/* Header Div */
+.header{left:0; top:0; position:fixed; background-image: -webkit-gradient(linear, left top, left bottom, from(#8f8e8f), color-stop( 50%, #555555), color-stop(50%, #404040), to(#272728)); 	margin: 0px; height: 44px; font-size: 17px; text-shadow: 0px -1px 1px #000; border-bottom: 1px solid black; color: white; padding: 0px 0px 0px 0px; text-align: center; width:100%; z-index:100;vertical-align:middle;-webkit-touch-callout:none;}
+
+/* any paragraph like error message, description */
+p{margin: 1em;word-wrap:break-word;}
+
+/* any heading like customization in body or subject */
+h3{word-wrap:break-word;}
+
+/*Button*/	
+button, input[type=button], input[type=reset], input[type=submit]
+{
+    height: 34px;
+    width: 90px;
+    font-size: 17px;
+    background-color: transparent;
+    color: #157dfb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-style:none !important;
+    margin-top:5px;
+}
+
+button:disabled, input[type=button]:disabled, input[type=reset]:disabled, input[type=submit]:disabled
+{
+    background-color: transparent;
+    color: #929292;
+}
+
+button:hover, input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover
+{
+    background-color: transparent;
+    color: #157dfb;
+}
+
+button:hover:disabled, input[type=button]:hover:disabled, input[type=reset]:hover:disabled, input[type=submit]:hover:disabled
+{
+    background-color: transparent;
+    color: #929292;
+}
+
+/* Approval div in the header */
+.heading {margin: 0px;font-size: 17px; color: white; text-align: center;vertical-align:middle; padding-top:10px;font-family:Helvetica; font-weight:bold}
+
+/* Divs inside the header */
+.left{ float:left;text-align:left; vertical-align:middle; width:30%}
+.center{float:left; text-align:center; vertical-align:middle; width:40%;font-weight:bold}
+.right{ float:right;text-align:right; vertical-align:middle; width:30%}
+/* Divs inside the header */
+
+/* Subject, Message and Time Div */
+.SubjectApproval{font-family:Helvetica;color:Black;font-size:17px; text-decoration:none;font-weight:bold; padding:2px;  background-color:White; word-wrap:break-word;text-align:justify;}
+.MessageApproval{font-family:Helvetica;color:Black;font-size:15px; text-decoration:none; padding:2px ; background-color:White; word-wrap:break-word;  text-align:justify;}
+.approvaldatetime{font-size:11px; font-family:Helvetica;color:#999; padding-left:3px;}
+.lineDiv{border-top:1px solid #999;margin: 0 0 0 0;}
+/* Subject, Message and Time Div */
+
+/* Comments Text area */
+.areastyle{font-family:Helvetica;color:Black;font-size:16px;height:100px;width:98%;border-radius:5px;border:1px solid black;}
+
+/* Containerform Div */
+.containerform{text-align:left;background:#fff;margin:10px;border-radius:8px; }
+
+/* Div inside containerform */
+.padder{padding: 10px}
+
+/* Content Div */
+.contentform {font-family:helvetica; width:100%;top:0px;bottom:44px;overflow:scroll;-webkit-overflow-scrolling:touch;position:fixed;text-align:center; margin:0 auto;}
+
+/*Error message */             
+.errormsg{ font-family:Helvetica;  color:red; font-size:15px; background-color:White; padding:5px ; border-radius:8px;margin:7px 10px 10px 10px;} 
+
+/*Error Div */
+.containerformerror{text-align:left;background-color:White; border-radius:8px; width:94%;margin:7px 10px 10px 10px;  }
+
+/*Loader Div */
+.loaderinvisible{width:100%; height:1000px; z-index:200; top:45px;margin:0 auto;position:absolute;text-align:center;display:none} 
+.loadervisible{width:100%; height:1000px; z-index:200; top:180px;margin:0 auto;position:absolute;text-align:center;display:inline; background-image:url('../Common/Images/transparent.png'); background-repeat:repeat; }
+/*Loader Div */
+
+/*Information Dummy Div*/
+.dummyInformationDiv{border-top:1px solid #999;margin: 0 5px 0 0px;}
+
+/* Back Button */
+.button1{color: #fff; text-decoration: none;          display: inline-block;       padding: 4px 10px;          -webkit-border-radius: 5px; font: bold 13px Helvetica; top:9px; left:8px; text-shadow: rgba(0,0,0,0.5) 0px -1px 0px;-webkit-touch-callout:none;}
+
+.button1.black {-webkit-box-shadow: 0px -1px 1px #2f3740, 0px 1px 1px #bfcbdb; background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8f8e8f),color-stop(0.5, #555555), color-stop(0.5, #404040), to(#272728)); border: solid 1px rgba(79, 79, 79, 0.75);}
+
+header.button1{}
+
+.button1.back {position: relative; padding-left: 5px; margin-left: 8px;}
+
+.back.black > span {background-image: -webkit-gradient(linear, left top, right bottom, from(#8f8e8f),color-stop(0.5, #555555), color-stop(0.5, #404040), to(#272728)); border-left: solid 1px rgba(79, 79, 79, 0.75); border-bottom: solid 1px rgba(79, 79, 79, 0.75);-webkit-border-top-left-radius: 6px; -webkit-border-bottom-right-radius: 6px; height: 19px; width: 19px; display: inline-block; -webkit-transform: rotate(45deg); -webkit-mask-image: -webkit-gradient(linear, left bottom, right top,
+    from(#000000),
+    color-stop(0.5,#000000),
+    color-stop(0.5, transparent),
+    to(transparent));
+    position: absolute;
+    left: -8px;
+    top: 2px;
+    -webkit-background-clip: content;
+    -webkit-touch-callout:none;
+}
+
+.buttonDiv{float: right; margin-right: 0px; padding-top: 3px;}

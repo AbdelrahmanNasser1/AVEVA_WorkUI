@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using SOA Execute Activity in Workflows </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601353" class="heading4">Using SOA Execute Activity in Workflows</h4>
+<p class="paragraph"><b class="uicontrol">SOA Execute</b> is<b class="uicontrol"> Object Access</b> activity supported by Workflow Management. The SOA functionality of Workflow Management eliminates the need for custom coding to a great extent by allowing stored data within processes to be easily accessed and reused. This activity is used to access a particular method from a registered Assembly. This section contains information about:</p>
+<ul class="ulitem"><li class="ulitem">Registering the Assembly in a folder</li><li class="ulitem">Adding the Assembly folder into the SOA Folder</li><li class="ulitem">Adding the Assembly to the SOA Assembly</li><li class="ulitem">Create SOA Object Instance in the workflow</li><li class="ulitem">And finally, displaying the value in an Information activity</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Prerequisites</strong></p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">Download and install the latest Workflow Management. </li><li class="ulitem">Create a repository.</li><li class="ulitem">Successfully log on to the repository using administrator credentials. </li><li class="ulitem">Basic knowledge of how to create a custom assembly.</li><li class="ulitem">Basic knowledge of how to create a workflow.</li></ul><p class="paragraph"></p>
+<p class="subheading">Understanding SOA Execute Activity</p>
+<p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Step 1: Creating a Custom Assembly</strong></p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Open <b class="uicontrol">Microsoft Visual Studio</b>.  </li><li class="step">In the <b class="uicontrol">File</b> menu, click <b class="uicontrol">New</b>, and the select Project from the menu. <p class="stepresult">The <b class="uicontrol">New Project</b> dialog box appears. </p>
+</li><li class="step">In the right pane, select <b class="uicontrol">Class Library</b>. </li><li class="step">Create a <b class="uicontrol">.net</b> Class Library.<p class="stepinfo">Example: In the Name text box, enter '<b class="uicontrol">SOATest</b>'. </p>
+</li><li class="step">Set the path to save the project. <p class="stepinfo">Example: In the Location drop-down, set the location as C:\SOA using the Browse button. </p>
+</li><li class="step">In the <b class="uicontrol">Solution Name</b> text box, give the directory name. <p class="stepinfo">By default, it displays the directory name as a specified project name. </p>
+</li><li class="step">Click <b class="uicontrol">OK</b>. </li></ol><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Sample code for creating the class</strong></p>
+<p class="paragraph"></p>
+<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Linq;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1">namespace SOATest</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">    public class Test</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        public Test()</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">&nbsp;</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1">        public string GetName()</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            return &quot;Welcome to SOA&quot;;</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1">}</p>
+<p class="paragraph">When you build the project, the dll gets created in the <b class="filepath">C:\SOA\SOATest\SOATest\bin\Debug </b>folder.</p>
+<p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Step 2: Adding the Assembly Folder to the SOA Folder</strong></p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Log on to the <b class="uicontrol">Enterprise Console</b> using administrator credentials.</li><li class="step">On the Enterprise Console, click <b class="uicontrol">Menu</b> icon, point to <b class="uicontrol">Settings</b>, and then click <b class="uicontrol">SOA Folder</b>. <p class="stepresult">The <b class="uicontrol">Folder List</b> page appears.</p>
+</li><li class="step">Click <b class="uicontrol">New</b> to add a new folder.</li><li class="step">In the <b class="uicontrol">Folder Configuration</b> window, enter the Title as &quot;<b class="uicontrol">SOAFolder</b>&quot; and Description as <b class="uicontrol">&quot;My first SOA</b>&quot;.</li><li class="step">Specify the Physical Path, that is the path where the folder exists.</li><li class="step">Give the path and click on the <b class="uicontrol">View Assemblies</b> button.<p class="stepinfo">We can now see our dll file listed in the <b class="uicontrol">List of Assemblies</b>.</p>
+</li><li class="step">Click <b class="uicontrol">Save</b> to save all the information.</li><li class="step">After you save, you can see the dll listed in the SOA Folder window.</li></ol><p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Step 3: Adding the Assembly to SOA Assembly Repository</strong></p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">In the <b class="uicontrol">Enterprise Console</b>, click the <b class="uicontrol">Menu</b> button, click <b class="uicontrol">Tools</b>, and then click <b class="uicontrol">SOA Assembly</b>.<p class="stepinfo">You can use any of the following options to add the assembly:</p>
+<ul class="ulsubsubitem"><li class="ulsubsubitem">From GAC</li><li class="ulsubsubitem">From Assembly Folder</li><li class="ulsubsubitem">From Web</li></ul></li><li class="step">Consider adding <b class="uicontrol">From Assembly Folder</b>. </li><li class="step">Click <b class="uicontrol">New</b>, and then click <b class="uicontrol">From Assembly Folder</b>.<p class="stepresult">The <b class="uicontrol">Select an Assembly</b> window appears. </p>
+</li><li class="step">Select the dll file which we had created, that is SOATest.dll, and then click<b class="uicontrol"> Next</b>.</li><li class="step">After you select the assembly, you can browse through the namespaces, classes, and methods of the assembly. There is an option to give alias name for the selected methods in the next window, that is Object Setup.</li><li class="step">Select the methods for which you want to give the alias name, else click <b class="uicontrol">Finish &amp; Publish</b>.</li><li class="step">The Assembly will get added to the Assembly list. Now create a workflow and implement this SOA Assembly in it.</li></ol><p class="procedureheading"></p>
+<p class="procedureheading"><strong class="strong">Step 4: Creating a Workflow</strong></p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">If you are familiar with the steps of creating a workflow, you can directly navigate to Step 5.</li><li class="step">In the <b class="uicontrol">Enterprise Console</b>, click the <b class="uicontrol">Menu</b> button, and then click <b class="uicontrol">Workflows</b>. <p class="stepresult">The <b class="uicontrol">Workflows</b> page appears.</p>
+</li><li class="step">On the action bar, click <b class="uicontrol">New</b>, and then click <b class="uicontrol">Workflow</b>. <p class="stepresult">The <b class="uicontrol">New Workflow</b> wizard appears.</p>
+</li><li class="step">In the <b class="uicontrol">Title</b> box, type a name for the workflow, and in the <b class="uicontrol">Description</b> box, type a description for the workflow.</li><li class="step">Click <b class="uicontrol">Save &amp; Continue</b>. <p class="stepresult">The workflow is created, and the <b class="uicontrol">Workflow Options</b> wizard appears. </p>
+</li><li class="step">Select <b class="uicontrol">Design the Workflow now</b>, which is the default option, and then click <b class="uicontrol">Finish</b>. <p class="stepresult">The <b class="uicontrol">Process Designer</b> appears. </p>
+</li></ol><p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Step 5: Creating Object Instance </strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">You have to instantiate an <b class="uicontrol">SOA Object Instance</b> to use it in the <b class="uicontrol">SOA Execute</b> activity.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Right-click the <b class="uicontrol">Start </b>activity, and then select <b class="uicontrol">Activity Properties</b>.</li><li class="step">Click on the edit icon near the SOA Object Instances property to instantiate a class for the specific purpose.</li><li class="step">The <b class="uicontrol">SOA Object Instance</b> window appears. Select the appropriate constructor for the specified class.</li><li class="step">Expand the tree view for the SOA from the SOA Objects in the left pane.</li><li class="step">Expand till Test, and then click on <b class="uicontrol">Actor</b>. It will display the details in the right pane.</li><li class="step">Click <b class="uicontrol">Set</b>. <p class="stepresult">It opens a new window which displays the constructor.</p>
+</li><li class="step">Click <b class="uicontrol">OK</b> to save the Constructor. <p class="stepresult">The constructor will be saved as shown below:</p>
+</li><li class="step">Then click <b class="uicontrol">Save</b> to save the SOA Instance. <p class="stepresult">We now have to display the return value from the method as we specified in the Assembly. </p>
+</li><li class="step">To create a variable, click on the <b class="uicontrol">edit</b> icon near the <b class="uicontrol">Variables</b> property in the properties of the <b class="uicontrol">Start</b> activity. </li><li class="step">Create a new variable of <b class="uicontrol">Type</b> &quot;String&quot; and click <b class="uicontrol">Update</b> to save the variable.</li><li class="step">Click the<b class="uicontrol"> Save</b> button in the Activity Properties pane to save all the data entered.</li></ol><p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Step 6: SOA-Execute Activity</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">To use an SOA, add an <b class="uicontrol">SOA-Execute</b> activity to the Process Designer.</p>
+<ol class="step"><li class="step">Select <b class="uicontrol">Integration Activities</b> from the Activities pane on the left.</li><li class="step">Drag and drop an <b class="uicontrol">SOA-Execute</b> activity to the Process Designer as shown below.</li><li class="step">Right-click the SOA-Execute activity to get the Activity Properties pane as shown below.</li></ol><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Execute an SOA Expression</strong></p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">The SOA-Execute activity uses the SOA through the Expression Editor.</li><li class="step">Click on the icon&nbsp;near the <b class="uicontrol">Execute an SOA Expression</b> to execute the expression.</li><li class="step">Now we can see the <b class="uicontrol">Expression Editor</b> where we will build the expression.</li><li class="step">Expression Editor comes up with a new node which shows all the available methods or properties.</li><li class="step">We will build a small expression to get the return value from the method.</li><li class="step">Drag and drop the GetName() method from the Test node to the right hand side pane and build the expression: string result = Test.GetName();</li><li class="step">Now we have to save the result to some variable. We save it to the variable that we created in the Start Activity, that is the SOAVariable.</li><li class="step">Drag and drop the SOAVariable from the Variables node in the left pane to the expression on the right hand side and build the expression:<p class="codeblock2">string result = Test.GetName();</p>
+<p class="stepinfo">Variable.SOAVariable = result;Click OK to save the expression.</p>
+</li><li class="step">Click <b class="uicontrol">OK</b> to save the expression.</li><li class="step">Click the <b class="uicontrol">Save</b> button in the Activity Properties pane to save all the data.</li><li class="step">We have successfully added the <b class="uicontrol">SOA-Execute Activity</b>.</li></ol><p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Step 7: Display the Return Value of the SOA Method in the Information Activity</strong></p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To add <b class="uicontrol">Information activity</b>, select Human Activities from the Activities pane on the left.</li><li class="step">Drag and drop an Information activity to the Process Design area. </li><li class="step">Right-click the Information activity in the Design area and select Activity Properties from the context menu. </li><li class="step">Now the <b class="uicontrol">Activity Properties</b> pane appears on the right side using which we need to configure the following: <ul class="ulsubitem"><li class="ulsubitem">Name of the activity: Specify a Name </li><li class="ulsubitem">The Actor to whom this information should be sent: <b class="uicontrol">Select the Actor</b> to whom this activity will be assigned. For this example, we will send the information to the Actor who submitted the workflow. Click the icon edit in the Assign Actor(s) property. The Assign Actor(s) window pops up. We have to assign the Information task to the user who has alerted the workflow. For this, we have to specify a small expression: Id = Variable Variable.SubmittedBy.ID <ul class="ulsubsubitem"><li class="ulsubsubitem">Select the required provider from the<b class="uicontrol"> Providers</b> drop down. </li><li class="ulsubsubitem">From the first drop down, select <b class="uicontrol">Id.</b></li><li class="ulsubsubitem">Keep the operator as default &quot;=&quot;.</li><li class="ulsubsubitem">From the next drop down, select <b class="uicontrol">Variable</b></li><li class="ulsubsubitem">In the next drop down, select <b class="uicontrol">Variable.SubmittedBy.ID</b> and click the <b class="uicontrol">Add</b> button as shown in the following image:</li><li class="ulsubsubitem">Click <b class="uicontrol">Update</b> to save the property value. </li></ul></li><li class="ulsubitem">The subject of the actual information. <ul class="ulsubsubitem"><li class="ulsubsubitem">Click <b class="uicontrol">edit</b> near the <b class="uicontrol">Subject</b> property to enter the subject for the Information which appears in the actor's <b class="uicontrol">Inbox</b>. </li><li class="ulsubsubitem">To customize the <b class="uicontrol">Subject</b>, we can use the <b class="uicontrol">Field</b> controls. Select <b class="uicontrol">Variable</b> from the first drop down. Select the variable we had declared in the <b class="uicontrol">Start</b> activity from the second drop down that is, <b class="uicontrol">Variable.SOAVariable</b> as shown below and click <b class="uicontrol">Append</b>. </li><li class="ulsubsubitem">You will get the <b class="uicontrol">Subject</b> line in this format:</li><li class="ulsubsubitem">Click <b class="uicontrol">Update</b> and then the <b class="uicontrol">Save</b> button in the Activity Properties pane to save all the data entered.</li></ul></li></ul></li></ol><ul class="ulitem"><li class="ulitem">Now, we have to link all the activities that is, <b class="uicontrol">Start</b>, <b class="uicontrol">SOA Execute1</b>, and <b class="uicontrol">Display SOA Output</b>.<p class="lcontinue">Set the output value from the <b class="uicontrol">SOA Execute1 to Display SOA Output</b> as &quot;<b class="uicontrol">Successfu</b>l&quot;.</p>
+<p class="lcontinue"></p>
+<p class="lcontinue"></p>
+</li></ul><p class="procedureheading"><strong class="strong">Publish the SOAWorkflow</strong></p>
+<ol class="step"><li class="step">To publish the workflow, click the <b class="uicontrol">Publish</b> option from the menu bar on the top.<p class="stepresult">A message box pops up indicating that the workflow has been published successfully.</p>
+</li><li class="step">On clicking <b class="uicontrol">Close</b> you will be redirected to the page showing the Workflows list.</li><li class="step">Run the published workflow. Select the listed workflow and right-click it. </li><li class="step">Select the<b class="uicontrol"> Publish and Test Run</b> option from the context menu.<p class="stepinfo">The <b class="uicontrol">Process</b> execution view window appears showing the execution status. You will that notice the <b class="uicontrol">Start</b>, <b class="uicontrol">SOA Execute1 and Display SOA</b> output activities have been executed successfully.  </p>
+<p class="stepinfo"></p>
+<p class="note"><strong class="notelabel">Note:</strong> If the Status is &quot;Execution Pending&quot; in the Process execution window, then click the Refresh  button to get the latest status.</p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph">You can also view the result value by clicking on any of the activities in the <b class="uicontrol">Process</b> execution window and then clicking on the <b class="uicontrol">Variables</b> tab.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">View the Inbox</strong></p>
+<p class="paragraph">We have to view the information task assigned to the actor who alerted the workflow. </p>
+<ol class="step"><li class="step">To see the activity in the <b class="uicontrol">Inbox</b>, select the <b class="uicontrol">Inbox</b> option from the <b class="uicontrol">Enterprise Console</b> menu.</li><li class="step">In the <b class="uicontrol">Inbox</b> you can find the <b class="uicontrol">Display Web Service Data</b> activity with the Subject &quot;<b class="uicontrol">Welcome to SOA</b>&quot;.</li><li class="step">Click on the Information task in the Inbox to open a pop up details view for the task.  <p class="stepresult">You have successfully created the <b class="uicontrol">SOAWorkflow</b>. </p>
+<p class="stepresult"></p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="soaactivities.htm" target="_self">SOA Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

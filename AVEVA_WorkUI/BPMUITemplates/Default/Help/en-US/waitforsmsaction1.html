@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for SMS Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49661" class="heading3">Wait for SMS Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Wait for SMS Activity can be used to wait for a number of SMSs for a particular time period, both of which can be set in the activity's properties. It can store SMSs (completely or partially) into specified variables. Depending on different property settings the activity will give different outputs.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Wait for SMS activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right click menu for the Wait for SMS activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51379" src="51379.png" class="embeddedimage100%scalinglive" alt="" height="847" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Filter Expression</b> - This property is used to filter the incoming SMS. It will add an SMS filter. On execution, the SMTP Notification Engine will be notified about the newly added filter so that it will search for this pattern in the next SMS.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be assigned to any resource(s).)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Filter Expression property</p>
+<ol class="step"><li class="step">To set the condition to filter the incoming SMS, click the button for the 'Filter Expression' property to open the property window.</li><li class="step">In this window, build an expression to set the filter. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression in the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it.</li></ol><p class="paragraph">See <a id="h51385" class="jump-currentwindowlive" title="Wait for SMS: Filter Expression" href="waitsms-filterexpression1.html" target="_self">Wait for SMS: Filter Expression</a>&nbsp;for a detailed description of the Filter Expression property window.</p>
+<p class="paragraph"><b class="uicontrol">Valid for SMSs</b>&nbsp;- This property is used to specify the number of SMSs for which the activity should wait. It indicates that the activity should wait till the specified number of SMSs are received.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Escalation &amp; Timeout</strong></p>
+<p class="paragraph">The properties in the Escalation &amp; Timeout group have been described below. You can use these properties to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning</b> - This property is used for setting the Timeout warning.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"><b class="uicontrol">Timeout for Action</b> - This property is used for setting timeouts for this activity. If specified, the activity will be timed out after the specified time span.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output Values</strong></p>
+<p class="paragraph">The properties in the Output Values group have been described below. You can use these properties to specify the input values for the activity.</p>
+<p class="paragraph"><strong class="strong">Set Variables And Contents from SMS</strong> - This property is used for assigning the SMS partly/fully to a variable or content.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Set Variables And Contents from SMS property</p>
+<ol class="step"><li class="step">To set the filtered email can be  to variables and contents, click the button for the 'Set Variables And Contents from Email' property to open the property window.</li><li class="step">In this window, first select the variable from the <b class="uicontrol">Variable</b> drop down.</li><li class="step">Next specify the search criteria in the <b class="uicontrol">Search criteria</b> field. You can either enter the regular expression directly or click on the <b class="uicontrol">Generate RegExp</b> <b class="uicontrol">for Selected Row</b> button to generate a regular expression.</li><li class="step">If you click the <b class="uicontrol">Generate RegExp for Selected Row</b> button it displays a set of fields and buttons at the bottom of the property window.</li><li class="step">Specify the start string for the regular expression in the <b class="uicontrol">Start String</b> field and <b class="uicontrol">Start</b> and <b class="uicontrol">End</b> delimiters in the corresponding text boxes of the <b class="uicontrol">Delimiters</b> fields.</li><li class="step">After specifying these values, click <b class="uicontrol">Generate</b> to generate the regular expression.</li><li class="step">Click <b class="uicontrol">Hide</b> to hide these fields.</li><li class="step">Specify where to search in by selecting an appropriate option from the <b class="uicontrol">Search</b> <b class="uicontrol">in</b> drop down. You can set the action to search in the entire email, the subject, and the attachments among other options.</li><li class="step">Specify the name of a group to which the variable should belong in the <b class="uicontrol">Set variable in the named group</b> field.</li><li class="step">Click the <b class="uicontrol">New row</b> tab to add the current search expression and display a blank row to add another expression.</li><li class="step">If you need to remove any search expressions, you can select them and click <b class="uicontrol">Remove selected</b>.</li><li class="step">After specifying all the search parameters, click <b class="uicontrol">Update</b> to save the new settings.</li></ol><p class="paragraph">See <a id="h194298" class="jump-currentwindowlive" title="Wait for SMS: Set Variables and Contents from SMS" href="setvariablesandcontentsfromsms1.html" target="_self">Wait for SMS: Set Variables and Contents from SMS</a>&nbsp;for a detailed description of the Set Variables And Contents from SMS property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Wait for SMS Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning:</b> Displayed when a warning for timeout is to be generated.</p>
+<p class="paragraph"><b class="uicontrol">Email Received(Waiting):</b> Displayed when an SMS matching the specified filter condition is received</p>
+<p class="paragraph"><b class="uicontrol">Timeout:</b> Displayed when the activity has timed out</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the <b class="uicontrol">Raise Error on Unhandled Linked Output</b> property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="waitsms-filterexpression1.html" target="_self">Wait for SMS: Filter Expression</a></p><p class="relateditem"><a href="setvariablesandcontentsfromsms1.html" target="_self">Wait for SMS: Set Variables and Contents from SMS</a></p><p class="relateditem"><a href="waitforsmssetcalendarfortimeout.html" target="_self">Wait for SMS: Set Calendar for Timeout</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

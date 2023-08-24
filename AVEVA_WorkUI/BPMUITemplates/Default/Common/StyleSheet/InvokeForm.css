@@ -1,0 +1,35 @@
+/* Body tag */
+body {background: url(../images/stripe-bg.png); padding: 0px; margin: 0px; background-color:#000; /*text-shadow: 0px 1px -1px #fff; text-align: center;*/ font: normal  Helvetica;word-wrap:break-word;}
+
+/* Footer Div */
+.pagefooter{left:0; bottom:0; position:fixed; background-image: -webkit-gradient(linear, left top, left bottom, from(#8f8e8f), color-stop( 50%, #555555), color-stop(50%, #404040), to(#272728)); margin: 0px; height: 44px; font-size: 17px; text-shadow: 0px -1px 1px #000; border-bottom: 1px solid black; color: white; padding: 0px 0px 0px 0px; text-align: center; width:100%; z-index:100;vertical-align:middle}
+
+/* Header Div */
+.pageheader{left:0; top:0; position:fixed; background-image: -webkit-gradient(linear, left top, left bottom, from(#8f8e8f), color-stop( 50%, #555555), color-stop(50%, #404040), to(#272728)); 	margin: 0px; height: 44px; font-size: 17px; text-shadow: 0px -1px 1px #000; border-bottom: 1px solid black; color: white; padding: 0px 0px 0px 0px; text-align: center; width:100%; z-index:100;vertical-align:middle}
+
+/* Back button */
+.pagebackbutton{-webkit-box-shadow: 0px -1px 1px #2f3740, 0px 1px 1px #bfcbdb;	background-image: -webkit-gradient(linear, left top, left bottom, from(#8f8e8f), color-stop( 50%, #555555), color-stop(50%, #404040), to(#272728));
+	-webkit-border-radius: 5px;	font: bold 13px Helvetica; text-align: center; color: white; text-shadow: rgba(0,0,0,0.5) 0px -1px 0px; white-space: nowrap; overflow: hidden;
+	-webkit-tap-highlight-color: white; padding: 2px; position: absolute; top: 4px; left: 6px; border: 1px solid #3e444c;width:82px;height:30px; vertical-align:middle}
+
+/* Approval div in the header */
+.pageheading {margin: 0px;font-size: 17px; color: white; text-align: center;vertical-align:middle; padding-top:5px;font-family:Helvetica; font-weight:bold}
+
+/* Divs inside the header */
+.pageleft{ float:left;text-align:left; vertical-align:middle; width:30%}
+.pagecenter{float:left; text-align:center; vertical-align:middle; width:40%;font-weight:bold}
+.pageright{ float:right;text-align:right; vertical-align:middle; width:30%}
+/* Divs inside the header */
+
+/*Error message */             
+.errormsg{ font-family:Helvetica;  color:red; font-size:15px; background-color:White; padding:5px ; border-radius:8px;margin:7px 10px 10px 10px;} 
+
+/*Error Div */
+.containerformerror{text-align:left;background-color:White; border-radius:8px; width:94%;margin: 7px 10px 10px 10px;  }
+
+/* Content Div */
+.contentform {font-family:helvetica; width:100%;top:0px;bottom:44px;overflow:scroll;-webkit-overflow-scrolling:touch;position:fixed;text-align:left; margin:0 auto;}
+
+
+/* any paragraph like error message, description */
+p{margin: 1em;word-wrap:break-word;}

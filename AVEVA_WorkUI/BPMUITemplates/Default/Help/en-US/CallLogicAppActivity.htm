@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Call Logic App Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t557350" class="heading2">Call Logic App Activity</h2>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">Use Call Logic App activity to call Logic App Workflows.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">To use Call Logic App activity, follow the given steps:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the <strong class="strong">Process Designer</strong> window, select <b class="uicontrol">Call Logic App</b> activity.</li><li class="step">Drag and drop the <b class="uicontrol">Call Logic App</b> activity on the <b class="uicontrol">Process Designer</b> window.</li><li class="step">Right-click the <b class="uicontrol">Call Logic App</b> activity and then select <b class="uicontrol">Activity Properties</b>.</li></ol><p class="paragraph"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph">Use the name and description properties to specify the name and description for the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Name</strong>: Use this property to enter a name for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory.</p>
+</li><li class="ulitem"><strong class="strong">Description</strong>: Use this property to enter a brief description to be displayed for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required.</p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph">Use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Logic App Connection and Data</b>: Use this property to get connections to Logic Apps and pass data, if required.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory</p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Exception Behavior</p>
+<p class="paragraph">Each activity has the <strong class="strong">Raise Error on Unhandled Linked Output</strong> property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Looping Behavior</b></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b>&nbsp;- This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.&nbsp;The looping option for this activity is&nbsp;Completed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs</strong>:</p>
+<p class="paragraph">The Call Logic App activity returns the following values:</p>
+<p class="paragraph">Successful: Displayed when the connection execution is successful.</p>
+<p class="paragraph">Unsuccessful: Displayed when the connection execution is unsuccessful.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Activities</a></p><p class="relateditem"><a href="563053.html" target="_self">Configuring Logic App Connection and Data</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

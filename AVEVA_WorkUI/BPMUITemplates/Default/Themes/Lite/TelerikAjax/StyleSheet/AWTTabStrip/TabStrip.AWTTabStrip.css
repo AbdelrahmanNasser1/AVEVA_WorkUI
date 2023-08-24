@@ -1,0 +1,380 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+.RadTabStrip_AWTTabStrip {
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+    background: url('TabStrip/TabstripBackground.gif') bottom left repeat-x;
+}
+
+
+.RadTabStrip_AWTTabStrip .rtsGhostTab 
+{
+    border-color: #b3b3b3;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #e6e6e6;
+}
+
+.RadTabStrip_AWTTabStrip rtsUL 
+{
+    padding-top: 3px;
+}
+
+.RadTabStrip_AWTTabStrip .rtsLI,
+.RadTabStrip_AWTTabStrip .rtsLink 
+{
+padding-left: 6px !important;
+background: transparent url('TabStrip/tabMiddleOff.gif') 0px 0px no-repeat !important;
+color: #363636;
+text-decoration: none;
+line-height: 23px;
+
+}
+ 
+.RadTabStrip_AWTTabStrip .rtsLI .rtsLink:hover {
+    color: black;
+}
+
+.RadTabStrip_AWTTabStrip .rtsLink.rtsSelected 
+{    
+    text-decoration: none;
+    background: url('TabStrip/tabMiddleOn.gif') right top no-repeat !important;
+}
+
+.RadTabStrip_AWTTabStrip .rtsLink.rtsDisabled 
+{
+    text-decoration: none;
+}
+
+    .RadTabStrip_AWTTabStrip .rtsOut {
+        padding-right: 6px;
+        background: transparent url('TabStrip/tabMiddleOff.gif') right 0px no-repeat;
+    }
+
+
+
+
+    .RadTabStrip_AWTTabStrip .rtsSelected,
+    .RadTabStrip_AWTTabStrip .rtsSelected:hover 
+    {
+        text-decoration: none;
+        background: url('TabStrip/tabMiddleOn.gif') right top no-repeat;
+    }
+
+    .RadTabStrip_AWTTabStrip .rtsDisabled 
+    {
+        color: #333333;
+    }
+
+        .RadTabStrip_AWTTabStrip .rtsDisabled .rtsTxt 
+        {
+            opacity: 0.5;
+        }
+
+    .RadTabStrip_AWTTabStrip .rtsLevel 
+    {
+        background-color: transparent;
+    }
+
+        .RadTabStrip_AWTTabStrip .rtsLevel .rtsFirst .rtsLink {
+            background-position: 0 0;
+        }
+
+        .RadTabStrip_AWTTabStrip .rtsLevel .rtsLink 
+        {
+            /*background-image: url('TabStrip/TabStripStates.png'*/ );
+            background-position: 0 -52px;
+        }
+
+            .RadTabStrip_AWTTabStrip .rtsLevel .rtsLink.rtsSelected 
+            {
+                color: #000000;
+                text-decoration: none;
+                background-position: 0 -26px;
+            }
+
+            .RadTabStrip_AWTTabStrip .rtsLevel .rtsLink.rtsAfter 
+            {
+                background-position: 0 -78px;
+            }
+
+        .RadTabStrip_AWTTabStrip .rtsLevel .rtsOut 
+        {            
+            background-position: 100% -52px;
+        }
+
+        .RadTabStrip_AWTTabStrip .rtsLevel .rtsLast .rtsOut 
+        {
+            background-position: 100% 0;
+        }
+
+        .RadTabStrip_AWTTabStrip .rtsLevel .rtsSelected .rtsOut 
+        {
+            background-position: 100% -78px;
+        }
+
+        .RadTabStrip_AWTTabStrip .rtsLevel .rtsLast .rtsSelected .rtsOut 
+        {
+            background-position: 100% -26px;
+        }
+
+    .RadTabStrip_AWTTabStrip .rtsNextArrow,
+    .RadTabStrip_AWTTabStrip .rtsPrevArrow,
+    .RadTabStrip_AWTTabStrip .rtsPrevArrowDisabled,
+    .RadTabStrip_AWTTabStrip .rtsNextArrowDisabled {
+        background-image: url('TabStrip/TabStripStates.png');
+    }
+
+.RadTabStripBottom_AWTTabStrip .rtsLevel.rtsLevel2, .RadTabStripBottom_AWTTabStrip .rtsLevel.rtsLevel3 
+{
+    background-image: none;
+}
+
+.RadTabStripBottom_AWTTabStrip .rtsLevel 
+{
+    background-position: 0 -599px;
+    background-repeat: repeat-x;
+}
+
+    .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsFirst .rtsLink 
+    {
+        background-position: 0 -182px;
+    }
+
+    .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLink 
+    {
+        background-position: 0 -130px;
+    }
+
+        .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLink.rtsSelected 
+        {
+            background-position: 0 -156px;
+        }
+
+        .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLink.rtsAfter 
+        {
+            background-position: 0 -104px;
+        }
+
+    .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsOut 
+    {
+        background-position: 100% -130px;
+    }
+
+    .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLast .rtsOut 
+    {
+        background-position: 100% -182px;
+    }
+
+    .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsSelected .rtsOut 
+    {
+        background-position: 100% -104px;
+    }
+
+    .RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLast .rtsSelected .rtsOut 
+    {
+        background-position: 100% -156px;
+    }
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLink {
+    padding: 0 9px 0 0;
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsOut {
+    padding: 0 0 0 9px;
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsLink,
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsOut {
+    background-image: url('TabStrip/TabStripStates_rtl.png');
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsFirst .rtsLink {
+    background-position: 100% 0;
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsLink {
+    background-position: 100% -52px;
+}
+
+    .RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsLink.rtsSelected {
+        background-position: 100% -26px;
+    }
+
+    .RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsLink.rtsAfter {
+        background-position: 100% -78px;
+    }
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsOut {
+    background-position: 0 -52px;
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsLast .rtsOut {
+    background-position: 0 0;
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsSelected .rtsOut {
+    background-position: 0 -78px;
+}
+
+.RadTabStrip_rtl.RadTabStrip_AWTTabStrip .rtsLevel .rtsLast .rtsSelected .rtsOut {
+    background-position: 0 -26px;
+}
+
+.RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsFirst .rtsLink {
+    background-position: 100% -182px;
+}
+
+.RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLink {
+    background-position: 100% -130px;
+}
+
+    .RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLink.rtsSelected {
+        background-position: 100% -156px;
+    }
+
+    .RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLink.rtsAfter {
+        background-position: 100% -104px;
+    }
+
+.RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsOut {
+    background-position: 0 -130px;
+}
+
+.RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLast .rtsOut {
+    background-position: 0 -182px;
+}
+
+.RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsSelected .rtsOut {
+    background-position: 0 -104px;
+}
+
+.RadTabStrip_rtl.RadTabStripBottom_AWTTabStrip .rtsLevel .rtsLast .rtsSelected .rtsOut {
+    background-position: 0 -156px;
+}
+
+.RadTabStrip_AWTTabStrip.RadTabStripVertical .rtsLevel {
+    background-image: none;
+}
+
+    .RadTabStrip_AWTTabStrip.RadTabStripVertical .rtsLevel .rtsLink,
+    .RadTabStrip_AWTTabStrip.RadTabStripVertical .rtsLevel .rtsOut {
+        background-image: none;
+    }
+
+.RadTabStrip_AWTTabStrip.RadTabStripVertical .rtsLevel1 .rtsLink {
+    background-image: url('TabStrip/TabStripVStates.png');
+    *zoom: 1;
+}
+
+.RadTabStrip_AWTTabStrip.RadTabStripLeft .rtsLevel1 .rtsLink {
+    background-position: 0 0;
+}
+
+    .RadTabStrip_AWTTabStrip.RadTabStripLeft .rtsLevel1 .rtsLink:hover {
+        background-position: 0 -200px;
+    }
+
+    .RadTabStrip_AWTTabStrip.RadTabStripLeft .rtsLevel1 .rtsLink.rtsSelected {
+        background-position: 0 -400px;
+    }
+
+    .RadTabStrip_AWTTabStrip.RadTabStripLeft .rtsLevel1 .rtsLink.rtsAfter {
+        background-position: 0 0;
+    }
+
+.RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsLink,
+.RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsFirst .rtsLink {
+    background-position: 100% 0;
+}
+
+    .RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsLink:hover,
+    .RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsFirst .rtsLink:hover {
+        background-position: 100% -200px;
+    }
+
+    .RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsLink.rtsSelected,
+    .RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsFirst .rtsLink.rtsSelected {
+        background-position: 100% -400px;
+    }
+
+    .RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsLink.rtsAfter,
+    .RadTabStrip_AWTTabStrip.RadTabStripRight .rtsLevel1 .rtsFirst .rtsLink.rtsAfter {
+        background-position: 100% 0;
+    }
+
+.RadTabStripTop_AWTTabStrip_Baseline .rtsLevel1,
+.RadTabStripBottom_AWTTabStrip_Baseline .rtsLevel1 {
+    background-image: url('TabStrip/TabStripStates.png');
+    background-position: 0 100%;
+}
+
+.RadTabStripBottom_AWTTabStrip_Baseline .rtsLevel1 {
+    background-position: 0 -599px;
+}
+
+html .RadTabStrip_AWTTabStrip_disabled .rtsLevel .rtsLink {
+    color: #8d8d8d;
+    cursor: default;
+}
+
+    html .RadTabStrip_AWTTabStrip_disabled .rtsLevel .rtsLink:hover {
+        background: transparent;
+        text-decoration: none;
+    }
+
+        html .RadTabStrip_AWTTabStrip_disabled .rtsLevel .rtsLink:hover .rtsOut {
+            background: transparent;
+        }
+
+div.RadTabStrip_AWTTabStrip a.rtsLink:focus {
+    outline-color: #6f6f6f;
+}
+
+    div.RadTabStrip_AWTTabStrip a.rtsLink:focus:after {
+        border-color: #6f6f6f\9;
+    }
+
+.rtsDropClue_AWTTabStrip {
+    background-image: url('../Common/TabStrip/rtsDropClueSprite.png');
+}
+
+.rtsDropClueTop_AWTTabStrip {
+    background-position: 0 -20px;
+}
+
+.rtsDropClueRight_AWTTabStrip {
+    background-position: 0 -30px;
+}
+
+.rtsDropClueBottom_AWTTabStrip {
+    background-position: 0 0;
+}
+
+.rtsDropClueLeft_AWTTabStrip {
+    background-position: 0 -10px;
+}

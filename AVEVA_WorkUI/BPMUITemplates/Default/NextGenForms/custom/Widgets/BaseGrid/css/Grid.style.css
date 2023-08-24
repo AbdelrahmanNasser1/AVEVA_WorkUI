@@ -1,0 +1,178 @@
+@font-face
+{
+    font-family: "Roboto";
+    src: url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face
+{
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("./fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face
+{
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("./fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face
+{
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("./fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+.baseGridMain, .gridStyle {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.baseGridMain, .gridStyle {
+  -webkit-box-flex-orient: column;
+  -moz-box-flex-orient: column;
+  -ms-box-flex-orient: column;
+  box-flex-orient: column;
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -moz-flex-flow: column;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -ms-box-direction: normal;
+  box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-box-lines: multiple;
+  box-lines: multiple
+}
+.baseGridMain, .gridStyle, .gridStyle .k-grid-content {
+      -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+      -moz-box-flex: 1; /* OLD - Firefox 19- */
+      -ms-box-flex: 1; /* IE 10 */
+      box-flex: 1;
+      -webkit-flex: 1 1 auto; /* Chrome */
+      -moz-flex: 1;
+      -ms-flex: 1 1 auto; /* IE 10 */
+      flex: 1 1 auto;
+}
+.baseGridMain {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.baseGridMain * {
+  box-sizing: border-box;
+}
+.gridMainHeader {
+font-style: normal;
+font-variant: normal;
+font-weight: 600;
+font-family: Roboto!important;
+font-size: 16px;
+line-height: 24px;
+letter-spacing: 0.48px;
+color: #000000;
+opacity: 0.9;
+text-align: left;
+margin-bottom: 8px;
+display: block;
+}
+.gridStyle {
+  width: 100%;
+  box-sizing: border-box !important;
+}
+.gridStyle .k-grid-header .k-header {
+background-color: white;
+padding-top: 0px;
+padding-bottom: 0px;
+text-align: left;
+vertical-align: middle;
+height: 48px;
+}
+.gridStyle .k-grid-header th.k-header > .k-link {
+font-style: normal;
+font-variant: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+font-family: Roboto!important;
+}
+.gridStyle tbody td {
+border: 0;
+height: 40px;
+padding-top: 0px;
+padding-bottom: 0px;
+font-size: 16px;
+font-family: Roboto!important;
+}
+.gridStyle .k-pager-wrap {
+background-color: white;
+display: flex;
+font-family: Roboto!important;
+font-size: 12px;
+}
+.gridStyle .k-pager-wrap > .k-link {
+border: 0px;
+}
+.gridStyle .k-grid-content {
+min-height: 100px !important;
+position: relative;
+}
+.gridStyle .k-grid-content > table {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.gridStyle .k-grid-header th .k-grid-filter.k-state-active{
+background-color: #c5c5c5;
+}
+.gridStyle ul.k-pager-numbers>li>span.k-state-selected {
+background-color: #666!important;
+background-image: none;
+border-color: #666!important;
+line-height: 2em;
+}
+.gridStyle .k-grid th.k-header, .k-grid th.k-header .k-link {
+color: #000;
+}
+.gridStyle .k-pager-info.k-label {
+padding-top: 3px;
+}
+.gridStyle .k-state-selected {
+ background: #666!important;
+ border-color: #666!important;
+  color: #fff!important;
+}
+.gridStyle .k-state-selected:hover {
+  background: #666!important;
+border-color: #666!important;
+  color: #fff!important;
+}
+.gridStyle .k-grid-content>table>tbody>tr.k-alt, .k-grid-content>table>tbody>tr.k-alt.k-master-row:hover {
+  background: #f1f1f1;
+}
+.gridStyle .k-grid-content>table>tbody>tr, .k-grid-content>table>tbody>.k-master-row:hover {
+  background: #FFFFFF;
+}

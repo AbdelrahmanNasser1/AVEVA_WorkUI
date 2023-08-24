@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Queues in Workflows </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46125" class="heading3">Using Queues in Workflows</h3>
+<p class="paragraph">In the Activity Properties pane of all activities, which require human intervention, there is an option called Assign Queue(s). You can use this property to specify a queue to which the corresponding work item will be assigned.</p>
+<p class="paragraph"><br></p>
+<p class="procedureheading">To assign a queue for an activity:</p>
+<ol class="step"><li class="step">In the <b class="uicontrol">Process Designer for Workflow</b>, right-click the resource activity, and then select <b class="uicontrol">Activity Properties</b>.</li><li class="step">In the <b class="uicontrol">Activity Properties</b> pane, click the button for the <b class="uicontrol">Assign Queue(s)</b> property.</li><li class="step">In the window that opens, select the queue(s) from the Available Queues list box. <p class="stepinfo">You can select multiple queues by selecting with the &lt;Ctrl&gt; key pressed.</p>
+</li><li class="step">After selecting the required queue(s) click the [&gt;] button to move it to the Selected Queues list box. You can click the <b class="uicontrol">[&gt;&gt;]</b> button to select all the queue(s) and move them to the<b class="uicontrol"> Selected Queues</b> list box.</li><li class="step">You can remove any queue from the selected list. Selecting the queue and then click the <b class="uicontrol">[&lt;]</b> button. You can remove all the queues by clicking the<b class="uicontrol"> [&lt;&lt;]</b> button.</li><li class="step">After adding the required queue(s), click the <b class="uicontrol">Assign </b>button to assign the activity to the selection.</li><li class="step">Click the <b class="uicontrol">Close</b> button to close the window without saving the selection.</li></ol><p class="paragraph"><br></p>
+<p class="subheading">Difference between direct task assignment and task assignment through queue:</p>
+<p class="paragraph">A task can get assigned to multiple resources directly whereas only one resource will get the task from a queue.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

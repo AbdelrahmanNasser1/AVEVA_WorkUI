@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Set Workflow Output Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t488927" class="heading3">Set Workflow Output Variable</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph"></p>
+<p class="paragraph">The Set Workflow output variable Activity can be used to set the output of the parent workflow from the child workflow.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph"></p>
+<p class="paragraph">The Set Workflow output variable activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right-click menu for the Set Workflow output variable activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f489276" src="489276.png" alt="" height="481" width="256" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph"></p>
+<p class="paragraph">You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Name </strong>- This property can be used to specify a name for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Description</strong> - This property specifies a brief description to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph"></p>
+<p class="paragraph">You can use this property to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Set Workflow Output</strong> - This property specifies the output of the workflow. You can specify the output value directly here or click the icon to open the Expression Builder and build an expression for the output. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Looping Behavior</p>
+<p class="paragraph"></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Activity outputs:</p>
+<p class="paragraph"></p>
+<p class="paragraph">The Set Workflow output variable Activity returns the output value set in the Set Workflow Output property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Example for setting Workflow Output Variable</strong></p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Design a workflow as shown in the below figure and name it as ChildWF.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194451" src="194451.png" alt="" height="257" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Perform the following actions:<ol class="substep"><li class="substep">In the Start Activity, declare two variables Value and ParentWorkflowOutput as String. </li></ol><p class="stepinfo"></p>
+<p class="stepinfo">Note: The user must declare a same variable name in the child workflow which was declared for the Parent workflow. In the above example, user must declare by the name &quot;ParentWorkflowOutput&quot; of type &quot;String&quot; in the child workflow.</p>
+<p class="stepinfo"></p>
+<p class="substepinfo"><img id="f194452" src="194452.png" alt="" height="311" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<ol class="substep"><li class="substep">In the Set Variable property of Update Variable set the value of variable Value as 1 as shown in the figure.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f194453" src="194453.png" alt="" height="154" width="345" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="substep">On the link connecting Update Variable and Rule activity set the output as Updated.</li><li class="substep">In the Configuration property of Rule, set the condition [Variable.Value]&gt;[&quot;5&quot;] as shown in the below figure.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f194454" src="194454.png" alt="" height="159" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="substep">On the link connecting Rule and SetWorkflowOutputVariable2 Activity set TRUE.</li><li class="substep">In the Set workflow output property of SetWorkflowOutputVariable2 Activity set it as Greater as shown in the following figure.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f489277" src="489277.png" alt="" height="414" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="substep">On the link connecting Rule and SetWorkflowOutputVariable1 Activity set FALSE.</li><li class="substep">In the Set workflow output property of SetWorkflowOutputVariable1 Activity set it as Lesser as shown in the following figure.</li></ol></li><li class="step">Design a workflow as shown in the below figure and name it as ParentWorkflow.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f194456" src="194456.png" alt="" height="284" width="427" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="step">Perform the following actions:</li></ol><p class="paragraph"></p>
+<ol class="substep"><li class="substep">In the Repository property of Workflow Activity, enter Repository Name. For Example: SamRep.</li><li class="substep">In the Workflow property of Workflow Activity, select  Previously created Workflow Name. For Example: ChildWorkflow.</li><li class="substep">In the Wait for the Child Workflow property, select &quot;YES&quot;.</li><li class="substep">In the Execution Mode property, select &quot;Asynchronous&quot;.</li><li class="substep">In the Return Values property of Workflow Activity:<ul class="ulsubsubitem"><li class="ulsubsubitem">Click Add Row and enter as &quot;Greater&quot;</li><li class="ulsubsubitem">Click Add Row and enter as &quot;Lesser&quot;</li><li class="ulsubsubitem">Click Update to save and click Close to close the window.</li></ul></li><li class="substep">In the property LogType of Logger1, select Information.</li><li class="substep">In the Log Message of Logger1, enter as the following:<p class="substepinfo"></p>
+<p class="substepinfo">'################ Lesser'</p>
+</li><li class="substep">In the link connecting Logger1 and Workflow Activity1 set Lesser as output.</li><li class="substep">In the property LogType of Logger2, select Information.</li><li class="substep">In the Log Message of Logger2, enter as the following:<p class="substepinfo"></p>
+<p class="substepinfo">'################ Greater'</p>
+</li><li class="substep">In the link connecting Logger2 and Workflow Activity1, set Greater as output.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Summary :</strong> When you publish the parent workflow, the child workflow is also triggered and the path selected after the Rule activity is stored in the variable &quot;ParentWorklfowOutput&quot;. The output of child workflow can be traced in the parent workflow.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output:</strong>  The ParentWF is published, and the workflow1 Activity invokes the ChildWF. Value of the variable Value is set to 1 in Update Variable Activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph">Since the value of Variable value is less then five, the rule activity output is False. so the Set Workflow Output Variable2 is executed and the control is passed to the ParentWF. The value updated in Parent Workflow variable is Lesser and hence the output of the Workflow Activity is Lesser and the Logger1 is executed.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194457" src="194457.png" alt="" height="248" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Start Activity in BAM </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Parent Workflow in BAM:</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194458" src="194458.png" alt="" height="388" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Child Workflow in BAM</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194459" src="194459.png" alt="" height="342" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="EngineActivities.html" target="_self">Engine Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

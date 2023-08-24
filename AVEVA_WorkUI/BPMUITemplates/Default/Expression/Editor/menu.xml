@@ -1,0 +1,8 @@
+<Menu>
+	<Group Flow="Vertical">
+		  <Item CssClassClicked="MenuItemOver" Text="Add (" Value="A("  OnClientClick="AddBrace"/>
+      <Item CssClassClicked="MenuItemOver" Text="Add )" Value="A)" OnClientClick="AddBrace"/>
+      <Item CssClassClicked="MenuItemOver" Text="Remove ("  Value="R(" OnClientClick="AddBrace"/>
+      <Item CssClassClicked="MenuItemOver" Text="Remove )" Value="R)" OnClientClick="AddBrace"/> 
+  </Group>
+</Menu>

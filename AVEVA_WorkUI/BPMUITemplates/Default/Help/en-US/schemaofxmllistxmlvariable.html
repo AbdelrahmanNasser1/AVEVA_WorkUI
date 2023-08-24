@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Schema of Microsoft SharePoint List/DocLibrary Xml Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t487750" class="heading5">Schema of Microsoft SharePoint List/DocLibrary Xml Variable</h5>
+<p class="paragraph">The schema will be displayed based on the List or Doc Library settings. The schema of Microsoft SharePoint List/DocLibrary includes the schema of the List/Document, SystemFields and Attachments nodes.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The schema of Microsoft SharePoint List/DocLibrary cannot be edited.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f190999" src="190999.png" class="embeddedimage100%scalinglive" alt="" height="611" width="571" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f191000" src="191000.png" class="embeddedimage100%scalinglive" alt="" height="610" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">System Fields Nodes</p>
+<p class="paragraph">System Fields nodes cannot be edited.</p>
+<p class="subheading">System fields</p>
+<p class="paragraph">All the read-only fields will be displayed under the SystemFields category.</p>
+<p class="paragraph"><img id="f190984" src="190984.png" class="embeddedimage100%scalinglive" alt="" height="214" width="367" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Attachments</p>
+<p class="paragraph">If the selected list is a Microsoft SharePoint list, the&nbsp;<b class="uicontrol">Attachments</b>&nbsp;field is enabled as shown in the following figure:</p>
+<p class="paragraph"><img id="f190985" src="190985.png" class="embeddedimage100%scalinglive" alt="" height="122" width="327" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="note"><strong class="notelabel">Note:</strong> You can attach multiple documents by using the File node.</p>
+<p class="subheading">Document</p>
+<p class="paragraph">If the selected list is a Microsoft SharePoint document library, the&nbsp;<b class="uicontrol">Document</b>&nbsp;field is enabled as shown in the following figure:<br></p>
+<p class="paragraph"><img id="f190986" src="190986.png" class="embeddedimage100%scalinglive" alt="" height="80" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">One item can have only one document.</p>
+<p class="paragraph"></p>
+<p class="subheading">SiteColumns</p>
+<p class="paragraph">If Content Type is disabled, all the fields of the list which can be updated are displayed under SiteColumns category:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f190987" src="190987.png" class="embeddedimage100%scalinglive" alt="" height="168" width="390" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Folder</p>
+<p class="paragraph">If the New&nbsp;<b class="uicontrol">Folder</b>&nbsp;option is selected for the List/Doc library:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f190988" src="190988.png" class="embeddedimage100%scalinglive" alt="" height="202" width="394" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Content Type</p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">For a List:</strong> If Content Type is enabled and no content types are selected for the List.<p class="substepinfo"><img id="f190989" src="190989.png" class="embeddedimage100%scalinglive" alt="" height="202" width="357" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">For a List:</strong> If Content Type is enabled and the List contains content types.<p class="substepinfo"><img id="f190990" src="190990.png" class="embeddedimage100%scalinglive" alt="" height="196" width="351" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo">Announcement is a content type. Fields under Item category other fields which can be updated.</p>
+<p class="stepinfo"></p>
+</li><li class="ulitem"><strong class="strong">For a Doc Library:</strong> If Content Type is enabled and no content types are selected.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190991" src="190991.png" class="embeddedimage100%scalinglive" alt="" height="192" width="324" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">For a Doc Library:</strong> If Content Type is enabled and the document library contains content types.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190992" src="190992.png" class="embeddedimage100%scalinglive" alt="" height="174" width="267" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="stepinfo">SalDetails is the content Type.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+</li></ul><p class="paragraph"><strong class="strong">Different types of Fields</strong>: Based on the type of field, the schema will be generated.</p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Person group</strong><p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190993" src="190993.png" class="embeddedimage100%scalinglive" alt="" height="87" width="279" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="substepinfo">Id: 1 &nbsp;Display Text: &nbsp;ng\raju</p>
+<p class="substepinfo">Value: &nbsp;1; #ng\ Raju</p>
+<p class="substepinfo">If you pick the user node,</p>
+<p class="substepinfo">1ng\raju #ng\ raju which is an invalid data</p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">Person group with Multiple option</strong><p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190994" src="190994.png" class="embeddedimage100%scalinglive" alt="" height="113" width="288" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="substepinfo">Id: 1; 2 Display Text: &nbsp;ng\raju; ng\Iju</p>
+<p class="substepinfo">Value: 1; #ng\ Raju; 2; #ng\ Raju (Microsoft SharePoint Format)</p>
+<p class="substepinfo">SKresources: ng\raju, ng\Iju</p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">Lookup</strong><p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190995" src="190995.png" class="embeddedimage100%scalinglive" alt="" height="88" width="283" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="substepinfo">Id: 1; 57   Display Text: &nbsp;Dev</p>
+<p class="substepinfo">Value: &nbsp;57; #Dev (Microsoft SharePoint Format)</p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">Lookup Additional Columns</strong><br>Additional columns cannot be updated.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f191001" src="191001.png" class="embeddedimage100%scalinglive" alt="" height="173" width="349" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">Managed Metadata</strong></li></ul><p class="paragraph"></p>
+<p class="substepinfo"><img id="f191002" src="191002.png" class="embeddedimage100%scalinglive" alt="" height="186" width="377" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">External Data</strong><br>Additional columns cannot be updated.<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f191003" src="191003.png" class="embeddedimage100%scalinglive" alt="" height="123" width="350" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="substepinfo"><img id="f191004" src="191004.png" class="embeddedimage100%scalinglive" alt="" height="178" width="311" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">Calculated</strong><p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190996" src="190996.png" class="embeddedimage100%scalinglive" alt="" height="67" width="288" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="substepinfo">Display Text: &nbsp;234.0000</p>
+<p class="substepinfo">Value: &nbsp;Float; 234.0000</p>
+<p class="substepinfo"></p>
+</li><li class="ulitem"><strong class="strong">Choice</strong><p class="substepinfo"></p>
+<p class="substepinfo"><img id="f190996_1" src="190996.png" class="embeddedimage100%scalinglive" alt="" height="67" width="288" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo"></p>
+<p class="substepinfo">Display Text: &nbsp;chk1; chk2; chk3</p>
+<p class="substepinfo">Value: #chk1; #chk2; #chk3;</p>
+</li></ul><p class="paragraph"><b class="uicontrol">Update Variable</b>: Using update variable activity, list items will be created or updated.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="xmlvariableforsharepointsite.html" target="_self">XML Variable for Microsoft SharePoint List or Document Libraries</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

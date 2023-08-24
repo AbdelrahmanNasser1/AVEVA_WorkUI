@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using 'Template Path' Property </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601966" class="heading5">Using 'Template Path' Property</h5>
+<p class="subheading">Scenario Solution:</p>
+<ol class="step"><li class="step">Design a workflow named 'LeaveWF' as shown in the figure below. <p class="stepinfo"><img id="f187068" src="187068.png" alt="" height="329" width="189" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Right-click the Invoke Form activity and then select Activity Properties. </li><li class="step">Set the properties for Actors group as shown in the following figure. <p class="stepinfo"><strong class="notelabel">Note:</strong> Only the required properties are explained here.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187069" src="187069.png" alt="" height="432" width="256" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Assign Actor(s): Set this property to send notification mail to the manager as shown in the following figure. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187070" src="187070.png" alt="" height="254" width="580" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Set the properties for<b class="uicontrol"> Form Information</b> group as shown in the following figure. <p class="stepinfo"><strong class="notelabel">Note:</strong> Only the required properties are explained here.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187071" src="187071.png" alt="" height="291" width="261" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<ol class="substep"><li class="substep"><b class="uicontrol">Form Name</b>: Select 'Leave Form' and its version from <b class="uicontrol">Form Name</b> property window. </li><li class="substep"><b class="uicontrol">Input Instance XML</b>: Select 'SFFormData' from <b class="uicontrol">Input Instance XML</b> drop-down list. </li><li class="substep"><b class="uicontrol">Output Instance XML</b>: Select 'SFFormData' from <b class="uicontrol">Output Instance XML</b> drop-down list. </li><li class="substep"><b class="uicontrol">Save as Draft?:</b> Select Yes from Save as Draft? drop-down list. By setting this property as <b class="uicontrol">Yes</b>, the<b class="uicontrol"> Save As Draft</b> option at the bottom right corner in the Form will be provided. This is useful for filling the form and saving it as draft till final submission of the form. </li><li class="substep"><b class="uicontrol">Close the form on click of Save As Draft?:</b> Select <b class="uicontrol">Yes</b> from <b class="uicontrol">Close the form on click of Save As Draft?</b> drop-down list. By setting this property as <b class="uicontrol">Yes</b>, the form will close on clicking the Save As Draft option. </li><li class="substep">Set the properties for <b class="uicontrol">Notification Contents</b> group as shown in the following figure. </li></ol><p class="stepinfo"><strong class="notelabel">Note:</strong> Only required properties are explained here.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187072" src="187072.png" alt="" height="468" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<ol class="substep"><li class="substep"><b class="uicontrol">Subject</b>: Select 'Leave Form' from Subject property window. </li><li class="substep"><b class="uicontrol">Body</b>: Specified content will be used in the &lt;%#Body%&gt; placeholder in the template file. </li><li class="substep"><b class="uicontrol">Template Path</b>: Select the 'InvokeFormEmail.html' from the path <br>[AVEVA Work Tasks Installed Path]\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Templates\FormEmailTemplate\InvokeFormEmail.html and type the same path in the Template Path property.<br>Example1: C:Program Files\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Templates\FormEmailTemplate\InvokeFormEmail.html<br>Example2:&lt;%#AVEVA Work Tasks InstallPath%&gt;\WorkflowElements\Default\en-US\Templates\FormEmailTemplate\InvokeFormEmail.html</li><li class="substep"><b class="uicontrol">Send Notification Email</b>: Select <b class="uicontrol">Yes - HTML</b> option from the drop-down list. </li></ol><p class="stepinfo"><strong class="notelabel">Note:</strong> The user will be able to send an email only if this property is set as Yes - HTML.</p>
+</li><li class="step">After setting these properties, click <b class="uicontrol">Save</b> of the <b class="uicontrol">Activity Properties</b> window. </li><li class="step">Publish the 'LeaveWF' workflow. </li><li class="step">Go to <b class="uicontrol">Enterprise Console -&gt; Fill Form</b>. The <b class="uicontrol">Fill Form</b> window is displayed as shown in the following figure.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187073" src="187073.png" alt="" height="163" width="529" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click the 'LeaveForm'. The 'LeaveForm' form is displayed. Fill this form and click <b class="uicontrol">Finish</b>.<p class="stepinfo"><img id="f187074" src="187074.png" alt="" height="216" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">On filling the form, the mail will be sent to the manager for approval.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187075" src="187075.png" alt="" height="349" width="531" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">In the mail, just click <b class="uicontrol">'Click here'</b> link to open the form in a browser as shown in the following figure.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187076" src="187076.png" alt="" height="286" width="515" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><b class="uicontrol">Conclusion</b>: Here, the manager will get the direct link to the leave form which is applied by the employee and here manager can approve or reject leave application instead of logging in to the Enterprise Console.&nbsp;</p>
+<p class="stepinfo"><strong class="notelabel">&nbsp;Note:</strong> The user can act on task only one time. Next time, it will display the following message:&nbsp;</p>
+<p class="stepinfo"><i class="emphasis">&nbsp;&quot;Duplicate Response </i></p>
+<p class="stepinfo"><i class="emphasis">Your response for the task </i> </p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformmailintegration.html" target="_self">Invoke Form - Mail Integration Scenario</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+</script>	
+
+ </body>
+ </html>

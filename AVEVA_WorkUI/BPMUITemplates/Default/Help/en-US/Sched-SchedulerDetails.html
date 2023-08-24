@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Scheduler: Scheduler Details </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488920" class="heading4">Scheduler: Scheduler Details</h4>
+<p class="paragraph">You can set the Scheduler Details settings in this property window. To open this window, click the button for the 'Scheduler Details' property. It has three tabs -&nbsp;<b class="uicontrol">Weekly</b>,&nbsp;<b class="uicontrol">Time Span</b>, and&nbsp;<b class="uicontrol">Date Criteria</b>&nbsp;- to set the corresponding property value.</p>
+<p class="subheading">Weekly settings</p>
+<p class="paragraph">By default, the first tab, i.e.&nbsp;<b class="uicontrol">Weekly</b>, is selected. The user interface corresponding to this tab is shown in the image below. You can specify the weekly schedule settings here.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51236" src="51236.png" class="embeddedimage100%scalinglive" alt="" height="146" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Weekly Settings for Scheduler Details property</p>
+<p class="paragraph">This window has the following parameters for setting the weekly schedule.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Select a day</b>&nbsp;- You can select the day of the week on which the activity is to be scheduled from the drop down for this field.</li><li class="ulitem"><b class="uicontrol">hh:mm:ss</b>&nbsp;- You can specify the time at which the scheduled activity should be executed on the selected day in this field in the &quot;hh:mm:ss&quot; format.</li><li class="ulitem"><b class="uicontrol">Recurring ?</b>&nbsp;- You can select this check box to schedule the activity to recur. This will enable the next field.</li><li class="ulitem"><b class="uicontrol">Recurrence</b>&nbsp;- If the schedule is to recur more than once, you must specify the count in this field.</li></ul><p class="paragraph"></p>
+<p class="subheading">Time Span settings</p>
+<p class="paragraph">If the&nbsp;<b class="uicontrol">Time Span</b>&nbsp;tab is clicked, it displays the user interface shown in the image below. You can specify a time span for the schedule here.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51237" src="51237.png" class="embeddedimage100%scalinglive" alt="" height="142" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Time Span Settings for Scheduler Details property</p>
+<p class="paragraph">This window has the following parameters for setting the time span schedule.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">d.hh:mm:ss</b>&nbsp;- You can enter the time interval of the schedule in this field, in the &quot;d.hh:mm:ss&quot; format, where &quot;d&quot; denotes the number of days the schedule is set for while the time setting denotes the number of hours, minutes, or seconds. For example, if this value is set as 0.00:30:00, the activity will be executed every 30 minutes. If it is set as 1.00:30:00, the activity will be executed every 1 day and 30 minutes or 24 hours and 30 minutes.</li><li class="ulitem"><b class="uicontrol">Recurring?</b>&nbsp;- You can select this check box to schedule the activity to recur. This will enable the next field.</li><li class="ulitem"><b class="uicontrol">Recurrence</b>&nbsp;- If the schedule is to recur more than once, you must specify the count in this field.</li></ul><p class="paragraph"></p>
+<p class="subheading">Date Criteria settings</p>
+<p class="paragraph">If the&nbsp;<b class="uicontrol">Date Criteria</b>&nbsp;tab is clicked, it displays the user interface shown in the image below. Here, you can specify a date-based schedule.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51238" src="51238.png" class="embeddedimage100%scalinglive" alt="" height="153" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51239" src="51239.png" class="embeddedimage100%scalinglive" alt="" height="254" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">This window has the following controls for setting the date criteria schedule.</p>
+<ul class="ulitem"><li class="ulitem">The XML Variable drop down - You can select the XML variable from the list.</li><li class="ulitem">The XVAR drop down - You can select the date value from this list.</li><li class="ulitem">The schedule criteria drop down - You can select one of two options in this drop down - &quot;Initiate before&quot; or &quot;Initiate after&quot;.</li><li class="ulitem">The time interval field - You can specify the time interval in number of days in this field.</li></ul><p class="paragraph"><b class="uicontrol">Update</b>&nbsp;- Click this option to save the newly added schedule settings.</p>
+<p class="paragraph"><b class="uicontrol">Close</b>&nbsp;- Click this option to close the property window without saving the newly added schedule settings.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="scheduler1.html" target="_self">Scheduler Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

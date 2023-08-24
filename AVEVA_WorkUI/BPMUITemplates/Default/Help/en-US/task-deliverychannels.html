@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Task - Delivery Channels </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601949" class="heading4">Task - Delivery Channels</h4>
+<p class="subheading">Purpose</p>
+<p class="paragraph">The purpose of this chapter is to describe the feature of WorkflowStatus Form &nbsp;of Delivery Channels property under the category Configuration of any human activity available in&nbsp;AVEVA Work Tasks.</p>
+<p class="paragraph"><strong class="strong">Description:</strong>&nbsp;This feature enables&nbsp;us to view the status of the workflow in the work item list in the graphical form.&nbsp;[Optional]</p>
+<ol class="step"><li class="step">Select the Human Activity.</li><li class="step">Click the <b class="uicontrol">Delivery Channels Property</b>.<p class="stepinfo">This will open a window like the one shown below.</p>
+<p class="stepinfo">&nbsp;&nbsp;<br>&nbsp;<img id="f525232" src="525232.png" class="embeddedimage95%scalinglive" alt="Task-DeliveryChannel" height="250.8" width="527.25" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Right-click <b class="uicontrol">WebWorkList</b> to display the context menu with the&nbsp;<b class="uicontrol">Add Instance of Workflowstatus</b>&nbsp;option as shown below.<p class="stepinfo"></p>
+<p class="stepinfo"> <img id="f525233" src="525233.png" class="embeddedimage95%scalinglive" alt="Task-DeliveryChannel-WFStatus" height="171.95" width="530.1" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Set the Properties for the Execution View Status Graphical view. </li><li class="step">Click <b class="uicontrol">Save</b>.</li><li class="step">If you want to Set the workflowstatus form as the default instance, right-click <b class="uicontrol">WorkflowStatus1</b>, and select&nbsp;the&nbsp;<b class="uicontrol">Set as default instance</b>&nbsp;option from the context menu.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f525234" src="525234.png" class="embeddedimage95%scalinglive" alt="Task-DeliveryChannel-SetDefault" height="222.3" width="513.95" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click <b class="uicontrol">Save</b>&nbsp;and&nbsp;<b class="uicontrol">Save Channels</b>.</li></ol><p class="paragraph"><strong class="strong">Output:</strong></p>
+<p class="paragraph">Now, when you click any row in the Work items list, you will find this&nbsp;Execution view page being displayed as the detailed view if you set it as a default instance.</p>
+<p class="paragraph">Otherwise, workflow status form will appear in the context menu of each row in the Work items list and you can open the execution view by selecting it from the context menu</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="taskaction1.html" target="_self">Task Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

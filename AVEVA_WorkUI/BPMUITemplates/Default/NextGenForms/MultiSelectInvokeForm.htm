@@ -1,0 +1,308 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Multi Select Invoke Form</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var workItemViewAndViewModel;
+        var dataModel = null;
+        var flag = true;
+        var skeltaUtils = null;
+        var logger = null;
+        var itemId;
+        var paramApplicationName = "";
+        var paramUserId = "";
+        var paramFormName = "";
+        var paramVersionStamp = "";
+
+        var paramExeDetailId = "";
+        var paramWfName = "";
+        var paramChannelName = "";
+        var paramWorkItemId = "";
+        var paramVirActorId = "";
+        var paramGroupMode = "";
+        var paramEnableHold = "";
+        var paramEnableMoveNextPreviousWorkItem = "";
+        var paramEnableAutoMoveWorkItem = "";
+        var paramFormType = "";
+
+        var deviceOS = "Web";
+        var paramListName = "Forms List";
+        var extFormParam = {};
+        var maximizeOnLoad;
+        var popupWindow = null;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                document.title = skelta.localize.getString("FormInvokeFormTitle");
+                skeltaUtils = skelta.forms.utilities;
+                logger = skeltaUtils.getLogger();
+
+                window.onbeforeunload = window.parent.opener.CheckMultiSelectInvokeFormClosed;
+
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                skelta.DeviceOS = "Web";
+                skelta.updateNonBindedData = false;
+
+                paramApplicationName = skeltaUtils.getUrlParameterValue(window, 'appN');
+                paramUserId = skeltaUtils.getUrlParameterValue(window, 'uId');
+                paramFormName = skeltaUtils.getUrlParameterValue(window, 'fName');
+                paramVersionStamp = skeltaUtils.getUrlParameterValue(window, 'vStamp');
+                itemId = skeltaUtils.getUrlParameterValue(window, 'formId');
+                skelta.userContext.setUserContextFor("appN", paramApplicationName);
+                skelta.userContext.setUserContextFor("uId", paramUserId);
+                skelta.userContext.setUserContextFor("fName", paramFormName);
+                skelta.userContext.setUserContextFor("vStamp", paramVersionStamp);
+                skelta.userContext.setUserContextFor("itemId", itemId);
+
+                paramExeDetailId = skeltaUtils.getUrlParameterValue(window, 'exeDetailId');
+                paramWfName = skeltaUtils.getUrlParameterValue(window, 'wfName');
+                paramChannelName = skeltaUtils.getUrlParameterValue(window, 'channelName');
+                paramWorkItemId = skeltaUtils.getUrlParameterValue(window, 'workItemId');
+                paramVirActorId = skeltaUtils.getUrlParameterValue(window, 'virActorId');
+                paramGroupMode = skeltaUtils.getUrlParameterValue(window, 'groupMode');
+                paramEnableHold = skeltaUtils.getUrlParameterValue(window, 'enableHold');
+                paramEnableMoveNextPreviousWorkItem = skeltaUtils.getUrlParameterValue(window, 'enableMoveNextPreviousWorkItem');
+                paramEnableAutoMoveWorkItem = skeltaUtils.getUrlParameterValue(window, 'enableAutoMoveWorkItem');
+                paramFormType = skeltaUtils.getUrlParameterValue(window, 'formType');
+                maximizeOnLoad = skeltaUtils.getUrlParameterValue(window, 'maximizeOnLoad');
+                skelta.DeviceOS = skeltaUtils.getUrlParameterValue(window, 'dType');
+
+                skeltaUtils.loadPageDefault();
+                loadViewAndViewModelFromServer();
+            }
+            catch (exception)
+            {
+                var errMsg = skelta.localize.getString("FormNGFViewFormPageError").replace("<@applicationName@>", paramApplicationName).replace("<@formName@>", paramFormName).replace("<@formVersion@>", paramVersionStamp)
+                skeltaUtils.showError(document.title, errMsg, null, exception.message);
+                logger.logError(errMsg + '\n' + exception.message);
+                skeltaUtils.pageLoadComplete("");
+            }
+        });
+
+        function sf_WIFormMaximize()
+        {
+            window.top.moveTo(0, 0);
+            window.top.resizeTo(screen.availWidth, screen.availHeight);
+        }
+
+        function onWorkItemSubmit(inputParameterObject, eventArgs)
+        {
+            var throlledFunc = skeltaUtils.throttle(function ()
+            {
+                var convJSONXml = new X2JS();
+                var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+                var buttonText = (skeltaUtils.isUndefined(eventArgs.buttonText)) ? "" : eventArgs.buttonText;
+
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "userId": paramUserId,
+                    "applicationName": paramApplicationName,
+                    "xmlInstance": val,
+                    "clickedButtonText": buttonText,
+                    "formName": paramFormName,
+                    "formVersion": paramVersionStamp,
+                    "wfName": paramWfName,
+                    "channelName": paramChannelName,
+                    "virActorId": paramVirActorId,
+                    "formsParameters": (skeltaUtils.isUndefined(extFormParam)) ? {} : extFormParam
+                });
+
+                skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/SubmitMultiSelectInvokeFormWorkItem", "application/json; charset=utf-8", jsonHelper, "json", workItemSubmitSucceeded, workItemSubmitFailed, null);
+            }, 1000, { leading: false });
+
+            throlledFunc();
+        }
+
+        function workItemSubmitSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true)
+            {
+                try
+                {
+                    if (skelta.DeviceOS === "Win8")
+                    {
+                        var msgObj = { msgData: "", msgType: "" };
+                        msgObj.msgData = "You have successfully approved the request";
+                        msgObj.msgType = "OK";
+                        window.parent.postMessage(JSON.stringify(msgObj), "*");
+                    }
+                    else if (skelta.DeviceOS === "iPhone" || skelta.DeviceOS === "iPad")
+                    {
+                        skeltaUtils.closeForm();
+                    }
+                    else if (skeltaUtils.isUndefined(skeltaUtils.getUrlParameterValue(window, 'openInIframe')))
+                    {
+                        if (typeof (window.parent.opener) != "undefined")
+                        {
+                            window.parent.opener.window.RefreshGrid();
+                            skeltaUtils.closeForm();
+                        }
+                        else
+                        {
+                            window.parent.top.RefreshGridwithoutclose();
+                        }
+                    }
+                }
+                catch (err)
+                {
+                    logger.logError(err);
+                    if (!skeltaUtils.isUndefined(window.parent.opener))
+                    {
+                        window.parent.close();
+                    }
+                    else
+                    {
+                        window.parent.top.RefreshGridwithoutclose();
+                    }
+                }
+            }
+            else
+            {
+                skeltaUtils.showError(document.title, res.ErrorMessage);
+                logger.logError(res.ErrorMessage);
+            }
+        }
+
+        function workItemSubmitFailed(result)
+        {
+            var errMsg = skelta.localize.getString("FormNGFWorkItemSubmitError").replace("<@applicationName@>", paramApplicationName).replace("<@formName@>", paramFormName).replace("<@formVersion@>", paramVersionStamp).replace("@execuitonDtlsId@>", paramExeDetailId);
+            skeltaUtils.showError(document.title, errMsg, null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(errMsg + '\n' + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        function loadViewAndViewModelFromServer()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "applicationName": paramApplicationName,
+                "userId": paramUserId,
+                "formName": paramFormName,
+                "versionStamp": paramVersionStamp,
+                "listName": paramListName,
+                "deviceType": skelta.DeviceOS
+            });
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetViewAndViewModel", "application/json; charset=utf-8", jsonHelper, "json", getViewAndViewModelSucceeded, getViewAndViewModelFailed, null, false);
+        }
+
+        function getViewAndViewModelSucceeded(resultData)
+        {
+            try
+            {
+                var result = $.parseJSON(resultData.d);
+                var viewAndViewModel = result.ViewAndViewModel;
+                if (viewAndViewModel.startsWithString("{\"Result\":null"))
+                {
+                    var res = $.parseJSON(viewAndViewModel);
+                    logger.logError(res.ErrorMessage);
+                }
+                else
+                {
+                    workItemViewAndViewModel = viewAndViewModel;
+                    var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                        "applicationName": paramApplicationName,
+                        "exeDetailId": paramExeDetailId,
+                        "workflowName": paramWfName,
+                        "channelName": paramChannelName,
+                        "workItemId": paramWorkItemId,
+                        "virtualActorId": paramVirActorId,
+                        "formType": paramFormType,
+                        "userId": paramUserId
+                    });
+                    skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetInstanceXmlWorkItem", "application/json; charset=utf-8", jsonHelper, "json", getInstanceXmlSucceeded, getInstanceXmlFailed, getInstanceXmlCompleted, false);
+                }
+            }
+            catch (exception)
+            {
+                var errMsg = skelta.localize.getString("FormNGFViewFormPageInstanceXmlError").replace("<@applicationName@>", paramApplicationName).replace("<@formName@>", paramFormName).replace("<@formVersion@>", paramVersionStamp).replace("<@execuitonDtlsId@>", paramExeDetailId);
+                skeltaUtils.showError(document.title, errMsg, null, exception.message);
+                logger.logError(errMsg + '\n' + exception.message);
+                skeltaUtils.pageLoadComplete("");
+            }
+        }
+
+        function getViewAndViewModelFailed(result)
+        {
+            var errMsg = skelta.localize.getString("FormNGFViewFormPageError").replace("<@applicationName@>", paramApplicationName).replace("<@formName@>", paramFormName).replace("<@formVersion@>", paramVersionStamp)
+            skeltaUtils.showError(document.title, errMsg, null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(errMsg + '\n' + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlCompleted()
+        {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d), viewModelObject;
+            if (res.IsSuccess === true)
+            {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(paramApplicationName, itemId, paramVersionStamp);
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res.Result));
+                //dataModel = skeltaUtils.getJSONObjectFromXml(res.Result);
+                ////document.getElementById("viewAndViewModel").value = workItemViewAndViewModel;
+                //Assign form params
+                //viewModelObject.NF1.formParameters = $.parseJSON(res.FormParameters);
+                extFormParam = $.parseJSON(res.FormParameters);
+                $("#viewModel").html(workItemViewAndViewModel);
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+                viewModelObject.onSave.subscribeEvent(onWorkItemSubmit);
+                viewModelObject.onCancel.subscribeEvent(skeltaUtils.closeForm);
+            }
+            else
+            {
+                skeltaUtils.showError(document.title, res.ErrorMessage);
+                logger.logError(res.ErrorMessage);
+            }
+
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            if (res.IsSuccess === true)
+            {
+                viewModelObject.topLevelForm.initializeFocus(0);
+            }
+        }
+
+        function getInstanceXmlFailed(result)
+        {
+            var errMsg = skelta.localize.getString("FormNGFViewFormPageInstanceXmlError").replace("<@applicationName@>", paramApplicationName).replace("<@formName@>", paramFormName).replace("<@formVersion@>", paramVersionStamp).replace("<@execuitonDtlsId@>", paramExeDetailId);
+            skeltaUtils.showError(document.title, errMsg, null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(errMsg + '\n' + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

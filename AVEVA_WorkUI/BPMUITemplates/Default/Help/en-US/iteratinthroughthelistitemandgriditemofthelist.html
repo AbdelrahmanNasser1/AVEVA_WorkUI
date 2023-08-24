@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Iterating through the List Item and Grid Item of the List </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t601930" class="heading6">Iterating through the List Item and Grid Item of the List</h6>
+<p class="paragraph">AVEVA Work Tasks allows you to loop through the list items and grid items of a list. A XML List Iterator type XML variable can be used to iterate through the list items, where XML Iterator type XML variable can be used to iterate through the grid items of a list. This feature can be explained with the help of a Purchase Order list scenario.</p>
+<p class="paragraph">The Purchase Orders contains details like:</p>
+<ul class="ulitem"><li class="ulitem">Reference Number</li><li class="ulitem">Purchase Order Date</li><li class="ulitem">Raised By User</li><li class="ulitem">Deliver To User</li><li class="ulitem">Status</li><li class="ulitem">Purchase Order Details<ul class="ulsubitem"><li class="ulsubitem">Item Name</li><li class="ulsubitem">Quantity</li><li class="ulsubitem">Unit Price</li><li class="ulsubitem">Item Total</li></ul></li><li class="ulitem">Total Purchase amount</li></ul><p class="paragraph">Now you want to loop through the approved purchase order items (items with status as Approved) as well as its child items.</p>
+<p class="procedureheading">To iterate through the list item and grid item of the list</p>
+<ol class="step"><li class="step">Log on to the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;and go to&nbsp;<b class="uicontrol">Workflow Designer</b>. <p class="note"><strong class="notelabel">Note</strong>: As a first step, you need to create an XML List type XML variable for the Purchase Orders list. If the variable is not created, follow the below mentioned procedure to create. <br></p>
+</li><li class="step">Click the edit icon in the&nbsp;<b class="uicontrol">XMLVariables</b>&nbsp;property from the&nbsp;<b class="uicontrol">Start</b>&nbsp;Activity Properties.</li><li class="step">Click&nbsp;<b class="uicontrol">New Variable</b>&nbsp;to add a new variable.</li><li class="step">Enter the variable name as&nbsp;<b class="uicontrol">purchaseorders</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">XML List</b>&nbsp;from the&nbsp;Type&nbsp;drop-down list.</li><li class="step">Enter the List name or click the&nbsp;<img id="f50397" src="50397.png" class="embeddedimage100%scalinglive" alt="" height="33" width="34" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to select the list. In this case, select Purchase Orders list.</li><li class="step">Select the scope from the&nbsp;<b class="uicontrol">ListItem Scope Options</b>. Later, you can change the scope of the variable to List Query to query the approved purchase orders using List Navigator activity.</li><li class="step">Click&nbsp;<b class="uicontrol">Save Variable</b>. A message is displayed saying 'Variable Updated'.</li><li class="step">Now, you need to create XML List Iterator type XML variable to iterate through the approved purchase order items. Click&nbsp;<b class="uicontrol">New Variable</b>&nbsp;from the &nbsp;XMLVariable screen.</li><li class="step">Type the variable name as&nbsp;<b class="uicontrol">purchaseorderiterator</b>.</li><li class="step">Select<b class="uicontrol">&nbsp;XML List Iterator</b>&nbsp;from the&nbsp;<b class="uicontrol">Type</b>&nbsp;drop-down list.</li><li class="step">Select&nbsp;<b class="uicontrol">purchaseorders</b>&nbsp;from the&nbsp;<b class="uicontrol">List XML Variable</b>&nbsp;drop-down list.&nbsp;<br>&nbsp;<img id="f50441" src="50441.png" class="embeddedimage100%scalinglive" alt="" height="638" width="538" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">Save Variable</b>. A message is displayed saying 'Variable Updated'.</li><li class="step">You need to create XML Iterator type XML variable for the purchaseorderiIterator (XML List Iterator type) XML variable to iterate through the child nodes of the currently iterating purchase order item. Click New Variable from the XML Variable screen.</li><li class="step">Type the variable name as&nbsp;<b class="uicontrol">purchaseorderdetails</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">XML Iterator</b>&nbsp;from the&nbsp;<b class="uicontrol">Type</b>&nbsp;drop-down list.</li><li class="step">Select&nbsp;<b class="uicontrol">purchaseorderiterator</b>&nbsp;from the&nbsp;<b class="uicontrol">XML Variable</b>&nbsp;drop-down list.</li><li class="step">From the&nbsp;<b class="uicontrol">Node Select</b>&nbsp;drop-down List, select the repeating node that is, PurchaseOrderDetails.</li><li class="step">Click&nbsp;<b class="uicontrol">Save Variable</b>. A message is displayed saying 'Variable Updated'. Use&nbsp;<b class="uicontrol">List Navigator</b>&nbsp;activity to query the approved purchase order items. </li><li class="step">In this case, the following query is used to retrieve the approved purchase orders.<p class="stepinfo"><b class="uicontrol">SKEListItemDataNV(t1).nvarchar3 = 'Approved'</b>, where&nbsp;<b class="uicontrol">SKEListItemDataNV</b>&nbsp;is the table used to store the list items and&nbsp;<b class="uicontrol">nvarchar3&nbsp;</b>is the table column mapped to the Status field.</p>
+<p class="stepinfo">&nbsp;Use ForEach-Loop and Next Loop activities to loop through the approved purchase order items.</p>
+</li><li class="step">Select&nbsp;<b class="uicontrol">purchaseordersiterator&nbsp;</b>from the<b class="uicontrol">&nbsp;XML Iterator</b>&nbsp;drop-down list of ForEach Loop activity.</li><li class="step">Use any action as per the requirement to retrieve the data. You need to access the value of the parent nodes from the purchaseordersiterator XML variable.<p class="stepinfo">Use another set of ForEach-Loop and Next activities within the existing loop to iterate through the grid items (PurchaseOrderDetails).</p>
+</li><li class="step">Select purchaseordedetails from the XML Iterator drop-down list of ForEach Loop activity.</li><li class="step">Use any action as per the requirement to retrieve the data. You need to access the value of the parent nodes from the purchaseorderdetails XML variable.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="'XMLList'XMLVariableScenarios.html" target="_self">'XML List'  XML Variable Scenarios</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

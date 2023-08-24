@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> ForEach-Loop Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601978" class="heading3">ForEach-Loop Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The For-Each Loop Activity is used to loop an activity through a collection within an XMLIterator Variable. It allows repeated execution of an activity or group of activities. It must always be used along with the Next Loop Activity.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The properties of the For-Each Loop activity can be configured in the Activity Properties window for that activity.</p>
+<p class="paragraph">To access Activity Properties, do one of the following:</p>
+<ul class="ulitem"><li class="ulitem">Click <b class="uicontrol">Activity Properties</b> in the <b class="uicontrol">Process Designer Tool Bar</b></li><li class="ulitem">Right-click and select <b class="uicontrol">Activity Properties</b></li></ul><p class="paragraph">Activity Properties for this activity are organized under:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50452" src="50452.png" class="embeddedimage100%scalinglive" alt="" height="491" width="261" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">For-Each Loop Activity Properties</p>
+<p class="paragraph"></p>
+<p class="subheading"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">Specify the name and description for the activity in this group.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - Enter the name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - Enter a brief description for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The Configuration group has a single property for selection of the XMLIterator Variable to be looped through.</p>
+<p class="paragraph"><b class="uicontrol">XMLIterator</b> - Select the XML Iterator variable to be looped through. All XMLIterator variables as declared in Start activity are available for selection.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph"><b class="uicontrol">Execution</b> - Select <b class="uicontrol">Serial</b> if the activity has to be looped through each item in a collection in sequence. An activity will be created for an item only after completion of the activity for the preceding item. Select <b class="uicontrol">Parallel</b> to simultaneously create activities involving each item. This field defaults to <b class="uicontrol">Serial</b>.  Also see Example of Serial Execution.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the action is to be executed.)</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b>&nbsp;- This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This propety needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Looping Behavior</b></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.  The looping option for this activity is Completed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Exception Behavior</b></p>
+<p class="paragraph">These options of AVEVA AVEVA Work Tasks 2009 have now been integrated with Raise Error on Unhandled Linked Output in the latest version of the product.</p>
+<p class="paragraph"><b class="uicontrol">Property Type:</b> By default is set as <b class="uicontrol">NO</b></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a> for more details.</p>
+<p class="paragraph"><strong class="strong">Activity outputs</strong>:</p>
+<p class="paragraph">The For-Each Loop Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Step</b>: Displayed to indicate the loop step</p>
+<p class="paragraph"><b class="uicontrol">Loop End</b>: Displayed when the end of the loop is reached</p>
+<p class="paragraph"><strong class="strong">Example of XMLIterator Variable in For-Each Loop</strong></p>
+<p class="paragraph">In this example, the XMLIterator Variable is used to get approval from all managers in the Managers.XML file containing the list of all users who are managers.</p>
+<p class="paragraph"><strong class="strong">Managers.XML file</strong></p>
+<p class="codeblock1">&lt;Managers&gt;</p>
+<p class="codeblock1">  &nbsp;&lt;Users&gt;</p>
+<p class="codeblock1">          &lt;User id=1&gt;</p>
+<p class="codeblock1">           &nbsp;&lt;Name&gt;John&lt;/name&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p class="codeblock1">          &nbsp;&lt;/User&gt;</p>
+<p class="codeblock1">          &lt;User id=2&gt;</p>
+<p class="codeblock1">           &nbsp;&lt;Name&gt;Jim&lt;/name&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p class="codeblock1">          &lt;/User&gt;</p>
+<p class="codeblock1">          &lt;User id=3&gt;</p>
+<p class="codeblock1">           &nbsp;&lt;Name&gt;Victor&lt;/name&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p class="codeblock1">          &lt;/User&gt;</p>
+<p class="codeblock1">          &lt;User id=4&gt;</p>
+<p class="codeblock1">           &nbsp;&lt;Name&gt;Andy&lt;/name&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p class="codeblock1">          &lt;/User&gt;</p>
+<p class="codeblock1">  &nbsp;&lt;/Users&gt;</p>
+<p class="codeblock1">&lt;/ Managers &gt;&nbsp;</p>
+<p class="paragraph"><strong class="strong">Step 1:</strong>&nbsp;XMLIterator Variable is defined for users.&nbsp;The node&nbsp;Users&nbsp;holds the collection of managers.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51124" src="51124.png" class="embeddedimage100%scalinglive" alt="" height="379" width="569" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><strong class="strong">Step 2:</strong>&nbsp;The Approval activity is set within a For-Each Loop activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51125" src="51125.png" class="embeddedimage100%scalinglive" alt="" height="587" width="239" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><strong class="strong">Step 3:</strong>&nbsp;The XMLIterator Variable Users is defined in XMLIterator field of For-Each Loop properties.&nbsp;The Execution type is set to Parallel as the approval is to be processed simultaneously by all approvers.</p>
+<p class="paragraph"></p>
+<p class="paragraph">&nbsp;<img id="f51126" src="51126.png" class="embeddedimage100%scalinglive" alt="" height="138" width="243" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 4:</strong>&nbsp;The XMLIterator Variable Users is specified in the condition for selecting actors for the approval.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51127" src="51127.png" class="embeddedimage100%scalinglive" alt="" height="249" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Actor Selection for Approval Activity</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output:</strong>&nbsp;When the above workflow is invoked,&nbsp;Workflow Engine resolves &quot;XMLVariables.user.users.ID&quot;.  It gets the ID of each manager and assigns the task to that manager.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="exampleofserialexecution.html" target="_self">Example of Serial Execution</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

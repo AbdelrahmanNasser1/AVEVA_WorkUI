@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<Scheduler xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Application>TestApp
+</Application>
+<User>Martin
+</User>
+<WorkflowName>TestWF
+</WorkflowName>
+<WorkflowVersion>1
+</WorkflowVersion>
+<StartDate>01-01-2008
+</StartDate>
+<EndDate>01-01-2008
+</EndDate>
+<StartTime>11:00
+</StartTime>
+<ScheduleTask>Daily
+</ScheduleTask>
+<RepeateTask>Minutes
+</RepeateTask>
+</Scheduler>

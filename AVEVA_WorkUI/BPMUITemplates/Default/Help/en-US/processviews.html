@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> BAM Process Execution View </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t483102" class="heading3">BAM Process Execution View</h3>
+<p class="paragraphimage">The <b class="uicontrol">Process Execution Views</b> show the workflow execution status graphically. You can view the <b class="uicontrol">Execution View</b> window by double-clicking a top level row in any of the reports. The View represents the workflow up to the activity or execution status where the View was opened.</p>
+<p class="paragraph">The toolbar at the top of the Execution View window has the following tools:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Full Screen</b> - Click this tool to toggle between normal and full-screen modes</li><li class="ulitem"><b class="uicontrol">Zoom</b> - Use this tool to zoom in and out of the process definition image</li><li class="ulitem"><b class="uicontrol">Refresh</b> - Use this tool to refresh the image</li><li class="ulitem"><b class="uicontrol">Resume paused workflows</b> - Use this tool to resume paused workflows</li><li class="ulitem"><b class="uicontrol">Abort executing workflows</b> - Use this tool to abort workflows that are being executed</li><li class="ulitem"><b class="uicontrol">Pause executing workflows</b> - Use this tool to pause workflows that are being executed</li><li class="ulitem"><b class="uicontrol">Resume workflows finished with errors</b> - Use this tool to resume paused workflows</li></ul><p class="paragraph"><b class="uicontrol">Tip</b>: The Process Execution Views are very useful in navigating through large process definitions. You can click any activity in the View window to open the process definition in the Process Designer, at that point.</p>
+<p class="note"><strong class="notelabel">Note:</strong> A green circle, with a white check mark superimposed, is used to denote a completed activity or process. It is displayed on the top edge of the activity icon for all completed activities. This icon is displayed at the top right corner of the page on the title bar to denote a completed process.</p>
+<p class="paragraph">There are three tabs at the bottom to navigate between the following three views:</p>
+<ul class="ulitem"><li class="ulitem">Analyst's View</li><li class="ulitem">Progress View</li><li class="ulitem">Execution View</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Analyst's View</strong> </p>
+<p class="paragraph">The Analyst's View is a simplified view of the process design intended for end-users. It shows the process model that was saved as the Business Analyst's View after the business process modeling was completed and before the automation steps were added in the Process Designer. At this stage, the model would have been saved to a file. This file should be assigned to the <b class="uicontrol">Analyst's Process Model Filename for Execution View</b> property of the Start activity to enable this view. In the following example shown, the Analyst's View has been opened by double-clicking the first row, which has been highlighted.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46908" src="46908.png" class="embeddedimage100%scalinglive" alt="" height="293" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">When you hover the cursor over a workflow activity in the Process execution view screen, it shows the Action Details, Best Time, Slow Time, Average Time taken by the activity for a workflow instance, as shown in the following image.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46909" src="46909.jpg" class="embeddedimage100%scalinglive" alt="" height="389" width="589" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><strong class="strong">Progress View</strong></p>
+<p class="paragraph">The <b class="uicontrol">Progress View</b> shows the workflow progress on the <b class="uicontrol">Process Diagram</b>, up to the point that the <b class="uicontrol">Execution View</b> is selected. It consists of the execution view mapped on to the Process Diagram. You can click on a completed activity to view the <b class="uicontrol">Step Details Window</b>. You can view the step details, variables, contents, and content (raw content passed to the workflow) using the corresponding tabs. The links that have already been traversed are represented by thick lines.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46910" src="46910.jpg" class="embeddedimage100%scalinglive" alt="" height="221" width="388" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Execution View</b> </p>
+<p class="paragraph">The Execution View shows the workflow execution status up to the point that the <b class="uicontrol">Execution View</b> is selected. This View is identical to the Graphical View of Workflow Execution that was available in the Report Control of the earlier versions.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46911" src="46911.jpg" class="embeddedimage100%scalinglive" alt="" height="194" width="340" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">When you click the <b class="uicontrol">Approval</b> activity, the <b class="uicontrol">Details</b> page appears and displays the Step Details of the activity. The details screen shows information under the following five tabs - <b class="uicontrol">Step Details</b>, <b class="uicontrol">Variables</b>, <b class="uicontrol">Contents</b>, <b class="uicontrol">Content</b>, and <b class="uicontrol">Submitted Form Details</b>.</p>
+<p class="paragraph">In the <b class="uicontrol">Step Details</b> tab, the user can view all the details related to the <b class="uicontrol">Approval</b> activity, such as the time of the action, type of action, name of the actor to whom this action has been assigned to, and the action performed by the actor</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46912" src="46912.jpg" class="embeddedimage100%scalinglive" alt="" height="342" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">When you click the<b class="uicontrol"> Variables</b> tab, the  screen showing the details of all the variables used in this activity will be displayed.  You can view the runtime values of the XML variable by clicking the <b class="uicontrol">Click to view</b> link.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46913" src="46913.jpg" class="embeddedimage100%scalinglive" alt="" height="342" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><img id="f46914" src="46914.png" class="embeddedimage100%scalinglive" alt="" height="306" width="558" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">When you click the <b class="uicontrol">Contents</b> tab, the contents specified in the activity will be displayed. The Contents are the data which can be passed to the workflow while calling Client. Execute API as an XML. They have to be declared in the Start activity along with the Xpath expression.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46915" src="46915.png" class="embeddedimage100%scalinglive" alt="" height="344" width="530" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The raw format of the information given in the <b class="uicontrol">Contents</b> tab will be displayed in the <b class="uicontrol">Content</b> tab.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46916" src="46916.png" class="embeddedimage100%scalinglive" alt="" height="241" width="543" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">When you click the <b class="uicontrol">Content</b> tab, the data which will be passed to the workflow while calling <b class="uicontrol">Client</b>.</p>
+<p class="paragraph">Execute API as an XML will be displayed.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46917" src="46917.png" class="embeddedimage100%scalinglive" alt="" height="272" width="523" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

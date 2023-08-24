@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form Activity Email Template </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601962" class="heading5">Invoke Form Activity Email Template</h5>
+<p class="paragraph">AVEVA Work Tasks Engine accesses the approval activity's email template from the following physical path:</p>
+<p class="paragraph">[AVEVA Work Tasks Installed Path]\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Templates\FormEmailTemplate\InvokeFormEmail.html</p>
+<p class="paragraph">This template can be modified as per the UI requirement. The mails received by the actor is based on the above mentioned mail template.</p>
+<p class="paragraph">Below is the default email template text for the&nbsp;<b class="uicontrol">InvokeFormEmail.html</b>&nbsp;file of the mail received by the actor.</p>
+<p class="paragraph"><b class="uicontrol">InvokeFormEmail.html</b></p>
+<p class="codeblock1">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</p>
+<p class="codeblock1">&lt;html &gt;</p>
+<p class="codeblock1">&lt;head&gt;</p>
+<p class="codeblock1">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;</p>
+<p class="codeblock1">&lt;title&gt;&lt;/title&gt;</p>
+<p class="codeblock1">&lt;style type=&quot;text/css&quot;&gt;</p>
+<p class="codeblock1">&lt;!--</p>
+<p class="codeblock1">.style1 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 14px;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style2 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 11px;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style4 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 15px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Normal;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.Username {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 13px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Bold;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.subject {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 13px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Bold;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style8 {</p>
+<p class="codeblock1">      &nbsp;color: #FF3300;</p>
+<p class="codeblock1">      &nbsp;font-weight: bold;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">style9 {font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">--&gt;</p>
+<p class="codeblock1">&lt;/style&gt;</p>
+<p class="codeblock1">&lt;/head&gt;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">&lt;body&gt;</p>
+<p class="codeblock1">&lt;table width=&quot;700&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;1&quot; bgcolor=&quot;#CCCCCC&quot; &gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td valign=&quot;top&quot;&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; bgcolor=&quot;#FFFFFF&quot;&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td&gt;&lt;p&gt;&lt;span class=&quot;Username&quot;&gt;@@Email_Salutation@@&nbsp;&lt;%#ActorName%&gt;&lt;/span&gt;, &lt;/p&gt;</p>
+<p class="codeblock1">        &lt;p class=&quot;style2&quot;&gt;&lt;%#Body%&gt;&lt;/p&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &nbsp;&lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;   &lt;/td&gt;</p>
+<p class="codeblock1">  &nbsp;&lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#EBEBEB&quot;&gt;&lt;span class=&quot;style4&quot;&gt;@@Email_TaskInformation@@&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td valign=&quot;top&quot; bgcolor=&quot;#FFFFFF&quot;&gt;</p>
+<p class="codeblock1">    &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;</p>
+<p class="codeblock1">                    &lt;tr&gt;</p>
+<p class="codeblock1">                        &lt;td width=&quot;50%&quot;&gt;</p>
+<p class="codeblock1">                            &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; bgcolor=&quot;#999999&quot;&gt;</p>
+<p class="codeblock1">                                &lt;tr&gt;</p>
+<p class="codeblock1">                                    &lt;td&gt;</p>
+<p class="codeblock1">                                        &lt;table width=&quot;100%&quot; border=&quot;1&quot; cellpadding=&quot;6&quot; cellspacing=&quot;0&quot; bordercolor=&quot;#CCCCCC&quot;</p>
+<p class="codeblock1">                                            bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td width=&quot;21%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Email_TaskName@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td width=&quot;79%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                  &nbsp;&nbsp;&lt;%#TaskName%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Email_Description@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                  &nbsp;&nbsp;&lt;%#Description%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Email_Submitedby@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                  &nbsp;&nbsp;&lt;%#Submitedby%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Email_SubmitedOn@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                  &nbsp;&nbsp;&lt;%#SubmitedOn%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;                                           </p>
+<p class="codeblock1">                                        &lt;/table&gt;</p>
+<p class="codeblock1">                                    &lt;/td&gt;</p>
+<p class="codeblock1">                                &lt;/tr&gt;</p>
+<p class="codeblock1">                            &lt;/table&gt;</p>
+<p class="codeblock1">                        &lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                &lt;/table&gt;</p>
+<p class="codeblock1">      &nbsp;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#FFFFFF&quot;&gt;&lt;span class=&quot;style2&quot;&gt;&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/Form/WorkItemViewEmail.aspx?&lt;%#QueryString%&gt;&quot;&gt;@@Click here@@&lt;/a&gt; @@to view the form@@&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td class=&quot;style2&quot;&gt;&lt;span class=&quot;style2&quot;&gt;@@Or@@ &lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td class=&quot;style2&quot;&gt;&lt;span class=&quot;style2&quot;&gt;@@Copy the below mentioned link in the browser area to view the form@@&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#FFFFFF&quot;&gt;&lt;span class=&quot;style2&quot;&gt;&lt;%#IntranetUrl%&gt;/Form/WorkItemViewEmail.aspx?&lt;%#QueryString%&gt;&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr bgcolor=&quot;#EBEBEB&quot;&gt;         </p>
+<p class="codeblock1">        &lt;td align=&quot;right&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">        &lt;span&gt;&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/Emaildocview.aspx?&lt;%#DocViewQueryString%&gt;&quot;&gt;@@Email_Document_ViewURLText@@&lt;/a&gt;&lt;/span&gt;</p>
+<p class="codeblock1">        |</p>
+<p class="codeblock1">        &lt;span&gt;&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/EmaiExecutionView.aspx?&lt;%#ExecutionViewQueryString%&gt;&quot;&gt;@@Email_Execution_ViewURLText@@&lt;/a&gt;&lt;/span&gt;</p>
+<p class="codeblock1">        &lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;     </p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;@@Email_Signature@@&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">&lt;/table&gt;</p>
+<p class="codeblock1">&lt;/body&gt;</p>
+<p class="codeblock1">&lt;/html&gt;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">&nbsp;</p>
+<p class="paragraph">The following figure shows the Invoke Form activity Email template:</p>
+<p class="paragraph"><img id="f50940" src="50940.png" class="embeddedimage100%scalinglive" alt="" height="429" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><strong class="notelabel">Note:</strong></p>
+<p class="paragraph">The&nbsp;QueryString&nbsp;placeholder is mandatory and should&nbsp;not&nbsp;be modified.</p>
+<p class="codeblock1">&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/Form/WorkItemViewEmail.aspx?&lt;%#QueryString%&gt;&quot;&gt;@@Click here@@&lt;/a&gt;</p>
+<p class="paragraph">There are four types of placeholders. They are&nbsp;:</p>
+<p class="codeblock1">&lt;%#LocalUrl%&gt;,&nbsp;&lt;%#IntranetUrl%&gt;,&nbsp;&lt;%#InternetUrl%&gt;&nbsp;and&nbsp;&lt;%#ApplicationPath%&gt;. &nbsp;You should use at least any one of these placeholders based on the requirement. &nbsp;By default the&nbsp;&lt;%#IntranetUrl%&gt;&nbsp;is used as shown below.</p>
+<p class="codeblock1">&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/Form/WorkItemViewEmail.aspx?&lt;%#QueryString%&gt;&quot;&gt;@@Click here@@&lt;/a&gt;</p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><strong class="strong">Document View:</strong></p>
+<p class="paragraph">When you click the&nbsp;<b class="uicontrol">Document View</b>&nbsp;link, the document view with execution details is displayed as shown in the following figure.</p>
+<p class="paragraph"><img id="f50941" src="50941.png" class="embeddedimage100%scalinglive" alt="" height="365" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Document View</p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><strong class="strong">Current Execution Status:</strong></p>
+<p class="paragraph">An actor will be able to access the&nbsp;<b class="uicontrol">Process Execution View</b>&nbsp;and their work item from an Email which is sent to the actor.</p>
+<p class="paragraph"><strong class="strong">Pre-requisites:</strong></p>
+<ul class="ulitem"><li class="ulitem">To access the&nbsp;<b class="uicontrol">Process Execution View</b>, you have to be connected to the application server via LAN or WAN or Internet. In case, not connected to the application server, then the&nbsp;Process Execution View  will not be accessible. When you click the&nbsp;<b class="uicontrol">Current Execution Status</b>&nbsp;link, the&nbsp;<b class="uicontrol">Process Execution View</b>&nbsp;of the&nbsp;<b class="uicontrol">Analysts View</b>&nbsp;will be displayed as shown below.</li></ul><p class="paragraph"><img id="f50942" src="50942.png" class="embeddedimage100%scalinglive" alt="" height="494" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="usingvariablesininvokeformactivity.html" target="_self">Using Variables in Invoke Form Activity</a></p><p class="relateditem"><a href="usingcontentsininvokeformactivity.html" target="_self">Using Contents in Invoke Form Activity</a></p><p class="relateditem"><a href="usingxmlvariablesininvokeformactivity.html" target="_self">Using XML Variables in Invoke Form Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for SMS: Set Variables and Contents from SMS </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488905" class="heading4">Wait for SMS: Set Variables and Contents from SMS</h4>
+<p class="subheading">Set Variables And Contents from SMS Property window</p>
+<p class="paragraph">You can set the filter expression to filter the incoming SMS in this property window. To open this window, click the button for the <b class="uicontrol">'Set Variables And Contents from SMS'</b> property.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51389" src="51389.png" class="embeddedimage100%scalinglive" alt="" height="200" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The window has two tabs at the top to manage the rows of variable settings in the grid.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">New Row</b>&nbsp;- You can click this tab to add the newly entered variable/content settings and display a new row to the grid where you can add another setting.</li><li class="ulitem"><b class="uicontrol">Remove Selected</b>&nbsp;- You can click on this tab to remove the variable/content selected in the grid.</li><li class="ulitem"><b class="uicontrol">Generate RegExp for Selected Row</b>&nbsp;- You can click on this tab to generate a regular expression for the search criteria. This displays the fields shown in the bottom half of the property window image. These fields are described later in the topic.</li></ul><p class="paragraph">The grid has the following parameters that you need to specify for the new variable.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Variable</b>&nbsp;- You can select the variable, to which you wish to assign the data in the attachment, from the drop down for this field.</li><li class="ulitem"><b class="uicontrol">Search criteria (regular expression)</b>&nbsp;- You can enter a regular expression in this field to be used to search the SMS for data to be assigned to the variable/ content. Alternatively, you can click on the&nbsp;<b class="uicontrol">Generate RegExp for Selected Row</b>&nbsp;tab to generate a regular expression.</li><li class="ulitem"><b class="uicontrol">Search in</b>&nbsp;- You can specify which part of the SMS should be searched by selecting an appropriate option from the drop down for this field. You can set the activity to search in the entire SMS, Sender, Recipient, and the Message.</li><li class="ulitem"><b class="uicontrol">Set variable in the named group</b>&nbsp;- You can enter the name of a group, to which you can add the variable as a member, in this field.</li></ul><p class="paragraph"><strong class="strong">Tip:</strong>&nbsp;You can specify &quot;*&quot; in the Search Criteria field to retrieve all the data.</p>
+<p class="paragraph">When you click on the&nbsp;<b class="uicontrol">Generate RegExp for Selected Row</b>&nbsp;it displays the following controls to generate the regular expression.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Start String</b>&nbsp;- You can specify the start string for the regular expression in this field.</li><li class="ulitem"><b class="uicontrol">Delimiter</b> - <b class="uicontrol">Start</b>&nbsp;- You can enter the start delimiter for the regular expression in this field.</li><li class="ulitem"><b class="uicontrol">Delimiter - End</b>&nbsp;- You can enter the end delimiter for the regular expression in this field.</li><li class="ulitem"><b class="uicontrol">Generate</b>&nbsp;- You can click this button, after specifying the above values, to generate the regular expression.</li><li class="ulitem"><b class="uicontrol">Hide</b>&nbsp;- You can click this button to hide these fields.</li></ul><p class="paragraph">There are two buttons at the bottom of the screen.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>&nbsp;- You can click this button to save the newly added variable/ content settings.</li><li class="ulitem"><b class="uicontrol">Cancel</b>&nbsp;- You can click this to close the property window without saving the newly added settings.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="waitforsmsaction1.html" target="_self">Wait for SMS Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

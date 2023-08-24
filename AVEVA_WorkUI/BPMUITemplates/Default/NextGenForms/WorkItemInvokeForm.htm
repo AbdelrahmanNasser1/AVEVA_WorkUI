@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>WorkItem Invoke Form</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script>
+        var skeltaFormLoadStartTime = new Date();
+    </script>
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style>
+        .mainBody
+        {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+            .mainBody[data-skfc="1"] > div
+            {
+                height: 100%;
+                width: 100%;
+            }
+
+            .mainBody[data-skfc="2"]
+            {
+                bottom: 4px;
+            }
+
+
+                .mainBody[data-skfc="2"] > div
+                {
+                    height: 100%;
+                    width: 50%;
+                    float: left;
+                }
+
+        #customDocumentWrapper iframe
+        {
+            border: none !important;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body style="margin: 0;overflow:hidden;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form>
+        <div id="manageWorkItemDiv">
+            <iframe id="manageWorkItem" style="width: 100%; overflow: hidden;"></iframe>
+        </div>
+        <div class="mainBody" data-skfc="1">
+            <div id="customDocumentWrapper" style="border-top: 1px solid #cfcfcf;border-right: 1px solid #cfcfcf;">
+                <iframe id="customDocument" style="width: 100%; height: 100%; overflow: hidden;"></iframe>
+            </div>
+            <div id="viewModel" style="border-top: 1px solid #cfcfcf; display: none;">
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+        var dataModel = null;
+        var flag = true;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var extFormParam = {};
+        var popupWindow = null;
+        try
+        {
+            var spinnerEl = skeltaUtils.getLoaderObject();
+            $("#skloader")[0].appendChild(spinnerEl);
+
+            // timeout of 0ms have been given for the initialize method to be called only after loader is visible
+            window.setTimeout(function ()
+            {
+                skeltaUtils.initializeWorkItemInvokeForm();
+            }, 0);
+        }
+        catch (exception)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFInitializeForm") + exception.message);
+            logger.logError(skelta.localize.getString("FormNGFInitializeForm") + exception.message);
+            skeltaUtils.pageLoadComplete("");
+        }
+    </script>
+</body>
+</html>

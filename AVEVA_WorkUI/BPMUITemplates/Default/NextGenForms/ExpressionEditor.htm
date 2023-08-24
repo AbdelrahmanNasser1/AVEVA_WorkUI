@@ -1,0 +1,943 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Script Editor</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/xml2json.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="app/Skelta.Designer.min.js"></script>
+    <script type="text/javascript" src="app/custom/Skelta.CustomControlsMembers.js"></script>
+    <script src="js/codemirror.min.js" type="text/javascript"></script>
+    <script src="js/show-hint.min.js" type="text/javascript"></script>
+    <script src="js/javascript-hint.min.js" type="text/javascript"></script>
+    <script src="js/codemirrorjavascript.min.js" type="text/javascript"></script>
+    <script src="js/jshint.min.js" type="text/javascript"></script>
+    <script src="js/date.min.js" type="text/javascript"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <script type="text/javascript" src="../CommonUXControls/scripts/actionBar/actionBar.js"></script>
+    <script type="text/javascript" src="js/kendo.all.full.min.js"></script>
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.css" />
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link href="css/codemirror.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/SkeltaFormsEditControl.min.css" />
+    <link rel="stylesheet" href="css/show-hint.min.css">
+    <link href="css/expressioneditor.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css">
+    <link rel="stylesheet" href="css/kendo.default.min.css">
+</head>
+<body style="margin: 0; padding: 0; max-width: none; ">
+    <div class="skfc skcn skfdc skfas skfmd">
+        <div>
+            <input type="hidden" id="hiddenScriptContentHolder" />
+        </div>
+        <div id="actiontoolbar" class="skfdr skdbackgroundcolor">
+            <div class="formdetails">
+                <span id="scripteditorheader"></span>
+            </div>
+            <div class="skflx">
+                <div class="breadcrumb">
+                    <div class="actionItem" style="display: none;"></div>
+                    <div id="actionBarDiv" class="actionBarDiv" style="display: block;"></div>
+                </div>
+            </div>
+        </div>
+        <div class='skflx skfc skfdr skfas skcp'>
+            <div class='sksa skfc skfdc skfas' style="overflow: hidden;">
+                <div id="splitter" style="height: 100%">
+                    <div>
+                        <ul id="panelbar">
+                            <li id="xmlStructurePanel">
+                                <span></span>
+                                <div id="xmlStructureTree"></div>
+                            </li>
+                            <li id="apiPanel">
+                                <span></span>
+                                <div id="apiTree"></div>
+                            </li>
+                            <li id="controlStructurePanel">
+                                <span></span>
+                                <div id="controlsTree"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div id="Editor" style="width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="skf skfdr">
+            <div class="skflx">
+                <div id="tipDetailsBlock" style="display:none;padding-top:.2em;">
+                    <span class="rel-note"><span id="tipDetailsDesc">Press &lt;Ctrl&gt;+&lt;Space&gt; in the editor to display intellisense.</span>&nbsp;<a class="skc" id="tipDetailsRemove" onclick="removeTip(); return false;">Remove</a></span>
+                </div>
+            </div>
+            <div class="skfbtn">
+                <input type="button" data-skbtn="cancel" data-skvaluelocalize="FormNGFBtnCancel" class="skscrbtn" onclick="cancel();" />
+                <input type="button" data-skvaluelocalize="FormNGFBtnSaveClose" class="skscrbtn" onclick="save();" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript" id="script">
+        var skeltaUtils = skelta.utilities;
+        var logger = skeltaUtils.getLogger();
+        var eventLookUpId = skeltaUtils.getUrlParameterValue(window, 'id');
+        var ctrlTagName = skeltaUtils.getUrlParameterValue(window, 'ctrlTagName');
+        var ctrlId = skeltaUtils.getUrlParameterValue(window, 'ctrlId');
+        var eventLookupName = skeltaUtils.getUrlParameterValue(window, 'evtlkpName');
+        var scriptType = skeltaUtils.getUrlParameterValue(window, 'scriptType');
+        var pageName = skeltaUtils.getUrlParameterValue(window, 'pageName');
+        var skeltaUserContext = skelta.userContext;
+        var serverData = null;
+        var editFrame = null;
+
+        if (skeltaUtils.isNullOrEmpty(scriptType))
+        {
+
+            if (parent.$("#propertyLookupFrame").contents().get(0).location.href.indexOf("MqttTopicConfiguration.htm") !== -1)//if parent window is actionbar settings page
+            {
+                editFrame = parent.frames["propertyLookupFrame"].rowIndex ? parent.frames["propertyLookupFrame"] : parent.frames["propertyLookupFrame"].contentWindow;
+            }
+            else if (parent.$("#propertyLookupFrame").contents().get(0).location.href.indexOf("EditActionItem.htm") !== -1)//if parent window is actionbar settings page
+            {
+                editFrame = parent.frames["propertyLookupFrame"].treeWidget ? parent.frames["propertyLookupFrame"] : parent.frames["propertyLookupFrame"].contentWindow;
+            }
+            else
+            {
+                editFrame = parent.frames["editframe"].cacheKey ? parent.frames["editframe"] : parent.frames["editframe"].contentWindow;
+            }
+        }
+        else
+        {
+            if (parent.frames["scriptframe"].contentWindow)
+            {
+                editFrame = parent.frames["scriptframe"].contentWindow.parent.window["ECWindow"].window[pageName];
+            }
+            else
+            {
+                for (var i = 0; i < parent.frames["scriptframe"].parent.window["ECWindow"].window.length; i++)
+                {
+                    if (parent.frames["scriptframe"].parent.window["ECWindow"].window[i].name === pageName && !skeltaUtils.isUndefined(parent.frames["scriptframe"].parent.window["ECWindow"].window[i].GetRadWindow))
+                    {
+                        editFrame = parent.frames["scriptframe"].parent.window["ECWindow"].window[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        var autoSaveTimeout, lastSavedEditorValue, apiTreeData = [];
+        var treeMaxHeight = $(document).height() - (52 + (50 * 3) + 48);//height of header+panels+footer-doc
+        var themePath = skelta.userContext.getUserContextFor("themePath");
+        skelta.forms.utilities.loadPageStyles(themePath);
+        //In advanced tab scripts like on data change, on row added ..etc will contain localize 'scripts' at the end. This needs to replaced to blank as FormNGFScriptEditor already contains script at the end.
+
+        if (!skeltaUtils.isUndefined(window.frameElement.controlObj) &&
+            !skeltaUtils.isUndefinedNullOrEmpty(window.frameElement.controlObj.eventName) &&
+            !skeltaUtils.isUndefinedNullOrEmpty(window.frameElement.controlObj.eventDisplayNameKey))
+        {
+            var tempEventName = window.frameElement.controlObj.eventName;
+            var tempEventDisplayNameKey = window.frameElement.controlObj.eventDisplayNameKey;
+            var tempDisplayName = skelta.localize.getString(tempEventDisplayNameKey);
+
+            if (tempDisplayName === tempEventDisplayNameKey)
+            {
+                eventLookupName = tempEventName;
+            }
+            else
+            {
+                eventLookupName = tempDisplayName;
+            }
+        }
+        else
+        {
+            var localizedScriptKey = skelta.localize.getString("FormNGFScriptKey");
+            if (skeltaUtils.isNullOrEmpty(scriptType))
+            {
+                if (eventLookupName.indexOf(localizedScriptKey) != -1)
+                {
+                    eventLookupName = eventLookupName.replace(localizedScriptKey, "");
+                }
+            }
+        }
+
+        $(window).resize(function ()
+        {
+            treeMaxHeight = $(document).height() - (52 + (50 * 3) + 48);
+            setmaxHeightForTrees();
+        });
+
+        (function ()
+        {
+            var items = [];
+            $.each(skelta.forms.constants.SFUFunctions, function (index, value)
+            {
+                items.push({ text: value });
+            });
+            apiTreeData.push({ text: "SFU", items: items, enable: false });
+        }());
+
+        if (skeltaUtils.isNullOrEmpty(scriptType))
+        {
+            $("#splitter").kendoSplitter({
+                orientation: "horizontal",
+                panes: [{ collapsible: true, size: "350px" }, { collapsible: false }]
+            });
+
+            $(".k-splitbar").css("display", "block");
+
+            $("#panelbar").kendoPanelBar({
+                expandMode: "single"
+            });
+            var panelBar = $("#panelbar").data("kendoPanelBar");
+            panelBar.expand($("#xmlStructurePanel"), false);
+            $("#apiTree").kendoTreeView({
+                dataSource: apiTreeData,
+                select: function (e)
+                {
+                    var dataItem = this.dataItem(e.node);
+                    if (dataItem.text === "SFU")
+                    {
+                        return;
+                    }
+                    insertInEditor("SFU." + dataItem.text + "()");
+                    clearTreeSelection(e.node);
+                }
+            });
+            $("#apiTree").data("kendoTreeView").expand("> .k-group > .k-item");
+        }
+        else
+        {
+            $("#splitter").kendoSplitter({
+                orientation: "horizontal",
+                panes: [{ collapsible: true, size: "0px" }, { collapsible: false }]
+            });
+
+            $(".k-splitbar").css("display", "none");
+            $("#Editor")[0].offsetParent.style.left = "0px";
+            $("#panelbar").css("display", "none");
+        }
+
+        //Kendo Treeview select event will not be fired if the same node is clicked again
+        //Scenario - User clicks on the node to insert. after insert, click on clear and click on the same node.
+        function clearTreeSelection(node)
+        {
+            setTimeout(function ()
+            {
+                $(node).find("span.k-state-selected").removeClass("k-state-selected");
+            }, 100);
+        }
+
+        function actionBarJsonData()
+        {
+            var ScriptEditorOptions = [
+                {
+                    "Undo":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E1",
+                        "Text": skelta.localize.getString("FormNGFEEUndo"),
+                        "Tooltip": skelta.localize.getString("FormNGFEEUndo"),
+                        "Image": 'images/NGF-SE-Undo-Blk.png',
+                        "HoverImage": 'images/NGF-SE-Undo-White.png',
+                        "Action": "javascript:undo()",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                },
+                {
+                    "Redo":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E2",
+                        "Text": skelta.localize.getString("FormNGFEERedo"),
+                        "Tooltip": skelta.localize.getString("FormNGFEERedo"),
+                        "Image": 'images/NGF-SE-Redo-Blk.png',
+                        "HoverImage": 'images/NGF-SE-Redo-White.png',
+                        "Action": "javascript:redo()",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                },
+                {
+                    "Revert":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E3",
+                        "Text": skelta.localize.getString("FormNGFEERevert"),
+                        "Tooltip": skelta.localize.getString("FormNGFEERevert"),
+                        "Image": 'images/NGF-SE-Revert-Blk.png',
+                        "HoverImage": 'images/NGF-SE-Revert-White.png',
+                        "Action": "javascript:revert()",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                },
+                {
+                    "Clear All":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E4",
+                        "Text": skelta.localize.getString("FormNGFHTClearAllTitle"),
+                        "Tooltip": skelta.localize.getString("FormNGFHTClearAllTitle"),
+                        "Image": 'images/ClearAll.png',
+                        "HoverImage": 'images/ClearAll-Hover.png',
+                        "Action": "javascript:clearEditor();",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                },
+                {
+                    "IndentAll":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E5",
+                        "Text": skelta.localize.getString("FormNGFEEIndentAll"),
+                        "Tooltip": skelta.localize.getString("FormNGFEEIndentAll"),
+                        "Image": 'images/NGF-SE-Indent-Blk.png',
+                        "HoverImage": 'images/NGF-SE-Indent-White.png',
+                        "Action": "javascript:indentAll()",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                }
+            ];
+
+            if (skeltaUtils.isNullOrEmpty(scriptType))
+            {
+                ScriptEditorOptions.push({
+                    "CheckSyntax":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E6",
+                        "Text": skelta.localize.getString("FormNGFEECheckSyntax"),
+                        "Tooltip": skelta.localize.getString("FormNGFEECheckSyntax"),
+                        "Image": 'images/NGF-SE-CheckSy-Blk.png',
+                        "HoverImage": 'images/NGF-SE-CheckSy-White.png',
+                        "Action": "javascript:updateHints();",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                });
+
+                ScriptEditorOptions.push({
+                    "Preview":
+                    {
+                        "Id": "498D4CBB-2446-493D-983A-8DFF0BD20AD8",
+                        "Text": skelta.localize.getString("FormNGFHTNormalView"),
+                        "Tooltip": skelta.localize.getString("FormNGFHTNormalView"),
+                        "Image": 'images/Web-Preview.png',
+                        "HoverImage": 'images/Web-Preview-Hover.png',
+                        "Action": "",
+                        "OnClick": "preview()",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                });
+
+                ScriptEditorOptions.push({
+                    "DevicePreview":
+                    {
+                        "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                        "Text": skelta.localize.getString("FormNGFHTDeviceView"),
+                        "Tooltip": skelta.localize.getString("FormNGFHTDeviceView"),
+                        "Image": 'images/Mobile-View.png',
+                        "HoverImage": 'images/Mobile-View-Hover.png',
+                        "Action": "",
+                        "OnClick": "devicePreview('WorkTasksPreview')",
+                        "OpenMode": "Popup",
+                        "SubItems": []
+                    }
+                });
+            }
+
+            return ScriptEditorOptions;
+        }
+
+        function loadActionBar()
+        {
+            ActionBar.init("", "actionBarDiv", false);
+            ActionBar.showRightMenu(actionBarJsonData());
+        }
+
+        function setmaxHeightForTrees()
+        {
+            $('#controlsTree,#apiTree,#xmlStructureTree').css('max-height', treeMaxHeight + 'px');
+        }
+
+        function getUserBasedSuffixKey()
+        {
+            return editFrame.skelta.userContext.getUserContextFor("uId");
+        }
+
+        function getShowTipKey()
+        {
+            return "skShowTip" + getUserBasedSuffixKey();
+        }
+
+        function getShowTipStatus()
+        {
+            try
+            {
+                var val = localStorage.getItem(getShowTipKey());
+
+                if (val !== "false")
+                {
+                    val = "true";
+                }
+
+                return val;
+            }
+            catch (err)
+            {
+                $("#tipDetailsRemove").hide();
+                return "true";
+            }
+        }
+
+        function removeTip()
+        {
+            try
+            {
+                localStorage.setItem(getShowTipKey(), "false");
+                hideTip();
+            }
+            catch (err)
+            {
+            }
+        }
+
+        function showTip()
+        {
+            $("#tipDetailsBlock").show();
+        }
+
+        function hideTip()
+        {
+            $("#tipDetailsBlock").hide();
+        }
+
+        $(document).ready(function ()
+        {
+            // Initialize the Show Tip state
+            if (getShowTipStatus() !== "false")
+            {
+                $("#tipDetailsDesc").html(skelta.localize.getDesignerString("scriptEditorIntellisenseTip"));
+                $("#tipDetailsRemove").html(skelta.localize.getDesignerString("scriptEditorIntellisenseTipRemoveCaption"));
+                showTip();
+            }
+
+            loadActionBar();
+            $("#controlsTree").prev().find(":first").text(skelta.localize.getString("FormNGFEEControlStructure"));
+            $("#apiTree").prev().find(":first").text(skelta.localize.getString("FormNGFEEAPI"));
+            $("#xmlStructureTree").prev().find(":first").text(skelta.localize.getString("FormNGFEEXMLStructure"));
+            setmaxHeightForTrees();
+            if (skeltaUtils.isNullOrEmpty(scriptType))
+            {
+
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                    "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                    "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                    "formName": window.parent.skeltaUserContext.getUserContextFor("fName"),
+                    "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                    "listName": "Forms List",
+                    "deviceType": "Web"
+                });
+                skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetControlStructureData", "application/json; charset=utf-8", jsonHelper, "json",
+                    function (res)
+                    {
+                        serverData = $.parseJSON(res.d);
+                        var controlsTreeData = new kendo.data.HierarchicalDataSource({
+                            data: serverData.controlsStructure
+                        });
+
+                        var xmlTreeData = new kendo.data.HierarchicalDataSource({
+                            data: serverData.xmlStructure
+                        });
+
+                        $("#controlsTree").kendoTreeView(
+                            {
+                                dataSource: controlsTreeData,
+                                select: function (e)
+                                {
+                                    var scriptToBeInserted;
+                                    var dataItem = this.dataItem(e.node);
+                                    if (dataItem.isTopLevelForm)
+                                    {
+                                        scriptToBeInserted = "control.topLevelForm";
+                                    }
+                                    else if (dataItem.id === ctrlId)
+                                    {
+                                        scriptToBeInserted = "currentValue";
+                                    }
+                                    else
+                                    {
+                                        scriptToBeInserted = (dataItem.isContainer ? "control.findById(<id>)" : "control.findById(<id>).value").replace("<id>", '"' + dataItem.id + '"');
+                                    }
+                                    insertInEditor(scriptToBeInserted);
+                                    clearTreeSelection(e.node);
+                                }
+                            }
+                        );
+                        $("#controlsTree").data("kendoTreeView").expand("> .k-group > .k-item");
+                        $("#xmlStructureTree").kendoTreeView({
+                            dataSource: xmlTreeData,
+                            select: function (e)
+                            {
+                                var scriptToBeInserted;
+                                var dataItem = this.dataItem(e.node);
+                                if (dataItem.isTopLevelForm)
+                                {
+                                    scriptToBeInserted = "control.topLevelForm";
+                                }
+                                else if (dataItem.id === ctrlId)
+                                {
+                                    scriptToBeInserted = "currentValue";
+                                }
+                                else
+                                {
+                                    scriptToBeInserted = (dataItem.isContainer ? "control.findByXmlNode(<id>)" : "control.findByXmlNode(<id>).value").replace("<id>", '"' + dataItem.xmlNode + '"');
+                                }
+                                insertInEditor(scriptToBeInserted);
+                                clearTreeSelection(e.node);
+                            }
+                        });
+                        $("#xmlStructureTree").data("kendoTreeView").expand("> .k-group > .k-item");
+
+                    },
+                    function (res)
+                    {
+                        logger.logError("failed to load validation data:" + responseText);
+                        $("#Button2").attr('disabled', 'disabled');
+                    }, null);
+            }
+        });
+
+        updateIntialScript();
+
+        var scripteditorheaderText = (skeltaUtils.isNullOrEmpty(scriptType)) ? skelta.localize.getString("FormNGFScriptEditor").replace("<@tagname@>", ctrlTagName).replace("<@id@>", ctrlId).replace("<@eventname@>", eventLookupName) :
+            skelta.localize.getString("ColumnSettingsNGFScriptEditor").replace("<@tagname@>", ctrlTagName).replace("<@eventname@>", eventLookupName);
+        $("#scripteditorheader").text(scripteditorheaderText);
+
+        CodeMirror.commands.autocomplete = function (cm)
+        {
+            cm.showHint({ hint: CodeMirror.hint.javascript });
+        }
+        var editor = CodeMirror(document.getElementById('Editor'),
+            {
+                lineNumbers: true,
+                mode: "javascript",
+                autofocus: true,
+                value: getInitialValue(),
+                historyEventDelay: 500,
+                extraKeys: { "Ctrl-Space": "autocomplete" }
+            });
+        editor.on('blur', function () { $(".CodeMirror-cursors").css('visibility', 'visible'); });
+
+        // When the focus is back to the window, then we need to set the focus to the editor,
+        // else if the focus is not in the editor, and user tries to give the backspace, then
+        // it would traverse back in the page's history.
+        $(window).focus(function ()
+        {
+            focusEditor();
+        });
+
+        document.title = skelta.localize.getDesignerString("FormNGFSETitle");
+        if (skeltaUtils.isNullOrEmpty(scriptType))
+        {
+            this.skeltaUserContext.setUserContextFor("culture", this.parent.skelta.userContext.getUserContextFor("culture"));
+        }
+        else
+        {
+            this.skeltaUserContext.setUserContextFor("culture", this.parent.window[2].skelta.userContext.getUserContextFor("culture"));
+        }
+
+        skelta.localize.divTextLocalize();
+        skelta.localize.inputValueLocalize();
+        var waiting;
+        var widgets = [];
+
+        function insertInEditor(scriptToBeInserted)
+        {
+            editor.replaceSelection(scriptToBeInserted);
+            focusEditor();
+        }
+
+        function getScriptFromEditor()
+        {
+            var scriptValue = editor.getValue();
+
+            if (!skelta.utilities.isNullOrEmpty(scriptValue))
+            {
+                // Need to handle the end tags with an escape character. Hence doing the same for all
+                // the replacements before saving the script.
+                scriptValue = scriptValue.replaceString("<" + "/", "<" + "\\" + "/", false, true);
+            }
+
+            return scriptValue;
+        }
+
+        function updateHints()
+        {
+            editor.operation(function ()
+            {
+                try
+                {
+                    for (var i = 0; i < widgets.length; ++i)
+                        editor.removeLineWidget(widgets[i]);
+                    widgets.length = 0;
+
+                    if (getScriptFromEditor() === "")
+                    {
+                        return;
+                    }
+                    serverData.currentControlId = ctrlId;
+                    var prop = jQuery.grep(skelta.forms.constants.controlsCollection, function (e)
+                    {
+                        return e.controlType === jQuery.grep(serverData.controlsCollection, function (e)
+                        {
+                            return e.Id === ctrlId;
+                        })[0].ControlType;
+                    })[0];
+                    serverData.controlFunctions = [];
+                    for (var i = 0; i < prop.functions.length; i++)
+                    {
+                        serverData.controlFunctions.push(prop.functions[i].name);
+                    }
+                    serverData.propertiesCollection = skelta.forms.constants.controlsCollection;
+                    JSHINT(getScriptFromEditor(), undefined, undefined, serverData);
+                    for (var i = 0; i < JSHINT.errors.length; ++i)
+                    {
+                        var err = JSHINT.errors[i];
+                        if (!err) continue;
+                        var msg = document.createElement("div");
+                        var icon = msg.appendChild(document.createElement("span"));
+                        icon.innerHTML = "!!";
+                        icon.className = "lint-error-icon";
+                        var errorNode = err.reason.raw;
+
+                        if (skelta.utilities.isString(err.reason))
+                        {
+                            errorNode = err.reason;
+                        }
+                        else if (!skelta.utilities.isUndefined(errorNode))
+                        {
+                            if (err.reason.a)
+                            {
+                                errorNode = errorNode.replace(/\{a}/g, err.reason.a);
+                            }
+                            else if (err.reason.b)
+                            {
+                                errorNode = errorNode.replace(/\{b}/g, err.reason.b);
+                            }
+                            else if (err.reason.c)
+                            {
+                                errorNode = errorNode.replace(/\{c}/g, err.reason.c);
+                            }
+                            else if (err.reason.d)
+                            {
+                                errorNode = errorNode.replace(/\{d}/g, err.reason.d);
+                            }
+                        }
+
+                        msg.appendChild(document.createTextNode(errorNode));
+                        msg.className = "lint-error";
+                        widgets.push(editor.addLineWidget(err.line - 1, msg, { coverGutter: false, noHScroll: true }));
+                    }
+                }
+                catch (e)
+                {
+                    console.log(e.message);
+                }
+            });
+
+            var info = editor.getScrollInfo();
+            var after = editor.charCoords({ line: editor.getCursor().line + 1, ch: 0 }, "local").top;
+            if (info.top + info.clientHeight < after)
+                editor.scrollTo(null, after - info.clientHeight + 3);
+
+            focusEditor();
+        }
+
+        function focusEditor()
+        {
+            setTimeout(function () { editor.focus(); }, 200);
+        }
+
+        function updateIntialScript()
+        {
+            var existingScript = "";
+
+            if (skeltaUtils.isUndefined(window.frameElement.controlObj))
+            {
+                existingScript = editFrame.document.getElementById(eventLookUpId + "txtArea").value;
+            }
+            else
+            {
+                existingScript = window.frameElement.controlObj.value;
+            }
+
+            if (existingScript.substr(0, 9) === "<![CDATA[")
+            {
+                existingScript = existingScript.substr(9, existingScript.length);
+            }
+
+            if (existingScript.substr(existingScript.length - 3, 3) === "]]>")
+            {
+                existingScript = existingScript.substr(0, existingScript.length - 3);
+            }
+
+            document.getElementById('hiddenScriptContentHolder').value = existingScript;
+            lastSavedEditorValue = existingScript;
+        }
+
+        function getInitialValue()
+        {
+            return document.getElementById('hiddenScriptContentHolder').value;
+        }
+
+        function indentAll()
+        {
+            var lines = editor.lineCount();
+            for (var i = 0; i < lines; i++)
+            {
+                editor.indentLine(i);
+            }
+            focusEditor();
+        }
+
+        function revert()
+        {
+            editor.setValue(getInitialValue());
+            focusEditor();
+        }
+
+        function undo()
+        {
+            editor.undo();
+            focusEditor();
+        }
+
+        function redo()
+        {
+            editor.redo();
+            focusEditor();
+        }
+
+        function clearEditor()
+        {
+            var editorValue = getScriptFromEditor();
+            if (editorValue)
+            {
+                skelta.forms.utilities.showWarning(document.title, skelta.localize.getString("FormNGFSEClearWarning"),
+                    function (r)
+                    {
+                        if (r)
+                        {
+                            editor.setValue("");
+                            focusEditor();
+                        }
+                    });
+            } else
+            {
+                focusEditor();
+            }
+        }
+
+        function preview()
+        {
+            updateFormDefinition();
+            parent.openPreviewWindow();
+        }
+
+        function devicePreview(device)
+        {
+            updateFormDefinition();
+            parent.openDeviceWindow(device);
+        }
+
+        function updateScriptToHiddenField()
+        {
+            var hdnScriptHolder = document.getElementById('hiddenScriptContentHolder');
+            hdnScriptHolder.value = getScriptFromEditor();
+            return true;
+        }
+
+        function save()
+        {
+            var editorValue = getScriptFromEditor();
+            if (editorValue)
+            {
+                updateHints();
+                if (JSHINT.errors && JSHINT.errors.length > 0)
+                {
+                    skelta.forms.utilities.showWarning(document.title, skelta.localize.getString("FormNGFEESaveWarning"),
+                        function (r)
+                        {
+                            if (r)
+                            {
+                                updateFormDefinition();
+                                closeFrame();
+                            }
+                        });
+                }
+                else
+                {
+                    updateFormDefinition();
+                    closeFrame();
+                }
+            }
+            else
+            {
+                updateFormDefinition();
+                closeFrame();
+            }
+        }
+
+        function updateEditFrameDefinition()
+        {
+            setExpressionValue();
+
+            if (!skeltaUtils.isUndefined(editFrame.updateFormDefinition) && skeltaUtils.isNullOrEmpty(scriptType))
+            {
+                var editFrameData = editFrame.viewModelObject.topLevelForm.records()[0].getFormSubmissionData();
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "xmlInstance": editFrame.skeltaUtils.getXmlFromJSONObject(editFrameData),
+                    "cacheKey": editFrame.cacheKey,
+                    "listName": editFrame.listName,
+                    "version": editFrame.versionstamp,
+                    "selectedControl": editFrame.sfdcontainer,
+                    "applicationName": editFrame.paramApplicationName,
+                    "userId": editFrame.paramUserId
+                });
+                editFrame.doNotCloseEditPage = true;
+                editFrame.updateFormDefinition(jsonHelper);
+            }
+
+            //Auto save the action item
+            if (!skeltaUtils.isUndefined(editFrame.updateActionItemFormDefinition))
+            {
+                editFrame.updateActionItemFormDefinition();
+            }
+
+            //Auto save the topic configuration
+            if (!skeltaUtils.isUndefined(editFrame.updateTopicConfigFormDefinition))
+            {
+                editFrame.updateTopicConfigFormDefinition();
+            }
+        }
+
+        function updateFormDefinition()
+        {
+            var editorValue = getScriptFromEditor();
+
+            if (lastSavedEditorValue !== editorValue)
+            {
+                lastSavedEditorValue = editorValue;
+                updateEditFrameDefinition();
+            }
+        }
+
+        //
+        // Auto Save functionality
+        //
+
+        //autoSave for every 1 min
+        function performAutoSave()
+        {
+            // perform internal save, but do not close the editor
+            updateFormDefinition();
+
+            // Reset the timer for auto save
+            setTimerForAutoSave();
+        }
+
+        // Set the timeout for auto save
+        function setTimerForAutoSave()
+        {
+            autoSaveTimeout = setTimeout(performAutoSave, 60000);            
+        }
+
+        // Clear auto save timer
+        function clearAutoSave()
+        {
+            try
+            {
+                clearTimeout(autoSaveTimeout);
+            }
+            catch (e)
+            {
+                // Nothing
+            }
+        }
+
+        if (skeltaUtils.isNullOrEmpty(scriptType))
+        {
+            // Initiate the auto save timer
+            setTimerForAutoSave();
+        }
+
+        //
+        // End of Auto Save functionality
+        //
+
+        function setExpressionValue()
+        {
+            var expressionValue = getScriptFromEditor();
+
+            if (expressionValue !== "")
+            {
+                if (skeltaUtils.isUndefined(window.frameElement.controlObj))
+                {
+                    editFrame.setValueToControl(eventLookUpId, expressionValue);
+                    editFrame.document.getElementById(eventLookUpId).value = expressionValue;
+                    editFrame.document.getElementById(eventLookUpId).title = expressionValue;
+                }
+                else
+                {
+                    window.frameElement.controlObj.value = expressionValue;
+                }
+            }
+            else
+            {
+                if (skeltaUtils.isUndefined(window.frameElement.controlObj))
+                {
+                    editFrame.setValueToControl(eventLookUpId, "");
+                    editFrame.document.getElementById(eventLookUpId + "txtArea").value = "";
+                    editFrame.document.getElementById(eventLookUpId).value = "";
+                    editFrame.document.getElementById(eventLookUpId).title = "";
+                }
+                else
+                {
+                    window.frameElement.controlObj.value = "";
+                }
+            }
+
+            $("#infoLabel").text(skelta.localize.getDesignerString("FormNGFSaveScript"));
+        }
+
+        function cancel()
+        {
+            revert();
+            updateEditFrameDefinition();
+            closeFrame();
+        }
+
+        function closeFrame()
+        {
+            // clear auto save timer
+            clearAutoSave();
+
+            var topDiv = $(parent.document).find("#scriptFrameDiv");
+            var scriptFrame = topDiv.find(".skpopup_maindivPopupForm").find("iframe");
+            scriptFrame.attr("src", "");
+
+            if (scriptFrame.length > 0 && !skeltaUtils.isUndefined(scriptFrame[0].controlObj))
+            {
+                scriptFrame[0].controlObj = null;
+                delete scriptFrame[0].controlObj;
+            }
+
+            topDiv.hide();
+        }
+    </script>
+</body>
+</html>

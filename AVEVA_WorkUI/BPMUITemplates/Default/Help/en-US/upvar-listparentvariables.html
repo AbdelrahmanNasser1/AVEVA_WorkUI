@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Update Parent Variables - List Parent Variables </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488929" class="heading4">Update Parent Variables - List Parent Variables</h4>
+<p class="paragraph">You can set the List Parent Variables for this activity in the Update Parent Variable property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51196" src="51196.png" class="embeddedimage100%scalinglive" alt="" height="259" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Update Parent Variable property window</p>
+<p class="paragraph">The <b class="uicontrol">Update Parent Variable</b> property window has a grid that lists all the variables belonging to the parent workflow which are specified in the Parent Workflow Name property. Each row in the grid represents a parent workflow variable, showing the variable name and type under the respective columns. The window also contains the following controls to specify the value to update the variable with: </p>
+<ul class="ulitem"><li class="ulitem">The Value type drop-down menu: Select the type of value to be assigned to the parent variable. Values that you can specify are Variable, Content, Value, or XMLVariables. </li><li class="ulitem">The Value text box/drop-down menu: Specify the actual value to assign to the parent variable. The control displayed depends on the option selected in the Value type drop-down menu. If you select &quot;Value&quot;, a text box appears. You can enter a discrete value in this box to complete the expression. If you select &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot;, a drop-down menu appears in this field. This drop-down menu contains variable collection, content collection, or XMLVariables collection from which you can select an appropriate option. </li><li class="ulitem">The check box: Select this check box to update the value of the corresponding parent variable at the workflow execution time. </li><li class="ulitem">To set values for an XML Variable, click the icon, and then enter the required values in the <b class="uicontrol">Update Node Values</b> window. For more information, see <a id="h175563" class="jump-currentwindowlive" title="How to Update a Parent Workflow Variable from a Child Workflow?" href="howtoupdateaparentworkflowvariablefromachildworkflow1.html" target="_self">How to Update a Parent Workflow Variable from a Child Workflow?</a>. <p class="note"><strong class="notelabel">Note:</strong> For number data types, the minimum and maximum values are not validated. Enter only valid numeric values for number data types. For numeric, DateTime, Date, or Time data types, ensure that the respective value is based on the culture set. You can enter the input or use the Date and Time picker to enter the required date and time. The time format supports long data type to enable you to enter seconds. If you enter a valid value for a numeric, date, time, or datetime data type, and if you enter unwanted strings after the valid values, then while submitting the values, the extra strings at the end are truncated. For example, for a DateTime value entered as 01/31/2015 10:11:12ababa, then ababa is truncated by default. </p>
+</li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="updateparentvariables.html" target="_self">Update Parent Variables Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

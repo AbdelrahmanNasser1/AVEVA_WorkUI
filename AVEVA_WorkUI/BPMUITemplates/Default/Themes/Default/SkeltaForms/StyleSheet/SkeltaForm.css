@@ -1,0 +1,1873 @@
+﻿@font-face {
+    font-family: "Roboto";
+    src: url("../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+html
+{
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+}
+
+body
+{
+    margin: 0px;
+    cursor: default;
+}
+
+textarea
+{
+    resize: none;
+}
+
+textarea, iframe
+{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.sf-form
+{
+    background-color: #ffffff;
+}
+
+.sf-formbackground
+{
+    /*background: url(../images/popup-bgnew.jpg);*/
+    background-color: #FFFFFF;
+    /* Mozilla overlay */
+}
+
+.sf-topHeading
+{
+    margin-top: 10px;
+}
+
+.sf-headerbar
+{
+    background-color: #F1F1F1;
+}
+
+.sf-gridrowappended
+{
+    background-color: #BCD2EE;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+}
+
+.sf-formlabel
+{
+    
+    color: #000000;
+    font-size: 14px;
+    padding-bottom: 0px;
+    text-decoration: none;
+    vertical-align: middle;
+    font-weight: normal;
+    width: 40%;
+    /*border-bottom: 1px solid #F5F5F5;
+    border-right: 1px solid #F5F5F5;*/
+}
+
+.sf-formlabeldescription
+{
+    
+    color: #666666;
+    font-size: 12px;
+    padding-bottom: 8px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.sf-formbody
+{
+    
+    font-size: 12px;
+    vertical-align: top;
+    padding: 6px 4px 6px 4px;
+    /*background-color: #FAFAFA;*/
+    /*border-bottom: 1px solid #F5F5F5;*/
+}
+
+.sf-formfirstlabel
+{
+    
+    color: #000000;
+    vertical-align: middle;
+    /*border-right: 1px solid #F5F5F5;*/
+    font-size: 14px;
+    padding-bottom: 0px;
+    font-weight: bold;
+    text-decoration: none;
+    width: 40%;
+    /*border-bottom: 1px solid #F5F5F5;
+    border-top: 1px solid #F5F5F5;*/
+}
+
+.sf-formfirstlabeldescription
+{
+    
+    color: #666666;
+    font-size: 12px;
+    padding-bottom: 8px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.sf-formEcslabel
+{
+    
+    color: #000000;
+    vertical-align: middle;
+    border-right: 1px solid #F5F5F5;
+    font-size: 11px;
+    padding-bottom: 0px;
+    font-weight: bold;
+    text-decoration: none;
+    width: 40%;
+    border-bottom: 1px solid #F5F5F5;
+    border-top: 1px solid #F5F5F5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sf-formEcslabeldescription
+{
+    
+    color: #1f1f1f;
+    font-size: x-small;
+    padding-bottom: 8px;
+    font-weight: normal;
+    text-decoration: none;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+.sf-tabpage
+{
+    border: 1px solid F0F0F0;
+}
+
+table.sf-tableborder
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #86b0da;
+}
+
+table.sf-innertableborder
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #86b0da;
+}
+
+.sf-formfirstbody
+{
+    
+    font-size: 12px;
+    padding: 3px 4px 6px 4px;
+    vertical-align: top;
+    /*background-color: #FAFAFA;*/
+    /*border-bottom: 1px solid #F5F5F5;*/
+}
+
+.sf-standardheader
+{
+    font-size: 1em;
+    margin: 0em;
+    text-align: left;
+    color: #525252;
+}
+
+.sf-topleveltitle
+{
+    
+    font-weight: normal;
+    font-size: 18px;
+    color: #1b1b1b;
+    /*background: #e0e1dd;*/
+}
+
+.sf-topleveltitledescription
+{
+    
+    font-size: 12px;
+    padding-left: 32px;
+    color: #000000;
+    /*background-color: #e7edff;*/
+}
+
+.sf-subformtitle
+{
+    
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    /*color:#525252;*/
+}
+
+.sf-subformtitledescription
+{
+    
+    font-size: 12px;
+    color: #1f1f1f;
+}
+
+.sf-gridtable
+{
+    background: white;
+    border-collapse: collapse;
+    /*border-spacing: 0px;*/
+    border-top: 1px solid #666666;
+    border-bottom: 1px solid #666666;
+    border-left: 1px solid #666666;
+    border-right: 1px solid #666666;
+}
+
+.sf-gridrow
+{
+}
+
+.sf-gridselectedrow
+{
+    background: #F0F0F0; /*#006633;*/
+}
+
+.sf-gridcell
+{
+    border-top: 1px solid #666666;
+    border-right: 1px solid #666666;
+}
+
+.sf-gridheading
+{
+    border-right: 1px solid #666666;
+    font-size: 14px;
+    height: 30px;
+    background-color: #e0e1dd;
+    padding-left: 10px;
+}
+
+.sf-appendrow
+{
+    margin-top: 2px;
+    border-top: 1px solid #666666;
+    
+    font-size: 9px;
+    font-style: italic;
+}
+
+.sf-appendrowsimple
+{
+    margin-top: 2px;
+    
+    font-size: 9px;
+    font-style: italic;
+}
+
+.sf-formitemdelete
+{
+    margin-top: 2px;
+    
+    font-size: 9px;
+    font-style: italic;
+    text-align: right;
+}
+
+.sf-saverow
+{
+    
+    font-size: 9px;
+    font-style: italic;
+    /*background-color: #e7edff;*/
+}
+
+.sf-panel
+{
+    border: solid 1px #666666;
+}
+
+.sf-paneltitle
+{
+    
+    font-weight: lighter;
+    font-size: 12px;
+    color: #525252;
+}
+
+.sf-paneltitledescription
+{
+    
+    font-size: 10px;
+    color: #525252;
+}
+
+.sf-gridsummarycell
+{
+    border-left: 1px solid #666666;
+    border-right: 1px solid #666666;
+    border-bottom: 2px solid #666666;
+}
+
+.sf-gridsummarycellheading
+{
+    border-left: 1px solid #666666;
+    border-right: 1px solid #666666;
+    border-top: 2px solid #666666;
+    font-size: 9px;
+    
+    background-color: #e0e1dd;
+}
+
+.sf-formfirstlabelerror
+{
+    text-align: left;
+    
+    font-size: .7em;
+    border-top: 1px solid black;
+    padding-top: 3px;
+    padding-right: 8px;
+    padding-bottom: 6px;
+    background: red;
+    font-weight: bold;
+    width: 30%;
+}
+
+.sf-formerror
+{
+    text-align: left;
+    
+    color: Red;
+    font-size: 10px;
+}
+
+.sf-spanerror
+{
+    display: block;
+    float: left;
+    width: 16px;
+    height: 15px;
+    background-image: url(../images/erroricon.png);
+    background-repeat: no-repeat;
+}
+
+.sf-span
+{
+    display: block;
+    float: left;
+    vertical-align: middle;
+    width: 6px;
+    height: 6px;
+}
+
+.sf-spanmandatory
+{
+    display: block;
+    float: left;
+    width: 6px;
+    height: 6px;
+    vertical-align: middle;
+    background-image: url(../images/mandatoryicon.png);
+    background-repeat: no-repeat;
+}
+
+.sf-inputsBox
+{
+    
+    font-size: 14px;
+    border: 0px solid #7b9ebd;
+    background-color: #0f76c7 !important;
+    color: white !important;
+    text-align: center;
+    vertical-align: middle;
+    min-height: 32px !important;
+    min-width: 120px !important;
+    max-width: 160px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 4px;
+}
+
+.WaterMark
+{
+    
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid #666;
+    width: auto;
+    color: #000000 !important;
+}
+
+.inputs
+{
+    
+    font-size: 14px !important;
+    background-color: #FFFFFF;
+    border: 1px solid #666;
+    width: auto;
+    color: #000000;
+}
+
+.inputsdisabled
+{
+    
+    font-size: 14px !important;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    width: auto;
+    color: #333333;
+}
+
+.numericinputs
+{
+    
+    font-size: 12px;
+    background-color: #FFFFFF;
+    border: 1px solid #7f9db9;
+    width: auto;
+    color: #333333;
+    text-align: right;
+    /*padding-right: 2px !important;*/
+}
+
+.numericinputsdisabled
+{
+    
+    font-size: 12px;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    width: auto;
+    color: #333333;
+    text-align: right;
+}
+
+.sfd-toolbar
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    margin: 0px;
+    padding-top: 1px;
+    background-color: transparent;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-left-color: black;
+    border-bottom-width: 1px;
+    border-bottom-color: black;
+    border-top-color: black;
+    border-right-width: 1px;
+    border-right-color: black;
+    right: 0;
+    /*padding-right: 1px;
+	padding-left: 1px;
+	padding-bottom: 1px;
+	margin: 0px;
+	padding-top: 1px;
+	height: 20px;
+	border-right: black 1px dotted;
+	border-top: black 1px dotted;
+	font-weight: normal;
+	font-size: 10px;
+	border-left: black 1px dotted;
+	border-bottom: black 1px dotted;
+	font-family: Verdana;
+	background-color: #afccde;*/
+}
+
+.sfd-headerbar
+{
+    margin: 0px;
+    /*background-color: #F1F1F1; 
+	border:1px solid black;*/
+    /*border-top-width: 1px; 
+	border-left-width: 1px; 
+	border-left-color: black; 
+	border-bottom-width: 1px; 
+	border-bottom-color: black; 
+	border-top-color: black; 
+	border-right-width: 1px; 
+	border-right-color: black;*/
+    right: 0;
+}
+
+.sfd-toolbarsimple
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    margin: 0px;
+    padding-top: 1px;
+    height: 15px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    /*font-family: Verdana;*/
+    background-color: #ffcc66;
+}
+
+.sfd-toolitem
+{
+    padding: 4px;
+    margin: 1px;
+    background-color: transparent;
+    border-right: transparent 1px solid;
+    border-top: transparent 1px solid;
+    border-left: transparent 1px solid;
+    border-bottom: transparent 1px solid;
+    height: 15px;
+    width: 15px;
+}
+
+.sfd-toolitemactive
+{
+    padding: 4px;
+    margin: 1px;
+    background-color: #bbbbbb;
+    height: 15px;
+    width: 15px;
+}
+
+.sfd-ddbox
+{
+    /*font-weight: normal;
+        font-size: 10px;
+ 
+        font-family: Verdana;       
+        filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee,GradientType=1) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=2, Direction=135);
+        background: #F1F1F1;
+        width:150px;
+        height:24px;
+        vertical-align: middle;
+        text-align: center;
+        position:relative;*/
+    font-weight: normal;
+    font-size: 10px;
+    
+    background-color: Transparent;
+    background: #F1F1F1;
+    width: 250px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.sfd-ddboxtable
+{
+    /*border-right: black 1px dotted; 
+	border-top: black 1px dotted; */
+    font-weight: normal;
+    font-size: 10px;
+    /*border-left: black 1px dotted; 
+	border-bottom: black 1px dotted; */
+    /*font-family: Verdana;*/
+    background-color: Transparent;
+    /*border:1px solid BLACK;*/
+    background: #F1F1F1;
+    width: 250px;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+}
+
+.sfd-ddboxtarget
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    margin: 0px;
+    padding-top: 1px;
+    height: 20px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    cursor: pointer;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    /*font-family: Verdana;*/
+    background-color: #e2fff2; /*#afccde;/*#ffcc66Part Rohit*/
+}
+
+.sfd-ddboxformtarget
+{
+    margin: 0px;
+    padding-top: 1px;
+    height: 20px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    color: Blue;
+    
+    cursor: pointer;
+    background-color: #fff0d9; /*ccffff full Rohit*/
+}
+
+.sfd-ddboxtopformtarget
+{
+    margin: 0px;
+    padding-top: 1px;
+    height: 40px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    color: Blue;
+    
+    cursor: pointer;
+    background-color: #fff0d9; /*ccffff full Rohit*/
+}
+
+.sfd-ddboxselectedtarget
+{
+    margin: 0px;
+    padding-top: 1px;
+    height: 20px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    cursor: pointer;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    background-color: #ffd89b; /*#afccde;*/
+    /*border:1px solid #4b6576;ccffff full Rohit*/
+}
+
+.sfd-ddboxtopformselectedtarget
+{
+    margin: 0px;
+    padding-top: 1px;
+    height: 40px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    cursor: pointer;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    background-color: #ffd89b; /*#afccde;*/
+    /*border:1px solid #4b6576;ccffff full Rohit*/
+}
+
+.sfd-ddboxselectedtargetsimple
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    margin: 0px;
+    padding-top: 1px;
+    height: 20px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    cursor: pointer;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    background-color: #b2f3e8;
+}
+
+.sfd-ddboxselectedtargettopformsimple
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    margin: 0px;
+    padding-top: 1px;
+    height: 20px;
+    border-right: black 1px dotted;
+    border-top: black 1px dotted;
+    font-weight: normal;
+    font-size: 10px;
+    cursor: pointer;
+    border-left: black 1px dotted;
+    border-bottom: black 1px dotted;
+    background-color: #b2f3e8;
+}
+
+.sfd-tools
+{
+    BORDER-RIGHT: black 1px solid;
+    BORDER-TOP: black 1px solid;
+    FONT-SIZE: 11px;
+    BORDER-LEFT: #C7C7C7 4px solid;
+    BORDER-BOTTOM: #C7C7C7 3px solid;
+    
+    /* height:100%;*/
+    /* BACKGROUND-COLOR: #ccccff;*/
+    BACKGROUND-COLOR: #E5E5E5;
+    cursor: pointer;
+}
+
+.sfd-toolsitem
+{
+    FONT-SIZE: 11px;
+    
+    BACKGROUND-COLOR: #E5E5E5;
+    width: 100%;
+    height: 100%;
+    BORDER-RIGHT: transparent 1px solid;
+    BORDER-TOP: transparent 1px solid;
+    BORDER-LEFT: transparent 1px solid;
+    BORDER-BOTTOM: transparent 1px solid;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.sfd-toolsitemtab
+{
+    FONT-SIZE: 13px;
+    
+    BACKGROUND-COLOR: #BABABA;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    cursor: help;
+}
+
+.sfd-toolsitemselected
+{
+    FONT-SIZE: 11px;
+    
+    BACKGROUND-COLOR: #B0B0B0;
+    BORDER-RIGHT: blue 1px solid;
+    BORDER-TOP: blue 1px solid;
+    BORDER-LEFT: blue 1px solid;
+    BORDER-BOTTOM: blue 1px solid;
+    width: 100%;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.sf-designertoolbar
+{
+    background-color: #cccccc;
+    border-bottom: 1px solid #ffffff;
+}
+
+.fd-footerdiv
+{
+    background-color: #cccccc;
+    min-height: 53px;
+    padding: 0px !important;
+}
+
+.sfd-footerdiv
+{
+    /*background-color: #cccccc;*/
+    min-height: 40px;
+    padding: 0px !important;
+}
+
+    .sfd-footerdiv td, fd-footerdiv td
+    {
+        padding: 0px !important;
+    }
+
+.sfd-bottombannerdiv
+{
+    font-size: 12px;
+    vertical-align: middle;
+    color: #000000;
+}
+
+.designerdisplaytext
+{
+    cursor: default;
+}
+
+.menuitemkeydown
+{
+    cursor: wait;
+}
+
+.menuitemkeyup
+{
+    cursor: help;
+}
+
+.headinput
+{
+    
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    border: 1px solid black /*#7f9db9*/;
+    width: auto;
+    color: #333333;
+}
+
+.designertoolbarcombo
+{
+    width: 95% !important;
+    background-color: #FFFFFF;
+    margin: 5px;
+}
+
+.topheadertoolbox
+{
+    font-size: 18px;
+    color: #1b1b1b;
+    padding-left: 10px;
+    /*background-color: #cccccc;*/
+}
+
+.topheadertoolboxwithbackcolorcodef4f4f4
+{
+    font-size: 12px;
+    padding-left: 5px;
+    font-weight: bold;
+    color: #464646;
+    /*font-family: Trebuchet MS;*/
+    background-color: #f4f4f4;
+}
+
+.SplitterBar
+{
+    max-height: 100% !important;
+    cursor: pointer;
+    width: 7px !important;
+    background-size: 100% !important;
+}
+
+.sf-formpublishlabel
+{
+    
+    font-size: 12px;
+    color: #009b4b;
+    padding-bottom: 8px;
+    font-weight: normal;
+    text-decoration: none;
+    overflow: auto;
+}
+
+.sfd-ddbox-text
+{
+    
+    color: #1f1f1f;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.sf-checklist
+{
+    
+    color: #1f1f1f;
+    font-size: 12px;
+    background-color: White;
+    font-weight: normal;
+}
+
+    .sf-checklist td
+    {
+        vertical-align: top;
+    }
+
+.sf-radiobuttongroup
+{
+    
+    color: #1f1f1f;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+    .sf-radiobuttongroup td
+    {
+        vertical-align: top;
+    }
+
+.loading
+{
+    width: 200px;
+    height: 100px;
+    background-color: #c0c0c0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    text-align: center;
+}
+
+.formulaInsertbutton
+{
+    background-image: url(../images/add-button-bg.gif);
+    width: 22px;
+    height: 22px;
+    
+    font-size: 13px;
+    border: 0;
+}
+
+.formulaaddbutton
+{
+    background-image: url(../images/add-bg.gif);
+    width: 39px;
+    height: 22px;
+    
+    font-size: 12px;
+    border: 0;
+}
+
+.formula-iconbutton
+{
+    background-image: url(../images/one-clear.gif);
+    width: 30px;
+    height: 22px;
+    
+    font-size: 12px;
+    border: 0;
+}
+
+.fdformsdesigner
+{
+    
+    font-size: 14px;
+    color: #000000;
+}
+
+.sf-listdesignerheader
+{
+    /*background-image:url(../images/bg-title.png);*/
+    background-color: #cccccc;
+    border-bottom: 1px solid #fff;
+    height: 40px;
+}
+
+
+.sf-listdesignertoolbar
+{
+    background-color: #cccccc;
+    /* background-image: url(../images/menu-bg.jpg);*/
+}
+
+.toplistheadertoolbox
+{
+    font-size: 12px;
+    color: #000000;
+    background-color: #e0e1dd;
+    border-bottom: 1px solid #fff;
+    /*font-family: Trebuchet MS;
+    background-image: url(../images/bg-footer.png);*/
+}
+
+.toplistheader
+{
+    background-color: #cccccc;
+    padding-left: 5px;
+}
+
+.actiontoolbar
+{
+    background-color: #e0e1dd;
+    border-left: 1px solid #ffffff;
+}
+
+.sf-listdesignerfooter
+{
+    background-color: #cccccc;
+    min-height: 53px;
+    /*background-image: url(../images/bg-footer.png);*/
+}
+
+.ldlistsdesigner
+{
+    
+    font-size: 13px;
+    font-weight: bold;
+    color: #464646;
+    text-decoration: none;
+}
+
+.sf-listtableform
+{
+    /*border: 1px solid blue;*/
+    /*filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#fffcfcfe, EndColorStr=#fff4f3ee, GradientType=0) progid:DXImageTransform.Microsoft.Shadow(Color=#ff919899, Strength=2, Direction=135);*/
+    padding-bottom: 10px;
+}
+
+.sf-listtableformtitle
+{
+    color: Blue;
+    font-size: 12px;
+    
+    font-weight: bolder;
+}
+
+.sf-listtableformtitledescription
+{
+    color: Black;
+    font-size: 11px;
+    
+    font-weight: lighter;
+}
+
+.sf-timeview
+{
+    height: 210px;
+    width: 175px;
+    overflow: auto;
+    /* border-top:1px solid #C6E2FF;
+    border-bottom:1px solid #C6E2FF;
+    border:1px solid #C6E2FF; */
+}
+
+.treeDiv
+{
+    
+    font-size: 12px;
+    background-color: #FFFFFF;
+    border: 1px solid #666666;
+    width: auto;
+    color: #333333;
+}
+
+
+.fontCode
+{
+    
+    font: Verdana;
+    font-size: 12px;
+    z-index: 101;
+    color: Black;
+}
+
+.newtopheadertoolbox
+{
+    font-size: 12px;
+    padding-left: 5px;
+    font-weight: bold;
+    color: #464646;
+    font-family: Trebuchet MS;
+    background-color: #f4f4f4;
+}
+
+.divError
+{
+    background-color: White;
+    border: Solid 3px #d2d2d2;
+}
+
+.header2
+{
+    
+    font-size: 11px;
+    font-weight: bold;
+    color: #000000;
+    height: 25px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    background-image: url(../images/footer-bg2.png);
+    padding-left: 10px;
+}
+
+.inputsExpression
+{
+    
+    font-size: 12px;
+    background-color: #FFFFFF;
+    border: 1px solid #00FF00;
+    width: 400px;
+    color: #333333;
+}
+
+.inputsNoExpression
+{
+    
+    font-size: 12px;
+    background-color: #FFFFFF;
+    border: 1px solid #7f9db9;
+    width: 400px;
+    color: #333333;
+}
+
+.sf-dropdownlookupItems
+{
+    
+    color: #000000;
+    font-size: 10px;
+}
+
+.sf-dropdownlookupheader
+{
+    
+    color: #000000;
+    font-size: 11px;
+    padding-bottom: 0px;
+    text-decoration: none;
+    vertical-align: top;
+    font-weight: bold;
+    padding: 0px 0px 0px 0px;
+}
+
+/*Discuss with Meena to make the unique class in all css
+.newtopheadertoolbox
+{
+	font-size:12px;
+	padding-left:5px;
+	font-weight:bold;
+	color:#464646;
+	font-family:Trebuchet MS;
+	background-color:#f4f4f4;
+
+}
+.newsf-topleveltitle
+{
+	font-family: "Segoe UI" , "Verdana";
+	font-size: 13px;
+	font-weight:bold; 
+	color:#000000;
+	background-color: #f1f1f1;
+}
+
+.sf-formfirstlabeldescriptionnew
+{
+	font-family: "Segoe UI" , "Verdana";
+	color:#1f1f1f;
+	font-size: 11px;
+	padding-bottom: 8px;
+	font-weight:normal;
+	text-decoration: none;
+	background-color:#f7f7f7;
+}
+*/
+
+.sf-formlabelinset
+{
+    
+    font-size: 14px;
+    color: #1b1b1b;
+    vertical-align: top;
+    padding-bottom: 0px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: top;
+    padding: 0px 0px 0px 0px;
+}
+
+.sf-formfirstlabelinset
+{
+    
+    font-size: 14px;
+    color: #000000;
+    vertical-align: top;
+    padding-bottom: 0px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.sf-formbodyinset
+{
+    width: 6px;
+    background-color: #FAFAFA;
+}
+
+.sf-richtextreadonly
+{
+    border: 1px solid #7f9db9;
+     /* Added because if don't give any size richtext lable should take this class.*/
+    font-size: 9.5px;
+}
+
+.tablebg
+{
+    /*background-color: #e3e3e3;*/
+}
+
+.contenttdbg
+{
+    background-color: #FFFFFF;
+}
+
+.footerbg
+{
+    height: 40px;
+    
+    /*background: #cccccc;*/
+    color: #000000;
+}
+
+.warningmsg
+{
+    
+    font-size: 11px;
+    color: #000000;
+}
+
+.errormsg
+{
+    
+    font-size: 11px;
+    color: #e10909;
+}
+
+.successfulmsg
+{
+    
+    font-size: 11px;
+    color: #00a21b;
+}
+
+.sf-attachradio
+{
+    
+    font-size: 12px;
+    background-color: #FFFFFF;
+    width: auto;
+    color: #333333;
+}
+
+.sf-HyperLink
+{
+    
+    font-size: 12px;
+}
+
+.sf-HyperLinkDisabled
+{
+    
+    color: Gray;
+    font-size: 12px;
+}
+
+.sf-ReportViewerControl
+{
+    display: table !important;
+    border: Solid 1px #8db2e3;
+    
+    font-size: 8pt;
+    color: inherit;
+}
+
+.ssrs-panel
+{
+    border: solid 1px #F5F5F5;
+}
+
+.sf-InvokeWorkflow
+{
+    background-color: #666666 !important;
+    color: #ffffff !important;
+    font-size: 14px;
+    border-style: none;
+    min-height: 32px;
+    min-width: 120px;
+}
+
+.sf-InvokeWorkflowDisabled
+{
+    background-color: #eaeaea !important;
+    color: #cccccc !important;
+    font-size: 14px;
+    border-style: none;
+    min-height: 32px;
+    min-width: 120px;
+}
+
+.sf-InvokeWorkflowImage
+{
+    border: 0px transparent solid;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+}
+
+/*This is added to handle some of Form pages to render in standards mode which uses Flex for layouting puposes*/
+html:not(.skprint), form, html:not(.skprint) body
+{
+    height: 100% !important;
+    width: 100% !important;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.skfc, .skfdc, .skfdr
+{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    vertical-align: top;
+}
+
+.skfdc
+{
+    -webkit-box-flex-orient: column; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex-orient: column; /* OLD - Firefox 19- */
+    -ms-box-flex-orient: column;
+    box-flex-orient: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column; /* Chrome */
+    -ms-flex-direction: column; /* IE 10 */
+    flex-direction: column;
+    -moz-flex-flow: column;
+    -webkit-flex-flow: column; /* Chrome */
+    -ms-flex-flow: column; /* IE 10 */
+    flex-flow: column;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-box-direction: normal;
+    box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-box-lines: multiple;
+    box-lines: multiple;
+}
+
+.skfmd
+{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 2px solid #e0e1dd;
+}
+
+.skflx
+{
+    -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1; /* OLD - Firefox 19- */
+    -ms-box-flex: 1 auto; /* IE 10 */
+    box-flex: 1 auto;
+    -webkit-flex: 1; /* Chrome */
+    -moz-flex: 1;
+    -ms-flex: 1 auto; /* IE 10 */
+    flex: 1;
+}
+
+.skcn
+{
+    margin: 0px;
+    border: 2px dotted rgba(0,0,0,0);
+    font-weight: normal;
+    font-size: 10px;
+    position: relative;
+    width: 100%;
+    -webkit-transition: border 500ms ease-out,background-color 500ms linear;
+    -moz-transition: border 500ms ease-out,background-color 500ms linear;
+    -o-transition: border 500ms ease-out,background-color 500ms linear;
+    -ms-transition: border 500ms ease-out,background-color 500ms linear;
+    transition: border 500ms ease-out,background-color 500ms linear;
+    height: 100%;
+}
+
+.skfas
+{
+    -webkit-box-flex-align: stretch; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex-align: stretch; /* OLD - Firefox 19- */
+    -ms-box-flex-align: stretch;
+    box-flex-align: stretch;
+    -webkit-flex-align: stretch; /* Chrome */
+    -moz-flex-align: stretch;
+    -ms-flex-align: stretch; /* IE 10 */
+    flex-align: stretch;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    -ms-box-align: stretch;
+    box-align: stretch;
+}
+
+.skcp
+{
+    position: relative;
+}
+
+.skh
+{
+    background-color: #e0e1dd;
+    padding: 10px 15px;
+    border-bottom: 1px solid #bab8b8;
+    min-height: 50px;
+}
+
+.skfdr
+{
+    -webkit-box-flex-orient: row;
+    -moz-box-flex-orient: row;
+    -ms-box-flex-orient: row;
+    box-flex-orient: row;
+    -moz-flex-direction: row;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -moz-flex-flow: row;
+    -webkit-flex-flow: row;
+    -ms-flex-flow: row;
+    flex-flow: row;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -ms-box-direction: normal;
+    box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -ms-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-box-lines: multiple;
+    box-lines: multiple;
+}
+
+
+
+input[type=text]:not(.radPreventDecorate), input[type=password], input[type=skeltaDate], input[type=skeltaTime], input[type=skeltaDateTime],
+input[type=email], input[type=number], select, textarea,
+input::-ms-check {
+    background-clip: padding-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgb(0, 0, 0);
+    border: 1px solid #666666 !important;
+    min-height: 23px !important;
+    font-size: 14px;
+    padding: 0px !important;
+    font-style: normal;
+}
+
+    input[type=text]:not(.radPreventDecorate):hover, input[type=password]:hover,
+    input[type=email]:hover, input[type=number]:hover,
+    textarea:hover, input[type=skeltaDate]:hover, input[type=skeltaTime]:hover, input[type=skeltaDateTime]:hover, select:hover, input:hover::-ms-check {
+        background-color: rgba(255, 255, 255, 0.87);
+        border: 1px solid #666666 !important;
+        color: rgb(0, 0, 0);
+    }
+
+    input[type=text]:not(.radPreventDecorate):focus,
+    input[type=text]:not(.radPreventDecorate):active,
+    input[type=skeltaDate]:focus, input[type=skeltaDate]:active, input[type=skeltaTime]:active, input[type=skeltaDateTime]:active,
+    input[type=password]:focus, input[type=password]:active,
+    input[type=email]:focus, input[type=email]:active,
+    input[type=number]:focus, input[type=number]:active,
+    textarea:focus, textarea:active,
+    select:focus, select:active {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid #666666 !important;
+        color: rgb(0, 0, 0);
+    }
+
+input:hover:active::-ms-check
+{ /* only checkbox and radio have press state */
+    background-clip: border-box;
+    background-color: rgb(0, 0, 0);
+    border-color: transparent;
+    color: rgb(255, 255, 255);
+}
+
+input:-ms-keyboard-active::-ms-check
+{ /* only checkbox and radio have press state */
+    background-clip: border-box;
+    background-color: rgb(0, 0, 0);
+    border-color: transparent;
+    color: rgb(255, 255, 255);
+}
+
+input[type=text]:disabled, input[type=password]:disabled, input[type=skeltaDate]:disabled, input[type=skeltaTime]:disabled, input[type=skeltaDateTime]:disabled,
+input[type=email]:disabled, input[type=number]:disabled,
+textarea:disabled, .win-textarea:disabled, select:disabled,
+input:disabled::-ms-check, input:disabled:active::-ms-check
+{
+    background-clip: padding-box;
+    background-color: rgba(202, 202, 202, 0.4);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px !important;
+    font-style: normal;
+}
+
+input[type="radio"],
+input[type="checkbox"]
+{
+    height: 21px;
+    width: 21px;
+    vertical-align: bottom;
+    background-color: transparent;
+}
+
+    input[type="radio"] + label,
+    input[type="checkbox"] + label
+    {
+        font-size: 14px;
+        word-wrap: break-word;
+        padding: 0 5px;
+    }
+
+
+input[type=skeltaDate], input[type=skeltaTime]
+{
+    width: 100px !important;
+    min-height: 23px !important;
+}
+
+input[type=skeltaDateTime]
+{
+    min-height: 23px !important;
+    width: 150px !important;
+}
+/* Dropdown */
+.sfdropdown
+{
+    min-width: 250px;
+}
+
+.sfdropdown, .designertoolbarcombo
+{
+    width: auto;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    color: #666666;
+    border: 1px solid #666666;
+    font-family: 'Segoe UI';
+    max-width: 100%;
+    min-height: 25px !important;
+    appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: "";
+    -webkit-appearance: none;
+}
+
+    .sfdropdown::-ms-expand, .designertoolbarcombo::-ms-expand
+    {
+        display: none;
+    }
+
+.sfdropdown, .designertoolbarcombo
+{
+    background-image: url(../images/Dropdown_Arrow.png);
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+
+    .sfdropdown:focus, .designertoolbarcombo:focus, .sfdropdown:active, .designertoolbarcombo:active
+    {
+        color: #000000;
+        border: 1px solid #000000;
+        background-image: url(../images/Dropdown_Arrow.png);
+    }
+
+    .sfdropdown:disabled
+    {
+        border: 1px solid #CCCCCC;
+        background-color: #f5f4f4;
+        overflow: hidden;
+    }
+
+.pickerWrapper_Default > input
+{
+    min-width: 0px !important;
+    min-height: 0px !important;
+    height: 0px !important;
+    display: none;
+}
+
+
+.inputsMultiline
+{
+    -ms-user-select: element !important;
+    margin: 0px 2px 3px 2px !important;
+    border-width: 0.5px !important;
+    border-style: solid !important;
+    font-size: 11pt !important;
+    font-weight: 400 !important;
+    line-height: 1.3636 !important; /* 20px when font-size is 11pt */
+    letter-spacing: 0.02em !important;
+    overflow-y: scroll;
+    word-wrap: break-word !important;
+    padding: 4px 8px;
+    /* Leave space for autohiding scrollbar on elements that enable text selection.    
+    min-width: 260px !important;
+    min-height: 39px;*/
+    background-clip: padding-box !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(0, 0, 0, 0.27) !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+textarea:focus, textarea:active
+{
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgba(0, 0, 0, 0.6) !important;
+    color: rgb(0, 0, 0) !important;
+    border-width: 0.5px !important;
+}
+
+textarea:disabled
+{
+    background-clip: padding-box !important;
+    background-color: rgba(202, 202, 202, 0.4) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    color: rgba(0, 0, 0, 0.4) !important;
+    border-width: 0.5px !important;
+}
+
+button, input[type=submit],
+input[type=reset]
+{
+    background-color: #666666;
+    color: #ffffff;
+    font-size: 14px;
+    min-height: 32px !important;
+    margin-right: 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    min-width: 120px !important;
+    max-width: 160px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 4px !important;
+}
+
+    button[type=submit], input[type=submit]
+    {
+        background-clip: border-box;
+        background-color: #0f76c7;
+        color: #ffffff;
+        font-size: 14px;
+        min-height: 32px !important;
+        margin-right: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        min-width: 120px !important;
+        max-width: 160px !important;
+        overflow: hidden;
+        white-space: nowrap;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 4px !important;
+    }
+
+.inputsecondarybutton
+{
+    font-size: 14px;
+    border: 0px solid #7b9ebd !important;
+    background-color: #e2eff8 !important;
+    color: #0f76c7 !important;
+    text-align: center;
+    vertical-align: middle;
+    height: 32px !important;
+    min-width: 120px !important;
+    max-width: 160px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 4px !important;
+}
+
+.divBottomButton
+{
+    float: right;
+}
+
+button:hover:not(:disabled), input[type=button]:not(.sf-inputsLinkButton):hover:not(:disabled), input[type=reset]:hover:not(:disabled)
+{
+    background-color: #0446a6 !important;
+    color: #ffffff !important;
+}
+
+button[type=submit]:hover:not(:disabled), input[type=submit]:hover:not(:disabled), input[type=button]:not(.sf-inputsLinkButton):hover:not(:disabled)
+{
+    background-clip: border-box;
+    background-color: #0446a6 !important;
+    color: #ffffff !important;
+}
+
+.sf-inputsLinkButton
+{
+    
+    font-size: 12px;
+    background-color: Transparent !important;
+    vertical-align: bottom;
+    color: Blue !important;
+    border: none;
+    text-decoration: underline !important;
+    cursor: pointer;
+    min-width: 120px !important;
+    max-width: 160px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 !important;
+}
+
+button:hover:active, button[type=submit]:hover:active,
+input[type=button]:hover:active, input[type=reset]:hover:active,
+input[type=submit]:hover:active
+{
+    background-clip: border-box;
+}
+
+button:-ms-keyboard-active, button[type=submit]:-ms-keyboard-active,
+input[type=button]:-ms-keyboard-active, input[type=reset]:-ms-keyboard-active,
+input[type=submit]:-ms-keyboard-active
+{
+    background-clip: border-box;
+    background-color: #ffffff !important;
+    border-color: transparent;
+    color: #000000 !important;
+}
+
+button:disabled, button[type=submit]:disabled,
+input[type=button]:disabled, input[type=reset]:disabled,
+input[type=submit]:disabled,
+button:disabled:active, button[type=submit]:disabled:active,
+input[type=button]:disabled:active, input[type=reset]:disabled:active,
+input[type=submit]:disabled:active
+{
+    background-color: #eaeaea !important;
+    color: #cccccc !important;
+}
+
+
+input[readonly=readonly]:not(.radPreventDecorate), input[readonly=""]:not(.radPreventDecorate) {
+    min-height: 23px !important;
+    color: #999999;
+}
+
+::selection, ::-moz-selection
+{
+    background-color: #018eac !important;
+    color: #ffffff;
+}
+
+.sf-FormsHeader
+{
+    /*background-color: #cccccc;*/
+    min-height: 40px;
+}
+
+.ComboBoxImage_SkeltaCombobox
+{
+    height: 23px !important;
+}
+
+.ComboBoxInput_SkeltaCombobox, .ComboBoxInputHover_SkeltaCombobox
+{
+    border-right-style: none !important;
+    border-right-width: 0px !important;
+}
+
+/*Telerik control causing unessecary horizontal scroll bar to come in forms*/
+.radInput_Default textarea + textarea, .radInput_Default input + input
+{
+    display: none;
+}
+
+/*Lookup value is not clearing on clicking og clear button in IE*/
+input[class="ComboBoxInputHover_SkeltaCombobox"]::-ms-clear, .ComboBoxInput_SkeltaCombobox::-ms-clear
+{
+    display: none;
+}
+
+.pickerWrapper_SkeltaCalendar > input:first-of-type
+{
+    display: none !important;
+}
+
+.sf-formlabelReportConfig
+{
+    
+    color: #000000;
+    font-size: 14px;
+    padding-bottom: 0px;
+    text-decoration: none;
+    vertical-align: top;
+    font-weight: normal;
+    width: 40%;
+    /*border-bottom: 1px solid #F5F5F5;
+    border-right: 1px solid #F5F5F5;*/
+}
+
+.sf-formlabelReportConfigNormal
+{
+    
+    color: #000000;
+    font-size: 14px;
+    padding-bottom: 8px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.sf-formImageReportConfig
+{
+    vertical-align: middle;
+    background-image: url(../images/Controls-Icon.png);
+}
+
+    .sf-formImageReportConfig:hover
+    {
+        vertical-align: middle;
+        background-image: url(../images/Controls-Icon-Hover.png);
+    }
+
+.sf-formlevelbuttontable {
+    float: right;
+}
+
+    .sf-formlevelbuttontable td input {
+        margin-left: 4px;
+    }
+
+    .sf-formlevelbuttontable td:first-child input {
+        margin-left: 0;
+    }

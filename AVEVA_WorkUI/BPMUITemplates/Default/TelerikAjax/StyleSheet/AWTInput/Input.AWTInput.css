@@ -1,0 +1,127 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+.RadInput_AWTInput {
+    color: #333333;
+    font-size: 14px;
+    font-family: "Roboto","Segoe UI", Arial, Helvetica, sans-serif !important;
+    height: 20px !important;
+    vertical-align: top !important;
+}
+
+.RadInput_AWTInput,
+.RadInputMgr_AWTInput {
+    font: 14px "Roboto","segoe ui",arial,sans-serif;
+}
+
+html body .RadInput_AWTInput .riTextBox,
+html body .RadInputMgr_AWTInput {
+    border-color: #b3b3b3;
+    color: #333333;
+    background-color: #ffffff;
+    font: 14px "Roboto","segoe ui",arial,sans-serif;
+}
+
+html body .RadInput_AWTInput .riEmpty,
+html body .RadInput_Empty_AWTInput {
+  color: #a6a6a6; }
+
+html body .RadInput_AWTInput .riHover,
+html body .RadInput_Hover_AWTInput,
+html body .RadInput_AWTInput .riFocused,
+html body .RadInput_Focused_AWTInput {
+  border-color: #515151;
+  color: #333333; }
+
+html body .RadInput_AWTInput .riRead,
+html body .RadInput_Read_AWTInput {
+  border-color: #d0d0d0; }
+
+html body .RadInput_AWTInput .riDisabled,
+html body .RadInput_Disabled_AWTInput {
+  border-color: #d0d0d0;
+  color: #8a8a8a;
+  cursor: default; }
+
+html body .RadInput_AWTInput .riError,
+html body .RadInput_Error_AWTInput {
+  border-color: #d51923;
+  background: white 100% -298px no-repeat url('Input/sprite.gif');
+  color: #d51923; }
+
+.RadForm.rfdTextbox .RadInput_AWTInput .riError[type="text"],
+.RadForm.rfdTextbox .RadInput_Error_AWTInput[type="text"] {
+  border-color: #d51923;
+  background: white 100% -298px no-repeat url('Input/sprite.gif');
+  color: #d51923; }
+
+html body .RadInput_AWTInput .riNegative,
+html body .RadInput_Negative_AWTInput {
+  color: #565656; }
+
+.RadInput_AWTInput a {
+  background: transparent no-repeat url('Input/sprite.gif'); }
+
+.RadInput_AWTInput .riBtn a {
+  width: 20px;
+  height: 18px;
+  line-height: 18px;
+  background-position: 3px 5px; }
+  .RadInput_AWTInput .riBtn a:hover {
+    background-position: 3px -45px; }
+
+.RadInput_AWTInput .riSpin a {
+  width: 15px;
+  height: 7px;
+  line-height: 7px; }
+
+.RadInput_AWTInput a.riUp {
+  background-position: 4px -98px; }
+  .RadInput_AWTInput a.riUp:hover {
+    background-position: 4px -148px; }
+
+.RadInput_AWTInput a.riDown {
+  background-position: 4px -199px; }
+  .RadInput_AWTInput a.riDown:hover {
+    background-position: 4px -249px; }
+
+.RadInput_AWTInput .riLabel {
+  color: #000; }
+
+.RadInput_AWTInput .riResizeIcon {
+  background: url('Common/radActionsSprite.png') no-repeat transparent;
+  background-position: -6.5px -966.5px;
+  margin-bottom: -1px; }
+
+html body .RadInputRTL_AWTInput .riError,
+html body .RadInputRTL_Error_AWTInput {
+  background-position: 3px -298px; }
+
+html body .RadInputRTL_AWTInput .riResizeIcon {
+  background-position: -6.5px -986.5px; }
+
+.RadForm.rfdTextbox .RadInputRTL_AWTInput .riError[type="text"],
+.RadForm.rfdTextbox .RadInputRTL_Error_AWTInput[type="text"] {
+  background-position: 3px -298px; }
+

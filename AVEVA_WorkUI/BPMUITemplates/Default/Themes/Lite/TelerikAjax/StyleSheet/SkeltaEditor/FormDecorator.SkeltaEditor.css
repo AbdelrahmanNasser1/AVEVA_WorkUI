@@ -1,0 +1,233 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.RadForm_SkeltaEditor {
+  /* CSS class for styling the decoration zone or the <html /> tag of the page */
+  /* Decorate scrollbars */
+  /* Decorate <input type="button | submit | reset" /> and <button type="button | submit | reset" /> - look if there is a secondary .rfdButton class applied to the root element */
+  /* OPERA width fix - do not remove (and check if it is still necessary) */
+  /* Decorate <h4|5|6 /> */
+  /* Decorate <label /> */
+  /* Decorate <input type="checkbox" /> */
+  /* Decorate <input type="radio" /> */
+  /* IE6 - we set .gif")%> image instead of .png")%> due to the lack RGBA support */
+  /* <fieldset /> and <legend /> */
+  /* this selector styles the hover of the side bars of the rounded elements */
+  /* Decorate <input type="text | password | search | url | tel | email" /> and <textarea /> */
+  /* For all browsers except IE6 we are using attribute selectors - single or double */
+  /* Decorate <fieldset /> and <legend /> */
+  /* Because of a glitch in IE the following 2 CSS classes must be declared separately for correct parsing of the textarea class in IE6*/
+  /* <select /> */
+  /* IE6 disabled state fix - this should not be added to the base stylesheet, but at the bottom of the skin file */
+  /* the styling of radiobuttons and checkboxes in Safari and Chrome is already fully achieved with CSS */
+  /* ----------------------------------------------- Skin-specific Scrollbar Settings for WebKit ----------------------------------------------- */
+  /* the scrollbar face color */
+  /*GridView, FormView, DetailsView*/
+  /* Validation Summary Control and Login Control  */ }
+  .RadForm_SkeltaEditor.rfdScrollBars {
+    scrollbar-3dlight-color: #ccc;
+    scrollbar-arrow-color: #292929;
+    scrollbar-base-color: #ff6347;
+    scrollbar-darkshadow-color: #595959;
+    scrollbar-face-color: #e4e4e4;
+    scrollbar-highlight-color: #fff;
+    scrollbar-shadow-color: #a3a3a3;
+    scrollbar-track-color: #f0f0f0; }
+  .RadForm_SkeltaEditor.rfdButton a.rfdSkinnedButton, .RadForm_SkeltaEditor.rfdButton input[type="button"].rfdDecorated, .RadForm_SkeltaEditor.rfdButton input[type="reset"].rfdDecorated, .RadForm_SkeltaEditor.rfdButton input[type="submit"].rfdDecorated, .RadForm_SkeltaEditor.rfdButton .rfdSkinnedButton button,
+  .RadForm_SkeltaEditor a.rfdSkinnedButton,
+  .RadForm_SkeltaEditor .rfdSkinnedButton button,
+  .RadForm_SkeltaEditor .rfdSkinnedButton input.rfdDecorated, .RadForm_SkeltaEditor.rfdButton a.rfdSkinnedButton, .RadForm_SkeltaEditor.rfdButton a.rfdSkinnedButton * {
+    background-image: url('FormDecorator/ButtonSprites.gif');
+    color: #333333; }
+  .RadForm_SkeltaEditor a.rfdSkinnedButton,
+  .RadForm_SkeltaEditor .rfdSkinnedButton button,
+  .RadForm_SkeltaEditor .rfdSkinnedButton input.rfdDecorated {
+    _background-image: url('FormDecorator/ButtonSprites.gif');
+    _color: #333333; }
+  @media screen and (min-width: 1px) {
+    .RadForm_SkeltaEditor {
+      /*
+         the hack below fixes a strange behavior under Opera -
+         input and button have a different CSS display when in anchor tag
+      */ }
+      .RadForm_SkeltaEditor.rfdButton a.rfdSkinnedButton input {
+        display: block;
+        float: left; } }
+  .RadForm_SkeltaEditor.rfdHeading h4, .RadForm_SkeltaEditor.rfdHeading h5 {
+    color: #333333;
+    border-bottom: 1px solid #8a8a8a; }
+  .RadForm_SkeltaEditor.rfdHeading h6 {
+    color: #333333; }
+  .RadForm_SkeltaEditor.rfdLabel label, .RadForm_SkeltaEditor.rfdLabel .rfdAspLabel, .RadForm_SkeltaEditor.rfdRadio .rfdRadioUnchecked, .RadForm_SkeltaEditor.rfdRadio .rfdRadioChecked, .RadForm_SkeltaEditor.rfdCheckbox .rfdCheckboxUnchecked, .RadForm_SkeltaEditor.rfdCheckbox .rfdCheckboxChecked {
+    color: #333333; }
+  .RadForm_SkeltaEditor .rfdCheckboxUnchecked,
+  .RadForm_SkeltaEditor .rfdCheckboxChecked,
+  .RadForm_SkeltaEditor .rfdInputDisabled.rfdCheckboxUnchecked,
+  .RadForm_SkeltaEditor .rfdInputDisabled.rfdCheckboxChecked {
+    background-image: url('FormDecorator/CheckBoxSprites.gif'); }
+  .RadForm_SkeltaEditor .rfdRadioUnchecked,
+  .RadForm_SkeltaEditor .rfdRadioChecked,
+  .RadForm_SkeltaEditor .rfdInputDisabled.rfdRadioUnchecked,
+  .RadForm_SkeltaEditor .rfdInputDisabled.rfdRadioChecked {
+    background-image: url('FormDecorator/RadioButtonSprites.png'); }
+  .RadForm_SkeltaEditor .rfdRadioUnchecked,
+  .RadForm_SkeltaEditor .rfdInputDisabled.rfdRadioUnchecked:hover,
+  .RadForm_SkeltaEditor .rfdRadioUnchecked:hover,
+  .RadForm_SkeltaEditor .rfdRadioChecked,
+  .RadForm_SkeltaEditor .rfdInputDisabled.rfdRadioChecked:hover,
+  .RadForm_SkeltaEditor .rfdRadioChecked:hover {
+    _background-image: url('FormDecorator/RadioButtonSprites.gif');
+    /* IE6 hack */ }
+  .RadForm_SkeltaEditor.rfdFieldset table.rfdRoundedWrapper_fieldset legend, .RadForm_SkeltaEditor.rfdFieldset fieldset legend, .RadForm_SkeltaEditor.rfdFieldset legend {
+    color: #333333; }
+  .RadForm_SkeltaEditor table.rfdRoundedWrapper:hover div.rfdRoundedInner {
+    background-color: white;
+    border-color: #515151 !important; }
+  .RadForm_SkeltaEditor table.rfdRoundedWrapper:hover .rfdRoundedOuter {
+    background-color: #515151 !important; }
+  .RadForm_SkeltaEditor.rfdTextbox input[type="text"].rfdDecorated, .RadForm_SkeltaEditor.rfdTextbox input[type="password"].rfdDecorated, .RadForm_SkeltaEditor.rfdTextbox input[type="search"].rfdDecorated, .RadForm_SkeltaEditor.rfdTextbox input[type="url"].rfdDecorated, .RadForm_SkeltaEditor.rfdTextbox input[type="tel"].rfdDecorated, .RadForm_SkeltaEditor.rfdTextbox input[type="email"].rfdDecorated, .RadForm_SkeltaEditor.rfdTextarea textarea, .RadForm_SkeltaEditor.rfdTextarea textarea[disabled].rfdDecorated:hover, .RadForm_SkeltaEditor.rfdTextbox input[disabled][type="text"].rfdDecorated:hover, .RadForm_SkeltaEditor.rfdTextbox input[disabled][type="password"].rfdDecorated:hover, .RadForm_SkeltaEditor.rfdTextbox input[disabled][type="search"].rfdDecorated:hover, .RadForm_SkeltaEditor.rfdTextbox input[disabled][type="url"].rfdDecorated:hover, .RadForm_SkeltaEditor.rfdTextbox input[disabled][type="tel"].rfdDecorated:hover, .RadForm_SkeltaEditor.rfdTextbox input[disabled][type="email"].rfdDecorated:hover {
+    border: 1px solid #8a8a8a;
+    background-color: white; }
+  .RadForm_SkeltaEditor.RadForm.rfdTextbox .rfdDecorated:hover, .RadForm_SkeltaEditor.RadForm.rfdTextarea textarea:hover, .RadForm_SkeltaEditor.RadForm.rfdTextbox .rfdDecorated:focus, .RadForm_SkeltaEditor.RadForm.rfdTextarea textarea:focus {
+    border: 1px solid #515151; }
+  .RadForm_SkeltaEditor.rfdFieldset table.rfdRoundedWrapper_fieldset legend, .RadForm_SkeltaEditor.rfdFieldset fieldset.rfdFieldset legend {
+    color: #333333; }
+  .RadForm_SkeltaEditor.rfdFieldset fieldset, .RadForm_SkeltaEditor.rfdFieldset table.rfdRoundedWrapper_fieldset fieldset, .RadForm_SkeltaEditor.rfdFieldset fieldset.rfdFieldset {
+    border: 1px solid #828282;
+    background-image: url('FormDecorator/FieldsetBgr.png');
+    /* having a background image on a fieldset is not okay with IE */ }
+  .RadForm_SkeltaEditor table.rfdRoundedWrapper input,
+  .RadForm_SkeltaEditor table.rfdRoundedWrapper textarea,
+  .RadForm_SkeltaEditor input.rfdInput,
+  .RadForm_SkeltaEditor textarea.rfdTextarea {
+    border: 1px solid #8a8a8a;
+    background-color: white;
+    color: #333333; }
+  .RadForm_SkeltaEditor textarea.rfdTextarea,
+  .RadForm_SkeltaEditor table.rfdRoundedWrapper textarea {
+    overflow: auto; }
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor,
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor:hover,
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor .rfdSelectOuter,
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor:hover .rfdSelectOuter,
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor .rfdSelectArrow span,
+  .RadForm_SkeltaEditor .rfdSelectBox_SkeltaEditor .rfdSelect_selected,
+  .RadForm_SkeltaEditor .rfdSelectBox_SkeltaEditor li:hover,
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor.rfdSelectDisabled:hover,
+  .RadForm_SkeltaEditor .rfdRtl .rfdSelect_SkeltaEditor,
+  .RadForm_SkeltaEditor .rfdRtl .rfdSelect_SkeltaEditor:hover,
+  .RadForm_SkeltaEditor .rfdRtl .rfdSelect_SkeltaEditor .rfdSelectOuter,
+  .RadForm_SkeltaEditor .rfdRtl .rfdSelect_SkeltaEditor .rfdSelectOuter:hover {
+    
+    background-repeat: no-repeat;
+    background-color: transparent; }
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor .rfdSelectOuter,
+  .RadForm_SkeltaEditor .rfdSelect_SkeltaEditor.rfdSelectDisabled:hover .rfdSelectOuter {
+    color: #333333; }
+  .RadForm_SkeltaEditor.rfdButton a.rfdInputDisabled:hover {
+    _background-position: 0 0; }
+  .RadForm_SkeltaEditor.rfdButton a.rfdInputDisabled:hover * {
+    _background-position: right -21px;
+    _color: #824703; }
+  .RadForm_SkeltaEditor.rfdTextbox input.rfdIE6TextBox, .RadForm_SkeltaEditor.rfdTextbox textarea.rfdIE6TextBox {
+    _border: 1px solid #938879;
+    _background-color: white; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .RadForm_SkeltaEditor {
+      /* checkboxes */
+      /* radio buttons */ }
+      .RadForm_SkeltaEditor.rfdCheckbox input[type="checkbox"], .RadForm_SkeltaEditor.rfdCheckbox input[type="checkbox"][disabled]:hover {
+        background-image: url('FormDecorator/CheckBoxSprites.gif'); }
+      .RadForm_SkeltaEditor.rfdRadio input[type="radio"], .RadForm_SkeltaEditor.rfdRadio input[type="radio"][disabled="disabled"]:hover {
+        background-image: url('FormDecorator/RadioButtonSprites.png'); } }
+  .RadForm_SkeltaEditor.rfdScrollBars {
+    /* scrollbar track background color */
+    /* increment / decrement button settings */ }
+    .RadForm_SkeltaEditor.rfdScrollBars body::-webkit-scrollbar,
+    .RadForm_SkeltaEditor.rfdScrollBars body::-webkit-scrollbar-thumb:vertical,
+    .RadForm_SkeltaEditor.rfdScrollBars body::-webkit-scrollbar-thumb:horizontal,
+    .RadForm_SkeltaEditor.rfdScrollBars div::-webkit-scrollbar,
+    .RadForm_SkeltaEditor.rfdScrollBars div::-webkit-scrollbar-thumb:vertical,
+    .RadForm_SkeltaEditor.rfdScrollBars div::-webkit-scrollbar-thumb:horizontal
+    form::-webkit-scrollbar,
+    .RadForm_SkeltaEditor.rfdScrollBars form::-webkit-scrollbar-thumb:vertical,
+    .RadForm_SkeltaEditor.rfdScrollBars form::-webkit-scrollbar-thumb:horizontal {
+      background-color: #e4e4e4; }
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-track-piece,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-corner {
+      background-color: #f0f0f0; }
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:vertical:decrement,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:vertical:increment,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:horizontal:decrement,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:horizontal:increment,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-thumb:vertical,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-thumb:horizontal {
+      border-color: #ccc #a3a3a3 #a3a3a3 #ccc; }
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:vertical:decrement,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:vertical:increment,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:horizontal:decrement,
+    .RadForm_SkeltaEditor.rfdScrollBars ::-webkit-scrollbar-button:horizontal:increment {
+      background-image: url('FormDecorator/ButtonSprites.gif');
+      background-color: #e4e4e4; }
+  .RadForm_SkeltaEditor.rfdGrids .rfdTable {
+    border: 1px solid #828282;
+    background: white;
+    color: #333333;
+    font: 12px "Roboto", "Segoe UI", "Arial", "Verdana"; }
+  .RadForm_SkeltaEditor.rfdGrids .rfdTable th {
+    border-bottom: 1px solid #828282;
+    border-left: 1px solid #8a8a8a;
+    background: #eaeaea;
+    color: #333333; }
+  .RadForm_SkeltaEditor.rfdGrids .rfdTable a {
+    color: #333333; }
+  .RadForm_SkeltaEditor .rfdValidationSummaryControl,
+  .RadForm_SkeltaEditor .rfdLoginControl {
+    background-color: white;
+    border: 1px solid #848484; }
+  .RadForm_SkeltaEditor a.rfdLoginControl,
+  .RadForm_SkeltaEditor a.rfdLoginControl:active,
+  .RadForm_SkeltaEditor a.rfdLoginControl:visited {
+    color: #333333; }
+  .RadForm_SkeltaEditor a.rfdLoginControl:hover {
+    color: #4b4b4b; }
+
+/* dropdown settings */
+.rfdSelectBox_SkeltaEditor {
+  background-color: white;
+  border: 1px solid #8a8a8a;
+  color: #333333; }
+
+.rfdSelectBox_SkeltaEditor li {
+  background-image: none !important; }
+
+.rfdSelectBox.rfdSelectBox_SkeltaEditor .rfdSelect_selected,
+.rfdSelectBox.rfdSelectBox_SkeltaEditor li:hover,
+.rfdSelectBox.rfdSelectBox_SkeltaEditor .rfdSelect_hovered {
+  color: #333333;
+  background-color: #dfdfdf; }
+
+.rfdSelectBox_SkeltaEditor .rfdSelectBox_optgroup_label:hover {
+  background: none;
+  color: #333333; }
+

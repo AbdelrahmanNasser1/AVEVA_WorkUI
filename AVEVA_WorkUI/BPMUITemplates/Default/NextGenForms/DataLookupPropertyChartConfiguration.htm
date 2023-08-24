@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Data Grid Configuration Selection</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject;
+        var controlXmlNode;
+        var appName;
+        var userId;
+        var itemId;
+        var versionStamp;
+        var editPageVm;
+
+        $(document).ready(function ()
+        {
+            controlXmlNode = skeltaUtils.getUrlParameterValue(window, 'caller'), 
+            appName = window.parent.skeltaUserContext.getUserContextFor("appN"),
+            itemId = window.parent.skeltaUserContext.getUserContextFor("itemId"),
+            versionStamp = window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+            userId = window.parent.skeltaUserContext.getUserContextFor("uId");
+
+            skelta.userContext.setUserContextFor("appN", appName);
+            skelta.userContext.setUserContextFor("uId", userId);
+
+            skeltaUtils.loadPageDefault();
+            loadLookupSourceConfiguration();
+        });
+
+        function loadLookupSourceConfiguration()
+        {
+            uniqueKey = skeltaUtils.getFormUniqueKey(appName, itemId + "_LSC", versionStamp);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "appName": appName,
+                "uId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "ck": itemId,
+                "vs": versionStamp,
+                "id": skeltaUtils.getUrlParameterValue(window, 'id'),
+				        "isSankeyChart": skeltaUtils.getUrlParameterValue(window, 'isSankeyChart')
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetDataLookupPropertyChartSourceForm", "application/json; charset=utf-8", jsonHelper, "html", success, fail, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function success(resultData)
+        {
+            editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+
+            var dataSource = editPageVm.topLevelForm.findByXmlNode(controlXmlNode).value;
+            if (dataSource != "")
+            {
+                var lookupSourceData = skeltaUtils.getJSONObjectFromXml(dataSource);
+
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, lookupSourceData);
+            }
+
+            $("#viewModel").html(resultData);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(updateGridSource);
+            viewModelObject.onCancel.subscribeEvent(closeGridSource);
+
+            var lookupName = viewModelObject.findById("LookupName").value;
+            if (lookupName != "")
+            {
+                validateParameters(viewModelObject, lookupName);
+            }
+			
+			      var lookupNameForSecondSource = viewModelObject.findById("LookupNameForSecondSource").value;
+			      if (lookupNameForSecondSource != "")
+			      {
+				        validateParametersForSankeyLinks(viewModelObject, lookupNameForSecondSource);
+			      }
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function closeGridSource()
+        {
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").attributes["src"].value = "";
+        }
+
+        function updateGridSource(inputParameterObject, eventArgs)
+        {
+            editPageVm.topLevelForm.findByXmlNode(controlXmlNode).value = skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml);
+            closeGridSource();
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFSPErrorLoadingLookupSourceConfig"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(skelta.localize.getString("FormNGFSPErrorLoadingLookupSourceConfig") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        function validateParameters(vm, lookupName)
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "appName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "uId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "source": lookupName,
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/LookupParameters", "application/json; charset=utf-8", jsonHelper, "json", function (data)
+            {
+                if (data.d)
+                {
+                    var lookupParameters = data.d;
+                    vm.findById("ParameterDictionary").visible = lookupParameters && lookupParameters.length > 0;
+                    vm.findById("ParameterDictionary").removeAll();
+                    ko.utils.arrayForEach(lookupParameters, function (parameters)
+                    {
+                        var newRecord = vm.findById("ParameterDictionary").addRecord();
+                        newRecord.findById("ParameterControl").tagName = parameters;
+                        newRecord.findById("ParameterName").value = parameters;
+                    });
+
+                    var pr = vm.findById("ParameterDictionary").records();
+
+                    var records = [],
+                        dataSource = editPageVm.topLevelForm.findByXmlNode(controlXmlNode).value;
+
+                    if (dataSource != "")
+                    {
+                        var lookupSource = skeltaUtils.getJSONObjectFromXml(dataSource);
+                        records = lookupSource.DataLookupProperty.ParameterDictionary;
+                    }
+
+                    ko.utils.arrayForEach(pr, function (eachPr)
+                    {
+                        if (records.length === undefined)
+                        {
+                            records = [records];
+                        }
+
+                        ko.utils.arrayForEach(records, function (eachRecord)
+                        {
+                            if (eachPr.findById("ParameterName").value === eachRecord["_ParameterName"])
+                            {
+                                eachPr.findById("ParameterControl").value = eachRecord["ParameterControl"];
+                            }
+                        });
+                    });
+                }
+            },
+                function (err)
+                {
+                }, null);
+        }
+		
+		function validateParametersForSankeyLinks(vm, lookupName)
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "appName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "uId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "source": lookupName,
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/LookupParameters", "application/json; charset=utf-8", jsonHelper, "json", function (data)
+            {
+                if (data.d)
+                {
+                    var lookupParameters = data.d;
+                    vm.findById("ParameterDictionaryForSankeyLinks").visible = lookupParameters && lookupParameters.length > 0;
+                    vm.findById("ParameterDictionaryForSankeyLinks").removeAll();
+                    ko.utils.arrayForEach(lookupParameters, function (parameters)
+                    {
+                        var newRecord = vm.findById("ParameterDictionaryForSankeyLinks").addRecord();
+                        newRecord.findById("ParameterControlForSankeyLinks").tagName = parameters;
+                        newRecord.findById("ParameterNameForSankeyLinks").value = parameters;
+                    });
+
+                    var pr = vm.findById("ParameterDictionaryForSankeyLinks").records();
+
+                    var records = [],
+                        dataSource = editPageVm.topLevelForm.findByXmlNode(controlXmlNode).value;
+
+                    if (dataSource != "")
+                    {
+                        var lookupSource = skeltaUtils.getJSONObjectFromXml(dataSource);
+                        records = lookupSource.DataLookupProperty.ParameterDictionaryForSankeyLinks;
+                    }
+
+                    ko.utils.arrayForEach(pr, function (eachPr)
+                    {
+                        if (records.length === undefined)
+                        {
+                            records = [records];
+                        }
+
+                        ko.utils.arrayForEach(records, function (eachRecord)
+                        {
+                            if (eachPr.findById("ParameterNameForSankeyLinks").value === eachRecord["_ParameterNameForSankeyLinks"])
+                            {
+                                eachPr.findById("ParameterControlForSankeyLinks").value = eachRecord["ParameterControlForSankeyLinks"];
+                            }
+                        });
+                    });
+                }
+            },
+                function (err)
+                {
+                }, null);
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

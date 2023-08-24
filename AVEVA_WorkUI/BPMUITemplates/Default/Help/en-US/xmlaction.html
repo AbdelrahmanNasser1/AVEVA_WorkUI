@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> XML Action Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601973" class="heading3">XML Action Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The XML Action Activity can be used to assign XML data for activity. This was possible earlier only by using Contents and Variables defined in the Start activity. The activity has been enhanced to accept XML data containing namespaces. The namespace manager that has been added to the activity handles namespaces within the XML data internally.</p>
+<p class="paragraph">View an example of assigning XML data with namespaces to a variable</p>
+<p class="paragraph">The namespaces in the following example used to illustrate the extraction of a particular data are highlighted in red.</p>
+<p class="codeblock1">&lt;tr:travelRequest xmlns:xhtml=&quot;http://www.w3.org/1999/xhtml&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:tr=&quot;http://schemas.microsoft.com/office/infopath/2003/sample/TravelRequest&quot; xmlns:my=&quot;http://schemas.microsoft.com/office/infopath/2003/myXSD&quot; xmlns:xd=&quot;http://schemas.microsoft.com/office/infopath/2003&quot;&gt;</p>
+<p class="codeblock1">        &lt;tr:description&gt;&lt;/tr:description&gt;</p>
+<p class="codeblock1">        &lt;tr:date xsi:nil=&quot;true&quot;&gt;&lt;/tr:date&gt;</p>
+<p class="codeblock1">        &lt;tr:traveler&gt;</p>
+<p class="codeblock1">                &lt;tr:name&gt;</p>
+<p class="codeblock1">                        &lt;tr:prefix&gt;&lt;/tr:prefix&gt;</p>
+<p class="codeblock1">                        &lt;tr:givenName&gt;guru&lt;/tr:givenName&gt;</p>
+<p class="codeblock1">                        &lt;tr:middleName&gt;nayak&lt;/tr:middleName&gt;</p>
+<p class="codeblock1">                        &lt;tr:surname&gt;&lt;/tr:surname&gt;</p>
+<p class="codeblock1">                        &lt;tr:suffix&gt;&lt;/tr:suffix&gt;</p>
+<p class="codeblock1">                        &lt;tr:singleName&gt;&lt;/tr:singleName&gt;</p>
+<p class="codeblock1">                &lt;/tr:name&gt;</p>
+<p class="codeblock1">        &lt;/tr:traveler&gt;</p>
+<p class="codeblock1">&lt;/tr:travelRequest&gt;</p>
+<p class="paragraph">The XPath expression to retrieve the middle name and assign it to a workflow variable 'aa' is given below. The image shown below illustrates the actual setting of the variable with this XML data.</p>
+<p class="paragraph">// tr:travelRequest/ tr:traveler/ tr:name/ tr:middleName</p>
+<p class="paragraph"><img id="f51059" src="51059.jpg" class="embeddedimage100%scalinglive" alt="" height="57" width="661" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Application Scenarios:</p>
+<p class="paragraph">The XML Action can be used with other AVEVA Work Tasks activities to retrieve required XML data by defining XPath expressions. For example, it can be used with the Checklist activity to retrieve the Answers to Checklist Questions.</p>
+<p class="paragraph">The XPath expressions for retrieving answers to Checklist Questions</p>
+<p class="paragraph">The XML Activity can be used with the Checklist Activity to retrieve the Answers to the Checklist Questions. The XML data format for the Checklist Activity to be declared in the Start activity is '^'+ activity name + 'AnswersXMLCheckList' , e.g. '^Checklist1AnswersXMLCheckList'.</p>
+<p class="paragraph">The XPath expressions to retrieve the Answers from the Checklist XML string are given below:</p>
+<p class="paragraph">XPath with attribute:</p>
+<p class="codeblock1">//checklist/question[@name=&quot;RADIO&quot;]/answer</p>
+<p class="codeblock1">//checklist/question[@name=&quot;DROPDOWN&quot;]/answer</p>
+<p class="codeblock1">//checklist/question[@name=&quot;TEXTBOX&quot;]/answer</p>
+<p class="codeblock1">//checklist/question[@name=&quot;MEMO&quot;]/answer</p>
+<p class="codeblock1">//checklist/question[@name=&quot;CHECKBOX&quot;]/answer</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The XML Activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right click menu for the XML Activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51060" src="51060.png" class="embeddedimage100%scalinglive" alt="" height="639" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Name &amp; Description</b></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Input Values</b></p>
+<p class="paragraph">The properties in the Input Values group have been described below. You can use these properties to specify the input values for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Get Variable</b> - This property allows the user to specify the variable that holds the XML string. This variable is defined in the Start activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Redundant</strong> (This property need not be set. It has been retained in the activity for backward compatibility with earlier versions of AVEVA Work Tasks.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Get Data</b> - This property allows the user to pass the XML data. This data can be passed in one of two forms: (1) XML String, or (2) XML File (where the complete path of the XML file is specified).</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Get Data property</p>
+<ol class="step"><li class="step">To specify the XML data, click the button for the 'Get Data' property to open the property window.</li><li class="step">In this window enter the XML data directly in the text editor. You can either specify the file path to an XML file here or enter the XML data directly.</li><li class="step">If you want to assign the parameter dynamically during run-time, you can do so using the <b class="uicontrol">Field</b> controls. For example, you can add a variable or content pointing to the XML data from the two drop downs for <b class="uicontrol">Field</b> and click on the <b class="uicontrol">Append</b> button. This will add the placeholder for the variable or content in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the XML data.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the XML data, click <b class="uicontrol">Update</b> to save it.</li><li class="step">Click to close the window without saving the XML data.</li></ol><p class="paragraph">See <a id="h51063" class="jump-currentwindowlive" title="XML Action: Get Data" href="xml-getdata1.html" target="_self">XML Action: Get Data</a>&nbsp;for a detailed description of the Get Data property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output Values</strong></p>
+<p class="paragraph">The properties in the Output Values group have been described below. You can use these properties to specify output values for the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Set Variables</b> - This property allows the user to set the XPath to retrieve the required XML attribute from the XML string that is set in the Get Variable property.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Set Variable property</p>
+<ol class="step"><li class="step">To set the XML data to selected variables, click the button for the 'Set Variables' property to open the property window.</li><li class="step">In this window, select the variable from the drop down for the <b class="uicontrol">Variable Description</b> field.</li><li class="step">Next select the variable type from the <b class="uicontrol">Type</b> drop down.</li><li class="step">Specify the XPath Expression for the XML data to be assigned to the selected variable in the <b class="uicontrol">XPath Expression</b> field.</li><li class="step">After entering the details, click <b class="uicontrol">Add Row</b> to add this variable setting and display a new row for assigning XML data to another variable.</li><li class="step">Remove rows if necessary by selecting them and clicking <b class="uicontrol">Remove</b> <b class="uicontrol">Selected</b>.</li><li class="step">After setting the XML data to the variables, click <b class="uicontrol">Update</b>.</li></ol><p class="paragraph">See <a id="h194359" class="jump-currentwindowlive" title="XML Action: Set Variables" href="xml-setvariables1.html" target="_self">XML Action: Set Variables</a> for a detailed description of the Set Variables property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The property Assign Empty Node Values in the Configuration group has been described below. You can use this property to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Assign Empty Node Values</strong></p>
+<p class="paragraph">This property allows the user to choose whether the XML node value can be updated with an empty value or not.</p>
+<p class="paragraph">If this property is set as &quot;Yes&quot;, then the XML variables can be updated with the &quot;Empty&quot; node values and the activity will complete with a  &quot;Successful&quot; output.</p>
+<p class="paragraph">If this property is set as &quot;No&quot;, then the XML variables will not be updated with the &quot;Empty&quot; node values and the activity will complete with an &quot;UnSuccessful&quot; output.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The XML Action Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Successful</b>: Displayed when the activity is successful in retrieving the attribute from the XPath expression.</p>
+<p class="paragraph"><b class="uicontrol">Unsuccessful:</b> Displayed when the activity is unsuccessful in retrieving the attribute from the XPath expression.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="xml-getdata1.html" target="_self">XML Action: Get Data</a></p><p class="relateditem"><a href="xml-setvariables1.html" target="_self">XML Action: Set Variables</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

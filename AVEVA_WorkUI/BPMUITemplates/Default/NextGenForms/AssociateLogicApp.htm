@@ -1,0 +1,365 @@
+﻿<!doctype html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode, viewAndViewModel;
+
+
+
+        function onSave(inputParameterObject, eventArgs)
+        {
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "instanceXml": skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                "sv": paramlcsuri,
+            });
+
+            try
+            {
+                skeltaUtils.callServerMethod("POST", "AssociateLogicAppService.aspx/SaveWorkflowLogicAppEvent", "application/json; charset=utf-8", jsonHelper, "json", newWorkflowFormSubmitSucceeded, newFormSubmitFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (e)
+            {
+                skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Save_Error_title"),
+                                skelta.localize.getString("LogicApp_WFAssociation_Save_Error"),
+                                null,
+                                e.message);
+                logger.logError(skelta.localize.getString("LogicApp_WFAssociation_Save_Error"));
+                logger.logError(e.message);
+            }
+        }
+
+        function newWorkflowFormSubmitSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true)
+            {
+                skeltaUtils.showAlert(skelta.localize.getString("LogicApp_WFAssociation_SaveMsg_title"),
+                                    skelta.localize.getString("LogicApp_WFAssociation_SaveMsg"),
+                                    function ()
+                                    {
+                                        skeltaUtils.reloadForm();
+                                    });
+            }
+            else
+            {
+                skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Save_Error_title"),
+                                    skelta.localize.getString("LogicApp_WFAssociation_Save_Error"),
+                                    null,
+                                    res.ErrorMessage.replace("\\\\", ""));
+                logger.logError(skelta.localize.getString("LogicApp_WFAssociation_Save_Error"));
+                logger.logError(res.ErrorMessage.replace("\\\\", ""));
+            }
+        }
+
+        function newFormSubmitFailed(result)
+        {
+            skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Save_Error_title"),
+                                skelta.localize.getString("LogicApp_WFAssociation_Save_Error"),
+                                null,
+                                "Failed submission. " + result.status + ' ' + result.statusText + '<br/>' + result.responseText);
+            logger.logError(skelta.localize.getString("LogicApp_WFAssociation_Save_Error"));
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function checkLookupAccessRights(lcsuri)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": mode === "new" ? ["ActionCreateAssociations"] : ["ActionCreateAssociations"],
+            });
+
+            skeltaUtils.callServerMethod("GET", "AssociateLogicAppService.aspx/CheckSecurityAndGetPageDefaults", "application/json; charset=utf-8", params, "json", onEventAccessSucceeded, null, null, false);
+        }
+
+        function onEventAccessSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error_title"),
+                                    skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error"),
+                                    function ()
+                                    {
+                                        skeltaUtils.pageLoadComplete("");
+                                    },
+                                    result.ErrorMessage.replace("\\\\", ""));
+
+                logger.logError(skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error"));
+                logger.logError(result.ErrorMessage.replace("\\\\", ""));
+                return false;
+            }
+            else
+            {
+                var clientData = $.parseJSON(result.Result);
+                applicationName = clientData.fAppName;
+                formId = clientData.fId;
+                skelta.userContext.setUserContextFor("appN", clientData.fAppName);
+                skelta.userContext.setUserContextFor("uId", clientData.fUserId);
+                skeltaUtils.loadPageDefault();
+                getNewLogicAppAssociateDefinition();
+
+                if (mode === "new")
+                {
+                    document.title = skelta.localize.getString("LogicApp_WFAssociation_New_title");
+                }
+
+                if (mode === "Edit")
+                {
+                    document.title = skelta.localize.getString("LogicApp_WFAssociation_Edit_title");
+
+                    //// Making Title ReadOnly
+                    var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, formId + "_LogicAppAssociateEvent", "");
+                    viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                    viewModelObject.topLevelForm.findById("Title").readOnly = true;
+                }
+
+                if (mode === "View")
+                {
+                    document.title = skelta.localize.getString("LogicApp_WFAssociation_View_title");
+                }
+            }
+        }
+
+        function getNewLogicAppAssociateDefinition()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "lcsuri": paramlcsuri
+            });
+
+            skeltaUtils.callServerMethod("GET", "AssociateLogicAppService.aspx/GetWorkflowLogicAppEvent", "application/json; charset=utf-8", jsonHelper, "html", newEventSucceeded, newEventFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function newEventSucceeded(resultData)
+        {
+            viewAndViewModel = resultData;
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+
+            mode = pageMode ? pageMode : "new";
+
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "lcsuri": paramlcsuri
+                });
+
+            skeltaUtils.callServerMethod("GET", "AssociateLogicAppService.aspx/GetInstanceXmlLogicAppEvent", "application/json; charset=utf-8", jsonHelper, "json",
+                function (data)
+                {
+                    var objData = JSON.parse(data.d);
+                    if (skeltaUtils.isUndefinedNullOrEmpty(objData)) {
+                        LoadFormInNewMode();
+                    }
+                    else {
+                        LoadFormInEditMode(data);
+                    }
+                
+            },
+            function (err) {
+            }, null);            
+        }
+
+        function LoadFormInNewMode()
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, formId + "_LogicAppAssociateEvent", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(onSave);
+            viewModelObject.onCancel.subscribeEvent(skeltaUtils.reloadForm);
+
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function LoadFormInEditMode(objData) {
+            var res = $.parseJSON(objData.d);
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, formId + "_LogicAppAssociateEvent", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+            skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res));
+
+            document.getElementById("viewAndViewModel").value = viewAndViewModel;
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.topLevelForm.readEditAddBehaviour = readEditBehaviourEnum.readOnly;
+            viewModelObject.onSave.subscribeEvent(onSave);
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function getInstanceXmlSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, formId + "_LogicAppAssociateEvent", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+            skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res));
+
+            document.getElementById("viewAndViewModel").value = viewAndViewModel;
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+
+            if (mode == "View")
+            {
+                viewModelObject.topLevelForm._readEditAddBehaviour(1);
+                $("." + cssClasses.sfFooter).hide();
+            }
+
+            viewModelObject.onSave.subscribeEvent(onSave);
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function getInstanceXmlCompleted()
+        {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlFailed(result)
+        {
+            var errorMsg = skelta.localize.getString("LogicApp_WFAssociation_InstanceXML_Retrieve_Error")
+                                    .replace("<@application@>", applicationName)
+                                    .replace("<@formid@>", formId);
+            skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error_title"),
+                                skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error"),
+                                null,
+                                errorMsg + "<br/>" + result.status + ' ' + result.statusText
+                                        + "<br/>" + result.responseText);
+            logger.logError(errorMsg + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function newEventFailed(result)
+        {
+            skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error_title"),
+                                skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error"),
+                                null,
+                                skelta.localize.getString("LogicApp_WFAssociation_Event_Retrieve_Error")
+                                    + "<br/>" + result.status + ' ' + result.statusText
+                                    + "<br/>" + result.responseText);
+
+            logger.logError(skelta.localize.getString("LogicApp_WFAssociation_Event_Retrieve_Error")
+                                + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function BuildUrl(control, currentValue, oldValue) {            
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "enterpriseConsoleId": currentValue
+            });
+            skeltaUtils.callServerMethod("GET", "AssociateLogicAppService.aspx/GetWebApiUrlForWaitForLogicAppData", "application/json; charset=utf-8", jsonHelper, "json", function (data) {
+                if (data.d) {
+                    var webApiurlObject = JSON.parse(data.d);
+                    if (!skeltaUtils.isUndefinedNullOrEmpty(webApiurlObject["ApiUrl"])) {
+                        control.findByXmlNode("LogicAppWebApiUrl").value = webApiurlObject["ApiUrl"];
+                        control.findByXmlNode("LogicAppWebApiAccessToken").value = webApiurlObject["AuthorizationToken"];
+                    }
+                    else {
+                        if (currentValue != '00000000-0000-0000-0000-000000000000') {
+                            skeltaUtils.showAlert(skelta.localize.getString("WaitForLogicAppAlert_ServiceBusurlConfigured_title"),
+                                skelta.localize.getString("WaitForLogicAppAlert_ServiceBusurlConfigured"),
+                                function () { skeltaUtils.reloadForm();});
+                        }
+                    }
+                }
+            },
+                function (err) {
+                }, null);
+
+        }
+
+        function BuildXmlSchemaFromJson(control) {            
+            var jsonValue = control.findByXmlNode("LogicAppOutputXmlJsonData").value;
+            if (!skeltaUtils.isUndefinedNullOrEmpty(jsonValue)) {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "listParameterValue": paramlcsuri,
+                    "jsonValue": jsonValue
+                });
+                skeltaUtils.callServerMethod("GET", "AssociateLogicAppService.aspx/GetXmlSchemaForJsonData", "application/json; charset=utf-8", jsonHelper, "json", function (data) {
+                    if (data.d) {
+                        var xmlSchema = JSON.parse(data.d);
+                        if (!skeltaUtils.isUndefinedNullOrEmpty(xmlSchema)) {
+                            control.findByXmlNode("LogicAppOutputXmlSchema").value = xmlSchema;
+                        }
+                        else {
+                            skeltaUtils.showAlert(skelta.localize.getString("LogicAppOutputXml_title"),
+                                skelta.localize.getString("LogicAppOutputXml_XmlSchemaLoad_Error"),
+                                function () { });
+
+                        }
+                    }
+                },
+                    function (err) {                        
+                        skeltaUtils.showAlert(skelta.localize.getString("LogicAppOutputXml_title"),
+                            skelta.localize.getString("LogicAppOutputXml_XmlSchemaLoad_Error"),
+                            function () { });
+                        logger.logError(skelta.localize.getString("LogicAppOutputXml_XmlSchemaLoad_Error")
+                            + ' ' + err.status + ' ' + err.statusText + ' ' + err.responseText);
+                    }, null);
+
+            }
+        }   
+
+        $(document).ready(function ()
+        {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+            
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkLookupAccessRights(paramlcsuri);
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(skelta.localize.getString("LogicApp_WFAssociation_Retrieve_Error_title"),
+                                      skelta.localize.getString("LogicApp_WFAssociation_Load_Error"),
+                                      null,
+                                      exception.message);
+                logger.logError(skelta.localize.getString("LogicApp_WFAssociation_Load_Error") + ' ' + exception.message);
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

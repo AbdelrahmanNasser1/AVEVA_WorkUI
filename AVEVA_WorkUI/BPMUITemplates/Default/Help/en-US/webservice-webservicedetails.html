@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> InvokeWebService: Web Service Details </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488976" class="heading4">InvokeWebService: Web Service Details</h4>
+<p class="paragraph">You can manage Web Services from the&nbsp;<b class="uicontrol">Web Service Details</b>&nbsp;window.</p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Web Service Details</b>&nbsp;window lists all the web services configured for the application or workflow. The upper section of the &nbsp;window shows the web service details. The lower section of the window shows a preview of the methods of the selected web service if this provision is enabled.</p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Web Service Details</b>&nbsp;window has the following controls:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Preview Methods</b>:&nbsp;Enable the method preview display.</li><li class="ulitem"><b class="uicontrol">Add</b>:&nbsp;Add new web services. </li></ul><p class="paragraph"></p>
+<p class="paragraph">The following image shows the&nbsp;Web Service Details&nbsp;window with the&nbsp;Preview Methods&nbsp;enabled:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51001" src="51001.png" class="embeddedimage100%scalinglive" alt="" height="359" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading"></p>
+<p class="subheading">Adding a Web Service</p>
+<p class="subheading"></p>
+<ol class="step"><li class="step">Click <b class="uicontrol">Add</b>. <p class="stepresult">The window to add a web service appears.</p>
+</li><li class="step">Enter the following information:<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">WebService Name</b>:&nbsp;Type a name for the&nbsp;Web Service.</li><li class="ulsubitem"><b class="uicontrol">WebService URL</b>:&nbsp;Type the&nbsp;Web Service URL. You must enter a WSDL URL.<p class="lsubcontinue">For example:&nbsp;<b class="filepath">localhost/SkeltaWebService/WorkfllowClient.asmx?wsdl</b></p>
+<p class="lsubcontinue">You can also enter an IPv6 address for the <b class="uicontrol">WebService URL</b>. The IPv6 address must be enclosed within square brackets.</p>
+</li><li class="ulsubitem"><b class="uicontrol">Authenticated</b>: Select if&nbsp;the web service requires authentication. When you select the&nbsp;<b class="uicontrol">Authenticated</b>&nbsp;box,&nbsp;additional authentication fields appears.  <p class="lsubcontinue">Enter the following information:</p>
+<ul class="ulsubsubitem"><li class="ulsubsubitem">Login Name</li><li class="ulsubsubitem">Password</li><li class="ulsubsubitem">Domain Name</li><li class="ulsubsubitem">Proxy URL</li></ul></li></ul></li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>.</li></ol><p class="paragraph"></p>
+<p class="paragraph">The following image shows a sample window for adding a web service:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51002" src="51002.png" class="embeddedimage100%scalinglive" alt="" height="364" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The following image shows a sample window for adding a web service when the WebService URL is an IPv6 address:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f201477" src="201477.png" class="embeddedimage100%scalinglive" alt="" height="296" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading"></p>
+<p class="subheading">Binding a Web Service</p>
+<p class="subheading"></p>
+<ol class="step"><li class="step">Right-click a web service. <p class="stepresult">The context menu shows&nbsp;<b class="uicontrol">Edit</b>,&nbsp;<b class="uicontrol">Delete</b>,&nbsp;<b class="uicontrol">Bind</b>, and&nbsp;<b class="uicontrol">Refresh</b>&nbsp;options.&nbsp;</p>
+<p class="stepresult"></p>
+<p class="stepresult"><img id="f51003" src="51003.png" class="embeddedimage100%scalinglive" alt="" height="374" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Bind</b>&nbsp;to&nbsp;bind the selected web service to the database. <p class="stepresult">The&nbsp;<b class="uicontrol">Methods</b>&nbsp;list of the web service appears in a new dialog box. This window also displays the <b class="windowtitle">Public Fields List</b> window in case there are public fields in the selected web service.&nbsp;</p>
+<p class="stepresult"></p>
+<p class="stepresult"><img id="f51004" src="51004.png" class="embeddedimage100%scalinglive" alt="" height="406" width="487" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="step">Select the required method, and then click&nbsp;<b class="uicontrol">Bind Parameters</b>.<p class="stepresult">A dialog box appears that shows the details of the parameters of the selected method. </p>
+<p class="stepresult">You can click on the&nbsp;List&nbsp;button to return to the Web Services List page. </p>
+</li><li class="step">Select a Variable or an XML Variable to save the Web Service output in the&nbsp;<b class="uicontrol">Save Output</b> in&nbsp;drop down.&nbsp;</li><li class="step">If you select the&nbsp;<b class="uicontrol">Save Output</b> in&nbsp;option as&nbsp;<b class="uicontrol">XML Variable</b>, you can either use the available XML Variable or create your own XML Variable. </li><li class="step">Click&nbsp;<b class="uicontrol">Create XML Variable</b>&nbsp;to create an XML variable. <p class="stepresult">The&nbsp;<b class="uicontrol">Create XML Variable</b>&nbsp;dialog box appears.</p>
+</li><li class="step">Type the&nbsp;<b class="uicontrol">XML Variable Name</b>, and then click&nbsp;<b class="uicontrol">Create</b>.</li><li class="step">If authentication is required, enter the&nbsp;Login Name,&nbsp;Password, and&nbsp;Domain Name.</li><li class="step">Click&nbsp;Update.<p class="note"><strong class="notelabel">Note:</strong> If the web method returns multi-level complex object, then create the XML variable in Start Activity using a sample XML schema returned by the web method. Then select this variable in the Invoke Web Service activity.</p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokewebservice1.html" target="_self">InvokeWebService Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

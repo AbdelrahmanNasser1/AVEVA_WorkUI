@@ -1,0 +1,111 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> AVEVA Work Tasks Calendars </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="AVEVA Work Tasks Calendars">
+</head>
+<body style="overflow:auto;"  onload="if (isTOCLoaded()) {highlight('46110')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<table class="relatedtopics aboveheading" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "48">
+<p class="bodytext"><a href="javascript:highlight('46110')" onclick="loadTOC()" target="_self"><img id="f544" src="544.jpg" class="embeddedicon" alt="Book Contents" height="17" width="59" vspace="0" hspace="0" align="bottom" border="0"></a></p></td>
+<td width= "48">
+<p class="bodytext"><a href="indexpage.html" target="TOC"><img id="f547" src="547.jpg" class="embeddedicon" alt="Book Index" height="17" width="59" vspace="0" hspace="0" align="bottom" border="0"></a></p></td>
+</tr>
+</table>
+<h1 id="t46110" class="heading1">AVEVA Work Tasks Calendars</h1>
+<p class="paragraphimage">AVEVA Work Tasks Calendar allows you to create multi-level and hierarchical calendars. You can define multiple child calendars that inherit from the parent calendars. For example, in an organization that spans across multiple geographical locations, you can define an organization-wide master calendar. You can define the work hours across the organization using the master calendar. You can create a separate child calendar for each work location to record the unique work hour requirements for that region. The child calendar inherits the settings of the master calendar and can be customized.</p>
+<p class="paragraph">Additional levels of customized calendars, that inherit from the respective parent calendars, can be configured in this manner. The lowest level of calendars that can be defined by extending this process are called the&nbsp;Resource Calendars. See,&nbsp;<a id="h46687" class="jumplive" title="About Resource Calendar" href="resourcecalendar.html" target="_self">About Resource Calendar</a>.</p>
+<p class="paragraph">For more information about configuring Resource Calendars, see&nbsp;<a id="h46688" class="jumplive" title="Configuration of Resource Calendar by Administrator" href="configurationofresourcecalendarbyadministrator.html" target="_self">Configuration of Resource Calendar by Administrator</a>.</p>
+<p class="paragraph"></p>
+<p class="subheading">Working with Calendar Control</p>
+<p class="subheading"></p>
+<ul class="ulitem"><li class="ulitem">Accessing the Calendar Control</li><li class="ulitem">Adding a New Calendar</li><li class="ulitem">Configuring the Calendar<ul class="ulsubitem"><li class="ulsubitem">Configuring General Settings</li><li class="ulsubitem">Configuring Day Settings</li><li class="ulsubitem">Configuring Date Settings</li></ul></li><li class="ulitem">Viewing the Parent Calendar</li></ul><p class="subheading"></p>
+<p class="subheading">To Access the Calendar Control</p>
+<p class="subheading"></p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">In the <b class="uicontrol">Enterprise Console</b>, click the <b class="uicontrol">Menu</b> button, click <b class="uicontrol">Settings</b>, and then click <b class="uicontrol">Calendar</b>. <p class="stepresult">The <b class="uicontrol">Calendar Control</b> page appears.</p>
+</li><li class="steptestdonotuse">On the <b class="uicontrol">Calendar Control</b> page, you can view the list of all the available calendars. <p class="stepinfo">If no calendar has been configured, then only the <b class="uicontrol">Add New Calendar</b> button is displayed. </p>
+</li></ol><p class="subheading"></p>
+<p class="subheading">To Add a New Calendar</p>
+<p class="subheading"></p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Click the Add New Calendar button. <p class="stepresult">The Calendar Control page is updated by the fields required to create a new calendar.</p>
+<p class="stepresult"></p>
+<p class="stepresult"> <img id="f46681" src="46681.jpg" class="embeddedimage100%scalinglive" alt="" height="205" width="804" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="steptestdonotuse">On the Calendar Control page, do the following:<ol class="substep"><li class="substep">In the <b class="uicontrol">Name</b> box, type a name for the new calendar.</li><li class="substep">In the <b class="uicontrol">Time Zone</b> list, select the time zone&nbsp;that you want to use for the new calendar.</li><li class="substep">In the <b class="uicontrol">Inherit Calendar</b> box, select the parent calendar from which you want the new calendar to inherit properties.</li><li class="substep">Click the <img id="f46682" src="46682.png" class="embeddedimage100%scalinglive" alt="" height="26" width="22" vspace="0" hspace="0" align="bottom" border="0">icon beside the <b class="uicontrol">Inherit Calendar</b> box. A drop-down list appears with the names of all the parent calendars. Select one parent calendar from the list.</li><li class="substep">In the <b class="uicontrol">Provider</b> list, select the name of the <b class="uicontrol">Calendar Provider</b> on which you want to create the new calendar.<p class="substepinfo"> <img id="f46683" src="46683.jpg" class="embeddedimage100%scalinglive" alt="" height="348" width="954" vspace="0" hspace="0" align="bottom" border="0"><br></p>
+</li></ol></li></ol><p class="note"><strong class="notelabel">Note: </strong>When a single provider is configured, then the Provider field is not available. Click save. The calendar Configuration section appears in the same page. Click View List to return to the calendar list view. </p>
+<p class="subheading">To Configure the Calendar</p>
+<p class="paragraph">After creating the new calendar you need to configure it with the required parameters. There are three grids in this section -  <b class="uicontrol">General</b>, <b class="uicontrol">Days</b>, and <b class="uicontrol">Date</b>.</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Click <b class="uicontrol">Set Work Slot</b>. The <b class="uicontrol">Set Work Slot</b> dialog box appears.<p class="stepinfo"></p>
+<p class="stepinfo">.<img id="f46684" src="46684.jpg" class="embeddedimage100%scalinglive" alt="" height="410" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="steptestdonotuse">Update the work slot, and then click <b class="uicontrol">Close</b>.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuring General Settings</p>
+<p class="paragraph">You can set the general work hours for the calendar in the General grid.</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Click <b class="uicontrol">Set Work Slot</b>. The<b class="uicontrol"> Set Work Slot</b> window appears.</li><li class="steptestdonotuse">In the <b class="uicontrol">Set Work Slot</b> window, do the following:<ol class="substep"><li class="substep">In the <b class="uicontrol">Name</b> field,  type a name for the work shift.</li><li class="substep">In the <b class="uicontrol">From</b> field, select the start time of the shift.</li><li class="substep">In the <b class="uicontrol">To</b> field, select the end time of the shift. </li></ol></li></ol><p class="paragraph">You can add more rows for setting shift details by pressing the &lt;Tab&gt; key or using the grid shortcut menu. After making the required work hour settings, click <b class="uicontrol">Close</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuring Day Settings</p>
+<p class="paragraph">You can set the work hours for specific days in the Day grid. For example, you can specify alternative work hours for Saturdays. You can also set Sundays or any other day of the week as the weekly day off.</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Click <b class="uicontrol">Set Work Slot</b>. The<b class="uicontrol"> Set Work Slot</b> window appears.</li><li class="steptestdonotuse">In the <b class="uicontrol">Set Work Slot</b> window, do the following:<ol class="substep"><li class="substep">In the <b class="uicontrol">Day</b> list, select a day of the week. Click the <b class="uicontrol">Get Details</b> button. The grid gets populated with existing shift details, if any. You can edit the existing shift details.</li><li class="substep">In the <b class="uicontrol">Consider as Holiday</b> option button, select <b class="uicontrol">Yes</b> if you want to consider the selected day as holiday.</li><li class="substep">In the <b class="uicontrol">Name</b> column of the grid, type a name for the work shift.</li><li class="substep">In the <b class="uicontrol">From</b> column of the grid, specify a start time for the shift.</li><li class="substep">In the <b class="uicontrol">To</b> column of the grid, specify the end time of the shift.</li></ol></li></ol><p class="paragraph">You can add more rows for setting shift details by pressing the &lt;Tab&gt; key or using the grid shortcut menu. After making all the work hour settings, click <b class="uicontrol">Close</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuring Date Settings</p>
+<p class="paragraph">You can set the work hours for a specific date in the <b class="uicontrol">Date</b> grid. For example, you can select a date and set it as a holiday.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">To configure Date settings:</strong></p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Click the <b class="uicontrol">Set Work Slot</b> grid. The <b class="uicontrol">Set Work Slot</b> window appears.</li><li class="steptestdonotuse">In the <b class="uicontrol">Set Work Slot</b> window, do the following:<ol class="substep"><li class="substep">In the <b class="uicontrol">Date</b> field, select a date. Click the <b class="uicontrol">Get Details</b> button. The grid gets populated with existing shift details, if any. You can edit the existing shift details.</li><li class="substep">In the <b class="uicontrol">Consider as Holiday</b> option button, select <b class="uicontrol">Yes</b> if you want to consider the selected day as holiday.</li><li class="substep">In the <b class="uicontrol">Name</b> column of the grid, type a name for the work shift.</li><li class="substep">In the <b class="uicontrol">From</b> column of the grid, specify a start time for the shift.</li><li class="substep">In the <b class="uicontrol">To</b> column of the grid, specify the end time of the shift.</li></ol></li></ol><p class="paragraph">You can add more rows for setting the shift details by pressing the &lt;Tab&gt; key or using the grid context menu. After configuring all the work hour settings, click <b class="uicontrol">Close</b> to close the window.</p>
+<p class="paragraph">Tip: These settings provides a great deal of flexibility in creating new calendars. If you inherit the settings from a parent calendar, you only need to change the parameters that need to be alerted. This saves the time and effort that would otherwise be required for setting all the parameters individually for a calendar.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuring a Child Calendar</p>
+<p class="paragraph">You can configure a child calendar that will inherit the settings of the specified parent calendar.</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">While creating the calendar, in the<b class="uicontrol"> Inherit Calendar</b> field, select the appropriate parent calendar. In this example, select <b class="uicontrol">Master Calendar</b>.</li><li class="steptestdonotuse">Click <b class="uicontrol">save</b>. Then configure the settings for this calendar in addition to the settings inherited from the <b class="uicontrol">Master Calendar</b>.</li></ol><p class="paragraph"></p>
+<p class="subheading">To View the Parent Calendar</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">In the <b class="uicontrol">Inherit Calendar</b> box, select the parent calendar.</li><li class="steptestdonotuse">Click the <b class="uicontrol">View</b> button beside the <b class="uicontrol">Inherit Calendar</b> box. The display of the view button is controlled by the <b class="uicontrol">CanViewCalendar</b> property. The default value for this property is false. If it is set to <b class="uicontrol">True</b>, the Calendar Control page appears as shown in the following image.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46685" src="46685.jpg" class="embeddedimage100%scalinglive" alt="" height="528" width="1066" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="subheading">Inheriting from a Parent Calendar</p>
+<p class="paragraph">You can create a new calendar by inheriting properties from an existing parent calendar. If it is not inherited from any parent calendar, the new calendar becomes the parent calendar. Taking the process of inheriting from a top-level calendar further, you can create a hierarchy of calendars.</p>
+<p class="paragraph">For example, for an organization that operates in several countries you can have a separate calendar for each country. Under the parent calendar for a country, you can have a number of calendars for each of the region in the country. Under the calendar of each region, you can have a number of calendars for each department. Similarly, within each department calendar, you can have a resource calendar for each user in the department.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Sample Scenario</strong></p>
+<p class="paragraph">If a task is assigned to a user and there is no response after five working days (excluding holidays), a timeout reminder should be sent to the user. The following steps can be used to achieve this scenario:</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Create a Calendar.</li><li class="steptestdonotuse">Add a General shift which covers 24 hours (Day Shift: 9 am to 6 pm; Night Shift: 6 pm to 9 am).</li><li class="steptestdonotuse">Set holidays as required.</li><li class="steptestdonotuse">Associate this Calendar to any human activity.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="configurationofresourcecalendarbyadministrator.html" target="_self">Configuration of Resource Calendar by Administrator</a></p><p class="relateditem"><a href="resourcecalendar.html" target="_self">About Resource Calendar</a></p><p class="relateditem"><a href="searchingthecalendar.html" target="_self">Checking Resource Availability</a></p></td>
+</tr>
+</table>
+
+
+
+<input id="topicId" type="hidden" value="46110" />
+<input id="topicDescription" type="hidden" value="AVEVA Work Tasks Calendars" />
+<input id="footer-modified" type="hidden" value="Last modified: 6/25/2015 7:22:51 AM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

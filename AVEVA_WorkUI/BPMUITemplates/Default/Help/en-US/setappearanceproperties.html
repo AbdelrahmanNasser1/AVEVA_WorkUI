@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Set Appearance Properties for Activity Icons </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t46545" class="heading2">Set Appearance Properties for Activity Icons</h2>
+<p class="paragraph">You can change the appearance of activity icons using the appearance properties in the context menu.</p>
+<ol class="step"><li class="step">Right-click the icon of the activity for which you want to set appearance properties to open the context menu.&nbsp;<br>&nbsp;<img id="f47356" src="47356.jpg" class="embeddedimage100%scalinglive" alt="" height="306" width="249" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">In the menu, select the &quot;<b class="uicontrol">Background Color</b>&quot; option to open the <b class="uicontrol">Choose Color</b> window shown below, where you can set the background color, that is fill color. You can select a color and click&nbsp;<b class="uicontrol">OK</b>&nbsp;to set it as the background color. You can click&nbsp;<b class="uicontrol">Define Custom Color</b>&nbsp;to expand the window to show the custom color definition controls. You can define a custom color and click&nbsp;<b class="uicontrol">Add Custom Color</b>&nbsp;to add it to the palette.&nbsp;<br>&nbsp;<img id="f47357" src="47357.jpg" class="embeddedimage100%scalinglive" alt="" height="398" width="248" vspace="0" hspace="0" align="bottom" border="0"><br><b class="uicontrol">Choose Color</b> window with the <b class="uicontrol">Custom Color</b> definition controls:  <br><img id="f47358" src="47358.png" class="embeddedimage100%scalinglive" alt="" height="426" width="566" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">You can select &quot;<b class="uicontrol">Foreground Color</b>&quot; to open the <b class="uicontrol">Choose Color</b> window and set the foreground color, that is, outline color.</li><li class="step">You can select &quot;<b class="uicontrol">Gradient Color</b>&quot; to set the gradient color in the <b class="uicontrol">Choose Color</b> window.</li><li class="step">You can click &quot;<b class="uicontrol">Gradient Fill</b>&quot; to enable gradient fill in the icon. A check mark before the option indicates that it is enabled.</li><li class="step">You can click &quot;<b class="uicontrol">Show Text Below</b>&quot; to enable the display of the <b class="uicontrol">Activity Name</b> and <b class="uicontrol">Description</b> text below the icon. A check mark before the option indicates that it is enabled.</li></ol>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

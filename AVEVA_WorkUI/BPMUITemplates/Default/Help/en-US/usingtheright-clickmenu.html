@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Adding Activities Using the Context Menu </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46529" class="heading3">Adding Activities Using the Context Menu</h3>
+<p class="paragraph">An alternative method to add activities to the design mosaic is to use the context menu option.</p>
+<p class="procedureheading">To add an activity in this way:</p>
+<ol class="step"><li class="step">Select an activity on the design mosaic with which you want to link the new activity.</li><li class="step">Right-click the icon for the activity to be added to open the context menu shown below.</li><li class="step">From the menu, select the appropriate <b class="uicontrol">Add Activity</b> option. This will add the new activity to the design mosaic and link it to the selected activity.&nbsp;&nbsp;<br>&nbsp;<img id="f47342" src="47342.jpg" class="embeddedimage100%scalinglive" alt="" height="497" width="368" vspace="0" hspace="0" align="bottom" border="0"></li></ol><p class="paragraph"><strong class="strong">Tip</strong>:&nbsp;You can specify the position of the new activity relative to any activity that is currently selected on the design mosaic using one of the relevant options in the menu. For example, you can select the &quot;Add above selected Activity&quot; option to add the new activity icon above the selected activity.</p>
+<p class="paragraph">You can replace the selected activity with the new one by selecting the &quot;Replace selected Activity&quot; option. You can also set link options in the context menu. The &quot;Link from Selected Activity&quot; option will link the new activity from the selected activity. The &quot;Link to Selected Activity&quot; option will link the new activity to the selected activity. Select the &quot;Don't Link Automatically&quot; option if you do not want the new activity to be linked automatically to the selected activity. In this case, you can link the new activity manually to any activity on the design mosaic.</p>
+<p class="paragraph">&nbsp;</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

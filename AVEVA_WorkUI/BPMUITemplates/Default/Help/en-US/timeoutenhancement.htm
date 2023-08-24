@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Human Activity - Enhancement for Escalation and Time out </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t50055" class="heading2">Human Activity - Enhancement for Escalation and Time out</h2>
+<p class="paragraph">You can enter the time span value as:</p>
+<ol class="olitem"><li class="olitem">&quot;Thursday 07:30 PM&quot; </li><li class="olitem">&quot;Thursday 07:30 &quot;(Assumes AM By default) </li><li class="olitem">&quot;19:30 Thursday&quot; </li><li class="olitem">&quot;PM 07:30 Friday&quot; (tomorrow) </li><li class="olitem">&quot;21:00 Next Friday&quot;/&quot;07:35 PM Next Friday&quot; (takes the Friday which comes in the next week) <p class="note"><strong class="notelabel">Note:</strong> Always enter time in the &quot;HH:MM&quot; format. If the Hour is a single digit, it should be prefixed with a &quot;0&quot;. For example, 7:30 should be entered as 07:30 and the colon &quot;:&quot; symbol between the hour and minutes is mandatory.</p>
+</li></ol><p class="paragraph">To do this, the you must create a predefined variable in the following format and update the value of this variable from Script or Update Variable Activity. Ensure that the data type of the variable is set to &quot;string&quot;.</p>
+<p class="paragraph"><b class="uicontrol">Syntax: ^&lt;Action_Name</b>(Case Sensitive<b class="uicontrol">)&gt;_&lt;AcronymOfProperty</b>(Case Insensitive)&gt;</p>
+<p class="paragraph">For example, for setting the variable for Timeout for Action, it should be: <br>^Approval1_TFA <br></p>
+<p class="paragraph">Different <b class="uicontrol">&lt;AcronymOfProperty&gt;</b> which can be set are: </p>
+<p class="paragraph">&quot;TFA&quot;: &quot;Timeout for Action&quot; <br>&quot;MATFA&quot;: &quot;Minimum Time for Action&quot; <br>&quot;TWFO&quot;: &quot;Timeout warning for Acknowledgement&quot; <br>&quot;TFO&quot;: &quot;Timeout for Acknowledgement&quot; <br>&quot;TWFA&quot;: &quot;Timeout warning for Action&quot;</p>
+<p class="paragraph">You do not need to specify anything in the property. At runtime, this value will be populated to the relevant property of the relevant activity.</p>
+<p class="paragraph">If you specify anything in the Property explicitly, the value entered will override the variable value.</p>
+<p class="paragraph">If you have a specific date-time value, then you must set the DataType of the Variable as <b class="uicontrol">date</b>, and update the value of this variable from Script Activity or Update Variable Activity.</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.htm" target="_self">Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

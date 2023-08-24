@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Choice - Set Calendar for Timeout </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49454" class="heading4">Choice - Set Calendar for Timeout</h4>
+<p class="subheading">Set Calendar for Timeout Property Window</p>
+<p class="paragraph">You can set a Calendar to calculate the timeout for the Choice activity in this property window. To access this window, click the button in the 'Set Calendar for Timeout' property.</p>
+<p class="paragraph"><img id="f50651" src="50651.png" class="embeddedimage100%scalinglive" alt="" height="317" width="527" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">This window lists the available calendars in a tree structure, with lower-level calendars nested within the respective top-level calendar. You can click on a calendar to select it for setting.</p>
+<p class="paragraph">There are two buttons in this window.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">No Calendar</b>&nbsp;- Click this button to indicate that there is no calendar set for the activity.</li><li class="ulitem"><b class="uicontrol">Set Calendar</b>&nbsp;- Click this button to set the selected calendar.</li></ul><p class="paragraph">The&nbsp;<b class="uicontrol">User Resource calendar if available</b>&nbsp;check box can be selected to enable the use of resource calendars if none are displayed in this window for selection.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="choiceaction1.html" target="_self">Choice Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

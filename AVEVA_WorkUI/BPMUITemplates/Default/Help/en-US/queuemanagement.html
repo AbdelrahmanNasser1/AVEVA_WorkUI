@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Queue Management </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t597302" class="heading3">Queue Management</h3>
+<p class="paragraph">You use the&nbsp;<b class="uicontrol">Queue Management</b>&nbsp;window to define the queue.</p>
+<p class="paragraph">The Queue Control displays the following image when launched. It lists all the queues that have already been added in a grid.</p>
+<p class="paragraph">The following image shows the Queue Management window:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46707" src="46707.png" class="embeddedimage100%scalinglive" alt="" height="156" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">You can click the&nbsp;<b class="uicontrol">New Queue</b>&nbsp;button to add a new queue. When you click the&nbsp;<b class="uicontrol">New Queue</b>&nbsp;button in the previous window to add a new queue, it displays the&nbsp;<b class="uicontrol">Name</b>&nbsp;and&nbsp;<b class="uicontrol">Description</b>&nbsp;fields below the queue list, to enter a name and description for the new queue. You can enter the name and description and click on the&nbsp;Add&nbsp;button. This will add the new list and open the settings view of the Queue Management window.</p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;Ensure that the&nbsp;<b class="uicontrol">Queue Name</b>&nbsp;that you enter does not exceed 250 characters, and the&nbsp;<b class="uicontrol">Queue Description</b>&nbsp;does not exceed 150 characters.</p>
+<p class="paragraph"></p>
+<p class="paragraph">The following image shows Queue Management window with fields for adding new queue:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46708" src="46708.png" class="embeddedimage100%scalinglive" alt="" height="270" width="561" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Queue Management Configuration View:</p>
+<p class="paragraph">The following image shows the Configuration view of the Queue Management window:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f269227" src="269227.png" class="embeddedimage100%scalinglive" alt="RolePriority_QueueManagement" height="281" width="578" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">You see this window when you click&nbsp;<b class="uicontrol">Add</b>&nbsp;after specifying the name and description for a new queue. You can configure the different queue settings here for the new queue. This window has the following tabs, which opens the corresponding view.</p>
+<ul class="ulitem"><li class="ulitem"><a id="h46710" class="jump-currentwindowlive" title="Participants Tab" href="participantstab.html" target="_self">Participants Tab</a>:&nbsp;Configure the settings related to the participants in the queue. This is the default tab.</li><li class="ulitem"><a id="h46711" class="jump-currentwindowlive" title="Dispatch Patterns Tab" href="dispatchpatternstab.html" target="_self">Dispatch Patterns Tab</a>:&nbsp;Configure the settings for the dispatch of tasks from the queue.</li><li class="ulitem"><a id="h46712" class="jump-currentwindowlive" title="Settings Tab" href="settingstab.html" target="_self">Settings Tab</a>:&nbsp;Configure the queue settings.</li><li class="ulitem"><a id="h46713" class="jump-currentwindowlive" title="Escalation Tab" href="escalationtab.html" target="_self">Escalation Tab</a>:&nbsp;Configure the escalation settings for the queue.</li></ul><p class="paragraph">After you configure all the settings, click the&nbsp;<b class="uicontrol">View List</b>&nbsp;button to return to the main Queue Management window. The new queue is added to the <b class="uicontrol">Queue List</b>. Right-click on the row corresponding to the new queue, and select the&nbsp;<b class="uicontrol">Edit</b>&nbsp;option from the context menu to open the configuration view to edit its settings, if required. Alternatively, double-click on the queue row to open this view.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="participantstab.html" target="_self">Participants Tab</a></p><p class="relateditem"><a href="dispatchpatternstab.html" target="_self">Dispatch Patterns Tab</a></p><p class="relateditem"><a href="settingstab.html" target="_self">Settings Tab</a></p><p class="relateditem"><a href="escalationtab.html" target="_self">Escalation Tab</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

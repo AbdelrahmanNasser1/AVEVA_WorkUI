@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> XML Variable for List </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t476267" class="heading4">XML Variable for List</h4>
+<p class="paragraph">An XML List type XML Variable can be mapped to any list schema, that is either to lists provided out of the box or to lists created dynamically using create list option, to perform retrieval of data of a list item.</p>
+<p class="paragraph">Using XML list XMLVariable, you can fetch the data from any list. XML Variable for XML list can be mapped to any XML List schema for inserting, updating and retrieving list items. Also you can attach the list to a workflow very easily in a few steps.</p>
+<p class="subheading">XML Variable of &nbsp;type 'XML List':</p>
+<p class="paragraph">When the variable type is changed to&nbsp;<b class="uicontrol">XML List</b>, the following extra properties and&nbsp;<b class="uicontrol">ListItem Scope Options</b>&nbsp;are displayed as seen in the image below. </p>
+<p class="paragraph"><img id="f50388" src="50388.png" class="embeddedimage100%scalinglive" alt="" height="437" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Property Description:</p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableheader">'XML List' XML Variable Property</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">Select List</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">User can enter list name in this field or use the&nbsp;<img id="f50389" src="50389.png" class="embeddedimage100%scalinglive" alt="" height="32" width="34" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to select the required list.</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph">The following are the&nbsp;ListItem Scope Options:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Current:</b> The XML Variable will be pointed to the list item that alerts the workflow.</li><li class="ulitem"><b class="uicontrol">New:</b> This points to add a new list item to the list associated with the XML Variable. Accessing this XML Variable before adding an item will not give any details. After adding a list item, this XML Variable will have the details of the added item. To add another item, use a&nbsp;<b class="uicontrol">List Navigator</b>&nbsp;activity to re-initialize the scope as New.</li></ul><p class="paragraph">See&nbsp;<a id="h50390" class="jump-currentwindowlive" title="Creating an XML List Type XML Variable" href="creatinganxmllisttypexmlvariable1.html" target="_self">Creating an XML List type XML Variable</a>&nbsp;for more information.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="scopeofxmllistxmlvariable1.html" target="_self">ListItem Scope of XML List XML Variable</a></p><p class="relateditem"><a href="schemaofxmllistxmlvariable1.html" target="_self">Schema of XML List XML Variable</a></p><p class="relateditem"><a href="creatinganxmllisttypexmlvariable1.html" target="_self">Creating an XML List Type XML Variable</a></p><p class="relateditem"><a href="changingthescopeofthexmllistxmlvariable1.html" target="_self">Changing the Scope of the XML List XML Variable</a></p><p class="relateditem"><a href="settingupthelistqueryscope.html" target="_self">Setting up the List Query Scope</a></p><p class="relateditem"><a href="creatingaxmllistiteratortypexmlvariable.html" target="_self">Creating an XML List Iterator Type XML Variable</a></p><p class="relateditem"><a href="creatingaxmliteratortypexmlvariableforgriditems.html" target="_self">Creating an XML Iterator Type XML Variable for Grid Items</a></p><p class="relateditem"><a href="creatingaworkflowforalistinasinglestep11.html" target="_self">Creating a Workflow for a List in a Single Step</a></p><p class="relateditem"><a href="understandingxmlnodemapping.html" target="_self">Understanding XML Node Mapping</a></p><p class="relateditem"><a href="'XMLList'XMLVariableScenarios.html" target="_self">'XML List'  XML Variable Scenarios</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

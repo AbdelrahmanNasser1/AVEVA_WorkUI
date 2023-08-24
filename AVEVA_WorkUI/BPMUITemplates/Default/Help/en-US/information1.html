@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Information Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601942" class="heading3">Information Activity</h3>
+<p class="subheading">Activity Description:</p>
+<p class="paragraph">The Information Activity is included in the AVEVA Work Tasks workflow process designs when there is a need to provide some information to a set of actors. The actor(s) to whom the information is to be sent can be selected on the basis of various factors like first name, department, designation, email etc. The subject and contents of the information can be customized for each actor.</p>
+<p class="subheading">Application Scenarios:</p>
+<p class="paragraph">Typical application scenarios could be the Leave Application Workflow Process, where information needs to be sent to the applicant if the leave is approved or rejected, or the Technical Support Request Workflow Process, where information needs to be sent to the appropriate technical support person about the support task being assigned to him/her. The Information activity can be used to send the information in both cases.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Information activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Information activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f492756" src="492756.png" alt="Information Activity" height="873" width="200" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Display Name</b> - This property specifies the name to be displayed for the activity in the Work items list.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set if the display name is already configured in the Actions.xml. The name entered here overrides any display name that is configured for this activity in the Actions.xml file.)</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Delivery Channels</b> - This property is used to specify the delivery channels to deliver this activity to the assigned actor(s). Multiple channels can be specified giving the actor(s) different options to act on the work item.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Delivery Channels property</strong></p>
+<ol class="step"><li class="step">To select the Delivery Channels, click the button for the 'Delivery Channels' property to open the property window.</li><li class="step">In this window, the Delivery Channels that have been configured are listed on the left along with a check box against each channel. Click and select the check box corresponding to the channel you wish to select. You can select multiple channels by selecting their respective check box.</li><li class="step">Click <b class="uicontrol">Save Channels</b>.</li></ol><p class="paragraph">See <a id="h50655" class="jump-currentwindowlive" title="Info - Delivery Channels" href="info-deliverychannels.html" target="_self">Info - Delivery Channels</a>&nbsp;for a detailed description of the Delivery Channels property window.</p>
+<p class="paragraph"><b class="uicontrol">Work Item Fields</b>&nbsp;- This property is used to add the Work Item Fields to be used to display application data as well as value in variables and content in the Work items list when this activity is executed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Work Item Fields property</strong></p>
+<ol class="step"><li class="step">To select the Work Item Fields, click the button for the 'Work Item Fields' property to open the property window.</li><li class="step">In this window, the Work Item Fields that have been set are listed in a grid. Click a row to select the corresponding Work Item Field.</li><li class="step">Right-click the row, and select &quot;SetWorkItemField&quot; from the context menu to set it.</li></ol><p class="paragraph">See&nbsp;<a id="h50656" class="jump-currentwindowlive" title="Info - Work Item Fields" href="info-workitemfields.html" target="_self">Info - Work Item Fields</a>&nbsp;for a detailed description of the Work Item Fields property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Actors</strong></p>
+<p class="paragraph">The properties in the Actors group have been described below. You can use these properties to specify the actors who will work on the activity and related properties.</p>
+<p class="paragraph"><strong class="strong">Assign Actor(s)</strong> - This property specifies the actor(s) who has to take up the Information activity. It is tagged with the Ignore Unavailable Resources property which in turn is tagged with Alternate Resource Allowed. This will be explained in detail later.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be assigned to any resource(s).)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Assign Actor(s) property</strong></p>
+<ol class="step"><li class="step">To specify the actors, click the button for the 'Assign Actor(s)' property to open the property window.</li><li class="step">In this window, build an expression to select the actors using the actors properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression to the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it.</li></ol><p class="paragraph">See <a id="h50657" class="jump-currentwindowlive" title="Info - Assign Actor(s)" href="info-assignactors.html" target="_self">Info - Assign Actor(s)</a>&nbsp;for a detailed description of the Assign Actor(s) property window.</p>
+<p class="paragraph"><b class="uicontrol">Assign Queue(s)</b>&nbsp;- This property specifies the queue(s) to which the Information activity is to be assigned.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to be assigned to any Queue(s).)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Assign Queue(s) property</strong></p>
+<ol class="step"><li class="step">To specify the queue(s), click the button for the 'Assign Queue(s)' property to open the property window.</li><li class="step">In this window, select the queue(s) from the&nbsp;<b class="uicontrol">Available Queues</b>&nbsp;list box. You can select multiple queues by selecting with the &lt;Ctrl&gt; key pressed.</li><li class="step">After selecting the required queue(s), click the [&gt;] button to move it to the&nbsp;<b class="uicontrol">Selected Queues</b>&nbsp;list box. You can click the [&gt;&gt;] button to select all the queue(s) and move them to the&nbsp;<b class="uicontrol">Selected Queues</b>&nbsp;list box.</li><li class="step">You can remove any queue from the selected list by selecting it and clicking the [&lt;] button. You can remove all the queues by clicking the [&lt;&lt;] button.</li><li class="step">After adding the required queue(s), click&nbsp;<b class="uicontrol">Assign</b>&nbsp;to assign the activity to the selection.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the selection.</li></ol><p class="paragraph">See&nbsp;<a id="h50658" class="jump-currentwindowlive" title="Info - Assign Queue(s)" href="info-assignqueues.html" target="_self">Info - Assign Queue(s)</a> for a detailed description of the Assign Queue(s) property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Notification Contents</strong></p>
+<p class="paragraph">The properties in the Notification Contents group have been described below. You can use these properties to specify the content used to notify actors about the activity.</p>
+<p class="paragraph"><b class="uicontrol">Subject</b> - This is the subject of the Information work item. The subject can be customized for each actor.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set. If it is not set, the default subject line from the Actions.xml file is displayed.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Subject property</strong></p>
+<ol class="step"><li class="step">To specify the subject, click the button for the 'Subject' property to open the property window.</li><li class="step">In this window, enter the subject text directly in the text editor.</li><li class="step">If you want to customize the subject you can do so using the <b class="uicontrol">Field</b> controls to add resource property values. For example, to add a subject that includes the email id of the actor submitting the approval request, you can do as follows: Type in the text &quot;Submitted By&quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.Email&quot; from the two drop downs for <b class="uicontrol">Field</b> and click <b class="uicontrol">Append</b>. This will add the placeholder for the variable after the text entered in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the email id.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the subject, click <b class="uicontrol">Update</b> to save it.</li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the subject.</li></ol><p class="paragraph">See <a id="h50659" class="jump-currentwindowlive" title="Info - Subject" href="info-subject.html" target="_self">Info - Subject</a> for a detailed description of the Subject property window.</p>
+<p class="paragraph"><b class="uicontrol">Body</b>&nbsp;- This is the actual message of the Information sent to the actor(s). The body can be customized for each actor. There is an&nbsp;<b class="uicontrol">Enterprise Console Explorer</b>(plug-in) icon in the Body property window to get the work item details URL. See&nbsp;<a id="h50517" class="jump-currentwindow-customtextlive" title="Enterprise Console Control (EC Plug-in)" href="enterpriseconsolecontrolec-plugin.html" target="_self">Enterprise Console Control (EC Plug-in)</a>&nbsp;for more information.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property need not be set.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Body property</strong></p>
+<ol class="step"><li class="step">To specify the message body, click the button for the 'Body' property to open the property window.</li><li class="step">In this window, enter the body text directly in the text editor.</li><li class="step">If you want to customize the body you can do so using the&nbsp;Field&nbsp;controls to add resource property values. For example, to add a body that includes the name of the actor submitting the approval request, you can do as follows: Type in the text: &quot;Hi, Please cast your vote in the poll conducted by&quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.name&quot; from the two drop downs for&nbsp;<b class="uicontrol">Field</b>&nbsp;and click&nbsp;<b class="uicontrol">Append</b>. This will add the placeholder for the variable after the text entered in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the name.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the body, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the body.</li></ol><p class="paragraph">See&nbsp;<a id="h50660" class="jump-currentwindowlive" title="Info - Body" href="info-body.html" target="_self">Info - Body</a>&nbsp;for a detailed description of the&nbsp;Body&nbsp;property window.</p>
+<p class="paragraph"><b class="uicontrol">From Email Address</b>&nbsp;- This property is used to specify the email address from which notification messages will be sent for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. If it is not set, the default value in Activities.xml will be used.)</p>
+<p class="paragraph"><b class="uicontrol">Send Notification Email</b>&nbsp;- If this property is set to 'Yes', then notification emails will be sent to the actors. If it is set to 'Yes-HTML', then the emails will be sent in HTML format.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Redirect URL</strong>&nbsp;- This property is used to get the URL of the web page to redirect the client to, in the case of synchronous execution of the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Redirect URL property</strong></p>
+<ol class="step"><li class="step">To specify the&nbsp;Redirect URL, click the button for the 'Redirect URL' property to open the property window.</li><li class="step">In this window, enter the&nbsp;Redirect URL&nbsp;directly in the text editor.</li><li class="step">If you want to customize the&nbsp;Redirect URL&nbsp;you can do so using the&nbsp;<b class="uicontrol">Field</b>&nbsp;controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for&nbsp;<b class="uicontrol">Field</b>, and clicking&nbsp;<b class="uicontrol">Append</b>. This will add the placeholder for the variable in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the URL.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the&nbsp;Redirect URL, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the&nbsp;Redirect URL.</li></ol><p class="paragraph">See&nbsp;<a id="h50661" class="jump-currentwindowlive" title="Info - Redirect URL" href="info-redirecturl.html" target="_self">Info - Redirect URL</a>&nbsp;for a detailed description of the&nbsp;Redirect URL&nbsp;property window.</p>
+<p class="paragraph"><b class="uicontrol">Custom Document View URL</b>&nbsp;- This property is used to get the URL of the page to which the custom document dlls does a post.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Custom Document View URL property</strong></p>
+<ol class="step"><li class="step">To specify the&nbsp;Custom Document View URL, click the button for the 'Custom Document View URL' property to open the property window.</li><li class="step">In this window, enter the&nbsp;Custom Document View URL&nbsp;directly in the text editor.</li><li class="step">If you want to customize the&nbsp;Custom Document View URL&nbsp;you can do so using the&nbsp;Field&nbsp;controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for&nbsp;<b class="uicontrol">Field</b>, and clicking&nbsp;<b class="uicontrol">Append</b>. This will add the placeholder for the variable in the text editor. At run-time, this placeholder will be replaced by the corresponding value, i.e. the URL.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the&nbsp;Custom Document View URL, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the&nbsp;Custom Document View URL.</li></ol><p class="paragraph">See&nbsp;<a id="h50662" class="jump-currentwindowlive" title="Info - Custom Document View URL" href="info-customdocumentviewurl.html" target="_self">Info - Custom Document View URL</a>&nbsp;for a detailed description of the&nbsp;Custom Document View URL&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Mail Channel</strong></p>
+<p class="paragraph">The properties in the Mail Channel group have been described below. You can use these properties to customize the Information activity (activities) with different mail channel templates.</p>
+<p class="paragraph"><strong class="strong">Use html template from property</strong> - If this property is set to 'No', it will take the mail channel template from the physical path</p>
+<p class="paragraph">'[AVEVA Work Tasks Installed Path]\BPM.NET\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\Information.html.</p>
+<p class="paragraph">If this property is set to <b class="uicontrol">'Yes'</b> and the <b class="uicontrol">&quot;HTML Template&quot;</b> property is empty, it will take the mail channel template from the physical path</p>
+<p class="paragraph">'[AVEVA Work Tasks Installed Path]\BPM.NET\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\Information.html.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">HTML template</b> - This property is used to define the html template for mail channel.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the HTML template</strong></p>
+<ol class="step"><li class="step">To specify the HTML template, click the edit icon to open the property window.</li><li class="step">Click Update.</li></ol><p class="paragraph">See <a id="h50663" class="jump-currentwindowlive" title="Info - HTML template" href="info-htmltemplate.html" target="_self">Info - HTML template</a>&nbsp;for a detailed description of the property HTML template window.</p>
+<p class="paragraph"><strong class="strong">Attachment</strong></p>
+<p class="paragraph"><img id="f50564" src="50564.png" class="embeddedimage100%scalinglive" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0">.</p>
+<p class="paragraph">Property Type: Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Steps to set the Attachment property</strong></p>
+<ol class="step"><li class="step">To specify the <b class="uicontrol">Attachment</b> property, click the edit icon to open the property window.</li><li class="step">In the <b class="uicontrol">Configuration of Mail Attachment</b> window, select the required attachment type by clicking the radio button.</li><li class="step">In the <b class="uicontrol">Attach Report</b> property, you can attach a report by selecting the<b class="uicontrol"> Report Reference Variable</b> through the Expression Editor. Alternatively, you can get the <b class="uicontrol">Report</b> by clicking the <b class="uicontrol">Report</b> icon and selecting the required report from the Reports list screen. To attach multiple reports, add new rows using the Add link.</li><li class="step">Click <b class="uicontrol">Submit</b>.</li></ol><p class="paragraph">See <a id="h50664" class="jump-currentwindowlive" title="Info - Attach Reports" href="info-attachment.html" target="_self">Info - Attach Reports</a>&nbsp;for a detailed description of this property.</p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Information Activity does not return any value.</p>
+<p class="paragraph"></p>
+<p class="subheading">Escalation &amp; Timeout</p>
+<p class="paragraph">You can use this property to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Timeout for Activity</b> - This property is used for setting timeouts for the information activity. If specified, the activity will be timed out after the specified time span and will be moved from the <b class="uicontrol">Inbox</b>. </p>
+<p class="paragraph">The timeout setting must be specified in the below format:</p>
+<p class="paragraph">0.00:00:00 which indicates Day.HH:MM:SS</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a>&nbsp;for more details.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="info-deliverychannels.html" target="_self">Info - Delivery Channels</a></p><p class="relateditem"><a href="info-workitemfields.html" target="_self">Info - Work Item Fields</a></p><p class="relateditem"><a href="info-assignactors.html" target="_self">Info - Assign Actor(s)</a></p><p class="relateditem"><a href="info-assignqueues.html" target="_self">Info - Assign Queue(s)</a></p><p class="relateditem"><a href="info-subject.html" target="_self">Info - Subject</a></p><p class="relateditem"><a href="info-body.html" target="_self">Info - Body</a></p><p class="relateditem"><a href="info-redirecturl.html" target="_self">Info - Redirect URL</a></p><p class="relateditem"><a href="info-customdocumentviewurl.html" target="_self">Info - Custom Document View URL</a></p><p class="relateditem"><a href="info-htmltemplate.html" target="_self">Info - HTML template</a></p><p class="relateditem"><a href="info-attachment.html" target="_self">Info - Attach Reports</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Workflow - Contents for ChildWorkflow </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488963" class="heading4">Workflow - Contents for ChildWorkflow</h4>
+<p class="subheading">Contents for ChildWorkflow Property window</p>
+<p class="paragraph">You can specify the contents to be passed to the child workflow in this property window. To open this window, click the button for the 'Contents for ChildWorkflow' property.</p>
+<p class="paragraph">The window has three tabs &#8211;&nbsp;<b class="uicontrol">Set Contents</b>,&nbsp;<b class="uicontrol">Append</b>, and&nbsp;<b class="uicontrol">New</b>&nbsp;&#8211; to specify the contents to be passed to the child workflow. Each tab opens the corresponding window to specify the content to set. <br><br>The following image shows the&nbsp;<b class="uicontrol">Set Contents</b>&nbsp;tab of the&nbsp;<b class="uicontrol">Contents for ChildWorkflow</b>&nbsp;property&nbsp;dialog box:<br>&nbsp;<img id="f51167" src="51167.png" class="embeddedimage100%scalinglive" alt="" height="228" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window shown above is displayed when the<b class="uicontrol">&nbsp;Set Contents</b>&nbsp;tab is clicked. It is the default selection and is opened when this property window is launched. You can pass the contents that are passed through the Client. Execute Method to the child workflow in this window. You can click the&nbsp;<b class="uicontrol">Set the Parent Contents</b>&nbsp;check box to do this. You can click&nbsp;<b class="uicontrol">Set</b>&nbsp;to set the parent variables.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">Append</b>&nbsp;tab of the&nbsp;<b class="uicontrol">Contents for ChildWorkflow</b>&nbsp;property&nbsp;dialog box:&nbsp;<br>&nbsp;<img id="f51168" src="51168.png" class="embeddedimage100%scalinglive" alt="" height="228" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window shown above is displayed when the&nbsp;<b class="uicontrol">Append</b>&nbsp;tab is clicked. You can append values to the parent workflow contents in this window. This window has two drop downs for selecting the value type (Variable or Content) and the value respectively (Variable or Content collection). After specifying the values, you can click the&nbsp;<b class="uicontrol">Insert</b>&nbsp;button to add it to the text area.</p>
+<p class="paragraph">Click&nbsp;<b class="uicontrol">Append</b>&nbsp;to append all the specified values to the parent workflow contents being passed to the child workflow.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">New</b>&nbsp;tab of the<b class="uicontrol">&nbsp;Contents for ChildWorkflow</b>&nbsp;property&nbsp;dialog box:&nbsp;<br>&nbsp;<img id="f51169" src="51169.png" class="embeddedimage100%scalinglive" alt="" height="228" width="550" vspace="0" hspace="0" align="bottom" border="0"><br>The window shown above is displayed when the&nbsp;<b class="uicontrol">New</b>&nbsp;tab is clicked. You can add new content values to be passed to the child workflow in this window. This window has the value type (Variable or Content) and value (Variable or Content collection) drop downs for selecting the respective options. After specifying the values, you can click&nbsp;<b class="uicontrol">Insert</b>&nbsp;to add it to the text area.</p>
+<p class="paragraph">You can click&nbsp;<b class="uicontrol">Add</b>&nbsp;to add all the specified values to be passed to the child workflow.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workflowaction.html" target="_self">Workflow Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

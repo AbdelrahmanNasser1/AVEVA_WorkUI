@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Theme>
+  <Default>
+    <BackColor>#e3efff</BackColor>
+    <InternalBorderColor>#c0d8f1</InternalBorderColor>
+    <InternalBorderWidthInPixel>1</InternalBorderWidthInPixel>
+    <FontName>Segoe UI, Verdana</FontName>
+    <FontSizeInPoint>8</FontSizeInPoint>
+    <WaitMessageFontName>Segoe UI, Verdana</WaitMessageFontName>
+    <WaitMessageFontSizeInPoint>14</WaitMessageFontSizeInPoint>
+  </Default>
+  <Grey>
+    <BackColor>#e8e8e8</BackColor>
+    <InternalBorderColor>#c6c6c6</InternalBorderColor>
+    <InternalBorderWidthInPixel>1</InternalBorderWidthInPixel>
+    <FontName>Segoe UI, Verdana</FontName>
+    <FontSizeInPoint>8</FontSizeInPoint>
+    <WaitMessageFontName>Segoe UI, Verdana</WaitMessageFontName>
+    <WaitMessageFontSizeInPoint>14</WaitMessageFontSizeInPoint>
+  </Grey>
+  <Green>
+    <BackColor>#b7ffb0</BackColor>
+    <InternalBorderColor>#7ceb70</InternalBorderColor>
+    <InternalBorderWidthInPixel>1</InternalBorderWidthInPixel>
+    <FontName>Segoe UI, Verdana</FontName>
+    <FontSizeInPoint>8</FontSizeInPoint>
+    <WaitMessageFontName>Segoe UI, Verdana</WaitMessageFontName>
+    <WaitMessageFontSizeInPoint>14</WaitMessageFontSizeInPoint>
+  </Green>
+  <SSA2010>
+    <BackColor>#e3efff</BackColor>
+    <InternalBorderColor>#c0d8f1</InternalBorderColor>
+    <InternalBorderWidthInPixel>1</InternalBorderWidthInPixel>
+    <FontName>Segoe UI, Verdana</FontName>
+    <FontSizeInPoint>8</FontSizeInPoint>
+    <WaitMessageFontName>Segoe UI, Verdana</WaitMessageFontName>
+    <WaitMessageFontSizeInPoint>14</WaitMessageFontSizeInPoint>
+  </SSA2010>
+</Theme>

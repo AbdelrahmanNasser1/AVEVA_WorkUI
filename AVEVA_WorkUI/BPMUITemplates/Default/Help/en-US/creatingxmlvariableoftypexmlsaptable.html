@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating XML Variable of Type 'XML SAPTable' </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t49403" class="heading5">Creating XML Variable of Type 'XML SAPTable'</h5>
+<p class="paragraph">To create the XMLVariable of type&nbsp;<b class="uicontrol">XML SAPTable</b>&nbsp;in&nbsp;<b class="uicontrol">Start</b>&nbsp;activity, follow the steps given below:</p>
+<ul class="ulitem"><li class="ulitem">Click&nbsp;<b class="uicontrol">New Variable</b>&nbsp;button in the XML Variable User Interface.</li><li class="ulitem">Enter the following information:<p class="stepinfo"><b class="uicontrol">Variable Name</b>&nbsp;- Enter the name of the variable. </p>
+<p class="stepinfo"><b class="uicontrol">Description</b>&nbsp;- Enter a description for the variable.</p>
+<p class="stepinfo"><b class="uicontrol">Type</b>&nbsp;- This field defaults to XML Document. Select&nbsp;XML SAPTable&nbsp;from drop-down.</p>
+<p class="stepinfo"><b class="uicontrol">Scope</b>&nbsp;- Select the scope of the variable. The scope of the variable can be either&nbsp;Global&nbsp;or&nbsp;Local.</p>
+</li><li class="ulitem">When the variable type is changed to&nbsp;<b class="uicontrol">XML SAPTable</b>, two additional properties are displayed as seen in the image below. </li></ul><p class="paragraph"><strong class="strong">SAP Application Server:</strong>&nbsp;The name of the host that you want to connect to the SAP system. Click the&nbsp;<img id="f50462" src="50462.png" class="embeddedimage100%scalinglive" alt="" height="28" width="32" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to open SAPTable List. </p>
+<p class="subheading">Listing SAP Tables</p>
+<p class="paragraph">To display the tables from SAP, follow the steps given below:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Connections</b>&nbsp;drop-down, select specific connection.</li><li class="step">In the&nbsp;<b class="uicontrol">No. of Hits</b>&nbsp;text box, enter the number of tables to be displayed. By default, it displays ten tables.</li><li class="step">Click&nbsp;<b class="uicontrol">Search</b>&nbsp;to display SAP Tables. If no search criteria is mentioned and No. of Hits is not given, then the list of ten randomly selected tables will be displayed.</li><li class="step">Select table name, and then click&nbsp;<b class="uicontrol">Select</b>&nbsp;to generate the XML Schema. The XML variable of type XML SAPTable is generated with schema, SAP server information, and table name.</li></ol><p class="subheading">Advance Search</p>
+<p class="paragraph">SAP tables are searched based on the criteria provided in&nbsp;<b class="uicontrol">Advance Search</b>.</p>
+<p class="paragraph">Example:</p>
+<p class="paragraph">Select the connection from the connection list.</p>
+<p class="paragraph">Enter No. of Hits = 10.</p>
+<p class="paragraph">In&nbsp;<b class="uicontrol">Advance Search</b>, enter search criteria = sales%, select Table description from drop-down. It will display tables whose description starts from 'sales'.</p>
+<p class="subheading">Object Type&nbsp;</p>
+<p class="paragraph">The selected table name will be displayed in this field.</p>
+<ul class="ulitem"><li class="ulitem">Click&nbsp;<b class="uicontrol">Save Variable</b>. The generated XML Variable can be listed in the&nbsp;<b class="uicontrol">XML Variable of SAPTable Type</b>&nbsp;property of&nbsp;<b class="uicontrol">SAPTable Navigator</b>&nbsp;activity.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="introductiontoxmlsaptablexmlvariable.html" target="_self">Introduction to 'XML SAPTable' XML Variable</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

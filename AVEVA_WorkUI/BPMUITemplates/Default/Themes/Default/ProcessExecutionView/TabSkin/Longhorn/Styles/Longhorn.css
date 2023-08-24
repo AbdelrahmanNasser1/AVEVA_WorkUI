@@ -1,0 +1,65 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.TabLabelDefaultStyle
+{
+      font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+      font-size: 8pt;
+      color: black;
+      cursor: pointer;
+      cursor: hand;
+}
+
+.TabLabelText
+{
+	padding-top: 2px;
+	font-size: 8pt;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	cursor: pointer;
+	cursor: hand;
+}
+
+.TabLabelDisabledStyle
+{
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 8pt;
+	filter: progid:DXImageTransform.Microsoft.Alpha( style=1,opacity=40,finishOpacity=100,startX=100,finishX=100,startY=100,finishY=100);
+	-moz-opacity: .40;
+	text-align: center;
+	cursor: default;
+	cursor: no-drop;
+}
+
+.TabRadTabstrip
+{
+	background-image: url(../Img/bg.gif);
+	background-repeat: repeat-x;
+	background-position:top;
+	background-color: #D8E6F5;
+	padding: 5px 20px 10px 13px;
+	margin-right: 1px;
+	width: 100%;
+	cursor: pointer;
+	cursor: hand;
+
+}

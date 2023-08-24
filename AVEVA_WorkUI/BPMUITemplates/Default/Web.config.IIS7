@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!-- 
+    Note: As an alternative to hand editing this file you can use the 
+    web admin tool to configure settings for your application. Use
+    the Website->Asp.Net Configuration option in Visual Studio.
+    A full list of settings and comments can be found in 
+    machine.config.comments usually located in 
+    \Windows\Microsoft.Net\Framework\v2.x\Config 
+-->
+<configuration>
+	<appSettings>
+		<add key="customError" value="On"/>
+		<add key="UPLOADLIMIT" value="10485760"/>
+    <add key="ReportViewerMessages" value="Skelta.Forms.Web.SSRS.SSRSReportViewerMessages, Skelta.Forms.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c77871940edc2650" />
+	</appSettings>
+	
+	<!--<connectionStrings>
+		<clear />
+		<add name="LocalSqlServer" connectionString="Data Source=localhost;Integrated Security=SSPI;Initial Catalog=SkeltaProduct;" />--><!--Repository--><!--
+	</connectionStrings>-->
+
+	<system.web>
+		<httpRuntime maxRequestLength="2097150"/>
+<!--		<authentication mode="Windows"/>
+
+		<membership>
+			<providers>
+				<clear/>
+				<add name="AspNetSqlMembershipProvider"
+					 type="System.Web.Security.SqlMembershipProvider, System.Web, Version=2.0.0.0,
+             Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+					 connectionStringName="LocalSqlServer"
+					 applicationName="/Test"/>
+			</providers>
+		</membership>
+
+		<profile enabled="true" defaultProvider="TableProfileProvider">
+			<providers>
+				<clear/>
+				<add name="TableProfileProvider"
+					 type="Microsoft.Samples.SqlTableProfileProvider"
+					 connectionStringName="LocalSqlServer"
+					 table="aspnet_Profile"
+					 applicationName="/Test"/>
+			</providers>
+		</profile>
+-->
+		<!--customErrors  mode="Off" defaultRedirect="Common/CustomErrors.aspx"></customErrors-->
+		
+		<compilation>
+			<expressionBuilders>
+				<add expressionPrefix="ReplaceTemplateExpn" type="Workflow.NET.TemplateExpressionBuilder"/>				
+			</expressionBuilders>			
+		</compilation>
+	</system.web>
+  <system.webServer>
+    <staticContent>
+      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="90.00:00:00" />
+    </staticContent>
+    <security>
+      <requestFiltering>
+        <requestLimits maxAllowedContentLength="2097152000" lockAttributes="" />
+      </requestFiltering>
+    </security>
+  </system.webServer>
+  <!-- 
+	<pages validateRequest="false" enableEventValidation="false"/>-->
+  <location path="Repository/Site/RepositoryList.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+</configuration>

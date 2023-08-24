@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> About XML Variables  </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601911" class="heading4">About XML Variables </h4>
+<p class="paragraph">AVEVA Work Tasks uses XML variables to provide data inputs to workflows. XML variables can be configured in the Start activity through the <b class="uicontrol">XMLVariables</b> property.</p>
+<p class="subheading">Different Types of XML Variables:</p>
+<p class="paragraph">The following table lists different XML variables:</p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">XML variable</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">XML Document</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">Using 'XML Document' variable, the required items can be fetched.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">XML Iterator</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">'XML Iterator' variable allows you to define variables for repeating XML elements and attributes.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">XML List</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">Using 'XML List' variable, the data from any list can be fetched.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">XML List Iterator</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">'XML List Iterator' variable is used to iterate through the list items (parent items) of a list and helps to retrieve or update data from a workflow.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">XMLForms Data Grid</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">'XML Forms Data Grid'&nbsp;variable is used to read or modify the selections of a Data Grid control used in Forms or Lists</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph">The XML Variable Interface provides the following functionality:</p>
+<ul class="ulitem"><li class="ulitem">Defining XML schema for the XML Variable either by specifying the complete schema or loading an XML document which is the source of the schema</li><li class="ulitem">Defining XSL transforms for the defined variable</li><li class="ulitem">Defining variables of type XML Document to retrieve data from XML files</li><li class="ulitem">Defining variables of type XML Iterator to retrieve data within repeating nodes within an XML schema. The XML Iterator  represents a collection of XML Nodes at some level in the XML variable schema. It allows you to perform actions on XML nodes such as looping through XMLnodes and getting the value of a specific node at any location. </li><li class="ulitem">Defining variables of type XML Forms Data Grid to retrieve or modify selections of Data Grid Control used within Forms or Lists which maps with the Grid Configuration for the selected XML node of the Form<p class="note"><strong class="notelabel">Note:</strong> Support for Special Characters in XML node Names of XML Variables: Special characters such as, &lt; &gt; { } * ? [ ] ( ) - _ , = | ; ` +, and % are allowed while naming XML node of XML Variables. XMLVariable will not support <b class="uicontrol">XML node names</b> with special characters, such as \, ~, !, ', :, &quot;, #, `, &amp;, ., @, ^, and $.</p>
+</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="XMLVariables.html" target="_self">XML Variables</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

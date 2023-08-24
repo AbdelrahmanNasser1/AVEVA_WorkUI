@@ -1,0 +1,478 @@
+﻿<!doctype html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="js/aes-min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode, uniqueKey;
+
+        function showMessageAndCloseWindow(message)
+        {
+            skeltaUtils.showAlert(document.title, message, function ()
+            {
+                closeWindow();
+            });
+        }
+
+        function closeWindow()
+        {
+            window.opener.parent.document.getElementById('mainframe').contentWindow.document.getElementById("gridframe").contentWindow.RefreshGrid();
+            window.close();
+        }
+
+        function OnConnectionChanged(control)
+        {
+            control.findById("procedureInput").value = "";
+            control.findById("Configure").value = "";
+        }
+
+        function configureEnabledScript(control)
+        {
+            if (control.findById("dbConnections").value)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
+        function loadColumnsWithParameters(control)
+        {
+            var vm = skeltaUtils.getViewModelObject(uniqueKey);
+            var connection = vm.findById("dbConnections").value;
+            var procedure = control.findById("procedureInput").value;
+            if (!connection || !procedure)
+            {
+                return;
+            }
+            else
+            {
+                var parameterFormRecords = control.findById("parametersForm").records();
+                var inputParameters = [];
+                ko.utils.arrayForEach(parameterFormRecords, function (eachRecord)
+                {
+                    var parameterName = eachRecord.findById("pName").value;
+                    var parameterValue = eachRecord.findById("pValue").value;
+                    var parameterType = eachRecord.findById("pType").value;
+                    inputParameters.push({ Name: parameterName, Value: parameterValue, Type: parameterType });
+                });
+                var columns = getColumnsForSPWithParameters(control, connection, procedure, inputParameters);
+                var options = GetOptionsColumns(columns);
+                updateColumns(control, options, columns);
+            }
+        }
+
+        function updateColumns(control, options, columns)
+        {
+            if (columns.length > 0)
+            {
+                var valueField = control.findById("valueField");
+                var displayField = control.findById("displayField");
+                valueField.options = options;
+                valueField.enable = true;
+                displayField.options = options;
+                displayField.enable = true;
+                var columnsForm = control.findById("lookupColumnsForm");
+                columnsForm.removeAll();
+                ko.utils.arrayForEach(columns, function (eachColumn)
+                {
+                    var newRecord = columnsForm.addRecordToBottom();
+                    newRecord.findById("columnName").value = eachColumn.Name;
+                    newRecord.findById("columnType").value = eachColumn.Type;
+                });
+            }
+        }
+
+        function getColumnsForSPWithParameters(control, connection, procedure, inParameters)
+        {
+            var appName = skelta.userContext.getUserContextFor("appN");
+            var uId = skelta.userContext.getUserContextFor("uId");
+            var result = [];
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "sp": procedure,
+                "appName": appName,
+                "cn": connection,
+                "uid": uId,
+                "mt": 1,
+                "ip": inParameters
+
+            });
+
+            skeltaUtils.callServerMethod("POST", "DatabaseLookupService.aspx/GetSPColumnsUsingParameters", "application/json; charset=utf-8", jsonHelper, "json",
+                function (data)
+                {
+                    if (data)
+                    {
+                        var procedureInput = control.findById("procedureInput");
+                        procedureInput.validationErrorMessage("");
+                        procedureInput.validationError(false);
+
+                        var res = $.parseJSON(data.d);
+                        if (res.isSuccess === true)
+                        {
+                            result = res.columns;
+                        } else
+                        {
+                            procedureInput.validationErrorMessage(res.errorMessage);
+                            procedureInput.validationError(true);
+                        }
+                    }
+                },
+                function (err)
+                {
+                    skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFSPErrorLoadingColumns"), null, skeltaUtils.getAjaxErrorDetailsMessage(err, "<br>"));
+                    logger.logError(skelta.localize.getString("FormNGFSPErrorLoadingColumns") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(err, "\n"));
+                }, null, false);
+            return result;
+        }
+
+        function loadColumnsFromStoredProcedure(control)
+        {
+            control.findById("valueField").value = "";
+            control.findById("displayField").value = "";
+            control.findById("valueField").visible = true;
+            control.findById("displayField").visible = true;
+            control.findById("valueFieldText").visible = false;
+            control.findById("displayFieldText").visible = false;
+            control.findById("NF1defaultButton").enable = true;
+            loadColumns(control, true);
+        }
+
+        function loadColumns(control, buttonClicked)
+        {
+            var vm = skeltaUtils.getViewModelObject(uniqueKey);
+            var connection = vm.findById("dbConnections").value;
+            var procedure = control.findById("procedureInput").value;
+            control.findById("NF1defaultButton").enable = true;
+            if (!connection || !procedure)
+            {
+                return;
+            }
+            else
+            {
+                var columns = getStoredProcedureColumns(control, connection, procedure);
+                var options = GetOptionsColumns(columns);
+                updateColumns(control, options, columns);
+            }
+        }
+
+        function CheckColumnExistsInOptions(options, column)
+        {
+            var found = false;
+            ko.utils.arrayForEach(options, function (option)
+            {
+                if (option.optionvalue === column)
+                {
+                    found = true;
+                }
+            });
+
+            return found === true;
+        }
+
+        function UpdateProcedureDetails(control)
+        {
+            if (!skeltaUtils.isUndefined(control.extendedInformation))
+            {
+                control.findById("procedureInput").value = skelta.localize.getString("SPPName") + " " + control.extendedInformation["Procedure"] + "\n" + skelta.localize.getString("SPPValue") + " " + control.extendedInformation["ValueField"] + "\n" + skelta.localize.getString("SPPDisplayName") + " " + control.extendedInformation["DisplayField"];
+            }
+        }
+
+        function updateTextField(control, currentValue)
+        {
+            control.findById(control.id + "Text").value = currentValue;
+        }
+
+        function onPopupFormLoad(control)
+        {
+            var vm = skeltaUtils.getViewModelObject(uniqueKey);
+            var isNew = vm.findById("Configure").value === "";
+            control.findById("valueField").visible = isNew;
+            control.findById("displayField").visible = isNew;
+            control.findById("valueFieldText").visible = !isNew;
+            control.findById("displayFieldText").visible = !isNew;
+            control.findById("NF1defaultButton").enable = isNew;
+            var parameterForm = control.findById("parametersForm");
+            var parameterFormRecords = parameterForm.records();
+            var count = vm.findById("pCount").value;
+            parameterForm.visible = !isNew && count !== "0";
+            ko.utils.arrayForEach(parameterFormRecords, function (record)
+            {
+                record.findById("pValue").value = "";
+            });
+        }
+
+        function getStoredProcedureColumns(control, connection, procedure)
+        {
+            var appName = skelta.userContext.getUserContextFor("appN");
+            var uId = skelta.userContext.getUserContextFor("uId");
+            var result = [];
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "sp": procedure,
+                "appName": appName,
+                "cn": connection,
+                "uId": uId,
+                "mt": 1
+            });
+
+            skeltaUtils.callServerMethod("GET", "DatabaseLookupService.aspx/GetSPColumnsOrParams", "application/json; charset=utf-8", jsonHelper, "json",
+                function (data)
+                {
+                    if (!skeltaUtils.isUndefined(data))
+                    {
+                        var vm = skeltaUtils.getViewModelObject(uniqueKey);
+                        vm.findById("pCount").value = "0";
+                        var procedureInput = control.findById("procedureInput");
+                        procedureInput.validationErrorMessage("");
+                        procedureInput.validationError(false);
+                        var res = $.parseJSON(data.d);
+                        var isParameterPresent = res.parameters && res.parameters.length > 0;
+                        var parameterForm = control.findById("parametersForm");
+                        parameterForm.visible = isParameterPresent;
+                        parameterForm.removeAll();
+                        control.findById("loadColumnsButton").visible = isParameterPresent;
+                        if (res.isSuccess === true)
+                        {
+                            if (isParameterPresent === true)
+                            {
+                                vm.findById("pCount").value = res.parameters.length;
+                                ko.utils.arrayForEach(res.parameters, function (eachDataParameter)
+                                {
+                                    var newRecord = parameterForm.addRecordToBottom();
+                                    newRecord.findById("pName").value = eachDataParameter.Name;
+                                    newRecord.findById("pType").value = eachDataParameter.Type;
+                                    newRecord.findById("pDirection").value = eachDataParameter.ParameterProperties.ParameterDirection;
+                                    newRecord.findById("pValue").readOnly = false;
+                                    newRecord.findById("isMappedToControl").enable = true;
+                                });
+                            } else
+                            {
+                                result = res.columns;
+                            }
+                        } else
+                        {
+                            procedureInput.validationErrorMessage(res.errorMessage);
+                            procedureInput.validationError(true);
+                        }
+                    }
+                },
+                function (err)
+                {
+                    skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFSPErrorLoadingColumns"), null, skeltaUtils.getAjaxErrorDetailsMessage(err, "<br>"));
+                    logger.logError(skelta.localize.getString("FormNGFSPErrorLoadingColumns") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(err, "\n"));
+                }, null, false);
+            return result;
+        }
+
+        function GetOptionsColumns(items)
+        {
+            var columns = [];
+            ko.utils.arrayForEach(items, function (item)
+            {
+                columns.push({ optiontext: item.Name, optionvalue: item.Name });
+            });
+            return columns;
+        }
+
+        function onProcedureChanged(control)
+        {
+            control.findById("NF1defaultButton").enable = false;
+        }
+
+        function updateTitleAndDescription(control)
+        {
+            var mode = skeltaUtils.getUrlParameterValue(window, "mode");
+            if (mode === "new")
+            {
+                control.findById("title").value = window.sessionStorage["sys_sp_title"];
+                control.findById("desc").value = window.sessionStorage["sys_sp_desc"];
+            }
+        }
+
+        function onSave(inputParameterObject, eventArgs)
+        {
+            var sp = inputParameterObject.instanceXml.StoredProcedure;
+            sp.ConfigurationDetails = inputParameterObject.instanceXml.StoredProcedure.ConfigurationDetails;
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "spd": sp,
+                "sv": paramlcsuri,
+            });
+
+            skeltaUtils.callServerMethod("POST", "DatabaseLookupService.aspx/SaveStoredProcedure", "application/json; charset=utf-8", jsonHelper, "json",
+                function (data)
+                {
+                    if (!skeltaUtils.isUndefined(data))
+                    {
+                        data = $.parseJSON(data.d);
+
+                        if (data.IsSuccess === true)
+                        {
+                            if (skeltaUtils.isUndefinedNullOrEmpty(data.ErrorMessage))
+                            {
+                                showMessageAndCloseWindow(skelta.localize.getString("SPSaveMsg"));
+                            }
+                            else
+                            {
+                                showMessageAndCloseWindow(data.ErrorMessage);
+                            }
+                        }
+                        else
+                        {
+                            skelta.forms.utilities.hideLoader();
+                            se.ui.messageDialog.showError(document.title, skelta.localize.getString("SPSaveFailed"));
+                        }
+                    }
+                },
+                function (err)
+                {
+                    skelta.forms.utilities.hideLoader();
+                    skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFSPErrorSavingStoredProcedure"), null, skeltaUtils.getAjaxErrorDetailsMessage(err, "<br>"));
+                    logger.logError(skelta.localize.getString("FormNGFSPErrorSavingStoredProcedure") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(err, "\n"));
+                }, null, false);
+        }
+
+        function getStoredProcedureDefinition()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "lcsuri": paramlcsuri,
+                "mode": mode
+            });
+            skeltaUtils.callServerMethod("GET", "DatabaseLookupService.aspx/GetStoredProcedureForm", "application/json; charset=utf-8", jsonHelper, "json", newLookupSucceeded, newLookupFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function newLookupSucceeded(resultData)
+        {
+            var data = resultData.d;
+            applicationName = data.a;
+            skelta.userContext.setUserContextFor("appN", applicationName);
+            skelta.userContext.setUserContextFor("uId", data.uid);
+            skelta.userContext.setUserContextFor("vStamp", "");
+            skelta.userContext.setUserContextFor("itemId", "_SP");
+            uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, "_SP", "");
+            if (mode === "edit")
+            {
+                var instanceXml = data.i;
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(instanceXml));
+            }
+            $("#viewModel").html(data.sp);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(onSave);
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+
+            // Update the Procedure Details on Load, so that proper localized values are displayed.
+            UpdateProcedureDetailsOnLoad(viewModelObject.topLevelForm.findById("Configure"));
+        }
+
+        function UpdateProcedureDetailsOnLoad(configureCtrl)
+        {
+            try
+            {
+                if (skelta.utilities.isUndefined(configureCtrl) ||
+                    skelta.utilities.isUndefinedNullOrEmpty(configureCtrl._value.peek()))
+                {
+                    return;
+                }
+
+                if (skelta.utilities.isUndefined(configureCtrl.extendedInformation))
+                {
+                    var jsonVal = skeltaUtils.getJSONObjectFromXml(skeltaUtils.decodeXmlValue(configureCtrl._value.peek()));
+                    var objectName = Object.keys(jsonVal)[0];
+
+                    configureCtrl.extendedInformation = jsonVal[objectName];
+                }
+
+                UpdateProcedureDetails(configureCtrl);
+            }
+            catch (e)
+            {
+                logger.logError(skelta.localize.getString("SPLoadError") + "\n" + e.message);
+            }
+        }
+
+        function newLookupFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("SPLoadError"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(skelta.localize.getString("SPLoadError") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        function checkLookupAccessRights(lcsuri)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": mode === "new" ? ["ActionCreate"] : ["ActionEdit"],
+            });
+
+            skeltaUtils.callServerMethod("GET", "DatabaseLookupService.aspx/CheckSecurityAndGetPageDefaults", "application/json; charset=utf-8", params, "json", onSecuritySuccess, null, null, false);
+        }
+
+        function onSecuritySuccess(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showAlert(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            }
+            else
+            {
+
+            getStoredProcedureDefinition();
+        }
+        }
+
+        $(document).ready(function ()
+        {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                skeltaUtils.loadPageDefault();
+                document.title = skelta.localize.getString(mode == "edit" ? "DBLookupEdit" : "DBLookup");
+                checkLookupAccessRights(paramlcsuri);
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("SPLoadError"), null, exception.message);
+                logger.logError(skelta.localize.getString("SPLoadError") + "\n" + exception.message);
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

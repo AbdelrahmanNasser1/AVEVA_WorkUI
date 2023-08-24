@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Changing the Scope of the XML List XML Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t487776" class="heading5">Changing the Scope of the XML List XML Variable</h5>
+<p class="paragraph">The scope (<b class="uicontrol">Choose the list item to work on</b> options) of the XML list XML variable can be changed during the runtime. Once the scope is changed, the XML list XML variable will use the changed scope. You can change the scope of the XML list XML Variable using the List Navigator activity during workflow execution. Using this action, you can also navigate the XML list XML variable to another list which has a similar schema.</p>
+<p class="procedureheading">To change the scope of the XML List XML Variable</p>
+<ol class="step"><li class="step">Click <b class="uicontrol">Activities</b> and select<b class="uicontrol"> List Activities</b> from the options. </li><li class="step">Drag and drop <b class="uicontrol">List Navigator</b> activity.<p class="stepinfo"><img id="f181542" src="181542.png" alt="" height="498" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Select the XML variable, for which the scope needs to be changed, from the<b class="uicontrol"> XML Variable of List Type</b> drop down. </li><li class="step">Type/select the list name in the <b class="uicontrol">List Name or ID</b> field. This property helps to change the list that you need to work on. The list entered here should have the same schema of the list from which the XML variable was created. If you do not want to change the working on list, then leave this field blank. Once you change the list, the XML variable will use the changed one. </li><li class="step">For example, you have a list called<b class="uicontrol"> Purchase Orders</b> and another list called <b class="uicontrol">Approved Purchase Orders</b> which has the same schema as the <b class="uicontrol">Purchase Orders</b> list. If you want to add/update some item in the <b class="uicontrol">Approved Purchase Orders</b>, you do not have to create separate XMLvariables for both the list. You can use the same XML variables since both lists have the same schema. In this case, create XML variable for Purchase Orders. Enter the List Name as Approved Purchase Orders and set the scope as New. This will point to the Approved Purchase Orders list and add/update the item in that list. </li><li class="step">Click the drop-down and select the scope from the options. The available options are <b class="uicontrol">Current</b>, <b class="uicontrol">New</b> and <b class="uicontrol">List Query</b>. Here you can change the scope. <p class="note"><strong class="notelabel">Note:</strong> You can also use list id. Id should be inside curly braces. Format to use {ListId}. This is optional and list id need not be given when the list name is provided and vice versa. Also, they can provide both as {ListId}ListName format. </p>
+</li></ol><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="xmlvariableforlist.html" target="_self">XML Variable for List</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,77 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.RadComboBox_AWTCombobox {
+    color: #333333;
+    font-size: 14px;
+    font-family: "Roboto","Segoe UI", Arial, Helvetica, sans-serif !important;
+    height: 20px !important;
+}
+  .RadComboBox_AWTCombobox .rcbInputCell,
+  .RadComboBox_AWTCombobox .rcbArrowCell {
+    background-image: url('Common/radFormSprite.png'); }
+    .RadComboBox_AWTCombobox .rcbInput {
+        font-size: 14px;
+        line-height: 18px !important;
+    }
+  .RadComboBox_AWTCombobox .rcbHovered .rcbInput 
+  {
+    color: #333333; 
+
+  }
+  .RadComboBox_AWTCombobox .rcbFocused .rcbInput {
+    color: #333333; }
+  .RadComboBox_AWTCombobox .rcbReadOnly .rcbInput {
+    color: #333333; 
+
+  }
+  .RadComboBox_AWTCombobox .rcbHovered .rcbReadOnly .rcbInput {
+    color: #000000; }
+  .RadComboBox_AWTCombobox .rcbFocused .rcbReadOnly .rcbInput {
+        color: #000000;}
+.RadComboBoxDropDown_AWTCombobox {
+    border-color: #cccccc;
+    color: #333333;
+    background-color: #ffffff;
+    font-size: 14px;
+    font-family: "Roboto","Segoe UI", Arial, Helvetica, sans-serif !important;
+    height: 20px;
+}
+  .RadComboBoxDropDown_AWTCombobox .rcbSeparator {
+    color: #333333;
+    background-color: #e6e6e6; }
+  .RadComboBoxDropDown_AWTCombobox .rcbHovered {
+    color: #000000;
+    background-color: #c2c2c2; }
+  .RadComboBoxDropDown_AWTCombobox .rcbSelected {
+    color: #ffffff;
+    background-color: #808080; }
+  .RadComboBoxDropDown_AWTCombobox .rcbLoading {
+    color: #000000;
+    background-color: #c2c2c2; }
+  .RadComboBoxDropDown_AWTCombobox .rcbItem em {
+    color: #000000;
+    background-color: #c2c2c2; }
+  .RadComboBoxDropDown_AWTCombobox .rcbCheckAllItemsHovered {
+    color: #000000;
+    background-color: #c2c2c2; }

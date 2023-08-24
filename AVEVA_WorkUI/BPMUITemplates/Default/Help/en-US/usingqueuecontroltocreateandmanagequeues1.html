@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Queue Control to Create and Manage Queues </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46120" class="heading3">Using Queue Control to Create and Manage Queues</h3>
+<p class="paragraph">You can add and define queue from the Queue Management page.</p>
+<p class="subheading">To add and manage a new queue:</p>
+<ol class="step"><li class="step">In the Enterprise Console, click the <b class="uicontrol">Menu</b> button, click <b class="uicontrol">Settings</b>, and then click <b class="uicontrol">Queue Management</b>. The <b class="uicontrol">Queue Management</b> page appears.</li><li class="step">Click <b class="uicontrol">New Queue</b> to add a new queue.</li><li class="step">In the <b class="uicontrol">Name</b> box, type the unique name for the queue. <br>Ensure that the&nbsp;<b class="uicontrol">Queue Name</b>&nbsp;does not contain more than 250 characters, and does not contain the following special characters: [#~&amp;+\&quot;\'&lt;&gt;|@!$%*()=/{}?]\</li><li class="step">In the <b class="uicontrol">Description</b> box, specify the description for the queue. <br>Ensure that the&nbsp;<b class="uicontrol">Queue Description</b>&nbsp;does not contain more than 150 characters.</li><li class="step">Click <b class="uicontrol">Add</b>. The Queue is added and a new page appears that allows you to manage participants by adding the Users or Roles for the queue and setting their access rights. You can allow the users to view work items, pick up one, or pick the next available task without being able to view it, or put back a task in the queue.</li></ol><p class="paragraph">You need to specify the Queue settings, set dispatch rules, and set escalations using the appropriate tabs in this window. For more information, refer to <a id="h46668" class="jump-currentwindowlive" title="Queue Management" href="queuemanagement.html" target="_self">Queue Management</a>.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

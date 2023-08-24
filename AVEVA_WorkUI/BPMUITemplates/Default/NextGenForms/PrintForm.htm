@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html class="skprint">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script>
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+
+        var deviceOS = "Web",
+            paramListName = "Forms List",
+            appName,
+            userId,
+            printFormName,
+            printFormVersion,
+            printItemId,
+            parentFormName,
+            parentFormVersion,
+            parentItemId,
+            isStaging = false;
+
+        $(document).ready(function ()
+        {
+            var spinnerEl = skeltaUtils.getLoaderObject();
+            $("#skloader")[0].appendChild(spinnerEl);
+
+            document.title = skelta.localize.getString("FormNGFPrintFormTitle");
+
+            appName = skeltaUtils.getUrlParameterValue(window, 'appN');
+            userId = decodeURIComponent(skeltaUtils.getUrlParameterValue(window, 'uId'));
+            printFormName = skeltaUtils.getUrlParameterValue(window, 'printFName');
+            printFormVersion = skeltaUtils.getUrlParameterValue(window, 'printVStamp');
+            printItemId = skeltaUtils.getUrlParameterValue(window, 'printItemId');
+            parentFormName = skeltaUtils.getUrlParameterValue(window, 'parentFName');
+            parentFormVersion = skeltaUtils.getUrlParameterValue(window, 'parentVStamp');
+            parentItemId = skeltaUtils.getUrlParameterValue(window, 'parentItemId');
+
+            var pageToBePrinted = skeltaUtils.getUrlParameterValue(window, 'pageName');
+
+            if (pageToBePrinted === "PreviewForm")
+            {
+                isStaging = true;
+            }
+
+            skelta.userContext.setUserContextFor("appN", appName);
+            skelta.userContext.setUserContextFor("uId", userId);
+            skelta.userContext.setUserContextFor("fName", printFormName);
+            skelta.userContext.setUserContextFor("vStamp", printFormVersion);
+
+            skeltaUtils.loadPageDefault();
+            loadViewAndViewModelFromServer();
+        });
+
+        function loadViewAndViewModelFromServer()
+        {
+            var jsonData = skeltaUtils.createJsonRequestHelper({
+                "applicationName": appName,
+                "userId": userId,
+                "formName": printFormName,
+                "versionStamp": printFormVersion,
+                "isStaging": isStaging
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/PrintForm", "application/json; charset=utf-8", jsonData.getValueForGetRequest(), "json", printFormAjaxSucceeded, null, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function printFormAjaxSucceeded(resultData)
+        {
+            var result = JSON.parse(resultData.d),
+            isSuccess = result.IsSuccess,
+            formStatus = result.Status,
+            viewAndViewModel = result.vAndVM;
+
+            if (isSuccess === "false" || viewAndViewModel === "" || (isStaging === false && formStatus === "Draft"))
+            {
+                skeltaUtils.showError(skelta.localize.getString("FormNGFPrintFormErrorTitle"), skelta.localize.getString("FormNGFPrintFormErrorMessage"), function () { window.close(); });
+            }
+            else
+            {
+                var parentUniqueKey = skelta.forms.utilities.getFormUniqueKey(appName, parentItemId, parentFormVersion);
+                var parentFormViewModelObj = window.opener["viewModelObject_" + parentUniqueKey];
+
+                parentFormViewModelObj.topLevelForm.isInPrintMode = true;
+
+                var dataModel = parentFormViewModelObj.topLevelForm.getFormSubmissionData();
+
+                parentFormViewModelObj.topLevelForm.isInPrintMode = false;
+
+                var printUniqueKey = skeltaUtils.getFormUniqueKey(appName, result.itemKey, result.formVersion);
+
+                skelta.userContext.setUserContextFor("itemId", result.itemKey);
+
+                skeltaUtils.createDataModelObject(printUniqueKey);
+                skeltaUtils.setDataModelObject(printUniqueKey, dataModel);
+
+                $("#viewModel").html(viewAndViewModel);
+                viewModelObject = skeltaUtils.getViewModelObject(printUniqueKey);
+
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+
+                viewModelObject.topLevelForm._readEditAddBehaviour(1);
+                $("." + cssClasses.sfFooter).hide();
+
+                $("#viewModel")[0].style.display = "";
+            }
+
+            //window.print();
+        }
+
+    </script>
+</head>
+<body>
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <div id="viewModel" style="display: none;">
+    </div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Edit Action Item</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/SkeltaFormsEditControl.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var viewModelObject;
+        var popupWindow = null;
+        var editFrame = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"] : window.parent.frames["editframe"].contentWindow;
+        skelta.userContext = editFrame.skelta.userContext;
+        var skeltaUserContext = skelta.userContext;
+        var treeWidget = editFrame.$(editFrame.document).find("[ActionBarTree='ActionItems']").data("kendoTreeView");
+        var actionItem = treeWidget.dataItem(treeWidget.select());
+        var intialActionData = $.extend({}, actionItem);
+        var isAutoSaved = false;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                skeltaUtils.loadPageDefault();
+                loadActionItemForm();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("skActionItem_PropertyPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("skActionItem_PropertyPageError") + "\n" + exception.message);
+            }
+        });
+
+        function toTitleCase(str)
+        {
+            return str.replace(/\w\S*/g, function (txt)
+            {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
+
+        function loadData()
+        {
+            var headerText = $(".sktt").text();
+            $(".sktt").text(headerText.replace("'<@title@>'", actionItem.text));
+            viewModelObject.findById("Id").value = actionItem.id;
+            viewModelObject.findById("Text").value = actionItem.text;
+            viewModelObject.findById("Image").value = actionItem.image;
+            viewModelObject.findById("HoverImage").value = actionItem.hoverImage;
+            viewModelObject.findById("Css").value = actionItem.css;
+            viewModelObject.findById("Tooltip").value = actionItem.tooltip;
+            viewModelObject.findById("Script").value = actionItem.script;
+            viewModelObject.findById("OpenMode").value = actionItem.openMode;
+            viewModelObject.findById("Enable").value = toTitleCase(actionItem.enable);
+            viewModelObject.findById("Visible").value = toTitleCase(actionItem.visible);
+            viewModelObject.findById("ParameterControl").value = actionItem.parameterControl;
+            viewModelObject.findById("ActionType").value = actionItem.actionType;
+            viewModelObject.findById("ActionType").visible = actionItem.items.length === 0;
+            viewModelObject.findById("TextScript").value = actionItem.textScript;
+            viewModelObject.findById("EnableScript").value = actionItem.enableScript;
+            viewModelObject.findById("VisibleScript").value = actionItem.visibleScript;
+        }
+
+        function onActionTypeChange(control, currentValue)
+        {
+            control.findById("ParameterControl").visible = (actionItem.items.length === 0 && currentValue === "1");
+            control.findById("Script").visible = (actionItem.items.length === 0 && currentValue === "2");
+        }
+
+        function closeActionItem()
+        {
+            //reverting the changes which were saved due to auto save in script editor
+            var dataItem = treeWidget.dataSource.get(intialActionData.id);
+            dataItem.set("text", intialActionData.text);
+            dataItem.set("image", intialActionData.image);
+            dataItem.set("hoverImage", intialActionData.hoverImage);
+            dataItem.set("css", intialActionData.css);
+            dataItem.set("tooltip", intialActionData.tooltip);
+            dataItem.set("script", intialActionData.script);
+            dataItem.set("openMode", intialActionData.openMode);
+            dataItem.set("enable", intialActionData.enable);
+            dataItem.set("visible", intialActionData.visible);
+            dataItem.set("parameterControl", intialActionData.parameterControl);
+            dataItem.set("actionType", intialActionData.actionType);
+            dataItem.set("textScript", intialActionData.textScript);
+            dataItem.set("enableScript", intialActionData.enableScript);
+            dataItem.set("visibleScript", intialActionData.visibleScript);
+            if (isAutoSaved === true)
+            {
+                updateProperties();
+            }
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").attributes["src"].value = "";
+        }
+
+        function onSaveActionItem(inputParameterObject, eventArgs)
+        {
+            updateActionItems();
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").attributes["src"].value = "";
+        }
+
+        function updateActionItems()
+        {
+            var dataItem = treeWidget.dataSource.get(viewModelObject.findById("Id").value);
+            dataItem.set("text", viewModelObject.findById("Text").value);
+            dataItem.set("image", viewModelObject.findById("Image").value);
+            dataItem.set("hoverImage", viewModelObject.findById("HoverImage").value);
+            dataItem.set("css", viewModelObject.findById("Css").value);
+            dataItem.set("tooltip", viewModelObject.findById("Tooltip").value);
+            dataItem.set("script", viewModelObject.findById("Script").value);
+            dataItem.set("openMode", viewModelObject.findById("OpenMode").value);
+            dataItem.set("enable", viewModelObject.findById("Enable").value);
+            dataItem.set("visible", viewModelObject.findById("Visible").value);
+            dataItem.set("parameterControl", viewModelObject.findById("ParameterControl").value);
+            dataItem.set("actionType", viewModelObject.findById("ActionType").value);
+            dataItem.set("textScript", viewModelObject.findById("TextScript").value);
+            dataItem.set("enableScript", viewModelObject.findById("EnableScript").value);
+            dataItem.set("visibleScript", viewModelObject.findById("VisibleScript").value);
+        }
+
+        function setValueToControl(id, value)
+        {
+            viewModelObject.findById(id)._value(value ? "<![CDATA[" + value + "]]>" : value);
+        }
+
+        function loadActionItemForm()
+        {
+            uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_AIP", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "appName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "uId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "ck": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "vs": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "cId": skeltaUtils.getUrlParameterValue(window.frames["editFrame"], 'sfdcontainer'),
+                "cName": window.parent.skelta.userContext.getUserContextFor("fName")
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetActionItemForm", "application/json; charset=utf-8", jsonHelper, "html", success, fail, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function success(resultData)
+        {
+            $("#viewModel").html(resultData);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(onSaveActionItem);
+            viewModelObject.onCancel.subscribeEvent(closeActionItem);
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+            loadData();
+            document.title = $("<div>").text($(".sktt").text()).html();
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("skActionItem_PropertyPageError"), null, result.responseText);
+            logger.logError(skelta.localize.getString("skActionItem_PropertyPageError") + "\n" + result.responseText);
+        }
+
+        function updateActionItemFormDefinition()
+        {
+            isAutoSaved = true;
+            updateActionItems();
+            updateProperties();
+        }
+
+        function updateProperties()
+        {
+            var editFrameData = editFrame.viewModelObject.topLevelForm.records()[0].getFormSubmissionData();
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": editFrame.skeltaUtils.getXmlFromJSONObject(editFrameData),
+                "cacheKey": editFrame.cacheKey,
+                "listName": editFrame.listName,
+                "version": editFrame.versionstamp,
+                "selectedControl": editFrame.sfdcontainer,
+                "applicationName": editFrame.paramApplicationName,
+                "userId": editFrame.paramUserId
+            });
+            editFrame.doNotCloseEditPage = true;
+            editFrame.updateFormDefinition(jsonHelper);
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;"></textarea>
+</body>
+</html>

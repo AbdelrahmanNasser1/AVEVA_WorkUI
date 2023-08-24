@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Checklist Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601938" class="heading3">Checklist Activity</h3>
+<p class="subheading">Activity Description:</p>
+<p class="paragraph">The Checklist Activity is incorporated in the AVEVA Work Tasks Workflow process design to send questions that need to be answered by actors in a workflow. These questions can be sent with a Text box, Memo, Checklist, Drop-down, or Radio Button to capture the answers provided by actors.</p>
+<p class="subheading">Application Scenarios:</p>
+<p class="paragraph">A typical application scenario could be a Technical Support Request Workflow Process, which will have a set of radio buttons on the Request Form which the customer can use to select the Support option applicable to him/her. A Checklist activity can be used in the workflow to display these radio buttons and retrieve the customer selection information.</p>
+<p class="subheading">Workflow Variables for Checklist:</p>
+<p class="paragraph"><strong class="strong">Steps to define variables for use in the Checklist activity</strong></p>
+<p class="paragraph">This section describes how to define variables for use in Checklist activities. It gives the syntax for creating the variables and typical examples for different cases.</p>
+<p class="subheading">Variables for capturing WorkItemIds</p>
+<p class="paragraph">The Work Item Id's for the Checklist work item can be retrieved using a variable of type Array, with the following syntax:</p>
+<p class="paragraph">'<strong class="strong">^'+CurrentActivity.Name+'WorkItemIds'.</strong></p>
+<p class="paragraph">For example, <strong class="strong">^ReviewDocumentWorkItemIds</strong>.</p>
+<p class="subheading">Variables for capturing All Actors' Details</p>
+<p class="paragraph">The details of the actor(s) to whom the Checklist work item gets assigned, can be accessed by declaring a variable of type array with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+CurrentActivity.Name+'ActingUsers'</strong></p>
+<p class="paragraph">For example, <strong class="strong">^ReviewDocumentActingUsers</strong>.</p>
+<p class="subheading">Variables for capturing Responding Actors' Details</p>
+<p class="paragraph">The details of the actors' submitting the Checklist response, can be accessed by declaring a variable of type resource with the following syntax:</p>
+<p class="paragraph">'<strong class="strong">^'+HWSActivity.ActivityName+'RespondingUser'</strong></p>
+<p class="paragraph">For example, <strong class="strong">^ReviewDocumentRespondingUser</strong>.</p>
+<p class="paragraph">This variable stores the responded user information. If it is more than one user, it will retrieve the last user details.</p>
+<p class="note"><strong class="notelabel">Note:</strong> For single user, you can declare this variable as Resource type. If task is assigned to multiple users and to get all responded users information, then the variable has to be declared as Array.</p>
+<p class="subheading">Variables for capturing Comments</p>
+<p class="paragraph">Comments entered in a Checklist can be retrieved using a variable with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+_HWSActivity.CurrentActivity.Name+'CommentCheckList'</strong>.</p>
+<p class="paragraph">For example, <strong class="strong">^ReviewDocumentCommentCheckList</strong>.</p>
+<p class="paragraph">(To add a comment field to the Checklist HTML page create a Text box control in Checklist HTML pages with the name &quot;txtcomment&quot;. The HTML template pages for the Checklist activity can be found under the [AVEVA Work Tasks Installed Path]\WorkflowElements\Default\en-US\Activities\Activity folder.)</p>
+<p class="subheading">Variables for capturing Checklist Questions and Answers in HTML format</p>
+<p class="paragraph">Question and answers entered in the Checklist can be accessed in HTML format by using a variable with the following syntax:</p>
+<p class="paragraph">'<strong class="strong">^'+CurrentActivity.Name+'AnswersHTMLCheckList'</strong></p>
+<p class="paragraph">For example, ^ReviewDocumentAnswersHTMLCheckList.</p>
+<p class="subheading">Variables for capturing Checklist Questions and Answers in XML format</p>
+<p class="paragraph">Question and answers entered in the Checklist can be accessed in XML format by using a variable with the following syntax:</p>
+<p class="paragraph">'<strong class="strong">^'+ CurrentActivity.Name+'AnswersXMLCheckList'</strong></p>
+<p class="paragraph">For example, <strong class="strong">^ReviewDocumentAnswersXMLCheckList</strong>.</p>
+<p class="subheading">Variables for assigning queue system variable</p>
+<p class="paragraph">To assign queues instead of setting the queue through Assign Queue property, add a variable with a name prefixed by '^', with the following syntax:</p>
+<p class="paragraph"><strong class="strong">&quot;^&quot;+ CurrentActivity.Name + &quot;_QueueVariable&quot;.</strong></p>
+<p class="paragraph">For example, if the activity name is 'Approval1' then declare the variable as ^Approval1_QueueVariable in the Start activity with the Type as String. Using the &quot;Update Variable&quot; activity, assign the queue-id (GUID) for this variable in the Workflow.</p>
+<p class="paragraph">To assign multiple queues, specify the queue-ids with semicolon (;) as the separator. Skelta.HWS.Queue.QueueCollection class can be used to retrieve queue information.</p>
+<p class="subheading">Variable for Queue Acting Users</p>
+<p class="paragraph">You can declare an Array type variable to get updated information about the name of the actor to whom an activity gets assigned from a queue.</p>
+<p class="paragraph">In the Workflow Variables, define the variable in the following format:</p>
+<p class="paragraph"><strong class="strong">^+CurrentActivityName+'QueueActingUsers'</strong> </p>
+<p class="paragraph">Ex: ^HRFormQueueActingUsers</p>
+<p class="paragraph">HRForm is the activity name.</p>
+<p class="paragraph">For example the value of the user who acts on the HRForm activity will be stored in the variable. The Approval1 task will be assigned to the same user.</p>
+<p class="subheading">Variable for storing timeout warning value</p>
+<p class="paragraph">Suppose if you want to store the timeout warning value for Checklist activity in your workflow. The naming convention for the system variable to be declared is</p>
+<p class="paragraph"><strong class="strong">^&lt;ActivityName&gt;ResponseByWarningTimeout</strong></p>
+<p class="paragraph">The value returned by the variable will be in UTC format. For multiple user scenarios the highest timeout value calculated for user will be available in the variable.</p>
+<p class="note"><strong class="notelabel">Note:</strong> Multiple timeout warnings cannot be tracked using this feature.</p>
+<p class="subheading">Retrieving Stored Checklist Data:</p>
+<p class="paragraph">When an actor has acted upon the checklist, it is marked as completed and the details are stored in XML format in the database. It can be retrieved as SELECT DATA FROM SKWorkItem SKW, SKWorkItemData SKWD WHERE</p>
+<p class="paragraph">SKW.DataId = SKWD.Id AND SKW.Id = &lt;WorkItemId&gt;.</p>
+<p class="paragraph">See the XML file to know how the details are stored in the database.</p>
+<p class="paragraph">The following image shows the format in which the Checklist Details are stored in the XML file:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50580" src="50580.png" class="embeddedimage100%scalinglive" alt="" height="383" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Checklist activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Checklist activity. The Activity Properties are organized under the following groups of related properties.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><br><img id="f612551" src="612551.png" class="embeddedimage100%scalinglive" alt="" height="629" width="580" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Name &amp; Description</b></p>
+<p class="paragraph">You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Display Name</b> - This property specifies the name to be displayed for the work item in the Work items list.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set if the display name is already configured in the Actions.XML. The name entered here overrides any display name that is configured for this activity in the Actions.xml file.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Configuration</b></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Delivery Channels</b> - This property is used to specify the delivery channels to deliver the activity to the assigned actor(s). Multiple channels can be specified giving the actor(s) different options to act on the work item.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="procedureheading">Steps to set the Delivery Channels property</p>
+<ol class="step"><li class="step">To select the Delivery Channels, click on the button for the 'Delivery Channels' property the property window will be displayed.</li><li class="step">In this window, the Delivery Channels that have been configured and will be listed on the left along with a check box against each channel. Click and select the check box corresponding to the channel you wish to select. You can select multiple channels by selecting the respective check-box.</li><li class="step">Click on Save Channels button.</li></ol><p class="paragraph">See <a id="h50585" class="jump-currentwindowlive" title="CheckList - Delivery Channels" href="checklist-deliverychannels.html" target="_self">CheckList - Delivery Channels</a>&nbsp;for a detailed description of the Delivery Channels property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Questions</strong>&nbsp;- This property is used to define the Question and Answer Types in a Checklist Activity; the Answer Types provided are Textbox, Memo, Checklist, Drop-down, and Radio button.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set for the activity to be used in the workflow.)</p>
+<p class="paragraph"><strong class="strong">Attributes of the Questions property</strong></p>
+<ul class="ulitem"><li class="ulitem">The user interface displays the Question and Answers</li><li class="ulitem">Decision Maker functionality<ul class="ulsubitem"><li class="ulsubitem">There can be a Decision Maker associated with a Checklist. The outcome of the Checklist Activity is determined by the Answers tagged with the Decision Maker. A Question marked with &nbsp;a red exclamation mark&nbsp;!&nbsp;is said to be the 'decision maker' for the Checklist activity.</li><li class="ulsubitem">Only Drop-down can have the Decision Making functionality tagged. There can be only one 'decision maker' for a Checklist activity. For example, if the decision maker is tagged with a Question which has 'Approved' &amp; 'Rejected' as values, and the Checklist is submitted with 'Approved' selected in the drop down, then the engine is alerted about the 'Approved' status and the engine executes the next process in the workflow.</li><li class="ulsubitem">Whenever an actor acts upon (submits) the checklist the engine is notified with the answer to the question, provided the question is marked as a decision maker.</li></ul></li><li class="ulitem">Mandatory Functionality<ul class="ulsubitem"><li class="ulsubitem">If an answer type is marked as mandatory the actor will be prompted to enter the value before submission. A Question marked with a red asterisk &nbsp;*&nbsp;is set as 'mandatory' when the actor fills up the Checklist. The actor cannot submit the checklist answers without filling the 'mandatory' questions.</li></ul></li><li class="ulitem">Default Functionality<ul class="ulsubitem"><li class="ulsubitem">Inputs given as default will be shown as the default answer for the answer type in the user interface.</li></ul></li><li class="ulitem">Edit and Delete options have been provided</li><li class="ulitem">To add Questions and Answers:<ul class="ulsubitem"><li class="ulsubitem">First the actor clicks on the Add New button (the option to add more than one question has also been provided.)</li><li class="ulsubitem">Then the actor is asked to enter the question and the answer type,</li><li class="ulsubitem">Based on the answer type the actor is asked to enter the values (for example, if the answer type is drop-down, then you have to enter &quot;display text&quot; and the value for the display text.)</li></ul></li></ul><p class="procedureheading"></p>
+<p class="procedureheading">Steps to set the Questions property</p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">To specify the questions and answers, click the button for the 'Questions' property to open the property window.</li><li class="step">In this window, specify the number of questions to add in the&nbsp;<b class="uicontrol">No. of additional questions</b>&nbsp;text box and click&nbsp;<b class="uicontrol">Add New</b>. This will open a new window.</li><li class="step">In the second window, enter the question in the text box under the&nbsp;<b class="uicontrol">Questions</b>&nbsp;column.</li><li class="step">Next specify the answer type for the question by selecting an option from the drop down under the&nbsp;Answer Type&nbsp;column. Depending on your selection, the question will take answers in a text box or memo, or as options in a drop-down, check box, or radio.</li><li class="step">Specify the number of options for the selected answer in the&nbsp;<b class="uicontrol">No. of Options</b>&nbsp;text box.</li><li class="step">If you selected &quot;drop-down&quot; as the answer type in step 4, a radio is displayed under the&nbsp;!&nbsp;column. Click this radio, if you want to make this question the decision maker. This implies that the answer to this question will determine the outcome of this activity.</li><li class="step">Select the check box under the&nbsp;<b class="uicontrol">Mandatory*</b>&nbsp;column to make this question mandatory.</li><li class="step">Repeat steps 3 through 7, if you are adding more than one question in the checklist.</li><li class="step">After setting the parameters for all the questions click on the&nbsp;<b class="uicontrol">Next</b>&nbsp;button to go to the next window.</li><li class="step">In the third window, specify the options that will be presented to the actor to answer the question (if the question type is drop-down, check box or radio) in the text boxes under the&nbsp;<b class="uicontrol">Options</b>&nbsp;column.</li><li class="step">Next, specify the option that will be the default value by clicking the corresponding radio button under&nbsp;<b class="uicontrol">Default Value</b>&nbsp;column.</li><li class="step">You must also specify the values that the answer will take internally in the&nbsp;<b class="uicontrol">Values</b>&nbsp;text box.</li><li class="step">In addition you can select a variable from the drop down for the&nbsp;<b class="uicontrol">Map question answer to variable</b>&nbsp;field. The answers to this question will be stored in the selected variable and will be available for use in the workflow.</li><li class="step">After completing all the details you can click on the&nbsp;<b class="uicontrol">Finish</b>&nbsp;button to save the question.<p class="stepinfo">The first window is displayed again when you click on the&nbsp;Finish&nbsp;button. It shows the newly added question(s). You can modify or delete the new question or add more new questions. If you do not wish to perform any more operations, click&nbsp;Close&nbsp;to exit this window.</p>
+</li></ol><p class="paragraph">See&nbsp;<a id="h50586" class="jump-currentwindowlive" title="CheckList - Questions" href="checklist-questions.html" target="_self">CheckList - Questions</a>&nbsp;for a detailed description of the Questions property windows.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Work Item Fields</b>&nbsp;- This property is used to add the Work Item Fields to be used to display application data as well as value in variables and content in the Work items list when this activity is executed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph">Steps to set the Work Item Fields property</p>
+<ol class="step"><li class="step">To select the Work Item Fields, click the button for the 'Work Item Fields' property to open the property window.</li><li class="step">In this window, the Work Item Fields that have been set are listed in a grid. Click on a row to select the corresponding Work Item Field.</li><li class="step">Right click the row, and select the &quot;SetWorkItemField&quot; option from the context menu to set it.</li></ol><p class="paragraph">See&nbsp;<a id="h50587" class="jump-currentwindowlive" title="CheckList - Work Item Fields" href="checklist-workitemfields.html" target="_self">CheckList - Work Item Fields</a>&nbsp;for a detailed description of the Work Item Fields property windows.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Actors</p>
+<p class="paragraph">The properties in the Actors group have been described below. You can use these properties to specify the actors who will work on the activity and related properties.</p>
+<p class="paragraph"><b class="uicontrol">Assign Actor(s)</b> - This property is used to specify the actor(s) who has to take up the Checklist activity. It is tagged with the Ignore Unavailable Actors property which in turn is tagged with the Alternate Actor Allowed property. This will be explained in detail later.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be assigned to any actor(s).)</p>
+<p class="procedureheading"></p>
+<p class="procedureheading">Steps to set the Assign Actor(s) property</p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">To specify the actors, click the button for the 'Assign Actor(s)' property to open the property window.</li><li class="step">In this window build an expression to select the actors using the actors properties. Select an attribute from the first drop-down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop-downs. Select &quot;End&quot; from the last drop-down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression to the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it.</li></ol><p class="paragraph">See <a id="h50588" class="jump-currentwindowlive" title="CheckList - Assign Actor(s)" href="checklist-assignactors.html" target="_self">CheckList - Assign Actor(s)</a>&nbsp;for a detailed description of the Assign Actor(s) property window.</p>
+<p class="paragraph">See the Using XML Variables section in the&nbsp;<a id="h50295" class="jump-currentwindowlive" title="About XML Variables" href="aboutthexmlvariableuserinterface.html" target="_self">About XML Variables</a>&nbsp;topic for details on how to use the XML Variables to build the expression.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Assign Queue(s)</strong>&nbsp;- This property specifies the queue(s) to which the Checklist activity is to be assigned.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to be assigned to any Queue(s).)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Assign Queue(s) property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To specify the queue(s), click the button for the 'Assign Queue(s)' property to open the property window.</li><li class="step">In this window select the queue(s) from the&nbsp;<b class="uicontrol">Available Queues</b>&nbsp;list box. You can select multiple queues by selecting with the &lt;Ctrl&gt; key pressed.</li><li class="step">After selecting the required queue(s) click the [&gt;] button to move it to the&nbsp;<b class="uicontrol">Selected Queues</b>&nbsp;list box. You can click the [&gt;&gt;] button to select all the queue(s) and move them to the&nbsp;<b class="uicontrol">Selected Queues</b>&nbsp;list box.</li><li class="step">You can remove any queue from the selected list by selecting it and clicking the [&lt;] button. You can remove all the queues by clicking on the [&lt;&lt;] button.</li><li class="step">After adding the required queue(s), click&nbsp;<b class="uicontrol">Assign</b>&nbsp;to assign the activity to the selection.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the selection.</li></ol><p class="paragraph">See&nbsp;<a id="h50589" class="jump-currentwindowlive" title="CheckList - Assign Queue(s)" href="checklist-assignqueues.html" target="_self">CheckList - Assign Queue(s)</a>&nbsp;for a detailed description of the Assign Queue(s) property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Min. Ownerships [% or Number]</b>&nbsp;- This property, can be specified as a number or percentage, is the minimum number of actors who should take ownership of the Checklist request. This property is related to the 'Timeout warning for Ownerships' and 'Timeout for Ownership' properties.</p>
+<p class="paragraph">To illustrate, when 'Timeout for Ownerships' is reached, the activity first checks if the ownership count is less than 'Min.Ownerships' (if it is set).</p>
+<ul class="ulitem"><li class="ulitem">If it is, the work item will be removed from all Work Item lists.</li><li class="ulitem">If the 'Min.Ownerships' has already been satisfied, then the work item will be removed from the Work Item lists of those who have not taken ownership.</li><li class="ulitem">If the 'Min.Ownerships' value is 0, then the activity checks if the ownership count is less than 'Max.Ownerships' (if it is set). If it is, the work item will be removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership.</li><li class="ulitem">If both Min.Ownerships and Max.Ownerships are set to 0, then there should be at least one actor taking ownership within the set time, otherwise the work item will be removed from all Work Item lists.</li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Max. Ownerships [% or Number]</strong>&nbsp;- This property, which can be specified as a number or percentage, is the maximum number of actors who should take ownership of the Checklist request.</p>
+<ul class="ulitem"><li class="ulitem">If 'Timeout for Ownerships' is specified and achieved, and the 'Min.Ownerships' is also satisfied, then the activity waits for action from those who took ownership.</li><li class="ulitem">If the Min.Ownerships value is set to 0, then it checks if the ownership count is less than Max.Ownerships.</li><li class="ulitem">If it is, the work item will be removed from all Work Item lists. Else the work item will be removed from the list of those who have not taken ownership.</li><li class="ulitem">If both Min.Ownerships and Max.Ownerships are set to 0, then there should be at least one actor taking ownership within the set time, otherwise the work item will be removed from all Work Item lists.</li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Enable Take Ownership?</strong>&nbsp;- If this property is set to&nbsp;<b class="uicontrol">Yes</b>, then the actor is provided with a&nbsp;<b class="uicontrol">Take Ownership</b>&nbsp;option in the Work items list to take ownership of the task. If you are not required&nbsp;<b class="uicontrol">Take Ownership</b>&nbsp;option in the Work items list, then set this property as&nbsp;<b class="uicontrol">No</b>.</p>
+<p class="note"><strong class="notelabel">Note:</strong> By default, this property is set as&nbsp;Yes.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Enable Take Ownership? property</p>
+<p class="paragraph"></p>
+<ul class="stepsingle"><li class="stepsingle">Select&nbsp;<b class="uicontrol">Yes</b>&nbsp;or&nbsp;<b class="uicontrol">No</b>&nbsp;option from the&nbsp;Enable Take Ownership?&nbsp;drop-down list.</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Re-Assign Allowed?</strong>&nbsp;- If this property is set, then the actor is provided with a Re-Assign option. Using this the actor can re-assign the work item to another actor.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Ignore Unavailable Actors?</strong>&nbsp;- This property provides the following options -&nbsp;<b class="uicontrol">Yes</b>,&nbsp;<b class="uicontrol">Yes</b> - <b class="uicontrol">holidays excluded</b>&nbsp;and&nbsp;<b class="uicontrol">No</b>.</p>
+<ul class="ulitem"><li class="ulitem">If this property is set to 'No', when the Approval activity is assigned to the actor's Work Item list, a check is first done to see whether the actor is available. If the actor is not available then a check is made for an alternate actor assigned to the unavailable actor. Simultaneously the value of the property 'Alternate Actor Allowed' is checked. If that is also set, then the Approval work item is assigned to this actor. &nbsp;</li><li class="ulitem">If this property is set to&nbsp;<b class="uicontrol">Yes - holidays excluded</b>,&nbsp;the Workflow engine will ignore the fact that actors are not available if the day is an organization holiday and the output Not Enough Resources will not be generated. </li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Alternate Actor Allowed?</strong>&nbsp;- This property is set to assign a particular task to an alternate actor in the absence or unavailability of any actor.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Notification Contents</p>
+<p class="paragraph">The properties in the Notification Contents group have been described below. You can use these properties to specify the content used to notify actors about the activity.</p>
+<p class="paragraph"><b class="uicontrol">Subject</b> - This is the subject of the Checklist work item. The subject can be customized for each actor.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set. If it is not set, the default subject line from the Actions.XML file is displayed.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Subject property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To specify the subject, click the button in the 'Subject' property to open the property window.</li><li class="step">In this window, enter the subject text directly in the text editor.</li><li class="step">If you want to customize the subject you can do so using the Field controls to add resource property values. For example, to add a subject that includes the email id of the actor submitting the checklist, you can do as follows: First type in the text &quot;Submitted By&quot;. Next select &quot;Variable&quot; and &quot;Variable.SubmittedBy.Email&quot; from the two drop downs for Field and click Append. This will add the placeholder for the variable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the email id.</li><li class="step">You can edit the text, using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes and also zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the subject, click <b class="uicontrol">Update</b> to save it.</li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the subject.</li></ol><p class="paragraph">See <a id="h50590" class="jump-currentwindowlive" title="CheckList - Subject" href="checklist-subject.html" target="_self">CheckList - Subject</a>&nbsp;for a detailed description of the Subject property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Body&nbsp;</b>- This is the actual message of the Checklist sent to the actor(s). The body can be customized for each actor. There is an&nbsp;Enterprise Console Explorer(plug-in) edit icon in the Body property window to get the Work item details URL. See&nbsp;<a id="h50517" class="jump-currentwindow-customtextlive" title="Enterprise Console Control (EC Plug-in)" href="enterpriseconsolecontrolec-plugin.html" target="_self">Enterprise Console Control (EC Plug-in)</a>&nbsp;for more information.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property need not be set.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Body property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To specify the message body, click the button in the 'Body' property to open the property window.</li><li class="step">In this window, enter the body text directly in the text editor.</li><li class="step">If you want to customize the body you can do so using the&nbsp;Field&nbsp;controls to add resource property values. For example, to add a body that includes the name of the actor submitting the checklist, you can do as follows: Type in the text &quot;Hi, Please cast your vote in the poll conducted by&quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.name&quot; from the two drop downs for&nbsp;Field&nbsp;and click&nbsp;Append. This will add the placeholder for the variable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the name.</li><li class="step">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command and also zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the body, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the body.</li></ol><p class="paragraph">See&nbsp;<a id="h50591" class="jump-currentwindowlive" title="CheckList - Body" href="body.html" target="_self">CheckList - Body</a>&nbsp;for a detailed description of the&nbsp;Body&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">From Email Address?</b>&nbsp;- This property is used to specify the email address from which notification messages will be sent for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. If it is not set, the default value in&nbsp;Actions.XML&nbsp;will be used.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Hide Responses?</b>&nbsp;- If this property is set to 'No', then actors can see the responses of other actors in a group response scenario. To view these responses, such as ownerships and action, select the 'Take Ownership' option. This will open a new pop up with the responses of other actors who have taken ownership.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Priority&nbsp;</b>- This property is set to indicate the priority of the checklist request. Enter the values 0-33 to set as Low, 34-66 for Medium, or 67-99 for High. The default value is set to 34.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Show Custom Document View Window</b>&nbsp;- If this property is set to 'Yes', then the Custom Document View Window will be shown to &nbsp;the users in their Work Item Lists.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Send Notification Email</b>&nbsp;- If this property is set to 'Yes', then notification emails will be sent to the actors. If it is set to 'Yes-HTML', then the emails will be sent in HTML format.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Notify if alternate actor is considered</strong>- If this property is set to 'Yes', then notification emails will be sent to the actors when an alternate actor is considered.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Redirect URL</b>&nbsp;- This property is used to get the URL of the web page to redirect the client to, in the case of synchronous execution of the action.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Redirect URL property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To specify the&nbsp;Redirect URL, click the button in the 'Redirect URL' property to open the property window.</li><li class="step">In this window, enter the&nbsp;Redirect URL&nbsp;directly in the text editor.</li><li class="step">If you want to customize the&nbsp;Redirect URL&nbsp;you can do so using the&nbsp;Field&nbsp;controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for&nbsp;Field, and clicking&nbsp;Append. This will add the placeholder for the variable in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the URL.</li><li class="step">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command and also zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the&nbsp;Redirect URL, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the&nbsp;Redirect URL.</li></ol><p class="paragraph">See&nbsp;<a id="h50592" class="jump-currentwindowlive" title="CheckList - Redirect URL" href="checklist-redirecturl.html" target="_self">CheckList - Redirect URL</a>&nbsp;for a detailed description of the&nbsp;Redirect URL&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Custom Document View URL</b>&nbsp;- This property is used to get the URL of the page to which the custom document dlls does a post. The data posted to the page are application, workflow, executionid, executiondetailsid, and workitemid. The posted data can be retrieved as Request.Form[&quot;workitemid&quot;].</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Custom Document View URL property</p>
+<p class="paragraph"></p>
+<p class="paragraph">To specify the&nbsp;Custom Document View URL, click the button in the 'Custom Document View URL' property to open the property window.</p>
+<ol class="step"><li class="step">In this window, enter the&nbsp;Custom Document View URL&nbsp;directly in the text editor.</li><li class="step">If you want to customize the&nbsp;Custom Document View URL&nbsp;you can do so using the&nbsp;Field&nbsp;controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for&nbsp;Field, and clicking&nbsp;Append. This will add the placeholder for the variable in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the URL.</li><li class="step">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command and also zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the&nbsp;Custom Document View URL, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the&nbsp;Custom Document View URL.</li></ol><p class="paragraph">See&nbsp;<a id="h50593" class="jump-currentwindowlive" title="CheckList - Custom Document View URL" href="checklist-cusomerdocumentviewurl.html" target="_self">CheckList - Custom Document View URL</a>&nbsp;for a detailed description of the&nbsp;Custom Document View URL&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Mail Channel</p>
+<p class="paragraph">The properties in the Mail Channel group have been described below. You can use these properties to customize the approval activity (activities) with different mail channel templates.</p>
+<p class="paragraph"><b class="uicontrol">Use html template from property</b> - This property is set to 'No', then it will take the mail channel template from the physical path</p>
+<p class="paragraph">'[AVEVA Work Tasks Installed Path]\BPM.NET\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\CheckListEmail.html.</p>
+<p class="paragraph">If this property is set to <b class="uicontrol">'Yes'</b> and the &quot;<b class="uicontrol">HTML Template</b>&quot; property is empty, then it will take the mail channel template from the physical path</p>
+<p class="paragraph">'[AVEVA Work Tasks Installed Path]\BPM.NET\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\CheckListEmail.html.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">HTML template</strong> - This property is used to define the html template for mail channel.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the HTML template</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To specify the HTML template, click the edit icon to open the property window.</li><li class="step">Click <b class="uicontrol">Update</b>.</li></ol><p class="paragraph">See <a id="h50594" class="jump-currentwindowlive" title="CheckList - HTML template" href="checklist-htmltemplate.html" target="_self">CheckList - HTML template</a>&nbsp;for a detailed description of the property HTML template window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Attachment</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50564" src="50564.png" class="embeddedimage100%scalinglive" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="procedureheading">Steps to set the Attachment property</p>
+<ol class="step"><li class="step">To specify the Attachment property, click the edit icon to open the property window.</li><li class="step">In the Configuration of Mail Attachment window, select the required attachment type by clicking the radio button.</li><li class="step">In the Attach Report property, you can attach a report by selecting the Report Reference Variable through the Expression Editor. Alternatively, you can get the Report by clicking the Report icon and selecting the required report from the Reports list screen. To attach multiple reports, add new rows using the Add... link.</li><li class="step">Click <b class="uicontrol">Submit</b>.</li></ol><p class="paragraph">See <a id="h254608" class="jump-currentwindowlive" title="CheckList - Attach Reports" href="checklist-attachment.html" target="_self">CheckList - Attach Reports</a> for a detailed description of this property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Decision Influencers</strong></p>
+<p class="paragraph">The properties in the Decision Influencers group have been described below. You can use these properties to specify some parameters that influence the outcome of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Max Actors Required For Checklist Completion [% or Number]</strong> - This property is used to check what percentage or number of actors should take action on the Checklist. Decision on the Checklist is taken only after the specified number or percentage of actor(s) have taken the action. The activity waits for the actors' action until the 'Timeout for activity' is reached.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Min Actors Required For Checklist Completion [% or Number]</b> - This property specifies the minimum number of actors who need to act on the Checklist before the 'Timeout Warning for Activity'. If the action limit is reached before the 'Timeout Warning for Action' then the warning message is not shown.</p>
+<p class="paragraph">Property Type: Optional (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Escalation &amp; Timeout</b></p>
+<p class="paragraph">The properties in the Escalation &amp; Timeout group have been described below. You can use these properties to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"><strong class="strong">Set Calendar for Timeout</strong> - This property is used to specify the calendar to be used to determine activity timeouts.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="procedureheading">Steps to Set Calendar for Timeout</p>
+<ol class="step"><li class="step">To specify the calendar for timeout, click the button in the 'Set Calendar for Timeout' property to open the property window.</li><li class="step">In this window, select the required calendar by clicking on the calendar name in the tree structure.</li><li class="step">Click <b class="uicontrol">Set Calendar</b> to set the selected calendar.</li><li class="step">You can specify that a resource calendar should be used, if available, by clicking to select the corresponding check box.</li></ol><p class="paragraph">See <a id="h193559" class="jump-currentwindowlive" title="CheckList - Set Calendar for Timeout" href="checklist-setcalendarfortimeout.html" target="_self">CheckList - Set Calendar for Timeout</a>&nbsp;for a detailed description of the Set Calendar for Timeout property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Minimum available time for Activity</strong>&nbsp;- This property is used to check the availability of an actor to whom a task must be assigned while executing the activity. The availability check for the actor is done based on the Calendar settings (Global or Resource Calendar). If the time taken to complete the task is within the value set for the <b class="uicontrol">Minimum available time for Activity </b> property, then the task will be assigned to that actor. However, if the time taken to complete the task exceeds the value set for the <b class="uicontrol">Minimum available time for Activity</b> property, then the task will be assigned based on the values set for the <b class="uicontrol">Ignore Unavailable Actors?</b> and <b class="uicontrol">Alternate Actor Allowed?</b> properties.</p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout warning for Ownership</strong>&nbsp;- This property specifies the time at which a warning is provided to an actor to take ownership of the work item assigned to him/her.</p>
+<ul class="ulitem"><li class="ulitem">If the actor does not take ownership within this time the engine is notified with a warning. Thus if 'Min.Ownerships' is set, and it is not satisfied before the given time then a warning is sent.</li><li class="ulitem">If Min.Ownerships is 0, it will check for Max.Ownerships. If the ownership count does not reach the Max.Ownerships value within the set time, a warning is sent.</li><li class="ulitem">If both Min.Ownerships and Max.Ownerships are not set, this property is ignored.</li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Understand how Ownership Properties relate to each other:</strong></p>
+<ul class="ulitem"><li class="ulitem">Checklist activity is assigned to the actors in the Checklist assignment list by the Workflow Engine. Checklist activity has a default property set that at least one actor has to make a Take Ownership of the Checklist activity.</li><li class="ulitem">A drop-down interface has been provided for the actor to Take Ownership. However, the actor can act on the Checklist without taking ownership first, in which case ownership will be considered to be done. i.e. if the actor acts upon the Checklist activity without taking ownership, then it is considered as an ownership with action taken.</li><li class="ulitem">After the actor has taken ownership, a link is provided to the actor, which opens a pop up with the details of the other actors. This is again tagged with the 'Hide Responses?' property. The link will be provided only If 'Hide Responses?' is set as 'No'. The pop up will have details like Actor name, Ownership Status, Action taken, Comments.</li><li class="ulitem">If the 'Min.Ownerships' property is set and the ownership count has reached the set limit [percentage or number] then the 'Timeout Warning For Ownership' property is not considered.</li><li class="ulitem">If the 'Min.Ownerships' property is set and the ownership count has reached the set limit [percentage or number] and the 'Time Out For Ownership' is also reached then the work item is removed from other actors' Work Item list and the work item waits for action from those who have taken ownership.</li><li class="ulitem">If the 'Min.Ownerships' limit is not reached for the Checklist activity, and the 'Timeout Warning For Ownership' has been exceeded then the actor is notified with a warning by including an email or an information activity, with the Timeout Warning for Ownership link to it.</li><li class="ulitem">If 'Timeout For Ownership' is set, if the Checklist activity has not reached the minimum limit (Min.Ownerships) and the 'Time Out For Ownership' has been reached, then the work item is removed from the Work Item lists of all the actors.</li><li class="ulitem">If 'Min.Ownerships' = 0 and if 'Max.Ownerships' is set, the activity waits for actors to take ownership or action until the 'Time Out For Ownership' is reached (if this is set).</li><li class="ulitem">If none of the Ownership properties are set then the activity waits until the resource takes ownership or acts upon it.</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout for Ownership</strong>&nbsp;- This property specifies the time until which taking ownership is allowed i.e. the time until which the Checklist activity will wait for ownership.</p>
+<ul class="ulitem"><li class="ulitem">If Min.Ownerships is set and is not reached, the work item is removed from all Work Item lists.</li><li class="ulitem">If Min.Ownerships is 0, it will check if ownership count is less than Max.Ownerships.</li><li class="ulitem">If it is, the work item is removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership. The work item will remain in the Work Item list of those who have taken ownership and wait for action from them.</li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout warning for Activity</strong>&nbsp;- This property specifies when a reminder has to be provided for the actors to act on the Checklist request, if the action count has not been reached. If properties such as Max.Ownerships, Affirmative Action for Checklist (AAA), and Action Limit (AL) are set, once the property values are reached then a warning is sent to the participant. When the timeout is reached, the following checks are made: If AL is set, when the action count i.e. the no. of Checklists (AC) &lt; AL, then a warning is sent, if AL = 0 and AAA is set, and when AC &lt; AAA, then a warning is sent to the participant.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Timeout for Activity</b>&nbsp;- This property's value is used to decide until what time the activity should wait for the actors' action. If properties such as Max.Ownerships, AAA, AL are set, once the property values are reached the work item is removed from the Work Item lists of all the actors.</p>
+<p class="paragraph">When the timeout is reached, the following checks are made:</p>
+<ul class="ulitem"><li class="ulitem">If AL is set, when the action count i.e. the no. of Checklists (AC) &lt; AL, then the timeout for action is performed and the work item is removed from all Work Item lists.</li><li class="ulitem">If AC &gt; AL, it checks with the no. of Checklists or 'decision count' (DC) and AAA. If DC &gt;= AAA (if it is set), the action is considered completed.</li><li class="ulitem">If AAA = 0 and if DC &gt;= AL, the action is considered completed.</li><li class="ulitem">If AL = 0 and AC &lt; AAA, then the timeout for action is performed and the work item is removed from all Work Item lists.</li><li class="ulitem">If AL = 0 and AC &gt; AAA, it will check with DC. If DC &gt; AAA it is completed.</li><li class="ulitem">If AL = 0 and AAA = 0, then if DC is at least 1, then it is considered completed.</li></ul><p class="paragraph">Property Type: Optional&nbsp;(This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Multiple Timeout Warning</strong>&nbsp;- This is used to set recurring timeout warnings that will be sent to the actors who have to take action. To set multiple timeout warnings, click the 'Multiple TimeOut Warning' button in the Properties pane for the Checklist activity. A new window pops up. In this window, set the interval for the recurring warning as well as the output message. You can also set the Recurring Time Interval. This can be used to set a different recurring time out after the first timeout happens. For example, if 'Time Interval' for the property is set as 7 days and 'Recurring Time Interval' is set as 2 days, then the first time out will happen after 7 days and there will be a recurring time out every second day after the seventh day (first) time out.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="procedureheading">Steps to set the Multiple TimeOut Warning property</p>
+<ol class="step"><li class="step">To set the multiple timeout warning, click the button for the 'Multiple TimeOut Warning' property to open the property window.</li><li class="step">Enter the time interval for the timeout in the&nbsp;<b class="uicontrol">Time Interval</b>&nbsp;field.</li><li class="step">Select &quot;Yes&quot; from the drop-down for the&nbsp;<b class="uicontrol">Recurring?</b>&nbsp;field, if you want the timeout warning to recur. Select &quot;No&quot; otherwise.</li><li class="step">Enter the output message corresponding to the timeout warning in the&nbsp;<b class="uicontrol">Output</b>&nbsp;field.</li><li class="step">Enter the time interval for the recurring timeout in the&nbsp;<b class="uicontrol">Recurring Time Interval</b>&nbsp;field.</li><li class="step">After entering the content details, click&nbsp;<b class="uicontrol">Add Row</b>&nbsp;to add this timeout setting and display a new row for entering another timeout setting.</li><li class="step">Remove rows, if necessary, by selecting them and clicking&nbsp;<b class="uicontrol">Remove Selected</b>.</li><li class="step">After specifying the timeout settings, click&nbsp;<b class="uicontrol">Update</b>.</li></ol><p class="paragraph">See&nbsp;<a id="h193558" class="jump-currentwindowlive" title="CheckList - Multiple Timeout Warning" href="checklist-multipletimeoutwarning.html" target="_self">CheckList - Multiple Timeout Warning</a>&nbsp;for a detailed description of the&nbsp;Multiple TimeOut Warning&nbsp;property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong>    </p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph">Property Type: Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Miscellaneous</strong></p>
+<p class="paragraph"><strong class="strong">Redirection Enabled</strong> - This property enables redirection. When this property is set to Yes, the workflow redirects you to the URL in the Redirect URL  property in the next activity.</p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Checklist Activity returns the following values -</p>
+<p class="paragraph"><strong class="strong">Action Completed</strong>: Displayed when all the actors have taken part.</p>
+<p class="paragraph"><strong class="strong">Action Completed</strong> - Affirmative Percentage Not Reached: Displayed when all the actors have not taken part.</p>
+<p class="paragraph"><strong class="strong">Not Enough Resources to Take Acknowledge</strong>: Displayed when the filter condition did not yield enough actors to whom the request can be sent.</p>
+<p class="paragraph"><strong class="strong">Timeout - Acknowledge</strong>: Displayed when the specified minimum number of actors did not take ownership of the request in the given time.</p>
+<p class="paragraph"><strong class="strong">Timeout - Action</strong>: Displayed when some or all of the specified actors did not perform the required action in the given time.</p>
+<p class="paragraph"><strong class="strong">Timeout Warning - Acknowledge</strong>: Displayed when a warning is generated that the specified minimum actors have not taken ownership of the request in the given time.</p>
+<p class="paragraph"><strong class="strong">Timeout Warning - Action</strong>: Displayed when a warning for timeout is generated because some or all of the actors did not perform the required action in the given time.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The following outputs will return only if you assign tasks to a queue user.</p>
+<p class="paragraph"><strong class="strong">Resource Unavailable for Queue</strong> - If a queue is assigned to a task and if there are no resources available in the queue then this output will get triggered.</p>
+<p class="paragraph"><strong class="strong">TimeOut for Queue Task</strong> - This output will get triggered when the task in the queue is not picked by any users within the queue escalation time resulting the completion of that task.</p>
+<p class="paragraph"><strong class="strong">Timeout Warning -Queue</strong> - This output will get triggered when the task in the queue is not picked by any users within the queue escalation time resulting in sending a warning out put. However, the task will still be sleeping.</p>
+<p class="paragraph"><strong class="strong">Timeout Warning -Queue Participant</strong> - This output will get triggered when the task in the queue is picked by user but still not acted on that task within the queue escalation time out settings resulting in triggering a warning output. However, the task will still be sleeping.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Exception Behavior</p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187275" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="checklist-deliverychannels.html" target="_self">CheckList - Delivery Channels</a></p><p class="relateditem"><a href="checklist-questions.html" target="_self">CheckList - Questions</a></p><p class="relateditem"><a href="checklist-workitemfields.html" target="_self">CheckList - Work Item Fields</a></p><p class="relateditem"><a href="checklist-assignactors.html" target="_self">CheckList - Assign Actor(s)</a></p><p class="relateditem"><a href="checklist-assignqueues.html" target="_self">CheckList - Assign Queue(s)</a></p><p class="relateditem"><a href="checklist-subject.html" target="_self">CheckList - Subject</a></p><p class="relateditem"><a href="body.html" target="_self">CheckList - Body</a></p><p class="relateditem"><a href="checklist-redirecturl.html" target="_self">CheckList - Redirect URL</a></p><p class="relateditem"><a href="checklist-cusomerdocumentviewurl.html" target="_self">CheckList - Custom Document View URL</a></p><p class="relateditem"><a href="checklist-attachment.html" target="_self">CheckList - Attach Reports</a></p><p class="relateditem"><a href="checklist-htmltemplate.html" target="_self">CheckList - HTML template</a></p><p class="relateditem"><a href="checklist-setcalendarfortimeout.html" target="_self">CheckList - Set Calendar for Timeout</a></p><p class="relateditem"><a href="checklist-multipletimeoutwarning.html" target="_self">CheckList - Multiple Timeout Warning</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+ </body>
+ </html>

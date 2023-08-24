@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<SPEventData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<AlertType>EventBind</AlertType>
+	<EventType>ItemAdded</EventType>
+	<SPAssociation>
+		<TaskListId>00000000-0000-0000-0000-000000000000</TaskListId>
+		<HistoryListId>00000000-0000-0000-0000-000000000000</HistoryListId>
+		<WorkflowAssociationId>00000000-0000-0000-0000-000000000000</WorkflowAssociationId>
+		<WorkflowInstanceId>00000000-0000-0000-0000-000000000000</WorkflowInstanceId>
+    <WorkflowInitiationData></WorkflowInitiationData>
+		<WorkflowAssociationName></WorkflowAssociationName>
+	</SPAssociation>
+	<WebApplication>
+		<FullUrl>http://skeltanb12:24555</FullUrl>
+		<Url></Url>
+		<Id>56439ab0-d9b5-466c-bf62-f6c23a3c6b96</Id>
+		<Zone>Default</Zone>
+		<AuthenticationMode>Windows</AuthenticationMode>
+		<Site>
+			<Id>3eec3153-5d09-4ed9-a6fe-c625591a8b0f</Id>
+			<RelativeSiteUrl>/</RelativeSiteUrl>
+			<Web>
+				<Id>fabeeda4-0f97-4b6a-b112-94f4afd56ad8</Id>
+				<RelativeWebUrl>/</RelativeWebUrl>
+				<List>
+					<Id>d2113287-68cb-44a8-8e52-95c11c6ce479</Id>
+					<Name>ItemAddOrUpdateEventBind</Name>
+					<Field>
+						<Id />
+						<Name />
+					</Field>
+					<Item>
+						<Id>2</Id>
+						<UniqueId>69b99849-d7d7-4460-bdb6-76314d9b92d3</UniqueId>
+						<Name>e</Name>
+						<Title>e</Title>
+						<IsFolder>False</IsFolder>
+						<FolderUniqueId>00000000-0000-0000-0000-000000000000</FolderUniqueId>
+						<FolderName />
+						<ContentTypeId>0x0100113B0B4693A95D46A58E4BEF8DB63C18</ContentTypeId>
+						<ContentTypeName>Item</ContentTypeName>
+						<BeforeUrl />
+						<BeforeProperties >
+							<Property>
+								<Key>Title</Key>
+								<Value>e</Value>
+							</Property>
+						</BeforeProperties>
+						<BeforeChangedProperties >
+							<Property>
+								<Key>Title</Key>
+								<Value>e</Value>
+							</Property>
+						</BeforeChangedProperties>
+						<AfterUrl />
+						<AfterProperties>
+							<Property>
+								<Key>Title</Key>
+								<Value>e</Value>
+							</Property>							
+						</AfterProperties>
+						<AfterChangedProperties>
+							<Property>
+								<Key>Title</Key>
+								<Value>e</Value>
+							</Property>
+						</AfterChangedProperties>
+						<AttachmentAdded />
+						<Attachments>
+							<Property>
+								<Key>Title</Key>
+								<Value>e</Value>
+							</Property>
+						</Attachments>
+            <DeletedVersions>
+              <Property>
+                <Key>Title</Key>
+                <Value>e</Value>
+              </Property>
+            </DeletedVersions>
+					</Item>
+				</List>
+			</Web>
+		</Site>
+	</WebApplication>
+	<User>
+		<Id>ng\elizabeth</Id>
+		<Name>NG\elizabeth</Name>
+	</User>
+</SPEventData>

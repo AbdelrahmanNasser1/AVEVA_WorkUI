@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Tasks Pro Push Notification Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t507550" class="heading3">Work Tasks Pro Push Notification Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">The Work Tasks Pro Push Notification activity is used to send notifications to the Work Tasks Pro application. When this activity is added and configured in a workflow along with other activities which need human interaction, a notification is sent to the actor intimating the actor that action is required on the assigned task.</p>
+<p class="subheading">Activity Properties</p>
+<p class="subheading"><img id="f527120" src="527120.png" class="embeddedimage100%scalinglive" alt="WTP-PushNotification" height="713" width="278" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name and Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description are used to specify the name and description for the activity.</p>
+<p class="paragraph"><strong class="strong">Name</strong>: This property is used to specify a name for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type:</strong> Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Description</strong>: This property is used to specify a brief description to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type:</strong> Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group allows you to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Recipient Resource</b>: This property is used to configure the resources who have to receive the notification. A maximum of 16 resources can be configured as recipients to receive notification. If more than 16 resources are configured, then the 16 active resources will receive the notifications.</p>
+<p class="paragraph">You can also build an expression to configure the recipient, this expression will be evaluated at runtime and the recipient will be configured.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Mandatory (This property needs be set to add the recipients.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">For more information on Recipient Resource, see <a id="h194299" class="jump-currentwindowlive" title="Configuring Recipient Resource" href="pushnotification-recipient11.html" target="_self">Configuring Recipient Resource</a>.</p>
+<p class="paragraph"><strong class="strong">Notification Type</strong>: This property allows you to configure custom notification type based on the device and operating system used.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property needs to be set to configure the type of notification specific to a device.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">For more information on Notification Type Setting, see <a id="h51400" class="" title="Setting Notification Type" href="pushnotificationmessage11.html" target="_self">Setting Notification Type</a>.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Message</strong>: This property allows you to configure the content of the notification message. </p>
+<p class="paragraph">You can also build an expression to configure the notification message. The message will be updated dynamically at runtime.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type:</strong> Mandatory (This property must be set to configure the content of the notification.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Retry on Failure?:</strong> When this property is set to <b class="uicontrol">Yes</b> and the notification is not sent, attempts to re-send the notification will be made based on the value defined in the Retry Count property. </p>
+<p class="paragraph"></p>
+<p class="paragraph">By default it is set to <b class="uicontrol">Yes</b>.</p>
+<p class="paragraph"> </p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Retry Count:</strong> Number of re-tries that needs to be attempted to send the notification. The value specified for this property should be from 1 to 10 only.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity output is successful</strong>: This property lets you decide when the activity is successful. The available options are <b class="uicontrol">If notification is sent to at least one device</b> and <b class="uicontrol">If notification is sent to all devices</b>.</p>
+<ul class="ulitem"><li class="ulitem">When <b class="uicontrol">If notification is sent to at least one device</b> is selected, the activity will be successful only when the notification is sent to at least one device. </li><li class="ulitem">When <b class="uicontrol">If notification is sent to all devices</b> is selected, the activity will be successful only when the notification is sent to all the devices </li></ul><p class="subheading"></p>
+<p class="subheading"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property. Selecting one of the property shows all the default mapped error outputs that are configured in red with the respective check boxes selected.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Reference Topics</strong></p>
+<ul class="ulitem"><li class="ulitem"><a id="h187137" class="jump-currentwindowlive" title="Setting Notification Type" href="pushnotificationmessage11.html" target="_self">Setting Notification Type</a></li><li class="ulitem"><a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a></li><li class="ulitem"><a id="h187143" class="jump-currentwindowlive" title="Work Tasks Pro Push Notification Activity Scenarios" href="worktaskspushnotificationactivityscenarios1.html" target="_self">Work Tasks Pro Push Notification Activity Scenarios</a></li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="pushnotification-recipient11.html" target="_self">Configuring Recipient Resource</a></p><p class="relateditem"><a href="pushnotificationmessage11.html" target="_self">Setting Notification Type</a></p><p class="relateditem"><a href="worktaskspushnotificationactivityscenarios1.html" target="_self">Work Tasks Pro Push Notification Activity Scenarios</a></p><p class="relateditem"><a href="configuringnotificationmessage.html" target="_self">Configuring Notification Message</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

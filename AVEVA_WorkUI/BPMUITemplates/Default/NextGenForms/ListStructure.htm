@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>List Structure</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var skeltaUtils = skelta.forms.utilities;
+        var skeltaLocalize = skelta.localize;
+        var logger = skeltaUtils.getLogger();
+        var cacheKey, listName, versionstamp, paramApplicationName, paramUserId, paramFormName;
+
+        $(document).ready(function ()
+        {
+            var spinnerEl = skeltaUtils.getLoaderObject();
+            $("#skloader")[0].appendChild(spinnerEl);
+
+            skelta.userContext.setUserContextFor("appN", window.parent.skelta.userContext.getUserContextFor("appN"));
+            skelta.userContext.setUserContextFor("uId", window.parent.skelta.userContext.getUserContextFor("uId"));
+            skelta.userContext.setUserContextFor("fName", window.parent.skelta.userContext.getUserContextFor("fName"));
+            skelta.userContext.setUserContextFor("vStamp", window.parent.skelta.userContext.getUserContextFor("vStamp"));
+            skelta.userContext.setUserContextFor("itemId", window.parent.skelta.userContext.getUserContextFor("itemId"));
+            skelta.userContext.setUserContextFor("listName", window.parent.skelta.userContext.getUserContextFor("listName"));
+
+            paramApplicationName = skelta.userContext.getUserContextFor("appN");
+            paramUserId = skelta.userContext.getUserContextFor("uId");
+            paramFormName = skelta.userContext.getUserContextFor("fName");
+            versionstamp = skelta.userContext.getUserContextFor("vStamp");
+            cacheKey = skelta.userContext.getUserContextFor("itemId");
+            listName = skelta.userContext.getUserContextFor("listName");
+            skeltaUtils.loadPageDefault();
+
+            loadListStructure();
+            $("#headerDiv").text(paramFormName + " - " + skelta.localize.getString("FormNGFHTListStructureTitle"));
+            $("#divCancel").text(skelta.localize.getString("FormNGFBtnCancel"));
+            $("#divExport").text(skelta.localize.getString("FormNGFHTTPExport"));
+
+        });
+
+        function loadListStructure()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "cacheKey": cacheKey,
+                "listName": listName,
+                "versionStamp": versionstamp,
+                "formName": paramFormName,
+                "applicationName": paramApplicationName,
+                "userId": paramUserId
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetListStructure", "application/json; charset=utf-8", jsonHelper, "html", loadStructureSucceeded, loadStructureFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function closeListStructureWindow()
+        {
+            window.top.hideSubMenu();
+            parent.document.getElementById("liststructureframe").attributes["data-sklsw"].value = 0;
+            window.top.$('#liststructureframe').attr('src', '');
+            window.top.$('#designwrapper').css("visibility", "hidden");
+        }
+
+        function saveListDefinition(inputParameterObject, eventArgs)
+        {
+            var applicationName = skelta.userContext.getUserContextFor("appN");
+            var formName = skelta.userContext.getUserContextFor("fName");
+            var version = skelta.userContext.getUserContextFor("vStamp");
+            document.getElementById("exportList").setAttribute("src", skelta.forms.utilities.getServerUrl("Export.aspx?formName=" + encodeURIComponent(formName) + "&versionStamp=" + encodeURIComponent(version) + "&applicationName=" + encodeURIComponent(applicationName)));
+        }
+
+        function loadStructureFailed(resultData)
+        {
+        }
+
+        function loadStructureSucceeded(resultData)
+        {
+            var tdata = $.parseJSON(resultData);
+            if (tdata.IsSuccess === "false")
+            {
+                var msgDiv = document.getElementById("msgDiv");
+                msgDiv.style.display = 'block';
+                $("#msgDiv").text(tdata.errorMessage);
+                var treediv = document.getElementById("listTree");
+                treediv.style.display = 'none';
+                var btnExport = document.getElementById("btnExport");
+                btnExport.disabled = true;
+
+            }
+            else
+            {
+                var treeData = new kendo.data.HierarchicalDataSource({
+                    data: tdata,
+                });
+
+                $("#listTree").kendoTreeView({
+                    dragAndDrop: true,
+                    dataSource: treeData
+                });
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <iframe id="exportList" style="display:none"></iframe>
+    <form class="sksa">
+        <div id="viewModel">
+            <div class='skfc skcn skfdc skfas skfmd' data-skimf="1" data-sklp="2" data-skcnt="BaseForm" data-skem="0" data-skvm="0">
+                <div class="skh">
+                    <div class="sktt" id="headerDiv"></div>
+                </div>
+                <div class='skflx skfc skfdr skfas skcp'>
+                    <div id="msgDiv" class="skfli" style="text-align: center; display: none;"></div>
+                    <div class="sksa skfc skfdc skfas">
+                            <div class="skccon skfdr">
+                                <div class="skfas">
+                                    <div id="listTree" class="skfli" style="padding-left:15px;"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class='skf'>
+                    <div class="skfbtn">
+                        <button class="skbtn" controlid="NF1cancelButton" data-skbtnsz="0" data-sksal="0" type="button" onclick="closeListStructureWindow();">
+                            <div id="divCancel"></div>
+                        </button>
+                        <button class="skbtn" controlid="NF1defaultButton" data-skbtnsz="0" data-sksal="0" type="button" onclick="saveListDefinition();">
+                            <div id="divExport"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2BCE3987-56D9-46D7-9CEE-B8B9A55C36F2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AVEVA_WorkUI</RootNamespace>
+    <AssemblyName>AVEVA_WorkUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AspNet.ScriptManager.jQuery, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.7.0\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.ASTS.Core, Version=8.0.0.0, Culture=neutral, PublicKeyToken=22a99e87e8eb87d0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.ASTS.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.BAM, Version=8.0.0.0, Culture=neutral, PublicKeyToken=de0fde9153fbc1cd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.BAM.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.BAMEventProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=762b4832b0e31de0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.BAMEventProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.BPM.AAEvents.Receive, Version=8.0.0.0, Culture=neutral, PublicKeyToken=d7062f879bc68db3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.BPM.AAEvents.Receive.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Bpm.Actions.Core, Version=8.0.0.0, Culture=neutral, PublicKeyToken=55542dd10a21155c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Bpm.Actions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.BPM.ArchestrAEvents, Version=8.0.0.0, Culture=neutral, PublicKeyToken=63603d8e81fb14c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.BPM.ArchestrAEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.BPM.ArchestrAEvents.Monitor, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ca5367a54e849f16, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.BPM.ArchestrAEvents.Monitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.BPM.CentralConfigBusinessObjects, Version=8.0.0.0, Culture=neutral, PublicKeyToken=4297fc8e48a8d6cd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.BPM.CentralConfigBusinessObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Bpm.Communication, Version=8.0.0.0, Culture=neutral, PublicKeyToken=1e4e934f86661d89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Bpm.Communication.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Bpm.LogicApp, Version=8.0.0.0, Culture=neutral, PublicKeyToken=fba0f966413c1895, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Bpm.LogicApp.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Bpm.Quickflow.Bridge, Version=8.0.0.0, Culture=neutral, PublicKeyToken=03aade495a903503, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Bpm.Quickflow.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Bpm.Quickflow.StatusMonitor">
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Bpm.Quickflow.StatusMonitor.exe</HintPath>
+    </Reference>
+    <Reference Include="Skelta.CentralConfigCodeBehind, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0b81c60a2e4cd174, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.CentralConfigCodeBehind.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Connector, Version=8.0.0.0, Culture=neutral, PublicKeyToken=bae95b4a1aa20e64, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Connector.CustomMethodHandler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=dd09790e273690f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Connector.CustomMethodHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Connector.Diagnostics, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a07ccfd5fe64631a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Connector.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Connector.Engine, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7779e9b461775baa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Connector.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.CrossDomain, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b37c2dcb1707b925, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.CrossDomain.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Enterprise, Version=8.0.0.0, Culture=neutral, PublicKeyToken=4283c24d4008696f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Enterprise.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.EntityDataSourceProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=35d5e592eeafc8b0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.EntityDataSourceProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.EntityRoleProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=caef01febe10a530, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.EntityRoleProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.FarmConfiguration, Version=8.0.0.0, Culture=neutral, PublicKeyToken=c40f151ae4923e58, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.FarmConfiguration.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.FileDistribution, Version=8.0.0.0, Culture=neutral, PublicKeyToken=1970a9d560b15838, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.FileDistribution.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Forms.Core, Version=8.0.0.0, Culture=neutral, PublicKeyToken=9e1c371ee2c7592e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Forms.DataSourceProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a4d3d0ca0349a757, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Forms.DataSourceProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Forms.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=c77871940edc2650, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Forms.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Forms2.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ea54697324e6bb7b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Forms2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.FTP, Version=8.0.0.0, Culture=neutral, PublicKeyToken=afdb1f7f4956a4b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.FTP.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS, Version=8.0.0.0, Culture=neutral, PublicKeyToken=926ee05bf5158731, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.ActivityHandler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ad8847d71c43eadd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.ActivityHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.RoleRefresh, Version=8.0.0.0, Culture=neutral, PublicKeyToken=c42138b5e9a08c1d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.RoleRefresh.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.SampleApp.CustomDocView">
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.SampleApp.CustomDocView.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.Web.QueueControl, Version=8.0.0.0, Culture=neutral, PublicKeyToken=5949a7e9885b3f82, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.Web.QueueControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.Web.WorkListLayoutControl, Version=8.0.0.0, Culture=neutral, PublicKeyToken=6e88408c44de9a11, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.Web.WorkListLayoutControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.WorkListChannel.Mail, Version=8.0.0.0, Culture=neutral, PublicKeyToken=5ba0a638cebd92aa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.WorkListChannel.Mail.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.WorkListChannel.Mobile, Version=8.0.0.0, Culture=neutral, PublicKeyToken=32f30e95975d886b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.WorkListChannel.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.WorkListChannel.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=aed8955949a970b1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.WorkListChannel.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.WorkListChannel.Web.CustomDocumentView, Version=8.0.0.0, Culture=neutral, PublicKeyToken=3691dcdbe95e0e05, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.WorkListChannel.Web.CustomDocumentView.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.WorkListChannel.Web.WorkItemListControl, Version=8.0.0.0, Culture=neutral, PublicKeyToken=99165406c26e796b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.WorkListChannel.Web.WorkItemListControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.HWS.WorkListChannel.Web.WorkItemUIControl, Version=8.0.0.0, Culture=neutral, PublicKeyToken=633fc0dcc3dba080, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.HWS.WorkListChannel.Web.WorkItemUIControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.InvokeForm, Version=8.0.0.0, Culture=neutral, PublicKeyToken=e1285c44feaf5269, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.InvokeForm.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Mobile, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ca61c80c904b61b6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.OracleDBConfigurations, Version=8.0.0.0, Culture=neutral, PublicKeyToken=6828b5a81de84b3f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.OracleDBConfigurations.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Package.AdvancedPackageObjects, Version=8.0.0.0, Culture=neutral, PublicKeyToken=03acb103635ffa82, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Package.AdvancedPackageObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Package.CodeBehind, Version=8.0.0.0, Culture=neutral, PublicKeyToken=f2829154633734c0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Package.CodeBehind.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Package.PackageObjects, Version=8.0.0.0, Culture=neutral, PublicKeyToken=2e2bc8596e3b3950, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Package.PackageObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Package.Remote">
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Package.Remote.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Package.WorkflowCorrection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=80f2b01370dc787a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Package.WorkflowCorrection.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Packaging, Version=8.0.0.0, Culture=neutral, PublicKeyToken=c9123b9b77b0583e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Repository.CodeBehind, Version=8.0.0.0, Culture=neutral, PublicKeyToken=e22a4e3dd0665a70, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Repository.CodeBehind.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Repository.List.WorkflowActions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=52a2121cdac6a3b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Repository.List.WorkflowActions.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Repository.ListDocumentView, Version=8.0.0.0, Culture=neutral, PublicKeyToken=769c68de6e3030b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Repository.ListDocumentView.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Repository.ReplaceUser, Version=8.0.0.0, Culture=neutral, PublicKeyToken=4e1ba7ad1f0daeca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Repository.ReplaceUser.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Repository.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=bfb586d2c6c4a4f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Repository.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Repository.Web.WebParts, Version=8.0.0.0, Culture=neutral, PublicKeyToken=2fc160f29c5e2c9f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Repository.Web.WebParts.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Scheduler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=d1ec3d1b5fb9f0f9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.Scheduler.Calculator, Version=8.0.0.0, Culture=neutral, PublicKeyToken=acb294e4dc038037, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.Scheduler.Calculator.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.ServiceTypes, Version=8.0.0.0, Culture=neutral, PublicKeyToken=83b6aa7b40476a65, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.ServiceTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SiteUtility.IISManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=961af0c4fb953e67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SiteUtility.IISManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SOA.CodeBehind, Version=8.0.0.0, Culture=neutral, PublicKeyToken=88f74e23d5c27238, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SOA.CodeBehind.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SQLDBConfigurations, Version=8.0.0.0, Culture=neutral, PublicKeyToken=583b9ca0661b7c70, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SQLDBConfigurations.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SqlRoleProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=54073afbcd9eb72a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SqlRoleProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SSRS.ActionHandler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=3688245c851fa511, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SSRS.ActionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SSRS.Connector, Version=8.0.0.0, Culture=neutral, PublicKeyToken=198e2f8c1d1c04af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SSRS.Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SSRS.Connector.CodeBehind, Version=8.0.0.0, Culture=neutral, PublicKeyToken=6ab038f77ab8270e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SSRS.Connector.CodeBehind.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.SSRS.Utilities, Version=8.0.0.0, Culture=neutral, PublicKeyToken=d1068527caedd591, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.SSRS.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.UserEntity, Version=8.0.0.0, Culture=neutral, PublicKeyToken=eb34ba17324e7b88, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.UserEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.WebAPI, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0dd8d0da3e1bdb4d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.WebAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.WebParts, Version=8.0.0.0, Culture=neutral, PublicKeyToken=bc10944fa2f62aa6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.WebParts.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.WorkFlow.Scheduler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=09b5e03a0b7e21c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.WorkFlow.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.WWF, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ee98e2c46fabad42, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.WWF.dll</HintPath>
+    </Reference>
+    <Reference Include="Skelta.XmlGenerator, Version=8.0.0.0, Culture=neutral, PublicKeyToken=59ea89b1bb690d48, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Skelta.XmlGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="SkeltaMemebershipProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=4688395cfc73e61a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\SkeltaMemebershipProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="SkeltaObjectLibrary.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=5873779a07a4fcf5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\SkeltaObjectLibrary.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="SkeltaPersonalizationProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=840bf6dc120f88bc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\SkeltaPersonalizationProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="SkeltaQueueDispatchProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=9cba6cd6a2b6b847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\SkeltaQueueDispatchProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="SkeltaWorkHoursProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0a2216ffd99473d3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\SkeltaWorkHoursProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.Design, Version=2021.3.1111.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2021.3.1111.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Communication.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0e9aecc15e29df97, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Communication.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.Net.CustomTimer.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=fdbf3148266d938e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.Net.CustomTimer.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.DatabaseContentHandler.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=66ceafa779c8d800, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.DatabaseContentHandler.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.EmailFilterLibrary.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=9264ca525c88b53f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.EmailFilterLibrary.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.EmailReceiver.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=e5094c1970bc1143, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.EmailReceiver.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.LDAP.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=a203ecc616280b44, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.LDAP.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=c932f724c984e915, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.ProcessManagement.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b148b36352e97958, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.ProcessManagement.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.RedirectCustomDocument.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31d2598ba813c004, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.RedirectCustomDocument.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Report.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=46f92499e031db41, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Report.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.ReportHandler.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0b5351cd2791e084, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.ReportHandler.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Security.Client.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=72eafe5edcac3890, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Security.Client.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.SMS.Messenger.NET2">
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.SMS.Messenger.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.SMS.Send.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b0f9a95c92f1a6ad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.SMS.Send.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.Net.SMS.SMSLibrary.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=f36fc2759c11bbd7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.Net.SMS.SMSLibrary.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.SMSReceiver.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=56a167ea0c697773, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.SMSReceiver.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.SOAHandler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=32bca056ed17b180, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.SOAHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.VisioImport.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=150ebcedd603687e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.VisioImport.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Web.Designer.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=741b70142a737a8c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Web.Designer.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Web.ProcessManagementControl.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=545b3f7f8a50f533, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Web.ProcessManagementControl.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Web.Report.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=0c41823d31887a1d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Web.Report.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Web.ReportUI.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=9253506cb3905fc3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Web.ReportUI.NET2.dll</HintPath>
+    </Reference>
+    <Reference Include="Workflow.NET.Web.SkeltaXcopy.NET2, Version=8.0.0.0, Culture=neutral, PublicKeyToken=5985cb1396e2c2c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\AVEVA\Work Tasks\Bin\Workflow.NET.Web.SkeltaXcopy.NET2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <Content Include="WorkItemList.aspx" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Site.Master" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Bundle.config" />
+    <Content Include="Site.Mobile.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItemList.aspx.cs">
+      <DependentUpon>WorkItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkItemList.aspx.designer.cs">
+      <DependentUpon>WorkItemList.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58388</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58388/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

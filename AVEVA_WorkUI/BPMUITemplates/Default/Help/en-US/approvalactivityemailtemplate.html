@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Approval Activity Email Template </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t613072" class="heading4">Approval Activity Email Template</h4>
+<p class="paragraph">AVEVA Work Tasks Engine accesses the approval activity's email template from the following physical path:</p>
+<p class="codeblock1">[AVEVA Work Tasks Installed Path]\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\ApprovalEmail.html</p>
+<p class="paragraph">This template can be modified by the user as per their UI requirement. The mails received by the actor is based on the above mentioned mail template.</p>
+<p class="paragraph">The following is a default email template text for the&nbsp;<b class="uicontrol">ApprovalEmail.html</b>&nbsp;file:</p>
+<p class="paragraph"><strong class="strong">ApprovalEmail.html</strong></p>
+<p class="codeblock1">&lt;html&gt;</p>
+<p class="codeblock1">&lt;head&gt;</p>
+<p class="codeblock1">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;</p>
+<p class="codeblock1">&lt;title&gt;Mailer&lt;/title&gt;</p>
+<p class="codeblock1">&lt;style type=&quot;text/css&quot;&gt;</p>
+<p class="codeblock1">&lt;!--</p>
+<p class="codeblock1">.style2 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 11px;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style4 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 15px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Normal;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.Username {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 13px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Bold;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.subject {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 13px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Bold;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style8 {</p>
+<p class="codeblock1">      &nbsp;color: #FF3300;</p>
+<p class="codeblock1">      &nbsp;font-weight: bold;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style9 {font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }</p>
+<p class="codeblock1">--&gt;</p>
+<p class="codeblock1">&lt;/style&gt;</p>
+<p class="codeblock1">&lt;/head&gt;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">&lt;body&gt;</p>
+<p class="codeblock1">&lt;form id='Form1' action='&lt;%#EmailURL%&gt;' method='post' &gt;</p>
+<p class="codeblock1">&lt;table width=&quot;700&quot; border=&quot;0&quot; align=&quot;left&quot; cellpadding=&quot;0&quot; cellspacing=&quot;1&quot; bgcolor=&quot;#CCCCCC&quot;&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td valign=&quot;top&quot;&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; bgcolor=&quot;#FFFFFF&quot;&gt;     </p>
+<p class="codeblock1">      &lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td&gt;&lt;span class=&quot;Username&quot;&gt;&lt;%#locSalutation%&gt;&amp;nbsp;&lt;strong&gt;&lt;%#ActorName%&gt;&lt;/strong&gt;&lt;/span&gt;,</p>
+<p class="codeblock1">        &lt;p class=&quot;style2&quot;&gt;&lt;%#locMailDescription%&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="codeblock1">      &lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;&lt;%#Notes%&gt; &lt;/td&gt;</p>
+<p class="codeblock1">      &lt;/tr&gt;         &nbsp;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">      &lt;!-- Appropriate sender details can be passed to the mail by using the sender detail contents as follows</p>
+<p class="codeblock1">      A few are listed below</p>
+<p class="codeblock1">      &lt;%#Value.SendTo.UserDisplayName%&gt;</p>
+<p class="codeblock1">      &lt;%#Value.SendTo.UserEmail%&gt;     </p>
+<p class="codeblock1">      &lt;%#Value.SendTo.UserId%&gt;</p>
+<p class="codeblock1">    &nbsp;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contents declared in Start Activity can also be used in a similar way.</p>
+<p class="codeblock1">    &nbsp;</p>
+<p class="codeblock1">      XML Variables can also be used. </p>
+<p class="codeblock1">    &nbsp;</p>
+<p class="codeblock1">      Variables defined in Start Activity can also be used pass the values to the mail.</p>
+<p class="codeblock1">    &nbsp;</p>
+<p class="codeblock1">      Pre-defined variables can also be used.</p>
+<p class="codeblock1">      A few are listed below.</p>
+<p class="codeblock1">      &lt;%#Variable.SubmittedBy.UserId%&gt;</p>
+<p class="codeblock1">      &lt;%#Variable.SubmittedBy.UserName%&gt;</p>
+<p class="codeblock1">      &lt;%#Variable.SubmittedBy.UserDisplayName%&gt;     </p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">      To make use of localization, Create a Key and its value in SkeltaInstalledFolder/Locales/en-US/EmailTemplate.txt</p>
+<p class="codeblock1">      and use the key in this html.</p>
+<p class="codeblock1">      EG: Let EmailUserDefinedName be the Localization key in SkeltaInstalledFolder/Locales/en-US/EmailTemplate.txt</p>
+<p class="codeblock1">          Use the above key in html as @@EmailUserDefinedName@@ to get its localized value.</p>
+<p class="codeblock1">        &nbsp;</p>
+<p class="codeblock1">    &nbsp;</p>
+<p class="codeblock1">          &nbsp;</p>
+<p class="codeblock1">      TO TRY OUT THE ABOVE POINTS, JUST UNCOMMENT THE NEXT COMMENTED PORTION OF CODE.</p>
+<p class="codeblock1">      --&gt;</p>
+<p class="codeblock1">    </p>
+<p class="codeblock1">    </p>
+<p class="codeblock1">        &lt;!--&lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td bgcolor=&quot;#EBEBEB&quot; class=&quot;style4&quot;&gt;Resource Details&lt;/td&gt;</p>
+<p class="codeblock1">        &lt;/tr&gt;</p>
+<p class="codeblock1">        &lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td&gt;</p>
+<p class="codeblock1">                &lt;table width=&quot;100%&quot; border=&quot;1&quot; cellpadding=&quot;6&quot; cellspacing=&quot;0&quot; bordercolor=&quot;#CCCCCC&quot; bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">                    &lt;tr&gt;</p>
+<p class="codeblock1">                        &lt;td width=&quot;21%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;@@EmailUserDefinedDepartment@@&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td width=&quot;79%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;&lt;%#Variable.SubmittedBy.UserDepartment%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                    &lt;tr&gt;</p>
+<p class="codeblock1">                        &lt;td width=&quot;21%&quot;&gt;@@EmailUserDefinedEmail@@&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td width=&quot;79%&quot;&gt;&lt;%#Variable.SubmittedBy.UserDisplayName%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                &lt;/table&gt;</p>
+<p class="codeblock1">            &lt;/td&gt;</p>
+<p class="codeblock1">        &lt;/tr&gt;--&gt;</p>
+<p class="codeblock1">      &nbsp;</p>
+<p class="codeblock1">        &lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td bgcolor=&quot;#EBEBEB&quot;&gt;</p>
+<p class="codeblock1">                &lt;span class=&quot;style4&quot;&gt;&lt;%#loctaskInfo%&gt;&lt;/span&gt;</p>
+<p class="codeblock1">            &lt;/td&gt;</p>
+<p class="codeblock1">        &lt;/tr&gt;</p>
+<p class="codeblock1">        &lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td valign=&quot;top&quot; bgcolor=&quot;#FFFFFF&quot;&gt;</p>
+<p class="codeblock1">                &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;</p>
+<p class="codeblock1">                    &lt;tr&gt;                   </p>
+<p class="codeblock1">                        &lt;td width=&quot;50%&quot;&gt;</p>
+<p class="codeblock1">                            &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;1&quot; cellspacing=&quot;0&quot; bgcolor=&quot;#999999&quot;&gt;</p>
+<p class="codeblock1">                                &lt;tr&gt;</p>
+<p class="codeblock1">                                    &lt;td&gt;</p>
+<p class="codeblock1">                                        &lt;table width=&quot;100%&quot; border=&quot;1&quot; cellpadding=&quot;6&quot; cellspacing=&quot;0&quot; bordercolor=&quot;#CCCCCC&quot;</p>
+<p class="codeblock1">                                            bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td width=&quot;21%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;&lt;%#locName%&gt;&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td width=&quot;79%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;%#TaskName%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;&lt;%#locDescription%&gt;&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;%#Description%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;&lt;%#locSubmittedBy%&gt;&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;%#Submitedby%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;&lt;%#locSubmittedOn%&gt;&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;%#SubmittedDate%&gt; &lt;%#SubmittedTime%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                          &nbsp;</p>
+<p class="codeblock1">                                          &nbsp;</p>
+<p class="codeblock1">                                        &lt;/table&gt;</p>
+<p class="codeblock1">                                    &lt;/td&gt;</p>
+<p class="codeblock1">                                &lt;/tr&gt;</p>
+<p class="codeblock1">                            &lt;/table&gt;</p>
+<p class="codeblock1">                        &lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                &lt;/table&gt;</p>
+<p class="codeblock1">                &lt;br /&gt;</p>
+<p class="codeblock1">            &lt;/td&gt;</p>
+<p class="codeblock1">        &lt;/tr&gt;</p>
+<p class="codeblock1">      &nbsp;</p>
+<p class="codeblock1">      &lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td bgcolor=&quot;#EBEBEB&quot; class=&quot;style2&quot;&gt;&lt;%#locRepondInTwoWays%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">      &lt;/tr&gt;</p>
+<p class="codeblock1">    &nbsp;</p>
+<p class="codeblock1">      &lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">        &nbsp;</p>
+<p class="codeblock1">          &lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td&gt;&lt;strong&gt;&lt;%#locRespondbyMail%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">          &lt;/tr&gt;</p>
+<p class="codeblock1">          &lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td style=&quot;padding-left:20px&quot;&gt;&lt;i&gt;&lt;%#locReplyToMail%&gt;&lt;/i&gt;</p>
+<p class="codeblock1">                &lt;table width='95%' border='0' align='center' bgcolor='#EBEBEB' cellpadding='5' cellspacing='1' style=&quot;width: 100%; height: 25px;&quot;&gt;</p>
+<p class="codeblock1">                        &lt;tr&gt;</p>
+<p class="codeblock1">                            &lt;td class=&quot;style2&quot; width='30%' bgcolor='#EBEBEB'&gt;</p>
+<p class="codeblock1">                                &lt;strong&gt;&lt;%#locColumnName%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                            &lt;td class=&quot;style2&quot; width='30%' bgcolor='#EBEBEB'&gt;</p>
+<p class="codeblock1">                                &lt;strong&gt;&lt;%#locUserInputs%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                            &lt;td class=&quot;style2&quot; bgcolor='#EBEBEB'&gt;</p>
+<p class="codeblock1">                                &lt;strong&gt;&lt;%#locValidInputs%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;/tr&gt;</p>
+<p class="codeblock1">                    &lt;tr valign=&quot;top&quot;&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;&lt;%#locComments%&gt;:&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;]&lt;/td&gt;</p>
+<p class="codeblock1">                                       &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;20%&quot; &gt;[&lt;%#locFreeText%&gt;]&lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                    &lt;tr valign=&quot;top&quot;&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;&lt;%#locTakeAction%&gt;:&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;]&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;20%&quot; &gt;&lt;%#locEnter%&gt;:[&lt;%#locApproveAction%&gt;,&lt;%#locRejectAction%&gt;]&lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                &lt;/table&gt;</p>
+<p class="codeblock1">            &nbsp;&lt;/td&gt;</p>
+<p class="codeblock1">          &lt;/tr&gt;</p>
+<p class="codeblock1">        &nbsp;</p>
+<p class="codeblock1">          &lt;tr&gt;</p>
+<p class="codeblock1">            &lt;td&gt;&lt;strong&gt;&lt;br /&gt;&lt;%#locRespondByWeb%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">          &lt;/tr&gt;</p>
+<p class="codeblock1">          &lt;tr&gt;</p>
+<p class="codeblock1">          &nbsp;&lt;td style=&quot;padding-left:20px&quot;&gt;&lt;i&gt;&lt;%#locWorkItemView%&gt;&lt;/i&gt;</p>
+<p class="codeblock1">            &lt;br /&gt;</p>
+<p class="codeblock1">            &lt;a &lt;%#workitemView%&gt;&gt;&lt;%#locWorkItemViewURLText%&gt;&lt;/a&gt;</p>
+<p class="codeblock1">          &nbsp;&lt;/td&gt;</p>
+<p class="codeblock1">          &lt;/tr&gt;</p>
+<p class="codeblock1">        &lt;/table&gt;&lt;/td&gt;</p>
+<p class="codeblock1">      &lt;/tr&gt;</p>
+<p class="codeblock1">      &lt;tr bgcolor=&quot;#EBEBEB&quot;&gt;         </p>
+<p class="codeblock1">            &lt;td align=&quot;right&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">            &lt;span&gt;&lt;a &lt;%#docview%&gt;&gt;&lt;%#locDocViewURLText%&gt;&lt;/a&gt;&lt;/span&gt;</p>
+<p class="codeblock1">            |</p>
+<p class="codeblock1">            &lt;span&gt;&lt;a &lt;%#executionView%&gt;&gt;&lt;%#locExecutionViewURLText%&gt;&lt;/a&gt;&lt;/span&gt;</p>
+<p class="codeblock1">            &lt;/td&gt;</p>
+<p class="codeblock1">        &lt;/tr&gt;     </p>
+<p class="codeblock1">      &lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;&lt;%#locSignature%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">      &lt;/tr&gt;</p>
+<p class="codeblock1">      &lt;tr&gt;</p>
+<p class="codeblock1">        &lt;td bgcolor=&quot;#FFFFCC&quot; class=&quot;style2&quot;&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;3&quot;&gt;</p>
+<p class="codeblock1">          &lt;tr&gt;           </p>
+<p class="codeblock1">            &lt;td class=&quot;style2&quot; width=&quot;95%&quot;&gt;&lt;span class=&quot;style8&quot;&gt;&lt;strong&gt;&lt;%#locEmailSecurityWarning%&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;</p>
+<p class="codeblock1">              Workflow:{&lt;%#ApplicationName%&gt;:&lt;%#EmailGUID%&gt;:&lt;%#WorkflowName%&gt;}{WorkflowResourceActivityMail#3.5}{WorkflowFollowUp:&lt;%#SkeltaFollowUpValue%&gt;}{WorkflowReminderTime:&lt;%#SkeltaReminderTimeValue%&gt;}&lt;/td&gt;</p>
+<p class="codeblock1">          &lt;/tr&gt;</p>
+<p class="codeblock1">        &lt;/table&gt;&lt;/td&gt;</p>
+<p class="codeblock1">      &lt;/tr&gt;</p>
+<p class="codeblock1">    &lt;/table&gt;</p>
+<p class="codeblock1">    &lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">&lt;/table&gt;</p>
+<p class="codeblock1">&lt;/form&gt;</p>
+<p class="codeblock1">&lt;/body&gt;</p>
+<p class="codeblock1">&lt;/html&gt;</p>
+<p class="paragraph">Note: While modifying the Approval email template the following&nbsp;place holders&nbsp;should not be modified, as these are necessary for the AVEVA Work Tasks engine to process the mails that are received from the actors.</p>
+<ol class="olitem"><li class="olitem">Email URL<p class="codeblock1">&lt;form id='Form1' action='&lt;%#EmailURL%&gt;' method='post' &gt;</p>
+</li><li class="olitem">Notes<p class="codeblock1">&lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;&lt;%#Notes%&gt; &lt;/td&gt;</p>
+</li><li class="olitem">Complete content<p class="codeblock1">&lt;table width='95%' border='0' align='center' bgcolor='#EBEBEB' cellpadding='5' cellspacing='1' style=&quot;width: 100%; height: 25px;&quot;&gt;</p>
+<p class="codeblock1">                        &lt;tr&gt;</p>
+<p class="codeblock1">                            &lt;td class=&quot;style2&quot; width='30%' bgcolor='#EBEBEB'&gt;</p>
+<p class="codeblock1">                                &lt;strong&gt;&lt;%#locColumnName%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                            &lt;td class=&quot;style2&quot; width='30%' bgcolor='#EBEBEB'&gt;</p>
+<p class="codeblock1">                                &lt;strong&gt;&lt;%#locUserInputs%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                            &lt;td class=&quot;style2&quot; bgcolor='#EBEBEB'&gt;</p>
+<p class="codeblock1">                                &lt;strong&gt;&lt;%#locValidInputs%&gt;&lt;/strong&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;/tr&gt;</p>
+<p class="codeblock1">                    &lt;tr valign=&quot;top&quot;&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;&lt;%#locComments%&gt;:&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;]&lt;/td&gt;</p>
+<p class="codeblock1">                                       &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;20%&quot; &gt;[&lt;%#locFreeText%&gt;]&lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                    &lt;tr valign=&quot;top&quot;&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;&lt;%#locTakeAction%&gt;:&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;10%&quot;&gt;[&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;]&lt;/td&gt;</p>
+<p class="codeblock1">                        &lt;td class=&quot;style2&quot; bgcolor='#FFFFFF' width=&quot;20%&quot; &gt;&lt;%#locEnter%&gt;:[&lt;%#locApproveAction%&gt;,&lt;%#locRejectAction%&gt;]&lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                &lt;/table&gt;</p>
+<p class="codeblock1">&nbsp;</p>
+</li><li class="olitem">Complete content<p class="codeblock1">&lt;td class=&quot;style2&quot; width=&quot;95%&quot;&gt;&lt;span class=&quot;style8&quot;&gt;&lt;strong&gt;&lt;%#locEmailSecurityWarning%&gt;&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;</p>
+<p class="codeblock1">              Workflow:{&lt;%#ApplicationName%&gt;:&lt;%#EmailGUID%&gt;:&lt;%#WorkflowName%&gt;}{WorkflowResourceActivityMail#3.5}{WorkflowFollowUp:&lt;%#SkeltaFollowUpValue%&gt;}{WorkflowReminderTime:&lt;%#SkeltaReminderTimeValue%&gt;}&lt;/td&gt;</p>
+</li></ol><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="usingvariablesinapprovalemailtemplate.html" target="_self">Using Variables in the Approval Email Template</a></p><p class="relateditem"><a href="usingcontentsinapprovalemailtemplate.html" target="_self">Using Contents in the Approval Email Template</a></p><p class="relateditem"><a href="usingxmlvariablesinapprovalemailtemplate.html" target="_self">Using XMLVariables in the Approval Email Template</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

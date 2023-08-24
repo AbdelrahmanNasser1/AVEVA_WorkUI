@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="Skelta.Repository.Web.CodeBehind.BlankMasterPage"%>
+
+<html>
+    <head runat="server">
+        <title></title>
+    </head>
+    <body>
+        <form id="form1" runat="server">
+		<%= System.Web.Helpers.AntiForgery.GetHtml() %>
+            <div>
+                <asp:ContentPlaceHolder id="Cont" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </body>
+</html>

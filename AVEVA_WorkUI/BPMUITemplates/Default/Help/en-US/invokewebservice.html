@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> InvokeWebService Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t489811" class="heading3">InvokeWebService Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Invoke-Web-Service Activity can be used to invoke a web service from the workflow. The output of the activity can be used to determine the path of workflow execution.</p>
+<p class="subheading">Variables for capturing exception messages</p>
+<p class="paragraph">The exceptions occurring in the Invoke Web Service activity can be captured by creating a system variable of type 'string'. </p>
+<p class="paragraph">The variable name should be created in the following format:</p>
+<p class="paragraph"><strong class="strong">'^'+CurrentActivity.Name+'Error'</strong></p>
+<p class="paragraph"><b class="uicontrol">Activity Properties:</b></p>
+<p class="paragraph">The Invoke-Web-Service activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Invoke-Web-Service activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f489813" src="489813.png" alt="" height="558" width="276" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Name &amp; Description</b>     </p>
+<p class="paragraph">You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Configuration</b></p>
+<p class="paragraph">The property in the Configuration group has been described below. You can use this property to specify the web service details.</p>
+<p class="paragraph"><b class="uicontrol">Web Service Details</b> - The Web Service Details property allows the user to select a web service to invoke and specify the input and output details for it.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph">Steps to set the Web Service Details property</p>
+<ol class="step"><li class="step">To add and configure Web Services, click on the button for the 'Web Service Details' property to open the Web Service List, which is the main property window.</li><li class="step">This is the first window of the Web Service configuration user-interface and lists all the Web Services that have already been configured.</li><li class="step">You can click the <b class="uicontrol">Preview Methods</b> check box to preview the methods for the selected Web Service in this window.</li><li class="step">Click the <b class="uicontrol">Add</b> button in the web service listing window to add a new Web Service. This opens the window to add new Web Services. Enter the Web Service name and the WSDL URL, e.g., localhost/SkeltaWebService/WorkfllowClient.asmx?wsdl, in the respective fields in this window. Click on the <b class="uicontrol">Save Web Service</b> button after specifying the required values here if the new Web Service does not need authentication.</li><li class="step">Click on the <b class="uicontrol">Authenticated</b> check box to select the option, if authentication is required for the web service being added. This displays authentication fields. Enter the login name, password, and domain name in the corresponding fields.</li><li class="step">To bind a Web Service to the database right-click on the Web Service listing in the Web Service List window and select the Bind option from the context menu. This will display the Methods List window. If there are no public fields in the Web Service you are binding, go directly to step 8.</li><li class="step">If there are any public fields in the selected web service, selecting the <b class="uicontrol">Bind</b> option in the previous step will open the Public Fields List window listing all the public fields in the Web Service. You can edit field values by selecting the <b class="uicontrol">Edit</b> option in the context menu for the fields list. In the web service parameter editing window that opens, click on the Serialize check box to enable serialization. Specify the value in the Value field by selecting the value type (Value, Variable, Content, XMLVariables) in the first drop down and providing the value. After specifying the value, click on the <b class="uicontrol">Update Parameter Value</b> button to save it. Then click on the <b class="uicontrol">Update</b> button at the bottom of the Public Fields List page to update the parameter value. After updating, click on the <b class="uicontrol">Link</b> button to open the Web Service List window and right-click on the Web Service listing and then select Bind from the context menu. This will open the Methods List window mentioned in step 6.</li><li class="step">In the Methods List window select the required method parameter(s) and bind them by clicking <b class="uicontrol">Bind Parameters</b>.</li><li class="step">In the Method Parameter listing window select parameter(s) to be updated and select the <b class="uicontrol">Edit</b> option from the context menu. This opens the web service parameter editing window similar to the one in step 7. In this window specify the parameter values in the same way as described in step 7.</li><li class="step">If you wish to specify authentication details for the web service, enter the Login Name, Password and Domain Name in the authentication fields in this window. If specified, these details will need to be used while executing the web service.</li><li class="step">Select a Variable or Content Handler or XMLVariable to save the parameter values in from the <b class="uicontrol">Save Output</b> in drop down.</li><li class="step">Click on <b class="uicontrol">Update</b> button after entering all the parameters to bind the Web Service.</li></ol><p class="paragraph">See WebService - Web Service Details for a detailed description of the Web Service Details property windows.</p>
+<p class="paragraph"><b class="uicontrol">Miscellaneous</b></p>
+<p class="paragraph">The property in the Miscellaneous group has been described below. </p>
+<p class="paragraph"><b class="uicontrol">Retry on Failure?</b> - This property allows the user to enable the activity to retry up to three times if the first attempt to connect to the web service fails. By default, it is set to <b class="uicontrol">Yes</b>. This is useful to improve the chances of connecting to Webservices. This property can be set to <b class="uicontrol">No</b> during development to avoid automatic retries.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Activity outputs</b>:</p>
+<p class="paragraph">The Invoke-Web-Service Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Webservice Execution Failed</b>: Displayed when the Web service execution has failed.</p>
+<p class="paragraph">In addition to this standard return value it also returns the value specified by the user in the Return Values property as output.</p>
+<p class="paragraph">The Web Service block diagram is as shown below:</p>
+<p class="subheading">Getting Work Item/Task details for an actor and rendering the same in Windows Forms</p>
+<p class="paragraph"><img id="f50997" src="50997.png" class="embeddedimage100%scalinglive" alt="" height="242" width="527" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Submitting an Activity/Task via the web service and alerting the engine to execute next step in the workflow</p>
+<p class="paragraph"><img id="f50998" src="50998.png" class="embeddedimage100%scalinglive" alt="" height="234" width="527" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><b class="uicontrol">Exception Behavior</b></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph"><a id="h50527" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="webservice-webservicedetails.html" target="_self">InvokeWebService: Web Service Details</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

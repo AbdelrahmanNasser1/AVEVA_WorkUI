@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Process Designer Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t434130" class="heading3">Process Designer Control</h3>
+<p class="paragraph">The Process Designer provides an interface to design the workflow processes. Workflows can be designed and deployed using the Process Designer.</p>
+<p class="procedureheading">To add Process Designer control using a panel:</p>
+<p class="paragraph">Before adding the Process Designer control in a panel, create an ASP.NET project in Visual Studio .NET 2012. You must add two .aspx pages for this control, one to embed the control and other to create the list definitions and call the Designer.aspx page. </p>
+<ul class="ulitem"><li class="ulitem">Designerbase.aspx </li><li class="ulitem">Designer.aspx </li></ul><ol class="step"><li class="step">Open the&nbsp;<b class="uicontrol">Designerbase.aspx.cs</b>&nbsp;page.</li><li class="step">Add the following code in the page load of this page.<p class="codeblock2">string applicationName = &quot; ApplicationName &quot;; </p>
+<p class="codeblock2">string listName = &quot;Workflow&quot;; </p>
+<p class="codeblock2">string workflowName = &quot;WorkflowName&quot;; // Use unpublished workflow Name </p>
+<p class="codeblock2">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(applicationName); </p>
+<p class="codeblock2">// Create User context as given in this topic http://sun.skelta.com/DeveloperGuide/CreatingUserContext.html </p>
+<p class="codeblock2">Skelta.Entity.UserContext usrcn = new Skelta.Entity.UserContext(&quot;47D5EA43-B471-492C-A2C3-41DC41C15EC8&quot;, application, &quot;skeltalist&quot;, &quot;&quot;, &quot;&quot;, false); </p>
+<p class="codeblock2">Skelta.Repository.Web.List.ListPageParameters param = new Skelta.Repository.Web.List.ListPageParameters(); param.ListName = listName; </p>
+<p class="codeblock2">Skelta.Repository.List.ListDefinition list = Skelta.Repository.List.ListDefinition.GetList(application, listName); </p>
+<p class="codeblock2">param.ListId = list.Id; </p>
+<p class="codeblock2">Skelta.Repository.List.ListDataHandler ldh = new Skelta.Repository.List.ListDataHandler(applicationName, listName); </p>
+<p class="codeblock2">param.ListItemId = ldh.GetListItemId(workflowName); </p>
+<p class="codeblock2">param.ApplicationName = applicationName; </p>
+<p class="codeblock2">//specify the version information //param.VersionStamp = &quot;1&quot;;</p>
+<p class="codeblock2">param.LoggedInUserId = usrcn.LoggedInUserId; </p>
+<p class="codeblock2">string encParam = param.GetSecuredUri(); </p>
+<p class="codeblock2">//Give the page name where the Process Designer control is placed. </p>
+<p class="codeblock2">string url = &quot;Designer.aspx&quot;; // specify the page where ProcessDesigner is embedded </p>
+<p class="codeblock2">if (url.IndexOf(&quot;?&quot;) &gt; 0) </p>
+<p class="codeblock2">url += &quot;&amp;&quot; + encParam; </p>
+<p class="codeblock2">else </p>
+<p class="codeblock2">url += &quot;?&quot; + encParam; this.Context.Response.Redirect(url); </p>
+</li><li class="step">Open the <b class="uicontrol">Designer.aspx.cs</b> page.</li><li class="step">Ensure that you have initialized the User Context object, as per the steps given in&nbsp;<a id="h50255" class="jump-currentwindowlive" title="Creating User Context" href="creatingusercontext.html" target="_self">Creating User Context</a></li><li class="step">In the underlying code, create a new instance of control and add the instance to the panel in the&nbsp;Page_Load,&nbsp;as shown in the sample code:<p class="codeblock2"></p>
+<p class="codeblock2">string applicationName = &quot;Telematics Repository&quot;;     </p>
+<p class="codeblock2">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject (applicationName);</p>
+<p class="codeblock2">Skelta.Entity.UserContext usrcn = new Skelta.Entity.UserContext (&quot;81734457-B3DB-4BC9-894A-C3149828C65C&quot;, application, &quot;skeltalist&quot;, &quot;&quot;, &quot;&quot;, false);</p>
+<p class="codeblock2">Workflow.NET.Web.Designer.ProcessDesigner pd = new Workflow.NET.Web.Designer.ProcessDesigner();</p>
+<p class="codeblock2">pd.ApplicationName = usrcn.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock2">pd.WorkflowName = &quot;Test Workflow&quot;; //Provide Workflow name. This is mandatory.</p>
+<p class="codeblock2">pd.UserIdString = usrcn.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock2">pd.ID = &quot;ProcessDesigner&quot;; // This is mandatory.</p>
+<p class="codeblock2">pd.Height = Unit.Percentage (100);</p>
+<p class="codeblock2">Panel1.Controls.Add (pd);</p>
+<p class="codeblock2"></p>
+</li></ol><p class="subheading">Properties that can be set for Process Designer Control are:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">ApplicationName</b>&nbsp;- Provide the Application or Repository Name.</li><li class="ulitem"><b class="uicontrol">CanExportProcessDefinition</b>&nbsp;- If the&nbsp;CanExportProcessDefinition&nbsp;property is set to false, then the &quot;<b class="uicontrol">Export</b>&quot;&nbsp;option will not be displayed and you cannot export workflows.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50253" src="50253.jpg" class="embeddedimage100%scalinglive" alt="" height="309" width="397" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="ulitem"><b class="uicontrol">CanImportProcessDefinition</b>&nbsp;- If the&nbsp;<b class="uicontrol">CanImportProcessDefinition</b>  property is set to false, the&nbsp;<b class="uicontrol">Import</b>&nbsp;and&nbsp;<b class="uicontrol">Import from Visio</b>&nbsp;options will not be displayed and you cannot import &nbsp;workflows.</li><li class="ulitem"><b class="uicontrol">CanWriteInProduction</b>&nbsp;- If the <b class="uicontrol">CanWriteInProduction</b> property is set to false, you can design the workflow but will not be able to publish it.</li><li class="ulitem"><b class="uicontrol">WorkflowName</b>&nbsp;- Provide the workflow name to design the workflow.</li><li class="ulitem"><b class="uicontrol">FileName</b>&nbsp;- This property should not be used since it is an obsolete property; instead of the&nbsp;<b class="uicontrol">FileName</b>&nbsp;property, you can use the&nbsp;<b class="uicontrol">Version</b>&nbsp;property. </li><li class="ulitem"><b class="uicontrol">CanWriteInStaging</b>&nbsp;- If the<b class="uicontrol">&nbsp;CanWriteInStaging</b>&nbsp;property is set to false, you can only view the workflow.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50254" src="50254.jpg" class="embeddedimage100%scalinglive" alt="" height="400" width="385" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ul><p class="subheading">Using Process Designer as an Embedded Control in Custom Applications.</p>
+<p class="paragraph">Consider a scenario where a user creates a custom application and uses the Process Designer control as an embedded control. In such a scenario, the user will have to follow the steps given below in order to publish/execute the workflow.</p>
+<ol class="step"><li class="step">Repeat the steps given under the section <strong class="strong">To add Process Designer control using a panel</strong>.</li><li class="step">Create another page in the Visual Studio and add the following code sample. Alternatively, if the page is already created through which the user can navigate to the Process Designer page, then the user has to use the code snippet given below in the event which calls the Process Designer page. For example, the event used here is 'Button_Click'.<p class="codeblock1">protected void Button _Click(object sender, EventArgs e)</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;{</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string applicationName = &quot; ApplicationName &quot;;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string listName = &quot;Workflow&quot;;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string workflowName = &quot;WorkflowName&quot;;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(applicationName);</p>
+<p class="codeblock1">// Create User context as given in this topic http://sun.skelta.com/DeveloperGuide/CreatingUserContext.html</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skelta.Entity.UserContext usrcn = new Skelta.Entity.UserContext(&quot;47D5EA43-B471-492C-A2C3-41DC41C15EC8&quot;, application, &quot;skeltalist&quot;, &quot;&quot;, &quot;&quot;, false);</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skelta.Repository.Web.List.ListPageParameters param = new Skelta.Repository.Web.List.ListPageParameters();</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.ListName = listName;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skelta.Repository.List.ListDefinition list = Skelta.Repository.List.ListDefinition.GetList(application, listName);</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.ListId = list.Id;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skelta.Repository.List.ListDataHandler ldh = new Skelta.Repository.List.ListDataHandler(applicationName, listName);</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.ListItemId = ldh.GetListItemId(workflowName);</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.ApplicationName = applicationName;</p>
+<p class="codeblock1">&nbsp;//specify the version information</p>
+<p class="codeblock1">&nbsp;//param.VersionStamp = &quot;1&quot;;&nbsp;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;param.LoggedInUserId = usrcn.LoggedInUserId;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string encParam = param.GetSecuredUri();</p>
+<p class="codeblock1">//Give the page name where the Process Designer control is placed.</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string url = &quot;PDesigner.aspx&quot;; // specify the page where ProcessDesigner is embedded</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (url.IndexOf(&quot;?&quot;) &gt; 0)</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url += &quot;&amp;&quot; + encParam;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url += &quot;?&quot; + encParam;</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.Context.Response.Redirect(url);</p>
+<p class="codeblock1">&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+</li><li class="step">On click of the button, the <b class="uicontrol">Process Designer</b> page will appear. The user will be able to perform all the actions related to the workflow.</li></ol><p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1_1.html" target="_self">Embedding Controls in the Application</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

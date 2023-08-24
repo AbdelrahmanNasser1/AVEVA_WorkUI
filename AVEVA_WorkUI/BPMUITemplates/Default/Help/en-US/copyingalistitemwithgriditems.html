@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Copying a List Item with Grid Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t601929" class="heading6">Copying a List Item with Grid Items</h6>
+<p class="paragraph">AVEVA Work Tasks allows you to copy a list item with grid items to another list provide both the lists have the same schema. You can perform this task with the help of Update Variable activity. To iterate through the grid items, you need to create XML Iterator type XML variable for the grid. This feature can be explained with the help of a scenario.</p>
+<p class="paragraph">&quot;Telematics&quot; is an organization which maintains a Purchase Orders list to keep a track of all the purchase orders raised by the company.</p>
+<p class="paragraph">The purchase Orders contains details like: </p>
+<ul class="ulitem"><li class="ulitem">Reference Number </li><li class="ulitem">Purchase Order Date </li><li class="ulitem">Raised By User </li><li class="ulitem">Deliver To User </li><li class="ulitem">Status </li><li class="ulitem">Purchase Order Details <ul class="ulsubitem"><li class="ulsubitem">Item Name </li><li class="ulsubitem">Quantity </li><li class="ulsubitem">Unit Price </li><li class="ulsubitem">Item Total </li></ul></li><li class="ulitem">Total Purchase amount </li></ul><p class="paragraph">Telematics also maintains another list called Approved Purchase Order which has the same schema of the Purchase Order list. Now you want to copy an item with grid (Purchase Order approved) to the Approved Purchase Order list when the item is approved.</p>
+<p class="subheading">To copy a list item with grid items</p>
+<ol class="step"><li class="step">Login to the Enterprise Console and go to Workflow Designer. </li><li class="step">You need to create an XML List type XML variable for the Purchase Order list. If the variable is not created, follow the below mentioned procedure to create. </li><li class="step">Click the edit icon in the XMLVariables property from the Start Activity Properties. </li><li class="step">Here, for Purchase Order list you need to create an XML List type XML variable to work with the current purchase order item and XML Iterator type XML variable to loop through the child/grid nodes of the current purchase order item. </li><li class="step">Click New Variable to add a new variable. </li><li class="step">Type the variable name as 'purchaseorders'. </li><li class="step">Select type as XML List from the Type drop-down list. </li><li class="step">Type the List name in the Select List field or click the icon to select the list. In this case, select Purchase Orders list. </li><li class="step">Select Current as the scope from the ListItem Scope to point to the an item in the list.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f181550" src="181550.png" alt="" height="490" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="step">Now you can see the XML nodes in a tree-view that are mapped to the controls while creating the list. You can notice that the parent XML nodes and child XML nodes (PurchaseOrderDetails grid) are also displayed. </li><li class="step">Click Save Variable. A message is displayed saying 'Variable Updated'. </li><li class="step">Now, you need to create XML Iterator type XML variable to iterate through the child nodes (in this case, PurchaseOrderDetails). For that, click New Variable from the XML Variable screen. </li><li class="step">Enter the variable name as purchaseorderdetails. </li><li class="step">Select XML Iterator as type from the Type drop-down list. </li><li class="step">Select purchaseorders from the XML Variable drop-down list. </li><li class="step">From the Node Select drop-down, select the repeating node, that is PurchaseOrderDetails.<p class="stepresult"></p>
+<p class="stepresult"><img id="f181551" src="181551.png" alt="" height="487" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click Save Variable. A message is displayed saying 'Variable Updated'.</li><li class="step"> In the same way you have to create XML variables for Approved Purchase Order list. For Approved Purchase Order list, you need to create XMLList type XML variable to add an item and a XML Iterator type XML variable to map to the grid items of the new purchase order item. </li><li class="step">Click New Variable to add a new variable, from the XML Variable property of Start activity. </li><li class="step">Enter the variable name as approvedpurchaseorders in the Variable Name field. </li><li class="step">Select XML List as type from the Type drop-down list. </li><li class="step">Enter the List name in the Select List field or click the icon to select the list. In this case, select Approved Purchase Orders list. </li><li class="step">Select New as scope from the ListItem Scope Options to point to the new item in the list.<p class="stepresult"></p>
+<p class="stepresult"> <br><img id="f181552" src="181552.png" alt="" height="84" width="696" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="step">Now you can see the XML nodes in a tree-view that are mapped to the controls while creating the list. You can also notice that the parent XML nodes and child XML nodes (PurchaseOrderDetails grid) are also displayed. </li><li class="step">Click Save Variable. A message is displayed saying 'Variable Updated'. </li><li class="step">You need to create XML Iterator type XML variable to iterate through the child nodes. For that, click New Variable from the XML Variable screen. </li><li class="step">Enter the variable name as approvedpurchaseorderdetails. </li><li class="step">Select XML Iterator as type from the Type drop-down list. </li><li class="step">Select approvedpurchaseorders from the XML Variable drop-down list. </li><li class="step">From the Node Select drop-down, select the repeating node, that is PurchaseOrderDetails. </li><li class="step">Click Save Variable. A message is displayed saying 'Variable Updated'. </li><li class="step">Drag and drop Update Variable activity to set value for the parent nodes or the item. </li><li class="step">Click the edit icon in the Set Variables property. </li><li class="step">Click the Select link and select the respective field of the XML List type XML Variable created for the list (in this case approvedpurchaseorders). The fields displayed in the tree-view represent the XML nodes of the controls in the list. <p class="stepresult"></p>
+<p class="stepresult"><img id="f181553" src="181553.png" alt="" height="309" width="477" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="step">Select a field for which you want set the value from the tree-view under approvedpurchaseorders. The selected variable for the field Title will be displayed in the text box as 'XMLVariables.approvedpurchaseorders.ApprovedPurchaseOrders.Title.' </li><li class="step">Enter the value for the field in the right-hand side text box. Select the respective field of the purchaseorders XML variable (purchase order item to be copied). The selected XML variable for the field will be displayed as 'XMLVariables.purchaseorders.PurchaseOrders.Title'. Set the value for all other fields in the same way. </li><li class="step">After setting the value for all the fields in the parent form (controls in the main form) that you want to add, click Ok. This will add a list item to the new list (Approved Purchase Order), while executing the workflow, with the values in the current Purchase Orders item. </li><li class="step">Next, you need to iterate through the grid/child items of the current purchase order and to add the child items in the new list (Approved Purchase Order). Drag and drop ForEach-Loop activity to loop through the grid items. </li><li class="step">Select XML Iterator type XML variable that you have created for the current Purchase Order from the XML Iterator drop-down list (in this case, purchaseorderdetails). </li><li class="step">If you want to add an item to the grid (in this case, if you want to add a purchase order details grid item), use XML Navigator activity. XML Navigator can be used to point to an item in the grid (purchaseorderdetails in this case). </li><li class="step">Drag and drop XML Navigator activity. </li><li class="step">Select approvedpurchaseorderdetails from XML Iterator drop-down list and select Yes from Create New Node properties to create a new node. </li><li class="step">Select the appropriate Location. The available options are: <ul class="ulsubitem"><li class="ulsubitem">First: Navigates to the first record in the collection. </li><li class="ulsubitem">Last: Navigates to the last record in the collection. </li><li class="ulsubitem">Next: Navigates to the next record based on the current location. </li><li class="ulsubitem">Previous: Navigates to the previous record based on current location. </li><li class="ulsubitem">Index: Navigates to the record identified in the Index field. </li></ul><p class="stepinfo">Since we have to append the items in Purchase Order Details grid, select the option as Last.</p>
+</li><li class="step">Click <b class="uicontrol">Save</b>. </li><li class="step">Drag and drop<b class="uicontrol"> Update Variable</b> activity to set the value for the grid item fields of the new list item. </li><li class="step">Click the edit icon in the <b class="uicontrol">Set Variables </b>property. </li><li class="step">Click the Select link and select the respective field of the XML List type XML Variable created for the list (in this case ApprovedOrderDetails). The fields displayed in the tree-view represent the XML nodes of the controls in the list. </li><li class="step">Select the XML variable PurchaseOrderDetails from the tree-view. You can either select PurchaseOrderDetails node or select all child nodes separately. In this case, you are selecting the PurchaseOrderDetails node. The variable will be displayed in the text box as 'XMLVariables.approvedpurchaseorderdetails.PurchaseOrderDetails'. </li><li class="step">Set the value in the right-hand side text box. Select the respective field of the purchaseorderdetails XML variable (purchase order item to be copied) from the tree-view. The selected variable will be displayed in the text box as 'XMLVariables.purchaseorderdetails.PurchaseOrderDetails'. </li><li class="step">After setting the value for the fields in the child item that you want to add, click OK. This will add a grid item to the new list (Approved Purchase Order), while executing the workflow, with the values in the current (Purchase Order) list. <p class="stepinfo"></p>
+<p class="lnote"><strong class="notelabel">Note</strong>: You can also select each node in the grid separately and set the value for each node.</p>
+<p class="stepinfo"></p>
+</li><li class="step">Complete the loop with a Next activity and finish the workflow with appropriate link conditions. </li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="'XMLList'XMLVariableScenarios.html" target="_self">'XML List'  XML Variable Scenarios</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

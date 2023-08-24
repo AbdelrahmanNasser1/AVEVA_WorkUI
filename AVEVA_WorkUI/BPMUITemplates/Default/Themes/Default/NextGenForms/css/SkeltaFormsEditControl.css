@@ -1,0 +1,23 @@
+﻿.skscrbtn
+{
+    background-color: #4D5EE0;
+    color: #ffffff;
+}
+
+[data-skbtn="cancel"], [data-skbtn="clear"]
+{
+    background-color: #E4E8F9;
+    color: #5B6BE3;
+}
+
+    .skscrbtn:hover, [data-skbtn="cancel"]:hover, [data-skbtn="clear"]:hover
+    {
+        background-color: #5B6BE3;
+        color: #FFFFFF;
+    }
+
+.k-header.k-drag-clue
+{
+    background-color: #E4E8F9 !important;
+    color: #5B6BE3 !important;
+}

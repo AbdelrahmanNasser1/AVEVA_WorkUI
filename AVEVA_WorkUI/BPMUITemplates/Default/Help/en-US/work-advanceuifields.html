@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work - AdvanceUI Fields </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488137" class="heading4">Work - AdvanceUI Fields</h4>
+<p class="paragraph"><strong class="strong">AdvanceUI Fields Property window</strong></p>
+<p class="paragraph">You can launch the user-interface to configure the functionality of the Work activity from this property window. To open this window, click the button for the 'AdvanceUI Fields' property.</p>
+<p class="paragraph"><img id="f50783" src="50783.png" class="embeddedimage100%scalinglive" alt="" height="358" width="495" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">You can select the type of work activity view to configure &#8211; General or Role Based &#8211; using the two radio buttons in this window.</p>
+<ul class="ulitem"><li class="ulitem">General View</li><li class="ulitem">Role Based View</li></ul><p class="paragraph">You can click&nbsp;<b class="uicontrol">Next</b>&nbsp;to go to the next window for adding the activity details. This will vary depending on the type of view selected.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuration for General View</strong></p>
+<p class="paragraph">The window shown below is opened when you click the&nbsp;General View&nbsp;radio button in the previous window. It is used to specify the action outputs for the Work activity with the General View. This window has two fields common to the General View, which are &nbsp;displayed at the top of all the corresponding property windows.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Action view config file</b>  </li></ul><p class="paragraph">You can specify the Advance UI XML configuration file in this field.</p>
+<p class="paragraph">There are three radio buttons &#8211;&nbsp;<b class="uicontrol">Action Outputs</b>,&nbsp;<b class="uicontrol">Template PlaceHolders</b>, and&nbsp;<b class="uicontrol">Output Variables</b>&nbsp;&#8211; that can be selected to display the respective property setting controls in the lower half of the window.</p>
+<p class="paragraph">The window shown below is displayed when the&nbsp;Activity Output&nbsp;is selected. It can be used to map the outputs of the activity with the possible outputs and specify whether the output is a task completion maker.</p>
+<p class="paragraph"><img id="f50784" src="50784.png" class="embeddedimage100%scalinglive" alt="" height="282" width="562" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">You can set the following parameters here.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Outputs</b>&nbsp;- This shows the output of the activity.</li><li class="ulitem"><b class="uicontrol">Mapped Outputs</b>&nbsp;- You can specify the outputs to map to here.</li><li class="ulitem"><b class="uicontrol">Completion Maker</b>&nbsp;- You can select &quot;Yes&quot; from this drop down to indicate that the corresponding output will mark the completion of the activity.</li></ul><p class="paragraph">You can click<b class="uicontrol">&nbsp;Save Action Outputs</b>&nbsp;to save the new settings.</p>
+<p class="paragraph">The window shown below is displayed when you select the&nbsp;<b class="uicontrol">Template Placeholders</b>&nbsp;radio button. You can specify the values to the template placeholders in the Work activity here.</p>
+<p class="paragraph"><img id="f50785" src="50785.png" class="embeddedimage100%scalinglive" alt="" height="284" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window lists all the template placeholders configured for the activity under the&nbsp;Template Placeholders Description&nbsp;column. You can specify the value for each placeholder using the following controls.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">The Value type drop down</b> - You can select the type of value to assign from the options in this drop down. You can set a discrete value, variable or content here.</li><li class="ulitem"><b class="uicontrol">The Value text box/drop down</b> - You can specify the value here. If you selected &quot;SetValue&quot; in the previous drop down this control will be a text box. It will show a drop down otherwise, where you can select an appropriate variable or content collection.</li></ul><p class="paragraph">You can click&nbsp;<b class="uicontrol">Preview</b>&nbsp;to see a preview of the template setting. You can click&nbsp;Save Template Placeholders&nbsp;to save the settings.</p>
+<p class="paragraph">The window shown below is displayed when you select the&nbsp;<b class="uicontrol">Output Variables</b>&nbsp;radio button. You can specify the output variable and the HTML element mapped to it here</p>
+<p class="paragraph"><img id="f50786" src="50786.png" class="embeddedimage100%scalinglive" alt="" height="191" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window lists all the output variables for the activity under the&nbsp;Output Variables Desc&nbsp;column. You can specify the value for each placeholder using the following controls.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Value Type</b>&nbsp;- You can select the type of value to assign from the options in this drop down. You can set a variable or content here.</li><li class="ulitem"><b class="uicontrol">Variable to store</b>&nbsp;- You can specify the variable to store the output here. You can select an appropriate variable or content collection from this drop down.</li><li class="ulitem"><b class="uicontrol">Operator</b>&nbsp;- You can select an operator from this drop down.</li><li class="ulitem"><b class="uicontrol">HTML Element Mapped</b>&nbsp;- You can specify the HTML Element that is to be mapped to the output variable.</li></ul><p class="paragraph">You can click&nbsp;<b class="uicontrol">Save Output Variables</b>&nbsp;to save the settings.</p>
+<p class="paragraph"><strong class="strong">Configuration for Role Based View</strong>&nbsp;</p>
+<p class="paragraph">The window shown below is opened when you click the&nbsp;<b class="uicontrol">Role Based View</b>&nbsp;radio button in the main AdvanceUI Fields property window. It is used to define a role for the Work activity. It is displayed when you use the Work activity for the first time. This window has three columns in this window, which you can use to add roles.</p>
+<p class="paragraph"><img id="f50787" src="50787.png" class="embeddedimage100%scalinglive" alt="" height="285" width="495" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Specify Role</b>&nbsp;- You can specify the name of the new role in this field.</li><li class="ulitem"><b class="uicontrol">Role Button</b>&nbsp;- This column has the&nbsp;Define Filter&nbsp;button. You can click this button to open the filter definition button.</li><li class="ulitem"><b class="uicontrol">Specified Filter</b>&nbsp;- The field in this column displays the newly defined filter.</li></ul><p class="paragraph"><img id="f50788" src="50788.png" class="embeddedimage100%scalinglive" alt="" height="246" width="564" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">This window has three buttons.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Save and Add Row</b>&nbsp;- You can click this button to save the role defined in the current row and add another row to add a role.</li><li class="ulitem"><b class="uicontrol">Remove Selected</b>&nbsp;- You can select a row and remove it using this button.</li><li class="ulitem"><b class="uicontrol">Next</b>&nbsp;- You can click this button after adding the required roles for the Work activity to continue to the main window for the Role Based View.</li></ul><p class="paragraph">The window shown below is displayed when you click the&nbsp;<b class="uicontrol">Define Filter</b>&nbsp;button in the previous window. You can build a role filter condition for the new role here. The following image shows how to build a role filter condition</p>
+<p class="paragraph"><img id="f50789" src="50789.png" class="embeddedimage100%scalinglive" alt="" height="227" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has a set of drop downs at the top to select the different parameters required to build an expression to define the filter. You can also find related buttons next to the drop downs.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">The Attribute drop down</b> - You can select the attribute to be used to filter the participant, e.g., &quot;AdministratorId&quot;, in this drop down.</li><li class="ulitem"><b class="uicontrol">The Operator drop down</b> - You can select the operator for the expression here. E.g., &quot;=&quot;</li><li class="ulitem"><b class="uicontrol">The Value type drop down</b> - You can select the type of value to assign to the attribute in the expression. You can specify Variable, Content, Value, or XMLVariables here.</li><li class="ulitem"><b class="uicontrol">The Value text box/drop down</b> - You can specify the actual value to assign to the attribute. The control displayed depends on the option selected in the preceding drop down. If you had selected &quot;Value&quot;, it will display a text box here. You can enter a discrete value in this box to complete the expression. If you had selected &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot; instead, there will be a drop down instead of the field. This drop down will have the variable collection or content collection or XMLVariables collection from which you can select an appropriate option.</li><li class="ulitem"><b class="uicontrol">The Logical operator drop down</b> - You can select logical operators from this drop down to build compound expressions. The options available are &quot;End&quot;, &quot;And&quot;, &quot;Or&quot;, &quot;')' And&quot;, and &quot;')' Or&quot;. You can select &quot;End&quot; to complete the expression.</li><li class="ulitem"><b class="uicontrol">Add</b>&nbsp;- You can click this button to add the new expression to the&nbsp;Specified Filter&nbsp;field in the previous window.</li><li class="ulitem"><b class="uicontrol">Undo</b>&nbsp;- You can click this button to remove a condition you have added to the expression.</li></ul><p class="paragraph">The window shown below is displayed when you click&nbsp;Next&nbsp;in the Role Definition window, if&nbsp;you are using the Work activity for the first time. If you are not using the activity for the first time this window will be opened when you select the&nbsp;Role Based View&nbsp;radio button in the ActivityUI property main window. You can specify the action outputs for the Work activity with the Role Based View. This window has two fields common to the General View, which are &nbsp;displayed at the top of all the corresponding property windows.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Role Name</b>&nbsp;- You can select the role for which the View you are configuring will be accessible from this drop down.</li><li class="ulitem"><b class="uicontrol">Action view config file Name</b>&nbsp;- You can specify the Advance UI XML configuration file in this field.</li></ul><p class="paragraph">There are three radio buttons &#8211;&nbsp;<b class="uicontrol">Action Outputs</b>,&nbsp;<b class="uicontrol">Template Placeholders</b>, and&nbsp;<b class="uicontrol">Output Variables</b>&nbsp;&#8211; that can be selected to display the respective property setting controls in the lower half of the window.</p>
+<p class="paragraph">The window shown below is displayed when the&nbsp;Action Output&nbsp;is selected. It can be used to map the outputs of the activity with the possible outputs and specify whether the output is a task completion maker.</p>
+<p class="paragraph"><img id="f50790" src="50790.png" class="embeddedimage100%scalinglive" alt="" height="327" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Action Output window for Role Based View</p>
+<p class="paragraph">You can set the following parameters here.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Outputs</b>&nbsp;- This shows the output of the activity.</li><li class="ulitem"><b class="uicontrol">Mapped Outputs</b>&nbsp;- You can specify the outputs to map to here.</li><li class="ulitem"><b class="uicontrol">Completion Maker</b>&nbsp;- You can select &quot;Yes&quot; from this drop down to indicate that the corresponding output will mark the completion of the activity.</li></ul><p class="paragraph">You can click the<b class="uicontrol">&nbsp;Save Action Outputs</b>&nbsp;to save the new settings.</p>
+<p class="paragraph">The window shown below is displayed when you select the&nbsp;Template Placeholders&nbsp;radio button. You can specify the values to the template placeholders in the Work activity here.</p>
+<p class="paragraph"><img id="f50791" src="50791.png" class="embeddedimage100%scalinglive" alt="" height="354" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Template Placeholders window for Role Based View</p>
+<p class="paragraph">The window lists all the template placeholders configured for the activity under the&nbsp;Template Placeholders Description&nbsp;column. You can specify the value for each placeholder using the following controls.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">The Value type drop down</b> - You can select the type of value to assign from the options in this drop down. You can set a discrete value, variable or content here.</li><li class="ulitem"><b class="uicontrol">The Value text box/drop down</b> - You can specify the value here. If you selected &quot;SetValue&quot; in the previous drop down this control will be a text box. It will show a drop down otherwise, where you can select an appropriate variable or content collection.</li></ul><p class="paragraph">You can click&nbsp;Preview&nbsp;to see a preview of the template setting. You can click&nbsp;Save Template Placeholders&nbsp;to save the settings.</p>
+<p class="paragraph">The window shown below is displayed when you select the&nbsp;Output Variables&nbsp;radio button. You can specify the output variable and the HTML element mapped to it here.</p>
+<p class="paragraph"><img id="f50792" src="50792.png" class="embeddedimage100%scalinglive" alt="" height="232" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Output Variables window for Role Based View</p>
+<p class="paragraph">The window lists all the output variables for the activity under the&nbsp;Output Variables Desc&nbsp;column. You can specify the value for each placeholder using the following controls.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Value Type</b>&nbsp;- You can select the type of value to assign from the options in this drop down. You can set a variable or content here.</li><li class="ulitem"><b class="uicontrol">Variable to store</b>&nbsp;- You can specify the variable to store the output here. You can select an appropriate variable or content collection from this drop down.</li><li class="ulitem"><b class="uicontrol">Operator</b>&nbsp;- You can select an operator from this drop down.</li><li class="ulitem"><b class="uicontrol">HTML Element Mapped</b>&nbsp;- You can specify the HTML Element that is to be mapped to the output variable.</li></ul><p class="paragraph">You can click the<b class="uicontrol">&nbsp;Save Output Variables</b>&nbsp;to save the settings.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workaction1.html" target="_self">Work Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

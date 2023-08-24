@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Setting up the List Query Scope </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t610254" class="heading5">Setting up the List Query Scope</h5>
+<p class="paragraph">This property allows you to build the query for the list and retrieve the data based on the query. You need to point to any particular item to perform a task based on the respective item. This can be done by building the query using&nbsp;List Query.</p>
+<p class="procedureheading">To set up the list query scope</p>
+<ol class="step"><li class="step">Select&nbsp;<b class="uicontrol">List Query</b>&nbsp;as the scope and click&nbsp;<b class="uicontrol">Save</b>. Click the edit icon of&nbsp;<b class="uicontrol">List Query</b>&nbsp;property. The following screen is displayed. <br><br>&nbsp;<img id="f50395" src="50395.png" class="embeddedimage100%scalinglive" alt="" height="184" width="550" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click the&nbsp;search icon. The following screen appears. <br><br><img id="f50396" src="50396.png" class="embeddedimage100%scalinglive" alt="" height="246" width="550" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">The following are the field values for List Query window:<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">Field</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">List Name</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">Select the list from List Name drop-down.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Table</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">By clicking on this text box, &nbsp;a pop up allows you to select the corresponding table for query. The respective table name will display in the pop up window based on the list you select.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Column</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">From this drop down you can select the column or field of the corresponding list.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Operator</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">From this drop down you can select an operator (either one of =,&gt;, &lt;,&gt;=, &lt;=, &lt;&gt;, IN, Not IN, Like) to build the query.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Type</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">From this drop down you can select a type. The value will be &nbsp;automatically displayed in the text box.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Condition</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">From this drop down you can select the condition [either of End, And, Or, '),' '('].</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Add</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">You can click this button to add a query in the field.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Clear</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">You can click this button to clear the query contents.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">OK</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">You can click this button to save this query.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Close</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableparagraph">You can click this button to close this window.</p>
+</td>
+</tr>
+
+</table>
+</li><li class="step">Enter the details, and click&nbsp;<b class="uicontrol">Add</b>&nbsp;to add the List Query.</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>&nbsp;and then click&nbsp;<b class="uicontrol">Close</b>.</li><li class="step">For example, you have a list named&nbsp;Workflow&nbsp;and you want to update the records that have the&nbsp;Id&nbsp;value &nbsp;'12345' and &nbsp;'6789' . This query can be built using list query.</li><li class="step">Click the&nbsp;<img id="f50397" src="50397.png" class="embeddedimage100%scalinglive" alt="" height="33" width="34" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to build the query for the list&nbsp;Workflow. The&nbsp;<b class="uicontrol">List Query</b>&nbsp;screen appears.</li><li class="step">The list name&nbsp;<i class="emphasis">Workflow</i>&nbsp;is selected automatically. If the list is not selected, select your list from the<b class="uicontrol">&nbsp;List Name</b>&nbsp;drop-down. Click the&nbsp;<b class="uicontrol">Table</b>&nbsp;field. The pop up window allows you to select the table of the <i class="emphasis">'Workflow'</i>.&nbsp;<br><img id="f50398" src="50398.png" class="embeddedimage100%scalinglive" alt="" height="320" width="540" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">SKEWorkflowDefinition</b>. This will be displayed automatically in the text box. Here, the table names displayed in the tree view are the parent table (one on the top) and the child table (the one below).</li><li class="step">Click the&nbsp;<b class="uicontrol">Column</b>&nbsp;drop-down. </li><li class="step">Select<b class="uicontrol">&nbsp;int1</b>&nbsp;from the options since the field&nbsp;<b class="uicontrol">Reference No</b>&nbsp;is mapped to this column of the database.</li><li class="step">Select '=' operator from the&nbsp;<b class="uicontrol">Operator</b>&nbsp;drop-down list.</li><li class="step">Select&nbsp;<b class="uicontrol">Value</b>&nbsp;from the&nbsp;<b class="uicontrol">Type</b>&nbsp;drop-down list.</li><li class="step">Type&nbsp;<b class="uicontrol">'12345'</b>&nbsp;in the text box.</li><li class="step">Select&nbsp;<b class="uicontrol">OR</b>&nbsp;from the&nbsp;<b class="uicontrol">Condition</b>&nbsp;drop-down list to add another query.&nbsp;<br><img id="f50399" src="50399.png" class="embeddedimage100%scalinglive" alt="" height="256" width="555" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">Add</b>&nbsp;to add the condition in the text field.<p class="stepinfo"><img id="f50400" src="50400.png" class="embeddedimage100%scalinglive" alt="" height="262" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Here,<b class="uicontrol">&nbsp;SKEWorkflowDefinition</b>&nbsp;is the table name where the list has been stored and&nbsp;<b class="uicontrol">t2</b>&nbsp;is the internal name that has been used for the master table. If there is any child table, it will be displayed as&nbsp;<b class="uicontrol">t2</b>.&nbsp;Id&nbsp;is in the field name, to which you want to point your XML variable and&nbsp;<b class="uicontrol">12345</b>&nbsp;as the value for that field.</li><li class="step">Repeat the same steps for the list item that has&nbsp;<b class="uicontrol">'6789'</b>&nbsp;as&nbsp;<b class="uicontrol">Reference No</b>.</li><li class="step">Enter the value as<b class="uicontrol">&nbsp;'6789'</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">End</b>&nbsp;from the&nbsp;<b class="uicontrol">Condition</b>&nbsp;drop-down list.</li><li class="step">Click&nbsp;<b class="uicontrol">Add</b>. The build query will be displayed in the text field.&nbsp;<br><img id="f50401" src="50401.png" class="embeddedimage100%scalinglive" alt="" height="244" width="570" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>,&nbsp;and then click&nbsp;<b class="uicontrol">Close</b>. <br><img id="f50402" src="50402.png" class="embeddedimage100%scalinglive" alt="" height="137" width="577" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;Update.</li><li class="step">You can replace the value for the query, with the variables. To replace, select the text/value to be replaced, and then select the respective field from the drop-down list and click&nbsp;<b class="uicontrol">Append</b>.&nbsp;&nbsp;<br>&nbsp;<img id="f50403" src="50403.png" class="embeddedimage100%scalinglive" alt="" height="145" width="577" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>,&nbsp;and then close the window.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="xmlvariableforlist.html" target="_self">XML Variable for List</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

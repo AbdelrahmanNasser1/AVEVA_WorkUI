@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using WorkItemInboxCount In InTouch </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602423" class="heading3">Using WorkItemInboxCount In InTouch</h3>
+<p class="paragraph">The WorkItemInboxCount control in InTouch displays the count of work items in the Inbox that have not been acknowledged or acted upon by the user. Also, the work items that have been assigned to Queues will be considered only when they are available in the user's Inbox. The count being displayed can be refreshed automatically or manually based on the configuration settings.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Using WorkItemInboxCount In InTouch</p>
+<p class="paragraph"></p>
+<p class="paragraph">Follow Step 1 to Step 7 listed in the Initial Steps and continue:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Select the control in the editor and double-click.</li><li class="step">Select Configuration under Animations to configure the control. <p class="stepinfo">Following are the properties of WorkItemInboxCount control:</p>
+<ul class="ulsubitem"><li class="ulsubitem">AutomaticRefresh: This property is used to set whether the work item count should be refreshed automatically or not. </li><li class="ulsubitem">RefreshPeriod: This property is used to set the refresh period in milliseconds. The minimum value for Refresh Period is 30000.<br><br>If value of the RefreshPeriod property is set less than 30000, the value is automatically refreshed to the minimum value of 30000.</li><li class="ulsubitem">ShowRefreshButton: This property is used to set whether manual data refresh button is visible or not. </li><li class="ulsubitem">ToolTip: This property is used to set the tool tip for the Refresh button. </li><li class="ulsubitem">WorkflowName: This property is used to set the workflow name for which the work item count will be visible. It has to be left blank to get the work item count of all the workflows. </li></ul></li><li class="step">After configuring the control, click OK.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191104" src="191104.png" class="embeddedimage100%scalinglive" alt="" height="260" width="559" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Drag and drop a Text control and set its Text property value as '#'. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191105" src="191105.png" class="embeddedimage100%scalinglive" alt="" height="401" width="448" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">This hash (#) feature of InTouch will be used to display the pending work item count. The public property &quot;PendingWorkItemsCount&quot; of the WorkItemInboxCount control will be updated with the pending work item count. </p>
+<p class="stepinfo">       # will be replaced by the value of the PendingWorkItemsCount property.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191106" src="191106.png" class="embeddedimage100%scalinglive" alt="" height="222" width="567" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Select the WorkflowGateway object instance and deploy it in the ArchestrA IDE. </li><li class="step">Double-click the $InTouchViewApp instance (aaReactorDemo) under ViewEngine from the ArchestrA IDE.<p class="stepresult">The InTouch WindowMaker appears. </p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191107" src="191107.png" class="embeddedimage100%scalinglive" alt="" height="248" width="244" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Create a new window for the WorkItemInboxCount control. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64662" src="64662.jpg" class="embeddedimage100%scalinglive" alt="" height="385" width="505" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Provide the name and size for the window. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191108" src="191108.png" class="embeddedimage100%scalinglive" alt="" height="235" width="467" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Right-click in the WorkItemInboxCount window and select <b class="uicontrol">Embed ArchestrA Graphic</b> option. <p class="stepresult">The ArchestrA Galaxy Browser appears. </p>
+<p class="stepresult"></p>
+<p class="stepinfo"><img id="f191109" src="191109.png" class="embeddedimage100%scalinglive" alt="" height="333" width="439" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Select the Instances tab and select the WorkflowGateway instance to which the graphic symbol has been added. </li><li class="step">Select the required graphic object ('WorkItemInboxCount'). <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191110" src="191110.png" class="embeddedimage100%scalinglive" alt="" height="247" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Enable security for the 'WorkItemInboxCount' window. </li><li class="step">Select Security Type as &quot;ArchestrA&quot;. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191111" src="191111.png" class="embeddedimage100%scalinglive" alt="" height="244" width="573" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Save the window and exit InTouch WindowMaker. </li><li class="step">Save and close the object in the ArchestrA IDE. </li><li class="step">Deploy the $InTouchViewApp instance. </li><li class="step">Click the Runtime button on the right hand side. </li><li class="step">Open the InTouch Viewer and navigate to Special &gt; Security &gt; Log On. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191112" src="191112.png" class="embeddedimage100%scalinglive" alt="" height="164" width="520" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Enter the Credentials and click OK.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64669" src="64669.jpg" class="embeddedimage100%scalinglive" alt="" height="205" width="434" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Open the Work Item Inbox Count (the one created) window from the file menu. <p class="stepinfo">The WorkItemInboxCount control loads in the window. </p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64671" src="64671.jpg" class="embeddedimage100%scalinglive" alt="" height="315" width="466" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="note"><strong class="notelabel">Note</strong>: To use new controls after upgrading AVEVA Work Tasks, re-import ArchestrA.InTouch.SkeltaControls.dll. In the Import Preference dialog select 'Skip: Do not import' to ensure the existing controls are not overwritten. For more details about how to import ArchestrA.InTouch.SkeltaControls.dll, see Initial Steps.</p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="openinginboxusingworkiteminboxcountsymbol_1.html" target="_self">Opening Inbox using WorkItemInboxCount</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,89 @@
+<Menu>
+	<Group ID="Menu1"  Flow="Horizontal" >
+		<Item CssClass="menuClass"  Text="@@File@@" Value="File"  RightLogo="">
+			<Group LeftCellWidth="32" RightCellWidth="12"  ExpandDirection="Down" Flow="Vertical" OffsetY="-1">
+				<Item CssClass="menuClass" Value="openimageemf" LeftLogo="Menu/images/image-png-emf.png"   Text="@@Save As EMF Image@@">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item CssClass="menuClass" Value="openimagepng" LeftLogo="Menu/images/save-as-png.png"   Text="@@Save As PNG Image@@">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item  Value="mnuSepa1"  IsSeparator="true" CssClass="Separator" FocusedCssClass="Separator" ClickedCssClass="Separator">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item  CssClass="menuClass" Value="cleardiagram" LeftLogo="Menu/images/clear.png"   Text="@@Clear Diagram@@">
+					<Group Flow="Vertical" />
+				</Item>
+			</Group>
+		</Item>
+		<Item CssClass="menuClass"  Text="@@Edit@@" Value="Edit" RightLogo="">
+			<Group LeftCellWidth="28" RightCellWidth="12"  ExpandDirection="Down" Flow="Vertical" OffsetY="-1">
+				<Item CssClass="menuClass" Value="mnuUndo"  LeftLogo="Menu/images/undo.png" LeftLogoDisabled="Menu/images/grey-undo.png"   CssClassDisabled="Office2003_MenuItemDisabled"   Text="@@Undo@@" Enabled="false">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item  CssClass="menuClass" Value="mnuRedo"  LeftLogo="Menu/images/redo.png" LeftLogoDisabled="Menu/images/grey-redo.png"   CssClassDisabled="Office2003_MenuItemDisabled"   Text="@@Redo@@" Enabled="false">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item  Value="mnuSepa1"  IsSeparator="true" CssClass="Separator" FocusedCssClass="Separator" ClickedCssClass="Separator">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item CssClass="menuClass" Value="mnuCutDelete" LeftLogo="Menu/images/delete.png"  LeftLogoDisabled="Menu/images/grey-cut.png"   CssClassDisabled="Office2003_MenuItemDisabled"    Text="@@Delete@@">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item CssClass="menuClass" Value="mnuCopy"  LeftLogo="Menu/images/copy.png" LeftLogoDisabled="Menu/images/grey-copy.png"   CssClassDisabled="Office2003_MenuItemDisabled"    Text="@@Copy@@">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item CssClass="menuClass" Value="mnuPaste" LeftLogo="Menu/images/paste.png" LeftLogoDisabled="Menu/images/grey-paste.png"   CssClassDisabled="Office2003_MenuItemDisabled"    Text="@@Paste@@">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item  Value="mnuSepa1"  IsSeparator="true" CssClass="Separator" FocusedCssClass="Separator" ClickedCssClass="Separator">
+					<Group Flow="Vertical" />
+				</Item>				
+				<Item CssClass="menuClass" Value="mnuShwProWin" LeftLogo="Menu/images/properties.png"  Text="@@Properties@@">
+					<Group Flow="Vertical" />
+				</Item>
+			</Group>
+		</Item>
+		<Item CssClass="menuClass"  Text="@@Publish@@" Value="Publish"  RightLogo="">
+			<Group LeftCellWidth="28" RightCellWidth="12"  ExpandDirection="Down" Flow="Vertical" OffsetY="-1">
+				<Item CssClass="menuClass" Value="mnuPublish"  LeftLogo="Menu/images/deploy.png"  Text="@@Publish@@">
+				</Item>
+
+				<Item CssClass="menuClass" Value="mnuValidate"  LeftLogo="Menu/images/open-deployed.png"  Text="@@Validate Definition@@">
+				</Item>
+			</Group>
+		</Item>
+		<Item CssClass="menuClass"  Text="@@Tools@@" Value="Tools"  RightLogo="">
+			<Group LeftCellWidth="28" RightCellWidth="12"  ExpandDirection="Down" Flow="Vertical" OffsetY="-1">
+				<Item CssClass="menuClass" Value="import" LeftLogo="Menu/images/import.png"  Text="@@Import@@">
+					<Group Flow="Vertical" />
+				</Item>
+				<Item  CssClass="menuClass" Value="mnuExport"  LeftLogo="Menu/images/export.png"  Text="@@Export@@">
+				</Item>
+				<!--<Item  CssClass="menuClass" Value="mnuExportC"  LeftLogo="Menu/images/exportconfig.png"  Text="@@Export With Config@@">
+				</Item>-->
+				<Item CssClass="menuClass" Value="mnuImpFrmVisio" LeftLogo="Menu/images/import-from-visio.png"  Text="@@Import from Visio@@">
+				</Item>				
+			</Group>
+		</Item>
+		<Item CssClass="menuClass" Text="@@Settings@@"  Value="Settings" RightLogo="">
+			<Group LeftCellWidth="28" RightCellWidth="12"  ExpandDirection="Down" Flow="Vertical" OffsetY="-1">
+				<Item CssClass="menuClass" Value="workitemfields" LeftLogo="Menu/images/work-item-fields.png"  Text="@@Workitem Fields@@">
+					<Group Flow="Vertical" />
+				</Item>				
+				<Item CssClass="menuClass" Value="alternateactor"  LeftLogo="Menu/images/alternate-actors.png"  Text="@@Alternate Actors@@">
+				</Item>
+				<Item CssClass="menuClass" Value="bamconfiguration"  LeftLogo="Menu/images/BAM-Config.png"  Text="@@BAM Configuration@@">
+				</Item>
+				<Item CssClass="menuClass" Value="worklistlayout" LeftLogo="Menu/images/WorklistLayout.png"  Text="@@WorkItemlist Layout@@">
+				</Item>
+				
+			</Group>
+		</Item>	
+		
+		<Item CssClass="menuClass" Value="mnuTestRun"   Text="@@Test Run@@" RightLogo="">
+		</Item>
+		<Item CssClass="menuClass" Value="mnuHelp"   Text="@@Help@@" RightLogo="">
+		</Item>
+	</Group>
+</Menu>

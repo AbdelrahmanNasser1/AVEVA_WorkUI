@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Participants Tab </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t611098" class="heading4">Participants Tab</h4>
+<p class="paragraphimage">Configure the different settings for a new queue or edit the settings for an existing queue in this view of the Queue Management window. You can access these settings using the different tabs in the window. The first tab,&nbsp;<b class="uicontrol">Participants</b>, is selected by default.</p>
+<p class="paragraphimage">The&nbsp;<b class="uicontrol">Participants</b>&nbsp;tab displays a list of all the existing participants along with their access rights. The following image shows&nbsp;<b class="uicontrol">Participants</b>&nbsp;tab of the&nbsp;<b class="uicontrol">Queue Management</b>&nbsp;window:</p>
+<p class="paragraphimage"><br><img id="f46714" src="46714.png" class="embeddedimage100%scalinglive" alt="" height="369" width="568" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">Adding Participants</p>
+<p class="paragraph">Click&nbsp;<b class="uicontrol">Add Users</b>&nbsp;to add a new participant to the queue. The<b class="uicontrol">&nbsp;Add Users</b>&nbsp;window opens where you can add new users</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46715" src="46715.png" class="embeddedimage100%scalinglive" alt="" height="242" width="577" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f46716" src="46716.png" class="embeddedimage100%scalinglive" alt="" height="396" width="541" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">You can specify a search string to&nbsp;<b class="uicontrol">Search for</b>&nbsp;resources from the desired provider. The resources matching the search parameter are extracted by the resource handler and displayed in the&nbsp;<b class="uicontrol">Available Resources</b>&nbsp;list. You can select the resource names from this list and click the [ &gt; ] button to move it into the&nbsp;<b class="uicontrol">Selected Resources</b>&nbsp;list. You can click the [ &gt;&gt; ] button to move all the available resources into the selected resources list. After selecting the resources click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save the selection.</p>
+<p class="paragraph"></p>
+<p class="subheading">Adding Roles</p>
+<p class="paragraph">Click the&nbsp;<b class="uicontrol">Add Roles</b>&nbsp;button to add roles to the queue. You can add the new roles in the Add Roles window that is opened. The available roles extracted by the role handler are displayed in the&nbsp;<b class="uicontrol">Available Roles</b>&nbsp;list. You can select the role names from this list and click the [ &gt; ] button to move it into the&nbsp;<b class="uicontrol">Selected Roles</b>&nbsp;list. You can click the [ &gt;&gt; ] button to move all the available roles into the selected roles list. After selecting the roles, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save the selection.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46717" src="46717.png" class="embeddedimage100%scalinglive" alt="" height="163" width="586" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46718" src="46718.jpg" class="embeddedimage100%scalinglive" alt="" height="393" width="598" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;The providers drop down will be available only if the repository has multiple providers.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Setting Access Rights</p>
+<p class="paragraph">You will need to set access rights for the various participants of a queue so that each person can perform only the permitted actions in the queue. You can right-click on any participant name or role name in the main Participants tab window, and then select&nbsp;<b class="uicontrol">Set Access Rights</b>&nbsp;to open the Access Rights window.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46719" src="46719.png" class="embeddedimage100%scalinglive" alt="" height="391" width="567" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">After you select&nbsp;<b class="uicontrol">Set Access Rights</b>, the&nbsp;<b class="uicontrol">Runtime Access Rights</b>&nbsp;dialog box appears:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46720" src="46720.jpg" class="embeddedimage100%scalinglive" alt="" height="441" width="510" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">You can use the&nbsp;<b class="uicontrol">Runtime Access Rights</b>&nbsp;window to set the access rights for the selected participants. You can set both&nbsp;Runtime and Design time Access Rights here.</p>
+<p class="paragraph"><b class="uicontrol">Runtime Access Rights:</b>&nbsp;The run-time access rights that can be set in this section allow administrators to set the access rights of participants during the execution of the queue.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Queue Owner</b>&nbsp;- You can set the participant as an owner of the queue.</li><li class="ulitem"><b class="uicontrol">Can View New/Unallocated Items</b>&nbsp;- Allow the participants to view new or unallocated items in the queue.</li><li class="ulitem"><b class="uicontrol">Can View Allocated Items</b>&nbsp;- You can allow the participant to view only the items that have been allocated.</li><li class="ulitem"><b class="uicontrol">Can Ad Hoc Pick Task</b>&nbsp;- You can allow the participant to pick up a task on an ad hoc basis</li><li class="ulitem"><b class="uicontrol">Can Plan Queue Item</b>&nbsp;- You can allow the participant plan to pick up a task</li><li class="ulitem"><b class="uicontrol">Can Put Back in Queue</b>&nbsp;- You can allow the participant to put back a task in the queue.</li><li class="ulitem"><b class="uicontrol">Can Move to Different Queue</b>&nbsp;- You can allow the participant to move the task to a different queue.</li><li class="ulitem"><b class="uicontrol">Can Recall Allocated Items</b>&nbsp;- You can allow the participant to recall a queue item that has been allocated.</li><li class="ulitem"><b class="uicontrol">Can Change Priority level</b>&nbsp;- You can allow the participant to change the priority level of the allocated queue item.</li><li class="ulitem"><b class="uicontrol">Can Do User Based Allocation</b>&nbsp;- You can allow the participant to allocate tasks based on users</li><li class="ulitem"><b class="uicontrol">Can Do Pattern Based Allocation</b>&nbsp;- You can allow the participant to allocate tasks based on patterns</li><li class="ulitem"><b class="uicontrol">Can Do Time Based Allocation</b>&nbsp;- You can allow the participant to allocate tasks based on time</li><li class="ulitem"><b class="uicontrol">Consider Queue Owner as Participant for Automatic Dispatch</b>&nbsp;- You can set the queue owner to be treated as a regular participant for the purpose of automatic dispatch.</li></ul><p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Design time Access Rights:</b>&nbsp;The design time access rights that can be set in this section allow administrators to set the access rights of participants during the configuration of the queue.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Manage Participants</b>&nbsp;- You can allow the participant to manage other participants</li><li class="ulitem"><b class="uicontrol">Set Access Rights</b>&nbsp;- You can allow the participant to set access rights for other participants.</li><li class="ulitem"><b class="uicontrol">Change Settings</b>&nbsp;- You can allow the participant to change the queue settings.</li><li class="ulitem"><b class="uicontrol">Manage Dispatch Patterns</b>&nbsp;- You can allow the participant to manage dispatch patterns.</li><li class="ulitem"><b class="uicontrol">Manage Escalation</b>&nbsp;- You can allow the participant to manage escalation.</li></ul>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

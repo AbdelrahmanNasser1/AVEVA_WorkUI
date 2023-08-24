@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Create-Open-Office-Document: Destination Details </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601970" class="heading4">Create-Open-Office-Document: Destination Details</h4>
+<p class="subheading">Destination Details Property window</p>
+<p class="paragraph">You can specify the details of the file destination in this property window. To open this window, click the button for the 'Destination Details' property.</p>
+<p class="paragraph"><img id="f50991" src="50991.png" class="embeddedimage100%scalinglive" alt="" height="320" width="582" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">This window has the&nbsp;<b class="uicontrol">Protocol</b>&nbsp;drop down where you can select the file transfer protocol. Below this drop down, it has controls &nbsp;to specify the following details.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Protocol:</b> If the selected protocol is FTP-HTTP, you can use FTP or HTTP protocol.<p class="lcontinue">For the HTTP protocol, you must enable the WebDAV Publishing feature for the web server. For more information about enabling the WebDAV Publishing feature, refer the Microsoft documentation.</p>
+<p class="lcontinue">In the <b class="uicontrol">Authentication</b> Feature in Internet Information Services (IIS) Manager, ensure that only <b class="uicontrol">Windows Authentication</b> is enabled for the selected HTTP site.</p>
+<p class="lcontinue"></p>
+</li><li class="ulitem"><b class="uicontrol">Location</b>:&nbsp;You can specify the URI/UNC of the file or directory here.</li><li class="ulitem"><b class="uicontrol">Pattern</b>:&nbsp;You can specify the pattern to decide the file types to be transferred, such as *.doc,*.xls, in this field.</li><li class="ulitem"><b class="uicontrol">UserName</b>:&nbsp;You can specify the user name for the destination here.</li><li class="ulitem"><b class="uicontrol">Password</b>:&nbsp;You can specify the password for the destination here.</li><li class="ulitem"><b class="uicontrol">DomainName</b>:&nbsp;You can specify the domain or computer name of the destination here.</li><li class="ulitem"><b class="uicontrol">PortNumber</b>:&nbsp;You can specify the port number of the destination server.</li></ul><p class="paragraph">Each of the above parameter fields has the following controls.</p>
+<ul class="ulitem"><li class="ulitem">The Operator drop down - You can select the operator for the expression here. E.g., &quot;=&quot;</li><li class="ulitem">The Value type drop down - You can select the type of value to assign to the parameter in the expression. You can specify Variable, Content, Value, or XMLVariables here.</li><li class="ulitem">The Value text box/drop down - You can specify the actual value to assign to the parameter. The control displayed depends on the option selected in the preceding drop down. If you had selected &quot;Value&quot;, it will display a text box here. You can enter a discrete value in this box to complete the expression. If you had selected &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot; instead, there will be a drop down instead of the field. This drop down will have the variable collection or content collection or XMLVariables collection from which you can select an appropriate option.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="createofficedocument.html" target="_self">Create-Open-Office-Document Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

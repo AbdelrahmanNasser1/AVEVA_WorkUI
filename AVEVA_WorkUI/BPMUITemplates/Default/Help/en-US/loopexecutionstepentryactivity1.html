@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Loop Execution Step Entry Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49594" class="heading3">Loop Execution Step Entry Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">The user can use this activity if an instance level association between the End Activity Execution activity and the activity to be ended is required. If this activity is not used, the End Activity Execution activity ends all the instances of the activity that is to be ended. This activity has to be used when the For Loop and For-Each-Loop activities are used in a workflow.</p>
+<p class="subheading">Activity Scenario</p>
+<p class="paragraph">Consider a scenario where a ForEach-Loop activity is linked to a Wait-For-Event activity and an Approval activity. There is a parallel execution of each instance of Wait-For-Event activity that is associated to an instance of Approval activity. With the ForEach-Loop activity running in parallel execution mode, multiple instances of Wait-For-Event activity and Approval activity are created. In such a scenario, the Loop Execution Step Entry activity can be used to establish an instance level association between the End Activity Execution activity and the activity to be ended, thereby controlling the instances to be ended. Loop Execution Step Entry activity has to be placed in such a way that it is the parent activity for Wait-for-event and approval activity.</p>
+<p class="paragraph">See the User Scenarios of End Activity Execution activity and End Child Workflow Execution activity for a detailed understanding of this activity.</p>
+<p class="subheading">Activity Properties<br></p>
+<p class="paragraph"><img id="f51148" src="51148.jpg" class="embeddedimage100%scalinglive" alt="" height="326" width="255" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name and Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property is to be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property can be used to specify a brief description to be displayed for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop-down field.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="EngineActivities.htm" target="_self">Engine Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

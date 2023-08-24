@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Adding Work Item Fields </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t600526" class="heading3">Adding Work Item Fields</h3>
+<p class="paragraph">This window is displayed when you select&nbsp;<b class="uicontrol">Work Item Fields</b>&nbsp;from the&nbsp;<b class="uicontrol">Settings</b>&nbsp;menu of the Process Designer. It lists all the work item fields that have been added. The application data available in contents or variables can be displayed in the Work items list using work item fields. You can map the contents and variables with the work item fields in this window.</p>
+<p class="paragraph">The 'Work Item Fields' property of the Human activities can be used to specify the work item fields to be used for a particular activity.</p>
+<p class="paragraph">This field will automatically be displayed in the Work items list once the activity gets executed and the task is assigned to a resource. When the activity is executed, the values of the custom fields are persisted to the database (SKWork Item Fields table).<br></p>
+<p class="paragraph">The <b class="uicontrol">Work Item Field</b> window has the following buttons:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Add New</b>&nbsp;- You can click this button to add new work item fields. This will open the second window in the <b class="uicontrol">Work Item Field</b> user interface where you can add the new work item fields.</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- Click this button to close the window.</li></ul><p class="subheading">Add/Set Work Item Field window</p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Add/Set Work Item Field</b>&nbsp;window is used for adding work item fields. This interface is displayed after the actor clicks&nbsp;<b class="uicontrol">Add New</b>&nbsp;button in the Work Item Field window.</p>
+<p class="paragraph"></p>
+<p class="paragraph">For each work item field, the following parameters can be set:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Name</b>&nbsp;- You can enter the name of the new work item field in this text box.</li><li class="ulitem"><b class="uicontrol">Display Name</b>- You can specify a display name for the new work item field in this text box. The field will be displayed to the actor with this label name in the Work items list.</li><li class="ulitem"><b class="uicontrol">Type</b>&nbsp;- You can specify the data type corresponding to this work item field by selecting an option from this drop down. The options available are &quot;datetime&quot;, &quot;decimal&quot;, &quot;number&quot; and &quot;string&quot;. For datetime option, the supported format is DD/MM/YYYY.</li><li class="ulitem"><b class="uicontrol">Default Value Type</b>&nbsp;- You can specify the type of value corresponding to the new work item field by selecting an option from this drop down. The options available are &quot;SetValue&quot;, &quot;Variable&quot;, &quot;Content&quot;, &quot;Xml Variables&quot; and &quot;Value&quot;.</li><li class="ulitem"><b class="uicontrol">Default Value</b>&nbsp;- You can specify the value for the new work item field.</li><li class="ulitem"><b class="uicontrol">Application Level</b> - You can select this check box to configure the work item fields to be displayed at Application Level.</li><li class="ulitem"><b class="uicontrol">Work Tasks Pro </b>- You can select this check box to configure Work Task Pro grouping and view the work items in groups. The <b class="uicontrol">Work Tasks Pro</b> check box is enabled only when <b class="uicontrol">Application Level</b> check box is enabled.<p class="stepinfo">Work Tasks Pro scope can be enabled for only one work item field.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The value of the Work Item Field is displayed based on the AVEVA Work Tasks server language setting.</p>
+<p class="stepinfo"></p>
+</li></ul><p class="paragraph">This window has the following buttons:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Add</b>&nbsp;- You can click this to add the new work item field.</li><li class="ulitem"><b class="uicontrol">Cancel&nbsp;</b>- Click this to cancel the settings for the new work item field and close the window.</li></ul><p class="paragraph">When you click&nbsp;<b class="uicontrol">Add</b>, the Work Item Field window opens with the new field added to it.</p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using 'XML Forms Data Grid' XML Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601934" class="heading5">Using 'XML Forms Data Grid' XML Variable</h5>
+<p class="paragraph">The XML Forms Data Grid variable usage can be demonstrated using the following two scenarios:</p>
+<ol class="olitem"><li class="olitem">Create &quot;Xml Forms Data Grid&quot; type Xml Variable and use it in a workflow to iterate through row selections done in the Data Grid.</li><li class="olitem">Use &quot;Xml Forms Data Grid&quot; type Xml Variable to change/add row selections in a Data Grid control using Workflow.</li></ol><p class="paragraph">Let us consider a typical&nbsp;<b class="uicontrol">Work Order&nbsp;&#8211;&nbsp;Job</b>&nbsp;manufacturing process scenario. In a manufacturing process, a&nbsp;<b class="uicontrol">work order</b>&nbsp;is a collection of jobs that produce an item. A&nbsp;<b class="uicontrol">job</b>&nbsp;is a list of&nbsp;<b class="uicontrol">steps</b>&nbsp;or procedures that is executed to produce an item or a version of an item. The list of steps can be grouped together into&nbsp;<b class="uicontrol">Step Groups</b>. Multiple jobs can be performed to produce a single item.</p>
+<p class="subheading">Prerequisites</p>
+<ol class="step"><li class="step">AVEVA Work Tasks&nbsp;Form with two Data Grids.&nbsp;One Data Grid will be showing the Work Order and Jobs details and the other would show the Job Step details. When the user selects a Job in the Work Order and Jobs grid, the Job Steps grid will be populated with the relevant Job Steps.  <br>The grid selection information is stored in the XML nodes mapped to the Grid Control. To extract the required values and use it within workflows, we need to create XML variables of type XML Forms Data Grid.</li><li class="step">This form is associated to a new Workflow. The XML variable SFFormData will be added to the XML Variable collection. (Form XML variable can also be created without association, i.e. by selecting the corresponding Form from the XML Variable interface).  <br><p class="stepinfo"><img id="f194460" src="194460.png" alt="" height="415" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li></ol><p class="paragraph"><strong class="strong">Scenario 1: Create Xml Forms Data Grid type Xml Variable and use it in a workflow to iterate through selections done in the Data Grid</strong></p>
+<p class="paragraph">&nbsp;</p>
+<ol class="step"><li class="step">Create an XML variable of type XML Forms Data Grid as shown below for Job Steps Grid. Select JobStepsGrid XML Node which is mapped to the Job Steps Grid Configuration. (This will contain the complete selection information of the Data Grid once the form is submitted.) <p class="stepinfo"><img id="f194463" src="194463.png" alt="" height="495" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">As the selected job can have multiple steps, we need an XML Iterator variable to iterate through the multiple steps selected in the Job Steps Grid. Create an XML Iterator variable 'LoopJobSteps' with repeating node(Node Select) as JobStepLookup. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50474" src="50474.png" class="embeddedimage100%scalinglive" alt="" height="495" width="550" vspace="0" hspace="0" align="bottom" border="0">I</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><strong class="notelabel">Note: </strong>The XML Iterator variable is created to iterate through the multiple selections. To get more information on the selections in the parent hierarchy levels, an XML Iterator needs to be created for the parent node (which is repeating) also. </p>
+<p class="stepinfo">For example, if we have to loop through the multiple selections of Work Order we need to create Iterator variable with the repeating node as 'WorkOrderLookup'.</p>
+</li><li class="step">Add a For-Each Loop activity. Set its XML Iterator property with the Iterator variable created above.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50477" src="50477.png" class="embeddedimage100%scalinglive" alt="" height="490" width="275" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Add an Information activity to display the selections made. Set its Body property as shown below:<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194464" src="194464.png" alt="" height="200" width="539" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Design the workflow as shown below: <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50478" src="50478.jpg" class="embeddedimage100%scalinglive" alt="" height="310" width="482" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Publish and Test Run the workflow.</li><li class="step">Select rows from Work Order Jobs Grid in the form. The Job Steps Grid gets populated with the steps for the selected job. Select the Steps and then click Finish.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194465" src="194465.png" alt="" height="315" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Information is sent with Step details of the selected job.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194466" src="194466.png" alt="" height="184" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194467" src="194467.png" alt="" height="385" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Scenario 2: Use Xml Forms Data Grid type Xml Variable to change/add row selections in a Data Grid control using Workflow.</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The Forms Data Grid XML variable can also be used to add/modify the row selections done in a Data Grid control. The below scenario explains how to add a row selection to the existing row selections using workflows.</p>
+<ol class="step"><li class="step">Create an XML Forms Data Grid Variable for the Jobs Step Grid Configuration as shown below:  <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50480" src="50480.png" class="embeddedimage100%scalinglive" alt="" height="520" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Create an XML Iterator variable to iterate through the Jobs Steps for the selected job.<p class="stepinfo"><img id="f194468" src="194468.png" alt="" height="426" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">The form instance XML generated for the form with a Job Step selected will be as given below. [However, note that  the XML generated will be in the encoded format in the Form instance XML].</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50481" src="50481.png" class="embeddedimage100%scalinglive" alt="" height="231" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li></ol><p class="paragraph">&nbsp;</p>
+<p class="codeblock1">&lt;Grid&gt;</p>
+<p class="codeblock1">      &lt;Data&gt;</p>
+<p class="codeblock1">        &lt;JobStepsLookup&gt;</p>
+<p class="codeblock1">          &lt;wo_id&gt;&lt;![CDATA[100]]&gt;&lt;/wo_id&gt;</p>
+<p class="codeblock1">          &lt;oper_id&gt;&lt;![CDATA[100-PMX]]&gt;&lt;/oper_id&gt;</p>
+<p class="codeblock1">          &lt;seq_no&gt;&lt;![CDATA[0]]&gt;&lt;/seq_no&gt;</p>
+<p class="codeblock1">          &lt;step_no&gt;&lt;![CDATA[1]]&gt;&lt;/step_no&gt;</p>
+<p class="codeblock1">          &lt;step_seq&gt;&lt;![CDATA[1]]&gt;&lt;/step_seq&gt;</p>
+<p class="codeblock1">          &lt;step_name&gt;&lt;![CDATA[Add ingredients]]&gt;&lt;/step_name&gt;</p>
+<p class="codeblock1">        &lt;/JobStepsLookup&gt;</p>
+<p class="codeblock1">      &lt;/Data&gt;</p>
+<p class="codeblock1">  &lt;/Grid&gt;</p>
+<p class="codeblock1">&nbsp;</p>
+<p class="paragraph">To add another row selection using workflows, another XML node has to be created for the JobStepsLookup node (which is the repeating node). If another node is added, the XML will be generated as shown below:</p>
+<p class="paragraph">&nbsp;</p>
+<p class="codeblock1">&lt;Grid&gt;</p>
+<p class="codeblock1">&lt;Data&gt;</p>
+<p class="codeblock1">         &lt;JobStepsLookup&gt;</p>
+<p class="codeblock1">          &lt;wo_id&gt;&lt;![CDATA[100]]&gt;&lt;/wo_id&gt;</p>
+<p class="codeblock1">          &lt;oper_id&gt;&lt;![CDATA[100-PMX]]&gt;&lt;/oper_id&gt;</p>
+<p class="codeblock1">          &lt;seq_no&gt;&lt;![CDATA[0]]&gt;&lt;/seq_no&gt;</p>
+<p class="codeblock1">          &lt;step_no&gt;&lt;![CDATA[1]]&gt;&lt;/step_no&gt;</p>
+<p class="codeblock1">          &lt;step_seq&gt;&lt;![CDATA[1]]&gt;&lt;/step_seq&gt;</p>
+<p class="codeblock1">          &lt;step_name&gt;&lt;![CDATA[Add ingredients]]&gt;&lt;/step_name&gt;</p>
+<p class="codeblock1">        &lt;/JobStepsLookup&gt;</p>
+<p class="codeblock1">        &lt;JobStepsLookup&gt;</p>
+<p class="codeblock1">          &lt;wo_id&gt;&lt;![CDATA[100]]&gt;&lt;/wo_id&gt;</p>
+<p class="codeblock1">          &lt;oper_id&gt;&lt;![CDATA[100-PMX]]&gt;&lt;/oper_id&gt;</p>
+<p class="codeblock1">          &lt;seq_no&gt;&lt;![CDATA[0]]&gt;&lt;/seq_no&gt;</p>
+<p class="codeblock1">          &lt;step_no&gt;&lt;![CDATA[3]]&gt;&lt;/step_no&gt;</p>
+<p class="codeblock1">          &lt;step_seq&gt;&lt;![CDATA[3]]&gt;&lt;/step_seq&gt;</p>
+<p class="codeblock1">          &lt;step_name&gt;&lt;![CDATA[Run Mixer]]&gt;&lt;/step_name&gt;</p>
+<p class="codeblock1">        &lt;/JobStepsLookup&gt;</p>
+<p class="codeblock1">&lt;/Data&gt;</p>
+<p class="codeblock1">&lt;/Grid&gt;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><img id="f50482" src="50482.png" class="embeddedimage100%scalinglive" alt="" height="125" width="558" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">To achieve this, XML Navigator activity is being used in this scenario.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Add an XML Navigator activity to add a new row selection to the JobSteps grid. Set the properties as shown below.  Please note that Create New Node property is set as Yes.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194469" src="194469.png" alt="" height="612" width="275" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">Note: To add selections at multiple hierarchy levels, an Iterator variable has to be created at the parent levels with their corresponding repeating nodes.</p>
+<p class="stepinfo"></p>
+</li><li class="step">To set the value for the row selection an Update Variable activity is used. This activity needs to update the value to the Value field of the lookup data source of the Grid Configuration. <p class="stepinfo"></p>
+<p class="stepinfo">Here the Value column for the Jobs Step Grid Configuration is: step_no.  </p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194471" src="194471.png" alt="" height="156" width="491" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo">&nbsp;</p>
+<p class="stepinfo">Note: This update does not update or modify any data to the data source lookup configured for the Data Grid Control.</p>
+</li><li class="step">Design the workflow as shown below: <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194472" src="194472.png" alt="" height="110" width="563" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Publish and Test Run the workflow.</li><li class="step">Select rows from Work Order Jobs Grid in the form. The Job Steps Grid gets populated with the steps for the selected job. Select the Steps and then click Finish. <p class="stepinfo"><img id="f50485" src="50485.png" class="embeddedimage100%scalinglive" alt="" height="330" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Once the workflow execution is complete, information is sent with the updated Job Step selection details. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194473" src="194473.png" alt="" height="377" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><strong class="notelabel">Note:</strong> To modify an existing selection, go to the specific node and update the Value field of the lookup data source. If a definite node is not specified for updating the selection, then by default the first selection is modified and updated.</p>
+</li></ol><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="introductiontoxmlformsdatagridvariable.html" target="_self">Introduction to 'XML Forms Data Grid' Variable</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

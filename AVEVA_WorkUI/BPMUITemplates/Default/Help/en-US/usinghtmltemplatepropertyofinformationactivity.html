@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using 'HTML Template' Property of Information Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602073" class="heading3">Using 'HTML Template' Property of Information Activity</h3>
+<p class="paragraph">You can use the html email template that is present in the physical folder ..\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\Information.html in the 'HTML Template' property of CheckList activity. </p>
+<p class="paragraph">Complete the following steps to customize the Task.html.</p>
+<ol class="step"><li class="step">Right-click the<b class="uicontrol"> Information </b>activity and then select <b class="uicontrol">Activity Properties.</b> </li><li class="step">Under <b class="uicontrol">Mail Channel</b> group, set the <b class="uicontrol">Use html template from property to</b> <b class="uicontrol">Yes</b>. </li><li class="step">Under <b class="uicontrol">Mail Channel</b> group, click the <b class="uicontrol">HTML template </b>edit icon. </li><li class="step">Go to ..\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\Information.html path and take a copy of the default html template file of Information activity. Make the necessary changes to the copied file. <p class="stepinfo"><strong class="notelabel">Note: </strong>While modifying the Information email template the following place holders should not be modified as these are necessary for the AVEVA Work Tasks engine to process the mails that are received from the actors.</p>
+<ol class="substep"><li class="substep">Notes </li></ol><p class="codeblock1">&lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;&lt;%#Notes%&gt; &lt;/td&gt;</p>
+</li><li class="step">Replace only the following place holders in the copied html template as per the table below. This is because the place holders which is in ' &lt;%# %&gt;' format will not support in customized html format. <p class="stepinfo"><strong class="notelabel">Note:</strong> Make sure that only the following specified place holders are replaced. Do not replace any other place holders.</p>
+<p class="stepinfo"></p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableheader">Keyword</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableheader">Replace with</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locSalutation%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locSalutation%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#ActorName%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#ActorName%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locMailDescription%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locMailDescription%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#Notes%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#Notes%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locResponseOptions%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locResponseOptions%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locRespondByWeb%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locRespondByWeb%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#workitemView%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#workitemView%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#docview%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#docview%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locDocViewURLText%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locDocViewURLText%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#executionView%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#executionView%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locExecutionViewURLText%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locExecutionViewURLText%]</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&lt;%#locSignature%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">[%#locSignature%]</p>
+</td>
+</tr>
+
+</table>
+<p class="stepinfo"></p>
+</li><li class="step">After replacing place holders, the code is as shown below. <p class="codeblock1">&lt;html&gt;</p>
+<p class="codeblock1">&lt;head&gt;</p>
+<p class="codeblock1">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;</p>
+<p class="codeblock1">&lt;title&gt;Mailer&lt;/title&gt;</p>
+<p class="codeblock1">&lt;style type=&quot;text/css&quot;&gt;</p>
+<p class="codeblock1">&lt;!--</p>
+<p class="codeblock1">.style2 {</p>
+<p class="codeblock1">font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">font-size: 11px;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style4 {</p>
+<p class="codeblock1">font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">font-size: 15px;</p>
+<p class="codeblock1">font-weight: Normal;</p>
+<p class="codeblock1">color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.Username {</p>
+<p class="codeblock1">font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">font-size: 13px;</p>
+<p class="codeblock1">font-weight: Bold;</p>
+<p class="codeblock1">color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.subject {</p>
+<p class="codeblock1">font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">font-size: 13px;</p>
+<p class="codeblock1">font-weight: Bold;</p>
+<p class="codeblock1">color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style8 {</p>
+<p class="codeblock1">color: #FF3300;</p>
+<p class="codeblock1">font-weight: bold;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style9 {font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }</p>
+<p class="codeblock1">--&gt;</p>
+<p class="codeblock1">&lt;/style&gt;</p>
+<p class="codeblock1">&lt;/head&gt;</p>
+<p class="codeblock1">&lt;body&gt;</p>
+<p class="codeblock1">&lt;table width=&quot;700&quot; border=&quot;0&quot; align=&quot;left&quot; cellpadding=&quot;0&quot; cellspacing=&quot;1&quot; bgcolor=&quot;#CCCCCC&quot;&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td valign=&quot;top&quot;&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; bgcolor=&quot;#FFFFFF&quot;&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td&gt;&lt;span class=&quot;Username&quot;&gt;[%#locSalutation%]&amp;nbsp;&lt;strong&gt;[%#ActorName%]&lt;/strong&gt; &lt;/span&gt;,</p>
+<p class="codeblock1">&lt;p class=&quot;style2&quot;&gt;[%#locMailDescription%]&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;[%#Notes%] &lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt; </p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td bgcolor=&quot;#EBEBEB&quot; class=&quot;style4&quot;&gt;[%#locResponseOptions%]&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td&gt;</p>
+<p class="codeblock1">&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td&gt;&lt;a [%#workitemView%]&gt;[%#locRespondByWeb%]&lt;/a&gt;&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td&gt;&lt;a [%#docview%]&gt;[%#locDocViewURLText%]&lt;/a&gt;&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;tr&gt; </p>
+<p class="codeblock1">&lt;td &gt;&lt;a [%#executionView%]&gt;[%#locExecutionViewURLText%]&lt;/a&gt;&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt; </p>
+<p class="codeblock1">&lt;/table&gt;</p>
+<p class="codeblock1">&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td bgcolor=&quot;#EBEBEB&quot; class=&quot;style4&quot; style=&quot;height:10%&quot;&gt;&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;tr&gt;</p>
+<p class="codeblock1">&lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;[%#locSignature%]&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;/table&gt; </p>
+<p class="codeblock1">&lt;/td&gt;</p>
+<p class="codeblock1">&lt;/tr&gt;</p>
+<p class="codeblock1">&lt;/table&gt;</p>
+<p class="codeblock1">&lt;/body&gt;</p>
+<p class="codeblock1">&lt;/html&gt;</p>
+</li><li class="step">Copy the modified code (In this case, the above code) and paste into the HTML template window as Paste Plain Text and click Update.<p class="stepinfo"> </p>
+<p class="stepinfo"><img id="f187497" src="187497.png" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo">The following code shows after pasting the code.</p>
+<p class="stepinfo"><img id="f187498" src="187498.png" alt="" height="409" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="differentemailtemplatefordifferentactivityinaworkflow.html" target="_self">Different Email Template for Different Activity in a Workflow</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

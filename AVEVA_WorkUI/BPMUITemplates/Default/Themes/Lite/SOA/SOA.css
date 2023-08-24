@@ -1,0 +1,264 @@
+﻿.sf-formbackground
+{
+	background: url(images/popup-bg.jpg); /* Mozilla overlay */
+}
+.sf-formlabel{
+font-family: "Segoe UI" , "Trebuchet MS";
+color:#0c2c3f;
+font-size: 11px;
+padding-bottom: 8px;
+text-decoration: none;
+vertical-align:top;
+font-weight:bold;
+width: 40%;
+}
+.sf-formlabeldescription{
+font-family: "Segoe UI" , "Trebuchet MS";
+color:#1f1f1f;
+font-size: 11px;
+font-weight:normal;
+padding-bottom: 8px;
+text-decoration: none;
+
+}
+.sf-formbody{
+font-family:verdana;
+font-size:.7em;
+vertical-align:top;
+padding:3px 6px 4px 6px;
+}
+.sf-formfirstlabel{
+font-family: "Segoe UI" , "Trebuchet MS";
+color:#0c2c3f;
+vertical-align:top;
+font-size: 11px;
+padding-bottom: 8px;
+font-weight:bold;
+text-decoration: none;
+width: 40%;
+}
+.sf-formfirstlabeldescription{
+font-family: "Segoe UI" , "Trebuchet MS";
+color:#1f1f1f;
+font-size: 11px;
+padding-bottom: 8px;
+font-weight:normal;
+text-decoration: none;
+
+}
+.sf-formfirstbody
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: .7em;
+	padding: 3px 6px 4px 6px;
+	vertical-align:top;
+}
+.sf-standardheader{
+font-size:1em;
+margin:0em;
+text-align:left;
+color:#525252;
+}
+.sf-topleveltitle
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 13px;
+	font-weight:bold; 
+	color:#0c2c3f;
+	/*background-color: #e7edff;*/
+}
+.sf-topleveltitledescription
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 11px;
+	padding-left:32px;
+	color:#1f1f1f;
+	/*background-color: #e7edff;*/
+	
+}
+.sf-subformtitle
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 8px;
+	font-weight: bold;
+	color:#0c2c3f;
+	/*color:#525252;*/
+}
+.sf-subformtitledescription
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 10px;
+	color:#1f1f1f;
+}
+.sf-gridtable
+{
+	background: white;
+	border-collapse: collapse;
+	border-left-width: 0;
+	border-right-color: #C0C0C0;
+	border-right-width: 0;
+	border-top-width: 0;
+	border-bottom-color: #C0C0C0;
+	border-bottom-width: 0;
+}
+.sf-gridrow
+{
+}
+.sf-gridselectedrow
+{
+	background: #006633;
+}
+.sf-gridcell {
+	border-left: 1px solid #C0C0C0;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top: 1px solid #C0C0C0;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+.sf-gridheading {
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: xx-small;
+	border-left: 1px solid #C0C0C0;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top: 1px solid #C0C0C0;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	background-color: #E6E6E6;
+}
+.sf-appendrow
+{
+	margin-top: 2px;
+	border-top: 1px solid black;
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 9px;
+	font-style:italic;
+}
+.sf-formitemdelete
+{
+	margin-top: 2px;
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 9px;
+	font-style:italic;
+	text-align:right;
+}
+
+.sf-saverow
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 9px;
+	font-style:italic;
+	/*background-color: #e7edff;*/
+}
+.sf-panel
+{
+	border: solid 1px black;
+}
+.sf-paneltitle
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 10px;
+	color:#525252;
+}
+.sf-paneltitledescription
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 10px;
+	color:#525252;
+}
+.sf-gridsummarycell {
+	border-left: 1px solid  #C0C0C0;
+	border-right: 1px solid  #C0C0C0;
+	border-bottom: 2px solid  #808080;
+}
+.sf-gridsummarycellheading
+{
+	border-left: 1px solid #C0C0C0;
+	border-right: 1px solid #C0C0C0;
+	border-top: 2px solid #808080;
+	font-size: 9px;
+	font-family: "Segoe UI" , "Trebuchet MS";
+	background-color: #E6E6E6;
+}
+.sf-formfirstlabelerror{
+text-align:left;
+font-family: "Segoe UI" , "Trebuchet MS";
+font-size:.7em;
+border-top:1px solid black;
+padding-top:3px;
+padding-right:8px;
+padding-bottom:6px;
+background: red;
+font-weight:bold;
+width: 30%;
+}
+.sf-spanerror
+{
+	display:block;
+	float:right;
+	width:15px;
+	height:15px;
+	background-image:url(erroricon.png);
+	background-repeat:no-repeat;
+}
+.sf-span
+{
+	display: none;
+}
+.sf-inputsBox
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 11px;
+	border: 1px solid #006699;
+	color: #333333;
+	height: 18px;
+	width: auto;
+	background-image: url(images/bg-button.png);
+}
+.inputs
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	font-size: 12px;
+	background-color: #FFFFFF;
+	border: 1px solid #7f9db9;
+	width: auto;
+	color: #333333;
+}
+
+.errortext
+{
+	font-family: "Segoe UI" , "Trebuchet MS";
+	color: #FF0000;
+	font-size: 11px;
+	padding-bottom: 8px;
+	text-decoration: none;
+}
+
+.divBackgroundColor
+{
+	background-color: white;
+}
+
+.tableBackground
+{
+	border-color :  #86b0da;
+}
+.tableBackgroundFilter
+{
+	background-color : #c8dfe7;
+}
+.aliasedName
+{
+    color: blue;
+}	
+.tableBackgroundNodeDetails
+{
+    background-color: Gray;
+}
+.divError
+{
+	background-color: White; 
+	border: Solid 3px #d2d2d2;
+}
+	

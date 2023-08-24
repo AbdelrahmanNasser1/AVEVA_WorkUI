@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Workflow Execution View Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601909" class="heading3">Workflow Execution View Control</h3>
+<p class="paragraph">The WorkflowExecutingReport Control shows the Process Execution View of the currently executing workflow.</p>
+<p class="procedureheading">To add workflow executing report control using a panel:</p>
+<ol class="step"><li class="step">Before adding the Process Designer control in a panel,&nbsp;<a id="h50251" class="jump-currentwindowlive" title="Creating an ASP.NET Project in Visual Studio .NET" href="creatinganaspnetprojectinvisualstudionet20082010.html" target="_self">Creating an ASP.NET Project in Visual Studio .NET</a>.</li><li class="step">Go to <b class="uicontrol">ExecuteReport.aspx.cs</b> page.</li><li class="step">Make sure that you have initialized the User Context object as per the steps given in&nbsp;<a id="h50255" class="jump-currentwindowlive" title="Creating User Context" href="creatingusercontext.html" target="_self">Creating User Context</a>.</li><li class="step">In the underlying code, create a new instance of control and add the instance to the panel in the&nbsp;Page_Load, as in the example below.<p class="codeblock1">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(&quot;Telematics Repository&quot;);//Repository name</p>
+<p class="codeblock1">object loggedinUserId = &quot;81734457-B3DB-4BC9-894A-C3149828C65C&quot;;</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;);</p>
+<p class="codeblock1">Workflow.NET.Web.Report.WorkflowExecutionReport wf = new Workflow.NET.Web.Report.WorkflowExecutionReport();</p>
+<p class="codeblock1">wf.Application = userContext.Repository.ApplicationName;</p>
+<p class="codeblock1">wf.ExecutionId = 1;</p>
+<p class="codeblock1">wf.Height = Unit.Percentage(100);</p>
+<p class="codeblock1">Panel1.Controls.Add(wf);</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+</li></ol><p class="subheading">Different Properties that can be set for WorkflowExecutingReport Control are:</p>
+<ul class="ulitem"><li class="ulitem">Application:Provide the ApplicationName or Repository Name for the workflow report to be viewed.</li><li class="ulitem">ExecutionId:Provide the ExecutionId (from the table SWExecute) of the workflow for which report has to be viewed.</li><li class="ulitem">OnlyAnalystsView: If the&nbsp;OnlyAnalystsView&nbsp;property is set to true, then only the AnalystsView will be displayed (Progress View and Execution View will not be displayed).</li><li class="ulitem">CanControlWorkflow: If the&nbsp;CanControlWorkflow&nbsp;property is set to true, then you can&nbsp;<b class="uicontrol">Abort Executing Workflow</b>&nbsp;and&nbsp;<b class="uicontrol">Pause Executing Workflow</b>.</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Different views in the Process Execution Window</p>
+<ul class="ulitem"><li class="ulitem">The Analyst's View is a simplified view of the process design intended for end-users. You can save the simplified view of the process as a file and associate this filename in the Start Activity to enable this view for the end users.</li><li class="ulitem">The Progress View shows the workflow progress on the Process Diagram, up to the point that the Execution View is selected. It consists of the execution view mapped on to the Process Diagram. You can click a completed activity to view the Step Details window. You can view the step details, variables, contents, content (raw content passed to the workflow) using the corresponding tabs. The links that have already been traversed are represented by thick lines.</li><li class="ulitem">The Execution View shows the workflow execution status up to the point the execution has happened.</li></ul><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1_1.html" target="_self">Embedding Controls in the Application</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

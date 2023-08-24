@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Item Details </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t611099" class="heading4">Work Item Details</h4>
+<p class="paragraph">The following image shows the Work Item Details for a selected work item in a Work items list. You can view and respond to work items using the&nbsp;<b class="uicontrol">Work Item Detail View</b>&nbsp;modal window:</p>
+<p class="subheading">Work Item Details</p>
+<p class="paragraphimage"><img id="f46821" src="46821.png" class="embeddedimage100%scalinglive" alt="" height="396" width="530" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The <b class="uicontrol">Work Item Detail View</b> dialog box displays the following items:</p>
+<p class="paragraph"><b class="uicontrol">Manage Work Item</b>: The Manage Work item drop-down has options to handle the work item. Select Take Ownership to take ownership of the item.  Alternatively, you can select the <b class="uicontrol">Hold</b> option to put it on hold. Click <b class="uicontrol">Go</b> to submit the response. By setting the <b class="uicontrol">AllowAutoownershipOnRowClick</b> property, you can allow users to take ownership on selection of the work item.&nbsp;See <a id="h81614" class="jump-currentwindowlive" title="Preferences for Work Item Management" href="preferencesforworkitemmanagement.html" target="_self">Preferences for Work Item Management</a>&nbsp;for more information.</p>
+<p class="paragraph"></p>
+<p class="paragraph">After you take ownership of a work item, you can have the option to view all user responses through the&nbsp;<b class="uicontrol">View All Users&nbsp;option</b>. The Work items list property of&nbsp;<b class="uicontrol">Hide Response</b>&nbsp;should be set as&nbsp;<b class="uicontrol">No</b>&nbsp;to view all users responses. See&nbsp;<i class="emphasis">Manage Work Item - View All Users&nbsp;</i>for more information.</p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><b class="uicontrol">Custom Document View</b>:&nbsp;The Custom Document View is at the left of the detailed view. It displays information on Execution Details.  <br></p>
+<p class="paragraph"><b class="uicontrol">Work Item Action Controls: </b>The Work Item action controls are located at the right of the detailed view. The controls and the content depend on the activity type. The figure given below displays controls for the Approval work item with a field for comments. The controls and information displayed for an activity also depend on the properties of the activity as set in the process. For example, if the property Hide Responses for a group approval activity is set to False, users will also be presented with a link to view comments from other approvers. </p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

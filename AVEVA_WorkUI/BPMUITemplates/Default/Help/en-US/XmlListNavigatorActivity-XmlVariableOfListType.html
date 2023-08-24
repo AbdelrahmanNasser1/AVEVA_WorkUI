@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> XML List Navigator Activity - XMLVariable of List Type </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488900" class="heading4">XML List Navigator Activity - XMLVariable of List Type</h4>
+<p class="paragraph">XML Variable of List type can be configured in the Start activity through the XML Variable property. XMLVariable of List typed can be mapped to any list schema i.e. either to lists provided out of the box or to lists created dynamically using create list option, to perform retrieval of data of a list item.</p>
+<p class="paragraph">To get XMLVariable of List Type in the drop-down list, do the following steps:</p>
+<ol class="step"><li class="step">Log on to the<b class="uicontrol"> Enterprise Console</b>. </li><li class="step">Select <b class="uicontrol">Workflows</b> from the Enterprise Console menu. </li><li class="step">Click <b class="uicontrol">New</b>, and then click <b class="uicontrol">List</b> to design a list workflow. </li><li class="step">Create the workflow. </li><li class="step">In the Process Designer, open <b class="uicontrol">Activity Properties</b> of the <b class="uicontrol">Start</b> activity. </li><li class="step">Click <b class="uicontrol">xmlVariables</b> property to configure XML Variable of List type. The following screen appears.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187148" src="187148.png" alt="" height="475" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click<b class="uicontrol"> New Variable</b> to create a XMLVariable of type XML List. </li><li class="step">Enter variable name in the<b class="uicontrol"> Variable Name</b> textbox. </li><li class="step">Select <b class="uicontrol">XML List</b> from the Type drop-down list. </li><li class="step">Enter the List name or click the icon to select the list. </li><li class="step">Select <b class="uicontrol">Current</b> option to work on current item which alerted the workflow or Select <b class="uicontrol">New</b> option to add new item to the list. </li><li class="step">Click Save Variable to save the created XML variable of List type. </li><li class="step">Now Right-click on List Navigator activity and select the <b class="uicontrol">Activity Properties</b>. </li><li class="step">The above created XML variables will be listed in the XMLVariable of List Type. Now you can select the required <b class="uicontrol">XML variable from the XMLVariable of List Type</b> drop-down list. <p class="note"><strong class="notelabel">Note:</strong> The XML List XML variable can have work on following scopes <br>Current - This scope allows you to fetch the current item which was alerted in the workflow. <br>New - This scope allows you to add new item to the list. <br>List Query - This scope allows you to fetch items as per the query. </p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="XmlListNavigatorActivity.html" target="_self">List Navigator Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Update a Parent Workflow Variable from a Child Workflow? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601989" class="heading4">How to Update a Parent Workflow Variable from a Child Workflow?</h4>
+<ol class="step"><li class="step">In Workflow Management, a parent workflow variable can be updated from a child workflow provided both child and parent workflow belong to the same repository. This can be achieved by using <b class="uicontrol">Update Parent Variables</b> activity.</li></ol><p class="paragraph">To update parent workflow from a child workflow, do the following steps:</p>
+<ol class="step"><li class="step">Right-click <b class="uicontrol">Update Parent Variables Activity</b> and select <b class="uicontrol">Activity Properties</b>. </li><li class="step">Enter the parent workflow's repository name in the <b class="uicontrol">Parent Workflow Application Name</b> property. The parent workflow should belong to the same repository of the child workflow. This property of the Update Parent Variable activity is exposed for backward compatibility. </li><li class="step">Enter the parent workflow name in the<b class="uicontrol"> Parent Workflow Name</b> property. The parent workflow should belong to the same repository of the child workflow. </li><li class="step">Click <b class="uicontrol">List Parent Variables</b> property to update the variables in the parent workflow. <br></li></ol><p class="procedureheading"><strong class="strong">To update the value of variable: </strong></p>
+<ol class="step"><li class="step">To specify the parent workflow variables, click the button for the <b class="uicontrol">'List Parent Variables'</b> property to open the property window. </li><li class="step">In the <b class="uicontrol">Update Parent Variables</b> window, select the check box of the respective parent variable.<p class="stepinfo"><img id="f187105" src="187105.png" alt="" height="324" width="545" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Choose the specific option from the list using which the parent variable to be updated. The parent variable value can be updated from the Value, Variable, Content, or XML Variable of the child workflow. </li><li class="step">Depending on the choice, select the respective text box/options/node from the RHS and click <b class="uicontrol">Update</b> to save. <p class="stepinfo"><strong class="notelabel">Note:</strong> The value can also be hard coded using the Value option as shown in the following figure.</p>
+<p class="stepinfo"><img id="f187106" src="187106.png" alt="" height="343" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">After selecting and assigning values to the variables, click Update to save. </li></ol><p class="paragraph"></p>
+<p class="procedureheading">To set the value of XML Variable:</p>
+<ol class="step"><li class="step">Select the check box of the respective parent variable.</li><li class="step">Click the<img id="f187107" src="187107.png" alt="" height="29" width="31" vspace="0" hspace="0" align="bottom" border="0"> icon on the left hand side of the check box. The <b class="uicontrol">Update Node Values</b> window appears. Specify the node to be updated for the respective parent XML Variable. </li><li class="step">Select the node to be updated from the tree view. </li><li class="step">Choose the option using which the parent XML variable node to be updated. The parent XML variable node value can be updated from the SetValue, Variable, Content, or XMLVariable of the child workflow. Depending on the choice, select the respective value/options/node from the RHS. <p class="stepinfo"><strong class="notelabel">Note:</strong> The value can also be hard coded using the SetValue option as shown in the following figure.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187108" src="187108.png" alt="" height="169" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">You can specify multiple nodes for updating by using the<b class="uicontrol"> Add Row</b> option. </li><li class="step">To remove any node that is set from updating, click the respective check box of the entry to be deleted, and then click<b class="uicontrol"> Remove Selected</b>. </li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="updateparentvariables.htm" target="_self">Update Parent Variables Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

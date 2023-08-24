@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="openimage.aspx.cs" Inherits="SkeltaTemplates_Default_openimage" Theme="" StylesheetTheme="" %>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Email Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t575851" class="heading3">Email Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Email Activity can be used to send an email to a selected set of actors. The actors(s) can be selected by building a query. The workflow engine evaluates this query and sends an email to all the actors resulting from the query. If no actor is selected the email will be sent to all the actors. The subject and body of the email can be customized by appending the resource properties available.</p>
+<p class="subheading">Adding Email attachments using Contents and Variables:</p>
+<p class="paragraph"><strong class="strong">Steps to add Email attachments using Workflow Variables:</strong></p>
+<p class="paragraph">To set email attachments using variable, prefix the variable name with &quot;^[ActivityName]&quot;.</p>
+<p class="paragraph">For example, for the activity named &quot;EmailNotification&quot;, name the variable as &quot;^EmailNotificationattachments&quot;. Set the value for the variable with physical paths to the file. Use semi-colon as separator to set multiple files.</p>
+<p class="paragraph"><strong class="strong">Steps to add Email attachments using Contents:</strong></p>
+<p class="paragraph">To send file attachments with the email, add a content with a name prefixed by the activity name followed by attachments. For example, if a file attachment has to be sent along with an email from an activity named 'EmailNotification', add a content with 'EmailNotificationattachments' as its name. The XPath expression should select the nodes which contain the path for the files to be attached. For example, //fileattachments.</p>
+<p class="note"><strong class="notelabel">Note:</strong> <br>- Supported file types for attachment include .au, .avi, .bas, .bmp, .cda, .cdr, .chf, .dic, .doc, .docx, .dot, .drw, .dwg, .dxf, .eml, .eps, .gif, .gz, .html, .html, .ico, .img, .jpeg, .jpg, .ldb, .log, .mid, .midi, .mov, .movie, .mp1, .mp2, .mp3, .mpeg, .mpg, .msg, .nws, .obd, .oft, .pcl, .pcx, .pdd, .pdf, .pic, .pot, .pps, .ppt, .pptx, .pub, .qbb, .qbw, .qdb, .ra, .shtml, .snd, .text, .tga, .tif, .tsv, .ttf, .txt, .uu, .vir, .wb2, .wbk, .wiz, .wk4, .wks, .wpd, .xlk, .xls, .xlsx, and.xlt.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Email activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Email activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph">The following image shows the Email Activity Properties window:</p>
+<p class="paragraph"><img id="f489271" src="489271.png" alt="" height="750" width="202" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to specify the content of the notification.</p>
+<p class="paragraph"><b class="uicontrol">To Resource</b> - This property specifies the resource(s) to whom the email is to be sent.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be assigned to any resource(s).)</p>
+<p class="paragraph">Steps to set the To property</p>
+<ol class="step"><li class="step">To specify the actors to receive the email, click the button for the 'To' property to open the property window.</li><li class="step">In this window, build an expression to select the actors using the actors properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression to the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it. </li></ol><p class="paragraph">See <a id="h51255" class="jump-currentwindowlive" title="Email: ToResource" href="email-to1.html" target="_self">Email: ToResource</a>&nbsp;for a detailed description of the To property window.</p>
+<p class="paragraph">See the Using XML Variables section in the&nbsp;<a id="h50295" class="jump-currentwindowlive" title="About XML Variables" href="aboutthexmlvariableuserinterface.html" target="_self">About XML Variables</a>&nbsp;topic for details on how to use the XMLVariables to build the expression.</p>
+<p class="paragraph"><b class="uicontrol">To Email Address</b>&nbsp;- &nbsp;This property is used to send an email to a user who is not a part of the resource provider. To send an email at an address that is a part of the resource provider the ToResource property is used.</p>
+<p class="paragraph"><strong class="strong">Scenario</strong></p>
+<p class="paragraph">XYZ organization is one of the leading product development companies. Every new feature or product released needs to be notified to all customers. John Smith is one among the them.</p>
+<p class="paragraph">The Email activity can be used for this. The&nbsp;<b class="uicontrol">To Email Address</b>&nbsp;property should be set to John Smith's email address. Whenever the new feature or product is released, the workflow gets trigged to send an email to John Smith.</p>
+<p class="paragraph"><strong class="strong">Features of the&nbsp;To Email Address&nbsp;Property:</strong></p>
+<p class="paragraph">The following are the features of the To Email Address property:</p>
+<ul class="ulitem"><li class="ulitem">It is possible to send an email at any email address using the Expression Builder or directly entering the email address in the field.</li><li class="ulitem">It is possible to use the variables, XML variables and content, or any expression to set the email address to the property.</li></ul><p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">To configure&nbsp;<b class="uicontrol">To Email Address</b>, complete the following steps:</p>
+<ol class="step"><li class="step">Right-click&nbsp;<b class="uicontrol">Email Activity</b>&nbsp;to go to the&nbsp;<b class="uicontrol">Activity Properties</b>.</li><li class="step">Set the&nbsp;<b class="uicontrol">To Email Address</b>&nbsp;property to send email to the resource who is not a part of the resource provider.<p class="note"><strong class="notelabel">Note:</strong> If both<b class="uicontrol">&nbsp;ToResource</b>&nbsp;and&nbsp;<b class="uicontrol">To Email Address</b>&nbsp;values are set then the&nbsp;<b class="uicontrol">ToResource</b>&nbsp;property is considered for sending the email.</p>
+</li></ol><p class="paragraph"><b class="uicontrol">BCC&nbsp;-</b> This property specifies the resource(s) email id to which a copy of the email is to be sent as a Blind Carbon Copy. To specify the email recipient type the email id directly into the field.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if required.)</p>
+<p class="paragraph"><b class="uicontrol">BCCResource</b>&nbsp;- This property specifies the resource(s) to whom a copy of the email is to be sent as a Blind Carbon Copy. To select the resource(s) click the button against 'BCCResource' in the Properties pane of the Process Designer. In the window that pops up, build the condition for selecting the resource(s) and click Update button.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if required.)</p>
+<p class="paragraph">Steps to set the BCCResource property</p>
+<ol class="step"><li class="step">To specify the actors who will receive the email as BCC, click the button for the 'BCCResource' property to open the property window.</li><li class="step">In this window, build an expression to select the actors using the actors properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression to the text area.</li><li class="step">You can remove a condition already added to the expression by clicking&nbsp;<b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking&nbsp;<b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it. </li></ol><p class="paragraph">See&nbsp;<a id="h51256" class="jump-currentwindowlive" title="Email: BCC Resource" href="email-bccresource1.html" target="_self">Email: BCC Resource</a>&nbsp;for a detailed description of the BCCResource property window.</p>
+<p class="paragraph">See the Using XML Variables section in the&nbsp;<a id="h50295_2" class="jump-currentwindowlive" title="About XML Variables" href="aboutthexmlvariableuserinterface.html" target="_self">About XML Variables</a>&nbsp;topic for details on how to use the XMLVariables to build the expression.</p>
+<p class="paragraph"><b class="uicontrol">CC</b>&nbsp;- This property specifies the resource(s) email id to which a copy of the email is to be sent as a Carbon Copy. To specify the email recipient type the email id directly into the field.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if required.)</p>
+<p class="paragraph"><b class="uicontrol">CCResource</b>&nbsp;- This property specifies the resource(s) to whom a copy of the email is to be sent as a Carbon Copy. To select the resource(s) click the button against 'CCResource' in the Properties pane of the Process Designer. In the window that pops up, build the condition for selecting the resource(s) and click Update.</p>
+<p class="paragraph">Property Type: Optional&nbsp;(This property needs to be set only if required.)</p>
+<p class="paragraph">Steps to set the CCResource property</p>
+<ol class="step"><li class="step">To specify the actors who will receive the email as CC, click the button for the 'CCResource' property to open the property window.</li><li class="step">In this window, build an expression to select the actors using the actors properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking&nbsp;<b class="uicontrol">Add</b>. This will display the expression to the text area.</li><li class="step">You can remove a condition already added to the expression by clicking&nbsp;<b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking&nbsp;<b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li></ol><p class="paragraph">See&nbsp;<a id="h51257" class="jump-currentwindowlive" title="Email: CCResource" href="email-ccresource1.html" target="_self">Email: CCResource</a>&nbsp;for a detailed description of the CCResource property window.</p>
+<p class="paragraph">See the Using XML Variables section in the&nbsp;<a id="h50295_3" class="jump-currentwindowlive" title="About XML Variables" href="aboutthexmlvariableuserinterface.html" target="_self">About XML Variables</a>&nbsp;topic for details on how to use the XMLVariables to build the expression.</p>
+<p class="paragraph"><b class="uicontrol">Subject</b>&nbsp;- This property specifies the subject of the email. The subject can be customized for each resource.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property need not be set. If it is not set, the default subject line from the Actions.xml file is displayed.)</p>
+<p class="paragraph">Steps to set the Subject property</p>
+<ol class="step"><li class="step">To specify the subject, click the button for the 'Subject' property to open the property window.</li><li class="step">In this window, enter the subject text directly in the text editor.</li><li class="step">If you want to customize the subject you can do so using the&nbsp;Field&nbsp;controls to add resource property values. For example, to add a subject that includes the email id of the actor submitting the approval request, you can do as follows: Type in the text &quot;Expense Statement of &quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.Email&quot; from the two drop downs for&nbsp;Field&nbsp;and click&nbsp;Append. This will add the placeholder for the variable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the email id.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the subject, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the subject.</li></ol><p class="paragraph">See&nbsp;<a id="h51258" class="jump-currentwindowlive" title="Email: Subject" href="email-subject1.html" target="_self">Email: Subject</a>&nbsp;for a detailed description of the Subject property window.</p>
+<p class="paragraph"><b class="uicontrol">Body</b>&nbsp;- This is the actual content of the email sent to the resource(s). The body can be customized for each resource.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property needs to be set.)</p>
+<p class="paragraph">Steps to set the Body property</p>
+<ol class="step"><li class="step">To specify the message body, click the button for the 'Body' property to open the property window.</li><li class="step">In this window, enter the body text directly in the text editor.</li><li class="step">If you want to personalize the body you can do so using the&nbsp;<b class="uicontrol">Field</b>&nbsp;controls to add resource property values. For example, to add a body that includes the name of the actor submitting the approval request, you can do as follows: Type in the text &quot;Hello&quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.name&quot; from the two drop downs for&nbsp;<b class="uicontrol">Field</b>&nbsp;and click&nbsp;<b class="uicontrol">Append</b>. This will add the placeholder for the variable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the name, resulting in a personalized salutation. Type in a message in the next line to complete the message body.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the body, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the body.</li></ol><p class="paragraph">See&nbsp;<a id="h51259" class="jump-currentwindowlive" title="Email: Body" href="Email-Body.html" target="_self">Email: Body</a>&nbsp;for a detailed description of the&nbsp;Body&nbsp;property window.</p>
+<p class="paragraph"><b class="uicontrol">Send only one copy to CC/BCC recipients</b>&nbsp;- This property specifies whether to send multiple copies of the Email to CC/BCC recipients. The default setting is 'No'. This property is useful in case there are multiple recipients specified in the 'To' property and only one (or a number less than specified in the 'To' property) recipient in the CC or BCC property. If this properties is set to 'Yes', and there are 5 recipients specified in the 'To' property and one in the CC property, then the CC recipient will receive 5 copies of the same email.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Mail Format</b>&nbsp;- This property specifies the format of the Email. If the value 'HTML' is selected, then the Email will be in the HTML format. If the value 'TEXT' is selected, then the Email will be in plain text format.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Attach Reports</strong></p>
+<p class="paragraph">This property is used to configure report to be sent as an email attachment.</p>
+<p class="paragraph"><strong class="strong">Property Type:&nbsp;Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph">The following image shows the Attach Reports property:</p>
+<p class="paragraph">Steps to set the Attach Reports Property</p>
+<ol class="step"><li class="step">To specify the&nbsp;<b class="uicontrol">Attach Report</b>&nbsp;property, click the edit icon to open the property window. The&nbsp;<b class="uicontrol">Attachment Configuration</b>&nbsp;dialog box appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Attach Report</b>&nbsp;property, you can attach a report by selecting the&nbsp;<b class="uicontrol">Report Reference Variable</b>&nbsp;through the Expression Editor. Alternatively, you can get the&nbsp;Report&nbsp;by clicking the&nbsp;<b class="uicontrol">Report</b>&nbsp;icon and selecting the required report from the Reports list screen. To attach multiple reports, click&nbsp;<b class="uicontrol">Add</b>&nbsp;to add new rows.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit</b>.</li></ol><p class="paragraph">See&nbsp;<a id="h51260" class="jump-currentwindowlive" title="Email: Attach Reports" href="email-attachreports11.html" target="_self">Email: Attach Reports</a>&nbsp;for a detailed description of this property.</p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Email Activity does not return any value.</p>
+<p class="paragraph"><strong class="strong">Example for Email Activity</strong></p>
+<p class="paragraph">In the following workflow, if a Approver rejects the mail will send to Manager.</p>
+<p class="paragraph"><img id="f51248" src="51248.png" class="embeddedimage100%scalinglive" alt="" height="323" width="406" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Approver 1:</strong>&nbsp;&nbsp;If approver1 Rejected a mail, it will send to Manager. If approver1 Approved a mail, it will go for the next Approver, that is Approver2.</p>
+<p class="paragraph"><strong class="strong">Manager:</strong>&nbsp;In Email activity, specifies the resource(s) to whom the email is to be sent in&nbsp;<b class="uicontrol">To</b>&nbsp;property.</p>
+<p class="paragraph"><img id="f51249" src="51249.png" class="embeddedimage100%scalinglive" alt="" height="443" width="276" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Subject:</strong> In this property, specify the subject for the email. After adding the subject, click&nbsp;Update&nbsp;to save it.</p>
+<p class="paragraph"><img id="f51250" src="51250.png" class="embeddedimage100%scalinglive" alt="" height="414" width="554" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Body:</strong>&nbsp;This is the actual content of the email sent to the resource(s). After adding the body, click&nbsp;Update&nbsp;to save it.</p>
+<p class="paragraph"><img id="f51251" src="51251.png" class="embeddedimage100%scalinglive" alt="" height="415" width="554" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="email-to1.html" target="_self">Email: ToResource</a></p><p class="relateditem"><a href="email-bccresource1.html" target="_self">Email: BCC Resource</a></p><p class="relateditem"><a href="email-ccresource1.html" target="_self">Email: CCResource</a></p><p class="relateditem"><a href="email-subject1.html" target="_self">Email: Subject</a></p><p class="relateditem"><a href="Email-Body.html" target="_self">Email: Body</a></p><p class="relateditem"><a href="email-attachreports11.html" target="_self">Email: Attach Reports</a></p><p class="relateditem"><a href="gmail-mailchannel.html" target="_self">Gmail: MailChannel</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

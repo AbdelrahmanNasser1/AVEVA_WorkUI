@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Auto Mapping of Active Directory Providers </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h1 id="t602245" class="heading1">Auto Mapping of Active Directory Providers</h1>
+<p class="paragraph">If more than one Active Directory provider is mapped to one Repository then by default, mapping will happen between the active directory providers based on the&nbsp;<b class="uicontrol">Display Name</b>&nbsp;property. If user does not want the mapping, then uncheck the Auto Mapping flag from&nbsp;Repository Provider Search&nbsp;page for the User Entity.</p>
+<p class="paragraph">By default, the entry in the&nbsp;<b class="uicontrol">Properties</b>&nbsp;column of the<b class="uicontrol">&nbsp;SKRepository</b>&nbsp;table</p>
+<p class="paragraph">&lt;property key=&quot;AutoMapActiveDirectoryProviders&quot;&gt;&lt;![CDATA[True]]&gt;&lt;/property&gt;</p>
+<p class="paragraph">This indicates auto mapping will happen across the active directory providers once SharePoint Web Application is connected to a repository.</p>
+<p class="procedureheading"></p>
+<p class="procedureheading">Steps for UnMapping</p>
+<p class="paragraph">If user does not want Auto Mapping between providers, do the following:</p>
+<ol class="step"><li class="step">Log on to the&nbsp;<b class="uicontrol">Central Configuration</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Repository-Provider List</b>. The&nbsp;<b class="uicontrol">Repository-Provider List</b>&nbsp;page is displayed with the list of repositories name.</li><li class="step">Expand the required repository where you do not want AutoMapping between Active Directory providers.</li><li class="step">Expand&nbsp;<b class="uicontrol">UserEntity</b>.</li><li class="step">Click the&nbsp;<b class="uicontrol">DefinitionXML</b>&nbsp;link&nbsp;to open the&nbsp;DefinitionXML&nbsp;file. Deselect the&nbsp;<b class="uicontrol">Do you want to map active directory providers</b>&nbsp;check box at first time, and do the respective operations.</li><li class="step">Go to the Farm Database. Now the entry in the&nbsp;<b class="uicontrol">Properties</b>&nbsp;column of the&nbsp;<b class="uicontrol">SKRepository</b>&nbsp;table is<p class="codeblock1">&lt;property key=&quot;AutoMapActiveDirectoryProviders&quot;&gt;&lt;![CDATA[False]]&gt;&lt;/property&gt;</p>
+</li></ol><p class="paragraph"><br></p>
+<p class="procedureheading">Steps for Auto Mapping</p>
+<ol class="step"><li class="step">Log on to the <b class="uicontrol">Central Configuration</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Repository-Provider List</b>. The<b class="uicontrol">&nbsp;Repository-Provider List</b>&nbsp;page is displayed with the list of repositories name.</li><li class="step">Expand the required repository and UserEntity where you want AutoMapping between Active Directory providers.</li><li class="step">Click the<b class="uicontrol">&nbsp;DefinitionXML</b>&nbsp;link&nbsp;to open the&nbsp;DefinitionXML&nbsp;file. Select the&nbsp;<b class="uicontrol">Do you want to map active directory providers</b>&nbsp;check box.</li><li class="step">Check the&nbsp;<b class="uicontrol">Edit the definition xml</b>. The&nbsp;<b class="uicontrol">Update</b>&nbsp;button will be enabled.</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.</li><li class="step">Select the respective provider, and then click<b class="uicontrol">&nbsp;DefinitionXML</b>&nbsp;link&nbsp;to open the&nbsp;DefinitionXML&nbsp;file.</li><li class="step">Check the&nbsp;<b class="uicontrol">Edit the definition xml</b>. The&nbsp;Update&nbsp;button will be enabled.</li><li class="step">Clicking&nbsp;<b class="uicontrol">Update</b>&nbsp;will map the across the active directory providers.</li></ol><p class="paragraph"><br></p>
+<p class="note"><strong class="notelabel">Notes</strong>:<br><br>- If user does not want Auto Mapping between providers, deselect the&nbsp;&quot;Do you want to map active directory providers?&quot;&nbsp;check box for first time and do the respective operations similar to before updating provider&nbsp;DefinitionXML. <br><br>- Once it is mapped, unchecking the option will not remove the existing mapping. <br><br>- Before connecting Microsoft SharePoint Web Application to a repository, make sure to deselect the check box if you do not want AutoMapping between Active Directory providers. <br><br>- If the user does not want to AutoMapping between Microsoft SharePoint and Active Directory provider, then go to Farm Database, open SKRepository table, update the following property to&nbsp;False&nbsp;in the&nbsp;Properties&nbsp;column. <br>&lt;property key=&quot;automapMicrosoft SharePointandactivedirectoryproviders&quot;&gt;&lt;![CDATA[False]]&gt;&lt;/property&gt;</p>
+<p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

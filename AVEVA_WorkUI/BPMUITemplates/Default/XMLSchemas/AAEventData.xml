@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<AAEventData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<AAEvent>
+<System>Application Server</System>
+<Source>Galaxy5:tic101.pv</Source>
+<Area>Building2.Floor2.Mixing</Area>
+<EventType>event type</EventType>
+<Priority>999</Priority>
+<DisplayText>Event1</DisplayText>
+</AAEvent>
+</AAEventData>

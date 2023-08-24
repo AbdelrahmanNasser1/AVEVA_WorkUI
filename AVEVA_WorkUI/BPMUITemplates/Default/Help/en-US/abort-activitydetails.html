@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> End Activity Execution: Activity Details </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601975" class="heading4">End Activity Execution: Activity Details</h4>
+<p class="subheading">Activity Details property window</p>
+<p class="paragraph">This topic gives you a detailed understanding of the<b class="uicontrol"> Activity Details</b> properties. The Activity Details properties are used to specify</p>
+<ul class="ulitem"><li class="ulitem">the workflow in which the activity to be ended is used. </li><li class="ulitem">the activity which needs to be ended. </li><li class="ulitem">the error that needs to be displayed if the activity that is to be ended is not found. </li><li class="ulitem">the loop execution step entry activity to monitor the instances that are to be ended. </li></ul><p class="paragraph"></p>
+<p class="paragraph">To open the<b class="uicontrol"> Activity Details</b> window, click the Activity Details button.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f187082" src="187082.png" alt="" height="274" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">This window has the following properties:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Workflow Level</b>: This property helps you to select the workflow level in which the activity to be ended is present. You can select either the parent workflow level or the child workflow level in which the activity to be ended is present.</li><li class="ulitem"><b class="uicontrol">Self:</b> You can select this option if the activity to be ended is present in the parent/same workflow. </li><li class="ulitem"><b class="uicontrol">Child</b>: You can select this option if the activity to be ended is present in a child workflow.</li><li class="ulitem"><b class="uicontrol">Specify Workflow Level</b>: If you do not know the workflow level, then you can use this option to specify the workflow level and type the workflow level in the adjacent field. Alternatively, you can use the expression editor, by clicking the icon , to select a variable assigned to the required workflow level. During runtime, this variable value is used to know the workflow level. You can assign the 'Self' or 'Child' values to a variable which will be used to know the value of this property. </li><li class="ulitem">To know more about using expression editor, see Using Expression Editor to Build Expressions for Properties topic in <i class="emphasis">User Guide</i>.</li><li class="ulitem"><b class="uicontrol">Workflow Name/Instance ID</b>: This property helps you to select the workflow name or its instance ID in which the activity to be ended is present. This option is enabled only if you have selected the 'Child' workflow level option. </li></ul><p class="paragraph"></p>
+<p class="paragraph">You can select the activity name from the drop-down field. Alternatively, you can either select the <b class="uicontrol">Specify Workflow Name</b> or the <b class="uicontrol">Specify Workflow Execution ID</b> option.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Specify Workflow Name</b>: Select this option to specify the workflow name and type the workflow name in the adjacent field. Alternatively, you can click the expression editor icon and select a variable referring to the required workflow name in the expression editor window.</li><li class="ulitem"><b class="uicontrol">Specify Workflow Execution Instance ID</b>: If you do not know the workflow name, then select this option to specify the workflow execution ID and type the execution ID in the adjacent field. Alternatively, you can click the expression editor icon and select a variable referring to the required workflow execution instance ID in the expression editor window.</li><li class="ulitem"><b class="uicontrol">Activity Name/Instance ID</b>: This property helps the user to select the activity name or the instance ID of the activity to be ended. Alternatively, you can either select the Specify Activity Name or Specify Activity Execution ID option.</li><li class="ulitem"><b class="uicontrol">Specify Activity Name</b>: Select this option to specify the activity name and type the activity name in the adjacent field. Alternatively, you can click the expression editor icon and select a variable assigned to the required activity in the expression editor window. <p class="stepinfo"><strong class="notelabel">Note:</strong> If the parent activity is associated with multiple versions of the child workflows that have the same name, all the activities added to these child workflows are listed in this field.</p>
+</li><li class="ulitem"><b class="uicontrol">Specify Instance ID</b>: Select this option to specify the activity instance ID and type the ID in the adjacent field. Alternatively, you can click the expression editor icon and select the instance ID assigned to the required activity in the expression editor window.</li><li class="ulitem"><b class="uicontrol">Error If Activity Instance Not Found</b>: This property helps you to set the output of this activity as &quot;Error encountered&quot; or &quot;Successful&quot; when the workflow to be ended has already been executed or is yet to be executed.</li></ul><p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Property Type: Mandatory</b> (This property must be set to end the workflow.)</p>
+<p class="paragraph"><b class="uicontrol">Yes</b>: If this value is assigned, then the End Activity Execution activity gives an output as &quot;Error encountered&quot; whenever the instance of the activity that is to be executed is not found. In other words, if the activity execution is not yet started or is already completed, then this error is encountered.</p>
+<p class="paragraph"><b class="uicontrol">No</b>: If this value is assigned, then the End Activity Execution activity will give the output as &quot;Successful&quot;.</p>
+<p class="paragraph"><b class="uicontrol">Specify Value</b>: This option can be used during the runtime execution of the workflow. You can assign the 'Yes' or 'No' values to a variable which will be used to know the value of this property. Alternatively, you can click the expression editor icon and select a variable assigned to the workflow in the expression editor window. </p>
+<p class="paragraph"><b class="uicontrol">Loop Execution Step Entry Activity</b>: You can use this property to specify the name of the Loop Execution Step Entry activity to which the activity to be ended is associated. This property is required if an instance level of association between the End Activity Execution activity and the activity to be ended is required. If this is not set, the End Activity Execution activity ends all the instances of the activity that is to be ended. This property is mainly used when the For Loop and For-Each-Loop activities are used in a workflow.</p>
+<p class="paragraph"><b class="uicontrol">Specify Activity Name</b>: Select this option and type the Loop Execution Step Entry activity name in the adjacent field. Alternatively, you can click the expression editor icon and select a variable referring to the required activity in the expression editor window.</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="abortruntimeactivity1.html" target="_self">End Activity Execution Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

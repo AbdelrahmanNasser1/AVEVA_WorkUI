@@ -1,0 +1,22 @@
+<%@ Register TagPrefix="radTS" Namespace="Telerik.WebControls" Assembly="RadTabStrip.Net2" %>
+
+<radTS:RadTabStrip Runat="server"
+	TabStripOrientation="HorizontalTopToBottom"
+	CssFile="~/app_themes/Longhorn/Styles/Longhorn.css"
+	ImagesBaseDir="~/app_themes/Longhorn/Img"
+	CssClass="TabRadTabstrip"
+	TextOnlyTabs="False"
+	ImageDefaultCenter="tabMiddleOff.gif"
+	ImageDefaultLeft="tabLeftOff.gif"
+	ImageDefaultRight="tabRightOff.gif" 
+	ImageSelectedCenter="tabMiddleOn.gif"
+	ImageSelectedLeft="tabLeftOn.gif"
+	ImageSelectedRight="tabRightOn.gif"
+	TabDefaultCssClass="TabLabelDefaultStyle"
+	TabSelectedCssClass="TabLabelDefaultStyle"
+	TabTextDefaultCssClass="TabLabelText"
+	LeftScrollButtonImage="ScrollLeft.png"
+	RightScrollButtonImage="ScrollRight.png"
+	LeftScrollButtonDisabledImage="ScrollLeftDisabled.png"
+	RightScrollButtonDisabledImage="ScrollRightDisabled.png"
+	/>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Cancel Approval Workflow </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t488897" class="heading3">Cancel Approval Workflow</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">Cancel Approval Workflow activity is responsible for the canceling an operation (Save As, Delete, Disable, Enable, Publish) and terminating the workflow instance, if while setting the rights for a specific security group, user has selected the option as <b class="uicontrol">&quot;Requires Approval</b>&quot; or &quot;<b class="uicontrol">Requires Approval with Prompt</b>&quot; for that operation.</p>
+<p class="paragraph">If the Request for approval is rejected or is terminated due to some reason, <b class="uicontrol">Cancel Approval Workflow activity</b> is responsible for rolling back the operation.</p>
+<p class="subheading">Scenario</p>
+<p class="paragraph">Consider a scenario, where while setting the security rights for Administrator, <b class="uicontrol">Can Publish Item</b> right has been set as <b class="uicontrol">Requires Approval</b> with the selected workflow as <b class="uicontrol">Security Approval Workflow</b>. </p>
+<p class="paragraph">Security Approval workflow ensures that Publish operation completes successfully only after approval from the concerned person. But if the request is rejected by the approver, then Security Approval workflow uses Cancel Approval Workflow activity internally to terminate the request.</p>
+<p class="paragraph">For more details, see <i class="emphasis">Security Approval Workflow</i>.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Cancel Approval Workflow activity has to be configured by specifying appropriate values for the different properties in the Action Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Approval activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic. </p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f187131" src="187131.png" alt="" height="333" width="262" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong> </p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Description</strong> - This property specifies a brief description to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong> </p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="notelabel">Note:</strong> The user needs to create a variable with the name<strong class="strong"> &quot;Error Message</strong>&quot; in the Start activity of the workflow which is using the Cancel Approval Workflow activity. This variable is used to capture any errors which have might occur during the process of cancelation of the various operations (Save As, Delete, Disable, Enable, Publish).</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f187132" src="187132.png" alt="" height="197" width="553" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="SecurityActivities.html" target="_self">Security Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

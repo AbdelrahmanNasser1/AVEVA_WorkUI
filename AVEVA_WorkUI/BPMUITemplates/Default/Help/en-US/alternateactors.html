@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Alternate Actors </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t598322" class="heading3">Alternate Actors</h3>
+<p class="paragraph">An actor is a user who is responsible for acting on a task or an activity. You can assign alternate actors to a workflow who will have rights to approve or reject an activity in the absence of the original actor. </p>
+<p class="paragraph">You can configure an alternate actor in one of the following three different ways:</p>
+<ul class="ulitem"><li class="ulitem">Inbox</li><li class="ulitem">Enterprise Console menu</li><li class="ulitem">Process Designer</li></ul><p class="paragraph"></p>
+<p class="paragraph">While configuring an alternate actor in Inbox or Enterprise Console menu, the <b class="windowtitle">Add Alternate Actor</b> dialog box does not contain the <b class="uicontrol">Activities </b>field. While configuring an alternate actor in <b class="windowtitle">Inbox</b>, the logged in user is considered as the actor.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set an Alternate Actor in the Process Designer:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Process Designer</b>&nbsp;window, point to&nbsp;<b class="uicontrol">Settings</b>, and then click&nbsp;<b class="uicontrol">Alternate Actors</b>. <p class="stepresult">The&nbsp;<b class="windowtitle">Alternate Actors</b>&nbsp;dialog box appears.&nbsp;</p>
+<p class="stepinfo">This window lists all the alternate actors that are added. </p>
+</li><li class="step">Click <b class="uicontrol">Add New Actor </b>to add new alternate actors.<p class="stepresult">The <b class="windowtitle">Add Alternate Actor </b>dialog box appears.</p>
+<p class="stepinfo"></p>
+<p class="limage"><img id="f251614" src="251614.png" class="embeddedimage100%scalinglive" alt="" height="358" width="576" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Enter the required inputs for each work item field:<ol class="substep"><li class="substep"><b class="uicontrol">Workflow</b>:&nbsp;Specify the workflow for which the alternate actors are being added.</li><li class="substep"><b class="uicontrol">Activities</b>:&nbsp;Specify the activity for which the alternate actors are being added. The field will be displayed to the actor with this label name in the Work items list.</li><li class="substep"><b class="uicontrol">Type</b>:&nbsp;Specify the type of activity transfer from the original actor to the alternate actor.<ul class="ulsubsubitem"><li class="ulsubsubitem"><b class="uicontrol">Delegate</b>: Delegate the task to the alternate actor.</li><li class="ulsubsubitem"><b class="uicontrol">Assign</b>: Shift the task assignment to the alternate actor.<p class="lsubsubcontinue">Only one type of setting (<strong class="strong">Delegate </strong>or <strong class="strong">Assign</strong>) is allowed for an Actor, Alternate Actor, and Workflow combination.</p>
+<p class="lsubsubcontinue">In an upgraded environment where <strong class="strong">Delegate </strong>and <strong class="strong">Assign </strong>is already set for an actor, <strong class="strong">Delegate </strong>takes precedence over <strong class="strong">Assign</strong>. .</p>
+<p class="lsubsubcontinue"></p>
+</li></ul></li><li class="substep"><b class="uicontrol">Search</b>: Specify the actor and the alternate actor.&nbsp;<ol class="olsubsubitem"><li class="olsubsubitem">Click the&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;button to select the&nbsp;<b class="uicontrol">Actor&nbsp;</b>or the&nbsp;<b class="uicontrol">Alternate Actor.</b><p class="lsubsubcontinue">The <b class="windowtitle">User Lookup</b> dialog box appears. </p>
+</li><li class="olsubsubitem">Select the required users, and click <b class="uicontrol">Update</b>. <p class="lsubsubcontinue">The same user cannot be set for both Actor and Alternate Actor.</p>
+<p class="lsubsubcontinue">Click <strong class="strong">Existing Actors</strong> to view the list of all the existing alternate actors of the selected actor. The list of existing actors and the associated details get populated in the grid at the bottom section of the dialog box as shown in the following image:</p>
+<p class="lsubsubcontinue"></p>
+<p class="lsubsubimage"><img id="f246980" src="246980.png" class="embeddedimage100%scalinglive" alt="" height="353" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="lsubsubcontinue"></p>
+</li></ol></li><li class="substep"><b class="uicontrol">Select Date</b>: Specify the period for which the alternate actor is being assigned to the original actor.<ol class="olsubsubitem"><li class="olsubsubitem"><b class="uicontrol">From</b>: Click the calendar to select the start date.</li><li class="olsubsubitem"><b class="uicontrol">To</b>: Click the calendar to select the end date.</li><li class="olsubsubitem"><b class="uicontrol">Consider Only During Absence</b>:&nbsp;Select&nbsp;to specify that the alternate actor is to be considered only during the absence of the original actor.</li></ol><p class="lsubcontinue">Note that the <strong class="strong">From </strong>date cannot be older than the current date.</p>
+</li></ol></li><li class="step">Click <b class="uicontrol">Save</b> to add the new alternate actor.<p class="stepresult">The&nbsp;<b class="uicontrol">Alternate Actors</b>&nbsp;window opens showing the newly added alternate actor.</p>
+<p class="stepresult"></p>
+</li></ol><p class="paragraph">For more information about assigning Alternate Actors from the Work items list window, see <i class="emphasis">Work items list Control</i>.&nbsp;</p>
+<p class="paragraph">For more information about how to set an Actor to perform a human task, see&nbsp;<i class="emphasis">Human Activities</i>&nbsp;in the<i class="emphasis"> Developer Guide</i>.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">See Also</strong>: <i class="emphasis">Alternate Actors</i> topic in <i class="emphasis">User Guide</i>.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="abouttheprocessdesigner.html" target="_self">About the Process Designer</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

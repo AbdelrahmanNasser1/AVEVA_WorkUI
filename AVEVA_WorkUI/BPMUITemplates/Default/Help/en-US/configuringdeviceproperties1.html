@@ -1,0 +1,696 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> SendSMS and WaitForSMS </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601995" class="heading4">SendSMS and WaitForSMS</h4>
+<p class="paragraph">The SMS Send and Receive actions communicate either through a serial port, Bluetooth connection, infrared port or any TAPI compliant device. When using the COM port directly, device properties must be setup properly before you can start to send or receive messages. When using TAPI, these settings are controlled by the TAPI telephone driver, and should be configured through the TAPI settings as described below: </p>
+<ul class="ulitem"><li class="ulitem">Open the Windows Control Panel; </li><li class="ulitem">Double-click on 'Phone and Modem Options' and select the 'Modems' tab; </li><li class="ulitem">Select the preferred modem and click on 'Properties'; from here, you can change the settings. </li></ul><p class="paragraph"><strong class="strong">To select a TAPI device in the toolkit's object, you must assign the Device member:</strong> </p>
+<ul class="ulitem"><li class="ulitem">Device - the literal TAPI device string, for instance: 'Standard 9600 Modem'. </li></ul><p class="paragraph"><strong class="strong">If you prefer not to use TAPI, you must assign COM port properties through the following member variables: </strong></p>
+<ul class="ulitem"><li class="ulitem">Device - the actual COM port device, formatted as COM x, where x represents the COM port number; </li><li class="ulitem">DeviceHwFlowControl - hardware flow control is used to regulate commands from PC to device and visa versa; default: On; </li><li class="ulitem">DeviceSwFlowControl - software flow control is used to regulate data from device to device; default: Off; </li><li class="ulitem">DeviceSpeed - the speed to be used to communicate with modem or GSM phone; default: 0 (which means that factory defaults are used for modem communications); </li><li class="ulitem">DeviceSettings - the number of databits, paritybits and stopbits; default: 8 databits, no parity, 1 stopbit; </li><li class="ulitem">DeviceInitString - the modem initialization string is used to initialize the modem; default value: &quot;&quot; (which means a generic initialization string will be used). </li></ul><p class="paragraph"><strong class="strong">Before you can actually send an SMS or Pager message, the Toolkit needs to know a bit more about the sender, recipient and the actual message. Therefore, you must assign the following properties</strong>: </p>
+<ul class="ulitem"><li class="ulitem">Sender - the phone number of the sender of the message; only digits are allowed. The sender address will be displayed on the recipient's mobile phone. If not assigned, 00000000000 will be used as sender address; </li><li class="ulitem">Recipient - the phone number of the recipient of the message; if not specified, the message cannot be sent; </li><li class="ulitem">MessageText - the actual message body, containing any character. Maximum message length is 160 characters when using normal (non-Unicode) text. When Unicode is used, you can only send 70 characters; </li><li class="ulitem">Dial-in number of the SMS/Paging service provider (not required if you send a message through a directly connected GSM phone). </li></ul><p class="paragraph"><strong class="strong">If you send through an SMSC provider, you must tell the component which provider protocol you are going to use: </strong></p>
+<ul class="ulitem"><li class="ulitem">ProviderType - the type of protocol requested by the provider. You can choose: UCP or TAP. </li></ul><p class="paragraph"><strong class="strong">Important:</strong> Sending an SMS through a service provider requires special knowledge of the protocol and provider requirements of your equipment. A provider requires its own speed (1200 bps is most common, but also 300 and 2400 are also often required), data format (7 databits, no parity, 1 stopbit or 8 databits, even parity and 1 stopbit) and provider type (UCP or TAP).</p>
+<p class="paragraph"><strong class="strong">Supported Phone Models</strong></p>
+<p class="paragraph">The following table depicts the supported phones by AVEVA Work Tasks:</p>
+<p class="paragraph"></p>
+<table class="tableintopic" width="584" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableheader">&nbsp;&nbsp;Brand</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableheader">&nbsp;Type</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableheader">&nbsp;Send</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableheader">&nbsp;Receive</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableheader">&nbsp;Comments</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;Ericsson&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z520&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z525&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z530&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z550&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z800&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;Motorola&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;V188&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;Nokia&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;6100&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;CA42 Datacable tested&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;6210&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;6220&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;6310&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;6310i&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;6610&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;8250&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;8910&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;Siemens&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;C35&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;C45&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;M35&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;M45&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;S35&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;Sony-Ericsson&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;F500&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K310&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K320&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K500&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K510&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K600&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K700&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K750i&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;K800i&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;S700&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;S710&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T226&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T230&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T238&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T290&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T310&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T610&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T630&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T637&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T68&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;T68i&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;V800&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W300&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W550&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W600&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W700&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W800i&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W810&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;W900&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z1010&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z500&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="137"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="91"><p class="tableparagraph">&nbsp;Z600&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="57"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="72"><p class="tableparagraph">&nbsp;Yes&nbsp;</p>
+</td>
+<td style="border:1px solid #010101;" width="227"><p class="tableparagraph">&nbsp;&nbsp;</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="configuringcommunicationactivities1.html" target="_self">Configuring Communication Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

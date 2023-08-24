@@ -1,0 +1,55 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> Script: References </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="Script: References">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('49564');expand('49553');expand('49354');highlight('49566')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<h4 id="t49566" class="heading4">Script: References</h4>
+<p class="subheading">References Property Window</p>
+<p class="paragraph">You can set the references for the script in the&nbsp;<b class="uicontrol">References</b>&nbsp;property window.</p>
+<p class="paragraph">To open this window, click the button for the &quot;References&quot; property. It displays the references in a grid. The grid contains a blank row where you can enter the parameters for new references.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">References</b>&nbsp;property window:</p>
+<p class="paragraph"><img id="f51033" src="51033.png" class="embeddedimage100%scalinglive" alt="" height="228" width="525" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">References</b>&nbsp;property window contains the following fields and tabs:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Add Row</b>:&nbsp;Use this tab to add the newly entered reference, and display a new row to the grid where you can add another reference.</li><li class="ulitem"><b class="uicontrol">Remove Selected</b>:&nbsp;Use this tab to remove the reference selected in the grid.</li><li class="ulitem"><b class="uicontrol">References</b>:&nbsp;Use this field to enter a new reference object.</li><li class="ulitem"><b class="uicontrol">Assembly Path</b>:&nbsp;Use this field to enter the assembly path for the new reference.</li><li class="ulitem"><b class="uicontrol">Update</b>:&nbsp;Use this tab to save the newly added reference(s).</li><li class="ulitem"><b class="uicontrol">Close</b>:&nbsp;Use this tab to close the property window without saving the newly added reference(s).</li><li class="ulitem"><b class="uicontrol">Last Row needs to be added</b>:&nbsp;Select this check box to save the last row added.</li></ul><p class="paragraph">Enter the relative path,&nbsp;<b class="uicontrol">[INSTALLDIR]Bin\</b>&nbsp;as the assembly path to refer to the external assemblies that are referenced in script action and are available in the&nbsp;AVEVA Work Tasks&nbsp;installed Bin folder.</p>
+<p class="paragraph">The following image shows the&nbsp;external assembly relative path:</p>
+<p class="paragraph"><img id="f51034" src="51034.png" class="embeddedimage100%scalinglive" alt="" height="224" width="525" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="script12.html" target="_self">Script Activity</a></p><p class="relateditem"><a href="script111.html" target="_self">Script: Code</a></p><p class="relateditem"><a href="script-returnvalues1.html" target="_self">Script: Return Values</a></p></td>
+</tr>
+</table>
+
+
+<input id="topicId" type="hidden" value="49566" />
+<input id="topicDescription" type="hidden" value="Script: References" />
+<input id="footer-modified" type="hidden" value="Last modified: 4/27/2015 1:18:08 PM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

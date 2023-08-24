@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Items List View </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t483086" class="heading4">Work Items List View</h4>
+<p class="paragraph">The Inbox lists all open work items assigned to the user that awaiting action or response. The columns displayed in the default view are:</p>
+<ul class="ulitem"><li class="ulitem">Workflow</li><li class="ulitem">Subject</li><li class="ulitem">Activity Display Name</li><li class="ulitem">Priority</li><li class="ulitem">Response By</li><li class="ulitem">Assigned On</li><li class="ulitem">Approver1</li></ul><p class="paragraph">The&nbsp;<b class="uicontrol">Subject</b>&nbsp;column lists work items in bold type. When the user takes ownership of the item, its display changes from bold to normal. Double-clicking on an item displays its details in Work Item Details.</p>
+<p class="subheading">Default columns in the Work items list</p>
+<p class="paragraphimage"><img id="f46820" src="46820.png" class="embeddedimage100%scalinglive" alt="" height="126" width="561" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">See also: <a id="h46810" class="jump-currentwindowlive" title="Customizing Work Items List Views" href="customizingworkitemlistviews.html" target="_self">Customizing Work Items List Views</a></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Accessing Queue Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46188" class="heading3">Accessing Queue Items</h3>
+<p class="paragraph">The work items list shows a separate folder for every queue that the user is a participant in. When a work item from the queue is assigned to the actor, it is moved to the Inbox. The folder displays all items that are assigned to the queue. However, the display of all queue items is subject to the rights assigned to the user for the queue.</p>
+<p class="paragraph">When the queue is configured for manual dispatch and the actor has access rights to pick the next item from the queue, the actor can view the&nbsp;<b class="uicontrol">Next Item</b>&nbsp;button at the top of the Work items list along with the corresponding drop down. After completing the current assigned task, the actor can select the queue from the drop down and click on the button to pick the next item for action.</p>
+<p class="paragraph">For more information about setting rights for queue participants, see&nbsp;<a id="h46710" class="jump-currentwindowlive" title="Participants Tab" href="participantstab.html" target="_self">Participants Tab</a></p>
+<p class="subheading">Queue Item Options</p>
+<p class="paragraph">Depending on the queue configuration and the participants, the context-sensitive menu for the queue item lists the following options:</p>
+<p class="subheading">Allocate queue item</p>
+<p class="paragraph">Allocates the item to a participant. This option brings up the&nbsp;<b class="uicontrol">Allocate Queue Item</b>&nbsp;window.</p>
+<p class="paragraphimage"><img id="f46835" src="46835.jpg" class="embeddedimage100%scalinglive" alt="" height="306" width="601" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Move to different queue</p>
+<p class="paragraph">Moves the item to a different queue. This option will drop another menu with a list of available queues.</p>
+<p class="paragraph"><b class="uicontrol">Set Priority</b>: Set the priority of the queue item by selecting the required priority level (High, Medium, or Low) from the secondary menu.</p>
+<p class="paragraph"><b class="uicontrol">Pick</b>: Allows selection of the participant who will act on the queue item. The actor is picked based on the dispatch pattern that has been set.</p>
+<p class="paragraph"><b class="uicontrol">Plan</b>: Allows users to plan to get the queue item at a specified time. Selecting this option opens the<b class="uicontrol">&nbsp;Plan Queue Item</b>&nbsp;window to enter the lead time for picking up the item.</p>
+<p class="paragraphimage"><img id="f46836" src="46836.jpg" class="embeddedimage100%scalinglive" alt="" height="218" width="481" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Cancel Planned Queue Work Item</p>
+<ul class="ulitem"><li class="ulitem">Allows users to cancel the planned queue work item and move the work item back to the queue.</li><li class="ulitem">This option is displayed in the context menu only for the queue work items that are already planned.</li><li class="ulitem">If the user wants to cancel a planned queue work item, the user needs to right-click the planned work item and select&nbsp;<b class="uicontrol">Cancel Planned Item</b>&nbsp;from the context menu. The work item will be moved back to the queue.</li></ul><p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

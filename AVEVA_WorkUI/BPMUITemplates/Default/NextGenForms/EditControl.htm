@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Edit Control</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/SkeltaFormsEditControl.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var skeltaUtils = skelta.forms.utilities;
+        var skeltaLocalize = skelta.localize;
+        var logger = skeltaUtils.getLogger();
+        var cacheKey, AddEditCriteria, sfdcontainer, listName, designermode, versionstamp, paramApplicationName;
+        var workItemViewAndViewModel, paramUserId;
+        var dataModel = null;
+        var viewModelObject, startTime, endTime;
+        var popupWindow = null, doNotCloseEditPage = false, initialInstanceXMl;
+        var convJSONXml = new X2JS();
+
+        String.prototype.startsWith = function (str)
+        {
+            return this.indexOf(str) == 0;
+        }
+
+        function onEditControlCancel()
+        {
+            var instanceXml = convJSONXml.json2xml_str(viewModelObject.topLevelForm.records()[0].getFormSubmissionData());
+            if (initialInstanceXMl !== instanceXml)
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "xmlInstance": initialInstanceXMl,
+                    "cacheKey": cacheKey,
+                    "listName": listName,
+                    "version": versionstamp,
+                    "selectedControl": sfdcontainer,
+                    "applicationName": paramApplicationName,
+                    "userId": paramUserId
+                });
+                updateFormDefinition(jsonHelper);
+            } else
+            {
+                skeltaUtils.closePropertiesFrame();
+            }
+        }
+
+        function onEditControlSave(inputParameterObject, eventArgs)
+        {
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": val,
+                "cacheKey": cacheKey,
+                "listName": listName,
+                "version": versionstamp,
+                "selectedControl": sfdcontainer,
+                "applicationName": paramApplicationName,
+                "userId": paramUserId
+            });
+
+            if (sfdcontainer.startsWith("I") || val.startsWith("<InvokeWorkflow>"))
+            {
+                var mappingInfo = control.findByXmlNode("MappingsSchema").sourceDetails;
+                if (mappingInfo != "")
+                {
+                    var sourceDetails = mappingInfo.substring(0, mappingInfo.lastIndexOf("~"));
+                    var SchemaType = mappingInfo.split("~")[mappingInfo.split("~").length - 1];
+                    if (control.findByXmlNode("MappingsSchema").value == "" || sourceDetails === (control.findByXmlNode("WorkflowWithVersion").value + "~" + control.findByXmlNode("XmlVariableName").value))
+                    {
+                        if (SchemaType != control.findByXmlNode("Schema").value && control.findByXmlNode("MappingsSchema").value != "")
+                        {
+                            var formSchemaType = control.findByXmlNode("Schema").value === "FullForm" ? "Form" : control.findByXmlNode("Schema").value;
+                            skeltaUtils.showError(document.title, skeltaLocalize.getString("FormNGFControlMappingSchemaType_validation").replace("<@ExistingSchemaType@>", SchemaType).replace("<@UsingSchemaType@>", formSchemaType), null, "");
+                            $("#skloader").attr('data-skloader', 0);
+                        }
+                        else
+                        {
+                            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/ValidateInvokeWorkflowProperties", "application/json; charset=utf-8", jsonHelper, "json", validateSuccess, validateFailed, null);
+                        }
+                    }
+                    else
+                    {
+                        skeltaUtils.showError(document.title, skeltaLocalize.getString("FormNGFControlMappingClearMapping_validation"), null, "");
+                        $("#skloader").attr('data-skloader', 0);
+                    }
+                }
+                else
+                {
+                    skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/ValidateInvokeWorkflowProperties", "application/json; charset=utf-8", jsonHelper, "json", validateSuccess, validateFailed, null);
+                }
+            }
+            else if (val.startsWith("<PanelForm>"))
+            {
+                //// Panel Form- If the number of columns are being reduced from X to X-n, confirmation alert to be shown that the action would remove last n columns with all its controls
+                //// If the user agrees, then save else just hide the loader
+                var uniqueKey = SFU.getFormUniqueKey(paramApplicationName, cacheKey + "_E", versionstamp),
+                    dataModelObj = SFU.getDataModelObject(uniqueKey),
+                    initialValue = dataModelObj["PanelForm"]["NumberOfColumns"],
+                    currentValue = viewModelObject.topLevelForm.findByXmlNode("NumberOfColumns").value;
+
+                if (currentValue < initialValue)
+                {
+                    var diff = parseInt(initialValue) - parseInt(currentValue),
+                        confirmationTitle = "",
+                        confirmationMessage = "";
+
+                    if (diff == 1)
+                    {
+                        confirmationTitle = skelta.localize.getString("FormNGFPanelNumberOfColumnsReducedByOneTitle");
+                        confirmationMessage = skelta.localize.getString("FormNGFPanelNumberOfColumnsReducedByOne").replaceString("<@initial@>", initialValue).replaceString("<@updated@>", currentValue);
+                    }
+                    else
+                    {
+                        confirmationTitle = skelta.localize.getString("FormNGFPanelNumberOfColumnsReducedTitle");
+                        confirmationMessage = skelta.localize.getString("FormNGFPanelNumberOfColumnsReduced").replaceString("<@difference@>", diff).replaceString("<@initial@>", initialValue).replaceString("<@updated@>", currentValue);
+                    }
+
+                    skelta.forms.utilities.showWarning(
+                        confirmationTitle,
+                        confirmationMessage,
+                        function (r)
+                        {
+                            if (r)
+                            {
+                                updateFormDefinition(jsonHelper);
+                            }
+                            else
+                            {
+                                skelta.forms.utilities.hideLoader();
+                                return;
+                            }
+                        });
+                }
+                else
+                {
+                    updateFormDefinition(jsonHelper);
+                }
+            }
+            else
+            {
+                updateFormDefinition(jsonHelper);
+            }
+        }
+
+        function updateFormDefinition(jsonHelper)
+        {
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/UpdateFormDefinition", "application/json; charset=utf-8", jsonHelper, "html", updateViewSuccess, updateViewFailed, null);
+        }
+
+        $(document).ready(function ()
+        {
+            var spinnerEl = skeltaUtils.getLoaderObject();
+            $("#skloader")[0].appendChild(spinnerEl);
+
+            startTime = new Date();
+            AddEditCriteria = skeltaUtils.getUrlParameterValue(window, 'AddEditCriteria');
+            sfdcontainer = skeltaUtils.getUrlParameterValue(window, 'sfdcontainer');
+
+            skelta.userContext.setUserContextFor("isListForm", skeltaUtils.getUrlParameterValue(window, 'isListForm'));
+            skelta.userContext.setUserContextFor("appN", window.parent.skelta.userContext.getUserContextFor("appN"));
+            skelta.userContext.setUserContextFor("uId", window.parent.skelta.userContext.getUserContextFor("uId"));
+            skelta.userContext.setUserContextFor("fName", window.parent.skelta.userContext.getUserContextFor("fName"));
+            skelta.userContext.setUserContextFor("vStamp", window.parent.skelta.userContext.getUserContextFor("vStamp"));
+            skelta.userContext.setUserContextFor("itemId", window.parent.skelta.userContext.getUserContextFor("itemId"));
+            skelta.userContext.setUserContextFor("listName", window.parent.skelta.userContext.getUserContextFor("listName"));
+
+            paramApplicationName = skelta.userContext.getUserContextFor("appN");
+            paramUserId = skelta.userContext.getUserContextFor("uId");
+            paramFormName = skelta.userContext.getUserContextFor("fName");
+            versionstamp = skelta.userContext.getUserContextFor("vStamp");
+            cacheKey = skelta.userContext.getUserContextFor("itemId");
+            listName = skelta.userContext.getUserContextFor("listName");
+            skeltaUtils.loadPageDefault();
+            loadEditControl();
+        });
+        function loadEditControl()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "cacheKey": cacheKey,
+                "listName": listName,
+                "versionStamp": versionstamp,
+                "containerId": sfdcontainer,
+                "target": "",
+                "applicationName": paramApplicationName,
+                "userId": paramUserId
+            });
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/EditControl", "application/json; charset=utf-8", jsonHelper, "html", getEditControlSucceeded, getEditControlFailed, null);
+        }
+
+        function getEditControlSucceeded(resultData)
+        {
+            try
+            {
+                workItemViewAndViewModel = resultData;
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "cacheKey": cacheKey,
+                    "listName": listName,
+                    "versionStamp": versionstamp,
+                    "containerId": sfdcontainer,
+                    "target": "",
+                    "applicationName": paramApplicationName,
+                    "userId": paramUserId
+                });
+                skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetEditControlInstanceXml", "application/json; charset=utf-8", jsonHelper, "json", getInstanceXmlSucceeded, getInstanceXmlFailed, function () { skeltaUtils.pageLoadComplete("editproperties"); });
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skeltaLocalize.getString("FormNGFGetControlPropertiesErrorMsg"), null, exception.message);
+                logger.logError(skeltaLocalize.getString("FormNGFGetEditControlFail") + "  " + exception.message);
+                skeltaUtils.pageLoadComplete("editproperties");
+            }
+        }
+
+        function getEditControlFailed(jqXHR, textStatus, err)
+        {
+            skeltaUtils.showError(document.title, skeltaLocalize.getString("FormNGFGetControlPropertiesErrorMsg"), null, err);
+            logger.logError(err);
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true)
+            {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(paramApplicationName, cacheKey + "_E", versionstamp);
+                skeltaUtils.createDataModelObject(uniqueKey);
+                var tempInstanceObject = skeltaUtils.getJSONObjectFromXml(res.Result);
+                skeltaUtils.setDataModelObject(uniqueKey, tempInstanceObject);
+                $("#viewModel").html(workItemViewAndViewModel);
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                viewModelObject.onSave.subscribeEvent(onEditControlSave);
+                document.title = $("<div>").text(viewModelObject.topLevelForm.records()[0]._tagName).html();
+                //initialInstanceXMl is introduced mainly for script editor. If form definition is saved with scripts and if user clicks on cancel in edit properties.
+                //If there is change then it should be revert to initial instance xml and initial instance xml which comes from server does not have empty nodes like description.
+                //if description does not have any value then the node will be skipped. In script editor, whenever script gets saved - it does the form definition update.
+                //scenario - Drag and drop T1 and write ODC script and save and close but click on cancel in properties should revert to empty ODC and save form definition
+                //res.Result this does not contain ODC node as it was empty thats why using getFormSubmissionData which includes empty nodes even when value is empty
+                var intanceObject = viewModelObject.topLevelForm.records()[0].getFormSubmissionData();
+                /*THIS LOGIC ADDED EXPLICITLY FOR Actionbar when we fetch the data using getFormSubmissionData the knockout obervable array is still binding the data to the tree as it is inside tab there is more delay
+                  but there is data in the above response, below code is to update the initial instance xml.
+                */
+                if (tempInstanceObject.hasOwnProperty("BaseForm"))
+                {
+                    if (tempInstanceObject.BaseForm.hasOwnProperty("ActionBarItems") && !skeltaUtils.isUndefinedNullOrEmpty(tempInstanceObject.BaseForm.ActionBarItems))
+                    {
+                        var actionItems = { ActionItems: { ActionItem: skelta.forms.utilities.getActionBarItems(tempInstanceObject.BaseForm.ActionBarItems) } };
+                        intanceObject.BaseForm.ActionBarItems = SFU.getXmlFromJSONObject(actionItems);
+                    }
+                }
+                initialInstanceXMl = convJSONXml.json2xml_str(intanceObject);
+            }
+            else
+            {
+                skeltaUtils.showError(document.title, skeltaLocalize.getString("FormNGFGetControlPropertiesErrorMsg"), null, res.ErrorMessage);
+                logger.logError(res.ErrorMessage);
+            }
+
+            skeltaLocalize.divTextLocalize();
+            skeltaLocalize.divTitleLocalize();
+            endTime = new Date();
+
+            $("#viewModel")[0].style.display = "";
+            if (res.IsSuccess === true)
+            {
+                setTimeout(function () {
+                    window.parent.focus();
+                    setTimeout(function () {
+                        viewModelObject.topLevelForm.initializeFocus(0);
+                    }, 0);
+                }, 0);
+            }
+        }
+
+        function getInstanceXmlFailed(result)
+        {
+            skeltaUtils.showError(document.title, result.ErrorMessage);
+        }
+
+        function setValueToControl(id, value)
+        {
+            viewModelObject.findById(id)._value("<![CDATA[" + value + "]]>");
+        }
+
+        function updateViewSuccess(data)
+        {
+            parent.doNotCloseEditPage = doNotCloseEditPage;
+
+            var jsonData = $.parseJSON(data);
+
+            if (jsonData.ErrorMessage && jsonData.ErrorMessage != "")
+            {
+                skeltaUtils.showError(document.title, jsonData.ErrorMessage);
+                logger.logError(jsonData.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+            }
+            else
+            {
+                parent.updateViewComplete(data);
+            }
+
+            doNotCloseEditPage = false;
+        }
+
+        function updateViewFailed(jqXHR, textStatus, err)
+        {
+            parent.doNotCloseEditPage = doNotCloseEditPage;
+            getEditControlFailed(jqXHR, textStatus, err);
+            doNotCloseEditPage = false;
+        }
+
+        function validateSuccess(data)
+        {
+            var result = JSON.parse(data.d);
+            if (result.IsSuccess == false)
+            {
+                if (result.ErrorMessage === "OpenOptionsWindow")
+                {
+                    createFrame('InvokeWorkflowOverwriteConfig.htm?ConfigError=' + result.Result + '', 'LookupSource');
+                }
+                else
+                {
+                    skeltaUtils.showError(document.title, result.ErrorMessage);
+                }
+
+                skelta.forms.utilities.hideLoader();
+            }
+            else
+            {
+                var formData = $.parseJSON(result.Result);
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "xmlInstance": formData.xmlinstance,
+                    "cacheKey": cacheKey,
+                    "listName": listName,
+                    "version": versionstamp,
+                    "selectedControl": sfdcontainer,
+                    "applicationName": paramApplicationName,
+                    "userId": paramUserId
+                });
+                skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/UpdateFormDefinition", "application/json; charset=utf-8", jsonHelper, "html", updateViewSuccess, updateViewFailed, null);
+            }
+
+        }
+
+        function validateFailed(data)
+        {
+            var result = JSON.parse(data.d);
+            skeltaUtils.showError(document.title, result.ErrorMessage);
+            skelta.forms.utilities.hideLoader();
+        }
+    </script>
+</head>
+<body>
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;"></textarea>
+</body>
+</html>

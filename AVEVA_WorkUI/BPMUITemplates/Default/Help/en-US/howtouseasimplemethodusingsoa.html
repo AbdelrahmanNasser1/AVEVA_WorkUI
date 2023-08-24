@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using SOA in a Simple Method </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602333" class="heading4">Using SOA in a Simple Method</h4>
+<p class="paragraph">This example illustrates the use of SOA in a simple method in a .NET framework assembly</p>
+<p class="paragraph"><strong class="strong">PROCEDURE</strong></p>
+<p class="paragraph"><strong class="strong">NAMESPACE USED</strong></p>
+<p class="codeblock1">System</p>
+<p class="codeblock1">System.Collections.Generic</p>
+<p class="codeblock1">System.Text</p>
+<p class="subheading">Creating a New Project</p>
+<ol class="step"><li class="step">Launch<b class="uicontrol"> Microsoft Visual Studio</b>. The Visual Studio Start Page opens.</li><li class="step">On the <b class="uicontrol">File</b> menu, point to <b class="uicontrol">New</b>, and then select <b class="uicontrol">Project</b>. The New Project dialog box appears.</li><li class="step">In the right pane, select <b class="uicontrol">Class Library</b>.</li><li class="step">Create your .net Class Library. For example, in the <b class="uicontrol">Name</b> box, type MySkeltaTest.</li><li class="step">Set the path to save the project. For example, in the <b class="uicontrol">Location</b> drop-down, set the location as M:\Work.</li><li class="step">In the <b class="uicontrol">Solution Name</b> box, type the directory name. By default, it displays the directory name as the specified project name.</li><li class="step">Click <b class="uicontrol">OK</b>. The MySkeltaTest project gets created in the path M:\Work. <p class="stepinfo"><strong class="strong">Sample code to create the class</strong></p>
+<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">namespace MySkeltaTest</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">public class MyTest</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">private int id;</p>
+<p class="codeblock1">public MyTest()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public MyTest(int inde)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">id = inde;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public string GetName()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return &quot;Welcome to Skelta SOA&quot;;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public string GetNextName()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return &quot;Wonderful feature&quot;;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public string Unique_Name(int iID)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">if (iID == 1return &quot;Use WEB Service&quot;;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">else if (iID == 2)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return &quot;Access SQL Server data&quot;;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">else if (iID == 1)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return &quot;Access COM object&quot;;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">else</p>
+<p class="codeblock1">return &quot;What not&quot;;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+</li><li class="step">Build the created project. The dll gets created in&nbsp;M:\Work\MySkeltaTest\MySkeltaTest\bin\Debug&nbsp;folder.<p class="stepinfo">Adding this folder in the SOA Folder option:</p>
+</li><li class="step">On the Windows&nbsp;Start&nbsp;menu, point to&nbsp;<b class="uicontrol">All Programs</b>, point to&nbsp;<b class="uicontrol">AVEVA</b>,&nbsp;point to&nbsp;<b class="uicontrol">AVEVA Work Tasks</b>, and then click&nbsp;<b class="uicontrol">Central Configuration</b>. The Central Configuration&nbsp;page appears.</li><li class="step">Click&nbsp;Repository List. The&nbsp;Repository List&nbsp;page appears.</li><li class="step">In the&nbsp;Site Path&nbsp;column, click the desired link to log on to the desired repository. You would be redirected to the&nbsp;Enterprise Portal.</li><li class="step">Select the required&nbsp;<b class="uicontrol">Authentication Provider</b>.</li><li class="step">Log on to the&nbsp;<b class="uicontrol">Enterprise Console</b>.</li><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;button, click&nbsp;Settings, and then click&nbsp;SOA Folder. The&nbsp;Folder List&nbsp;page appears.</li><li class="step">On the action bar, click&nbsp;<b class="uicontrol">New</b>. The&nbsp;<b class="uicontrol">Folder Configuration</b>- New&nbsp;wizard appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Title</b>&nbsp;box, type a name for the folder, and in the&nbsp;<b class="uicontrol">Description</b>&nbsp;box, type a description for the folder.</li><li class="step">In the&nbsp;<b class="uicontrol">Physical Path</b>&nbsp;box, type the physical path. For example,&nbsp;M:\Work\MySkeltaTest\MySkeltaTest\bin\Debug.</li><li class="step">Click&nbsp;<b class="uicontrol">View Assemblies</b>. All the assemblies available in the given path will be listed in&nbsp;the&nbsp;List of Assemblies&nbsp;section.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>. The SOA folder is created.<p class="stepinfo">Adding Assembly into SOA Assembly Repository</p>
+</li><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;button, click <b class="uicontrol">Tools</b>, and then click<b class="uicontrol">&nbsp;SOA Assembly</b>. The&nbsp;<b class="uicontrol">Assembly List&nbsp;</b>page appears.</li><li class="step">On the action bar, click&nbsp;<b class="uicontrol">New</b>, and then click&nbsp;<b class="uicontrol">From Assembly Folder</b>&nbsp;to select an assembly from a registered folder. &nbsp;The&nbsp;<b class="uicontrol">Select an Assembly</b>&nbsp;page appears.</li><li class="step">Select the assembly. The assembly must be a .NET Framework assembly.<p class="stepinfo"> </p>
+<p class="stepinfo"><br>After you select an assembly, you can browse through the namespaces, classes, and methods of the assembly. You can also provide an alias for the selected methods.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><br><img id="f52785" src="52785.png" class="embeddedimage100%scalinglive" alt="" height="206" width="577" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Next</b>. The&nbsp;<b class="uicontrol">Object Setup</b>&nbsp;page appears.</li><li class="step">Select methods to provide an alias.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f52786" src="52786.png" class="embeddedimage100%scalinglive" alt="" height="290" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><strong class="notelabel">Note:</strong> By default, all the classes and methods are checked. If you do not want to use any particular class or method, then &nbsp;uncheck the class or method. However, the unchecked class will not be displayed in the&nbsp;Start Activity&nbsp;of the&nbsp;SOA Object Instance&nbsp;property. The unchecked class will be displayed in the&nbsp;Expression Editor&nbsp;of any activity, but the data will not be available.</p>
+<p class="stepinfo"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Finish</b> &amp; <b class="uicontrol">Publish</b>.</li><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;button, and then click&nbsp;<b class="uicontrol">Workflows</b>. The&nbsp;Workflows&nbsp;page appears.</li><li class="step">Design a workflow. The&nbsp;<b class="uicontrol">Process Designer</b>&nbsp;appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Activity Properties</b>&nbsp;of&nbsp;the&nbsp;Start&nbsp;activity, select&nbsp;SOA Object Instances&nbsp;property to&nbsp;instantiate a class for the specific purpose. The&nbsp;<b class="uicontrol">SOA Object Instance</b>&nbsp;page appears.</li><li class="step">Select the appropriate constructor for the specified class.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>&nbsp;to save the object instance.</li><li class="step">Design a simple workflow that has two activities,&nbsp;Update <b class="uicontrol">Variable Activity</b>&nbsp;and&nbsp;<b class="uicontrol">Logger Activity</b>.&nbsp;You need the Update activity to update a variable, and the Logger activity to display a value.<p class="stepinfo"></p>
+<p class="stepinfo">&nbsp;<br><img id="f52789" src="52789.png" class="embeddedimage100%scalinglive" alt="" height="134" width="459" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">In the&nbsp;<b class="uicontrol">Activity Properties</b>&nbsp;of the&nbsp;Start&nbsp;activity, click the&nbsp;<b class="uicontrol">Variable</b>&nbsp;property to create a variable of type string. For example, you can name the variable as&nbsp;stMySOAResult.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f52790" src="52790.png" class="embeddedimage100%scalinglive" alt="" height="215" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.</li><li class="step">In the&nbsp;<b class="uicontrol">Activity Properties&nbsp;of&nbsp;the&nbsp;Update Variable</b>&nbsp;activity, select&nbsp;<b class="uicontrol">Set Variable</b>&nbsp;property. The&nbsp;<b class="uicontrol">Update Variable</b>&nbsp;page appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Condition</b>&nbsp;column, select the variable.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f52791" src="52791.png" class="embeddedimage100%scalinglive" alt="" height="251" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">In the&nbsp;<b class="uicontrol">Value</b>&nbsp;column, select&nbsp;<b class="uicontrol">Build Expression</b>.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f52792" src="52792.png" class="embeddedimage100%scalinglive" alt="" height="192" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Use the instance method. For example,&nbsp;My Test.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f52793" src="52793.png" class="embeddedimage100%scalinglive" alt="" height="188" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">In the&nbsp;Activity Properties&nbsp;of the&nbsp;Logger&nbsp;activity, select the&nbsp;LogMessage&nbsp;property. The&nbsp;<b class="uicontrol">LogMessage</b>&nbsp;page appears.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><img id="f52794" src="52794.png" class="embeddedimage100%scalinglive" alt="" height="183" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Type the log message to be displayed.</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>. The result appears in the <b class="uicontrol">Logger Console</b>. <br><br></li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="codesamples1.html" target="_self">SOA</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

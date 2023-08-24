@@ -1,0 +1,18 @@
+<Menu>
+  <Group ID="Menu1"  Flow="Horizontal">
+    <Item CssClass="menuClass"  Text="@@File@@" Value="File"  RightLogo="">
+      <Group LeftCellWidth="28" RightCellWidth="12"  ExpandDirection="Down" Flow="Vertical" OffsetY="-1">
+        <Item CssClass="menuClass"  Value="openimageemf" LeftLogo="Menu/images/image-png-emf.png"   Text="@@Save As EMF Image@@">
+			<Group Flow="Vertical" />
+		</Item>
+		<Item CssClass="menuClass"  Value="openimagepng" LeftLogo="Menu/images/save-as-png.png"   Text="@@Save As PNG Image@@">
+          <Group Flow="Vertical" />
+        </Item>
+      </Group>
+    </Item>
+    
+
+    <Item CssClass="menuClass"  Value="mnuHelp" Text="@@Help@@" RightLogo="">
+    </Item>
+  </Group>
+</Menu>

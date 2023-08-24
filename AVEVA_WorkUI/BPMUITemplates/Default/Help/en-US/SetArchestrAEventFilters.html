@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Set ArchestrA Event Filters </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602010" class="heading4">Set ArchestrA Event Filters</h4>
+<p class="paragraph">Use this property to filter the ArchestrA events. Whenever an event occurs, it will check this filter, and if a match is found, the activity will be alerted. </p>
+<p class="paragraph">The following image shows the Set ArchestrA Event Filters properties window:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f269081" src="269081.png" class="embeddedimage100%scalinglive" alt="SetArchestrAEventFilters" height="600" width="487" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Enter the following details:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Event Provider</strong>: Select the name of the event provider from which you want to poll for new events. The Event Provider field is mandatory.<p class="lcontinue">Based on the data available in the ArchestrA Event master list, the Event Provider list is populated. You can add other event providers to this master list, if required. </p>
+<p class="lcontinue">Example of Event Providers are InBatch Server or Avantis. </p>
+<p class="lcontinue">To go to the ArchestrA Event master list, click the <strong class="strong">Menu </strong>button, click <strong class="strong">Tools</strong>, and then click <strong class="strong">ArchestrA Events</strong>. The <b class="windowtitle">ArchestrA Events</b> page appears which displays the available master list. For more information, see <i class="emphasis">User Guide &gt; Enterprise Console &gt; ArchestrA Events</i>.</p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Event Type</strong>: Select the Event Type of the Event Provider.<p class="lcontinue">It is the type of event which defines the properties of the event. </p>
+<p class="lcontinue">For InBatch Server, Batch is an event, and possible values for Batch events are such as, BatchId, BatchSize, CampaignId, EventCode, EventCodeName, and LotId.</p>
+<p class="lcontinue">Based on the data available in the ArchestrA Event master list, the Event Type list is populated for the selected Event Provider. You can add other event types for the event provider, if required. You can view the properties of the event type in the Properties grid towards the lower section of the <b class="windowtitle">Set ArchestrA Event Filter</b> window.</p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">XML Variable Name</strong>: Enter the XML variable name for storing event context. When an event occurs, this XML variable will be populated with event context data and it is used later in the flow of the process. The XML variable name must be unique for every ArchestrA Wait for Event activity. When you create an XML variable, the related schema for the XML variable is created automatically. <p class="lcontinue">If an ArchestrA Wait for Event activity is deleted from a workflow, the associated XML variable is retained. However, we recommend to not use the same XML variable for another ArchestrA Wait for Event activity as the XML variable properties gets overwritten with every workflow execution which will lead to unexpected behavior of the workflow. So, if there are multiple ArchestrA Wait for Event activity in a workflow, each activity will have their own XML variable. </p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Source</strong>: Type the Source property name of the event provider. It is the name of the event provider sending the event. For example, for a Batch event, BatchMngr is the source.<p class="lcontinue">Select the appropriate operator from the operator drop-down list. </p>
+<p class="lcontinue">Click the <img id="f269083" src="269083.png" class="embeddedimage100%scalinglive" alt="ExpressionEditorIcon" height="18" width="26" vspace="0" hspace="0" align="bottom" border="0">icon to define an expression in the Expression Editor. </p>
+<p class="lcontinue">For more information about Expression Editor, see <i class="emphasis">User Guide &gt; Process Designer &gt; Setting Activity and Link Properties &gt; Using the Expression Editor</i>.</p>
+<p class="lnote"><strong class="notelabel">Note:</strong> If you have defined an expression, then the <img id="f269088" src="269088.png" class="embeddedimage100%scalinglive" alt="DeleteIcon" height="15" width="11" vspace="0" hspace="0" align="bottom" border="0"> icon is displayed. Click this icon if you want to remove the defined expression.</p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Area</strong>: Type the Area of the event provider. Areas provide a key organizational role in grouping alarm information and assigning it to users who use alarm and event clients to monitor their Areas of responsibility.<p class="lcontinue">The Area object plays a key role in alarm and event distribution. All objects belong to an Area. Areas can contain sub-Areas. Alarm and event clients are configured to subscribe to a set of Areas. </p>
+<p class="lcontinue">Click the <img id="f269083_1" src="269083.png" class="embeddedimage100%scalinglive" alt="ExpressionEditorIcon" height="18" width="26" vspace="0" hspace="0" align="bottom" border="0">icon to define an expression in the Expression Editor. </p>
+<p class="lcontinue">For more information about Expression Editor, see <i class="emphasis">User Guide &gt; Process Designer &gt; Setting Activity and Link Properties &gt; Using the Expression Editor</i>.</p>
+<p class="lnote"><strong class="notelabel">Note:</strong> If you have defined an expression, then the <img id="f269088_1" src="269088.png" class="embeddedimage100%scalinglive" alt="DeleteIcon" height="15" width="11" vspace="0" hspace="0" align="bottom" border="0"> icon is displayed. Click this icon if you want to remove the defined expression.</p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Priority</strong>: Type the priority for each designated event provider.<p class="lcontinue">Priority, which is an integer value from 1 to 999 indicating the severity of the alarm which raises an event. An alarm priority of 1 is most urgent and 999 least urgent. </p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Properties</strong>: Based on the Event Type that you enter, select values in the Properties section. For example, for a Batch event type, BatchServer is a property of the data type String. The Properties field is optional. <p class="lcontinue">Based on the data available in the ArchestrA Event master list, the properties of the Event Type list is populated. You can add other properties of the event type, if required. </p>
+<p class="lcontinue">Click the <img id="f269083_2" src="269083.png" class="embeddedimage100%scalinglive" alt="ExpressionEditorIcon" height="18" width="26" vspace="0" hspace="0" align="bottom" border="0">icon corresponding to a property, to define an expression for that property in the Expression Editor.  </p>
+<p class="lcontinue">For more information about Expression Editor, see <i class="emphasis">User Guide &gt; Process Designer &gt; Setting Activity and Link Properties &gt; Using the Expression Editor</i>.</p>
+<p class="lnote"><strong class="notelabel">Note:</strong> If you have defined an expression, then the <img id="f269088_2" src="269088.png" class="embeddedimage100%scalinglive" alt="DeleteIcon" height="15" width="11" vspace="0" hspace="0" align="bottom" border="0"> icon is displayed. Click this icon if you want to remove the defined expression.</p>
+</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Limitations</strong>:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">The <i class="emphasis">Between </i>operator is not supported for <strong class="strong">Priority </strong>and <strong class="strong">Properties</strong>.</li><li class="ulitem">The data type of the operators are not validated. Ensure to provide valid values to the property data type.</li><li class="ulitem">While creating a filter condition, duplicate properties are not supported.</li><li class="ulitem">The OR condition is not supported while creating a filter condition.</li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="ArchestrAWaitforEvent.html" target="_self">ArchestrA Wait for Event</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

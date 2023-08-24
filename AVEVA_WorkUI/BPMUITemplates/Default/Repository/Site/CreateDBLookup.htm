@@ -1,0 +1,220 @@
+﻿<!doctype html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="../../Common/JavaScripts/spin.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/knockout.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/xml2json.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/app/Skelta.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/kendo.all.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/knockout-kendo.min.js" type="text/javascript"></script>
+    <script src="../../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode;
+        skelta.serverUrl = "../../NextGenForms/";
+        function validateLookupTitle(cv, c)
+        {
+            var result = null;
+            var params = skeltaUtils.createJsonRequestHelper({
+                "title": cv,
+                "appName": applicationName
+            });
+
+            skeltaUtils.callServerMethod("GET", "../../NextGenForms/DatabaseLookupService.aspx/ValidateLookupTitle", "application/json; charset=utf-8", params, "json", function (data)
+            {
+                if (data.d)
+                {
+                    result = data.d;
+                }
+            }, function (err)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFSPErrorValidatingLookupTitle"), null, skeltaUtils.getAjaxErrorDetailsMessage(err, "<br>"));
+                logger.logError(skelta.localize.getString("FormNGFSPErrorValidatingLookupTitle") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(err, "\n"));
+            }, null, false);
+
+            if (result)
+            {
+                if (result.p === true)
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("lookup_name_AlreadyExist"));
+                }
+                if (result.n === true)
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("lookup_name_StartsWithNumber"));
+                }
+                if (result.s === true)
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("lookup_name_HasSpecialCharacters"));
+                }
+                if (result.sys === true)
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("lookup_name_StartsWithSys"));
+                }
+                if (result.p === false && result.n === false && result.s === false && result.sys === false)
+                {
+                    return new ValidationOptions(true, "");
+                } else
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("SPvalidationerror"));
+                }
+
+            } else
+            {
+                return new ValidationOptions(false, skelta.localize.getString("SPvalidationerror"));
+
+            }
+        }
+
+        function GetRadWindow()
+        {
+            var oWindow = null;
+
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+
+            return oWindow;
+        }
+
+        function closeWin()
+        {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function OpenPopup(url)
+        {
+            var winHeight = (window.screen.availHeight * 85 / 100);
+            var winWidth = (window.screen.availWidth * 80 / 100);
+            var winLeft = (window.screen.availWidth - winWidth) / 2;
+            var winTop = (window.screen.availHeight - winHeight) / 2;
+            var windowFeatures = 'width=' + winWidth + ',height=' + winHeight + ',left=' + winLeft + ',top=' + winTop;
+            var win = window.open(url, "", windowFeatures);
+            if (win.focus)
+            {
+                win.focus();
+            }
+        }
+
+        function proceedClick(inputParameterObject, eventArgs)
+        {
+            window.sessionStorage["sys_sp_title"] = inputParameterObject.instanceXml.DBLookup.Title.trim();
+            window.sessionStorage["sys_sp_desc"] = inputParameterObject.instanceXml.DBLookup.Description;
+            redirectPage(inputParameterObject.instanceXml.DBLookup.CommandType === "0");
+        }
+
+        function redirectPage(isDbLookup)
+        {
+            if (isDbLookup === true)
+            {
+                window.location.href = "CreateLookupList.aspx" + "?lcsuri=" + paramlcsuri + "&mode=" + mode;
+            } else
+            {
+                closeWin();
+                OpenPopup(skelta.serverUrl + "StoredProcedure.htm" + "?lcsuri=" + paramlcsuri + "&mode=" + mode);
+            }
+        }
+
+        function checkLookupAccessRights(lcsuri)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": mode === "new" ? ["ActionCreate"] : ["ActionEdit"],
+            });
+
+            skeltaUtils.callServerMethod("GET", "../../NextGenForms/DatabaseLookupService.aspx/CheckSecurityAndGetPageDefaults", "application/json; charset=utf-8", params, "json", onLookupAccessSucceeded, null, null, false);
+        }
+
+        function onLookupAccessSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showAlert(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            } else
+            {
+                var clientData = $.parseJSON(result.Result);
+                applicationName = clientData.fAppName;
+                formId = clientData.fId;
+                skelta.userContext.setUserContextFor("appN", clientData.fAppName);
+                skeltaUtils.loadPageDefault();
+                if (mode === "new")
+                {
+                    getNewLookupDefinition();
+                } else
+                {
+                    redirectPage(result.FormParameters.ItemType === 1);
+                }
+
+                document.title = skelta.localize.getString("DBLookup");
+                var oWindow = GetRadWindow();
+                oWindow.set_title(skelta.localize.getString("DBLookup"));
+            }
+        }
+
+        function getNewLookupDefinition()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "lcsuri": paramlcsuri
+            });
+            skeltaUtils.callServerMethod("GET", "../../NextGenForms/DatabaseLookupService.aspx/GetNewDBLookup", "application/json; charset=utf-8", jsonHelper, "json", newLookupSucceeded, newLookupFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function newLookupSucceeded(resultData)
+        {
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(skeltaUtils.getFormUniqueKey(applicationName, formId + "_DB", ""));
+            viewModelObject.onSave.subscribeEvent(proceedClick);
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function newLookupFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFSPErrorLoadingDBLookupPage"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(skelta.localize.getString("FormNGFSPErrorLoadingDBLookupPage") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        $(document).ready(function ()
+        {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkLookupAccessRights(paramlcsuri);
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("SPLoadError"), null, exception.message);
+                logger.logError(skelta.localize.getString("SPLoadError") + "\n" + exception.message);
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

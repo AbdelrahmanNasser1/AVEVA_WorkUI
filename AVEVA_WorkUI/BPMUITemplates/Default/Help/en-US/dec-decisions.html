@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Decision: Decisions </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488969" class="heading4">Decision: Decisions</h4>
+<p class="paragraph">You can create conditions for the decision action in this property window. To open this window, click the edit button for the 'Decisions' property. The following window shows the&nbsp;<b class="uicontrol">Decision</b>&nbsp;property window:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51110" src="51110.png" class="embeddedimage100%scalinglive" alt="" height="269" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">This&nbsp;<b class="uicontrol">Decision</b>&nbsp;window has the following controls to specify the condition for a rule:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Add Rule</b>:&nbsp;Click&nbsp;<b class="uicontrol">Add Rule</b>&nbsp;to add a new set of the above controls for adding another rule.</li><li class="ulitem"><b class="uicontrol">Condition</b>: Specify the expression for the condition in this text area.</li><li class="ulitem"><b class="uicontrol">Condition icon</b>&nbsp;<img id="f51111" src="51111.jpg" class="embeddedimage100%scalinglive" alt="" height="28" width="25" vspace="0" hspace="0" align="bottom" border="0">: Click the condition icon to open the&nbsp;Condition window&nbsp;to build the condition expression.</li><li class="ulitem"><b class="uicontrol">Output</b>: Specify the output for the rule in this text box.</li><li class="ulitem"><b class="uicontrol">Stop Processing</b>:&nbsp;Select this check-box to enable the process to be stopped when this rule is &quot;true&quot;.</li></ul><p class="paragraph">The window also has the&nbsp;<b class="uicontrol">Output</b>&nbsp;text box to specify the output for the exception, that is when none of the rule conditions are true, in the&nbsp;[<b class="uicontrol">Else</b>] (<b class="uicontrol">If none of the above conditions true</b>)&nbsp;field.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Condition window</strong></p>
+<p class="paragraph">You can build expressions for the rule condition&nbsp;in this window, which is opened when you click the Condition icon in the Decisions property window. This window has the&nbsp;Select&nbsp;link, which you can use to specify the left hand side of the expression. On mouse-over this link opens a combo, with a collection of objects that you can specify for the left hand side of the expression. The window has the&nbsp;<b class="uicontrol">OK</b>&nbsp;button at the bottom to save the new expression. The&nbsp;<b class="uicontrol">Cancel</b>&nbsp;option allows you to cancel the expression and return to the property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51112" src="51112.png" class="embeddedimage100%scalinglive" alt="" height="194" width="553" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Building an Expression for the Decision Condition</p>
+<p class="paragraph">To illustrate the process of selecting an object for the right hand side of the expression, let us consider an XML Variable with &quot;Employee&quot; as a node and &quot;FirstName&quot; as an element under it. Specify this as the object for the left hand side of the expression. From the mouse over drop down, scroll down till you see the XML Variables node. Expand this node and the &quot;Employee&quot; node under it. Select the &quot;FirstName&quot; option.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The C# code is not directly supported in the Expression editor for the Decision activity. If you want to return any value from the C# code, refer to the Returning Value from the C# Code&nbsp;topic.</p>
+<p class="paragraph">The following window shows how to set an object for the left hand side of the expression:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51113" src="51113.png" class="embeddedimage100%scalinglive" alt="" height="225" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">This will display the operator combo with operators corresponding to the data type of the selected object. In this case, the data type being string, the operators are string operators, shown in the image below. Select &quot;Equals&quot; as the operator.</p>
+<p class="paragraph"><img id="f51114" src="51114.png" class="embeddedimage100%scalinglive" alt="" height="174" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Operators combo with string operators</p>
+<p class="paragraph">The default control to specify the object for the right hand side of the expression, which is a text box, is displayed at the right hand side of the row, as shown in the image below. You can specify a matching value in this text box. As the object selected is First Name, specify &quot;John&quot; here.</p>
+<p class="paragraphimage"><img id="f51115" src="51115.png" class="embeddedimage100%scalinglive" alt="" height="230" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Default control for specifying the right hand side of the expression</p>
+<p class="paragraph">This will complete the first expression and the settings will be displayed as shown below. You can mouse over any link to edit the value.</p>
+<p class="subheading">Using the Expression mode icon</p>
+<p class="paragraph">Click the Expression mode icon,&nbsp;<img id="f51116" src="51116.jpg" class="embeddedimage100%scalinglive" alt="" height="23" width="25" vspace="0" hspace="0" align="bottom" border="0">, to change the default text box to the Expression mode. In the Expression mode, you can select an object from the combo for the right hand side of the expression.</p>
+<p class="paragraph">Consider that the left hand side of the expression is&nbsp;VirtualUserID. You can assign the&nbsp;Variables.SubmittedBy.UserId&nbsp;as the value for the right hand side.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51117" src="51117.png" class="embeddedimage100%scalinglive" alt="" height="146" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">You can select &quot;Build Expression&quot; in the Expression mode combo to open the Expression Editor and build an expression instead of specifying an object on either side of the expression. You can select &quot;Enter a value&quot; in the right hand side combo to return to the default mode, that is, the text box.</p>
+<p class="paragraph">Click&nbsp;<b class="uicontrol">OK</b>&nbsp;to save the expression and return to the&nbsp;<b class="uicontrol">Decision</b>&nbsp;property window. The following image shows the window with Decision conditions added:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51118" src="51118.png" class="embeddedimage100%scalinglive" alt="" height="381" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The Decision activity would be typically used in a workflow as shown below, with each decision output determining a different path for workflow execution.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51119" src="51119.jpg" class="embeddedimage100%scalinglive" alt="" height="481" width="491" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Decision activity in a typical workflow</p>
+<p class="subheading">Returning Value from the C# Code</p>
+<p class="paragraph">You must follow the following steps to return any value from the C# code:</p>
+<ol class="olitem"><li class="olitem">Declare a variable in the start activity.</li><li class="olitem">Initialize the variable in Start activity or using update variable using the C# code.</li><li class="olitem">This variable can be used in the Decision activity.<p class="note"><strong class="notelabel">Note:</strong> In Decision Activity, when you specify a value for comparing numeric, date, time, or date, time type of variables, you must specify the value in Invariant format.</p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="decisionactivity.html" target="_self">Decision Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

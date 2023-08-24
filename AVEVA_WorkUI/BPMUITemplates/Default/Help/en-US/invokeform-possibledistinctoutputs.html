@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Possible Distinct Outputs </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602363" class="heading4">Invoke Form - Possible Distinct Outputs</h4>
+<p class="subheading">Purpose</p>
+<p class="paragraph">This property of Invoke form enables you to:</p>
+<ol class="olitem"><li class="olitem">To specify multiple conditions using form button and form control values, which in turn will set different outputs for the Invoke Form activity.</li><li class="olitem">Each output can be marked as&nbsp;<b class="uicontrol">Completion</b>&nbsp;maker or not. If no output is marked as completion maker, the task remains in the Inbox.</li><li class="olitem">To set whether the output instance XML has to be updated with the input data of the form for all the outputs.<p class="stepinfo">Or</p>
+<p class="stepinfo">Only for the outputs which are of type&nbsp;<b class="uicontrol">Completion</b>&nbsp;makers.</p>
+<p class="note"><strong class="notelabel">Note:</strong> For generating possible distinct outputs, use buttons of the following <b class="uicontrol">Button Type</b>:<br>          - <b class="uicontrol">Submit</b> <br>          - <b class="uicontrol">Custom</b> (used for submitting the form)</p>
+</li></ol><p class="paragraph"> </p>
+<p class="subheading">Description</p>
+<ul class="ulitem"><li class="ulitem">Add new rule for distinct output in the Invoke Form Action Outputs.<p class="stepinfo"><br><img id="f50909" src="50909.png" class="embeddedimage100%scalinglive" alt="" height="380" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">WorkItemSubmissionContext enables you to select form submission related information. It consists of button pressed, FormsInstanceXML, RespondingUserName and WorkItemId information.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50910" src="50910.png" class="embeddedimage100%scalinglive" alt="" height="315" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="ulitem">Specify whether the output is a Completion maker or not. Also we can set whether the output instance XML has to be updated with the input  data of the form for all the outputs or only for the outputs which are of type Completion makers.<p class="stepinfo"></p>
+<p class="stepinfo"><br><img id="f50911" src="50911.png" class="embeddedimage100%scalinglive" alt="" height="238" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="ulitem">To generate the conditions automatically for the buttons available in the form, you have the option to either use this button to generate the conditions or create the conditions on their own using form fields and button pressed text.<p class="stepinfo"></p>
+<p class="stepinfo"><br><img id="f50911_1" src="50911.png" class="embeddedimage100%scalinglive" alt="" height="238" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="invokeform-possibledistinctoutputsscenario.html" target="_self">Invoke Form - Possible Distinct Outputs Scenario</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

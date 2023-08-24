@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Ingestion Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+	<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+	<script type="text/javascript">
+		var elem = document.getElementById("BetaStatement");
+		if (elem.innerHTML == "") {
+			elem.parentNode.removeChild(elem);
+		}
+	</script>
+	<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+
+	<h3 id="t794622" class="heading3">Ingestion Activity</h3>
+	<p class="subheading">Activity Description:</p>
+	<p class="paragraph">This activity enables the user to download a file from the AVEVA Cloud Storage and transfer it to the Ingestion API endpoint for processing.</p>
+	<p class="paragraph"></p>
+	<p class="subheading">Application Scenario:</p>
+	<p class="paragraph">Typical application scenario would be that the end-user would like to ingest a file present in the AVEVA Cloud Storage, upon approval by an authorized user, through the Ingestion API endpoint into AIM-A.</p>
+	<p class="paragraph"></p>
+	<p class="paragraph"><strong class="strong">Workflow Variables for Ingestion Activity:</strong></p>
+	<p class="paragraph"><strong class="strong">Steps to define variables for use in the Ingestion activity</strong></p>
+	<p class="paragraph">This section describes how to define variables for use in Ingestion Activity. It gives the syntax for creating the variables and typical examples for different cases.</p>
+	<p class="paragraph"></p>
+	<p class="paragraph"><strong class="strong">Variables for capturing TransactionId</strong></p>
+	<p class="paragraph">The Transaction Id for the Ingestion Activity can be retrieved using a variable of type string, with the following syntax:</p>
+	<p class="paragraph"><strong class="strong">&quot;^&quot; + currentAction.Name + &quot;TransactionId&quot;</strong></p>
+	<p class="paragraph"></p>
+	<p class="paragraph"><strong class="strong">Variables for capturing ServiceResponse</strong></p>
+	<p class="paragraph">The ServiceResponse for the Ingestion Activity can be retrieved using a variable of type string, with the following syntax:</p>
+	<p class="paragraph"><strong class="strong">&quot;^&quot; + currentAction.Name + &quot;ServiceResponse&quot;</strong></p>
+      <p class="note">
+         <strong class="notelabel">Note</strong>: To see the Response coming from Ingestion API, set <b class="uicontrol">DebugLevel</b> to <b class="uicontrol">2 </b>in Central Configuration.
+      </p>
+	<p class="paragraph"></p>
+	<p class="subheading">Activity Properties:</p>
+	<p class="paragraph">The Ingestion Activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Ingestion Activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+	<p class="paragraph"></p>
+	<p class="subheading"><strong class="strong">Name &amp; Description:</strong></p>
+	<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+	<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+	<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+	<p class="paragraph"></p>
+	<p class="subheading"><strong class="strong">Configuration:</strong></p>
+	<p class="paragraph">Use the configuration properties to configure the functionality of the activity.</p>
+      <ul class="ulitem">
+         <li class="ulitem">
+            <b class="uicontrol">File Name</b>
+            <strong class="strong">: </strong>This property specifies the value that points to the uploaded file on AVEVA Cloud Storage.
+         </li>
+         <li class="ulitem">
+            <b class="uicontrol">Register Identifier</b>
+            <strong class="strong">: (Not mandatory) </strong>This property specifies the value that identifies the ingestion file to be routed to the correct registered gateway during Orchestration. 
+         </li>
+         <li class="ulitem">
+            <b class="uicontrol">Context</b>: This property specifies an identification scope in AIM. The context is used, for example, to specify a Plant that has tagged assets for a site having more than one Plant.
+         </li>
+         <li class="ulitem">
+            <b class="uicontrol">Publish to AIM</b>: This property specifies whether the ingested file needs to be published to AIM during Orchestration.
+         </li>
+         <li class="ulitem">
+            <b class="uicontrol">Select Target</b>: This property specifies the below values. Select the value from the drop-down list.
+            <ul class="ulsubitem">
+               <li class="ulsubitem">
+                  <b class="uicontrol">CL</b>: Class Library
+               </li>
+               <li class="ulsubitem">
+                  <b class="uicontrol">AC2D</b>: AutoCAD
+               </li>
+               <li class="ulsubitem">
+                  <b class="uicontrol">Regi</b>: ID Data
+               </li>
+               <li class="ulsubitem">
+                  <b class="uicontrol">DE</b>: Data Extraction 
+               </li>
+               <li class="ulsubitem">
+                  <b class="uicontrol">Model</b>: 3D Model
+               </li>
+               <li class="ulsubitem">
+                  <b class="uicontrol">MS2D</b>: Microstation
+               </li>
+            </ul>
+            <p class="lnote">
+               <strong class="notelabel">Note</strong>: If you select <b class="uicontrol">Target </b>value as <b class="uicontrol">CL</b>, keep <b class="uicontrol">Register Identifier </b>blank. 
+            </p>
+         </li>
+      </ul>
+	<p class="paragraph"></p>
+	<p class="paragraph">The AVEVA File Download Activity gives the following Outputs:</p>
+      <ul class="ulitem">
+         <li class="ulitem">BadRequest(400)</li>
+         <li class="ulitem">Unauthorized(401)</li>
+         <li class="ulitem">Forbidden(403)</li>
+         <li class="ulitem">NotFound(404)</li>
+         <li class="ulitem">MethodNotAllowed(405)</li>
+         <li class="ulitem">NotAcceptable(406)</li>
+         <li class="ulitem">ProxyAuthenticationRequired(407)</li>
+         <li class="ulitem">RequestTimeout(408)</li>
+         <li class="ulitem">UnsupportedMediaType(415)</li>
+         <li class="ulitem">InternalServerError(500)</li>
+         <li class="ulitem">NotImplemented(501)</li>
+         <li class="ulitem">BadGateway(502)</li>
+         <li class="ulitem">ServiceUnavailable(503)</li>
+         <li class="ulitem">GatewayTimeout(504)</li>
+         <li class="ulitem">HttpVersionNotSupported(505)</li>
+         <li class="ulitem">Successful</li>
+         <li class="ulitem">UnSuccessful</li>
+      </ul>
+      <table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+         <tr valign="top">
+            <td>
+               <p class="relatedheading">Related Topics</p>
+               <p class="relateditem">
+                  <a href="IntegrationActivities.htm" target="_self">Integration Activities</a>
+               </p>
+			</td>
+		</tr>
+	</table>
+
+
+
+	<script type="text/javascript">
+		// Get value of the <IncludeRelatedTopics> variable from AIT
+		var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+		//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block.
+		//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+		var TableClass = "relatedtopics belowtopictext";
+		var arrElements = document.getElementsByTagName("table");
+		var RelTopics = new Array();
+		for (var i = 0; i < arrElements.length; i++) {
+			if (arrElements[i].className == TableClass) {
+				RelTopics.push(arrElements[i]);
+			}
+		}
+
+
+		// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+		if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+			for (var j = 0; j < RelTopics.length; j++) {
+				RelTopics[j].parentNode.removeChild(RelTopics[j]);
+			}
+		}
+		// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+		IncludeRelTopics.parentNode.removeChild(IncludeRelTopics);
+	</script>
+
+</body>
+ </html>

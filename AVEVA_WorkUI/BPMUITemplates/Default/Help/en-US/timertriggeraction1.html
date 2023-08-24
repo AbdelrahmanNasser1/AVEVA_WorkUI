@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Time Trigger Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49624" class="heading3">Time Trigger Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Time Trigger Activity can be used to put on hold workflow execution. It is useful in ensuring the execution of certain activities at specific times. Conditional routing can be performed for different timeouts. Multiple non-recurring timeouts can be scheduled using this activity.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Time Trigger activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right click menu for the Time Trigger activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51241" src="51241.png" class="embeddedimage100%scalinglive" alt="" height="504" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Timer Trigger</b> - This property allows the user to specify the timeout(s) for triggering activities in the workflow. This will induce a delay in the execution of the affected activities.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Timer Trigger property</p>
+<ol class="step"><li class="step">To specify the timer trigger, click on the button for the 'Timer Trigger' property to open the property window.</li><li class="step">In this window, enter the time interval for the timer trigger in the <b class="uicontrol">Time Interval</b> field.</li><li class="step">Specify the output of this activity in the <b class="uicontrol">Output</b> field.</li><li class="step">After entering the details, click <b class="uicontrol">Add Row</b> to add this timer trigger setting and display a new row.</li><li class="step">Remove rows if necessary by selecting them and clicking <b class="uicontrol">Remove Selected</b>.</li><li class="step">After setting the timer trigger settings, click <b class="uicontrol">Update</b>.</li></ol><p class="paragraph">See <a id="h51243" class="jump-currentwindowlive" title="Time Trigger: Timer Trigger" href="timetrig-timertrigger1.html" target="_self">Time Trigger: Timer Trigger</a>&nbsp;for a detailed description of the Timer Trigger property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Time Trigger Activity does not have any standard return value. It will output the value specified by the user in the&nbsp;<b class="uicontrol">Time</b></p>
+<p class="paragraph"><b class="uicontrol">Trigger</b>&nbsp;property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Example for Time Trigger Activity</strong></p>
+<p class="paragraph">To hold workflow execution from Approver1 to Approver2, Use Time Trigger Activity for particular time.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 1:</strong>&nbsp;Design a workflow as shown in the figure below.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51242" src="51242.png" class="embeddedimage100%scalinglive" alt="" height="293" width="484" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="paragraph"><strong class="strong">Step 2:</strong>&nbsp;Select the Time Trigger Property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 3:</strong>&nbsp;Set the&nbsp;Time Interval&nbsp;and specify the output value in output field.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 4:</strong>&nbsp;Click&nbsp;Update&nbsp;button to save changes.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="timetrig-timertrigger1.html" target="_self">Time Trigger: Timer Trigger</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" Debug="true" AutoEventWireup="true" CodeFile="NextGenFormService.aspx.cs" Inherits="BPMUITemplates_Default_NextGenForms_NextGenFormService" %>

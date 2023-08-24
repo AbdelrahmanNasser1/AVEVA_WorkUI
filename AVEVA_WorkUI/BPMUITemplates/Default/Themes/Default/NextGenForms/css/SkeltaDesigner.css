@@ -1,0 +1,40 @@
+﻿.skdbackgroundcolor
+{
+    background-color: #EAECED;
+}
+
+#dvArrow
+{
+    background-color: #5B6BE3;
+}
+
+#divSlide
+{
+    background-color: #EAECED;
+}
+
+.skcontrolDesignerSplitter
+{
+    background-color: #EAECED;
+}
+
+.skti[data-sktbi="move"]:hover,
+.skti[data-sktbi="edit"]:hover,
+.skti[data-sktbi="delete"]:hover,
+.skti[data-sktbi="clone"]:hover,
+.skti[data-sktbi="replace"]:hover,
+.skptbc:hover,
+.sktbc:hover > .sktbci
+{
+    background-color: #5B6BE3;
+}
+
+.skptb
+{
+    background-color: #EAECED;
+}
+
+.actionBar
+{
+    background-color: #EAECED !important;
+}

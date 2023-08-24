@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating a New Folder for a List/Document Library </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t487634" class="heading4">Creating a New Folder for a List/Document Library</h4>
+<ol class="step"><li class="step">Create an XML Variable for the list with scope <b class="uicontrol">New</b>.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65214" src="65214.jpg" class="embeddedimage100%scalinglive" alt="" height="247" width="395" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Design the process.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65215" src="65215.jpg" class="embeddedimage100%scalinglive" alt="" height="133" width="312" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Update the variable activity.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65216" src="65216.png" class="embeddedimage100%scalinglive" alt="" height="348" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Create a folder called <b class="uicontrol">New Folder</b>  under root folder of the list.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65217" src="65217.jpg" class="embeddedimage100%scalinglive" alt="" height="437" width="129" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">To create a folder under the folder <b class="uicontrol">New Folder</b>, update the in list navigator folder name property with New Folder.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51914" src="51914.jpg" class="embeddedimage100%scalinglive" alt="" height="364" width="251" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Check if the folder exists.&nbsp;In the following workflow, find out whether New Folder exists in a list or not.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65219" src="65219.jpg" class="embeddedimage100%scalinglive" alt="" height="507" width="441" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Build a CAML query. The following query returns an item if the folder exists in the list.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65176" src="65176.png" class="embeddedimage100%scalinglive" alt="" height="281" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">In decision activity, build the condition as follows. If the preceding query returns an item, then that item will be compared with the value using decision activity.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f65220" src="65220.jpg" class="embeddedimage100%scalinglive" alt="" height="306" width="720" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">If the folder exists, then the output would be either <b class="uicontrol">Exists </b>or <b class="uicontrol">Not Exists</b>.</p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+</td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

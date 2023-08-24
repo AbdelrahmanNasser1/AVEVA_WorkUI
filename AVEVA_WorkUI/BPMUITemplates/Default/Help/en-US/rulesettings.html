@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> BAM Rule Settings </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t46222" class="heading5">BAM Rule Settings</h5>
+<p class="procedureheading">To create a rule for pending Workflow (Overdue):</p>
+<ol class="step"><li class="step">In the <b class="uicontrol">Alert Configuration</b> tab, click&nbsp;<b class="uicontrol">Rule</b>&nbsp;to create rules for both Overdue and KPI. By default, the&nbsp;<b class="uicontrol">Rule Settings</b>&nbsp;window appears.</li><li class="step">Check&nbsp;<b class="uicontrol">Total Workflow count is</b>, and then select&nbsp;<b class="uicontrol">GreaterThan</b>.</li><li class="step">Check&nbsp;<b class="uicontrol">Count in each slot is</b>, and then select&nbsp;<b class="uicontrol">GreaterThan</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Select Slots</b>&nbsp;to set the rule for slots. The&nbsp;<b class="uicontrol">Select Slot</b>&nbsp;dialog box appears.</li><li class="step">Select the slot, and then click&nbsp;<b class="uicontrol">OK</b>.</li></ol><p class="procedureheading">Creating rule for specific type of work (KPI)</p>
+<ol class="step"><li class="step">Check&nbsp;<b class="uicontrol">Count in each datapoints of KPI(s) is</b>, and then&nbsp;select <b class="uicontrol">GreaterThan</b>.</li><li class="step">Click&nbsp;Select KPI(s)&nbsp;to set the rule for KPI(s) that need to be monitored. The&nbsp;Select KPI(s)&nbsp;dialog box appears.</li><li class="step">Select the KPI, and then click&nbsp;<b class="uicontrol">OK</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>. A message about successfully creating alert appears.</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>. This alert is triggered when the BAM report is being processed.</li></ol><p class="paragraph">&nbsp;</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

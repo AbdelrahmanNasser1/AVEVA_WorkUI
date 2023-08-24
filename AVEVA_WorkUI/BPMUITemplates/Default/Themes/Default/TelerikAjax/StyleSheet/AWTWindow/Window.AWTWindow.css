@@ -1,0 +1,133 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.RadWindow_AWTWindow {
+    border-color: #e6e6e6;
+    color: #333333;
+    background-color: #ffffff;
+    font-family: "Roboto", "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    border: 1px solid #666;
+    /* end shadows */
+    /* When ShowContentDuringLoad="false" */
+}
+    .RadWindow_AWTWindow .rwTopLeft,
+    .RadWindow_AWTWindow .rwTopRight,
+    .RadWindow_AWTWindow .rwTitlebar,
+    .RadWindow_AWTWindow .rwTopResize {
+        color: #ffffff;
+        background: #4D5EE0;
+    }
+  .RadWindow_AWTWindow .rwFooterLeft,
+  .RadWindow_AWTWindow .rwFooterRight,
+  .RadWindow_AWTWindow .rwFooterCenter,
+  .RadWindow_AWTWindow .rwStatusbar div,
+  .RadWindow_AWTWindow .rwStatusbar,
+  .RadWindow_AWTWindow .rwBodyLeft,
+  .RadWindow_AWTWindow .rwBodyRight,
+  .RadWindow_AWTWindow .rwStatusbarRow .rwCorner {
+    background: #ffffff; }
+  .RadWindow_AWTWindow table.rwShadow .rwTopLeft,
+  .RadWindow_AWTWindow table.rwShadow .rwTopRight,
+  .RadWindow_AWTWindow.rwMinimizedWindow table.rwShadow .rwCorner.rwTopLeft,
+  .RadWindow_AWTWindow.rwMinimizedWindow table.rwShadow .rwCorner.rwTopRight,
+  .RadWindow_AWTWindow table.rwShadow .rwBodyLeft,
+  .RadWindow_AWTWindow table.rwShadow .rwBodyRight,
+  .RadWindow_AWTWindow table.rwShadow .rwFooterLeft,
+  .RadWindow_AWTWindow table.rwShadow .rwFooterRight {
+    width: 7px !important; }
+  .RadWindow_AWTWindow .rwStatusbarRow .rwBodyLeft,
+  .RadWindow_AWTWindow .rwStatusbarRow .rwStatusbar,
+  .RadWindow_AWTWindow .rwStatusbarRow .rwBodyRight {
+    border-top: 1px solid #e5e5e5; }
+  .RadWindow_AWTWindow .rwShadow td.rwFooterLeft,
+  .RadWindow_AWTWindow .rwShadow td.rwFooterRight,
+  .RadWindow_AWTWindow .rwShadow td.rwFooterCenter {
+    height: 7px; }
+  .RadWindow_AWTWindow iframe {
+    display: block; }
+  .RadWindow_AWTWindow a.rwIcon {
+    background: url('Window/Icon.gif') no-repeat center; }
+  .RadWindow_AWTWindow ul.rwControlButtons {
+    margin: 0; }
+  .RadWindow_AWTWindow .rwControlButtons a {
+    border: 0px solid #25a0da;    
+    background-image: url('Window/CommandButtonSprites.gif');
+    width: 29px;
+    height: 19px; }
+  .RadWindow_AWTWindow table.rwTitlebarControls em {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 4px 0 0 4px !important;  
+    text-align:left;
+  }
+  .RadWindow_AWTWindow td.rwStatusbar div {
+    background-image: url('Window/rwResize.gif');
+    background-position: 10px 8px;
+    background-repeat: no-repeat;
+    margin: 0 -4px -7px 0;
+    *margin: 0 -1px -4px 0; }
+  .RadWindow_AWTWindow input.rwDialogInput {
+    border: 1px solid #e6e6e6; }
+  .RadWindow_AWTWindow input.rwDialogInput:hover {
+    border: 1px solid #cecece; }
+  .RadWindow_AWTWindow table tr td.rwLoading {
+    background-color: #ffffff; }
+  .RadWindow_AWTWindow td.rwWindowContent.rwLoading,
+  .RadWindow_AWTWindow .rwIframeWrapperIOS.rwLoading {
+    background-image: url('Common/loading.gif'); }
+  .RadWindow_AWTWindow input.rwLoading {
+    background-image: url('Common/loading_small.gif'); }
+  .RadWindow_AWTWindow .rwDialogPopup a.rwPopupButton {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0; }
+  .RadWindow_AWTWindow .rwDialogPopup a.rwPopupButton:hover {
+    background: #e7e7e7;
+    border-color: #cecece; }
+  .RadWindow_AWTWindow .rwShadow .rwFooterLeft,
+  .RadWindow_AWTWindow .rwShadow .rwFooterRight,
+  .RadWindow_AWTWindow .rwShadow .rwFooterCenter {
+    height: 5px; }
+  .RadWindow_AWTWindow.rwMinimizedWindowShadow .rwFooterRow {
+    display: none; }
+  .RadWindow_AWTWindow.rwMinimizedWindowShadow .rwTable {
+    width: 200px; }
+  .RadWindow_AWTWindow .rwShadow a.rwIcon {
+    margin: 2px 5px 0 0; }
+  .RadWindow_AWTWindow table.rwShadow em {
+    padding: 1px 0 0 1px; }
+  .RadWindow_AWTWindow.rwMinimizedWindow .rwShadow .rwControlButtons {
+    margin: 2px 0 0 0; }
+
+div.RadWindow_AWTWindow a.rwCancel,
+div.RadWindow_AWTWindow a.rwCancel span {
+  background: none !important;
+  cursor: pointer;
+  border: 0 !important; }
+
+div.RadWindow_AWTWindow a.rwCancel span span,
+div.RadWindow_AWTWindow a.rwCancel:hover span span {
+  color: #000000;
+  text-decoration: underline; }
+

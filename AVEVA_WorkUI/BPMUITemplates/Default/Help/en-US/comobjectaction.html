@@ -1,0 +1,93 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> COM-Object Activity </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="COM-Object Activity">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('49553');expand('49354');highlight('49554')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<table class="relatedtopics aboveheading" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "48">
+<p class="bodytext"><a href="javascript:expand('49553');expand('49354');highlight('49554')" onclick="loadTOC()" target="_self"><img id="f544" src="544.jpg" class="embeddedicon" alt="Book Contents" height="17" width="59" vspace="0" hspace="0" align="bottom" border="0"></a></p></td>
+<td width= "48">
+<p class="bodytext"><a href="indexpage.html" target="TOC"><img id="f547" src="547.jpg" class="embeddedicon" alt="Book Index" height="17" width="59" vspace="0" hspace="0" align="bottom" border="0"></a></p></td>
+</tr>
+</table>
+<h3 id="t49554" class="heading3">COM-Object Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The COM-Object Activity executes the Run method of a COM object, with the specified program id. This activity calls the Run method of the COM object. The program id and parameters are fetched from the properties of the activity. The string value returned from the Run method of the COM object is assigned to the Output parameter. This value specifies the state of execution of the activity. The execution of the COM-Object Activity gives the return values set for this activity, which will be used for conditional routing.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The COM-Object activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the COM-Object activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50972" src="50972.png" class="embeddedimage100%scalinglive" alt="" height="590" width="276" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><b class="uicontrol">Name &amp; Description</b></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Input Values</b></p>
+<p class="paragraph">The properties in the Input Values group have been described below. You can use these properties to specify the input values for the activity.</p>
+<p class="paragraph"><b class="uicontrol">ProgID</b> - This property specifies the Program ID of the COM object to be executed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph"><b class="uicontrol">Parameter</b> - This is the input parameter for the Run method of the COM object.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the Parameter property</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">To specify the parameter, click the button for the 'Parameter' property to open the property window.</li><li class="steptestdonotuse">In this window enter the parameter directly in the text editor.</li><li class="steptestdonotuse">If you want to assign the parameter dynamically during run-time, you can do so using the <b class="uicontrol">Field</b> controls. For example, you can add a variable or content pointing to the parameter from the two drop downs for <b class="uicontrol">Field</b> and click on the <b class="uicontrol">Append</b> button. This will add the placeholder for the variable or content in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the parameter.</li><li class="steptestdonotuse">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text.</li><li class="steptestdonotuse">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="steptestdonotuse">After adding the parameter, click <b class="uicontrol">Update</b> to save it.</li><li class="steptestdonotuse">Click <b class="uicontrol">Close</b> to close the window without saving the parameter.</li></ol><p class="paragraph">See <a id="h50975" class="jumplive" title="COM Object: Parameter" href="com-parameter1.html" target="_self">COM Object: Parameter</a>&nbsp;for a detailed description of the Parameter property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Output Values</b></p>
+<p class="paragraph">The properties in the Output Values group have been described below. You can use these properties to specify the input values for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Return Values</b> - This property is used to specify return values for the COM object.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the Return Values property</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">To specify the return value, click the button for the 'Return Values' property to open the property window.</li><li class="steptestdonotuse">Enter the return value in the <b class="uicontrol">Return Value</b> field.</li><li class="steptestdonotuse">After entering the return value details, click <b class="uicontrol">Add Row</b> to add this return value and display a new row for entering another return value</li><li class="steptestdonotuse">Remove rows if necessary by selecting them and clicking <b class="uicontrol">Remove Selected</b>.</li><li class="steptestdonotuse">After entering all the return values, click <b class="uicontrol">Update</b>. </li></ol><p class="paragraph">See <a id="h50976" class="jumplive" title="COM Object: Return Values" href="com-returnvalues1.html" target="_self">COM Object: Return Values</a> for a detailed description of the Return Value property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Action outputs:</b></p>
+<p class="paragraph">The COM-Object Action does not have any standard return value. It will output the value specified by the user in the&nbsp;Return Values&nbsp;property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Exception Behavior</b></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jumplive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a> for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="com-parameter1.html" target="_self">COM Object: Parameter</a></p><p class="relateditem"><a href="com-returnvalues1.html" target="_self">COM Object: Return Values</a></p></td>
+</tr>
+</table>
+
+
+<input id="topicId" type="hidden" value="49554" />
+<input id="topicDescription" type="hidden" value="COM-Object Activity" />
+<input id="footer-modified" type="hidden" value="Last modified: 6/25/2015 2:46:48 AM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

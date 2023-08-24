@@ -1,0 +1,2089 @@
+﻿<!DOCTYPE html>
+
+<html class="skep">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style>
+        .cssproperty2_skcw > div, .cssproperty_skffb > .skfdrnowrap div:nth-child(2), .cssproperty_skffb > .skfdrnowrap div:nth-child(3) {
+            margin: auto !important;
+            align-items: center !important;
+        }
+
+        .skeed {
+            margin-left: -35px !important;
+            margin-top: -4px !important;
+        }
+
+        .cssproperty2_skcb > .skgv > .skgvtb > .skfdr {
+            margin: auto !important;
+            align-items: center !important;
+        }
+
+            .cssproperty2_skcb > .skgv > .skgvtb > .skfdr > .skco {
+                padding-top: 5px;
+                top: 0;
+            }
+    </style>
+    <script type="text/javascript">
+        //#region Variable Declaration
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode, viewAndViewModel;
+        var mode = skeltaUtils.getUrlParameterValue(window, 'mode');
+        var workflowName = skeltaUtils.getUrlParameterValue(window, 'WorkflowName');
+        var workflowVersion = skeltaUtils.getUrlParameterValue(window, 'wfFilename');
+        var applicationName = skeltaUtils.getUrlParameterValue(window, 'ApplicationName');
+        var selectedProperty = skeltaUtils.getUrlParameterValue(window, 'selectedProperty');
+        var selectedAction = skeltaUtils.getUrlParameterValue(window, 'selectedaction');
+        var pdsuri = skeltaUtils.getUrlParameterValue(window, 'pdsuri');
+        var designerInstanceId = skeltaUtils.getUrlParameterValue(window, 'designerid');
+        var userId = skeltaUtils.getUrlParameterValue(window, 'userId');
+        var webApiDetail = null;
+        var variableOptions, xmlVariableNameOptions, contentOptions;
+        var webApiDetailsList;
+        var webAPIImpersonationUsersList;
+        var showImpersonationUser = false;
+        var webMethods;
+        var swaggerVersion;
+        var openApi = false;
+        var selectedHttpMethod;
+        window.webAPIListItemId, window.httpMethod, window.contentType, window.webAPIImpersonationUser;
+        var operationGroupsTags = [], tagAndOperations = [], operationGroupsApi, operationIdWithPath = [];
+        var operationIdAndRequestBody = [];
+        var propertyTitle = '';
+        var objectType = '';
+        var openApiObject = [];
+        var isResponseObject = false;
+        var cacheParameters;
+        var cacheKey, lastCacheKey, currentCacheKey, cacheOpanApiParamaeters, cacheOpenApiBodyParameters, cacheOpenApiHeaders;
+        //#endregion
+
+        //#region Initialization
+        $(document).ready(function () {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'pdsuri');
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+
+            try {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                LoadWebAPIPropertyForm();
+            }
+            catch (exception) {
+                skeltaUtils.showError(propertyTitle,
+                    skelta.localize.getString("WebAPIPropertyConfig_Load_Error"),
+                    null,
+                    exception.message);
+                logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Load_Error") + ' ' + exception.message);
+            }
+        });
+
+        function LoadWebAPIPropertyForm() {
+            skelta.userContext.setUserContextFor("appN", applicationName);
+            skelta.userContext.setUserContextFor("uId", userId);
+            skeltaUtils.loadPageDefault();
+            getWebAPIConfigDefinition();
+            propertyTitle = skelta.localize.getString("WebAPIPropertyConfig_title");
+            document.title = propertyTitle;
+        }
+
+        function getWebAPIConfigDefinition() {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "applicationName": applicationName,
+                "userId": userId,
+                "workflowName": workflowName,
+                "workflowVersion": workflowVersion,
+                "actionName": selectedAction,
+                "designerInstanceId": designerInstanceId
+            });
+            skeltaUtils.callServerMethod("GET", "WebAPIPropertyConfigService.aspx/GetWebApiConfigPropertyDefinitionAndDetails", "application/json; charset=utf-8", jsonHelper, "json", propertyConfigSucceeded, propertyConfigFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function onShowHeaderDataChanged(control) {
+            if (control.value === "True") {
+                var tabParameters = control.findById("TabParamBody");
+                tabParameters._visible(true);
+                control.findById("tabHeader").visible = true;
+                viewModelObject.findById("frmHeader").visible = true;
+                var headerForm = viewModelObject.findByXmlNode("Headers");
+                if (headerForm.records().length === 0) {
+                    headerForm.addRecord();
+                }
+            }
+            else {
+                viewModelObject.findById("frmHeader").visible = false;
+                var tabParameters = control.findById("TabParamBody");
+                tabParameters._visible(false);
+                control.findById("tabHeader").visible = false;
+                visibleMainTab(control);
+            }
+        }
+
+        function propertyConfigSucceeded(resultData) {
+            var result = JSON.parse(resultData.d);
+            viewAndViewModel = result.viewAndViewModel;
+            instanceXml = JSON.parse(result.instanceXml);
+            variableCollection = JSON.parse(result.variableCollection);
+            variableOptions = prepareJson(variableCollection.Variables);
+            xmlVariableNameOptions = prepareJson(variableCollection.XmlVariables);
+            contentOptions = prepareJson(variableCollection.Contents);
+            webApiDetailsList = JSON.parse(result.webApiDetails);
+            webAPIImpersonationUsersList = JSON.parse(result.impersonationUsers);
+
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, selectedAction + "_InvokeWebApi", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+            skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(instanceXml));
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(onSave);
+            viewModelObject.onCancel.subscribeEvent(function () { ReloadOrCloseForm(true); });
+
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            hideOrShowUpdate();
+            hideOrShowUsers();
+            var isEditMode = !skelta.utilities.isUndefinedNullOrEmpty(instanceXml);
+            showOrHideHeader(window.openApi, isEditMode, false);
+        }       
+
+        function propertyConfigFailed(result) {
+            skeltaUtils.showError(propertyTitle, JSON.parse(result.responseText).Message, function () { ReloadOrCloseForm(true); }, null);
+            logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Initialize_Error") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function getInstanceXmlCompleted() {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function hideOrShowUpdate() {
+            var currentvalue = viewModelObject.findById('DropdownOutputSaveInType').value;
+            if (currentvalue === "Variable") {
+                viewModelObject.findById("updateXml").visible = false;
+            }
+        }
+
+        function hideOrShowUsers() {
+            var currentvalue = viewModelObject.findById('UserListItemTitle').value;
+            if (currentvalue != null && currentvalue != '') {
+                showImpersonationUser = true;
+                viewModelObject.findById("UserListItemTitle").visible = true;
+            }
+            else {
+                showImpersonationUser = false;
+                viewModelObject.findById("UserListItemTitle").visible = false;
+            }
+        }
+
+        function ReloadOrCloseForm(includeCloseForm) {
+
+            window.opener.parent._skProcessDesigner.RefreshProperties();
+            window.opener.parent._skProcessDesigner.refreshaction();
+            //TODO: this need to been done in generic way like, window.frameElement.src.containsString("InstanceForm.htm"), that means instance form is loading in a frame, so reload form
+            if ((skeltaUtils.getUrlParameterValue(window, "FromArchestrA") === "True")
+                || (skeltaUtils.getUrlParameterValue(window, "FromIntouch") === "True")
+                || (window.name.containsString('WebPartManagerControl') == true)
+                || (window.frameElement != null && window.frameElement.id.containsString('WebPartManagerControl') == true)
+                || (window.frameElement != null && window.frameElement.id.containsString('Skelta_FillForm') === true)
+                || (window.frameElement != null && window.frameElement.ownerDocument && window.frameElement.ownerDocument.URL.containsString("InstanceFormAsDashboard.aspx") == true)) {
+                skeltaUtils.reloadForm();
+            }
+            else if (includeCloseForm) {
+                skeltaUtils.closeForm();
+            }
+        }
+
+        function InitializeObjects(control) {
+            setTimeout(function () {
+                control.findByXmlNode("BaseUri").value = window.baseUri;
+            }, 0);
+            window.operationsGroups = ko.computed(function () {
+                var data = [];
+
+                var formObj = control.topLevelForm;
+
+                if (formObj.isFormLoaded()) {
+                    //// This is just create dependency
+                    var webapiValue = formObj.findByXmlNode("WebAPIListItemTitle").value;
+                    webapiValue = getWebApiIdFromTitle(webapiValue);
+                    control.findByXmlNode("BaseUri").value = window.baseUri;
+                    var openApiUri = control.findByXmlNode("HiddenfieldOperApiUri").value;
+                    openApi = !skelta.utilities.isUndefinedNullOrEmpty(openApiUri) ? true : false;
+                    window.isOpenApi = openApi;
+                    var outputValue = formObj.findByXmlNode("OutputSaveIn")._value.peek();
+                    var outputtype = formObj.findByXmlNode("OutputSaveInType")._value.peek();
+                    if (outputValue) {
+                        if (outputValue != "Create New...") {
+                            formObj.findByXmlNode("UpdateXml").visible = true;
+                        }
+                    }
+                    if (outputtype) {
+                        if (outputtype === "Variable") {
+                            formObj.findByXmlNode("UpdateXml").visible = false;
+                        }
+                    }
+                    if (openApi == true) {
+
+                        // fetch the operations groups
+                        if (operationGroupsTags.length == 0) {
+                            loadOpenApiJsonObject(webapiValue, applicationName, userId);
+                        }
+
+                        data = operationGroupsTags;
+                    }
+                }
+
+                return data;
+            });
+
+            window.operationsGroupsApi = ko.computed(function () {
+                var data = [];
+
+                var formObj = control.topLevelForm;
+
+                if (formObj.isFormLoaded()) {
+                    //// This will create dependency
+                    var operationsGroupValue = formObj.findByXmlNode("OperationsGroup").value;
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(operationsGroupValue) && isOpenApi == true) {
+                        if (operationsGroupValue == 'All') {
+                            for (var eachTag in tagAndOperations) {
+                                data = prepareJsonFromList(tagAndOperations[eachTag], data);
+                            }
+                        }
+                        else {
+                            data = prepareJsonFromList(tagAndOperations[operationsGroupValue]);
+                        }
+
+                        if (formObj.onFormLoad == true) {
+                            formObj.findByXmlNode("TextInputBaseUriAndOperation").visible = true;
+                        }
+                        else {
+                            var operationValue = formObj.findByXmlNode("OperationsGroupAPI")._value.peek();
+                            if (!skelta.utilities.isUndefinedNullOrEmpty(operationValue)) {
+                                formObj.findByXmlNode("TextInputBaseUriAndOperation").visible = true;
+                            }
+                        }
+                    }
+                }
+
+                return data;
+            });
+        }
+
+        function loadOpenApiJsonObject(webApiId, applicationName, userId) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(webApiId)) {
+                return;
+            }
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "webApiId": webApiId,
+                "applicationName": applicationName,
+                "userId": userId
+            });
+            skeltaUtils.callServerMethod("GET", "WebAPIPropertyConfigService.aspx/LoadOpenApiJsonObject", "application/json; charset=utf-8", jsonHelper, "json", loadOpenApiJsonObjectSucceeded, loadOpenApiJsonObjectFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function loadOpenApiJsonObjectSucceeded(resultData) {
+            var result = JSON.parse(resultData.d);
+            operationGroupsTags = prepareJsonFromList(JSON.parse(result.operationGroupsTags));
+            operationGroupsTags.unshift({
+                paramText: skelta.localize.getString('WebapiActivity_Operations_All'),
+                paramValue: 'All'
+            });
+            tagAndOperations = JSON.parse(result.tagAndOperations);
+            operationGroupsApi = JSON.parse(result.operationGroupsApi);
+            operationIdWithPath = JSON.parse(result.operationIdWithPath);
+            operationIdAndRequestBody = JSON.parse(result.operationIdAndRequestBody);
+            webMethods = JSON.parse(result.webMethods);
+            swaggerVersion = result.swaggerVersion;
+        }
+
+        function loadOpenApiJsonObjectFailed(result) {
+            skeltaUtils.showError(propertyTitle,
+                skelta.localize.getString("WebAPIPropertyConfig_Save_Error"),
+                null,
+                "Failed loading. " + result.status + ' ' + result.statusText + '<br/>' + result.responseText);
+            logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Save_Error"));
+            logger.logError("Failed loading. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function loadVariablesXmlVariablesContents(control) {
+            var option = control.findByXmlNode("OutputSaveInType").value;
+            if (option == 'Variable') {
+                control.isMandatory = true;
+                return variableOptions;
+            }
+            else if (option == 'XmlVariable') {
+                control.isMandatory = true;
+                return xmlVariableNameOptions;
+            }
+
+            control.isMandatory = false;
+        }
+        //#endregion
+
+        //#region Prepare Json
+        function prepareJson(data) {
+            var variableJson = "[";
+            var variableValue;
+            for (variableName in data) {
+
+                variableValue = data[variableName];
+                variableJson += "{\"paramText\":\"" + variableName + "\",\"paramValue\":\"" + variableValue + "\"},";
+            }
+
+            if (variableJson.length > 1) {
+                variableJson = variableJson.substring(0, variableJson.length - 1)
+            }
+            return variableJson + "]";
+        }
+
+        function prepareJsonFromList(data, dataObject) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(dataObject)) {
+                dataObject = [];
+            }
+
+            var itemIndex = 0;
+            for (itemIndex in data) {
+                dataObject.push({
+                    paramText: data[itemIndex],
+                    paramValue: data[itemIndex]
+                });
+            }
+
+            return dataObject;
+        }
+
+        function prepareJsonFromDictionary(data) {
+            var variableJson = "[{\"paramText\":\"Select\",\"paramValue\":\"Select\"},";
+
+            var itemIndex = 0;
+            for (itemIndex in data) {
+                variableJson += "{\"paramText\":\"" + itemIndex + "\",\"paramValue\":\"" + itemIndex + "\"},";
+            }
+
+            if (variableJson.length > 1) {
+                variableJson = variableJson.substring(0, variableJson.length - 1)
+            }
+
+            return variableJson + "]";
+        }
+
+        function validateHeaderkey(control, currentValue) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_headerkey_Required"));
+            }
+            return new ValidationOptions(true, "");
+        }
+
+
+        function validateHeaderValue(control, currentValue)
+        {            
+            if (control.isExpression === true && currentValue.indexOf('ActualExprtessionString') > 1)
+            {
+                var optional = control.findByXmlNode("Optional")._value.peek();
+                var keyvalue = control.findByXmlNode("Value")._value.peek();
+                if (optional === 'NO' && skelta.utilities.isUndefinedNullOrEmpty(keyvalue) === true)
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Required"));
+                }
+                
+            }
+
+            if (control.isExpression === false && skelta.utilities.isUndefinedNullOrEmpty(currentValue))
+            {
+                var optional = control.findByXmlNode("Optional")._value.peek();
+                var keyvalue = control.findByXmlNode("Value")._value.peek();
+                if (optional === 'NO' && skelta.utilities.isUndefinedNullOrEmpty(keyvalue) === true)
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Required"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+        //#endregion
+
+        //#region Validate functionality
+        function validateAllParameters() {
+            viewModelObject.findByXmlNode('LabelParameterExpression').visible = true;
+            viewModelObject.findByXmlNode('LabelParameterExpression').value = skelta.localize.getString("WebAPIPropertyConfig_Expression_Not_Validated");
+            var isParameterValid = validateParams();
+            if (isParameterValid == true) {
+                validateParameterXSS();
+            }
+            else {
+                skeltaUtils.showError(propertyTitle, skelta.localize.getString("WebAPIPropertyConfig_InvalidParameters"), '');
+            }
+        }
+
+        function validateParameterXSS() {
+            var baseForm = viewModelObject.findByXmlNode("BaseParameters");
+            var instanceXml = skeltaUtils.getXmlFromJSONObject(baseForm.topLevelForm.records()[0].getFormSubmissionData());
+
+            if (!skeltaUtils.isUndefinedNullOrEmpty(instanceXml)) {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "instanceXml": instanceXml
+                });
+                skeltaUtils.callServerMethod("POST", "WebAPIPropertyConfigService.aspx/ValidateParameters", "application/json; charset=utf-8", jsonHelper, "json", function (data) {
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+                        if (result.IsSuccess === true) {
+                            skeltaUtils.showAlert(propertyTitle, skelta.localize.getString("WebAPIPropertyConfig_ValidParameters"), null);
+                        }
+                        else {
+                            skeltaUtils.showError(propertyTitle, result.ErrorMessage.replace("\\\\", ""));
+                            logger.logError(result.ErrorMessage.replace("\\\\", ""));
+
+                        }
+                    }
+                },
+                    function (err) {
+                        skeltaUtils.showError(propertyTitle, skelta.localize.getString("WebAPIPropertyConfig_InvalidParameters"), '');
+                        logger.logError(skelta.localize.getString("WebAPIPropertyConfig_InvalidParameters")
+                            + ' ' + err.status + ' ' + err.statusText + ' ' + err.responseText);
+                    }, null);
+            }
+        }
+
+        function validateParams() {
+            var baseForm = viewModelObject.findByXmlNode("BaseParameters");
+            var recordControls = null;
+            var formRecords = baseForm.records();
+            var recordIndex = 0;
+            var isParameterValid = true;
+
+            var visibleLabelParameterExpression = false;
+            for (recordIndex = 0; recordIndex < formRecords.length; recordIndex++) {
+                recordControls = formRecords[recordIndex].controls;
+                var valueControl = recordControls[5];
+                var valueFromControl = valueControl._value.peek();
+                if (valueFromControl.indexOf('ActualExprtessionString') > 1 && visibleLabelParameterExpression == false) {
+                    visibleLabelParameterExpression = true;
+                }
+
+                var validationOptions = validateParameters(valueControl, valueFromControl);
+                if (validationOptions.isValid == false) {
+                    valueControl.validationError(true);
+                    valueControl.validationErrorMessage(validationOptions.message);
+                    isParameterValid = false;
+                    continue;;
+                }
+                else {
+                    valueControl.validationError(false);
+                    valueControl.validationErrorMessage('');
+                }
+            }
+
+            if (visibleLabelParameterExpression == true) {
+                viewModelObject.findByXmlNode('LabelParameterExpression').visible = true;
+                viewModelObject.findByXmlNode('LabelParameterExpression').value = skelta.localize.getString("WebAPIPropertyConfig_Expression_Not_Validated");
+            }
+            else {
+                viewModelObject.findByXmlNode('LabelParameterExpression').visible = false;
+                viewModelObject.findByXmlNode('LabelParameterExpression').value = '';
+            }
+
+            return isParameterValid;
+        }
+
+        function validateParameters(control, currentValue) {
+            if (currentValue.indexOf('ActualExprtessionString') > 1) {
+                return new ValidationOptions(true, '');
+            }
+
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                return validateRequiredParameters(control, currentValue, "Optional");
+            }
+            else {
+                var dataType = control.findByXmlNode('DataType')._value.peek();
+                switch (dataType) {
+                    case 'integer':
+                        return validateIntegerParameters(control, currentValue);
+
+                        break;
+                    case 'number':
+                        return validateNumberParameters(control, currentValue);
+
+                        break;
+                    case 'boolean':
+                        return validateBooleanParameters(control, currentValue);
+                        break;
+                    default:
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateRequiredParameters(control, currentValue, optionalXmlNode) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                var optional = control.findByXmlNode(optionalXmlNode)._value.peek();
+                if (optional == 'NO') {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Required"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateIntegerParameters(control, currentValue) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                var dataType = control.findByXmlNode('DataType')._value.peek();
+                if (dataType == 'integer' && Number.isSafeInteger(Number(currentValue)) == false) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Integer"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateNumberParameters(control, currentValue) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                var dataType = control.findByXmlNode('DataType')._value.peek();
+                if (dataType == 'number' && isNaN(parseFloat(Number(currentValue))) == true) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Number"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateBooleanParameters(control, currentValue) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                var dataType = control.findByXmlNode('DataType')._value.peek();
+                if (dataType == 'boolean' && isBooleanValue(currentValue) != true) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Boolean"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateAllBodyParameters() {
+            var isParameterValid = validateBodyParams();
+            if (isParameterValid == true) {
+                validateParameterXSS();
+            }
+            else {
+                skeltaUtils.showError(propertyTitle, skelta.localize.getString("WebAPIPropertyConfig_InvalidParameters"), '');
+            }
+        }
+
+        function validateBodyParams() {
+            var baseForm = viewModelObject.findByXmlNode("BaseformBody");
+            var recordControls = null;
+            var formRecords = baseForm.records();
+            var recordIndex = 0;
+            var isParameterValid = true;
+            var visibleLabelParameterExpression = false;
+            for (recordIndex = 0; recordIndex < formRecords.length; recordIndex++) {
+                recordControls = formRecords[recordIndex].controls;
+                var valueControl = recordControls[5];
+                var valueFromControl = valueControl._value.peek();
+                if (valueFromControl.indexOf('ActualExprtessionString') > 1 && visibleLabelParameterExpression == false) {
+                    visibleLabelParameterExpression = true;
+                }
+
+                var validationOptions = validateBodyParameters(valueControl, valueFromControl);
+                if (validationOptions.isValid == false) {
+                    valueControl.validationError(true);
+                    valueControl.validationErrorMessage(validationOptions.message);
+                    isParameterValid = false;
+                    continue;;
+                }
+                else {
+                    valueControl.validationError(false);
+                    valueControl.validationErrorMessage('');
+                }
+            }
+
+            if (visibleLabelParameterExpression == true) {
+                viewModelObject.findByXmlNode('LabelBodyParameterExpression').visible = true;
+                viewModelObject.findByXmlNode('LabelBodyParameterExpression').value = skelta.localize.getString("WebAPIPropertyConfig_Expression_Not_Validated");
+            }
+            else {
+                viewModelObject.findByXmlNode('LabelBodyParameterExpression').visible = false;
+                viewModelObject.findByXmlNode('LabelBodyParameterExpression').value = '';
+            }
+
+            return isParameterValid;
+        }
+
+        function validateBodyParameters(control, currentValue) {
+            if (currentValue.indexOf('ActualExprtessionString') > 1) {
+                return new ValidationOptions(true, '');
+            }
+
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                return validateRequiredParameters(control, currentValue, "OptionalBody");
+            }
+            else {
+                var dataType = control.findByXmlNode('DataTypeBody')._value.peek();
+                switch (dataType) {
+                    case 'integer':
+                        return validateIntegerBodyParameters(currentValue);
+
+                        break;
+                    case 'number':
+                        return validateNumberBodyParameters(currentValue);
+
+                        break;
+                    case 'boolean':
+                        return validateBooleanBodyParameters(currentValue);
+                        break;
+                    default:
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateIntegerBodyParameters(currentValue) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                if (Number.isSafeInteger(Number(currentValue)) == false) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Integer"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateNumberBodyParameters(currentValue) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                if (isNaN(parseFloat(Number(currentValue))) == true) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Number"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateBooleanBodyParameters(currentValue) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                if (isBooleanValue(currentValue) != true) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Parameter_Boolean"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function isBooleanValue(stringValue) {
+            var valueInLowerCase = stringValue.toString().toLowerCase();
+            if (valueInLowerCase === "true" || valueInLowerCase === "false") {
+                return true;
+            }
+
+            return false;
+        }
+
+        function validateXmlVariableName(control, currentValue) {
+            control.findById('updateXml').visible = false;
+            if (currentValue == 'Create New...') {
+                control.findById('updateXml').visible = false;
+                return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_XmlVariableName_CreateNew"));
+            }
+
+            if (currentValue != '') {
+                control.findById('updateXml').visible = true;
+            }
+
+            if (control.findById('DropdownOutputSaveInType')._value.peek() === "Variable") {
+                control.findById('updateXml').visible = false;
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function isValidContent(control, currentValue) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue) || control.isExpression == true) {
+                return new ValidationOptions(true, '');
+            }
+            else {
+                var contentType = control.findByXmlNode('ContentType')._value.peek();
+                switch (contentType) {
+                    case "application/x-www-form-urlencoded":
+                    case "application/json":
+                        return isValidJSONString(control, currentValue);
+                        break;
+                    case "application/xml":
+                        return isValidXmlString(control, currentValue);
+                        break;
+                    default:
+                }
+            }
+        }
+
+        function isValidJSONString(control, currentValue) {
+            try {
+                // JSON.parse accepts numbers but we do not want to do that
+                if (!isNaN(parseInt(currentValue))) {
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Raw_ValidateError_Json"));
+                }
+
+                JSON.parse(currentValue);
+            } catch (e) {
+                return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Raw_ValidateError_Json"));
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function isValidXmlString(control, currentValue) {
+            var oParser = new DOMParser();
+            try {
+                var oDOM = oParser.parseFromString(currentValue, "text/xml");
+                var errorMessage;
+                if (oDOM.getElementsByTagName('parsererror').length > 0) {
+                    var browserType = navigator.userAgent;
+                    if (browserType.indexOf("Firefox") > -1) {
+                        errorMessage = oDOM.getElementsByTagName('parsererror')[0].innerHTML
+                    }
+                    else {
+                        errorMessage = oDOM.getElementsByTagName('parsererror')[0].getElementsByTagName('div')[0].innerHTML;
+                    }
+
+                    logger.logError(skelta.localize.getString("WebapiActivity_Raw_ValidateError_Xml") + '\n' + errorMessage);
+                    return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Raw_ValidateError_Xml"));
+                } else {
+                    return new ValidationOptions(true, '');
+                }
+            } catch (e) {
+                return new ValidationOptions(false, skelta.localize.getString("WebapiActivity_Raw_ValidateError_Xml"));
+            }
+        }
+        //#endregion
+
+        //#region Mandatory
+        function isNameMandatory(control, currentValue) {
+            var outputSaveInType = control.findByXmlNode('OutputSaveInType').value;
+            if (outputSaveInType == 'XmlVariable' || outputSaveInType == 'Variable') {
+                return true;
+            }
+
+            return false;
+        }
+
+        function isPostRelatedFieldsMandatory(control) {
+            var httpMethod = control.findByXmlNode('HttpMethod').value;
+            if (isOpenApi == true && (httpMethod == 'Post' || httpMethod == 'Put' || httpMethod == 'Patch')) {
+                var bodyParametersCount = control.findById("BaseformBody").records().length;
+                if (bodyParametersCount > 0) {
+                    var slNo = control.findById("BaseformBody").records()[0]["TextInputSlNoBody"]._value.peek()
+                    return !skelta.utilities.isUndefinedNullOrEmpty(slNo);
+                }
+            }
+
+            return false;
+        }
+
+        function isPostRawFieldMandatory(control) {
+            var postFieldMandatory = isPostRelatedFieldsMandatory(control);
+            if (postFieldMandatory == true) {
+                var postDataFormat = control.findByXmlNode('RadioBodyParameters').value;
+                if (postDataFormat == 'Raw') {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        //#endregion
+
+        //#region Visibility
+        function visibleOpenApiObjects(control) {
+            var openApiUri = control.findByXmlNode("HiddenfieldOperApiUri").value;
+            openApi = !skelta.utilities.isUndefinedNullOrEmpty(openApiUri) ? true : false;
+            if (openApi == true) {
+                return true;
+            }
+
+            return false;
+        }
+
+        function visibleParametersTab(control) {           
+            var textInputSlNo = control.findByXmlNode("TextInputSlNo");
+            if (!skelta.utilities.isUndefined(textInputSlNo)) {
+                return !skelta.utilities.isUndefinedNullOrEmpty(textInputSlNo._value.peek());
+            }
+
+            return false;
+        }
+
+        function visibleBodyParameters(control, currentValue) {           
+            var isVisible = visibleBodyParametersGrid(control);
+            if (isVisible == true) {
+                var radioSelected = control.findByXmlNode('RadioBodyParameters').value;
+                return radioSelected == 'Parameters';
+            }
+
+            return isVisible;
+        }
+        function visibleBodyParametersGrid(control) {            
+            var textInputSlNoBody = control.findByXmlNode("TextInputSlNoBody");
+            if (!skelta.utilities.isUndefinedNullOrEmpty(textInputSlNoBody)) {
+                return !skelta.utilities.isUndefinedNullOrEmpty(textInputSlNoBody._value.peek());
+            }
+
+            return false;
+        }
+
+        function visibleBodyTab(control) {
+            var operation = control.findByXmlNode("OperationsGroupAPI").value;
+            if (!skelta.utilities.isUndefinedNullOrEmpty(operation)) {
+                return isPostRelatedFieldsMandatory(control);
+            }
+
+            return false;
+        }
+
+        function visibleHeaderTab(control) {
+            var isVisible = false;
+            if (isOpenApi === true) {                
+                isVisible = control.findByXmlNode("Headers").records().length > 0;                
+            }
+            else {
+                isVisible = control.findByXmlNode("ShowHeader").value === "True";
+            }
+            return isVisible;
+        }
+
+        function visibleMainTab(control) {           
+            var isVisible = visibleParametersTab(control);
+            if (isVisible == false) {
+                isVisible = visibleBodyTab(control);
+            }            
+            if (isVisible === false) {
+                isVisible = visibleHeaderTab(control);
+            }
+
+            return isVisible;
+        }
+
+        function inVisibleTabs() {
+            viewModelObject.findByXmlNode("ShowHeader").value = "False";
+            viewModelObject.findByXmlNode("ShowHeader").visible = false;
+            viewModelObject.findByXmlNode("Headers").visible = false;
+            viewModelObject.findByXmlNode("ExpressionBodyRaw").visible = false;
+            viewModelObject.findByXmlNode("RadioBodyParameters").value = 'Raw';
+            viewModelObject.findByXmlNode("RadioBodyParameters").enable = false;
+            var baseForm = viewModelObject.findByXmlNode("BaseParameters");
+            baseForm.removeAll();
+            var baseFormBody = viewModelObject.findByXmlNode("BaseformBody");
+            baseFormBody.removeAll();
+            var frmHeader = viewModelObject.findByXmlNode("Headers");
+            frmHeader.removeAll();
+            baseForm.visible = false;
+            baseFormBody.visible = false;
+            frmHeader.visible = false;
+            viewModelObject.findById("TabParamBody").visible = false;
+            viewModelObject.findById("TabParameters").visible = false;
+            viewModelObject.findById("TabBody").visible = false;
+            viewModelObject.findById("tabHeader").visible = false;            
+        }
+
+        function visibleWebApiObjects(control) {
+            var openApiUri = control.findByXmlNode("HiddenfieldOperApiUri").value;
+            openApi = !skelta.utilities.isUndefinedNullOrEmpty(openApiUri) ? true : false;
+            var webApiName = control.findByXmlNode("WebAPIListItemTitle").displayValue;
+            if (openApi == false && !skelta.utilities.isUndefinedNullOrEmpty(webApiName)) {
+                return true;
+            }
+
+            return false;
+        }
+        //#endregion
+
+        //#region On Change
+        function onWebApiChanged(control, currentValue) {
+            cacheAndCloneOpenApiAllParameters(control);
+            control.findByXmlNode("RequestURI").value = '';
+            control.findByXmlNode("RequestURIFromApi").value = '';
+            control.findByXmlNode("HttpMethod").value = '';
+            control.findByXmlNode("BaseUri").value = "";
+            control.findByXmlNode("HiddenfieldOperApiUri").value = '';
+            control.findByXmlNode("TextInputBaseUriAndOperation").value = '';
+            control.findByXmlNode("TextInputBaseUriAndOperation").visible = false;
+            control.findByXmlNode("ShowHeader").value = "False";
+            viewModelObject.findById('UserListItemTitle').value = '';
+            viewModelObject.findById("updateXml").visible = false;
+            control.findByXmlNode("PostData").value = '';
+            operationGroupsTags = [];
+            inVisibleTabs();
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                return;
+            }
+
+            control.findByXmlNode("IsOpenApi").value = false;          
+            window.webAPIListItemId = getWebApiIdFromTitle(currentValue);
+            var indexWebAPI = 0;
+            for (indexWebAPI in webApiDetailsList) {
+                if (webApiDetailsList[indexWebAPI].WebApiTitle == currentValue) {
+                    window.baseUri = webApiDetailsList[indexWebAPI].BaseUri;
+                    var swaggerUri = webApiDetailsList[indexWebAPI].SwaggerUri;
+                    if (skelta.utilities.isUndefinedNullOrEmpty(swaggerUri) == false) {
+                        control.findByXmlNode("HiddenfieldOperApiUri").value = swaggerUri;
+                        control.findByXmlNode("IsOpenApi").value = true;
+                        openApi = true;
+                    }
+                    else {
+                        control.findByXmlNode("HiddenfieldOperApiUri").value = '';
+                        control.findByXmlNode("IsOpenApi").value = false;
+                        openApi = false;
+                    }
+
+                    control.findByXmlNode("BaseUri").value = webApiDetailsList[indexWebAPI].BaseUri;
+                    if (openApi == false) {
+                        control.findByXmlNode("RequestURI").value = webApiDetailsList[indexWebAPI].RequestUri;
+                    }
+
+                    if (webApiDetailsList[indexWebAPI].AuthenticationMode == 1) {
+                        showImpersonationUser = true;
+                        control.findByXmlNode("UserListItemTitle").visible = true;
+                    }
+                    else {
+                        showImpersonationUser = false;
+                        control.findByXmlNode("UserListItemTitle").visible = false;
+                    }
+
+                    break;
+                }
+            }
+
+            viewModelObject.findById("OperationsGroupAPI").value = '';
+            showOrHideHeader(openApi, false, true);
+        }
+
+        function showOrHideHeader(openApi, isEditMode, isWebApiChanged) {
+            if (openApi === true) {
+                $('[data-bind="click: frmHeader.addRecordInWebUX.bind(frmHeader), clickBubble:false"]').hide();
+                $('[controlid="frmHeaderDeleteRecord"]').hide();
+                $('[controlid="frmHeadertxtKey"]').prop("disabled", true);
+                viewModelObject.findByXmlNode("ShowHeader").visible = false;
+                if (isEditMode === true) {
+                    var curValue = viewModelObject.findByXmlNode("ShowHeader").value;
+                    viewModelObject.findById("frmHeader").visible = (curValue === 'True');
+                    var tabParameters = viewModelObject.findById("TabParamBody");
+                    tabParameters._visible(curValue === 'True');
+                    viewModelObject.findById("tabHeader").visible = curValue === 'True';
+                    viewModelObject.findByXmlNode("Headers").visible = true;
+                }
+            }
+            else {
+                $('[controlid="frmHeaderDeleteRecord"]').show();
+                $('[data-bind="click: frmHeader.addRecordInWebUX.bind(frmHeader), clickBubble:false"]').show();
+                $('[controlid="frmHeadertxtKey"]').prop("disabled", false);
+                if (isEditMode === true) {
+                    var curValue = viewModelObject.findByXmlNode("ShowHeader").value;
+                    viewModelObject.findById("frmHeader").visible = (curValue === 'True');
+                    var tabParameters = viewModelObject.findById("TabParamBody");
+                    tabParameters._visible(curValue === 'True');
+                    viewModelObject.findById("tabHeader").visible = curValue === 'True';
+                    viewModelObject.findByXmlNode("ShowHeader").visible = true;
+                }
+                else {
+                    if (isWebApiChanged === true) {
+                        viewModelObject.findByXmlNode("ShowHeader").visible = true;
+                    }
+                }
+            }
+        }        
+
+        function onRequestUriChanged(control, currentValue) {
+            var baseForm = control.findByXmlNode("BaseParameters");
+            cloneBaseFormRecords(baseForm);
+            baseForm.removeAll();
+            if (currentValue != '') {
+                var reg = /[{](?:[\-]*[\w+][\w+|\s*|-]*)[}]/g;
+                var paramMatch;
+                var i = 1;
+                while ((paramMatch = reg.exec(currentValue)) !== null) {
+                    paramName = paramMatch[0].replace('{', '').replace('}', '');
+                    var newRecord = baseForm.addRecord();
+                    newRecord.findByXmlNode("TextInputSlNo").value = i++;
+                    newRecord.findByXmlNode("Optional").value = "YES";
+                    newRecord.findByXmlNode("Name").value = paramName;
+                }
+
+                var tabParameters = control.findById("TabParamBody");
+                if (i == 1) {
+                    control.findById("TabParameters").visible = false;
+                    control.findById("BaseFormParameters").visible = false; 
+                    tabParameters._visible(false);
+                }
+                else {
+                    tabParameters._visible(true);
+                    control.findById("TabParameters").visible = true;
+                    control.findById("BaseFormParameters").visible = true; 
+                }
+            }
+
+            RetainExistingParametersValues(baseForm);
+        }
+
+        //#region Retaining Old Values
+        function cloneBaseFormRecords(baseForm) {
+            cacheParameters = {};
+            var parameter = { TextInputName: '', ValueExpression: '', IsExpression: false }
+            for (var i = 0; i < baseForm.records().length; i++) {
+                parameter["TextInputName"] = baseForm.records()[i]["TextInputName"]._value.peek();
+                parameter["ValueExpression"] = baseForm.records()[i]["ValueExpression"]._value.peek();
+                parameter["IsExpression"] = baseForm.records()[i]["ValueExpression"]._isExpression.peek();
+                cacheParameters[i] = { TextInputName: parameter["TextInputName"], ValueExpression: parameter["ValueExpression"], IsExpression: parameter["IsExpression"] };
+            }
+        }
+
+        function RetainExistingParametersValues(baseForm) {
+            if (cacheParameters != null) {
+                for (var i = 0; i < baseForm.records().length; i++) {
+                    for (eachParameter in cacheParameters) {
+                        if (baseForm.records()[i]["TextInputName"]._value.peek() === cacheParameters[eachParameter]["TextInputName"]) {
+                            baseForm.records()[i]["ValueExpression"].value = cacheParameters[eachParameter]["ValueExpression"];
+                            baseForm.records()[i]["ValueExpression"]._isExpression(cacheParameters[eachParameter]["IsExpression"]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        var cacheOpanApiAllParamaetersAssigned = false;
+        var cacheOpanApiParamaetersAssigned = false;
+        var cacheOpanApiBodyParamaetersAssigned = false;
+        var cacheOpanApiHeadersAssigned = false;
+
+        function cacheAndCloneOpenApiAllParameters(control) {
+            cacheOpanApiParamaetersAssigned = false;
+            cacheOpanApiBodyParamaetersAssigned = false;
+            cacheOpanApiHeadersAssigned = false;
+            cacheAndCloneOpenApiParameters(control);
+            cacheAndCloneOpenApiBodyParameters(control);
+            cacheAndCloneOpenApiHeaders(control);
+            storeCacheKey();
+        }
+
+        function createCacheKey() {
+            var webApiId = viewModelObject.findByXmlNode("WebAPIListItemTitle")._value.peek();
+            var operationsGroupValue = viewModelObject.findByXmlNode("OperationsGroup")._value.peek();
+            var api = viewModelObject.findById("OperationsGroupAPI")._value.peek();
+            return webApiId + operationsGroupValue + api;
+        }
+
+        function cacheKeyMatched() {
+            var currentSelection = createCacheKey();
+            return cacheKey == currentSelection;
+        }
+
+        function storeCacheKey() {
+            if (cacheOpanApiAllParamaetersAssigned === true) {
+                cacheKey = lastCacheKey;
+                cacheOpanApiAllParamaetersAssigned = false;
+            }
+
+            lastCacheKey = currentCacheKey;
+        }
+
+        function cacheAndCloneOpenApiParameters(control) {
+            var baseForm = control.findByXmlNode("BaseParameters");
+            var parameters = {};
+            var parameter = { TextInputName: '', ValueExpression: '', IsExpression: false }
+            for (var i = 0, j = 0; i < baseForm.records().length; i++) {
+                var value = baseForm.records()[i]["ValueExpression"]._value.peek();
+                if (skelta.utilities.isUndefinedNullOrEmpty(value) === false) {
+                    parameter["TextInputName"] = baseForm.records()[i]["TextInputName"]._value.peek();
+                    parameter["ValueExpression"] = value;
+                    parameter["IsExpression"] = baseForm.records()[i]["ValueExpression"]._isExpression.peek();
+                    parameters[j++] = { TextInputName: parameter["TextInputName"], ValueExpression: parameter["ValueExpression"], IsExpression: parameter["IsExpression"] };
+                }
+            }
+
+            if (j > 0) {
+                cacheOpanApiAllParamaetersAssigned = true;
+                cacheOpanApiParamaetersAssigned = true;
+                cacheOpanApiParamaeters = parameters;
+                cacheOpenApiBodyParameters = {};
+                cacheOpenApiHeaders = {};
+            }
+        }
+
+        function cacheAndCloneOpenApiBodyParameters(control) {
+            var baseForm = control.findByXmlNode("BaseformBody");
+            var parameters = {};
+            var parameter = { TextInputNameBody: '', ValueExpressionBody: '', IsExpression: false }
+            for (var i = 0, j = 0; i < baseForm.records().length; i++) {
+                var value = baseForm.records()[i]["ValueExpressionBody"]._value.peek();
+                if (skelta.utilities.isUndefinedNullOrEmpty(value) === false) {
+                    parameter["TextInputNameBody"] = baseForm.records()[i]["TextInputNameBody"]._value.peek();
+                    parameter["ValueExpressionBody"] = value;
+                    parameter["IsExpression"] = baseForm.records()[i]["ValueExpressionBody"]._isExpression.peek();
+                    parameters[j++] = { TextInputNameBody: parameter["TextInputNameBody"], ValueExpressionBody: parameter["ValueExpressionBody"], IsExpression: parameter["IsExpression"] };
+                }
+            }
+
+            if (j > 0) {
+                cacheOpanApiAllParamaetersAssigned = true;
+                cacheOpanApiBodyParamaetersAssigned = true;
+                cacheOpenApiBodyParameters = parameters;
+                if (cacheOpanApiParamaetersAssigned === false) {
+                    cacheOpanApiParamaeters = {};
+                }
+
+                cacheOpenApiHeaders = {};
+            }
+        }
+
+        function cacheAndCloneOpenApiHeaders(control) {
+            var baseForm = control.findByXmlNode("Headers");
+            var parameters = {};
+            var parameter = { frmHeadertxtKey: '', frmHeadertxtValue: '', IsExpression: false }
+            for (var i = 0, j = 0; i < baseForm.records().length; i++) {
+                var value = baseForm.records()[i]["frmHeadertxtValue"]._value.peek();
+                if (skelta.utilities.isUndefinedNullOrEmpty(value) === false) {
+                    parameter["frmHeadertxtKey"] = baseForm.records()[i]["frmHeadertxtKey"]._value.peek();
+                    parameter["frmHeadertxtValue"] = value;
+                    parameter["IsExpression"] = baseForm.records()[i]["frmHeadertxtValue"]._isExpression.peek();
+                    parameters[j++] = { frmHeadertxtKey: parameter["frmHeadertxtKey"], frmHeadertxtValue: parameter["frmHeadertxtValue"], IsExpression: parameter["IsExpression"] };
+                }
+            }
+
+            if (j > 0) {
+                cacheOpanApiAllParamaetersAssigned = true;
+                cacheOpanApiHeadersAssigned = true;
+                cacheOpenApiHeaders = parameters;
+                if (cacheOpanApiParamaetersAssigned === false) {
+                    cacheOpanApiParamaeters = {};
+                }
+
+                if (cacheOpanApiBodyParamaetersAssigned === false) {
+                    cacheOpenApiBodyParameters = {};
+                }
+            }
+        }
+
+        function retainExistingOpenApiAllParametersValues(control) {
+            if (cacheKeyMatched() === true) {
+                var baseForm = control.findByXmlNode("BaseParameters");
+                retainExistingOpenApiParametersValues(baseForm);
+                baseForm = control.findByXmlNode("BaseformBody");
+                retainExistingOpenApiBodyParametersValues(baseForm);
+                baseForm = control.findByXmlNode("Headers");
+                retainExistingOpenApiHeadersValues(baseForm);
+            }
+        }
+
+        function retainExistingOpenApiParametersValues(baseForm) {
+            if (cacheOpanApiParamaeters != null) {
+                for (var i = 0; i < baseForm.records().length; i++) {
+                    for (eachParameter in cacheOpanApiParamaeters) {
+                        if (baseForm.records()[i]["TextInputName"]._value.peek() === cacheOpanApiParamaeters[eachParameter]["TextInputName"]) {
+                            baseForm.records()[i]["ValueExpression"].value = cacheOpanApiParamaeters[eachParameter]["ValueExpression"];
+                            baseForm.records()[i]["ValueExpression"]._isExpression(cacheOpanApiParamaeters[eachParameter]["IsExpression"]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        function retainExistingOpenApiBodyParametersValues(baseForm) {
+            if (cacheOpenApiBodyParameters != null) {
+                for (var i = 0; i < baseForm.records().length; i++) {
+                    for (eachParameter in cacheOpenApiBodyParameters) {
+                        if (baseForm.records()[i]["TextInputNameBody"]._value.peek() === cacheOpenApiBodyParameters[eachParameter]["TextInputNameBody"]) {
+                            baseForm.records()[i]["ValueExpressionBody"].value = cacheOpenApiBodyParameters[eachParameter]["ValueExpressionBody"];
+                            baseForm.records()[i]["ValueExpressionBody"]._isExpression(cacheOpenApiBodyParameters[eachParameter]["IsExpression"]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        function retainExistingOpenApiHeadersValues(baseForm) {
+            if (cacheOpenApiHeaders != null) {
+                for (var i = 0; i < baseForm.records().length; i++) {
+                    for (eachParameter in cacheOpenApiHeaders) {
+                        if (baseForm.records()[i]["frmHeadertxtKey"]._value.peek() === cacheOpenApiHeaders[eachParameter]["frmHeadertxtKey"]) {
+                            baseForm.records()[i]["frmHeadertxtValue"].value = cacheOpenApiHeaders[eachParameter]["frmHeadertxtValue"];
+                            baseForm.records()[i]["frmHeadertxtValue"]._isExpression(cacheOpenApiHeaders[eachParameter]["IsExpression"]);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        //#endregion
+
+        function onOperationsGroupChanged(control, currentValue) {
+            if (isOpenApi === false) {
+                return;
+            }
+
+            cacheAndCloneOpenApiAllParameters(control);
+            viewModelObject.findById("OperationsGroupAPI").value = '';
+            viewModelObject.findByXmlNode("RequestURIFromApi").value = '';
+            control.findByXmlNode("HttpMethod").value = '';
+            viewModelObject.findByXmlNode("TextInputBaseUriAndOperation").visible = false;
+            inVisibleTabs();
+        }
+
+        function onOperationsGroupApiChanged(control, currentValue) {
+            if (isOpenApi === false) {
+                return;
+            }
+
+            currentCacheKey = createCacheKey();
+            cacheAndCloneOpenApiAllParameters(control);
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue) || currentValue == 'Select') {
+                viewModelObject.findByXmlNode("TextInputBaseUriAndOperation").visible = false;
+                inVisibleTabs();
+                return;
+            }
+
+            //Todo load all operations parameters
+            viewModelObject.findByXmlNode("ExpressionBodyRaw").value = '';
+            viewModelObject.findByXmlNode("ExpressionBodyRaw").isExpression = false;
+            viewModelObject.findByXmlNode("RequestURIFromApi").value = '';
+            selectedHttpMethod = webMethods[currentValue];
+            viewModelObject.findByXmlNode("HttpMethod").value = '';
+            viewModelObject.findById("DropdownHttpMethod").value = selectedHttpMethod;
+            viewModelObject.findByXmlNode("TextInputBaseUriAndOperation").visible = true;
+            viewModelObject.findByXmlNode("TextInputBaseUriAndOperation").value = selectedHttpMethod;
+            inVisibleTabs();
+            addParameters(currentValue);
+            showOrHideHeader(openApi, false, false);
+            var reference = getRequestReference(currentValue);
+            if (!skelta.utilities.isUndefinedNullOrEmpty(reference)) {
+                getColumnDetails(currentValue, reference);
+                addBodyParameters(openApiObject.ColumnDetails);
+            }
+
+            isPostRawFieldMandatory(control);
+            retainExistingOpenApiAllParametersValues(control);
+        }
+
+        function selectCreatedXmlVariable(xmlVariable) {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(xmlVariable)) {
+                variableCollection.XmlVariables[xmlVariable] = xmlVariable;
+                xmlVariableNameOptions = prepareJson(variableCollection.XmlVariables);
+                var test = viewModelObject.findByXmlNode("OutputSaveInType").value;
+                viewModelObject.findById("DropdownOutputSaveIn").options = xmlVariableNameOptions;
+                viewModelObject.findById("DropdownOutputSaveIn")[xmlVariable] = xmlVariable;
+                viewModelObject.findById("updateXml").visible = true;
+            }
+
+            viewModelObject.findById("updateXml").visible = true;
+            viewModelObject.findById("DropdownOutputSaveIn").value = xmlVariable;
+        }
+
+        function onSaveOutputTypeChange(control, currentValue) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue)) {
+                control.findByXmlNode("OutputSaveIn").value = '';
+                control.findByXmlNode("OutputSaveIn").isMandatory = false;
+            }
+            else {
+                control.findByXmlNode("OutputSaveIn").value = '';
+                control.findByXmlNode("OutputSaveIn").isMandatory = true;
+            }
+        }
+        //#endregion
+
+        function addParameters(currentValue) {
+            var parameters = operationGroupsApi[currentValue].Parameters;
+            if (!skelta.utilities.isUndefinedNullOrEmpty(parameters)) {
+                var baseForm = viewModelObject.findByXmlNode("BaseParameters");
+                var headerForm = viewModelObject.findByXmlNode("Headers");
+                baseForm.removeAll();
+                headerForm.removeAll();
+                headerForm.visible = false;
+                var parametersCount = 0;
+                var paramIndex = 0;
+                var headerCount = 0;
+                for (paramIndex in parameters) {
+                    var param = parameters[paramIndex];
+                    if (param == null) {
+                        continue;
+                    }
+
+                    var newRecord = null;
+                    var parameterType = param.In;
+                    if (parameterType == 'body') {
+                        var refrence = getBodyParameterReference(currentValue, param.Schema);
+                        getColumnDetails(currentValue, refrence);
+                        addBodyParameters(openApiObject.ColumnDetails);
+                        continue;
+                    }
+                    else if (parameterType === 'header') {
+                        var newRec = headerForm.addRecord();
+                        newRec.findByXmlNode('Key').value = param.Name;                        
+                        newRec.findByXmlNode("Optional").value = param.Required == true ? "NO" : "YES";
+                        headerCount++;
+                        continue;
+                    }
+
+                    var parameterDateType = param.Type;
+                    if (skelta.utilities.isUndefinedNullOrEmpty(parameterDateType) && !skelta.utilities.isUndefinedNullOrEmpty(param.Schema)) {
+                        parameterDateType = param.Schema.Type;
+                    }
+
+                    parametersCount++;
+                    newRecord = baseForm.addRecord();
+                    newRecord.findByXmlNode("TextInputSlNo").value = parametersCount;
+                    newRecord.findByXmlNode("Optional").value = param.Required == true ? "NO" : "YES";
+                    newRecord.findByXmlNode("Name").value = param.Name;
+                    newRecord.findByXmlNode("DataType").value = parameterDateType;
+                    newRecord.findByXmlNode("HiddenAddtionalInformation").value = "In:" + parameterType;
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(param.Default)) {
+                        newRecord.findByXmlNode("ValueExpression").value = param.Default;
+                    }
+                }
+
+                if (headerCount > 0) {                    
+                    viewModelObject.findById("tabHeader").visible = true;
+                    viewModelObject.findById("TabParamBody").visible = true;
+                    headerForm.visible = true;
+                }
+                else {                    
+                    viewModelObject.findById("tabHeader").visible = false;
+                    if (parametersCount == 0) {                     
+                        viewModelObject.findById("TabParamBody").visible = false;
+                    }
+                }
+
+                if (parametersCount > 0) {
+                    viewModelObject.findById("TabParamBody").visible = true;  
+                    viewModelObject.findById("TabParameters").visible = true;
+                    viewModelObject.findById("BaseFormParameters").visible = true;                    
+                    viewModelObject.findById("TabParamBody").selectTab(0);                    
+                }
+                else {
+                    viewModelObject.findById("TabParameters").visible = false;                    
+                }                
+            }
+        }
+
+        function addBodyParameters(columnDetails) {
+            var baseFormBody = viewModelObject.findByXmlNode("BaseformBody");
+            baseFormBody.removeAll();
+            var bodyParametersCount = 0;
+            var paramIndex = 0;
+            for (paramIndex in columnDetails) {
+                var param = columnDetails[paramIndex];
+                if (param == null) {
+                    continue;
+                }
+
+                baseFormBody.visible = true;
+                var newRecord = null;
+                bodyParametersCount++;
+                newRecord = baseFormBody.addRecord();
+                newRecord.findByXmlNode("TextInputSlNoBody").value = bodyParametersCount;
+                newRecord.findByXmlNode("OptionalBody").value = param.Required == true ? "NO" : "YES";
+                newRecord.findByXmlNode("NameBody").value = param.Name;
+                newRecord.findByXmlNode("DataTypeBody").value = param.DataType;
+                newRecord.findByXmlNode("HiddenAddtionalInformationBody").value = "In:body";
+            }
+
+            if (bodyParametersCount > 0) {
+                viewModelObject.findById("TabParamBody").visible = true;
+                viewModelObject.findById("TabBody").visible = true;
+                viewModelObject.findById("BaseformBody")._visible(true);
+                viewModelObject.findByXmlNode("RadioBodyParameters").value = 'Parameters';
+                viewModelObject.findByXmlNode("RadioBodyParameters").enable = true;
+                viewModelObject.findByXmlNode("ExpressionBodyRaw")._visible(false);
+            }
+            else {
+                if (isOpenApi == true && (selectedHttpMethod == 'Post' || selectedHttpMethod == 'Put' || selectedHttpMethod == 'Patch')) {
+                    viewModelObject.findById("TabBody").visible = true;
+                }
+                else {
+                    viewModelObject.findById("TabBody").visible = false;
+                }
+
+                viewModelObject.findById("BaseformBody")._visible(false);
+                viewModelObject.findByXmlNode("ExpressionBodyRaw")._visible(true);
+                viewModelObject.findByXmlNode("RadioBodyParameters").value = 'Raw';
+                viewModelObject.findByXmlNode("RadioBodyParameters").enable = false;
+            }
+        }
+
+        function getBodyParameterReference(operationId, paramSchema) {
+            var reference = '';
+            if (!skelta.utilities.isUndefinedNullOrEmpty(paramSchema.ref)) {
+                reference = paramSchema.ref;
+            }
+            else if (!skelta.utilities.isUndefinedNullOrEmpty(paramSchema.items) && !skelta.utilities.isUndefinedNullOrEmpty(paramSchema.items.ref)) {
+                reference = paramSchema.items.ref;
+            }
+            else if (!skelta.utilities.isUndefinedNullOrEmpty(paramSchema.Type)) {
+                addPrimityTypeColumnDetails(operationId, paramSchema.Type, paramSchema.items)
+            }
+
+            return reference;
+        }
+
+        function getRequestReference(operationId) {
+            var reference = '';
+            if (selectedHttpMethod == 'Post' || selectedHttpMethod == 'Put' || selectedHttpMethod == 'Patch') {
+                var requestBody = operationIdAndRequestBody[operationId];
+                if (!skelta.utilities.isUndefinedNullOrEmpty(requestBody)) {
+                    var content = requestBody.Content["application/json"];
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(content.schema.ref)) {
+                        reference = content.schema.ref;
+                    }
+                    else if (!skelta.utilities.isUndefinedNullOrEmpty(content.schema.items) && !skelta.utilities.isUndefinedNullOrEmpty(content.schema.items.ref)) {
+                        reference = content.schema.items.ref;
+                    }
+                }
+            }
+
+            return reference;
+        }
+
+        function getColumnDetails(operationId, reference) {
+            if (skelta.utilities.isUndefinedNullOrEmpty(operationId)) {
+                return;
+            }
+
+            var webApiId = viewModelObject.findByXmlNode("WebAPIListItemTitle")._value.peek();
+            webApiId = getWebApiIdFromTitle(webApiId);
+            if (!skelta.utilities.isUndefinedNullOrEmpty(reference)) {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "applicationName": applicationName,
+                    "userId": userId,
+                    "webApiId": webApiId,
+                    "reference": reference
+                });
+                skeltaUtils.callServerMethod("GET", "WebAPIPropertyConfigService.aspx/GetColumnDetails", "application/json; charset=utf-8", jsonHelper, "json", getColumnDetailsSucceeded, getColumnDetailsFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+            }
+        }
+
+        function getColumnDetailsSucceeded(resultData) {
+            var result = JSON.parse(resultData.d);
+            openApiObject = JSON.parse(result);
+            window.openApiObject = openApiObject;
+            objectType = openApiObject.TypeName;
+            viewModelObject.findByXmlNode("HiddenfieldObjectType").value = objectType;
+        }
+
+        function getColumnDetailsFailed(result) {
+            skeltaUtils.showError(propertyTitle,
+                skelta.localize.getString("WebAPIPropertyConfig_Save_Error"),
+                null,
+                "Failed loading. " + result.status + ' ' + result.statusText + '<br/>' + result.responseText);
+            logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Save_Error"));
+            logger.logError("Failed loading. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function enableRadioBodyParameters(control, currentValue) {
+            var isVisible = false;
+            var httpMethod = control.findByXmlNode("HttpMethod").value;
+            var textInputSlNoBody = control.findByXmlNode("TextInputSlNoBody");
+            if (!skelta.utilities.isUndefinedNullOrEmpty(textInputSlNoBody)) {
+                var test = skelta.utilities.isUndefinedNullOrEmpty(textInputSlNoBody.value);
+            }
+            if (isOpenApi == true && (httpMethod == 'Post' || httpMethod == 'Put' || httpMethod == 'Patch')) {
+                isVisible = visibleBodyParametersGrid(control);
+            }
+
+            return isVisible;
+        }
+        //#endregion
+
+        //#region On Save
+        function onSave(inputParameterObject, eventArgs) {
+           
+            var headers = getWebApiHeaders();
+            if (checkDuplicateInObject("Key", headers) === true) {
+                skeltaUtils.showError(propertyTitle, skelta.localize.getString("Webapi_activity_key_duplicate"), '');
+                logger.logError(skelta.localize.getString("Webapi_activity_key_duplicate"));
+                skelta.forms.utilities.pageLoadComplete("");
+                return;
+            }           
+
+            generateRequestUri();
+            generatePostData();
+            if (isOpenApi == true) {
+                inputParameterObject.instanceXml.WebAPIActivityProperties.RequestURIFromApi = viewModelObject.findByXmlNode("RequestURIFromApi")._value.peek();
+                var httpMethod = inputParameterObject.instanceXml.WebAPIActivityProperties.HttpMethod;
+                if (httpMethod == 'Post' || httpMethod == 'Put' || httpMethod == 'Patch') {
+                    var radioBodyParameters = viewModelObject.findByXmlNode("RadioBodyParameters");
+                    if (radioBodyParameters._value.peek() == 'Raw') {
+                        viewModelObject.findByXmlNode("PostData").value = viewModelObject.findByXmlNode("ExpressionBodyRaw")._value.peek();
+                        viewModelObject.findByXmlNode("PostData").isExpression = viewModelObject.findByXmlNode("ExpressionBodyRaw").isExpression;
+                        if (!skelta.utilities.isUndefinedNullOrEmpty(inputParameterObject.instanceXml.WebAPIActivityProperties.BaseformBody)) {
+                            inputParameterObject.instanceXml.WebAPIActivityProperties.BaseformBody = clearBodyParametersValues(inputParameterObject.instanceXml.WebAPIActivityProperties.BaseformBody);
+                        }
+                    }
+                    else {
+                        inputParameterObject.instanceXml.WebAPIActivityProperties.ExpressionBodyRaw.__text = '';
+                        inputParameterObject.instanceXml.WebAPIActivityProperties.ExpressionBodyRaw._isExpression = false;
+                    }
+
+                    inputParameterObject.instanceXml.WebAPIActivityProperties.PostData.__text = viewModelObject.findByXmlNode("PostData")._value.peek();
+                    inputParameterObject.instanceXml.WebAPIActivityProperties.PostData._isExpression = viewModelObject.findByXmlNode("PostData").isExpression;
+                }
+            }
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "instanceXml": skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                "applicationName": applicationName,
+                "userId": userId,
+                "workflowName": workflowName,
+                "workflowVersion": workflowVersion,
+                "actionName": selectedAction,
+                "designerInstanceId": designerInstanceId,
+                "mode": mode
+            });
+
+            try {
+                skeltaUtils.callServerMethod("POST", "WebAPIPropertyConfigService.aspx/SaveWebApiConfigProperty", "application/json; charset=utf-8", jsonHelper, "json", newWorkflowFormSubmitSucceeded, newFormSubmitFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (e) {
+                skeltaUtils.showError(propertyTitle,
+                    skelta.localize.getString("WebAPIPropertyConfig_Save_Error"),
+                    null,
+                    e.message);
+                logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Save_Error"));
+                logger.logError(e.message);
+            }
+        }
+
+        function newWorkflowFormSubmitSucceeded(resultData) {
+            var result = $.parseJSON(resultData.d);
+            if (result.IsSuccess === true) {
+                skeltaUtils.showAlert(propertyTitle,
+                    skelta.localize.getString("WebAPIPropertyConfig_SaveMsg"),
+                    function () {
+                        ReloadOrCloseForm(true);
+                    });
+            }
+            else {
+                skeltaUtils.showError(propertyTitle,
+                    skelta.localize.getString("WebAPIPropertyConfig_Save_Error"),
+                    null,
+                    result.ErrorMessage.replace("\\\\", ""));
+                logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Save_Error"));
+                logger.logError(result.ErrorMessage.replace("\\\\", ""));
+            }
+        }
+
+        function newFormSubmitFailed(result) {
+            skeltaUtils.showError(propertyTitle,
+                skelta.localize.getString("WebAPIPropertyConfig_Save_Error"),
+                null,
+                "Failed submission. " + result.status + ' ' + result.statusText + '<br/>' + result.responseText);
+            logger.logError(skelta.localize.getString("WebAPIPropertyConfig_Save_Error"));
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function generateRequestUri() {
+            var baseForm = viewModelObject.findByXmlNode("BaseParameters");
+            var recordControls = null;
+            var requestUri = '';
+            var formRecords = baseForm.records();
+            var recordIndex = 0;
+            var isQueryParameterAvaiable = false;
+            var isParameterValid = validateParams();
+            if (isParameterValid == false) {
+                return;
+            }
+
+            var selectedPath = '';
+            if (!skelta.utilities.isUndefinedNullOrEmpty(operationIdWithPath)) {
+                var api = viewModelObject.findById("OperationsGroupAPI")._value.peek();
+                selectedPath = skelta.utilities.isUndefinedNullOrEmpty(operationIdWithPath[api]) ? '' : operationIdWithPath[api];
+            }
+
+            for (recordIndex = 0; recordIndex < formRecords.length; recordIndex++) {
+                recordControls = formRecords[recordIndex].controls;
+                var optional = recordControls[1]._value.peek() == 'YES';
+                var valueControl = recordControls[5];
+                var additionalInformation = recordControls[3]._value.peek();
+                if (!skelta.utilities.isUndefinedNullOrEmpty(additionalInformation)) {
+                    var paramParts = additionalInformation.split(':');
+                    if (paramParts[1] == 'path') {
+                        selectedPath = selectedPath.replace('{' + recordControls[2]._value.peek() + '}', '{' + recordControls[0]._value.peek() + '}');
+                    }
+                    else if (paramParts[1] == 'query') {
+                        var parameterValue = valueControl._value.peek();
+                        if (skelta.utilities.isUndefinedNullOrEmpty(parameterValue) && optional == true) {
+                            continue;
+                        }
+
+                        isQueryParameterAvaiable = true;
+                        requestUri += recordControls[2]._value.peek() + "=" + '{' + recordControls[0]._value.peek() + '}' + "&";
+                    }
+                }
+            }
+
+            if (isParameterValid == true) {
+                if (isQueryParameterAvaiable == true) {
+                    requestUri = '?' + requestUri.substring(0, requestUri.length - 1);
+                }
+
+                var baseUri = viewModelObject.findByXmlNode("BaseUri")._value.peek();
+                if (baseUri.endsWith("/") && selectedPath.startsWith("/")) {
+                    selectedPath = selectedPath.substring(1);
+                }
+                viewModelObject.findByXmlNode("RequestURIFromApi").value = selectedPath + requestUri;
+            }
+        }
+
+        function generatePostData() {
+            var postDataFormat = viewModelObject.findByXmlNode("RadioBodyParameters")._value.peek();
+            if (postDataFormat == 'Raw') {
+                var isExpression = viewModelObject.findByXmlNode("ExpressionBodyRaw").isExpression;
+                if (isExpression === true) {
+                    viewModelObject.findByXmlNode("PostData").value = viewModelObject.findByXmlNode("ExpressionBodyRaw")._value.peek();
+                    viewModelObject.findByXmlNode("PostData").isExpression = isExpression;
+                }
+                else {
+                    viewModelObject.findByXmlNode("PostData").isExpression = isExpression;
+                    viewModelObject.findByXmlNode("PostData").value = viewModelObject.findByXmlNode("ExpressionBodyRaw")._value.peek();
+                }
+
+                return;
+            }
+
+            var baseForm = viewModelObject.findByXmlNode("BaseformBody");
+            var recordControls = null;
+            var postData = '';
+            var formRecords = baseForm.records();
+            var recordIndex = 0;
+            var isQueryParameterAvaiable = false;
+            var paramName, paramSlNo, paramValue;
+            var isParameterValid = validateBodyParams();
+            if (isParameterValid == false) {
+                return;
+            }
+
+            var contentType = viewModelObject.findByXmlNode('ContentType')._value.peek();
+            for (recordIndex = 0; recordIndex < formRecords.length; recordIndex++) {
+                recordControls = formRecords[recordIndex].controls;
+                var optional = recordControls[1]._value.peek() == 'YES';
+                var parameterType = recordControls[4]._value.peek();
+                var parameterValue = recordControls[5]._value.peek();
+                if (skelta.utilities.isUndefinedNullOrEmpty(parameterValue) && optional == true) {
+                    continue;
+                }
+
+                isQueryParameterAvaiable = true;
+                paramName = recordControls[2]._value.peek();
+                paramSlNo = recordControls[0]._value.peek();
+                if (contentType == 'application/xml') {
+                    postData += "<" + paramName + ">{" + paramSlNo + "}</" + paramName + ">";
+                }
+                else {
+                    if (parameterType == 'string') {
+                        postData += "\"" + paramName + "\":" + "\"{" + paramSlNo + "}\",";
+                    }
+                    else {
+                        if (httpMethod == "Patch") {
+                            if (isValueAnObject(parameterValue) == true) {
+                                postData += " \"" + paramName + "\": " + "{" + paramSlNo + "},";
+                            }
+                            else {
+                                postData += " \"" + paramName + "\": " + "\"{" + paramSlNo + "}\",";
+                            }
+                        }
+                        else {
+                            postData += "\"" + paramName + "\":" + "{" + paramSlNo + "},";
+                        }
+                    }
+                }
+            }
+
+            if (isParameterValid == true) {
+                if (isQueryParameterAvaiable == true) {
+                    if (contentType == 'application/xml') {
+                        objectType = viewModelObject.findByXmlNode("HiddenfieldObjectType").value;
+                        postData = "<?xml version='1.0' encoding='UTF-8'?>" + "<" + objectType + ">" + postData + "</" + objectType + ">";
+                    }
+                    else {
+                        postData = postData.substring(0, postData.length - 1);
+                        if (httpMethod == "Patch") {
+                            postData = "[{" + postData + "}]";
+                        }
+                        else {
+                            postData = "{" + postData + "}";
+                        }
+                    }
+                }
+
+                viewModelObject.findByXmlNode("PostData").isExpression = false;
+                viewModelObject.findByXmlNode("PostData").value = postData;
+            }
+        }
+
+        function clearBodyParametersValues(BaseformBody) {
+            var recordIndex = 0;
+            for (recordIndex = 0; recordIndex < BaseformBody.length; recordIndex++) {
+                BaseformBody[recordIndex]["ValueExpressionBody"]._isExpression = false;
+                BaseformBody[recordIndex]["ValueExpressionBody"].__text = '';
+            }
+
+            return BaseformBody;
+        }
+
+        function isValueAnObject(parameterValue) {
+            var isObject = parameterValue.startsWith("{");
+            if (isObject == true) {
+                var isExpressionEditorObject = parameterValue.startsWith("{\"ApplicationName\"");
+                if (isExpressionEditorObject == true) {
+                    var expressionString = JSON.parse(parameterValue).ExpressionString;
+                    isObject = JSON.parse(expressionString).ActualExprtessionString.startsWith("\"{");
+                }
+            }
+
+            return isObject;
+        }
+        //#endregion
+
+        //#region Xml Variable
+        function isResponseAvailable(operationId) {
+            var responseAvailable = false;
+            if (!skelta.utilities.isUndefinedNullOrEmpty(swaggerVersion)) {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200]) && !skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200].Content)) {
+                    responseAvailable = true;
+                }
+            }
+            else if (!skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200]) && !skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200].Schema)) {
+                responseAvailable = true;
+            }
+
+            return responseAvailable;
+        }
+
+        function getReference(operationId) {
+            var reference = '';
+            selectedHttpMethod = webMethods[operationId];
+            if (!skelta.utilities.isUndefinedNullOrEmpty(swaggerVersion)) {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200]) && !skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200].Content)) {
+                    var content = getContent(operationId);
+
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(content.schema.ref)) {
+                        reference = content.schema.ref;
+                    }
+                    else if (!skelta.utilities.isUndefinedNullOrEmpty(content.schema.items) && !skelta.utilities.isUndefinedNullOrEmpty(content.schema.items.ref)) {
+                        reference = content.schema.items.ref;
+                    }
+                    else if (!skelta.utilities.isUndefinedNullOrEmpty(content.schema.Type)) {
+                        addPrimityTypeColumnDetails(operationId, content.schema.Type, content.schema.items)
+                    }
+                }
+                else {
+                    logger.logError(skelta.localize.getString("OpenApi_OperationDoesNotSupportResponse"));
+                }
+            }
+            else {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(operationGroupsApi[operationId].Responses[200])) {
+                    var responseSchema = operationGroupsApi[operationId].Responses[200].Schema;
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(responseSchema)) {
+                        if (!skelta.utilities.isUndefinedNullOrEmpty(responseSchema.ref)) {
+                            reference = responseSchema.ref;
+                        }
+                        else if (!skelta.utilities.isUndefinedNullOrEmpty(responseSchema.items) && !skelta.utilities.isUndefinedNullOrEmpty(responseSchema.items.ref)) {
+                            reference = responseSchema.items.ref;
+                        }
+                        else {
+                            addPrimityTypeColumnDetails(operationId, responseSchema.Type, responseSchema.items);
+                        }
+                    }
+                    else {
+                        logger.logError(skelta.localize.getString("OpenApi_OperationDoesNotSupportResponse"));
+                    }
+                }
+            }
+
+            return reference;
+        }
+
+        function addPrimityTypeColumnDetails(operationId, schemaType, schemaElementItems) {
+            objectType = schemaType;
+            if (objectType == 'array') {
+                openApiObject = {
+                    'TypeName': objectType,
+                    'ColumnDetails': new Array()
+                };
+                var dataObj = {
+                    Name: 'ARRAY',
+                    DataType: schemaElementItems.Type,
+                    Required: false
+                };
+            }
+            else {
+                openApiObject = {
+                    'TypeName': 'Dummy',
+                    'ColumnDetails': new Array()
+                };
+                var dataObj = {
+                    Name: 'DataType',
+                    DataType: objectType,
+                    Required: false
+                };
+            }
+            openApiObject.ColumnDetails.push(dataObj);
+        }
+
+        function getContent(operationId) {
+            var content = operationGroupsApi[operationId].Responses[200].Content["application/json"];
+            if (skelta.utilities.isUndefinedNullOrEmpty(content)) {
+                content = operationGroupsApi[operationId].Responses[200].Content["text/json"];
+            }
+
+            if (skelta.utilities.isUndefinedNullOrEmpty(content)) {
+                content = operationGroupsApi[operationId].Responses[200].Content["application/json;"];
+            }
+
+            if (skelta.utilities.isUndefinedNullOrEmpty(content)) {
+                content = operationGroupsApi[operationId].Responses[200].Content["text/json;"];
+            }
+
+            return content;
+        }
+
+        function openCreateWebApiXmlVariable(control, currentValue) {
+            window.webApiHeaders = [];
+            var headers = getWebApiHeaders();
+            if (checkDuplicateInObject("Key", headers) === true) {
+                skeltaUtils.showError(propertyTitle, skelta.localize.getString("webapi_activity_key_duplicate"), '');
+                logger.logError(skelta.localize.getString("webapi_activity_key_duplicate"));
+                return;
+            }
+            window.webApiHeaders = headers;
+            if (isOpenApi == true) {
+                openXmlVariableWdinwos(control, currentValue);
+            }
+            else {
+                var httpMethod = control.findByXmlNode('HttpMethod')._value.peek();
+                var requestUri = viewModelObject.findById("TextInputRequestURI")._value.peek();
+                if (skelta.utilities.isUndefinedNullOrEmpty(httpMethod) || skelta.utilities.isUndefinedNullOrEmpty(requestUri)) {
+                    control.findByXmlNode("OutputSaveIn").value = '';
+                    skeltaUtils.showError(propertyTitle, skelta.localize.getString("RequetUriAndHTTPMethod_Empty"));
+                    return;
+                }
+
+                skeltaUtils.showConfirmation(propertyTitle, skelta.localize.getString("WebApi_CreateXml_Confirm"),
+                    function (res) {
+                        if (res) {
+                            openXmlVariableWdinwos(control, currentValue);
+                        } else {
+                            if (currentValue != 'Update') {
+                                control.findByXmlNode("OutputSaveIn").value = '';
+                            }
+
+                            skeltaUtils.pageLoadComplete("");
+                            return;
+                        }
+                    }, skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Ok"), skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Cancel"));
+            }
+        }
+
+        function openXmlVariableWdinwos(control, currentValue) {
+            if (isOpenApi == true) {
+                window.openApiObject = [];
+                var operationId = control.findByXmlNode("OperationsGroupAPI")._value.peek();
+                var responseAvailable = isResponseAvailable(operationId);
+                if (responseAvailable == false) {
+                    skeltaUtils.showError(propertyTitle, skelta.localize.getString("OpenApi_OperationDoesNotSupportResponse"), '');
+                    logger.logError(skelta.localize.getString("OpenApi_OperationDoesNotSupportResponse"));
+                    return;
+                }
+
+                var reference = getReference(operationId);
+                if (!skelta.utilities.isUndefinedNullOrEmpty(reference)) {
+                    if (reference.startsWith('#')) {
+                        getColumnDetails(operationId, reference);
+                    }
+                }
+            }
+
+            if (openApi == true) {
+                window.requestUri = viewModelObject.findById("RequestURIFromApi")._value.peek();
+                window.childInstanceXml = '';
+            }
+            else {
+                window.requestUri = viewModelObject.findById("TextInputRequestURI")._value.peek();
+                setChildFormInstanceXml();
+            }
+
+            window.userListItemTitle = "";
+            var currentvalue = viewModelObject.findById('UserListItemTitle').value;
+            if (currentvalue != null && currentvalue != '') {
+                window.userListItemTitle = currentvalue;
+            }
+
+            window.postData = viewModelObject.findById("PostDataExpression")._value.peek();
+            var updateQueryString = "&updatevalue=false";
+            if (currentValue == 'Update') {
+                updateQueryString = "&updatevalue=true" + "&xmlvalue=" + viewModelObject.findById("DropdownOutputSaveIn")._value.peek();
+            }
+
+            var webApiTitle = viewModelObject.findByXmlNode("WebAPIListItemTitle")._value.peek();
+            window.webAPIListItemId = getWebApiIdFromTitle(webApiTitle);
+            var currentvalue = viewModelObject.findById('UserListItemTitle').value;
+            if (currentvalue != null && currentvalue != '') {
+
+                updateQueryString = updateQueryString + "&UserTitle=" + currentvalue;
+            }
+
+            var newurl = "../NextGenForms/CreateWebAPIXmlVar.htm" + window.location.search + updateQueryString;
+            var height = screen.availHeight / 2;
+            var width = screen.width / 2;
+            var windowHeight = 400;
+            var windowWidth = 800;
+            var topValue = (height - windowHeight / 2);
+            var leftValue = (width - windowWidth / 2);
+            var topText = 'top=' + topValue;
+            var leftText = 'left=' + leftValue;
+            var alignment = topText + ',' + leftText;
+            window.open(newurl, skelta.localize.getString('CreateNewXmlVariable_title'), "height=" + windowHeight + ",width=" + windowWidth + ",resizable=yes," + alignment);
+        }
+
+        String.prototype.startsWith = function (searchString, position) {
+            position = position || 0;
+            return this.indexOf(searchString, position) === position;
+        };
+
+        String.prototype.endsWith = function (pattern) {
+            var d = this.length - pattern.length;
+            return d >= 0 && this.lastIndexOf(pattern) === d;
+        };
+
+        Number.isSafeInteger = Number.isSafeInteger || function (value) {
+            return typeof value === "number" &&
+                isFinite(value) &&
+                Math.floor(value) === value;
+        };
+
+        function setChildFormInstanceXml() {
+            var jsonObj = {
+                CreateWebApiXmlVar: {
+                    XmlVariable: '',
+                }
+            };
+            var parametersBaseForm = viewModelObject.findById('BaseFormParameters');
+            var isTabParametersVisible = viewModelObject.findById("TabParamBody")._visible.peek();
+            if (isTabParametersVisible == true) {
+                var recordsLen = parametersBaseForm.records().length;
+                var valueIgnoringExpresion = '';
+                if (recordsLen == 1) {
+                    var slNo = parametersBaseForm.records()[0].TextInputSlNo.value;
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(slNo)) {
+                        var item = parametersBaseForm.records()[0];
+                        if (item.controls[5].isExpression == false) {
+                            valueIgnoringExpresion = item.controls[5]._value.peek();
+                        }
+
+                        jsonObj.CreateWebApiXmlVar.BaseParameters = {
+                            TextInputSlNo: item.controls[0]._value.peek(),
+                            Name: item.controls[2]._value.peek(),
+                            ValueExpression: valueIgnoringExpresion
+                        };
+                    }
+                }
+                else if (recordsLen > 1) {
+                    jsonObj.CreateWebApiXmlVar.BaseParameters = [];
+
+                    for (var i = 0; i < recordsLen; i++) {
+                        var item = parametersBaseForm.records()[i];
+                        valueIgnoringExpresion = '';
+                        if (item.controls[5].isExpression == false) {
+                            valueIgnoringExpresion = item.controls[5]._value.peek();
+                        }
+
+                        jsonObj.CreateWebApiXmlVar.BaseParameters.push({
+                            TextInputSlNo: item.controls[0]._value.peek(),
+                            Name: item.controls[2]._value.peek(),
+                            ValueExpression: valueIgnoringExpresion
+                        });
+                    }
+                }
+            }
+
+            window.childInstanceXml = skelta.utilities.getXmlFromJSONObject(jsonObj);
+        }
+
+        function getWebApiHeaders() {
+            var headerForm = viewModelObject.findById('frmHeader');           
+            var recordsLen = headerForm.records().length;
+            var headerCollection = [];
+            if (recordsLen > 0) {
+                for (var i = 0; i < recordsLen; i++) {
+                    var item = headerForm.records()[i];
+                    var dataObj = {
+                        Key: item.controls[1]._value.peek(),
+                        Value: item.controls[2]._value.peek(),
+                        Optional: item.controls[0]._value.peek()
+                    };
+                    headerCollection.push(dataObj);
+                }
+            }
+            return headerCollection;
+        }
+        
+
+        function checkDuplicateInObject(propertyName, inputArray) {
+            var seenDuplicate = false,
+                testObject = {};
+
+            inputArray.map(function (item) {
+                var itemPropertyName = item[propertyName];
+                if (itemPropertyName in testObject) {
+                    testObject[itemPropertyName].duplicate = true;
+                    item.duplicate = true;
+                    seenDuplicate = true;
+                }
+                else {
+                    testObject[itemPropertyName] = item;
+                    delete item.duplicate;
+                }
+            });
+
+            return seenDuplicate;
+        }
+
+        function getWebApiIdFromTitle(value) {
+            var webApiIndex = 0;
+            for (webApiIndex in webApiDetailsList) {
+                if (webApiDetailsList[webApiIndex].WebApiTitle == value) {
+                    window.baseUri = webApiDetailsList[webApiIndex].BaseUri;
+                    return webApiDetailsList[webApiIndex].WebApiId;
+                }
+            }
+        }
+                                //#endregion
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

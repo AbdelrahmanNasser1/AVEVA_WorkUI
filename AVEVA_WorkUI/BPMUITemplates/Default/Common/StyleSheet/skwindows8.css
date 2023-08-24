@@ -1,0 +1,222 @@
+/* Body tag */
+body
+{
+    padding: 0px;
+    margin: 0px;
+    background-color: #FFFFFF;
+    font: Segoe UI Light;
+    word-wrap: break-word;
+    overflow-x: none !important;
+    overflow-y: auto;
+}
+
+/* Any anchor tag */
+a
+{
+    text-decoration: none;
+}
+
+/* Footer Div */
+/*.footer{left:0; bottom:0; position:fixed; background-image: -webkit-gradient(linear, left top, left bottom, from(#8f8e8f), color-stop( 50%, #555555), color-stop(50%, #404040), to(#272728)); 	margin: 0px; height: 44px; font-size: 17px; text-shadow: 0px -1px 1px #000; border-bottom: 1px solid black; color: white; padding: 0px 0px 0px 0px; text-align: center; width:100%; z-index:100;vertical-align:middle;-webkit-touch-callout:none;}
+*/
+.footer
+{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: transparent;
+    height: 50px;
+    margin: 0px;
+    font-size: 17px;
+    color: white;
+    padding: 0 10px 0 0;
+    text-align: center;
+    width: 100%;
+    z-index: 100;
+    vertical-align: middle;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+}
+
+/* any paragraph like error message, description */
+p
+{
+    margin: 1em;
+    word-wrap: break-word;
+}
+
+/* any heading like customization in body or subject */
+h3
+{
+    word-wrap: break-word;
+}
+
+/* Approval and reject buttons*/
+.button-bold
+{
+    font-family: Segoe UI Light !important;
+    width: 160px !important;
+    background-color: #666 !important;
+    font-size: 11pt !important;
+    color: #FFF !important;
+    height: 32px !important;
+    border: none !important;
+    padding: 0 !important;
+    font-weight: normal !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.button-bold-cancel
+{
+    background-color: #e0e1dd !important;
+    color: #000 !important;
+    border: none !important;
+}
+
+.button-bold:hover
+{
+    background-color: #000 !important;
+    color: #FFF !important;
+}
+
+/* Subject, Message and Time Div */
+.SubjectApproval
+{
+    color: Black;
+    font-size: 17px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 2px;
+    background-color: White;
+    word-wrap: break-word;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.MessageApproval
+{
+    color: Black;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 2px;
+    background-color: White;
+    word-wrap: break-word;
+    text-align: justify;
+    overflow: hidden !important;
+}
+
+.approvaldatetime
+{
+    font-size: 13px;
+    color: #999;
+    padding-left: 3px;
+}
+
+.lineDiv
+{
+    margin: 20px;
+}
+/* Subject, Message and Time Div */
+
+/* Comments Text area */
+.areastyle
+{
+    font-family: Segoe UI Light !important;
+    color: Black;
+    font-size: 16px;
+    height: 100px;
+    width: 98%;
+    border: 1px solid black;
+}
+
+/* Containerform Div */
+.containerform
+{
+    text-align: left;
+    background: #fff;
+    margin: 10px;
+    overflow: auto !important;
+}
+
+/* Div inside containerform */
+.padder
+{
+    padding: 10px;
+}
+
+/* Content Div */
+.contentform
+{
+    font-family: Segoe UI Light;
+    width: 100%;
+    top: 0px;
+    bottom: 50px;
+    overflow: auto !important;
+    position: fixed;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/*Error message */
+.errormsg
+{
+    color: red;
+    font-size: 15px;
+    background-color: White;
+    padding: 5px;
+    margin: 7px 10px 10px 10px;
+}
+
+/*Error Div */
+.containerformerror
+{
+    text-align: left;
+    background-color: White;
+    width: 94%;
+    margin: 7px 10px 10px 10px;
+}
+
+/*Loader Div */
+.loaderinvisible
+{
+    width: 100%;
+    height: 1000px;
+    z-index: 200;
+    top: 45px;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    display: none;
+}
+
+.loadervisible
+{
+    width: 100%;
+    height: 1000px;
+    z-index: 200;
+    top: 180px;
+    margin: 0 auto;
+    position: absolute;
+    text-align: center;
+    display: inline;
+    background-image: url('../Common/Images/transparent.png');
+    background-repeat: repeat;
+}
+/*Loader Div */
+
+/*Information Dummy Div*/
+.dummyInformationDiv
+{
+    margin: 5px;
+}
+
+.buttonDiv
+{
+    float: right;
+    margin-right: 20px;
+    padding-top: 5px;
+    vertical-align: middle;
+    overflow: hidden !important;
+}

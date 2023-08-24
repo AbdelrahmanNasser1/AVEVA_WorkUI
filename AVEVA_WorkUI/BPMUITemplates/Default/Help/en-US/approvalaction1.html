@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Approval Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601935" class="heading3">Approval Activity</h3>
+<p class="paragraph"><strong class="strong">Activity Description</strong>:</p>
+<p class="paragraph">The Approval Action is used in the Workflow Management Workflow process design in cases where an approval request has to be approved by an actor or set of actors.</p>
+<p class="paragraph"><strong class="strong">Application Scenarios</strong>:</p>
+<p class="paragraph">Typical application scenarios include the Leave Approval Workflow Process, which will have an Approval activity by a Manager, and the Purchase Requisition Workflow, which will have an Approval activity by an Accounts Manager.</p>
+<p class="paragraph">Workflow Variables for Approval:</p>
+<p class="paragraph"><strong class="strong">Steps to define variables for use in the Approval activity:</strong></p>
+<p class="paragraph">This section describes how to define variables for use in Approval activities. It gives the syntax for creating the variables and typical examples for different cases.</p>
+<p class="paragraph"><strong class="strong">Variables for capturing WorkItemIds</strong></p>
+<p class="paragraph">The Activityids for the activity can be retrieved using a variable of type array, with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+CurrentActivity.Name+'WorkItemIds'</strong></p>
+<p class="paragraph">For example, ^ManagerApprovalWorkItemIds</p>
+<p class="paragraph"><strong class="strong">Variables for capturing All Actors' Details</strong></p>
+<p class="paragraph">The details of the actor(s) to whom the approval work item gets assigned can be accessed by declaring a variable of type array with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+CurrentActivity.Name+'ActingUsers'</strong></p>
+<p class="paragraph">For example, <strong class="strong">^ManagerApprovalActingUsers</strong>.</p>
+<p class="paragraph"><strong class="strong">Variables for capturing Responding Actors' Details</strong></p>
+<p class="paragraph">The details of the actor submitting the approval/rejection response can be accessed by declaring a variable of type resource with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+HWSActivity.ActivityName+'RespondingUser'</strong></p>
+<p class="paragraph">For example, ^ManagerApprovalRespondingUser.</p>
+<p class="paragraph">This variable stores the responded user information. In case of multiple users, it will retrieve the last user details.</p>
+<p class="note"><strong class="notelabel">Note:</strong> For single user, you can declare this variable as Resource type. If task is assigned to multiple users, to get all responded users information, then declare this variable as <b class="uicontrol">Array</b>. </p>
+<p class="paragraph"><strong class="strong">Variables for capturing Approving/Rejecting Actor Details</strong></p>
+<p class="paragraph">The details of the actor(s) submitting either approval or rejection response can be accessed by declaring a variable of type Array with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+ activityName+'ApprovingUsers' (or)</strong></p>
+<p class="paragraph"><strong class="strong">'^'+ activityName+'RejectingUsers'</strong></p>
+<p class="paragraph">For example, <strong class="strong">^ManagerApprovalApprovingUsers or ^ManagerApprovalRejectingUsers</strong>.</p>
+<p class="paragraph"><strong class="strong">Variables for capturing Comments</strong></p>
+<p class="paragraph">To capture the comments entered by an actor, add a variable with a name prefixed by '^', with the following syntax:</p>
+<p class="paragraph"><strong class="strong">'^'+_WorkItem.HWSActivity.ActivityName+'CommentApproved'/'CommentRejected'</strong>.</p>
+<p class="paragraph">For example, if a comment entered along with an approval submission has to be retrieved from an activity named 'ManagerApproval', add a variable with <strong class="strong">^ManagerApprovalCommentApproved</strong> as its name. If a comment entered along with a rejection submission has to be retrieved from the same activity, i.e., 'ManagerApproval', add a variable with ^ManagerApprovalCommentRejected as its name. The variable gets initialized with the comment entered by the actor, after the activity response is submitted.</p>
+<p class="paragraph"><strong class="strong">Variables for assigning queue system variable</strong></p>
+<p class="paragraph">To assign queues instead of setting the queue through Assign Queue property, add a variable with a name prefixed by '^', with the following syntax:</p>
+<p class="paragraph"><strong class="strong">&quot;^&quot;+ CurrentActivity.Name + &quot;_QueueVariable&quot;.</strong></p>
+<p class="paragraph">For example, if the activity name is 'Approval1' then declare the variable as ^Approval1_QueueVariable in the Start activity with the Type as String. Using the &quot;Update Variable&quot; activity, assign the queue-id (GUID) for this variable in the workflow.</p>
+<p class="paragraph">To assign multiple queues, specify the queue-ids with semicolon (;) as a separator. <strong class="strong">Skelta.HWS.Queue.QueueCollection</strong> class can be used to retrieve queue information.</p>
+<p class="paragraph"><strong class="strong">Variable for Queue Acting Users</strong></p>
+<p class="paragraph">You can declare an Array type variable to get updated information about the name of the actor to whom an activity gets assigned from a queue.</p>
+<p class="paragraph">In the Workflow Variables, define the variable in the following format:</p>
+<p class="paragraph"><strong class="strong">^+CurrentActivityName+'QueueActingUsers'</strong></p>
+<p class="paragraph">Ex: ^HRFormQueueActingUsers</p>
+<p class="paragraph">HRForm is the activity name.</p>
+<p class="paragraph">For example the value of the user who acts on the HRForm activity will be stored in the variable. The Approval1 task will be assigned to the same user.</p>
+<p class="paragraph"><strong class="strong">Variable for storing timeout warning value</strong></p>
+<p class="paragraph">Suppose if you want to store the timeout warning value for an Approval activity in your workflow. The naming convention for the system variable to be declared is:</p>
+<p class="paragraph"><strong class="strong">^&lt;ActivityName&gt;ResponseByWarningTimeout</strong></p>
+<p class="paragraph">The value returned by the variable will be in UTC format. For multiple user scenarios the highest timeout value calculated for a user will be available in the variable.</p>
+<p class="note"><strong class="notelabel">Note:</strong>Multiple timeout warnings cannot be tracked using this feature.</p>
+<p class="paragraph">Every time you input a value for a property, ensure to save the data. Click the <b class="uicontrol">Save</b> button on the <b class="uicontrol">Activity Properties</b> window. You need to save the property so that the subsequent properties in the activity can inherit the required information.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Activity Properties:</strong></p>
+<p class="paragraph">The <b class="uicontrol">Approval</b> activity has to be configured by specifying appropriate values for the different properties in the Action Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Approval activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f612550" src="612550.png" class="embeddedimage100%scalinglive" alt="" height="860" width="400" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b>&nbsp;- This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b>&nbsp;- This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Display Name</b>&nbsp;- This property specifies the name to be displayed for the activity in the Web Work Item List. The&nbsp;<b class="uicontrol">maxlength</b>&nbsp;attribute for type String is added in&nbsp;<b class="uicontrol">Action.XML</b>&nbsp;and set the default value as&nbsp;<b class="uicontrol">100</b>. You cannot add more than 100 characters.</p>
+<p class="paragraph">If you want to increase the Action name length then you have to manually update it in&nbsp;<b class="uicontrol">Action.XML</b>&nbsp;file as well as they have to increase the column size in DB.</p>
+<p class="paragraph"><strong class="strong">Action.XML file changes</strong></p>
+<p class="paragraph">&lt;property category=&quot;cat_name;01&quot; name=&quot;Action Display Name&quot; displayname=&quot;Display Name&quot; type=&quot;string&quot; maxlength=&quot;100&quot; helpstring=&quot;Display name for the action in activity list.&quot;&gt;&lt;/property&gt;    &nbsp;</p>
+<p class="paragraph"><strong class="strong">Database Changes</strong></p>
+<p class="paragraph">You need to modify the following tables to increase the column size for action name to more than 100:</p>
+<ol class="olitem"><li class="olitem">SWExecutionDetails - Change&nbsp;<i class="emphasis">ActionName</i>&nbsp;column.</li><li class="olitem">SKHWSActivity - Change&nbsp;<i class="emphasis">ActivityName</i>&nbsp;<i class="emphasis">column.</i></li><li class="olitem"><i class="emphasis">SKWorkItem - Change</i>&nbsp;ActivityDisplayName&nbsp;column.</li></ol><p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property need not be set if the display name is already configured in the Actions.XML. The name entered here overrides any display name that is configured for this activity in the Actions.XML file.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Delivery Channels</b>&nbsp;- This property is used to specify the delivery channels to deliver this activity to the assigned actor(s). Multiple channels can be specified giving the actor(s) different options to act on the work item.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Delivery Channel Property</p>
+<ol class="olitem"><li class="olitem">To select the Delivery Channels, click on the button for the 'Delivery Channels' property, the Proper window will be displayed. </li><li class="olitem">In this window, the Delivery Channels that have been configured are listed on the left along with a check-box against each channel. Click and select the check-box corresponding to the channel you wish to select. You can select multiple channels by selecting the respective check-box. </li><li class="olitem">Click on Save Channels button. </li></ol><p class="paragraph">See <a id="h186815" class="jump-currentwindow-customtextlive" title="Approval - Delivery Channels" href="approval-deliverychannels.html" target="_self">Approval - Delivery Channels</a> for a detailed description of the Delivery Channels property window.</p>
+<p class="paragraph"><strong class="strong">Work Item Fields</strong> - This property is used to set the Work Item Fields to be used to display application data as well as value in variables and content in the Work Item list when this activity is executed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Work Item Fields property</p>
+<ol class="olitem"><li class="olitem">To select the Work Item Fields, click on the button for the 'Work Item Fields' property to open the property window. </li><li class="olitem">In this window, the Work Item Fields that have been set are listed in a grid. Click on a row to select the corresponding Work Item Field. </li><li class="olitem">Right click on the row, and select the &quot;SetWorkItemField&quot; option from the context menu to set it. </li></ol><p class="paragraph">See <a id="h186817" class="jump-currentwindowlive" title="Approval - Work Item Fields" href="approval-workitemfields.html" target="_self">Approval - Work Item Fields</a> for a detailed description of the Work Item Fields property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Actors</strong></p>
+<p class="paragraph">The properties in the Actors group have been described below. You can use these properties to specify the actors who will work on the activity and related properties.</p>
+<p class="paragraph"><strong class="strong">Assign Actor(s)</strong> - This property is used to specify the actor(s) who has to take up the Approval activity. It is tagged with the Ignore Unavailable Actors property which in turn is tagged with the Alternate Actor Allowed property. This will be explained in detail later.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be assigned to any actor(s).)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Assign Actor(s) property</p>
+<ol class="olitem"><li class="olitem">To specify the actors, click on the button for the 'Assign Actor(s)' property to open the property window. </li><li class="olitem">In this window build an expression to select the actors using the resource properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression. </li><li class="olitem">Add the condition to the expression by clicking the <b class="uicontrol">Add</b> button. This will display the expression to the text area. </li><li class="olitem">You can remove a condition already added to the expression by clicking the <b class="uicontrol">Undo</b> button </li><li class="olitem">You can also clear an existing expression if necessary by clicking the <b class="uicontrol">Clear</b> button. This is useful if you want to clear large expressions in the text area in order to build a new expression. </li><li class="olitem">After building the expression, click the <b class="uicontrol">Update</b> button to save it. </li></ol><p class="paragraph">See <a id="h186819" class="jump-currentwindowlive" title="Approval - Assign Actor(s)" href="approval-assignactors.html" target="_self">Approval - Assign Actor(s)</a> for a detailed description of the Assign Actor(s) property window.</p>
+<p class="paragraph">See the Using XML Variables section in the About the XML Variable User Interface topic for details on how to use the XMLVariables to build the expression.</p>
+<p class="paragraph"><b class="uicontrol">Assign Queue(s</b>) - This property specifies the queue(s) to which the Approval activity is to be assigned.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Mandatory</b> (This property must be set if the activity is to be assigned to any Queue(s).)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Assign Queue(s) property</p>
+<ol class="olitem"><li class="olitem">To specify the queue(s), click on the button for the 'Assign Queue(s)' property to open the property window. </li><li class="olitem">In this window select the queue(s) from the <b class="uicontrol">Available Queues</b> list. You can select multiple queues by selecting all the required queues while having the &lt;Ctrl&gt; key pressed. </li><li class="olitem">After selecting the required queue(s) click on the [&gt;] button to move it to the Selected Queues list. You can click on the [&gt;&gt;] button to select all the queue(s) and move them to the<b class="uicontrol"> Selected Queues</b> list. </li><li class="olitem">You can remove any queue from the selected list by selecting the required queue and clicking on the [&lt;] button. You can remove all the queues by clicking on the [&lt;&lt;] button. </li><li class="olitem">After adding the required queue(s), click the <b class="uicontrol">Assign</b> button to assign the activity to the selection </li><li class="olitem">Click the Close button to close the window without saving the selection. </li></ol><p class="paragraph">See <a id="h186821" class="jump-currentwindowlive" title="Approval - Assign Queue(s)" href="approval-assignqueues.html" target="_self">Approval - Assign Queue(s)</a> for a detailed description of the Assign Queue(s) property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Min. Ownerships [% or Number]</strong> - This property, which can be specified as a number or percentage, is the minimum number of actors who should take ownership of the Approval request. This property is related to the 'Timeout warning for Ownership' and 'Timeout for Ownership' properties. </p>
+<ul class="ulitem"><li class="ulitem">To illustrate, when 'Timeout for Ownership' is reached, the activity first checks if the ownership count is less than Min.Ownerships (if it is set). </li><li class="ulitem">If it is, the work item will be removed from all Work Item lists. </li><li class="ulitem">If the 'Min.Ownerships' has already been satisfied, then the work item will be removed from the Work Item lists of those who have not taken ownership. </li><li class="ulitem">If the Min.Ownerships value is 0, then the activity checks if the ownership count is less than Max.Ownerships (if it is set). </li><li class="ulitem">If it is, the work item will be removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership. </li><li class="ulitem">If both Min.Ownerships and Max.Ownerships are set to 0, then there should be at least one actor taking ownership within the set time, otherwise the work item will be removed from all Work Item lists. </li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Max. Ownerships [% or Number]</strong> - This property (referred to as Max.Ack), which can be specified as a number or percentage, is the maximum number of actors who should take ownership of the Approval request. </p>
+<ul class="ulitem"><li class="ulitem">If 'Timeout for Ownership' is specified and achieved, and the 'Min.Ownerships' is also satisfied, then the activity waits for action from those who have taken ownership. </li><li class="ulitem">If the Min.Ownerships value is set to 0, then it checks if the ownership count is less than Max.Ownerships. If it is, the work item will be removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership. </li><li class="ulitem">If both Min.Ownerships and Max.Ownerships are set to 0, then there should be at least one actor taking ownership within the set time, otherwise the work item will be removed from all Work Item lists. </li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Enable Take Ownership?</strong> - If this property is set to <b class="uicontrol">Yes</b>, then the actor is provided with a <b class="uicontrol">Take Ownership</b> option in the Work items list to take ownership of the task. If you are not required to take<b class="uicontrol"> Take Ownership</b> of the Work items list, then set this property as <b class="uicontrol">No</b>. </p>
+<p class="note"><strong class="notelabel">Note:</strong> By default, this property is set as <b class="uicontrol">Yes</b>.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Enable Take Ownership? property</p>
+<ul class="stepsingle"><li class="stepsingle">Select <b class="uicontrol">Yes</b> or <b class="uicontrol">No</b> option from the <b class="uicontrol">Enable Take Ownership?</b> drop-down list. </li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Re-Assign Allowed?</strong> - If this property is set then the actor is provided with a Re-Assign option. Using this the approver can re-assign the work item to another resource.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Ignore Unavailable Actors?</strong> - This property provides the following options - <b class="uicontrol">Yes</b>, <b class="uicontrol">Yes</b> - <b class="uicontrol">holidays excluded</b> and <b class="uicontrol">No</b>. </p>
+<ul class="ulitem"><li class="ulitem">If this property is set to 'No', when the Approval activity is assigned to the actor's Work Item list, a check is first done to see whether the actor is available. If the actor is not available then a check is made for an alternate actor assigned to the unavailable actor. Simultaneously the value of the property 'Alternate Actor Allowed' is checked. If that is also set, then the Approval work item is assigned to this actor. </li><li class="ulitem">If this property is set to<b class="uicontrol"> Yes - holidays excluded</b>, the Workflow engine will ignore the fact that actors are not available if the day is an organization holiday and the output Not Enough Resources will not be generated. </li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Alternate Actor Allowed?</strong> - This property is set to assign a particular task to an alternate actor in the absence or unavailability of any actor.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Notification Contents</strong></p>
+<p class="paragraph">The properties in the Notification Contents group have been described below. You can use these properties to specify the content used to notify actors about the activity.</p>
+<p class="paragraph"><b class="uicontrol">Subject</b> - This is the subject of the Approval request. The subject can be customized for each actor.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property need not be set. If it is not set, the default subject line from the Actions.XML file is displayed.)</p>
+<p class="procedureheading">Steps to set the Subject property</p>
+<ol class="olitem"><li class="olitem">To specify the subject, click the button in the 'Subject' property to open the property window. </li><li class="olitem">In this window enter the subject text directly in the text editor. </li><li class="olitem">If you want to customize the subject, you can do so using the <b class="uicontrol">Field</b> controls to add resource property values. For example, to add a subject that includes the email id of the actor submitting the leave application, you can do as follows: First type in the text &quot;Submitted By&quot;. Next select &quot;Variable&quot; and &quot;Variable.SubmittedBy.Email&quot; from the two drop downs for <b class="uicontrol">Field</b> and click <b class="uicontrol">Append</b>. This will add the placeholder for the variable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the email id. </li><li class="olitem">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes and zoom in and zoom out the view as well as print the text. </li><li class="olitem">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="olitem">After adding the subject, click <b class="uicontrol">Update</b> to save it. </li><li class="olitem">Click <b class="uicontrol">Close</b> to close the window without saving the subject. </li></ol><p class="paragraph">See <a id="h186823" class="jump-currentwindowlive" title="Approval - Subject" href="approval-subject.html" target="_self">Approval - Subject</a> for a detailed description of the Subject property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Body</b> - This is the actual message body of the Approval request sent to the actor(s). The message can be customized for each actor. There is an Enterprise Console Explorer(plug-in) edit icon in the Body property window to get the Work item details URL. See <a id="h50517" class="jump-currentwindow-customtextlive" title="Enterprise Console Control (EC Plug-in)" href="enterpriseconsolecontrolec-plugin.html" target="_self">Enterprise Console Control (EC Plug-in)</a> for more information.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Body property</p>
+<ol class="step"><li class="step">To specify the message body, click the button for the 'Body' property to open the property window. </li><li class="step">In this window, enter the body text directly in the text editor. </li><li class="step">If you want to customize the body you can do so using the <b class="uicontrol">Field</b> controls to add resource property values. For example, to add a body that includes the name of the actor submitting the leave application, you can do as follows: Type in the text &quot;Hi, Please approve the leave application submitted by&quot;. Select &quot;Variable&quot; and &quot;Variable.SubmittedBy.name&quot; from the two drop downs for Field and click Append. This will add the placeholder for the variable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the name. </li><li class="step">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command and also zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the body, click Update to save it. </li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the body. </li></ol><p class="paragraph">See <a id="h186825" class="jump-currentwindowlive" title="Approval - Body" href="approval-body.html" target="_self">Approval - Body</a> for a detailed description of the Body property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">From Email Address?</b> - This property is used to specify the email address from which notification messages will be sent for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property needs to be set only if necessary. If it is not set, the default value in Actions.XML will be used.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Hide Responses?</b> - If this property is set to 'No', then actors can see the responses of other actors in a group approval scenario. To view these responses i.e., ownerships, approvals or rejections, select the 'Take Ownership' option. This will open a new pop up with the responses of other actors who have taken ownership.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Show Custom Document View Window</strong> - If this property is set to 'Yes', then the Custom Document View Window will be shown to actors in their Work Item Lists.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Priority </b>- This property is set to indicate the priority of the approval request. Enter the values 0-33 to set as Low, 34-66 for Medium, or 67-99 for High. The default value is set to 34.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Send Notification Email</b> - If this property is set to 'Yes', then notification emails will be sent to the actors. If it is set to 'Yes-HTML', then the emails will be sent in HTML format.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Notify if alternate actor is considered</b> - If this property is set to 'Yes', then notification emails will be sent to the actors when an alternate actor is considered.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Redirect URL</strong> - This property is used to get the URL of the web page to redirect the client to, in the case of synchronous execution of the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Redirect URL property</p>
+<ol class="step"><li class="step">To specify the Redirect URL, click on the button for the 'Redirect URL' property to open the property window. </li><li class="step">In this window, enter the Redirect URL directly in the text editor. </li><li class="step">If you want to customize the Redirect URL you can do so using the Field controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for Field, and clicking <b class="uicontrol">Append</b>. This will add the placeholder for the variable in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the URL. </li><li class="step">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command and also zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the Redirect URL, click <b class="uicontrol">Update</b> to save it. </li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the Redirect URL. </li></ol><p class="paragraph">See <a id="h186827" class="jump-currentwindowlive" title="Approval - Redirect URL" href="approval-redirecturl.html" target="_self">Approval - Redirect URL</a> for a detailed description of the Redirect URL property window.</p>
+<p class="paragraph"><strong class="strong">Custom Document View URL</strong> - This property is used to get the URL of the page to which the custom document dlls does a post. The data posted to the page are application, workflow, executionid, executiondetailsid, and workitemid. The posted data can be retrieved as Request.Form[&quot;workitemid&quot;].</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Custom Document View URL property</p>
+<ol class="step"><li class="step">To specify the Custom Document View URL, click the button for the 'Custom Document View URL' property to open the property window. </li><li class="step">In this window, enter the Custom Document View URL directly in the text editor. </li><li class="step">If you want to customize the Custom Document View URL you can do so using the Field controls to add resource property values. For example, you can add a variable or content that will hold the URL. You can do so by selecting &quot;Variable&quot; from the first drop down and the appropriate option from the second drop down for <b class="uicontrol">Field</b>, and clicking <b class="uicontrol">Append</b>. This will add the placeholder for the variable in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the URL. </li><li class="step">You can edit the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, repeat the last command and also zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the Custom Document View URL, click <b class="uicontrol">Update</b> to save it. </li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the Custom Document View URL. </li></ol><p class="paragraph">See <a id="h186829" class="jump-currentwindowlive" title="Approval - Custom Document View URL" href="approval-customdocumentviewurl.html" target="_self">Approval - Custom Document View URL</a> for a detailed description of the Custom Document View URL property window.</p>
+<p class="paragraph">Refer topic <i class="emphasis">Viewing and Editing Microsoft SharePoint Items from Work Item List</i> under chapter Working with<i class="emphasis"> Work Item List in Microsoft SharePoint</i> in the <i class="emphasis">User Guide</i>. </p>
+<p class="paragraph">This topic provides the procedure for displaying Microsoft SharePoint list, library or view contents in the custom document view of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Mail Channel</strong></p>
+<p class="paragraph">The properties in the Mail Channel group have been described below. You can use these properties to customize the approval activity(activities) with different mail channel templates.</p>
+<p class="paragraph"><b class="uicontrol">Use html template from property</b> - If this property is set to <b class="uicontrol">'No'</b>, then it will take the mail channel template from the physical path</p>
+<p class="paragraph">'[AVEVA Work Tasks Installed Path]\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\AprovalEmail.html.</p>
+<p class="paragraph">If this property is set to <b class="uicontrol">'Yes'</b> and the &quot;<b class="uicontrol">HTML Template</b>&quot; property is empty, then it will take the mail channel template from the physical path</p>
+<p class="paragraph">'[AVEVA Work Tasks Installed Path]\WorkflowElements\Default\en-US\Templates\OutlookEmailTemplate\AprovalEmail.html.</p>
+<p class="paragraph">Property Type: Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">HTML template</b> - This property is used to define the html template for mail channel.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the HTML template</p>
+<ol class="step"><li class="step">To specify the HTML template, click the edit icon to open the property window. </li><li class="step">In the<b class="uicontrol"> HTML template</b> window, provide template which should be in html format. If you are pasting a copied html content, then right-click the <b class="uicontrol">HTML template</b> window and paste it as <b class="uicontrol">&quot;Paste Plain Text</b>&quot;. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f186840" src="186840.png" alt="" height="411" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click <b class="uicontrol">Update</b>. </li></ol><p class="paragraph">See <a id="h186831" class="jump-currentwindowlive" title="Approval - HTML Template" href="approval-htmltemplate.html" target="_self">Approval - HTML Template</a> template for a detailed description of the property HTML template window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Attachment</strong></p>
+<p class="paragraph">This property is used to configure Report to be sent as an Email attachment.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Attachment property</p>
+<ol class="step"><li class="step">To specify the <b class="uicontrol">Attachment</b> property, click the edit icon to open the property window. </li><li class="step">In the <b class="uicontrol">Configuration of Mail Attachment</b> window, select the required attachment type by clicking the radio button. </li><li class="step">In the <b class="uicontrol">Attach Report</b> property, you can attach a report by selecting the <b class="uicontrol">Report Reference Variable</b> through the Expression Editor. Alternatively, you can get the <b class="uicontrol">Report</b> by clicking the Report icon and selecting the required report from the Reports list screen. To attach multiple reports, add new rows using the <b class="uicontrol">Add</b> link. </li><li class="step">Click <b class="uicontrol">Submit</b>. </li></ol><p class="paragraph">See <a id="h186833" class="jump-currentwindowlive" title="Approval - Attach Reports" href="approval-attachment.html" target="_self">Approval - Attach Reports</a> for a detailed description of this property. </p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Decision Influencers</strong></p>
+<p class="paragraph">The properties in the Decision Influencers group have been described below. You can use these properties to specify some parameters that influence the outcome of the activity.</p>
+<p class="paragraph"><strong class="strong">Affirmative Answer for Approval [% or Number]</strong> - This property is used to check what percentage or number of persons should take action for approval. Decision on the approval is taken only after the specified number or percentage of actor(s) have taken the action. The work item waits for the actors' action until the 'Timeout for activity' is reached.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Action Limit [% or Number]</strong> - This property specifies the minimum number of approvers to act on the Approval before the 'Timeout Warning for Action'. If the activity limit is reached before the 'Timeout Warning for Action' then the warning message is not shown.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Wait For All The Participants To Act -</strong></p>
+<ul class="ulitem"><li class="ulitem">If this property is set to 'Yes', then the engine will wait for all the approvers to act on the approval activity. Once the activity count (no. of approvals and rejections) reaches the 'Max.Ownerships' limit value, a decision for approval is taken if the 'decision count' (no. of approvals) is &gt;= 'Affirmative Answer for Approval'. Otherwise, the activity is rejected. </li><li class="ulitem">If both 'Affirmative Answer for Approval' and 'Action Limit' are set to 0, the activity is considered 'approved' only if 'decision count' &gt;= 'rejection count'. </li><li class="ulitem">If this property is set to 'No', the engine will take the decision for the activity based on the values for 'Affirmative Answer for Approval(AAA)', 'Max.Ownerships', 'Min.Ownerships' and 'Action Limit (AL)' <ul class="ulsubitem"><li class="ulsubitem">If AAA is set and 'decision count' &gt;= AAA, the activity is approved. </li><li class="ulsubitem">If AAA is set and 'decision count' &lt; AAA and Max.Acks = AAA and if at least one rejected, the activity is considered rejected. </li><li class="ulsubitem">If AAA = 0, and AL is set, if Max.Acks = AL, and if at least one rejected, the activity is rejected. </li><li class="ulsubitem">If AAA = 0, and AL is set, and if 'decision count' &gt;= AL, the activity is approved. </li><li class="ulsubitem">If AAA is set and 'rejection count' &gt; AAA/2, the activity is rejected. </li><li class="ulsubitem">If AAA = 0 and AL is set and 'rejection count' &gt; AL/2, the activity is rejected. </li><li class="ulsubitem">If 'activity count' = Max.Ownerships, a decision for approval is taken if the 'decision count' &gt;= AAA. Otherwise, the activity is rejected. </li><li class="ulsubitem">If both AAA and AL are set to 0, the activity is considered 'approved' only if 'decision count' &gt;= 'rejection count'. </li></ul></li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in group response scenarios.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Escalation &amp; Timeout</strong></p>
+<p class="paragraph">The properties in the Escalation &amp; Timeout group have been described below. You can use these properties to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"><strong class="strong">Set Calendar for Timeout -</strong> This property is used to specify the calendar to be used to determine activity timeouts.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (This property needs to be set only if necessary.)</p>
+<p class="procedureheading">Steps to Set Calendar for Timeout</p>
+<ol class="step"><li class="step">To specify the calendar for timeout, click the button for the 'Set Calendar for Timeout' property to open the property window. </li><li class="step">In this window, select the required calendar by clicking the calendar name in the tree structure. </li><li class="step">Click <b class="uicontrol">Set Calendar</b> to set the selected calendar. </li><li class="step">You can specify that a resource calendar should be used, if available, by clicking to select the corresponding check box. </li></ol><p class="paragraph">See <a id="h186835" class="jump-currentwindowlive" title="Approval - Set Calendar for Timeout" href="approval-setcalendarfortimeout.html" target="_self">Approval - Set Calendar for Timeout</a> for a detailed description of the Set Calendar for Timeout property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Minimum available time for Activity</b> - This property is used to check the availability of an actor to whom a task must be assigned while executing the activity. The availability check for the actor is done based on the Calendar settings (Global or Resource Calendar). If the time taken to complete the task is within the value set for the <b class="uicontrol">Minimum available time for Activity </b> property, then the task will be assigned to that actor. However, if the time taken to complete the task exceeds the value set for the <b class="uicontrol">Minimum available time for Activity</b> property, then the task will be assigned based on the values set for the <b class="uicontrol">Ignore Unavailable Actors?</b> and <b class="uicontrol">Alternate Actor Allowed?</b> properties.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Timeout for Ownership</strong> - This property specifies the time until which actors are allowed to take ownership, i.e. the time until which the Approval activity will wait for actors to take ownership. </p>
+<ul class="ulitem"><li class="ulitem">If Min.Ownerships is set and is not reached, the work item is removed from all Work Item lists. </li><li class="ulitem">If Min.Ownerships is 0, it will check if ownership count is less than Max.Ownerships. If it is, the work item is removed from all Work Item lists. Else the work item will be removed from the Work Item lists of those who have not taken ownership. The work item will remain in the Work Item list of those who have taken ownership and wait for action from them. </li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout Warning for Ownership</strong> - This property specifies the time at which a warning is provided to an actor to take ownership of the work item assigned to him/her. If the actor does not take ownership within this time the engine is notified with a warning. </p>
+<ul class="ulitem"><li class="ulitem">Thus if 'Min.Ownerships' is set, and it is not satisfied before the given time then a warning is sent. </li><li class="ulitem">If Min.Ownerships is 0, it will check for Max.Ownerships. If the ownership count does not reach the Max.Ownerships value within the set time, a warning is sent. </li><li class="ulitem">If both Min.Ownerships and Max.Ownerships are not set, this property is ignored. </li></ul><p class="paragraph"><strong class="strong">Property Type: Optional (</strong>This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Understand how Ownership Properties relate to each other:</p>
+<ul class="ulitem"><li class="ulitem">Approval activity is assigned to the approvers in the approval list by the Workflow Engine. Approval activity has a default property set that at least one person has to make to Take Ownership of the Approval activity. </li><li class="ulitem">A drop down interface has been provided for the actor to Take Ownership. However, the actor can act on the Approval without taking ownership first, in which case ownership will be considered to be done, i.e. if the actor acts upon the Approval activity without acknowledging, then it is considered as an ownership with action taken. </li><li class="ulitem">After the actor has taken ownership, a link is provided to the actor, which opens a pop up with the details of the other approvers. This is again tagged with the 'Hide Responses?' property. The link will be provided only If 'Hide Responses?' is set as 'No'. The pop up will have details like Approver name, Ownership Status, Action taken, Comments. </li><li class="ulitem">If the 'Min.Ownerships' property is set and the ownership count has reached the set limit [percentage or number], then the 'Timeout Warning For Ownership' property is not considered. </li><li class="ulitem">If the 'Min.Ownerships' property is set and the ownership count has reached the set limit [percentage or number] and the 'Time Out For Ownership' is also reached, then the work item is removed from other approvers' Work Item list and the work item waits for action from those who have taken ownership. </li><li class="ulitem">If the 'Min.Ownerships' limit is not reached for the Approval activity, and the 'Timeout Warning For Ownership' has been exceeded then the actor is notified with a warning by including an email or an information activity, with the Timeout Warning for Ownership link to it. </li><li class="ulitem">If 'Timeout For Ownership' is set, if the Approval activity has not reached the minimum limit (Min.Ownerships) and the 'Time Out For Ownership' has been reached, then the work item is removed from the Work Item lists of all the approvers. </li><li class="ulitem">If 'Min.Ownerships' = 0 and if 'Max.Ownerships' is set, the activity waits for actors to take ownership or action until the 'Time Out For Ownership' is reached (if this is set). </li><li class="ulitem">If none of the ownership properties are set then the work item waits until the actor takes ownership or acts upon it.</li></ul><p class="paragraph"> </p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning for Activity</b> - This property specifies when a reminder has to be provided for the approvers to act on the Approval request, if the activity count has not been reached. If properties such as Max.Ownerships, Affirmative Answer for Approval (AAA), and Action Limit (AL) are set, once the property values are reached then a warning is sent to the actor. When the timeout is reached, the following checks are made: If AL is set, when the activity count i.e. the no. of approvals or rejections (AC) &lt; AL, then a warning is sent; if AL = 0 and AAA is set, and when AC &lt; AAA, then a warning is sent to the participant. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="paragraph"><b class="uicontrol">Timeout for Activity</b> - This property's value is used to decide until what time the work item should wait for user action. </p>
+<p class="paragraph">If properties such as Max.Ownerships, AAA, AL are set, once the property values are reached the work item is removed from the Work Item lists of all the approvers. </p>
+<ul class="ulitem"><li class="ulitem">When the timeout is reached, the following checks are made: <ul class="ulsubitem"><li class="ulsubitem">If AL is set, when the activity count i.e. the no. of approvals or rejections (AC) &lt; AL, then the timeout for activity is performed and the activity is removed from all Work Item lists. </li><li class="ulsubitem">If AC &gt; AL, it checks with the no. of approvals or 'decision count' (DC) and AAA. If DC &gt;= AAA (if it is set), the work item is considered approved; otherwise, it is rejected. </li><li class="ulsubitem">If AAA = 0 and if DC &gt;= AL, the work item is considered approved; otherwise, it is rejected. </li><li class="ulsubitem">If AL = 0 and AC &lt; AAA, then the timeout for activity is performed and the work item is removed from all Work Item lists. If AL = 0 and AC &gt; AAA, it will check with DC. </li><li class="ulsubitem">If DC &gt; AAA it is approved; otherwise, it is rejected. If AL = 0 and AAA = 0, then if DC is at least 1, then it is considered approved; otherwise, it is rejected. </li></ul></li></ul><p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="paragraph"><b class="uicontrol">Multiple TimeOut Warning</b> - This is used to set recurring timeout warnings that will be sent to the actors who have to take action. To set multiple timeout warnings, click the 'Multiple TimeOut Warning' button in the Properties pane for the Approval activity. A new window pops up. In this window, set the interval for the recurring warning as well as the output message. You can also set the Recurring Time Interval. This can be used to set a different recurring time out after the first timeout happens. For example, if 'Time Interval' for the property is set as 7 days and 'Recurring Time Interval' is set as 2 days, then the first time out will happen after 7 days and there will be a recurring time out every second day after the seventh day (first) time out.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary. It is useful in setting escalations.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Multiple TimeOut Warning property</p>
+<ol class="step"><li class="step">To set the multiple timeout warning, click the button for the 'Multiple TimeOut Warning' property to open the property window. </li><li class="step">Enter the time interval for the timeout in the <b class="uicontrol">Time Interval</b> field </li><li class="step">Select &quot;Yes&quot; from the drop down for the <b class="uicontrol">Recurring</b>? field if you want the timeout warning to recur. Select &quot;No&quot; otherwise. </li><li class="step">Enter the output message corresponding to the timeout warning in the <b class="uicontrol">Output</b> field. </li><li class="step">Enter the time interval for the recurring timeout in the <b class="uicontrol">Recurring Time Interval</b> field. </li><li class="step">After entering the content details, click <b class="uicontrol">Add Row</b> to add this timeout setting and display a new row for entering another timeout setting. </li><li class="step">Remove rows if necessary by selecting them and clicking <b class="uicontrol">Remove Selected</b>. </li><li class="step">After specifying the timeout settings, click <b class="uicontrol">Update</b>. </li></ol><p class="paragraph">See <a id="h186837" class="jump-currentwindowlive" title="Approval - Multiple Timeout Warning" href="approval-multipletimeoutwarning.html" target="_self">Approval - Multiple Timeout Warning</a> for a detailed description of the Multiple TimeOut Warning property window.</p>
+<p class="paragraph">Miscellaneous Top</p>
+<p class="paragraph"><strong class="strong">Redirection Enabled?</strong> - This property enables redirection. When this property is set to Yes, the workflow redirects the user to the URL in the Redirect URL property in the next activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Approval Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Approved</b>: Displayed when the request is approved. </p>
+<p class="paragraph"><b class="uicontrol">Rejected</b>: Displayed when the request is rejected.</p>
+<p class="paragraph"><b class="uicontrol">Not Enough Resources to Acknowledge</b>: Displayed when the filter condition did not yield enough actors to whom the request can be sent.</p>
+<p class="paragraph"><b class="uicontrol">Timeout - Acknowledge</b>: Displayed when the specified minimum number of actors did not take ownership of the request in the given time.</p>
+<p class="paragraph"><b class="uicontrol">Timeout - Action</b>: Displayed when some or all of the specified actors did not perform the required activity in the given time.</p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning - Acknowledge</b>: Displayed when a warning is generated that the specified minimum actors have not taken ownership of the request in the given time.</p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning - Action</b>: Displayed when a warning for timeout is generated because some or all the actors did not perform the required activity in the given time.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The following outputs will return only if you assign tasks to a queue user.</p>
+<p class="paragraph"><b class="uicontrol">Resource Unavailable for Queue</b> - If a queue is assigned to a task and if there are no resources available in the queue then this output will get triggered.</p>
+<p class="paragraph"><b class="uicontrol">TimeOut for Queue Task</b> - This output will get triggered when the task in the queue is not picked by any users within the queue escalation time resulting the completion of that task.</p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning -Queue</b> - This output will get triggered when the task in the queue is not picked by any users within the queue escalation time resulting in sending a warning out put. However, the task will still be sleeping. </p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning -Queue Participant</b> - This output will get triggered when the task in the queue is picked by an user but still not acted on that task within the queue escalation time out settings resulting in triggering a warning output. However, the task will still be sleeping.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Exception Behavior</b></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected. </p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph">Loop through this action if output is - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="approval-deliverychannels.html" target="_self">Approval - Delivery Channels</a></p><p class="relateditem"><a href="approval-workitemfields.html" target="_self">Approval - Work Item Fields</a></p><p class="relateditem"><a href="approval-assignactors.html" target="_self">Approval - Assign Actor(s)</a></p><p class="relateditem"><a href="approval-assignqueues.html" target="_self">Approval - Assign Queue(s)</a></p><p class="relateditem"><a href="approval-subject.html" target="_self">Approval - Subject</a></p><p class="relateditem"><a href="approval-body.html" target="_self">Approval - Body</a></p><p class="relateditem"><a href="approval-redirecturl.html" target="_self">Approval - Redirect URL</a></p><p class="relateditem"><a href="approval-customdocumentviewurl.html" target="_self">Approval - Custom Document View URL</a></p><p class="relateditem"><a href="approval-htmltemplate.html" target="_self">Approval - HTML Template</a></p><p class="relateditem"><a href="approval-attachment.html" target="_self">Approval - Attach Reports</a></p><p class="relateditem"><a href="approval-setcalendarfortimeout.html" target="_self">Approval - Set Calendar for Timeout</a></p><p class="relateditem"><a href="approval-multipletimeoutwarning.html" target="_self">Approval - Multiple Timeout Warning</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

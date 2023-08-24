@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>DataGrid Source configuration</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style type="text/css">
+        [controlid='GC'] > .k-grid-content
+        {
+            height: 250px;
+        }
+
+        .paramtereForm_skcw
+        {
+            border: 1px solid #ccc !important;
+            max-height: 160px;
+        }
+
+        .paramtereForm_skcb[data-skbfc="0"]
+        {
+            border: none !important;
+        }
+
+        .noData
+        {
+            height: 250px;
+            width: 98%;
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 0 20px 0 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            .noData > span
+            {
+                margin-top: 125px;
+                display: inline-block;
+                color: #ccc;
+                font-size: 14px;
+            }
+    </style>
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject;
+        var popupWindow = null;
+        skelta.userContext.setUserContextFor("appN", window.parent.skeltaUserContext.getUserContextFor("appN"));
+        skelta.userContext.setUserContextFor("uId", window.parent.skeltaUserContext.getUserContextFor("uId"));
+        $(document).ready(function ()
+        {
+            try
+            {
+                skeltaUtils.loadPageDefault();
+                document.title = skelta.localize.getString("Form_DataGrid_Source_PropertyPageTitle");
+                loadGridSourceConfiguration();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("Form_DataGrid_Source_PropertyPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("Form_DataGrid_Source_PropertyPageError") + "\n" + exception.message);
+            }
+
+        });
+
+        function showNoDataBox(grid, showError)
+        {
+            grid.visible = false;
+            if (grid.findById("ParamtereForm").visible === true)
+            {
+                grid.findById("ParamtereForm").visible = false;
+            }
+
+            var noDataBox = $(".noData");
+            if (noDataBox.length === 0)
+            {
+                $("[data-skct='Grid']").before("<div class='noData'><span>" + skelta.localize.getString("No Data Available") + "</span></div>");
+            } else
+            {
+                noDataBox.show();
+            }
+
+            if (showError !== false)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("Unable to fetch Grid Schema. Verify if Database Connections, Lookups, and Grid Configuration settings are valid."));
+            }
+        }
+
+        function validateConfiguration(control, currentValue)
+        {
+            if (control.isValid() === currentValue)
+            {
+                showNoDataBox(control.findById("GC"), false);
+                return new ValidationOptions(false, skelta.localize.getString("Unable to fetch Grid Schema. Verify if Database Connections, Lookups, and Grid Configuration settings are valid."));
+            }
+            else
+            {
+                $(".noData").hide();
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function closeGridSource()
+        {
+            var topDiv = $(parent.document).find("#gridConfigFrameDiv");
+            var scriptFrame = topDiv.find(".skpopup_maindivPopupForm").find("iframe");
+            scriptFrame.attr("src", "");
+            topDiv.hide();
+        }
+
+        function updateGridSource(inputParameterObject, eventArgs)
+        {
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            editPageVm.findById("E_ConfigName").value = inputParameterObject.instanceXml.GridSourceWindow.gridDropdown;
+            editPageVm.findById("ParamtereForm").removeAll();
+            var pF = inputParameterObject.instanceXml.GridSourceWindow.ParamtereForm;
+            if (pF && pF.length > 0)
+            {
+                ko.utils.arrayForEach(pF, function (parameter)
+                {
+                    var newRecord = editPageVm.findById("ParamtereForm").addRecord();
+                    newRecord.findById("ParameterControl").value = parameter.ParameterControl;
+                    newRecord.findById("ParameterName").value = parameter.ParameterName;
+                });
+            }
+
+            //get grid widget and call getOptions api and get columns info - hidden and width
+            var grid = viewModelObject.findById("GC");
+            var hGrids = $(grid.domElement.parentElement).find("[data-role='grid']");
+            var gridOptions = [];
+            $.each(hGrids, function (i, kGrid)
+            {
+                var gridOption = getOptions($(kGrid));
+                gridOptions.push(gridOption);
+            });
+
+            editPageVm.topLevelForm.findByXmlNode("GridOptions").value = JSON.stringify(gridOptions);
+            closeGridSource();
+        }
+
+        function clearConfigurationSettings()
+        {
+            var configuration = viewModelObject.findById("GN").value;
+            var grid = viewModelObject.findById("GC");
+            grid.gridOptions = undefined;
+            if (!skeltaUtils.isUndefinedNullOrEmpty(configuration))
+            {
+                skelta.grid.initializeGrid(grid, configuration);
+            }
+        }
+
+        function getOptions(grid)
+        {
+            var kGrid = grid.data("kendoGrid");
+            var options = kGrid.getOptions();
+            var gridOptions = { columns: [], sort: options.dataSource.sort, lookup: skelta.grid.getDataSource({ element: grid }), width: kGrid.table.attr("style") ? kGrid.table.width() : undefined };
+            $.each(options.columns, function (i, v)
+            {
+                var column = { field: v.field };
+                if (v.hidden)
+                {
+                    column.hidden = true;
+                }
+                if (v.width)
+                {
+                    column.width = v.width;
+                }
+
+                gridOptions.columns.push(column);
+            });
+
+            return gridOptions;
+        }
+
+        function loadGridSourceConfiguration()
+        {
+            uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_GSC", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "appName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "uId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "ck": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "vs": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "id" : skeltaUtils.getUrlParameterValue(window, 'id'),
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetGridSourceForm", "application/json; charset=utf-8", jsonHelper, "html", success, fail, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function success(resultData)
+        {
+            var records = [];
+            var parameterForm = [];
+            //document.getElementById("viewAndViewModel").value = resultData;
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            var dataSource = editPageVm.findById("E_ConfigName").value;
+
+            if (dataSource != "")
+            {
+                records = editPageVm.findById("ParamtereForm").records();
+                var gridSourceData = {
+                    gridDropdown: editPageVm.findById("E_ConfigName").value,
+                    ParamtereForm: parameterForm
+                };
+
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, gridSourceData);
+            }
+
+            $("#viewModel").html(resultData);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(updateGridSource);
+            viewModelObject.onCancel.subscribeEvent(closeGridSource);
+            var configuration = viewModelObject.findById("GN").value;
+            var grid = viewModelObject.findById("GC");
+            if (skeltaUtils.isUndefined(grid.findById("GN").isValid))
+            {
+                grid.findById("GN").isValid = ko.observable("");
+                grid.findById("GN").isValid.subscribe(function (newValue)
+                {
+                    if (newValue !== "")
+                    {
+                        showNoDataBox(grid);
+                    }
+                    else
+                    {
+                        if ($(".noData").length > 0)
+                        {
+                            $(".noData").hide();
+                        }
+                    }
+
+                });
+            }
+
+            if (configuration !== "")
+            {
+                var gridOptions = editPageVm.topLevelForm.findByXmlNode("GridOptions").value;
+                viewModelObject.findById("GC").gridOptions = (!skeltaUtils.isUndefinedNullOrEmpty(gridOptions) && typeof gridOptions === 'string') ? $.parseJSON(gridOptions) : undefined;
+                skelta.grid.initializeGrid(viewModelObject.findById("GC"), configuration);
+                validateParameters(viewModelObject, records, configuration);
+            }
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("Form_DataGrid_Source_PropertyPageError"), null, result.responseText);
+            logger.logError(skelta.localize.getString("Form_DataGrid_Source_PropertyPageError") + "\n" + result.responseText);
+        }
+
+        function validateParameters(vm, records, grid)
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "appName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "uId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "configName": grid
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetGridParameters", "application/json; charset=utf-8", jsonHelper, "json", function (data)
+            {
+                if (data.d)
+                {
+                    var resultData = $.parseJSON(data.d);
+
+                    if (resultData.IsSuccess)
+                    {
+                        var gridParameters = resultData.Parameters;
+                        vm.findById("ParamtereForm").visible = gridParameters && gridParameters.length > 0;
+                        vm.findById("ParamtereForm").removeAll();
+                        ko.utils.arrayForEach(gridParameters.reverse(), function (parameters)
+                        {
+                            var newRecord = vm.findById("ParamtereForm").addRecordToTop();
+                            newRecord.findById("ParameterControl").tagName = parameters;
+                            newRecord.findById("ParameterName").value = parameters;
+                        });
+                        var pr = vm.findById("ParamtereForm").records();
+                        ko.utils.arrayForEach(pr, function (eachPr)
+                        {
+                            ko.utils.arrayForEach(records, function (eachRecord)
+                            {
+                                if (eachRecord.findById("ParameterName").value == eachPr.findById("ParameterName").value)
+                                {
+                                    eachPr.findById("ParameterControl").value = eachRecord.findById("ParameterControl").value;
+                                }
+
+                            });
+                        });
+                    }
+                }
+            },
+            function (err)
+            {
+            }, null);
+        }
+
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

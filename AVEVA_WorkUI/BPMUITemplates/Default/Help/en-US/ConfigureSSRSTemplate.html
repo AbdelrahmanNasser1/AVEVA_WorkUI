@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Configure Report Template </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488894" class="heading4">Configure Report Template</h4>
+<p class="paragraph">You can use the&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;properties to perform the following tasks:</p>
+<ul class="ulitem"><li class="ulitem">Select the required Report Template from the list of available report templates.</li><li class="ulitem">Set the value for the parameters for the selected report template.</li><li class="ulitem">Generate the report reference variable or create the report reference variable manually.</li></ul><p class="paragraph">To open the&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;window, click the&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;edit button.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f52089" src="52089.png" class="embeddedimage100%scalinglive" alt="" height="318" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;window&nbsp;has the following properties:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Report Template:</b>&nbsp;You can use this property to select the required report template from the list of available report templates. The available report templates are populated from the Report Template list.</li><li class="ulitem"><b class="uicontrol">Parameters:</b> You can use this property to set the values for the selected report template parameters. On selecting the required Report Template, the parameters defined for this particular report template appears. The user can type the value of the parameter in the respective parameter fields or use the expression editor to define the same.</li><li class="ulitem"><strong class="strong">Report Reference Variable:</strong> You can use this property to generate a report reference variable. This default report reference variable is [Report_Template Name]_[activity Name]. You can automatically or manually generate this variable. <br>This variable will be used while attaching the report to a mail channel in various Human activities within the same workflow.</li><li class="ulitem"><b class="uicontrol">Generate Report Reference Variable automatically:</b> When you select this option, you can generate the default variable in the Report Reference Variable field. You cannot edit the variable in the Report Reference Variable field.</li><li class="ulitem"><b class="uicontrol">Create Report Reference Variable manually:</b> &nbsp;When you select this option, you can change the name of the variable that is populated in the Report Reference Variable field. The default variable populated is same in both the options.</li></ul><p class="paragraph"></p>
+<p class="subheading">Multiple Value Parameter Configuration</p>
+<p class="paragraph">You can configure multiple values for the parameters. To configure multiple values for a parameter, complete the following steps:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;dialog box, select the template from the list of templates available in the&nbsp;<b class="uicontrol">Report Templates</b>&nbsp;field.</li><li class="step">Click the multi-value icon as shown in the following image:<p class="stepinfo"><img id="f52090" src="52090.png" class="embeddedimage100%scalinglive" alt="" height="318" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">The<b class="uicontrol">&nbsp;Multiple Value Parameter Configuration</b>&nbsp;dialog box appears. The dialog box displays the parameter name and the data type of the parameter.<p class="stepinfo"></p>
+<p class="stepinfo">For example, the following image shows the parameter with the name&nbsp;ReportParameter1&nbsp;of the type&nbsp;Integer:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f52091" src="52091.png" class="embeddedimage100%scalinglive" alt="" height="270" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">You can add multiple values to the parameter. To add multiple values, click&nbsp;Add...&nbsp;and then enter the values in each new row.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit</b>.<p class="stepinfo">You can now see that the multiple values that you have entered appears as comma separated list in the&nbsp;<i class="emphasis">ReportParameter1TestMultiValue</i>&nbsp;field&nbsp;of the&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;dialog box as shown in the following image:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f52092" src="52092.png" class="embeddedimage100%scalinglive" alt="" height="316" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="note"><strong class="notelabel">Note:</strong> To assign values to a date-time parameter, use a variable and assign a value to the variable, such as YYYY-MM-DDTHH:MM:SS.0000000. You cannot directly assign a hard coded date-time value from the expression editor.</p>
+</li></ol><p class="subheading">Hidden Parameters Configuration</p>
+<p class="paragraph">By default, you can see only the unhidden parameters in this section. You can check the&nbsp;I<b class="uicontrol">nclude Hidden Parameters</b>&nbsp;option to view all the hidden parameters, as shown in the following image:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f52093" src="52093.png" class="embeddedimage100%scalinglive" alt="" height="342" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Among the parameters displayed here, the Time Zone ID and the TagName parameters have specific icons, Time Zone and Historian Tag, displayed against them. Users should note that it is a prerequisite to have a Historian Connection established before selecting a Time Zone or a Historian Tag. For more information on how to establish a Historian Connection, see <a id="h194301" class="jump-currentwindowlive" title="Creating a Historian Connection" href="creatingahistorianconnection1.html" target="_self">Creating a Historian Connection</a>.</p>
+<p class="subheading">Time Zone Configuration</p>
+<p class="paragraph">If a report parameter name is the Time Zone ID, then the Time Zone icon is displayed for that particular parameter as shown in the following image:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f52094" src="52094.png" class="embeddedimage100%scalinglive" alt="" height="146" width="548" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">On clicking the Time Zone icon, the Time Zone dialog box appears. Here, you can select the required&nbsp;<b class="uicontrol">Historian Connection</b>.When you select a connection, different time zones are populated in the Time Zone drop-down list. You can select an appropriate time zone and click&nbsp;<b class="uicontrol">Select</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f52095" src="52095.jpg" class="embeddedimage100%scalinglive" alt="" height="237" width="490" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Historian Tag Configuration</p>
+<p class="paragraph">If a report parameter name is TagName, then the Historian Tag icon is displayed for that particular parameter as shown in the following image:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f52096" src="52096.png" class="embeddedimage100%scalinglive" alt="" height="145" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">On clicking the <b class="uicontrol">Historian Tag</b> icon, the&nbsp;Historian Tags&nbsp;dialog box appears. Here, you can select the required&nbsp;<b class="uicontrol">Historian Connection</b>. When you select a connection, all the Historian tags are displayed on the left-hand side list box of&nbsp;<b class="uicontrol">Select Tag(s)</b>&nbsp;section.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f52097" src="52097.png" class="embeddedimage100%scalinglive" alt="" height="258" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Select the required tags, click the&nbsp;&gt;&nbsp;button to move the tags to the right-hand side of the&nbsp;<b class="uicontrol">Select Tag(s)</b>&nbsp;section, and click&nbsp;<b class="uicontrol">Select</b>. If you want &nbsp;to remove any tag from the right-hand side list box, then you must select the tag(s) and click the&nbsp;<b class="uicontrol">&lt;</b>&nbsp;button. The tag will be placed on the left-hand side list box.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="reportgeneratoractivity1.html" target="_self">Report Generator Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

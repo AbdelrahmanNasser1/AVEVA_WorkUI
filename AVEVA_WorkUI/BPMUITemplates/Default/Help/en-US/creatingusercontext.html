@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating User Context </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601896" class="heading3">Creating User Context</h3>
+<p class="paragraph">For every control, the AVEVA Work Tasks User Context object must get instantiated. Find below the steps to create User Context Object.</p>
+<p class="procedureheading">To Create User Context Object:</p>
+<ol class="step"><li class="step">Before creating user context object,&nbsp;<a id="h50251" class="jump-currentwindowlive" title="Creating an ASP.NET Project in Visual Studio .NET" href="creatinganaspnetprojectinvisualstudionet20082010.html" target="_self">Creating an ASP.NET Project in Visual Studio .NET</a>.</li><li class="step">Go to<b class="uicontrol"> UserContext.aspx.cs</b> page.</li><li class="step">Create a user context object.<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections;</p>
+<p class="codeblock1">using System.Configuration;</p>
+<p class="codeblock1">using System.Data;</p>
+<p class="codeblock1">using System.Linq;</p>
+<p class="codeblock1">using System.Web;</p>
+<p class="codeblock1">using System.Web.Security;</p>
+<p class="codeblock1">using System.Web.UI;</p>
+<p class="codeblock1">using System.Web.UI.HtmlControls;</p>
+<p class="codeblock1">using System.Web.UI.WebControls;</p>
+<p class="codeblock1">using System.Web.UI.WebControls.WebParts;</p>
+<p class="codeblock1">using System.Xml.Linq;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">public partial class CreatingUserContext : System.Web.UI.Page</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">    protected void Page_Load(object sender, EventArgs e)</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        AVEVA Work Tasks.Entity.UserContext userContext = new Skelta.Entity.UserContext(&quot;john&quot;, new Skelta.Core.ApplicationObject(&quot;LeaveReportsRepo&quot;), &quot;activedirectory&quot;);</p>
+<p class="codeblock1">      &nbsp;</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1">}</p>
+</li></ol><p class="paragraph">The&nbsp;<b class="uicontrol">UserId</b>&nbsp;value varies based on the authentication provider configured. This value should have the Entity instance mapped for the repository to be prefixed along with real id of the user.</p>
+<p class="paragraph"><br></p>
+<ul class="ulitem"><li class="ulitem">If the repository is mapped to&nbsp;<b class="uicontrol">AVEVA Work Tasks List</b>&nbsp;user provider, the UserIdString will be skeltalist::[GUID]. Here the GUID is of the user &quot;john&quot;, taken from SKEUsers table present in the Repository DB.</li></ul><p class="paragraph">Example: skeltalist:: C99B4110-C8CC-410B-BF70-93F3A7E34EDF</p>
+<p class="paragraph">That is, User object will be created as:</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(&quot;C99B4110-C8CC-410B-BF70-93F3A7E34EDF&quot;, new Skelta.Core.ApplicationObject(&quot;LeaveReportsRepo&quot;), &quot;skeltalist&quot;); &nbsp;</p>
+<ul class="ulitem"><li class="ulitem">If the repository is mapped to the&nbsp;<b class="uicontrol">Active Directory</b>&nbsp;user provider, the UserIdString will be activedirectory::[samAccountName]. Here, samAccountName is an active directory property value.</li></ul><p class="paragraph">For example: activedirectory::john</p>
+<p class="paragraph">That is, the user object will be created as:</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(&quot;john&quot;, new Skelta.Core.ApplicationObject(&quot;LeaveReportsRepo&quot;), &quot;activedirectory&quot;); &nbsp;</p>
+<ul class="ulitem"><li class="ulitem">If the repository is mapped to the&nbsp;<b class="uicontrol">Forms</b>&nbsp;user provider, the UserIdString will be sqlprovider::[UniqueIdentifier]. Here UniqueIdentifier is the unique identifier id for resource.</li></ul><p class="paragraph">For example: sqlprovider::6fb03011-68b7-437e-972e-21c67e4e2fe7</p>
+<p class="paragraph">That is, the user object will be created as:</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(&quot;6fb03011-68b7-437e-972e-21c67e4e2fe7&quot;, new Skelta.Core.ApplicationObject(&quot;LeaveReportsRepo&quot;), &quot;sqlprovider&quot;);</p>
+<ul class="ulitem"><li class="ulitem">If the repository is mapped to&nbsp;<b class="uicontrol">ASP.NET Membership</b>&nbsp;user provider, the UserIdString will be membershipprovider::[UniqueIdentifier]. Here, UniqueIdentifier is the unique identifier id for resource.</li></ul><p class="paragraph">For example: membershipprovider::a9bfc969-cc82-4c4b-99b9-50d9e1a91c01</p>
+<p class="paragraph">That is, the user object will be created as:</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(&quot;a9bfc969-cc82-4c4b-99b9-50d9e1a91c01&quot;, new Skelta.Core.ApplicationObject(&quot;LeaveReportsRepo&quot;), &quot;membershipprovider&quot;);   </p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1_1.html" target="_self">Embedding Controls in the Application</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

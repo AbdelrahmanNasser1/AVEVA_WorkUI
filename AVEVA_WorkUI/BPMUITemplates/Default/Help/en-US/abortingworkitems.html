@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Aborting Work Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t46209" class="heading4">Aborting Work Items</h4>
+<p class="paragraph">You can abort or kill work items in the Manage Work items window. To abort work items, the logged in user should have the permission to abort the work items. For this, the <b class="uicontrol">Can Kill Work Item</b> right should be checked.</p>
+<p class="procedureheading">To abort a work item:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;icon, click&nbsp;<b class="uicontrol">Tools</b>, and then click&nbsp;<b class="uicontrol">Manage Work items</b>. The&nbsp;<b class="uicontrol">Manage Work items</b>&nbsp;page appears. <br>All work items appear in a grid showing the information about work items assigned to different users within the application. <br>The&nbsp;<b class="uicontrol">Manage Work items</b>&nbsp;is visible only to users who have the right to forward work items. <br></li><li class="step">Select the work item(s) that you want to abort. You can select multiple work items at a time by selecting the check box in the grid. <br></li><li class="step">Click&nbsp;<b class="uicontrol">Abort</b>. Alternatively, right-click the work item, and then select&nbsp;Abort. A confirmation message to abort the work item appears. <br></li><li class="step">Click&nbsp;<b class="uicontrol">Yes</b>&nbsp;to confirm the abort, or&nbsp;<b class="uicontrol">No</b>&nbsp;to cancel the abort. The message about successful abort appears.  <br></li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>.</li></ol>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

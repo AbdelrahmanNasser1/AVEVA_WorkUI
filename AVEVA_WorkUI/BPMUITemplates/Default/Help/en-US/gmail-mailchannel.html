@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Gmail: MailChannel </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601990" class="heading4">Gmail: MailChannel</h4>
+<p class="paragraph">Setting Up Gmail Account for:</p>
+<ul class="ulitem"><li class="ulitem">Mail Communication (For example: Wait for email and email)</li><li class="ulitem">Mail Delivery Channel (Approval, Task, Choice and Check list) in AVEVA Work Tasks</li></ul><p class="subheading"></p>
+<p class="procedureheading">Setting up AVEVA Work Tasks Communication Service from AVEVA Work Tasks Farm configuration wizard</p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">In the <b class="windowtitle">AVEVA Work Tasks Farm Configuration Wizard</b>, go to <strong class="strong">Services/Global Settings, </strong>and then click the <strong class="strong">Settings </strong><img id="f51283" src="51283.png" class="embeddedimage100%scalinglive" alt="" height="18" width="20" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon displayed next to&nbsp;<strong class="strong">Global Settings.</strong><p class="stepresult">The <strong class="strong">Global Settings</strong> page appears.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51284" src="51284.png" class="embeddedimage100%scalinglive" alt="" height="489" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f51285" src="51285.png" class="embeddedimage100%scalinglive" alt="" height="450" width="557" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><strong class="strong">Check list for causes for failures during Test</strong>:</p>
+<p class="stepinfo">- Is your google account valid and active?</p>
+<p class="stepinfo">- Do you have a firewall/Antivirus tool or something preventing the email getting out?</p>
+<p class="stepinfo">- Is your internet connectivity ok?</p>
+<p class="stepinfo">- Based on the information provided in the URL&nbsp;(https://mail.google.com/support/bin/answer.py?answer=13273), enable POP in your google account</p>
+<p class="stepinfo"></p>
+<p class="stepinfo">.<img id="f51286" src="51286.png" class="embeddedimage100%scalinglive" alt="" height="347" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">POP3 account setting to be configured in&nbsp;<b class="uicontrol">AVEVA Work Tasks Communication Service</b>&nbsp;(Services/Global Settings) for retrieving the mail.<br><br>Go to Services/Global Settings screen and then click the Settings&nbsp;<img id="f51283_1" src="51283.png" class="embeddedimage100%scalinglive" alt="" height="18" width="20" vspace="0" hspace="0" align="bottom" border="0">icon displayed next to&nbsp;Global Settings.</li></ol><p class="paragraph"></p>
+<p class="paragraph">POP time interval can be reduced if you want the AVEVA Work Tasks service to pull mail from gmail server in shorter time period. The settings for mail to be sent through gmail to Company ID.</p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;Ensure not to have any spaces in the bracket while replying.</p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">AVEVA Work Tasks Communication Service Settings</b>&nbsp;picked up the mail and the task was approved successfully.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="emailaction1.html" target="_self">Email Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+ </body>
+ </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Configuring Farm Configuration Wizard for Receiving SMS </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601993" class="heading4">Configuring Farm Configuration Wizard for Receiving SMS</h4>
+<p class="paragraph">The AVEVA Work Tasks Communication Service Settings will check the Phone device periodically for SMSs.</p>
+<p class="paragraph">To configure the Farm Configuration Wizard for receiving SMS, you must set SMS Receiver attributes for the following fields:</p>
+<ol class="olitem"><li class="olitem"><strong class="strong">Enable SMS Receiver</strong> <br>This is for enabling &amp; disabling periodic checking of the device for SMS. If this is set to &quot;True&quot;, the Notification Engine will check for SMS and if &quot;False&quot;, the check is disabled.</li><li class="olitem"><b class="uicontrol">SMS Time Interval</b> <br>The periodic Time interval for checking SMSs in the Device. Specify it in a time span (e.g. 0.00:01:30 = 1 minute 30 secs). It will delete the SMS from device based on the time interval.</li><li class="olitem"><b class="uicontrol">Wait Task Handler Path</b> <br>The Assembly path for handling timeout action &amp; warning.</li><li class="olitem"><b class="uicontrol">Wait Task Handler Class</b> <br>The Class name for handling timeout action &amp; warning.</li><li class="olitem"><b class="uicontrol">Provider Configuration </b><br>This is used to enter service-provider-specific details for receiving SMS. Currently details for one provider &#8211; GSM &#8211; have been given. If you are using any other service, you can add your provider details here.<br><b class="uicontrol">Name</b> - Name of the provider. The supporting providers are GSM, Email Provider, and SMS pattern match.<br><b class="uicontrol">Assembly </b>- Enter the required dll file path.<br><b class="uicontrol">Class</b> - Class Name.<br><b class="uicontrol">Device</b> - Name of the device that is connected to the COM port. <p class="note"><strong class="notelabel">Note:</strong> Under each Connection Type, apart from their configuration details, two compulsory nodes &#8211; SMSMessengerAssembly &amp; SMSMessengerClass &#8211; have to be specified. This is the class which sends SMS for each provider. This class should implement ISMSSender interface.</p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="configuringcommunicationactivities1.html" target="_self">Configuring Communication Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

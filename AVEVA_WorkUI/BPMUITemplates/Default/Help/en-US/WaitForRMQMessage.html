@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> WaitForMQData </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t620132" class="heading2">WaitForMQData</h2>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">Use the WaitForMQData activity to wait for a number of messages from Message Queue for a particular time period, and then consume the messages in a defined workflow. You can set the number of messages and the time period in the properties of that activity. It can store the message details in the specified XML variables.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">To use WaitForMQData Activity, follow the given steps:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the <strong class="strong">Process Designer</strong> window, select <b class="uicontrol">Message Queue </b>from the Activities drop-down list.</li><li class="step">Drag and drop the <b class="uicontrol">WaitForMQData</b> activity on the Process Designer window.</li><li class="step">Right-click the <b class="uicontrol">WaitForMQData</b> activity and then select Activity Properties.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph">Use the name and description properties to specify the name and description for the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Name</strong>: Use this property to enter a name for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory.</p>
+</li><li class="ulitem"><strong class="strong">Description</strong>: Use this property to enter a brief description to be displayed for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required.</p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph">Use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Set Message Queue Filters</strong>: Use this property to filter the messages. Whenever a message is received, it will check this filter, and if a match is found, the activity will be alerted. <p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory</p>
+<p class="lcontinue">For more information, see <a id="h513899" class="jump-currentwindowlive" title="Set Message Queue Filters" href="513525.html" target="_self">Set Message Queue Filters</a>.</p>
+</li><li class="ulitem"><strong class="strong">Valid for Events</strong>: Use this property to specify the number of messages for which the activity should wait. It indicates that the activity should wait till the specified number of messages are received.<p class="lcontinue"><strong class="strong">Default Value</strong>: The default value is 1 which means that the WaitForMQData activity waits for one message. For infinite number of messages, enter 0 in the <strong class="strong">Valid for Events</strong> property.</p>
+<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required. If not set, the default value is considered.</p>
+<p class="lcontinue"></p>
+</li></ul><p class="subheading">Exception Behavior</p>
+<p class="paragraph">Each activity has the <strong class="strong">Raise error on unhandled linked output</strong> property. Click on this to see the default configured mapped error outputs in red with their check boxes selected. </p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="subheading">Looping Behavior </p>
+<p class="paragraph">Use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Loop through this action if output is</strong>: Use this property to specify the condition for looping the activity by selecting an activity output from the drop down. Available options are as follows:<ul class="ulsubitem"><li class="ulsubitem"><strong class="strong">No Loop</strong></li><li class="ulsubitem"><strong class="strong">Action Completed</strong>: This output is displayed when the activity has timed out. </li><li class="ulsubitem"><strong class="strong">Event Received</strong>: This output is displayed when a Message Queue connection matching the specified filter condition is received.</li></ul></li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Activities</a></p><p class="relateditem"><a href="513525.html" target="_self">Set Message Queue Filters</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

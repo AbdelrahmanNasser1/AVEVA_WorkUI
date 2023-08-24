@@ -1,0 +1,285 @@
+﻿<!doctype html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode, viewAndViewModel;
+        var mode = skeltaUtils.getUrlParameterValue(window, 'mode');
+        var workflowName = skeltaUtils.getUrlParameterValue(window, 'WorkflowName');
+        var workflowVersion = skeltaUtils.getUrlParameterValue(window, 'wfFilename');
+        var applicationName = skeltaUtils.getUrlParameterValue(window, 'ApplicationName');
+        var selectedProperty = skeltaUtils.getUrlParameterValue(window, 'selectedProperty');
+        var selectedAction = skeltaUtils.getUrlParameterValue(window, 'selectedaction');
+        var pdsuri = skeltaUtils.getUrlParameterValue(window, 'pdsuri');
+        var designerinstanceid = skeltaUtils.getUrlParameterValue(window, 'designerid');
+        var userId = skeltaUtils.getUrlParameterValue(window, 'userId');
+        
+        function onSave(inputParameterObject, eventArgs)
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "instanceXml": skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                "applicationName": applicationName,
+                "userId": userId,
+                "workflowName": workflowName,
+                "workflowVersion": workflowVersion,
+                "actionName": selectedAction,
+                "designerinstanceid": designerinstanceid,
+                "mode": mode
+            });
+
+            try
+            {
+                skeltaUtils.callServerMethod("POST", "WaitForArchestrAEventService.aspx/SaveWorkflowWaitForArchestrAEvent", "application/json; charset=utf-8", jsonHelper, "json", newWorkflowFormSubmitSucceeded, newFormSubmitFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (e)
+            {
+                skeltaUtils.showError(skelta.localize.getString("ASB_WFAssociation_Save_Error_title"),
+                                skelta.localize.getString("ASB_WFAssociation_Save_Error"),
+                                null,
+                                e.message);
+                logger.logError(skelta.localize.getString("ASB_WFAssociation_Save_Error"));
+                logger.logError(e.message);
+            }
+        }
+
+        function newWorkflowFormSubmitSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true)
+            {
+                skeltaUtils.showAlert(skelta.localize.getString("ASB_WFActivity_SaveMsg_title"),
+                                    skelta.localize.getString("ASB_WFActivity_SaveMsg"),
+                                    function ()
+                                    {
+                                        ReloadOrCloseForm(true);
+                                    });
+            }
+            else
+            {
+                skeltaUtils.showError(skelta.localize.getString("ASB_WFActivity_Save_Error_title"),
+                                    skelta.localize.getString("ASB_WFActivity_Save_Error"),
+                                    null,
+                                    res.ErrorMessage.replace("\\\\", ""));
+                logger.logError(skelta.localize.getString("ASB_WFActivity_Save_Error"));
+                logger.logError(res.ErrorMessage.replace("\\\\", ""));
+            }
+        }
+
+        function newFormSubmitFailed(result)
+        {
+            skeltaUtils.showError(skelta.localize.getString("ASB_WFActivity_Save_Error_title"),
+                                skelta.localize.getString("ASB_WFActivity_Save_Error"),
+                                null,
+                                "Failed submission. " + result.status + ' ' + result.statusText + '<br/>' + result.responseText);
+            logger.logError(skelta.localize.getString("ASB_WFActivity_Save_Error"));
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function LoadFilterForm()
+        {
+            skelta.userContext.setUserContextFor("appN", applicationName);
+            skelta.userContext.setUserContextFor("uId", userId);
+            skeltaUtils.loadPageDefault();
+            getNewArchestrAEventDefinition();
+
+            if (mode.toLowerCase() === "new") {
+                document.title = skelta.localize.getString("ASB_WF_WaitForArchestraEvents");
+            }
+            
+            if (mode.toLowerCase() === "edit") {
+                document.title = skelta.localize.getString("ASB_WF_WaitForArchestraEvents_Edit");
+
+                //// Making Title ReadOnly
+                var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, selectedAction + "_ASBEvent", "");
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                viewModelObject.topLevelForm.findById("_sys_ASB_EventProvider").readOnly = true;
+                viewModelObject.topLevelForm.findById("_sys_ASB_EventType").readOnly = true;
+                viewModelObject.topLevelForm.findById("_sys_ASB_XmlVariableName").readOnly = true;
+            }
+
+            if (mode.toLowerCase() === "view") {
+                document.title = skelta.localize.getString("ASB_WF_WaitForArchestraEvents_View");
+            }
+        }
+
+        function getNewArchestrAEventDefinition()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "applicationName": applicationName,
+                "selectedAction": selectedAction
+            });
+            
+            skeltaUtils.callServerMethod("GET", "WaitForArchestrAEventService.aspx/GetWorkflowWaitForArchestrAEvent", "application/json; charset=utf-8", jsonHelper, "html", newEventSucceeded, newEventFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+            
+        }
+
+        function newEventSucceeded(resultData)
+        {
+            viewAndViewModel = resultData;
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+
+            mode = pageMode ? pageMode : "new";
+            if (mode == "edit" || mode == "view")
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "applicationName": applicationName,
+                    "userId": userId,
+                    "workflowName": workflowName,
+                    "workflowVersion": workflowVersion,
+                    "actionName": selectedAction,
+                    "designerinstanceid": designerinstanceid
+                });
+                
+                skeltaUtils.callServerMethod("GET", "WaitForArchestrAEventService.aspx/GetInstanceXmlWaitForArchestrAEvent", "application/json; charset=utf-8", jsonHelper, "json", getInstanceXmlSucceeded, getInstanceXmlFailed, getInstanceXmlCompleted, false);
+            }
+            else
+            {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, selectedAction + "_ASBEvent", "");
+                skeltaUtils.createDataModelObject(uniqueKey);
+                //document.getElementById("viewAndViewModel").value = viewAndViewModel;
+
+                $("#viewModel").html(viewAndViewModel);
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                viewModelObject.onSave.subscribeEvent(onSave);
+                viewModelObject.onCancel.subscribeEvent(function () { ReloadOrCloseForm(true); });
+
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+
+                $("#viewModel")[0].style.display = "";
+                viewModelObject.topLevelForm.initializeFocus(0);
+            }
+
+        }
+
+        function getInstanceXmlSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+
+            //res = "<ArchestraEvents><Title>Event1</Title><EventType>ItemAdded</EventType></ArchestraEvents>";
+            //res = "<ArchestrAEvents><Title>May199</Title><Description></Description><EventProvider>may1</EventProvider><EventType></EventType><SKArchestrAEventProperties><PropertyName>P1</PropertyName><PropertyDataType>string</PropertyDataType></SKArchestrAEventProperties><SKArchestrAEventProperties><PropertyName>P1</PropertyName><PropertyDataType>string</PropertyDataType></SKArchestrAEventProperties></ArchestrAEvents>";
+
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, selectedAction + "_ASBEvent", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+            skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res));
+
+            document.getElementById("viewAndViewModel").value = viewAndViewModel;
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+
+            if (mode == "View")
+            {
+                viewModelObject.topLevelForm._readEditAddBehaviour(1);
+                $("." + cssClasses.sfFooter).hide();
+            }
+
+            viewModelObject.onSave.subscribeEvent(onSave);
+            viewModelObject.onCancel.subscribeEvent(function () { ReloadOrCloseForm(true); });
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function getInstanceXmlCompleted()
+        {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlFailed(result)
+        {
+            var errorMsg = skelta.localize.getString("ASB_WFAssociation_InstanceXML_Retrieve_Error")
+                                    .replace("<@application@>", applicationName)
+                                    .replace("<@formid@>", formId);
+            skeltaUtils.showError(skelta.localize.getString("ASB_WFActivity_Retrieve_Error_title"),
+                                skelta.localize.getString("ASB_WFActivity_Retrieve_Error"),
+                                null,
+                                errorMsg + "<br/>" + result.status + ' ' + result.statusText
+                                        + "<br/>" + result.responseText);
+            logger.logError(errorMsg + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function newEventFailed(result)
+        {
+            skeltaUtils.showError(skelta.localize.getString("ASB_WFActivity_Retrieve_Error_title"),
+                                JSON.parse(result.responseText).Message,
+                                function () { ReloadOrCloseForm(true); }, null);
+
+            logger.logError(skelta.localize.getString("ASB_WFActivity_Retrieve_Error")
+                                + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function ReloadOrCloseForm(includeCloseForm) {
+            //TODO: this need to been done in generic way like, window.frameElement.src.containsString("InstanceForm.htm"), that means instance form is loading in a frame, so reload form
+            if ((skeltaUtils.getUrlParameterValue(window, "FromArchestrA") === "True")
+                || (skeltaUtils.getUrlParameterValue(window, "FromIntouch") === "True")
+                || (window.name.containsString('WebPartManagerControl') == true)
+                || (window.frameElement != null && window.frameElement.id.containsString('WebPartManagerControl') == true)
+                || (window.frameElement != null && window.frameElement.id.containsString('Skelta_FillForm') === true)
+                || (window.frameElement != null && window.frameElement.ownerDocument && window.frameElement.ownerDocument.URL.containsString("InstanceFormAsDashboard.aspx") == true)) {
+                skeltaUtils.reloadForm();
+            }
+            else if (includeCloseForm) {
+                skeltaUtils.closeForm();
+            }
+        }
+
+        $(document).ready(function ()
+        {
+            
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'pdsuri');
+            var pageMode = skeltaUtils.getUrlParameterValue(window, 'mode');
+            mode = pageMode ? pageMode : "new";
+
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                LoadFilterForm();
+            }
+            catch (exception) {
+                    skeltaUtils.showError(skelta.localize.getString("ASB_WFAssociation_Retrieve_Error_title"),
+                                          skelta.localize.getString("ASB_WFAssociation_Load_Error"),
+                                          null,
+                                          exception.message);
+                logger.logError(skelta.localize.getString("ASB_WFAssociation_Load_Error") + ' ' + exception.message);
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Redirecting the Log On Page </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t602242" class="heading2">Redirecting the Log On Page</h2>
+<p class="paragraph">When you log on to the <b class="uicontrol">Enterprise Console</b>, by default, the page is redirected to the Workitemlist page.</p>
+<p class="paragraph">If you want to redirect the page to another aspx page, then add the following tag needs to&nbsp;the Web.Config file of the Enterprise Console site:</p>
+<p class="codeblock1">&lt;appSettings&gt;</p>
+<p class="codeblock1">&nbsp;&lt;add key=&quot;redirectPageAfterLogin&quot; value=&quot;WorkflowList.aspx&quot;/&gt;</p>
+<p class="codeblock1">&lt;/appSettings&gt;</p>
+<p class="paragraph">Where, </p>
+<p class="paragraph"><strong class="strong">value</strong>&nbsp;specifies the aspx page to which you want to be redirected after log on. The aspx page must be placed in the following SkeltaBPMUITemplates path:&nbsp;BPMUITemplates\Default\Repository\Site  </p>
+<p class="paragraph">Value can also be the url of a website.</p>
+<p class="paragraph">Since&nbsp;<b class="uicontrol">WorkflowList.aspx</b>&nbsp;page is specified as value, after log on, the page is redirected to the WorkflowList.aspx page.</p>
+<p class="paragraph">You can get the Web.Config file in the following location of the AVEVA Work Tasks install path:</p>
+<p class="paragraph">..\AVEVA\Work Tasks\Web\EnterpriseConsole\Web.Config</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

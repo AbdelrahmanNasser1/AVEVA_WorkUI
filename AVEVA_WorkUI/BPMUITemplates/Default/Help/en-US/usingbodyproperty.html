@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using 'Body' Property </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601965" class="heading5">Using 'Body' Property</h5>
+<p class="subheading">Scenario Solution:</p>
+<ol class="step"><li class="step">Design a workflow named 'LeaveWF'. <p class="stepinfo"><img id="f187056" src="187056.png" alt="" height="329" width="189" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Right-click Invoke Form activity and then select<b class="uicontrol"> Activity Properties</b>.</li><li class="step">Set the properties for <b class="uicontrol">Actors</b> group as shown in the figure below. <br>Here only required properties are explained.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187057" src="187057.png" alt="" height="432" width="256" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Assign Actor(s):</b> Set this property as shown in the following figure.</li></ul><p class="stepinfo"><img id="f187058" src="187058.png" alt="" height="300" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Set the properties for Form Information group as shown in the following figure. <p class="note"><strong class="notelabel">Note:</strong> Here only required properties are explained.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187059" src="187059.png" alt="" height="291" width="261" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Form Name</b> : Select 'Leave Form' and its version from <b class="uicontrol">Form Name</b> property window. </li><li class="ulsubitem"><b class="uicontrol">Input Instance XML</b>: Select 'SFFormData' from <b class="uicontrol">Input Instance XML</b> drop-down list. </li><li class="ulsubitem"><b class="uicontrol">Output Instance XML</b>: Select 'SFFormData' from <b class="uicontrol">Output Instance XML</b> drop-down list. </li><li class="ulsubitem"><b class="uicontrol">Save as Draft?:</b> Select <b class="uicontrol">Yes</b> from <b class="uicontrol">Save as Draft?</b> drop-down list. By setting this property as Yes, the Save As Draft option at the bottom right corner in the Form will be seen. This is useful for filling the form and saving it as draft till final submission of the form. </li><li class="ulsubitem"><b class="uicontrol">Close the form on click of Save As Draft?:</b> Select <b class="uicontrol">Yes</b> from <b class="uicontrol">Close the form on click of Save As Draft?</b> drop-down list. By setting this property as <b class="uicontrol">Yes</b>, the Form will close on clicking the<b class="uicontrol"> Save As Draft</b> option. </li></ul></li><li class="step">Set the properties for <b class="uicontrol">Notification Contents</b> group as shown in the following figure. <p class="note"><strong class="notelabel">Note:</strong> Here only required properties are explained.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187060" src="187060.png" alt="" height="468" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Subject</b> : Specify the appropriate subject from <b class="uicontrol">Subject</b> property window. </li><li class="ulsubitem"><b class="uicontrol">Body</b>: Click the edit button in the <b class="uicontrol">Body</b> property to open the Body property window. </li></ul><ol class="substep"><li class="substep">Compose the body text. </li><li class="substep">Click<b class="uicontrol"> Enterprise Console Explorer</b>(plug-in) icon to select the URL. The following window is opened with list of Enterprise Console names. Select the Local URL and then click Select. The selected URL will be appended in the Body window wherever the cursor is pointed as &lt;%EnterpriseConsole,LocalURL%&gt;.<p class="substepinfo"><img id="f187061" src="187061.png" alt="" height="366" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo">The composed mail will be as shown in the figure below.</p>
+<p class="substepinfo"><img id="f187062" src="187062.png" alt="" height="258" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="substepinfo">Click Update of the Body window property to save the contents. </p>
+</li></ol><ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Send Notification Email</b>: Select<b class="uicontrol"> Yes - HTML</b> option from the drop-down list. <p class="note">Note: You will be able to send an email only if, this property is set as Yes - HTML or Yes. If it is Yes, then the mail will be sent as a plain text. If it is Yes- HTML, then the mail will be sent as HTML format.</p>
+</li></ul></li><li class="step">After setting these properties, click <b class="uicontrol">Save</b> of the<b class="uicontrol"> Activity Properties</b> window. </li><li class="step">Publish the 'LeaveWF' workflow. </li><li class="step">Go to<b class="uicontrol"> Enterprise Console &gt; Fill Form</b>. The<b class="uicontrol"> Fill Form</b> window is displayed as shown in the following figure. <p class="stepinfo"><img id="f187063" src="187063.png" alt="" height="204" width="304" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click on the 'LeaveForm'. The 'LeaveForm' form is displayed. Fill this form and then click <b class="uicontrol">Finish</b>.<p class="stepinfo"><img id="f187064" src="187064.png" alt="" height="229" width="344" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">On filling the form, the mail will be sent to the manager for approval.<p class="stepinfo"><img id="f187065" src="187065.png" alt="" height="295" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo">&lt;%EnterpriseConsole,LocalURL%&gt; text added in the Body tag is replaced with Click here hyperlink text.</p>
+<p class="stepinfo">Click here text can be changed from the [AVEVA Work Tasks Installed Path]\Locales\en-US\EmailText.txt to the required text.</p>
+<p class="stepinfo"><img id="f187066" src="187066.png" alt="" height="178" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">In the mail, just click on <b class="uicontrol">'Click here'</b> link to open the form in a browser as shown in the following figure.<p class="stepinfo"><img id="f187067" src="187067.png" alt="" height="223" width="534" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><b class="uicontrol">Conclusion:</b> Here manager will get the direct link to the leave form which is applied by the employee and here manager can approve or reject leave application instead of logging in to the Enterprise Console.</p>
+<p class="note"><strong class="notelabel">Note:</strong> You can act on a task only first time. Next time, it will display the following message:</p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph"><i class="emphasis">&quot;Duplicate Response</i></p>
+<p class="paragraph"><i class="emphasis">Your response for the task &lt;Activity Name&gt; of &lt;Date&gt; application's &lt;Workflow Name&gt; workflow was recorded earlier! Workflow engine did not consider this duplicate response.</i> &quot;</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformmailintegration.html" target="_self">Invoke Form - Mail Integration Scenario</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

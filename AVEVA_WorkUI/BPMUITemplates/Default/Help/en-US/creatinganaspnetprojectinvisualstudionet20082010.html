@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating an ASP.NET Project in Visual Studio .NET </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601895" class="heading3">Creating an ASP.NET Project in Visual Studio .NET</h3>
+<p class="paragraph">You can create an ASP.NET web site in Visual Studio and make the required changes to successfully embed the AVEVA Work Tasks controls in the application.</p>
+<p class="procedureheading">To Create a Web Site</p>
+<ol class="step"><li class="step">Open&nbsp;<b class="uicontrol">Microsoft Visual Studio</b>. The<b class="uicontrol">&nbsp;Visual Studio Start Page</b>&nbsp;appears.</li><li class="step">On the&nbsp;<b class="uicontrol">File</b>&nbsp;menu, point to&nbsp;<b class="uicontrol">New</b>, and then click&nbsp;<b class="uicontrol">Web Site</b>.&nbsp;The&nbsp;<b class="uicontrol">New Web Site</b>&nbsp;dialog box appears.</li><li class="step">In the&nbsp;<b class="uicontrol">Templates</b>&nbsp;pane, select&nbsp;<b class="uicontrol">ASP.NET&nbsp;Web Site</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">HTTP</b>&nbsp;as the&nbsp;<b class="uicontrol">Web Location</b>,&nbsp;and browse the path where the new web site has to be created. For example, <i class="emphasis">http://localhost:9000/TelematicsWebSite</i>.</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>. A new web site gets created.</li><li class="step">Copy the following files and folders from the&nbsp;<i class="emphasis">AVEVA Work Tasks Installed Path</i>&nbsp;to the created web site's folder:<ol class="substep"><li class="substep">Copy the&nbsp;<b class="uicontrol">BPMUITemplates</b>&nbsp;folder from&nbsp;..<i class="emphasis">\AVEVA\Work Tasks\Web\BPMUITemplates</i>&nbsp;to the created web site's folder.  <p class="substepinfo">For example: If the&nbsp;TelematicsWebSite&nbsp;web site is created in&nbsp;<i class="emphasis">D:\Develop\TelematicsWebSite</i>&nbsp;folder, then copy&nbsp;<b class="uicontrol">BPMUITemplates</b> folder to&nbsp;<i class="emphasis">D:\Develop\TelematicsWebSite\</i>.</p>
+<p class="substepinfo">Or </p>
+<p class="substepinfo">Create a Virtual Directory in the name of <b class="uicontrol">BPMUITemplates</b> mapping to the physical folder of BPMUITemplates under the created IIS WebSite.</p>
+<p class="substepinfo">This step is required due to the following reasons:</p>
+<ul class="ulsubsubitem"><li class="ulsubsubitem">ASP.NET applications that use AVEVA Work Tasks should include these files.</li><li class="ulsubsubitem">BPMUITemplates folder assists in the localization of the AVEVA Work Tasks controls.</li><li class="ulsubsubitem">The User Interface can be changed according to the user. </li><li class="ulsubsubitem">Changes to User controls like Work Item, Queue, ProcessDesigner, BAM, and Calendar can be done in </li><li class="ulsubsubitem">BPMUITemplates folder. </li></ul></li><li class="substep">Copy the&nbsp;<b class="uicontrol">App_Code</b>&nbsp;folder from <i class="emphasis">..\AVEVA\Work Tasks\Web\EnterpriseConsole</i>&nbsp;to the created web site's folder. <br>For example, if the&nbsp;SkeltaTestSite&nbsp;web site created in&nbsp;D:\Develop\SkeltaTestSite&nbsp;folder, then copy&nbsp;App_Code folder to&nbsp;D:\Develop\SkeltaTestSite\. </li><li class="substep">Copy the<b class="uicontrol">&nbsp;ComponentArt.Charting.lic</b>&nbsp;and&nbsp;<b class="uicontrol">ComponentArt.Charting.WebChart.dll</b>&nbsp;file from the <i class="emphasis">..\AVEVA\Work Tasks\Web\EnterpriseConsole\bin</i>&nbsp;to the created website's bin folder. <br>Create a&nbsp;bin&nbsp;folder under the created web site's folder, if it does not exist.</li><li class="substep">Copy the&nbsp;<b class="uicontrol">TempReports</b>&nbsp;folder from <i class="emphasis">..\AVEVA\Work Tasks\Web\EnterpriseConsole</i>&nbsp;to the created web site's folder. </li><li class="substep">Copy the <b class="uicontrol">FrameworkData</b> folder from <i class="emphasis">..\AVEVA\Work Tasks\Web\EnterpriseConsole</i> to the created website's folder. </li></ol></li><li class="step">Create the following .aspx pages for embedding AVEVA Work Tasks Web Server controls.<ul class="ulsubitem"><li class="ulsubitem">Designer.aspx for Process Designer control</li><li class="ulsubitem">WorkItemList.aspx for Work items list control</li><li class="ulsubitem">Calendar.aspx for Calendar control</li><li class="ulsubitem">BAM.aspx for BAM control</li><li class="ulsubitem">Queue.aspx for Queue control</li><li class="ulsubitem">List.aspx for List control</li><li class="ulsubitem">FormsWebpart.aspx to view Fill a form control</li><li class="ulsubitem">Execute.aspx to execute the workflow</li><li class="ulsubitem">ExecuteReport.aspx to view the workflow status <br></li></ul><p class="lnote"><strong class="notelabel">Note:</strong> Ensure that all the pages created above have the doctype tag <b class="uicontrol">&lt;!DOCTYPE html&gt;</b>.</p>
+<p class="lcontinue"></p>
+</li><li class="step">Add the following tag in the source of all the .aspx pages, except <i class="emphasis">Designerbase.aspx</i>, under the existing &lt;DIV&gt;tag:<p class="codeblock2"></p>
+<p class="codeblock2">&lt;asp:Panel ID=&quot;Panel1&quot; runat=&quot;server&quot; Height=&quot;100%&quot; Width=&quot;100%&quot;&gt;&lt;/asp:Panel&gt;</p>
+<p class="codeblock2">Add the style tag for &lt;DIV&gt;tag:</p>
+<p class="codeblock2">&lt;div style=&quot;height:100%;&quot;&gt;</p>
+<p class="codeblock2">Add the following style on each page within the &lt;head&gt; tag. </p>
+<p class="codeblock2">&lt;style type=&quot;text/css''&gt;</p>
+<p class="codeblock2">html, body, form </p>
+<p class="codeblock2">{</p>
+<p class="codeblock2">height: 100%;</p>
+<p class="codeblock2">}</p>
+<p class="codeblock2">&lt;/style&gt;</p>
+<p class="stepinfo"></p>
+</li><li class="step">Complete the following changes in the Web.config file of the custom application website or copy the Enterprise Console Web.config file to the custom application website. <ul class="ulsubitem"><li class="ulsubitem">Add the following entries within the&nbsp;<b class="uicontrol">&lt;system.web&gt;</b> tag.</li></ul><p class="codeblock2">&nbsp;</p>
+<p class="codeblock3">&lt;pages validateRequest=&quot;false&quot; clientIDMode=&quot;AutoID&quot; controlRenderingCompatibilityVersion=&quot;3.5&quot;/&gt; </p>
+<p class="codeblock3">&lt;httpRuntime requestValidationMode=&quot;3.5&quot; encoderType=&quot;HtmlAttributeEncodingNot&quot; maxQueryStringLength=&quot;9000&quot; enableVersionHeader=&quot;false&quot; enableHeaderChecking=&quot;false&quot;/&gt;</p>
+<p class="codeblock2"></p>
+<p class="codeblock2"></p>
+<ul class="ulsubitem"><li class="ulsubitem">Add the following entries within the <b class="uicontrol">&lt;system.web&gt;</b> tag. </li></ul><p class="codeblock2"><br></p>
+<p class="codeblock3">&lt;compilation debug=&quot;false&quot; targetFramework=&quot;4.7.1&quot;&gt; </p>
+<p class="codeblock3">&lt;assemblies&gt; </p>
+<p class="codeblock3">&lt;add assembly=&quot;System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089&quot;/&gt; </p>
+<p class="codeblock3">&lt;/assemblies </p>
+<p class="codeblock3">&lt;/compilation&gt;</p>
+<p class="codeblock2"></p>
+<p class="codeblock2"></p>
+</li><li class="step">Copy all the dll files which has entries in the web.config file of Enterprise Console to the custom site bin directory from AVEVA Work Tasks installed folder bin directory. Alternatively, you can add all the entries under the &lt;assemblies&gt; tag within Enterprise Console Web.Config to file to the custom site web.config file.<ul class="ulsubitem"><li class="ulsubitem">Add the following entries within the <b class="uicontrol">&lt;system.web&gt;</b> tag. </li></ul><p class="codeblock3"></p>
+<p class="codeblock3">&lt;membership&gt;</p>
+<p class="codeblock3">&lt;providers&gt;</p>
+<p class="codeblock3">&lt;add name=&quot;SkeltaMemberShipProvider&quot; type=&quot;SkeltaMemberShipProvider&quot; /&gt;</p>
+<p class="codeblock3">&lt;/providers&gt;</p>
+<p class="codeblock3">&lt;/membership&gt;</p>
+<p class="codeblock3">&lt;webParts&gt;</p>
+<p class="codeblock3">&lt;personalization defaultProvider=&quot;SkeltaPersonalizationProvider&quot;&gt;</p>
+<p class="codeblock3">&lt;providers&gt;</p>
+<p class="codeblock3">&lt;add name=&quot;SkeltaPersonalizationProvider&quot; type=&quot;SkeltaPersonalizationProvider.SkeltaPersonalizationProvider&quot; /&gt;</p>
+<p class="codeblock3">&lt;/providers&gt;</p>
+<p class="codeblock3">&lt;authorization&gt;</p>
+<p class="codeblock3">&lt;allow users=&quot;*&quot; verbs=&quot;enterSharedScope&quot; /&gt;</p>
+<p class="codeblock3">&lt;/authorization&gt;</p>
+<p class="codeblock3">&lt;/personalization&gt;</p>
+<p class="codeblock3">&lt;/webParts&gt;</p>
+<p class="codeblock3">&lt;customErrors mode=&quot;RemoteOnly&quot; defaultRedirect=&quot;error.html&quot; /&gt;</p>
+<p class="codeblock3"></p>
+<p class="codeblock3"></p>
+<ul class="ulsubitem"><li class="ulsubitem">Add the following entries within the <b class="uicontrol">&lt;httpHandlers&gt;</b> tag. </li></ul><p class="codeblock3"></p>
+<p class="codeblock3">&lt;add verb=&quot;*&quot; path=&quot;Reserved.ReportViewerWebControl.axd&quot; type=&quot;Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91&quot; validate=&quot;false&quot; /&gt;</p>
+<p class="codeblock3">&lt;add path=&quot;Telerik.Web.UI.WebResource.axd&quot; type=&quot;Telerik.Web.UI.WebResource&quot; verb=&quot;*&quot; validate=&quot;false&quot;/&gt;</p>
+<p class="codeblock3"></p>
+<ul class="ulsubitem"><li class="ulsubitem">Add the following entries within the <b class="uicontrol">&lt;system.webServer&gt;</b> tag. </li></ul><p class="codeblock3"></p>
+<p class="codeblock3">&lt;validation validateIntegratedModeConfiguration=&quot;false&quot; /&gt; </p>
+<p class="codeblock3">&lt;httpProtocol&gt; </p>
+<p class="codeblock3">&lt;customHeaders&gt; </p>
+<p class="codeblock3">&lt;remove name=&quot;Server&quot; /&gt; </p>
+<p class="codeblock3">&lt;remove name=&quot;X-AspNet-Version&quot; /&gt; </p>
+<p class="codeblock3">&lt;remove name=&quot;X-AspNetMvc-Version&quot; /&gt; </p>
+<p class="codeblock3">&lt;remove name=&quot;X-Powered-By&quot; /&gt; </p>
+<p class="codeblock3">&lt;/customHeaders&gt; </p>
+<p class="codeblock3">&lt;/httpProtocol&gt; </p>
+<p class="codeblock3">&lt;security&gt; </p>
+<p class="codeblock3">&lt;requestFiltering&gt; </p>
+<p class="codeblock3">&lt;requestLimits maxQueryString=&quot;9000&quot;/&gt; </p>
+<p class="codeblock3">&lt;/requestFiltering&gt; </p>
+<p class="codeblock3">&lt;/security&gt; </p>
+<p class="codeblock3">&lt;staticContent&gt; </p>
+<p class="codeblock3">&lt;remove fileExtension=&quot;.woff&quot; /&gt; </p>
+<p class="codeblock3">&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;application/font-woff&quot; /&gt; </p>
+<p class="codeblock3">&lt;/staticContent&gt;</p>
+<p class="codeblock3"></p>
+<ul class="ulsubitem"><li class="ulsubitem">Add the following entry within the &lt;system.webServer&gt;&lt;handlers&gt; tag. </li></ul><p class="codeblock3"></p>
+<p class="codeblock3">&lt;add name=&quot;ReportViewerWebControl&quot; verb=&quot;*&quot; path=&quot;Reserved.ReportViewerWebControl.axd&quot; type=&quot;Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91&quot; /&gt;</p>
+<p class="codeblock3"></p>
+<ul class="ulsubitem"><li class="ulsubitem">Add the following entries within the &lt;system.web.extensions&gt; tag. </li></ul><p class="codeblock3"></p>
+<p class="codeblock3">&lt;scripting&gt; <br>&lt;webServices&gt; <br>&lt;jsonSerialization maxJsonLength=&quot;4096000&quot; /&gt; <br>&lt;/webServices&gt; <br>&lt;/scripting&gt;</p>
+<p class="codeblock3"></p>
+</li><li class="step">Right-click the hosted website, go to <b class="uicontrol">Manage Application</b>, and then click <b class="uicontrol">Advanced Settings</b>. The <b class="uicontrol">Advanced Settings</b> dialog box appears. </li><li class="step">Set the Application Pool property to <b class="uicontrol">AVEVA AVEVA Work Tasks V4.0 Integrated</b>. </li></ol><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> Ensure to copy <b class="uicontrol">NewtonsoftJson.dll</b> and <b class="uicontrol">AntiXSSLibrary.dll</b> files from the <b class="uicontrol">Bin</b> folder of the AVEVA Work Tasks application to the <b class="uicontrol">Bin</b> folder of the custom application.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1_1.html" target="_self">Embedding Controls in the Application</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

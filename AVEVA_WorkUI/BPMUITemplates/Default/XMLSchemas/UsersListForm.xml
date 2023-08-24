@@ -1,0 +1,19 @@
+<BaseForm Id="bbf0c1f83dfc42cb83db430178cfb5a8" XmlNodeBoundTo="Users" Name="Users" xmlns="clr-namespace:Skelta.Forms.Core.Controls;assembly:Skelta.Forms.Core" xmlns:R="clr-namespace:System;assembly:mscorlib" xmlns:x="http://uri.skelta.com/default/serializer">
+  <ScriptCode><![CDATA[]]></ScriptCode>
+  <Controls>
+    <TextInput MaxLength="250" DisplayInLookup="True" IsMandatory="True" XmlNodeBoundTo="@Title" Name="Title" Id="_sys_users_title" />
+    <TextInput PersistPassword="True" EncryptionMode="SkeltaListType" TextMode="Password" MaxLength="50" DisplayInLookup="True" IsMandatory="True" XmlNodeBoundTo="@Password" Name="Password" Id="_sys_users_password" />
+    <TextInput MaxLength="2048" DisplayInLookup="True" XmlNodeBoundTo="@Description" Name="Description" Id="_sys_users_desc" />
+    <TextInput MaxLength="50" DisplayInLookup="True" XmlNodeBoundTo="@Email" Name="Email" Id="_sys_users_email" />
+    <TextInput MaxLength="50" DisplayInLookup="True" XmlNodeBoundTo="@Department" Name="Department" Id="_sys_users_department" />
+    <LookupInput SetDataSource="_sys_manager_lookup" SetDataSourceValues="4f81736f-821f-47e3-a20a-2eedd337cda4" RenderDropDownControl="True" BoundToTableField="Manager" DisplayInLookup="True" XmlNodeBoundTo="@Manager" Name="Manager" Id="_sys_users_manager">
+      <BoundToTableFieldType>
+        <x:type typename="System.Guid" />
+      </BoundToTableFieldType>
+    </LookupInput>
+    <TextInput MaxLength="50" DisplayInLookup="True" XmlNodeBoundTo="@Role" Name="Role" Id="_sys_users_role" />
+    <TextInput MaxLength="50" DisplayInLookup="True" XmlNodeBoundTo="@MobilePhoneProvider" Name="Mobile Phone Provider" Id="_sys_users_smsprovider" />
+    <TextInput MaxLength="20" DisplayInLookup="True" XmlNodeBoundTo="@SMSNumber" Name="SMS Number" Id="_sys_users_smsnumber" />
+    <TextInput MaxLength="50" DisplayInLookup="True" XmlNodeBoundTo="@IMID" Name="IM ID" Id="_sys_users_imid" />
+  </Controls>
+</BaseForm>

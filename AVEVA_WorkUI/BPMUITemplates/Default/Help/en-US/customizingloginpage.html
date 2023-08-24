@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Customizing the Log On Page </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h1 id="t602246" class="heading1">Customizing the Log On Page</h1>
+<p class="paragraph">You can customize the log in page of AVEVA Work Tasks.</p>
+<p class="paragraph">You can have your own log on page instead of AVEVA Work Tasks log on page. You can also use AVEVA Work Tasks product to customize your application.</p>
+<p class="procedureheading">Steps to customize the log on page</p>
+<ol class="step"><li class="step">Go to ..<b class="filepath">\AVEVA\Work Tasks\Web\BPMUITemplates\Default\Repository\Site&nbsp;folder</b>.</li><li class="step">Create your custom allows you to customize the login page.<p class="codeblock1">Open&nbsp;RepositoryList.aspx&nbsp;page. In that, under the &nbsp;javascript function named &quot;SetRepositoryValues (provtext, repo, instanceName, providerName,repositoryGuid)&quot; you can find the below code. This is for redirecting to default log on page&nbsp;[Login.aspx].</p>
+<p class="codeblock1">var winObj = window.open('Login.aspx?_repo='+repo+' &amp;_instanceName='+instanceName+</p>
+<p class="codeblock1">'&amp;_provtext='+provtext+'&amp;_prov='+providerName,winName,</p>
+<p class="codeblock1">'top=0,left=0,width='+strWidth+',height='+strHeight+',</p>
+<p class="codeblock1">location=0, status=1, scrollbars=0, resizable=yes');</p>
+<p class="stepinfo">To redirect to your custom login page, update the above code by replacing&nbsp;Login.aspx&nbsp;with your custom login page name and put your login page in the [AVEVA Work Tasks Installed Folder]\BPM.NET\Web\BPMUITemplates\Default\Repository\Site &nbsp;folder.</p>
+<p class="stepinfo">Example: If the Custom Login Page name is&nbsp;HRLogin.aspx, then the code will be updated as shown below.</p>
+<p class="codeblock1">var winObj = window.open('HRLogin.aspx?_ repo= '+repo+' &amp;_instanceName='+instanceName+' &amp;_provtext='+provtext+'&amp;_prov='+providerName,winName,'top=0,left=0,width='+strWidth+',height='+strHeight+',location=0, status=1, scrollbars=0, resizable=yes');       </p>
+</li><li class="step">Add the below code in the CS [codebehind] file of the custom login page to authenticate the user and to redirect to your home page<p class="stepinfo">You have to provide:</p>
+<ol class="substep"><li class="substep">Page you want to redirect (in this case it is &quot;HRHome.aspx&quot;).</li><li class="substep">UserName and Password of the user[ Make sure that user is available in your data source].</li></ol><p class="codeblock1">//On click of label HR in the screen shot shown above, this event will occur</p>
+<p class="codeblock1">protected void lbSiteAdmin_Click(object sender, EventArgs e)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">// To authenticate the specific User.</p>
+<p class="codeblock1">// The function takes in Username and password as parameters.</p>
+<p class="codeblock1">this.CreateUserContext(&quot;HRadmin&quot;, &quot;admin&quot;);//Username and Password values are //hardcoded here,you can pass these values from the login page</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">string redirectPageAfterLogin = &quot;HRHome.aspx&quot;;//specify the home page</p>
+<p class="codeblock1">Response.Write(&quot;&lt;script language='Javascript'&gt; location.href = '&quot; + redirectPageAfterLogin + &quot;';&lt;/script&gt;&quot;);</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">private void CreateUserContext(string username, string password)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">string applicationname, providerinstancename, providerinstancedisplayname, provider = &quot;&quot;;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">applicationname = Convert.ToString(Request.QueryString[&quot;_repo&quot;]);</p>
+<p class="codeblock1">providerinstancename = Convert.ToString(Request.QueryString[&quot;_instanceName&quot;]);</p>
+<p class="codeblock1">providerinstancedisplayname = Convert.ToString(Request.QueryString[&quot;_provtext&quot;]);</p>
+<p class="codeblock1">provider = Convert.ToString(Request.QueryString[&quot;_prov&quot;]);</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">Response.Cookies[&quot;_instanceName&quot;].Value = providerinstancename;</p>
+<p class="codeblock1">Response.Cookies[&quot;_repo&quot;].Value = applicationname;</p>
+<p class="codeblock1">Response.Cookies[&quot;_provtext&quot;].Value = providerinstancedisplayname;</p>
+<p class="codeblock1">Response.Cookies[&quot;_prov&quot;].Value = provider;</p>
+<p class="codeblock1">//Response.Cookies[&quot;_userinfo&quot;].Value = &quot;John Smith&quot;;</p>
+<p class="codeblock1">Response.Cookies[&quot;_userinfo&quot;].Value = username;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(applicationname);</p>
+<p class="codeblock1">Skelta.Entity.Entity userEntity = Skelta.Entity.Entity.GetEntity(application, &quot;UserEntity&quot;);</p>
+<p class="codeblock1">object userUniqueIdentifier = userEntity.DataBridge.DataBridgeProviders[providerinstancename].GetUniqueIdentifier(username, password);</p>
+<p class="codeblock1">//Getting user context</p>
+<p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext(userUniqueIdentifier,</p>
+<p class="codeblock1">application, providerinstancename, &quot;&quot;, &quot;&quot;, false);</p>
+<p class="codeblock1">}</p>
+</li><li class="step">After making changes to the pages, now login to the application [From EC site]. This will redirect to your login page.</li><li class="step">Log on &nbsp;to your custom login page, this will redirect to the page which you had specified. In the above sample, when you click the label named HR, it will redirect to HRLogin.aspx.</li></ol><p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

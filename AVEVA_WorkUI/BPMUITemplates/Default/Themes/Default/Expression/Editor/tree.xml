@@ -1,0 +1,26 @@
+﻿<Tree>
+  <Node Text="Name of the Employee" Value="Name~string"  Category="1" />
+  <Node Text="Age of the Employee" Value="Age~numeric" Category="2" />
+  <Node Text="Email of the Employee" Value="Email~string" Category="3" />
+  <Node Text="Date of Joining" Value="DT~date" Category="4" />
+	<Node Text="Variables"  Category="Variables">
+		<Node Text="Submitted By"  Category="SubmittedBy">
+			<Node Text="FirstName" />
+			<Node Text="LastName" />
+			<Node Text="UserID" />
+			<Node Text="IM1UserName" />
+      <Node Text="IM1Email1" />
+      <Node Text="IM2UserName" />
+      <Node Text="IM2Email2" />
+		</Node>
+	</Node>
+	<Node Text="Content"  Category="Content">
+		<Node Text="Content1" />
+		<Node Text="Content2" />
+		<Node Text="Content3" />
+	</Node>
+  <Node Text="Logged In User" Value="ADS"   Category="AdsUser">
+  </Node>
+  <Node Text="Build Expression" Value="BuildExp"  Category="5" />
+  <Node Text="Enter value" Value="inpVal~ent"  Category="6" />
+	</Tree>

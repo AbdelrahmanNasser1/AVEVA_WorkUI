@@ -1,0 +1,86 @@
+.glossymenu
+{
+	
+	overflow:auto;
+
+}
+
+.glossymenu a.menuitem{
+background: black url(../images/designerglossyback.gif) repeat-x bottom left;
+font: bold 12px "Lucida Grande", "Calibri", Verdana, Helvetica, sans-serif;
+color: white;
+display: block;
+position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+width: auto;
+padding: 4px 0;
+padding-left: 10px;
+text-decoration: none;
+}
+
+.glossymenu a.menuitem:visited, .glossymenu .menuitem:active{
+color: white;
+}
+
+.glossymenu a.menuitem .statusicon{ /*CSS for icon image that gets dynamically added to headers*/
+position: absolute;
+/*top: 5px;
+right: 5px;*/
+border: none;
+}
+
+.glossymenu a.menuitem:hover{
+background-image: url(../images/designerglossyback2.gif);
+}
+
+.glossymenu div.submenu{ /*DIV that contains each sub menu*/
+background-color:Transparent;/* white;*/
+}
+
+.glossymenu div.submenu ul{ /*UL of each sub menu*/
+list-style-type: none;
+margin: 0;
+padding: 0;
+
+}
+
+.glossymenu div.submenu ul li{
+/*border-bottom: 1px #CCCCCC;*/
+
+}
+
+.glossymenu div.submenu ul li a{
+display: block;
+font: normal 12px "Lucida Grande", "Calibri", Verdana, Helvetica, sans-serif;
+color: black;
+text-decoration: none;
+padding: 2px 0;
+padding-left: 10px;
+}
+
+.glossymenu div.submenu ul li a:hover{
+background: #DFDCCB;
+color: white;
+}
+
+.menuitemmouseout{
+display: block;
+font: normal 12px "Lucida Grande", "Calibri", Verdana, Helvetica, sans-serif,bold;
+color: #494949;/*#F1F1F1;*/
+text-decoration: none;
+}
+
+.menuitemmouseover
+{
+font: normal 12px "Lucida Grande", "Calibri", Verdana, Helvetica, sans-serif;
+background: #EDEDED;/*#DFDCCB;*/
+color:#494949;
+text-decoration: none;
+}
+
+.fdtoolbartitle
+{
+	font: normal 12px "Lucida Grande", "Calibri", Verdana, Helvetica, sans-serif;
+	color:#000000;
+	text-decoration: none;
+
+}

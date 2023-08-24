@@ -1,0 +1,25 @@
+<?xml version="1.0" ?> 
+<BAMData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<OverDue>
+		<Slot>
+			<Name>SomeName</Name>
+			<Value>SomeValue</Value>
+			<RuntimeValue>00</RuntimeValue>
+			<ThresholdValue>00</ThresholdValue>
+			<Reason>SomeReason</Reason>
+			<EventType>SomeType</EventType>	
+		</Slot>
+	</OverDue>
+	<KPI>
+		<Name>SomeName</Name>	
+		<KPIDP>
+			<Name>SomeName</Name>
+			<Value>SomeValue</Value>
+			<RuntimeValue>00</RuntimeValue>
+			<ThresholdValue>00</ThresholdValue>
+			<Reason>SomeReason</Reason>
+			<EventType>SomeType</EventType>	
+		</KPIDP>		
+	</KPI>		
+</BAMData>

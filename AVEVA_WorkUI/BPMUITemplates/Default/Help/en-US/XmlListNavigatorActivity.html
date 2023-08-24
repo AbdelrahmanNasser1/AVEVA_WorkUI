@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> List Navigator Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602003" class="heading3">List Navigator Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">The List Navigator activity is used to change the scope of the XML List XML variable during the workflow execution.</p>
+<p class="subheading">Usage Scenario</p>
+<p class="paragraph">Telematics Project Managers can submit ad hoc requests for list of overdue tasks assigned to all team members. The request triggers a workflow that goes through every item in the Task List to build a report of tasks with overdue status.</p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">The List Navigator activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking the Activity Properties tool in the tool bar or by selecting the appropriate option from the right-click menu for the List Navigator activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f187146" src="187146.png" alt="" height="687" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong> </p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><strong class="strong">Name</strong> - This property can be used to specify a name for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Display Name</b> - This property specifies the name to be displayed for the activity in the Web Work Item List. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set if the display name is already configured in the Actions.xml. The name entered here overrides any display name that is configured for this activity in the Actions.xml file.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration </strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">XMLVariable of List Type</b> - This property is used to select the XML variable of List type (XML List). </p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> </p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the XMLVariable of List Type</p>
+<p class="paragraph">Select an XML variable from the XMLVariable of List Type drop-down list. </p>
+<p class="paragraph">See <a id="h187282" class="jump-currentwindowlive" title="XML List Navigator Activity - XMLVariable of List Type" href="XmlListNavigatorActivity-XmlVariableOfListType.html" target="_self">XML List Navigator Activity - XMLVariable of List Type</a> for a detailed description of the XMLVariable of List Type property window</p>
+<p class="paragraph">.</p>
+<p class="paragraph"><strong class="strong">List Name or ID</strong> - This property is used to specify the list name.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional </strong></p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the List Name</p>
+<ol class="step"><li class="step">To specify the list name, click edit button for the 'ListName' property to open the property window. </li><li class="step">In this window, enter the list name directly in the text editor. </li><li class="step">If you want to customize the list name, you can do so using the <b class="uicontrol">Field</b> controls to add workflow property values. For example, to select the XMLVariable. you can do as follows: Select &quot;XML Variables&quot;. Select the XML variable from where you want to fetch the list name and then select respective node which is expected to have the values from the drop downs for <b class="uicontrol">Field</b> and click <b class="uicontrol">Append</b>. This will add the placeholder for the XMLvariable after the text entered in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the list name. <p class="stepinfo"><br><img id="f187147" src="187147.png" alt="" height="162" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the list name, click <b class="uicontrol">Update</b> to save it. </li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the list name. </li><li class="step">Click <b class="uicontrol">Save</b> to save the XML variable in the<b class="uicontrol"> Activity Properties</b> window. </li></ol><p class="paragraph">See <a id="h194292" class="jump-currentwindowlive" title="List Navigator: List Name or ID" href="XmlListNavigatorActivity-ListNameOrID.html" target="_self">List Navigator: List Name or ID</a> for a detailed description of the List Name property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Folder Name</b> - Enter the folder name.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"> </p>
+<p class="paragraph"><b class="uicontrol">Scope</b> - This property allows you to change the scope of the XML variable during the workflow execution.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> </p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Scope</p>
+<ol class="step"><li class="step">Select the option from the <b class="uicontrol">Scope</b> drop-down list. </li><li class="step">If <b class="uicontrol">Current</b> option is selected, you can fetch the current item which was alerted in the workflow. </li><li class="step">If <b class="uicontrol">New</b> option is selected, you can add new item to the list. </li><li class="step">If <b class="uicontrol">List Query</b> option is selected, you can build the list query to fetch the items. <p class="stepinfo"></p>
+</li></ol><p class="paragraph"><b class="uicontrol">List Query</b> - This property is used to build the query for the list.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> </p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the List Query</p>
+<ol class="step"><li class="step">To build the list, click the edit button for the 'List Query' property to open the property window. </li><li class="step">You can also enter the query directly in the text editor. <p class="stepinfo"><strong class="notelabel">Note:</strong> While building query to fetch the items, you need to specify the table name with column name in a Where clause. For example, SKEUsers.Title=&quot;WonderwareSkeltaBPM&quot;;</p>
+</li><li class="step">You can also build the query using dynamic Query builder. </li><li class="step">Click the query builder icon to build the query. See List Navigator Activity - Query Builder for a detailed description of the List Query builder window. </li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text. </li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color. </li><li class="step">After adding the list name, click <b class="uicontrol">Update</b> to save it. </li><li class="step">Click <b class="uicontrol">Close</b> to close the window without saving the query. </li><li class="step">Click <b class="uicontrol">Save</b> to save the XML variable in the <b class="uicontrol">Activity Properties</b> window. </li></ol><p class="paragraph">See <a id="h187288" class="jump-currentwindowlive" title="List Navigator: List Query" href="xmllistnavigatoractivity-listquery.html" target="_self">List Navigator: List Query</a> for a detailed description of the List Query property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong> </p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The List Navigator Activity returns the following values -</p>
+<p class="paragraph"><strong class="strong">Action completed</strong>: Triggers this output when action is completed. </p>
+<p class="paragraph"><strong class="strong">List Item Not Found</strong>: This output will be given for the activity, when the list query specified does not return any items. </p>
+<p class="note"><strong class="notelabel">Note:</strong> <strong class="strong">Enable Errors Encountered Output</strong> property of <strong class="strong">List Navigator</strong> should be set as No to capture this output.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">These options of AVEVA AVEVA Work Tasks 2009 have now been integrated with <b class="uicontrol">Raise Error on Unhandled Linked Output</b> and <b class="uicontrol">Exception Email Template Configuration</b> in the latest version of the product.</p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected. </p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a> for more details.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="XmlListNavigatorActivity-XmlVariableOfListType.html" target="_self">XML List Navigator Activity - XMLVariable of List Type</a></p><p class="relateditem"><a href="XmlListNavigatorActivity-ListNameOrID.html" target="_self">List Navigator: List Name or ID</a></p><p class="relateditem"><a href="xmllistnavigatoractivity-listquery.html" target="_self">List Navigator: List Query</a></p><p class="relateditem"><a href="XmlListNavigatorActivity-QueryBuilder.html" target="_self">List Navigator: Query Builder</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

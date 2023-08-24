@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Configuring AttributeReadWrite Activity to Perform Write Operation </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602407" class="heading4">Configuring AttributeReadWrite Activity to Perform Write Operation</h4>
+<p class="paragraph">You can write entire UDA of array type to System Platform using a variable of array type within a workflow. However, unlike Read operation, you cannot write specific index of UDA of array type.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">To configure AttributeReadWrite activity to perform a write operation. </p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Drag-and-drop the AttributeReadWrite activity to the <strong class="strong">Process Designer</strong> page. </li><li class="step">Set the unique environment name from Expression Editor. </li><li class="step">Click the edit icon in the <strong class="strong">Attribute Operation</strong> property. <p class="stepresult">The <b class="windowtitle">Attribute Operation Configuration</b> window appears.         </p>
+</li><li class="step">Select <strong class="strong">Write</strong>, and then click <strong class="strong">OK</strong>. <p class="stepinfo"><strong class="strong">Authentication User Information</strong> and <strong class="strong">Verifier User Information</strong> is required only if the attribute requires a secure write. </p>
+</li><li class="step">Set the authentication information from <strong class="strong">Variable</strong>, content or XML variable. </li><li class="step">Select the desired <strong class="strong">Type </strong>from the drop-down list, and click <strong class="strong">Update</strong>. </li><li class="step">Select the attribute to which the write action needs to be performed in the <strong class="strong">Condition </strong>drop-down list. Using expression builder or a variable get the value. <p class="stepinfo">The variable and type can be added from <strong class="strong">Variables </strong>property in <strong class="strong">Start </strong>activity. </p>
+<p class="stepinfo">For write operation, the Galaxy Browser appears in the Condition drop-down list. The browser appears only if the workflow is designed in the IDE context. </p>
+<p class="stepresult">The <b class="windowtitle">Relative Reference</b> dialog box appears. This dialog box displays support for relative referencing. Except for Me, you must manually enter all other relative references. For more details about relative referencing, see <a id="h64640" class="jump-currentwindowlive" title="Relative Referencing" href="relativereferencing.html" target="_self">Relative Referencing</a>. </p>
+</li><li class="step">Create a link between the next activity based on the output options <strong class="strong">Attribute Write Success</strong> or <strong class="strong">Attribute Write Failure</strong>. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f191062" src="191062.png" class="embeddedimage100%scalinglive" alt="" height="129" width="349" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Publish the workflow. <p class="stepinfo">The workflow can be viewed in the <b class="windowtitle">Process Execution View</b> page. In the <strong class="strong">Execution View</strong>, the details of the Read/Write activity executed in a workflow appears in the <strong class="strong">Step Details</strong> tab. The <strong class="strong">Execution View</strong> page can be opened by double-clicking a top level row in any of the reports. The <strong class="strong">View </strong>represents the workflow up to the activity or execution status where the view is opened. </p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph">If any error occurs during Write operation, the error message will be logged with an appropriate error code generated from System Platform in the ArchestrA Logger.</p>
+<p class="paragraph">For more information about the error logs, see <i class="emphasis">MxStatusDetail ValuesSystem </i>under the section <i class="emphasis">Status and Error Codes</i> of the <i class="emphasis">MXAccess Toolkit User&#8217;s Guide</i> of <i class="emphasis">System Platform</i> documentation.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="ArchestrARWrite_1.html" target="_self">AttributeReadWrite Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

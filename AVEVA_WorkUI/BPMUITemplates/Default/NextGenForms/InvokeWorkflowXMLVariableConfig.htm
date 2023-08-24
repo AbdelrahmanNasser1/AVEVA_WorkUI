@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Invoke Workflow Overwrite Configuration</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject;
+        var configError = "";
+        var workflowName = "", workflowVersion = "", editPageVm, selectedXMLVariableOption = "";
+        var popupWindow = null;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                configError = skeltaUtils.getUrlParameterValue(window, 'ConfigError');
+                skeltaUtils.loadPageDefault();
+                loadWorkflowConfiguration();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFInvokeWFXMLVariableConfigPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormsNGFInvokeWFXMLVariableConfigPageError") + '\n' + exception.message);
+            }
+        });
+
+        function closeWorkflowConfig()
+        {
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").src = "";
+        }
+
+        function updateWorkflowDetails(inputParameterObject, eventArgs)
+        {
+            skeltaUtils.showLoader();
+            if (!skelta.utilities.isUndefined(viewModelObject.findById("_sys_Forms_XMLVariableConfig")))
+            {
+                selectedXMLVariableOption = viewModelObject.findById("_sys_Forms_XMLVariableConfig").value;
+                if (selectedXMLVariableOption != "")
+                {
+                    editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value = selectedXMLVariableOption;
+                }
+                else
+                {
+                    selectedXMLVariableEnteredValue = viewModelObject.findById("_sys_Forms_XMLVariableInput").value;
+                    editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value = selectedXMLVariableEnteredValue;
+                }
+            }
+            else
+            {
+                selectedXMLVariableEnteredValue = viewModelObject.findById("_sys_Forms_XMLVariableInput").value;
+                editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value = selectedXMLVariableEnteredValue;
+            }
+
+            $("#skloader").attr('data-skloader', 0);
+            closeWorkflowConfig();
+        }
+
+        function loadWorkflowConfiguration()
+        {
+            editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            var workflowDetails = editPageVm.topLevelForm.findByXmlNode("WorkflowWithVersion").value;
+            if (workflowDetails !== "")
+            {
+                var workflowAndVersion = workflowDetails.split("~");
+                workflowName = workflowAndVersion[0];
+                workflowVersion = workflowAndVersion[1];
+
+
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                    "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                    "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                    "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                    "workflowVersion": workflowVersion,
+                    "workflow": workflowName
+                });
+
+                skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetInvokeWorkflowXMLVariableConfigForm", "application/json; charset=utf-8", jsonHelper, "json", success, fail, function () { skeltaUtils.pageLoadComplete(""); }, false);
+            }
+            else
+            {
+                document.title = skelta.localize.getString("FormXMLVariableErrorTitle");
+                skeltaUtils.showAlert(document.title, skelta.localize.getString("FormsNGFXmlVariablePageValidation"), function () { parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0; });
+            }
+        }
+
+        function success(resultData)
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_WOC", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            document.getElementById("viewAndViewModel").value = resultData.d;
+            document.title = skelta.localize.getString("FormsNGFInvokeWFOverWriteConfigPageTitle");
+
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            if (editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value != "" && !skelta.utilities.isUndefined(viewModelObject.findById("_sys_Forms_XMLVariableConfig")))
+            {
+                updateDropdown(viewModelObject);
+            }
+            else
+            {
+                // Update xml variable text
+                if (editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value != "")
+                {
+                    viewModelObject.findByXmlNode("XmlVariableText").value = editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value;
+                }
+            }
+
+            viewModelObject.onSave.subscribeEvent(updateWorkflowDetails);
+            viewModelObject.onCancel.subscribeEvent(closeWorkflowConfig);
+        }
+
+        function updateDropdown(viewModel)
+        {
+            // check if variable dropdown has the variable coming from edit control xmlvariable properties
+            var variables = $(viewModel.findByXmlNode("XMLvariableConfig"))[0].options;
+            var dropdowncontainsVariable = variables.filter(function (t) { return t.optiontext == editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value; });
+            if (dropdowncontainsVariable.length > 0)
+            {
+                viewModel.findByXmlNode("XMLvariableConfig").value = editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value;
+            }
+            else
+            {
+                // Update xml variable text
+                viewModel.findByXmlNode("XmlVariableText").value = editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value;
+            }
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFInvokeWFXMLVariableConfigPageError"), null, result.status + '<br>' + result.statusText + '<br>' + result.responseText);
+            logger.logError(skelta.localize.getString("FormsNGFInvokeWFXMLVariableConfigPageError") + '\n' + result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

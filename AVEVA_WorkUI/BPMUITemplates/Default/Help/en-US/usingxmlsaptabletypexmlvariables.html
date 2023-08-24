@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using 'XML SAPTable' Type XML Variables </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601932" class="heading5">Using 'XML SAPTable' Type XML Variables</h5>
+<p class="paragraph">The XML SAPTable XML Variable has to be used in conjunction with the XML Iterator variable, For-Each Loop activity and Next Loop activity.</p>
+<p class="paragraph">This example illustrates how to retrieve records from the table 'KOT3522'.</p>
+<p class="paragraph">To achieve this, do the following steps:</p>
+<ol class="step"><li class="step">Design a workflow that has&nbsp;<b class="uicontrol">Start</b>&nbsp;activity,<b class="uicontrol">&nbsp;SAPTable Navigator</b>&nbsp;activity,&nbsp;<b class="uicontrol">For-Each Loop</b>&nbsp;activity, Next&nbsp;<b class="uicontrol">Loop</b>&nbsp;activity and&nbsp;<b class="uicontrol">Logger</b>&nbsp;activity.</li><li class="step">Right-click on&nbsp;<b class="uicontrol">Start</b>&nbsp;activity and then select&nbsp;<b class="uicontrol">Activity Properties</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">XMLVariables</b>&nbsp;property and then create a XML Variable of type&nbsp;<b class="uicontrol">XML SAPTable</b>&nbsp;called 'readTable' in&nbsp;<b class="uicontrol">Start</b>&nbsp;activity. See&nbsp;<a id="h50460" class="jump-currentwindowlive" title="Creating XML Variable of Type 'XML SAPTable'" href="creatingxmlvariableoftypexmlsaptable.html" target="_self">Creating &nbsp;XMLVariable of type 'XML SAPTable'</a>&nbsp;for more information.&nbsp;<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f50464" src="50464.png" class="embeddedimage100%scalinglive" alt="" height="474" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Create one more XML Variable of type<b class="uicontrol">&nbsp;XML Iterator</b>&nbsp;called 'tableRecords' to iterate through the records. </li><li class="step">Right-click the&nbsp;<b class="uicontrol">SAPTable Navigator</b>&nbsp;activity and select&nbsp;<b class="uicontrol">Activity Properties</b>.</li><li class="step">Select the XML Variable 'readTable' from&nbsp;<b class="uicontrol">XML Variable of SAPTable Type</b>&nbsp;property of<b class="uicontrol">&nbsp;SAPTable Navigator</b>&nbsp;activity.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>.</li><li class="step">Build a query using&nbsp;<b class="uicontrol">SAPTable Query</b>&nbsp;property of&nbsp;&nbsp;<b class="uicontrol">Navigator</b>&nbsp;activity. See&nbsp;<a id="h50467" class="jump-currentwindowlive" title="SAPTable Navigator Activity - SAPTable Query" href="saptablenavigatoractivity-saptablequery.html" target="_self">SAPTable Navigator Activity - SAPTable Query</a>&nbsp;for building a query.</li><li class="step">Select table fields from&nbsp;<b class="uicontrol">SAPTable Fields List</b>&nbsp;property. See&nbsp;SAPTable Navigator Activity - SAPTable Fields List&nbsp;for more information.</li><li class="step">Right-click the<b class="uicontrol">&nbsp;For-Each Loop</b>&nbsp;activity and then select&nbsp;<b class="uicontrol">Activity Properties</b>.</li><li class="step">Select the XML Iterator variable 'tableRecords' from&nbsp;<b class="uicontrol">XML Iterator</b>&nbsp;property of &nbsp;<b class="uicontrol">For-Each Loop</b>&nbsp;activity. See&nbsp;<a id="h50469" class="jump-currentwindowlive" title="ForEach-Loop Activity" href="foreachloopactivity.html" target="_self">For-Each Loop Activity</a>&nbsp;for more information.&nbsp;<p class="stepinfo"><br><img id="f50466" src="50466.jpg" class="embeddedimage100%scalinglive" alt="" height="636" width="430" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Right-click the&nbsp;<b class="uicontrol">Logger</b>&nbsp;activity and select&nbsp;<b class="uicontrol">Activity Properties</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">LogMessage</b>&nbsp;property and write the output to be displayed in the AVEVA Work Tasks Logger Console.</li><li class="step">You can see the output in&nbsp;<b class="uicontrol">Logger Console</b>. The output is stored in the XML Variable of type&nbsp;<b class="uicontrol">XML Iterator</b>. In this example, the output is stored in 'tableRecords' XML Variable.</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="introductiontoxmlsaptablexmlvariable.html" target="_self">Introduction to 'XML SAPTable' XML Variable</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

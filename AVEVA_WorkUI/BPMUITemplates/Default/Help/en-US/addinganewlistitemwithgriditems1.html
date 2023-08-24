@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Adding a New Grid Item to the Existing List Item </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t601928" class="heading6">Adding a New Grid Item to the Existing List Item</h6>
+<p class="paragraph"><strong class="strong">AVEVA Work Tasks</strong> allows you to add list items with grid items to the existing list item using XML variable. The Update Variable activity can be used to perform this task. An XML Iterator type XML variable should be created to add the grid items (child items) and the XML Navigator activity can be used to point to the grid. Also, you have to use the List Query property of List Navigator activity to build the query and to point to the list item to add a new grid.</p>
+<p class="paragraph">This can be explained through the scenario mentioned below.</p>
+<p class="paragraph">A list, Purchase Orders, has been created with the following fields.</p>
+<ul class="ulitem"><li class="ulitem">Reference Number</li><li class="ulitem">Purchase Order Date</li><li class="ulitem">Raised By User</li><li class="ulitem">Deliver To User</li><li class="ulitem">Status</li><li class="ulitem">Purchase Order Details<ul class="ulsubitem"><li class="ulsubitem">Item Name</li><li class="ulsubitem">Quantity</li><li class="ulsubitem">Unit Price</li></ul></li><li class="ulitem">Item Total</li><li class="ulitem">Total Purchase amount</li></ul><p class="paragraph">From the workflow, you have to add a grid item to a particular order say Reference No. 456789 in the Purchase Orders list.</p>
+<p class="procedureheading">To add a new grid item to the existing list item</p>
+<ol class="step"><li class="step">Login to the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;and go to&nbsp;<b class="uicontrol">Workflow Designer</b>. You need to create an XML List type XML variable for the Purchase Orders list. If the variable is not created, follow the below mentioned procedure to create it.</li><li class="step">Click the edit icon in the<b class="uicontrol">&nbsp;XMLVariables</b>&nbsp;property from the&nbsp;Start&nbsp;Activity Properties. The following screen is displayed. <br><br><img id="f50414" src="50414.png" class="embeddedimage100%scalinglive" alt="" height="435" width="548" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">New Variable</b>&nbsp;to add a new variable.</li><li class="step">Enter the variable name as&nbsp;purchaseorders.</li><li class="step">Select<b class="uicontrol">&nbsp;XML List</b>&nbsp;from the&nbsp;<b class="uicontrol">Type</b>&nbsp;drop-down list.</li><li class="step">Enter the List name or click the&nbsp;<img id="f50389" src="50389.png" class="embeddedimage100%scalinglive" alt="" height="32" width="34" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to select the list. In this case, select <b class="uicontrol">Purchase Orders </b>list. </li><li class="step">Select&nbsp;<b class="uicontrol">New</b>&nbsp;as the scope from the&nbsp;<b class="uicontrol">ListItem Scope Options</b>&nbsp;to point to a new item in the <b class="uicontrol">Purchase Orders</b> list. <br><br>&nbsp;<img id="f50416" src="50416.png" class="embeddedimage100%scalinglive" alt="" height="84" width="696" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Now you can see the XML nodes in a tree-view that are mapped to the controls while creating the list. You can also notice that the parent XML nodes and child XML nodes (PurchaseOrderDetails grid) are also displayed.</li><li class="step">Click&nbsp;<b class="uicontrol">Save Variable</b>. A message is displayed saying '<b class="uicontrol">Variable Updated'</b>. Close the window.</li><li class="step">Drag and drop&nbsp;List Navigator&nbsp;activity and select&nbsp;<b class="uicontrol">List Query</b>&nbsp;as the scope.</li><li class="step">Click edit icon in the&nbsp;<b class="uicontrol">List Query</b>&nbsp;property. The following screen is displayed. </li><li class="step">Click the&nbsp;&nbsp;icon to build the query for the list <b class="uicontrol">Purchase Orders</b>. The following screen is displayed. </li><li class="step">Select <b class="uicontrol">Purchase Orders</b> from the&nbsp;List Name&nbsp;drop-down list.</li><li class="step">Click&nbsp;<b class="uicontrol">Table</b>&nbsp;field to select the table.</li><li class="step">Select&nbsp;SKEListItemDataNV&nbsp;displayed on the top of the tree-view, since you are building a query for an item in the parent table. This will be displayed automatically in the text box.</li><li class="step">Click the&nbsp;<b class="uicontrol">Column</b>&nbsp;drop-down list.</li><li class="step">Select&nbsp;int1&nbsp;from the options as it is mapped to the Reference No field.</li><li class="step">Select the operator&nbsp;'<b class="uicontrol">='</b>&nbsp;from the&nbsp;Operator&nbsp;drop-down list.</li><li class="step">Select&nbsp;<b class="uicontrol">Value</b>&nbsp;from the&nbsp;Type&nbsp;drop-down list.</li><li class="step">Type&nbsp;'456789'&nbsp;in the text box.</li><li class="step">Select&nbsp;<b class="uicontrol">End</b>&nbsp;from the&nbsp;<b class="uicontrol">Condition</b>&nbsp;drop-down list to end the query.<p class="stepinfo"></p>
+<p class="stepresult"><img id="f50436" src="50436.png" class="embeddedimage100%scalinglive" alt="" height="241" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+<p class="stepresult"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Add</b>&nbsp;to add the condition in the text field.<p class="stepresult"><img id="f50437" src="50437.png" class="embeddedimage100%scalinglive" alt="" height="237" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Here, SKEListItemDataNV is the table name where the list has been stored and t1 this the internal name that has been used for the master table. If there is any child table also, it will display as t2. Int1 this the field name to which you want to point your XML variable and 6789 is the value for that field.</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>,&nbsp;and then click&nbsp;<b class="uicontrol">Close</b>.<p class="stepresult"></p>
+<p class="stepresult"><img id="f50438" src="50438.png" class="embeddedimage100%scalinglive" alt="" height="199" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Update</b>.</li><li class="step">If you want to add an item to the grid (in this case, if you want to add a Qualification grid item), use<b class="uicontrol"> XML Navigator</b> activity. XML Navigator can be used to point to an item in the grid (PurchaseOrderDetails in this case). For this purpose you need to create an XML Iterator type XML Variable. This can be created from the Start activity XML variable property.</li><li class="step">On the XML Variable screen, click&nbsp;<b class="uicontrol">New Variable</b>.</li><li class="step">Type the variable name as<span class="userinput"> purchaseorderdetails</span>.</li><li class="step">Select&nbsp;XML Iterator&nbsp;from the&nbsp;<b class="uicontrol">Type</b>&nbsp;drop-down list.</li><li class="step">Select&nbsp;purchaseorders&nbsp;from the&nbsp;XML <b class="uicontrol">Variable</b>&nbsp;drop-down list. Select the repeating node (Qualification) from the<b class="uicontrol">&nbsp;Node Select</b>&nbsp;drop-down list.</li><li class="step">Click&nbsp;<b class="uicontrol">Save Variable</b>. A message is displayed saying '<i class="messagephrase">Variable Updated</i>'. Close the window.</li><li class="step">Drag and drop&nbsp;XML Navigator&nbsp;activity.</li><li class="step">Select&nbsp;purchaseorderdetails&nbsp;from&nbsp;XML Iterator&nbsp;drop-down list. Select&nbsp;Yes&nbsp;from&nbsp;Create New Node&nbsp;properties to create a new node.</li><li class="step">Select the appropriate&nbsp;Location. The options available are:<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">First:</b> Navigates to the first record in the collection.</li><li class="ulsubitem"><b class="uicontrol">Last:</b> Navigates to the last record in the collection.</li><li class="ulsubitem"><b class="uicontrol">Next:</b> Navigates to the next record based on the current location.</li><li class="ulsubitem"><b class="uicontrol">Previous:</b> Navigates to the previous record based on current location.</li><li class="ulsubitem"><b class="uicontrol">Index:</b> Navigates to the record identified in the Index field.</li></ul></li><li class="step">Since we have to append the items in&nbsp;<b class="uicontrol">Purchase Order Details</b> grid, select the option as&nbsp;<b class="uicontrol">Last</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>.</li><li class="step">Drag and drop the&nbsp;<b class="uicontrol">Update Variable</b>&nbsp;activity to enter the grid field values.</li><li class="step">Click the edit icon in the&nbsp;<b class="uicontrol">Set Variables</b>&nbsp;property.</li><li class="step">Click&nbsp;<b class="uicontrol">Select</b>&nbsp;link and choose the respective field of the XML Iterator type XML Variable created for the list (in this case purchaseorderdetails), that is grid items. &nbsp;The fields displayed in the tree-view represent the XML nodes of the controls in the <b class="uicontrol">PurchaseOrderDetails</b> grid.<p class="stepresult"></p>
+<p class="stepresult"><img id="f50439" src="50439.png" class="embeddedimage100%scalinglive" alt="" height="184" width="261" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepresult"></p>
+</li><li class="step">Select a field for which you want to set the value from the tree-view. Enter the value for the field in the right-hand side text box. If you want to set the value, select 'enter a value' from the tree-view and then enter the value. Also, you can select variables or contents or any XML variables nodes directly by selecting the respective node from the tree-view. If you want to combine multiple node values, you can build an expression by selecting Build Expression. </li><li class="step">After setting the value for all the fields in the child item, click&nbsp;<b class="uicontrol">OK</b>. Now, a grid item will be added to the list while executing the workflow.<p class="note"><strong class="notelabel">Note:</strong> If you want to add multiple items, use XML Navigator and Update Variable for Iterator within the For-Next Loop activities.</p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="'XMLList'XMLVariableScenarios.html" target="_self">'XML List'  XML Variable Scenarios</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

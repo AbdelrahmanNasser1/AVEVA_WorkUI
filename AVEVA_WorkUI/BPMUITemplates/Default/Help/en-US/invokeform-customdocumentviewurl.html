@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Custom Document View URL </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601963" class="heading4">Invoke Form - Custom Document View URL</h4>
+<p class="paragraph">You can specify a message in the&nbsp;<b class="uicontrol">Custom Document View URL</b>&nbsp;for the Invoke Form activity in this property window. To access this window, click the edit button for the 'Custom Document View URL' property.</p>
+<p class="paragraph"><img id="f50554" src="50554.png" class="embeddedimage100%scalinglive" alt="" height="162" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Custom Document View URL</b>&nbsp;window has a text editor to enter the Custom Document View URL. You can &nbsp;either enter a URL directly in the text editor or use the following&nbsp;<b class="uicontrol">Field</b>&nbsp;controls to enter the URL:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Field Type</b>: Select the value type. You can specify SendTo, Variable, Content, or XMLVariables.</li><li class="ulitem"><b class="uicontrol">Field Text</b>: You can specify the actual value of the Redirect URL.  <br><br>The control display depends on the option selected in the first drop-down menu. For any type selected in the first drop-down menu, there will be another drop-down menu in the second field. The second drop-down will have the variable collection, content collection, or XMLVariables collection from which you can select an appropriate option to assign the Custom Document View URL.</li><li class="ulitem"><b class="uicontrol">Append</b>: Click this button to add the specified value, variable, or content to the text editor.</li></ul><p class="paragraph">For more details, see&nbsp;<a id="h50555" class="jump-currentwindowlive" title="Custom Document View URL" href="customdocumentviewurl.html" target="_self">Custom Document View URL</a>.</p>
+<p class="paragraph">Steps to set the Custom Document View URL property</p>
+<p class="subheading">Custom Document View</p>
+<p class="paragraph">Custom Document View can be viewed on the left side of the WorkItem Detail View page inside the frame as shown in the following image:</p>
+<p class="paragraph"><img id="f50557" src="50557.png" class="embeddedimage100%scalinglive" alt="" height="402" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">AVEVA Work Tasks allows you to provide a custom document view while using any human activities. This can be achieved by entering the proper URL for the Custom Document View URL property.</p>
+<p class="paragraph">By default, the custom document view for any human resource activity normally shows the item metadata which alerted the workflow.</p>
+<ol class="olitem"><li class="olitem">If the workflow is alerted due to a Enterprise Console event association, the document view shows the list item metadata that alerted the workflow. For example, if the workflow is alerted due to a workflow event association to a list, document view shows the list item that alerted the workflow.</li><li class="olitem">If the workflow is alerted due to a workflow association in Forms, the document view shows the form that alerted the workflow.</li></ol><p class="paragraph">You can change the document view, if required. If a URL is provided to the custom document view URL property, this is overridden with the default document view. If you want to show a different form in the Custom Document View, see&nbsp;<i class="emphasis">Custom Document View URL for Forms</i>.</p>
+<p class="paragraph">Any URL can be provided to this property and it can be a URL to your custom page also.</p>
+<p class="subheading">Custom Document View URL for Forms</p>
+<p class="paragraph">If the workflow is alerted due to a workflow association in forms, the document view shows the form that alerted the workflow.  AVEVA Work Tasks supports the following URL with parameters. You can pass the parameters based on the requirement. Do not enter any internet links.</p>
+<p class="paragraph"><strong class="strong">Use the following URL with respective parameters to show any forms:</strong></p>
+<p class="paragraph">http://&lt;%ApplicationPath%&gt;/BPMUITemplates/Default/SkeltaForms/FormDocumentView.aspx?FormName=&lt;Form Name&gt;&amp;FormVersion=&lt;Form Version&gt;&amp;FormInstanceXmlVariable=&lt;Xml Variable Name&gt;</p>
+<p class="paragraph"><strong class="notelabel">Note:</strong> Remove the extra spaces between 'http:' and '//&lt;%ApplicationPath%&gt;', if any.</p>
+<ul class="ulitem"><li class="ulitem">FormName: Name of the form to be loaded in document view.</li><li class="ulitem">FormVersion: Version of the form to be loaded. By default the latest published version will be loaded. This parameter need to be used only if a specific version has to be loaded.</li><li class="ulitem">FormInstanceXMLVariable: XML variable name which is to be used for populating the form. If this parameter is not passed, SFFormData XML Variable will be considered as default.</li></ul><p class="paragraph"><strong class="strong">Example:</strong></p>
+<p class="paragraph">For showing any form and populate data from XML variable, pass the following parameters in query string provided both having same XML schemas.</p>
+<p class="paragraph">FormName=&lt;Form Name&gt;&amp; FormInstanceXmlVariable=&lt;Xml Variable Name&gt;</p>
+<p class="paragraph">Sample URL:</p>
+<p class="paragraph">http://&lt;%ApplicationPath%&gt;/BPMUITemplates/Default/SkeltaForms/FormDocumentView.aspx?FormName=Leave Report&amp;FormInstanceXmlVariable=LeaveReportxml</p>
+<p class="paragraph">When the workflow is executed, the <b class="uicontrol">Custom Document View</b> of the specified form populated using XML variable is displayed in the Work Item detail View page.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformactivity.html" target="_self">Invoke Form Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

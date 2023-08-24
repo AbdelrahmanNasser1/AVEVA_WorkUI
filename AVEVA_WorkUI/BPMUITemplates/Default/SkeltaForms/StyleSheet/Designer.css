@@ -1,0 +1,42 @@
+﻿@font-face {
+    font-family: "Roboto";
+    src: url("../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.sfd_addnew
+{
+	border-top-style: outset;
+	border-right-style: outset;
+	border-left-style: outset;
+	background-color: #ffcc66;
+	border-bottom-style: outset;
+}
+.sfd_fieldtitle
+{
+	font-size: 9px;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.sfd_addnewtitle
+{
+	font-size: 12px;
+	font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+	font-weight:bold; 
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Escalation Tab </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t482963" class="heading4">Escalation Tab</h4>
+<p class="paragraph">Click the&nbsp;<b class="uicontrol">Escalation</b>&nbsp;tab to open the window for setting escalation properties.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">Escalation</b>&nbsp;tab of the&nbsp;<b class="uicontrol">Queue Management</b>&nbsp;window:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46724" src="46724.png" class="embeddedimage100%scalinglive" alt="" height="378" width="497" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">This window displays escalations that have already been set in a grid. The details displayed include the escalation stage, time interval, whether the escalation should recur or not, and the escalation type. You can click on the&nbsp;<b class="uicontrol">Add Escalation</b>&nbsp;button to add a new escalation. This will open the window shown below, where you can specify the escalation settings.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46725" src="46725.png" class="embeddedimage100%scalinglive" alt="" height="418" width="566" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">You can specify the name of the Workflow corresponding to the queue. Next specify the stage in the queue at which the escalation should be triggered. You can select these two options from the respective drop down. Now, enter the Escalation Time Interval in the corresponding field. Select the Recurrence check box to set the escalation to recur.</p>
+<p class="paragraph">After specifying the escalation settings, you need to specify and configure the escalation type using the controls under Escalation Types. The following check boxes corresponding to the different escalation types are available for selection:</p>
+<ul class="ulitem"><li class="ulitem">Reminder Message</li><li class="ulitem">Notification</li><li class="ulitem">Move To Different Queue</li><li class="ulitem">Reassign</li><li class="ulitem">Trigger Escalate Output</li><li class="ulitem">Call a Workflow</li><li class="ulitem">Put Back In Queue</li><li class="ulitem">Trigger action output &quot;TimeOut for Queue Task&quot;</li></ul><p class="paragraph">The options that can be accessed depend on the Queue stage selected earlier. For example, if the Queue stage selected is &#8220;Queue Item Created&#8221; then the options available are Notification, Move To Different Queue, Trigger Escalate Output, and Call a Workflow.</p>
+<p class="paragraph"><b class="uicontrol">Reminder Message:</b> To set the Reminder Message, click on the corresponding check box to select it and then click on the&nbsp;<b class="uicontrol">Set Properties</b>&nbsp;button. This opens the window shown below.</p>
+<p class="paragraph"><b class="uicontrol">Notification:</b> To set the Notification escalation type, click on the corresponding check box to select it. Then click on the&nbsp;<b class="uicontrol">Set Properties</b>&nbsp;button to set the properties. This opens the following window:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46726" src="46726.jpg" class="embeddedimage100%scalinglive" alt="" height="178" width="564" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

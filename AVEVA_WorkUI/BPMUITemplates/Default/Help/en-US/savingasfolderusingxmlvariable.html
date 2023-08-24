@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating a New Folder Using Xml Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t601926" class="heading6">Creating a New Folder Using Xml Variable</h6>
+<p class="paragraph">If your list is version enabled, you can save the item into a folder using System Internal variables. This can be done at the time of setting the value for <b class="uicontrol">Update Variable</b> activity.</p>
+<p class="paragraph">Assume that you need to create a folder in Workflows list which is version enabled. </p>
+<p class="procedureheading">To create a new folder using XML Variable</p>
+<ol class="step"><li class="step">Right-click the Start activity and select <b class="uicontrol">Activity Properties</b> from the options. </li><li class="step">Click the edit icon in the <b class="uicontrol">XMLVariable</b>s field. The following screen is displayed.<p class="stepinfo"><img id="f181546" src="181546.png" alt="" height="492" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">For the version enabled list, you can see the list of schema in a tree-view under<b class="uicontrol"> System:Internal</b>. Nodes include Save As NextVersionAsDraft, NextVersionAsPublished, <b class="uicontrol">AsFolder </b>and so on. </li><li class="step">Drag and drop <b class="uicontrol">Update Variable</b> activity. Click the edit icon in the Set Variables field. </li><li class="step">Click the <b class="uicontrol">Select</b> link and then click the drop-down that appears. <br><img id="f181547" src="181547.png" alt="" height="290" width="539" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Assume that you want to save the item <b class="uicontrol">Description</b> as a folder with the folder name as 'AVEVA Work Tasks'. So, select <b class="uicontrol">Description</b> from the tree-view and enter the value as 'AVEVA Work Tasks' in the right-hand side text box. <br><img id="f181548" src="181548.png" alt="" height="210" width="546" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">To save this item as folder, click the drop-down. </li><li class="step">Select<b class="uicontrol"> AsFolder</b> from the <b class="uicontrol">SaveAs</b> options under System:Internal. </li><li class="step">Then enter the value as 'True'<p class="stepinfo"><img id="f181549" src="181549.png" alt="" height="314" width="539" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click <b class="uicontrol">OK</b>. This will update the item <b class="uicontrol">Description</b> and also will create a folder with the name 'Manager'. <p class="note"><strong class="notelabel">Note:</strong> Folder names should not have special characters like such as, :, &quot;, \, \, &quot; &quot;, ', &lt;, &gt;, ;, |, *, /, {, }, and ?.</p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="'XMLList'XMLVariableScenarios.html" target="_self">'XML List'  XML Variable Scenarios</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

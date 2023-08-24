@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Linking Activities by Clicking and Linking </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46531" class="heading3">Linking Activities by Clicking and Linking</h3>
+<p class="paragraph">Two activities can be linked by clicking on one and dragging and dropping the connector on the other.</p>
+<p class="procedureheading">To link two activities in this way:</p>
+<ol class="step"><li class="step">Click on the icon of the first activity to be linked.<p class="stepinfo">This will display a red box with arrows radiating on all sides as shown. As you move the mouse cursor away from the activity icon you will find a connector line following the mouse movement.&nbsp;<br>&nbsp;<img id="f47343" src="47343.jpg" class="embeddedimage100%scalinglive" alt="" height="283" width="116" vspace="0" hspace="0" align="bottom" border="0"><br>Origin of the link selected</p>
+</li><li class="step">Now, place the cursor over the icon of the second activity to be linked and click the mouse button. This will attach the connector line starting from the first activity to the second activity completing the link between them.&nbsp;<br>&nbsp;<img id="f47344" src="47344.jpg" class="embeddedimage100%scalinglive" alt="" height="283" width="109" vspace="0" hspace="0" align="bottom" border="0"><br>Terminus of the link selected</li><li class="step">You can click the connector line to configure the link.&nbsp;<br>&nbsp;<img id="f47345" src="47345.jpg" class="embeddedimage100%scalinglive" alt="" height="277" width="133" vspace="0" hspace="0" align="bottom" border="0"><br>Link completed</li></ol><p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

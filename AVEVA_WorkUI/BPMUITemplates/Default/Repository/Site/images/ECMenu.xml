@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LeftMenu>
+	<Menu>
+		<menuID>1</menuID>
+		<DisplayName>Process Management</DisplayName>
+		<NavigateTo>Default.aspx#</NavigateTo>
+		<ParentMenu>0</ParentMenu>
+		<ImageIcon></ImageIcon>
+	</Menu>
+
+	<Menu>
+		<menuID>2</menuID>
+		<DisplayName>Process Documents</DisplayName>
+		<NavigateTo>Test.aspx</NavigateTo>
+		<ParentMenu>1</ParentMenu>
+		<ImageIcon>images/li.png</ImageIcon>
+	</Menu>
+
+	<Menu>
+		<menuID>3</menuID>
+		<DisplayName>New Category</DisplayName>
+		<NavigateTo>Test2.aspx</NavigateTo>
+		<ParentMenu>1</ParentMenu>
+		<ImageIcon>images/li.png</ImageIcon>
+	</Menu>
+
+	<Menu>
+		<menuID>4</menuID>
+		<DisplayName>Process automation</DisplayName>
+		<NavigateTo>Default.aspx#</NavigateTo>
+		<ParentMenu>0</ParentMenu>
+		<ImageIcon></ImageIcon>
+	</Menu>
+
+	<Menu>
+		<menuID>5</menuID>
+		<DisplayName>New Workflow</DisplayName>
+		<NavigateTo>Test.aspx</NavigateTo>
+		<ParentMenu>4</ParentMenu>
+		<ImageIcon>images/li.png</ImageIcon>
+	</Menu>
+
+	<Menu>
+		<menuID>6</menuID>
+		<DisplayName>Test This</DisplayName>
+		<NavigateTo>Default.aspx#</NavigateTo>
+		<ParentMenu>0</ParentMenu>
+		<ImageIcon></ImageIcon>
+	</Menu>
+	<Menu>
+		<menuID>7</menuID>
+		<DisplayName>Test This</DisplayName>
+		<NavigateTo>Test.aspx</NavigateTo>
+		<ParentMenu>6</ParentMenu>
+		<ImageIcon>images/li.png</ImageIcon>
+	</Menu>
+</LeftMenu>

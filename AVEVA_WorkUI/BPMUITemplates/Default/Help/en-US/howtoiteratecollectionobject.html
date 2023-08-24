@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Iterate Collection Object? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602008" class="heading3">How to Iterate Collection Object?</h3>
+<p class="paragraph">This example illustrates how to iterate a collection object. It is possible to persist an object's state in a long running workflow by using variables of type <b class="uicontrol">Object</b>. In some scenarios, complex objects may be a collection of other complex objects. Here, one may be required to iterate through the collection to get the desired object. </p>
+<p class="paragraph">For example, EmployeeCollection object returned from a WCF Service contains collection of an employee object. To get all the information of an employee, you are required to iterate through the employee collection. </p>
+<p class="paragraph">This can be done by collective use of some AVEVA Work Tasks activities as described below. It shows how one can iterate through the collection object in a AVEVA Work Tasks workflow. This enhances the capability of holding the collection object in variables of Object type and iterating through the collection for using the items in the collection object.</p>
+<p class="paragraph"><strong class="strong">Scenario</strong></p>
+<p class="paragraph">Employee collection object, which is returned from WCF Service, is to be iterated for displaying employee information.</p>
+<p class="procedureheading">Steps to design the scenario</p>
+<ul class="ulitem"><li class="ulitem">Create a class with Employee object collection. <p class="note"><strong class="notelabel">Note:</strong> You can make use of an existing class to achieve the scenario.</p>
+</li></ul><p class="paragraph"><b class="uicontrol">Employee class</b>: Holds the employee information.</p>
+<p class="paragraph"><b class="uicontrol">EmployeeCollection class</b>: Holds the Employee object collection i.e., collection of employee information.</p>
+<p class="note"><strong class="notelabel">Note:</strong> Only the objects that can be serialized are persisted in long running workflows. Objects that need to be stored in the AVEVA Work Tasks variables should be marked as Serializable.</p>
+<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Linq;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1">namespace Demo</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">[Serializable]</p>
+<p class="codeblock1">public class Employee</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">string _name = string.Empty;</p>
+<p class="codeblock1">int _age = 0;</p>
+<p class="codeblock1">string _employeeId = string.Empty;</p>
+<p class="codeblock1">public string Name</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get {return _name ;}</p>
+<p class="codeblock1">set { _name = value;}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public int Age</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _age; }</p>
+<p class="codeblock1">set { _age = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public string EmployeeId</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _employeeId; }</p>
+<p class="codeblock1">set { _employeeId = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public Employee()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public Employee(string Name, int Age, string EmployeeId)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">this._employeeId = EmployeeId;</p>
+<p class="codeblock1">this._age = Age;</p>
+<p class="codeblock1">this._name = Name;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public Employee GetEmployee()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return this;</p>
+<p class="codeblock1">} </p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">[Serializable]</p>
+<p class="codeblock1">public class EmployeeCollection</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">List&lt;Employee&gt; employeeList = new List&lt;Employee&gt;();</p>
+<p class="codeblock1">public EmployeeCollection() </p>
+<p class="codeblock1">{ </p>
+<p class="codeblock1">this.employeeList.Add(new Employee(&quot;Kevin&quot;,30,&quot;SK001&quot;));</p>
+<p class="codeblock1">this.employeeList.Add(new Employee(&quot;Albert&quot;,30,&quot;SK002&quot;));</p>
+<p class="codeblock1">this.employeeList.Add(new Employee(&quot;Jim&quot;,30,&quot;SK003&quot;));</p>
+<p class="codeblock1">this.employeeList.Add(new Employee(&quot;Jo&quot;,30,&quot;SK004&quot;));</p>
+<p class="codeblock1">this.employeeList.Add(new Employee(&quot;Roger&quot;,30,&quot;SK005&quot;));</p>
+<p class="codeblock1">this.employeeList.Add(new Employee(&quot;John&quot;,30,&quot;SK006&quot;)); </p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public List&lt;Employee&gt; GetEmployees()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">return this.employeeList;</p>
+<p class="paragraph">} </p>
+<p class="paragraph">}</p>
+<p class="paragraph">}</p>
+<ul class="ulitem"><li class="ulitem">Use the code given above to create an assembly. </li><li class="ulitem">Place the assembly in SOA folder, and register the assembly in SOA Assemblies. </li><li class="ulitem">Create object instances for <b class="uicontrol">Employee</b> and <b class="uicontrol">EmployeeCollection</b> class in the SOA property editor. </li></ul><p class="paragraph"><img id="f187384" src="187384.png" alt="" height="346" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f187387" src="187387.png" alt="" height="344" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulitem"><li class="ulitem">Create variables in the Start action. </li></ul><p class="paragraph"><img id="f187385" src="187385.png" alt="" height="310" width="485" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Variable description</strong></p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">count</b>: To keep track of the iteration </li><li class="ulsubitem"><b class="uicontrol">EmployeeObject</b>: To store the employee details </li><li class="ulsubitem"><b class="uicontrol">loopcount</b>: Total number of times the loop needs to be executed </li></ul><ul class="ulitem"><li class="ulitem">Add an <b class="uicontrol">Update Variable</b> activity next to the <b class="uicontrol">Start</b> activity. This activity is used to update the <b class="uicontrol">loopcount</b> variable for the total number of times the <b class="uicontrol">EmployeeCollection</b> object is to be iterated. <img id="f187386" src="187386.png" alt="" height="260" width="560" vspace="0" hspace="0" align="bottom" border="0"></li><li class="ulitem">Total count can be derived from the<b class="uicontrol"> EmployeeCollection</b> object listed in the expression editor. As the GetEmployees() method returns the collection, you can get the total count of the collection from here. </li></ul><p class="paragraph"><strong class="strong">Sample Code</strong></p>
+<p class="codeblock1">EmployeeCollection.GetEmployees().Count - 1; //Get the actual count of the items in the collection object. Subtracting one from it will give the actual loop count required.</p>
+<p class="paragraph"><img id="f187388" src="187388.png" alt="" height="216" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulitem"><li class="ulitem">Drag and drop the For-Loop activity from the Engine activities.</li></ul><p class="paragraph"><img id="f187389" src="187389.png" alt="" height="364" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<ul class="ulitem"><li class="ulitem">Drag and drop the Logger activity next to the SOA Execute activity. This is done to display the employee information each time when the object is updated to the variable. </li></ul><p class="paragraph"><img id="f187390" src="187390.png" alt="" height="440" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Sample code</strong></p>
+<p class="codeblock1">((Demo.Employee)Variable.EmployeeObject).Name;</p>
+<p class="paragraph"><b class="uicontrol">Variable EmployeeObject</b> holds the employee information. In order to get the property of the object we need to type cast to the proper object type. i.e., the Employee object, Demo.Employee.</p>
+<ul class="ulitem"><li class="ulitem">Place the<b class="uicontrol"> Next Loop</b> activity to iterate through the next item in the collection. </li><li class="ulitem">Execute the workflow. </li><li class="ulitem">During execution, the workflow gets the EmployeeCollection object and iterates through the items, and prints the employee name in the logger. </li></ul><p class="paragraph"><img id="f187391" src="187391.png" alt="" height="699" width="566" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Using this, it is possible to persist complex objects in the workflow and iterate through the collection object to get an item from it.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="IntegrationActivities.html" target="_self">Integration Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

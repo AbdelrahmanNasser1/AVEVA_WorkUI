@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Different Email Template for Different Activity in a Workflow </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t602067" class="heading2">Different Email Template for Different Activity in a Workflow</h2>
+<p class="paragraph">Each Human activity like Approval, Choice, Checklist and Task Activity can have its own email template that will be sent to an actor.</p>
+<p class="paragraph"><strong class="strong">Example:</strong></p>
+<p class="paragraph">Let us assume that a workflow has two&nbsp;<b class="uicontrol">Approval</b>&nbsp;activities and the mail format sent from Approval Activity1 is different from that of Approval Activity2.</p>
+<p class="paragraph">To achieve the same, AVEVA Work Tasks introduced a category&nbsp;<b class="uicontrol">Mail Channel</b>&nbsp;in the Activity Properties of the Human activity, to have different formats for different activities.</p>
+<p class="paragraphimage"><img id="f488360" src="488360.png" alt="Different Email Template for Different Activity in a Workflow" height="750" width="600" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="approvalactivityhtmltemplatepropertycontents.html" target="_self">Using 'HTML Template' Property of Approval Activity</a></p><p class="relateditem"><a href="usinghtmltemplatepropertyofchoiceactivity.html" target="_self">Using 'HTML Template' Property of Choice Activity</a></p><p class="relateditem"><a href="usinghtmltemplatepropertyofcheck-listactivity.html" target="_self">Using 'HTML Template' Property of Checklist Activity</a></p><p class="relateditem"><a href="usinghtmltemplatepropertyoftaskactivity.html" target="_self">Using 'HTML Template' Property of Task Activity</a></p><p class="relateditem"><a href="usinghtmltemplatepropertyofinformationactivity.html" target="_self">Using 'HTML Template' Property of Information Activity</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

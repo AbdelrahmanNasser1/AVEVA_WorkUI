@@ -1,0 +1,907 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Individual actor's response collaboration in Output Instance XML </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601959" class="heading4">Invoke Form - Individual actor's response collaboration in Output Instance XML</h4>
+<p class="paragraph">You can use this property to collaborate with an individual actor's responses in the Invoke Form activity. You can configure this property only when the activity has multiple actors and you want to store the individual actor's responses as a collection in an Output Instance XML.&nbsp;When you use this property, the entire OutputXML is not updated. Only the nodes specified in the&nbsp;Collaboration/Individual Response Node&nbsp;is copied to the&nbsp;All Actors Responses Node&nbsp;of the Output instance XML.</p>
+<p class="paragraph"></p>
+<p class="paragraph">The following image shows the input fields of the collaboration mode property:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50925" src="50925.png" class="embeddedimage100%scalinglive" alt="" height="266" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">If the Invoke Form Activity is not configured in collaboration mode, and if the task is assigned to multiple users, then only the submission changes made by the last user will be considered.</p>
+<p class="paragraph">Inputs for&nbsp;Collaboration/Individual Response Node&nbsp;and&nbsp;All Actors Responses Node&nbsp;must be either a base form or a panel form with XML node.&nbsp;You need to set&nbsp;Collaboration/Individual Response&nbsp;Node, which is the node used to capture the response of individual user. Also&nbsp;All Actors Responses&nbsp;Node&nbsp;is the node in the output instance XML to which the individual response node will be appended.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to capture the Individual Actor's response collaboration in Output Instance XML</p>
+<ol class="step"><li class="step">Click the edit button corresponding to Individual actor's response collaboration in Output Instance XML. <p class="stepinfo">The Invoke Form-AdvancedResponseStorage dialog box appears.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f194435" src="194435.png" class="embeddedimage100%scalinglive" alt="" height="267" width="546" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">In the Collaboration/Individual Response Node, select the node in the form which will be used to capture the response of the user.</li><li class="step">You can edit only the controls of the selected node. All the other controls will be read-only. </li><li class="step">In the All Actors Responses Node, select the node in the output instance XML to which the above selected response node is to be appended.</li><li class="step">Click OK.</li></ol><p class="paragraph">Note: You can even include a User control to capture the User ID by default. This can be either visible or invisible to the end-user. To create a user control in the Form, you will have to populate the logged in user value in a form to a hidden control, so that in a workflow, a decision action can be performed based on the user who has filled the form.</p>
+<p class="subheading">Example scenario:</p>
+<p class="paragraph">The Telematics Company allows its employees to post articles. The articles posted can be viewed by a group of users defined in the workflow and these users can leave their comments on the article. These article viewers can also view the comments provided by others.</p>
+<p class="paragraph">To achieve this, the user has to go through six steps. For each step, the respective XML file name with code is given below, which you can use.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="notelabel">Note:</strong></p>
+<p class="paragraph">1. In this scenario, we have used the repository with AVEVA Work Tasks List as the user provider.</p>
+<p class="paragraph">2. Create XML files with the same filename as given below. Place all the files in a single folder for ease of use.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Create a list of users in the User's list with the group name 'ArticleSubscribers'.<ol class="substep"><li class="substep">In the&nbsp;Enterprise Console, click the&nbsp;Menu&nbsp;button, click&nbsp;Settings, and then click&nbsp;Users. The&nbsp;Users&nbsp;page appears.</li><li class="substep">Create some users with&nbsp;ArticleSubscribers&nbsp;as their role.</li></ol></li><li class="step">Create a List to store the submitted articles.<ol class="substep"><li class="substep">In the&nbsp;Enterprise Console, click the&nbsp;Menu&nbsp;button, click&nbsp;Tools, and then click&nbsp;Manage List. The&nbsp;Manage List&nbsp;page appears.</li><li class="substep">Create a new list named&nbsp;Telematics Article&nbsp;to store the submitted articles.</li><li class="substep">Click on&nbsp;Save &amp;&nbsp;Continue&nbsp;to go to the&nbsp;Select Table&nbsp;page.</li><li class="substep">Select the&nbsp;Generic Table&nbsp;option.</li><li class="substep">Click&nbsp;Next&nbsp;to go to the List Designer.</li><li class="substep">Import the list definition from&nbsp;Telematics Article List.xml&nbsp;using Import menu option in the List Designer.</li><li class="substep">Click&nbsp;Submit,&nbsp;to generate a default form for the list.</li><li class="substep">Click&nbsp;Yes,&nbsp;to edit the default form which is generated. To change the look and feel of this default form, import the Telematics Article_ListForm.xml&nbsp;from Import menu option in forms designer. Now your form looks like the image given below in the forms designer.</li><li class="substep">Submit&nbsp;and&nbsp;publish&nbsp;the form. <br><br></li></ol></li><li class="step">Create a Form to show the submitted article to the 'ArticleSubscribers' group, using which the users will be able to add a comment, as well as view comments given by other users.<ol class="substep"><li class="substep">In the&nbsp;Enterprise Console, click the&nbsp;Menu&nbsp;button, click&nbsp;Tools, and then click&nbsp;Manage Forms. The&nbsp;Manage Forms&nbsp;page appears.</li><li class="substep">Create a form named&nbsp;TelematicsArticlesReview.</li><li class="substep">Import the form definition from&nbsp;TelematicsArticlesReview_Form.xml&nbsp;using the&nbsp;Import&nbsp;menu option in the Forms designer. If you notice, your form is again an exact copy of the Telematics Article form, but with an extra panel of 'Leave a Comment' section.</li><li class="substep">&nbsp;You can see a tab in this form, where the first tab is to leave the comment by the Articlesubscriber group, and the second is to view the comments posted by other s in the group. If you do not need to show the others comment section, you can remove the views other's comment &nbsp;section.</li><li class="substep">Check the &nbsp;mapped XML nodes (of parent and child controls) of both the &nbsp;'Leave a comment' and 'Review Comments' control. Here you might have noticed that the child nodes have the same mapped XML nodes where as only for the parent it differs.</li><li class="substep">To append/show a row by default for 'Leave a comment' panel, you can notice that a script is defined for the category drop down. Notice that this can also be achieved without scripting by setting the 'Rows to be added by default' as '1' and 'Allow default rows to render on XML Load?' as 'Yes' in the Advanced tab of 'Leave a comment' panel properties.</li><li class="substep">Submit&nbsp;and&nbsp;Publish&nbsp;the form.</li></ol></li><li class="step">Create an Initial Form to submit the article.<ol class="substep"><li class="substep">In the&nbsp;Enterprise Console, click the&nbsp;Menu&nbsp;button, click&nbsp;Tools, and then click&nbsp;Manage Forms. The&nbsp;Manage Forms&nbsp;page appears.</li><li class="substep">Create a Workflow Initiator Form named&nbsp;Telematics Article Submission.</li><li class="substep">Import the form definition from&nbsp;Telematics Article Submission Form.xml&nbsp;using the&nbsp;Import&nbsp;menu option in the Forms designer. You will notice that your form is an exact copy of the Telematics Article form, but without the Review comments section.</li><li class="substep">Submit&nbsp;and&nbsp;Publish&nbsp;the form.</li></ol></li><li class="step">Associate an Article Submission Form to the Article Review Workflow.<ol class="substep"><li class="substep">On submission, a page related to Form Binding opens, where the user can select a task as designing a new workflow or selecting an existing one.</li><li class="substep">Select&nbsp;Design a New Workflow&nbsp;and provide the workflow name as&nbsp;ArticleReview.</li><li class="substep">Select&nbsp;Design this Workflow now&nbsp;in the next page.</li><li class="substep">From the Process Designer, use the&nbsp;Import&nbsp;option from&nbsp;Tools&nbsp;menu and import the workflow from&nbsp;ArticleReview Workflow.xml.</li><li class="substep">Publish&nbsp;the workflow.</li></ol></li><li class="step">Execute the form to see how each individual actor's responses collaborate.<ol class="substep"><li class="substep">In the&nbsp;Enterprise Console, click the&nbsp;Menu&nbsp;button, and then click&nbsp;Fill Form. The&nbsp;Fill Form&nbsp;page appears. </li><li class="substep">Select the&nbsp;Telematics Article Submission&nbsp;form, fill the details, and submit the form.</li><li class="substep">Go to the&nbsp;Inbox&nbsp;of each&nbsp;ArticleSubscribers, leave a comment, and submit the form.</li><li class="substep">You can view all user's comments under 'View Other's comments' section.</li></ol></li></ol><p class="subheading">Telematics Article List.xml</p>
+<p class="codeblock1">&lt;ListMainForm IsTableVersioned=&quot;False&quot; DefaultField=&quot;Title&quot; UniqueField=&quot;&quot; EnableRecordIds=&quot;True&quot; LockEnabled=&quot;False&quot; OnEditCreateNewVersion=&quot;False&quot; OnEditCreateNewVersionforVG=&quot;False&quot; UniqueTitle=&quot;False&quot; AllowChildItems=&quot;True&quot; OldTableName=&quot;&quot; TableName=&quot;SKEListItemDataNV&quot; TableId=&quot;60b121c4-821a-450d-a353-2fd419416b29&quot; FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;_sys_telematics article_list_skeltadynamiclist&quot; FormMode=&quot;JCSMode&quot; XmlNodeBoundTo=&quot;TelematicsArticle&quot; Name=&quot;Telematics Article&quot; xmlns=&quot;clr-namespace:Skelta.Forms.Core.Controls;assembly:Skelta.Forms.Core&quot; xmlns:R=&quot;clr-namespace:System;assembly:mscorlib&quot; xmlns:x=&quot;http://uri.skelta.com/default/serializer&quot;&gt;&lt;Controls&gt;&lt;ListTextDataItem AllowSorting=&quot;True&quot; DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;Title&quot; GridDisplayWidth=&quot;100&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Title&quot; Name=&quot;Title&quot; Id=&quot;_sys_ListForms_Title7d734be0c4d345278034644b83401d71&quot; /&gt;&lt;ListTextDataItem DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;nvarchar1&quot; XmlNodeBoundTo=&quot;Category&quot; Name=&quot;Category&quot; Id=&quot;L8&quot; /&gt;&lt;ListTextDataItem DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;nvarchar2&quot; XmlNodeBoundTo=&quot;Overview&quot; Name=&quot;Overview&quot; Id=&quot;L1&quot; /&gt;&lt;ListTextDataItem DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;ntext1&quot; XmlNodeBoundTo=&quot;Contents&quot; Name=&quot;Contents&quot; Id=&quot;L3&quot; GridDisplay=&quot;ImageAndText&quot; /&gt;&lt;ListTextDataItem DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;nvarchar3&quot; XmlNodeBoundTo=&quot;Summary&quot; Name=&quot;Summary&quot; Id=&quot;L2&quot; /&gt;&lt;ListTableForm OldTableName=&quot;&quot; IsTableVersioned=&quot;True&quot; TableName=&quot;SKEListItemDataNV&quot; TableId=&quot;3e939db4-71d4-46b8-8cb3-3e26c0fd8939&quot; FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;_sys_TelematicsArticles_fcb5aa8a7aa04caaae1961c8fa655e78&quot; FormMode=&quot;JCSMode&quot; XmlNodeBoundTo=&quot;ReviewComments&quot; Name=&quot;Review Comments&quot;&gt;&lt;Controls&gt;&lt;ListUserLookUp ShowDefaultUser=&quot;True&quot; ForeignKeyQuery=&quot;&quot; MappedParentControl=&quot;&quot; MappedParentControlName=&quot;&quot; DisplayInGridAs=&quot;Name100&quot; BoundToTableField=&quot;uniqueidentifier1&quot; XmlNodeBoundTo=&quot;Name&quot; Name=&quot;Name&quot; Id=&quot;L5&quot;&gt;&lt;BoundToTableFieldType&gt;&lt;x:type typename=&quot;System.Guid&quot; /&gt;&lt;/BoundToTableFieldType&gt;&lt;/ListUserLookUp&gt;&lt;ListTextDataItem DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;nvarchar1&quot; XmlNodeBoundTo=&quot;Rating&quot; Name=&quot;Rating&quot; Id=&quot;L6&quot; /&gt;&lt;ListTextDataItem DisplayInGridAs=&quot;{x:Null}&quot; BoundToTableField=&quot;ntext1&quot; XmlNodeBoundTo=&quot;Comments&quot; Name=&quot;Comments&quot; Id=&quot;L7&quot; /&gt;&lt;/Controls&gt;&lt;/ListTableForm&gt;&lt;/Controls&gt;&lt;/ListMainForm&gt;</p>
+<p class="codeblock1"></p>
+<p class="paragraph"></p>
+<p class="subheading">Telematics Article_ListForm.xml</p>
+<p class="subheading"></p>
+<p class="codeblock1">&lt;BaseForm SaveButtonText=&quot;@@Finish@@&quot; FormTitle=&quot;&quot; ProductVersion=&quot;1&quot; BuildVersion=&quot;40107400&quot; Id=&quot;NF1&quot; FormMode=&quot;NextGenMode&quot; XmlNodeBoundTo=&quot;TelematicsArticle&quot; Name=&quot;Telematics Article&quot; xmlns=&quot;clr-namespace:Skelta.Forms.Core.Controls;assembly:Skelta.Forms.Core&quot; xmlns:R=&quot;clr-namespace:System;assembly:mscorlib&quot; xmlns:x=&quot;http://uri.skelta.com/default/serializer&quot;&gt;&lt;ScriptCode&gt;&lt;![CDATA[]]&gt;&lt;/ScriptCode&gt;&lt;Controls&gt;&lt;TextInput MaxLength=&quot;250&quot; DisplayInLookup=&quot;True&quot; IsMandatory=&quot;True&quot; XmlNodeBoundTo=&quot;Title&quot; Name=&quot;Title&quot; Id=&quot;_sys_ListForms_Title7d734be0c4d345278034644b83401d71&quot; /&gt;&lt;TextInput MaxLength=&quot;255&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Category&quot; Name=&quot;Category&quot; Id=&quot;L8&quot; /&gt;&lt;TextInput MaxLength=&quot;255&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Overview&quot; Name=&quot;Overview&quot; Id=&quot;L1&quot; /&gt;&lt;TextInput MaxLength=&quot;1073741823&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Contents&quot; Name=&quot;Contents&quot; Id=&quot;L3&quot; /&gt;&lt;TextInput MaxLength=&quot;255&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Summary&quot; Name=&quot;Summary&quot; Id=&quot;L2&quot; /&gt;&lt;BaseForm FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;_sys_TelematicsArticles_fcb5aa8a7aa04caaae1961c8fa655e78&quot; FormMode=&quot;JCSMode&quot; XmlNodeBoundTo=&quot;ReviewComments&quot; Name=&quot;Review Comments&quot; IsTableVersioned=&quot;True&quot; ViewMode=&quot;Grid&quot;&gt;&lt;Controls&gt;&lt;UserLookUp FilterExpressions=&quot;{x:Null}&quot; FilterDependencyIds=&quot;{x:Null}&quot; IsFilterExpressionSetForProperty=&quot;False&quot; BoundToTableField=&quot;uniqueidentifier1&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Name&quot; Name=&quot;Name&quot; Id=&quot;L5&quot;&gt;&lt;BoundToTableFieldType&gt;&lt;x:type typename=&quot;System.Guid&quot; /&gt;&lt;/BoundToTableFieldType&gt;&lt;/UserLookUp&gt;&lt;TextInput MaxLength=&quot;255&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Rating&quot; Name=&quot;Rating&quot; Id=&quot;L6&quot; /&gt;&lt;TextInput MaxLength=&quot;1073741823&quot; DisplayInLookup=&quot;True&quot; XmlNodeBoundTo=&quot;Comments&quot; Name=&quot;Comments&quot; Id=&quot;L7&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;2&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;/Controls&gt;&lt;OnRowAddedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnRowAddedScript&gt;&lt;OnRowDeletedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnRowDeletedScript&gt;&lt;/BaseForm&gt;&lt;/Controls&gt;&lt;/BaseForm&gt;</p>
+<p class="codeblock1"></p>
+<p class="paragraph"></p>
+<p class="paragraph">TelematicsArticlesReview_Form.xml</p>
+<p class="paragraph"></p>
+<p class="codeblock1">&lt;BaseForm SaveButtonText=&quot;@@Finish@@&quot; FormTitle=&quot;TelematicsArticlesReview&quot; ProductVersion=&quot;1&quot; BuildVersion=&quot;40107400&quot; Id=&quot;NF1&quot; FormMode=&quot;NextGenMode&quot; XmlNodeBoundTo=&quot;TelematicsArticle&quot; Name=&quot;Telematics Articles&quot; xmlns=&quot;clr-namespace:Skelta.Forms.Core.Controls;assembly:Skelta.Forms.Core&quot; xmlns:L=&quot;clr-namespace:System.Collections.Generic;assembly:mscorlib&quot; xmlns:C=&quot;clr-namespace:Skelta.Forms.Core.Classes;assembly:Skelta.Forms.Core&quot;&gt;&lt;ScriptCode&gt;&lt;![CDATA[]]&gt;&lt;/ScriptCode&gt;&lt;Controls&gt;&lt;TextInput IsMandatory=&quot;True&quot; XmlNodeBoundTo=&quot;Title&quot; Name=&quot;Title&quot; Id=&quot;T1&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;DropDownChoice XmlNodeBoundTo=&quot;Category&quot; Name=&quot;Category&quot; Id=&quot;D1&quot;&gt;&lt;Options&gt;&lt;C:ColoredDictionary Key=&quot;Programming&quot; Value=&quot;Programming&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Database&quot; Value=&quot;Database&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Graphics&quot; Value=&quot;Graphics&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Process Improvement&quot; Value=&quot;Process Improvement&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;/Options&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/DropDownChoice&gt;&lt;TextInput XmlNodeBoundTo=&quot;Overview&quot; Name=&quot;Overview&quot; Id=&quot;T2&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;TextInput XmlNodeBoundTo=&quot;Contents&quot; Name=&quot;Contents&quot; Id=&quot;T3&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;TextInput XmlNodeBoundTo=&quot;Summary&quot; Name=&quot;Summary&quot; Id=&quot;T4&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;PanelForm NumberOfColumns=&quot;1&quot; FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;P1&quot; FormMode=&quot;NextGenMode&quot; XmlNodeBoundTo=&quot;LeaveComments&quot; Name=&quot;Leave a comment&quot;&gt;&lt;Controls&gt;&lt;UserLookUp FilterExpressions=&quot;{x:Null}&quot; FilterDependencyIds=&quot;{x:Null}&quot; IsFilterExpressionSetForProperty=&quot;False&quot; XmlNodeBoundTo=&quot;Name&quot; Name=&quot;Name&quot; LabelPosition=&quot;Top&quot; Id=&quot;U1&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/UserLookUp&gt;&lt;TextInput XmlNodeBoundTo=&quot;Comments&quot; Name=&quot;Comments&quot; Id=&quot;T8&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;DropDownChoice XmlNodeBoundTo=&quot;Rating&quot; Name=&quot;Rating&quot; Id=&quot;D2&quot;&gt;&lt;Options&gt;&lt;C:ColoredDictionary Key=&quot;Below Average&quot; Value=&quot;Below Average&quot; ForeColor=&quot;#ea111c&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Average&quot; Value=&quot;Average&quot; ForeColor=&quot;#f1ea18&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Good&quot; Value=&quot;Good&quot; ForeColor=&quot;#f0a226&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Excellent&quot; Value=&quot;Excellent&quot; ForeColor=&quot;#58ee1d&quot; BackColor=&quot;&quot; /&gt;&lt;/Options&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/DropDownChoice&gt;&lt;/Controls&gt;&lt;/PanelForm&gt;&lt;Tabs ShowTabs=&quot;True&quot; FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;T5&quot; FormMode=&quot;NextGenMode&quot; XmlNodeBoundTo=&quot;&quot;&gt;&lt;OnTabIndexChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnTabIndexChangedScript&gt;&lt;Controls&gt;&lt;Tab FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;T7&quot; FormMode=&quot;NextGenMode&quot; XmlNodeBoundTo=&quot;&quot; Name=&quot;View others comments&quot;&gt;&lt;Controls&gt;&lt;BaseForm FormTitle=&quot;&quot; ProductVersion=&quot;&quot; BuildVersion=&quot;&quot; Id=&quot;P2&quot; FormMode=&quot;JCSMode&quot; XmlNodeBoundTo=&quot;ReviewComments&quot; Name=&quot;Review Comments&quot; ViewMode=&quot;Grid&quot; AddPosition=&quot;Bottom&quot; DefaultRows=&quot;1&quot;&gt;&lt;Controls&gt;&lt;UserLookUp FilterExpressions=&quot;{x:Null}&quot; FilterDependencyIds=&quot;{x:Null}&quot; IsFilterExpressionSetForProperty=&quot;False&quot; XmlNodeBoundTo=&quot;Name&quot; Name=&quot;Name&quot; LabelPosition=&quot;Top&quot; Id=&quot;U2&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/UserLookUp&gt;&lt;TextInput XmlNodeBoundTo=&quot;Comments&quot; Name=&quot;Comments&quot; Id=&quot;T9&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;DropDownChoice XmlNodeBoundTo=&quot;Rating&quot; Name=&quot;Rating&quot; Id=&quot;D3&quot;&gt;&lt;Options&gt;&lt;C:ColoredDictionary Key=&quot;Below Average&quot; Value=&quot;Below Average&quot; ForeColor=&quot;#ea111c&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Average&quot; Value=&quot;Average&quot; ForeColor=&quot;#f1ea18&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Good&quot; Value=&quot;Good&quot; ForeColor=&quot;#f0a226&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Excellent&quot; Value=&quot;Excellent&quot; ForeColor=&quot;#58ee1d&quot; BackColor=&quot;&quot; /&gt;&lt;/Options&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/DropDownChoice&gt;&lt;/Controls&gt;&lt;OnRowAddedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnRowAddedScript&gt;&lt;OnRowDeletedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnRowDeletedScript&gt;&lt;/BaseForm&gt;&lt;/Controls&gt;&lt;/Tab&gt;&lt;/Controls&gt;&lt;/Tabs&gt;&lt;/Controls&gt;&lt;/BaseForm&gt;</p>
+<p class="paragraph"></p>
+<p class="subheading">Telematics Article Submission Form.xml</p>
+<p class="paragraph"></p>
+<p class="codeblock1">&lt;BaseForm SaveButtonText=&quot;@@Finish@@&quot; FormTitle=&quot;Telematics Article Submission&quot; ProductVersion=&quot;1&quot; BuildVersion=&quot;40107400&quot; Id=&quot;NF1&quot; FormMode=&quot;NextGenMode&quot; XmlNodeBoundTo=&quot;TelematicsArticle&quot; Name=&quot;Telematics Articles&quot; xmlns=&quot;clr-namespace:Skelta.Forms.Core.Controls;assembly:Skelta.Forms.Core&quot; xmlns:L=&quot;clr-namespace:System.Collections.Generic;assembly:mscorlib&quot; xmlns:C=&quot;clr-namespace:Skelta.Forms.Core.Classes;assembly:Skelta.Forms.Core&quot;&gt;&lt;ScriptCode&gt;&lt;![CDATA[]]&gt;&lt;/ScriptCode&gt;&lt;Controls&gt;&lt;TextInput IsMandatory=&quot;True&quot; XmlNodeBoundTo=&quot;Title&quot; Name=&quot;Title&quot; Id=&quot;T1&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;DropDownChoice XmlNodeBoundTo=&quot;Category&quot; Name=&quot;Category&quot; Id=&quot;D1&quot;&gt;&lt;Options&gt;&lt;C:ColoredDictionary Key=&quot;Programming&quot; Value=&quot;Programming&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Database&quot; Value=&quot;Database&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Graphics&quot; Value=&quot;Graphics&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;C:ColoredDictionary Key=&quot;Process Improvement&quot; Value=&quot;Process Improvement&quot; ForeColor=&quot;&quot; BackColor=&quot;&quot; /&gt;&lt;/Options&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/DropDownChoice&gt;&lt;TextInput XmlNodeBoundTo=&quot;Overview&quot; Name=&quot;Overview&quot; Id=&quot;T2&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;TextInput XmlNodeBoundTo=&quot;Contents&quot; Name=&quot;Contents&quot; Id=&quot;T3&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;TextInput XmlNodeBoundTo=&quot;Summary&quot; Name=&quot;Summary&quot; Id=&quot;T4&quot; TextLine=&quot;MultiLine&quot; Rows=&quot;5&quot; LabelPosition=&quot;Top&quot;&gt;&lt;OnDataChangedScript&gt;&lt;![CDATA[]]&gt;&lt;/OnDataChangedScript&gt;&lt;/TextInput&gt;&lt;/Controls&gt;&lt;/BaseForm&gt;</p>
+<p class="paragraph"></p>
+<p class="subheading">ArticleReview_Workflow.xml</p>
+<p class="paragraph"></p>
+<p class="codeblock1">&lt;workflow name=&quot;&quot; version=&quot;2&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;diagramdatacollection&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;diagramdata key=&quot;DesignerInstanceId&quot;&gt;&lt;![CDATA[3de93f688a3144fdab82455fe8d75f8b]]&gt;&lt;/diagramdata&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/diagramdatacollection&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;action name=&quot;Add Article to List&quot; type=&quot;UpdateVariableValue&quot; displayname=&quot;UpdateVariableValue&quot; description=&quot;&quot; looponoutput=&quot;&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;properties&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Set Variable&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;contentupdationfields&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;contentupdationfield name=&quot;XmlVariables.TelematicsArticle.TelematicsArticle&quot; operator=&quot;=&quot; mode=&quot;ObjTree&quot; methodName=&quot;bf7caa75c6424912ac138bf4ae06bbe2&quot;&gt;&lt;![CDATA[XmlVariables.SFFormData.TelematicsArticle]]&gt;&lt;/contentupdationfield&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[497ab399b39843028ae22fc387df2ecf]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;jstring&gt;&lt;![CDATA[[{&quot;RHSMode&quot;:&quot;ObjTree&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;LHSColumn&quot;:&quot;XmlVariables.TelematicsArticle.TelematicsArticle&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;RHSColumn&quot;:&quot;XmlVariables.SFFormData.TelematicsArticle&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;OPRColumn&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;ColumnExpression&quot;:{&quot;DisplayExpressionString&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;ActualExprtessionString&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;MethodParameterList&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;HtmlVerexpString&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;ReferenceList&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;ReferencedFunctionList&quot;:&quot;&quot;,</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&quot;NodeInfo&quot;:&quot;&quot;}}]]]&gt;&lt;/jstring&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/contentupdationfields&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;StopOnExceptions&quot;&gt;&lt;![CDATA[Yes]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;RaiseError&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;raiseerror&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;enableraiseerrors&gt;&lt;![CDATA[False]]&gt;&lt;/enableraiseerrors&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;excludederroroutputs&gt;&lt;![CDATA[]]&gt;&lt;/excludederroroutputs&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;includederroroutputs&gt;&lt;![CDATA[]]&gt;&lt;/includederroroutputs&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;stoponerror&gt;&lt;![CDATA[True]]&gt;&lt;/stoponerror&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;stoponexceptionpropertyoverrided&gt;&lt;![CDATA[False]]&gt;&lt;/stoponexceptionpropertyoverrided&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/raiseerror&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/properties&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;left&gt;275&lt;/left&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;isloop&gt;false&lt;/isloop&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;height&gt;65&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;top&gt;75&lt;/top&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;width&gt;65&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/action&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;action name=&quot;Article Send for Review&quot; type=&quot;Invoke Form&quot; displayname=&quot;Invoke Form&quot; description=&quot;&quot; looponoutput=&quot;&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;properties&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Action Display Name&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Delivery Channels&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;propertychannel selectedchannelscount=&quot;1&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;channels&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;channel name=&quot;WebWorkList&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;config url=&quot;&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;forms&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                                &lt;form name=&quot;Invoke Form&quot; type=&quot;InvokeWebForm&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                                    &lt;actors grantaccess=&quot;True&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                                    &lt;roles grantaccess=&quot;True&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                                &lt;/form&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;/forms&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;/channel&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;removedchannels list=&quot;&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;/channels&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/propertychannel&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Work Item Fields&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;Workitemfields /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;To&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;resource&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;providername&gt;&lt;![CDATA[]]&gt;&lt;/providername&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;globalfilter&gt;&lt;![CDATA[]]&gt;&lt;/globalfilter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;dispglobalfilter&gt;&lt;![CDATA[]]&gt;&lt;/dispglobalfilter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;filter&gt;&lt;![CDATA[[Role] = [&quot;ArticleSubscribers&quot;]]]&gt;&lt;/filter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;dispfilter&gt;&lt;![CDATA[[SK Role] = [&quot;ArticleSubscribers&quot;]]]&gt;&lt;/dispfilter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;multipleproviderfilter&gt;&lt;![CDATA[[Role] = [&quot;ArticleSubscribers&quot;]]]&gt;&lt;/multipleproviderfilter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;multipleproviderdispfilter&gt;&lt;![CDATA[[SK Role] = [&quot;ArticleSubscribers&quot;]]]&gt;&lt;/multipleproviderdispfilter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;isuserconfiguredthroughuserlookup&gt;&lt;![CDATA[False]]&gt;&lt;/isuserconfiguredthroughuserlookup&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;usersconfiguredthroughuserlookup&gt;&lt;![CDATA[]]&gt;&lt;/usersconfiguredthroughuserlookup&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;isuserconfiguredthroughrolelookup&gt;&lt;![CDATA[False]]&gt;&lt;/isuserconfiguredthroughrolelookup&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;rolesconfiguredthroughrolelookup&gt;&lt;![CDATA[]]&gt;&lt;/rolesconfiguredthroughrolelookup&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;isuserconfiguredthroughsubmitter&gt;&lt;![CDATA[False]]&gt;&lt;/isuserconfiguredthroughsubmitter&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/resource&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Assign Queue&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;queuevalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;valueID&gt;&lt;![CDATA[]]&gt;&lt;/valueID&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/queuevalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Min. Acknowledgements [% or Number]&quot;&gt;&lt;![CDATA[1]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Max. Acknowledgements [% or Number]&quot;&gt;&lt;![CDATA[100%]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Enable TakeOwnership&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Forwarding Allowed?&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Ignore Unavailable Resources?&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Alternate Resource Allowed?&quot;&gt;&lt;![CDATA[Yes]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;FormDetails&quot;&gt;&lt;![CDATA[TelematicsArticlesReview?0?53bb5ab3-9fa9-4046-a4d8-3b8644b9fce1?Article Send for Review]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;InputInstanceXML&quot;&gt;&lt;![CDATA[TelematicsArticle]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;FormParameters&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;contentupdationfields&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[ee9afe5385504d75aa662275e774341b]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;jstring&gt;&lt;![CDATA[]]&gt;&lt;/jstring&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/contentupdationfields&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;SaveAsDraft&quot;&gt;&lt;![CDATA[Yes]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;CloseOnSaveAsDraft&quot;&gt;&lt;![CDATA[Yes]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;MaximizeOnLoad&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;MultiSelectFormDetails&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;ResponsesFormDetails&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Subject&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;height&gt;&lt;![CDATA[350]]&gt;&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;width&gt;&lt;![CDATA[650]]&gt;&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[Review :&lt;%#XmlVariables.TelematicsArticle.TelematicsArticle.Title%&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;valueHTML&gt;&lt;![CDATA[Review :&amp;lt;%#XmlVariables.TelematicsArticle.TelematicsArticle.Title%&amp;gt;]]&gt;&lt;/valueHTML&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[ee64d9dbe447484ebcfb15960cbcfe01]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Notes&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;height&gt;&lt;![CDATA[350]]&gt;&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;width&gt;&lt;![CDATA[650]]&gt;&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;valueHTML&gt;&lt;![CDATA[]]&gt;&lt;/valueHTML&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[2f7cb22a5ed448b0a1f6297d399e10ab]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;WorkitemDetailViewURL&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;CloseOnFormSubmit&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;From Email Address&quot;&gt;&lt;![CDATA[admin@domain.com]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Show Custom Document View Window&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Priority&quot;&gt;&lt;![CDATA[Medium]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Send Notification Email&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Notify if alternate considered&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Redirect URL&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;height&gt;&lt;![CDATA[350]]&gt;&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;width&gt;&lt;![CDATA[650]]&gt;&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[http://&lt;%ApplicationPath%&gt;/]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;valueHTML&gt;&lt;![CDATA[]]&gt;&lt;/valueHTML&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[d19574f3113a487d9f5a166b7efd2203]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Custom Document View URL&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;height&gt;&lt;![CDATA[350]]&gt;&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;width&gt;&lt;![CDATA[650]]&gt;&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[http://&lt;%ApplicationPath%&gt;/]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;valueHTML&gt;&lt;![CDATA[]]&gt;&lt;/valueHTML&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[fb6c2d3e9b874300abba9fa334f4a006]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;OutputInstanceXML&quot;&gt;&lt;![CDATA[TelematicsArticle]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;AdvancedResponseStorage&quot;&gt;&lt;![CDATA[&lt;ResponseStorage&gt;&lt;IndRespNode&gt;TelematicsArticle.LeaveComments&lt;/IndRespNode&gt;&lt;AllRespsNode&gt;TelematicsArticle.ReviewComments&lt;/AllRespsNode&gt;&lt;/ResponseStorage&gt;]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Hide Responses?&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Affirmative Answer for Approval [% or Number]&quot;&gt;&lt;![CDATA[100%]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Action Limit[% or Number]&quot;&gt;&lt;![CDATA[100%]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Wait For All The Participants To Act&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Decisions&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;Decisions&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;JSDecisonString&gt;&lt;![CDATA[]]&gt;&lt;/JSDecisonString&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;CompletionMaker&gt;&lt;![CDATA[]]&gt;&lt;/CompletionMaker&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;AffirmativeOutput&gt;&lt;![CDATA[]]&gt;&lt;/AffirmativeOutput&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;AffirmativePercentage&gt;&lt;![CDATA[]]&gt;&lt;/AffirmativePercentage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;AffirmativeNegativeOutput&gt;&lt;![CDATA[]]&gt;&lt;/AffirmativeNegativeOutput&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[4c9aac58ef0248a6a8abc57fb3318611]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/Decisions&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Set Calendar&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Minimum Time for Action&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Timeout warning for Acknowledgement&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Timeout for Acknowledgement&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Timeout warning for Action&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Timeout for Action&quot;&gt;&lt;![CDATA[0]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Multiple TimeOut Warning&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Enable Redirection?&quot;&gt;&lt;![CDATA[No]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;RaiseError&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;raiseerror&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;enableraiseerrors&gt;&lt;![CDATA[False]]&gt;&lt;/enableraiseerrors&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;excludederroroutputs&gt;&lt;![CDATA[]]&gt;&lt;/excludederroroutputs&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;includederroroutputs&gt;&lt;![CDATA[]]&gt;&lt;/includederroroutputs&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;stoponerror&gt;&lt;![CDATA[True]]&gt;&lt;/stoponerror&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;stoponexceptionpropertyoverrided&gt;&lt;![CDATA[False]]&gt;&lt;/stoponexceptionpropertyoverrided&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/raiseerror&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/properties&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;left&gt;450&lt;/left&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;isloop&gt;false&lt;/isloop&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;height&gt;65&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;top&gt;75&lt;/top&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;width&gt;65&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/action&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;action name=&quot;Start&quot; type=&quot;Start&quot; displayname=&quot;&quot; description=&quot;&quot; looponoutput=&quot;&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;properties&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Variables&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Contents&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;XmlVariables&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;XmlVariables&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;XmlVariable&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Name&gt;&lt;![CDATA[SKEventData]]&gt;&lt;/Name&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Description&gt;&lt;![CDATA[]]&gt;&lt;/Description&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;StorageType&gt;&lt;![CDATA[XmlDocument]]&gt;&lt;/StorageType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Scope&gt;&lt;![CDATA[global]]&gt;&lt;/Scope&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Schema&gt;&lt;![CDATA[&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;xsd:schema xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; attributeFormDefault=&quot;unqualified&quot; elementFormDefault=&quot;qualified&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">  &lt;xs:element name=&quot;SKEventData&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">      &lt;xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;EventProperties&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;EventType&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;EventProvider&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;EventDateTimeUTC&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;EventDateTime&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;UserId&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;UserName&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">      &lt;/xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">  &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;/xsd:schema&gt;]]&gt;&lt;/Schema&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Xsl&gt;&lt;![CDATA[]]&gt;&lt;/Xsl&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Storage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;InternalStorage&gt;&lt;![CDATA[variables]]&gt;&lt;/InternalStorage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;/Storage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;/XmlVariable&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;XmlVariable&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Name&gt;&lt;![CDATA[TelematicsArticle]]&gt;&lt;/Name&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Description&gt;&lt;![CDATA[]]&gt;&lt;/Description&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;StorageType&gt;&lt;![CDATA[XmlSkeltaList]]&gt;&lt;/StorageType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Scope&gt;&lt;![CDATA[global]]&gt;&lt;/Scope&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Schema&gt;&lt;![CDATA[&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">  &lt;xs:element name=&quot;TelematicsArticle&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">      &lt;xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Title&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Category&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Overview&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Contents&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Summary&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element maxOccurs=&quot;unbounded&quot; name=&quot;ReviewComments&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">          &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;xs:element name=&quot;Name&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;xs:element name=&quot;Rating&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;xs:element name=&quot;Comments&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">          &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;System_x003A_Internal&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">          &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;xs:element name=&quot;SaveAs&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:sequence /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;Published&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;NextVersionAsDraft&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;NextVersionAsPublished&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;NextMajorVersionAsDraft&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;NextMajorVersionAsPublished&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;NextMinorVersionAsDraft&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;NextMinorVersionAsPublished&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;SpecificVersionAsDraft&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;SpecificVersionAsPublished&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;AsFolder&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;xs:element name=&quot;Operations&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:sequence /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;MoveToFolder&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                  &lt;xs:attribute name=&quot;Delete&quot; type=&quot;xs:boolean&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">              &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">          &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">      &lt;/xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">  &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;/xs:schema&gt;]]&gt;&lt;/Schema&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Xsl&gt;&lt;![CDATA[]]&gt;&lt;/Xsl&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Storage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;ListName&gt;&lt;![CDATA[Telematics Article]]&gt;&lt;/ListName&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;ListId&gt;&lt;![CDATA[83f84415-86d6-4ef1-86a5-df9a58f2e515]]&gt;&lt;/ListId&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;FolderName&gt;&lt;![CDATA[]]&gt;&lt;/FolderName&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;FolderId&gt;&lt;![CDATA[00000000-0000-0000-0000-000000000000]]&gt;&lt;/FolderId&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;ListItemScope&gt;&lt;![CDATA[New]]&gt;&lt;/ListItemScope&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;ListItemId&gt;&lt;![CDATA[00000000-0000-0000-0000-000000000000]]&gt;&lt;/ListItemId&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;XmlTemplate&gt;&lt;![CDATA[&lt;?xml version=&quot;1.0&quot;?&gt;&lt;TelematicsArticle&gt;&lt;Title /&gt;&lt;Category /&gt;&lt;Overview /&gt;&lt;Contents /&gt;&lt;Summary /&gt;&lt;ReviewComments&gt;&lt;Name /&gt;&lt;Rating /&gt;&lt;Comments /&gt;&lt;/ReviewComments&gt;&lt;System_x003A_Internal&gt;&lt;SaveAs&gt;&lt;Published /&gt;&lt;NextVersionAsDraft /&gt;&lt;NextVersionAsPublished /&gt;&lt;NextMajorVersionAsDraft /&gt;&lt;NextMajorVersionAsPublished /&gt;&lt;NextMinorVersionAsDraft /&gt;&lt;NextMinorVersionAsPublished /&gt;&lt;SpecificVersionAsDraft /&gt;&lt;SpecificVersionAsPublished /&gt;&lt;AsFolder /&gt;&lt;/SaveAs&gt;&lt;Operations&gt;&lt;MoveToFolder /&gt;&lt;Delete /&gt;&lt;/Operations&gt;&lt;/System_x003A_Internal&gt;&lt;/TelematicsArticle&gt;]]&gt;&lt;/XmlTemplate&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;ListQuery&gt;&lt;![CDATA[]]&gt;&lt;/ListQuery&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;ListItemVersion&gt;&lt;![CDATA[]]&gt;&lt;/ListItemVersion&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;/Storage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;/XmlVariable&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;XmlVariable&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Name&gt;&lt;![CDATA[SFFormData]]&gt;&lt;/Name&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Description&gt;&lt;![CDATA[Generated by Skelta Forms]]&gt;&lt;/Description&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;StorageType&gt;&lt;![CDATA[XmlDocument]]&gt;&lt;/StorageType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Scope&gt;&lt;![CDATA[global]]&gt;&lt;/Scope&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Schema&gt;&lt;![CDATA[&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">  &lt;xs:element name=&quot;TelematicsArticle&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">      &lt;xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Title&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Category&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Overview&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Contents&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;xs:element name=&quot;Summary&quot; type=&quot;xs:string&quot; /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">      &lt;/xs:sequence&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/xs:complexType&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">  &lt;/xs:element&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;/xs:schema&gt;]]&gt;&lt;/Schema&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Xsl&gt;&lt;![CDATA[                                         ]]&gt;&lt;/Xsl&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;Storage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                            &lt;InternalStorage&gt;&lt;![CDATA[variables]]&gt;&lt;/InternalStorage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                        &lt;/Storage&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;/XmlVariable&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/XmlVariables&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;ExecutionView&quot;&gt;&lt;![CDATA[]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;SOAObjects&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;SOAObjects /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Initialize Variable(s)&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;contentupdationfields&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;classname&gt;&lt;![CDATA[ddf7acf755974772bf5cfb0a3421da0a]]&gt;&lt;/classname&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;jstring&gt;&lt;![CDATA[]]&gt;&lt;/jstring&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/contentupdationfields&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;Raise Exception if Completion Maker Output is not linked?&quot;&gt;&lt;![CDATA[Default [Backward Compatible]]]&gt;&lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;property name=&quot;ExceptionTemplate&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;height&gt;&lt;![CDATA[350]]&gt;&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;width&gt;&lt;![CDATA[650]]&gt;&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;value&gt;&lt;![CDATA[]]&gt;&lt;/value&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                    &lt;valueHTML&gt;&lt;![CDATA[]]&gt;&lt;/valueHTML&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">                &lt;/workflowmemovalue&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;/property&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/properties&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;left&gt;100&lt;/left&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;isloop&gt;false&lt;/isloop&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;height&gt;65&lt;/height&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;top&gt;75&lt;/top&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;width&gt;65&lt;/width&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/action&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;link from=&quot;Start&quot; to=&quot;Add Article to List&quot; condition=&quot;&quot; description=&quot;&quot; name=&quot;Link0&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceport&gt;r&lt;/sourceport&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportside&gt;dynamic&lt;/sourceportside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportindex&gt;0&lt;/sourceportindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinalside&gt;r&lt;/sourceportfinalside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinalindex&gt;0&lt;/sourceportfinalindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinalx&gt;165&lt;/sourceportfinalx&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinaly&gt;108&lt;/sourceportfinaly&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetport&gt;l&lt;/targetport&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportside&gt;dynamic&lt;/targetportside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportindex&gt;0&lt;/targetportindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinalside&gt;l&lt;/targetportfinalside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinalindex&gt;0&lt;/targetportfinalindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinalx&gt;275&lt;/targetportfinalx&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinaly&gt;108&lt;/targetportfinaly&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;serializedpath&gt;Link0;false;2;220;108;Link0,right,0,187,108,165,108,false,false,NaN,NaN,!,,Link0_0,;Link0,,0,187,108,187,108,false,false,NaN,NaN,!,,Link0_1,;Link0,right,0,253,108,187,108,false,true,220,108,!,,Link0_2,;Link0,,0,253,108,253,108,false,false,NaN,NaN,!,,Link0_3,;Link0,right,0,275,108,253,108,true,false,NaN,NaN,!,,Link0_4,&lt;/serializedpath&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;thickness&gt;1&lt;/thickness&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;color&gt;#000000&lt;/color&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;linetype /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;islocked&gt;false&lt;/islocked&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/link&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;link from=&quot;Add Article to List&quot; to=&quot;Article Send for Review&quot; condition=&quot;Updated&quot; description=&quot;&quot; name=&quot;Link1&quot;&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceport&gt;r&lt;/sourceport&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportside&gt;dynamic&lt;/sourceportside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportindex&gt;0&lt;/sourceportindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinalside&gt;r&lt;/sourceportfinalside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinalindex&gt;0&lt;/sourceportfinalindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinalx&gt;340&lt;/sourceportfinalx&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;sourceportfinaly&gt;108&lt;/sourceportfinaly&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetport&gt;l&lt;/targetport&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportside&gt;dynamic&lt;/targetportside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportindex&gt;0&lt;/targetportindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinalside&gt;l&lt;/targetportfinalside&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinalindex&gt;0&lt;/targetportfinalindex&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinalx&gt;450&lt;/targetportfinalx&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;targetportfinaly&gt;108&lt;/targetportfinaly&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;serializedpath&gt;Link1;false;2;395;108;Link1,right,0,362,108,340,108,false,false,NaN,NaN,!,,Link1_0,;Link1,,0,362,108,362,108,false,false,NaN,NaN,!,,Link1_1,;Link1,right,0,428,108,362,108,false,true,395,108,!,,Link1_2,;Link1,,0,428,108,428,108,false,false,NaN,NaN,!,,Link1_3,;Link1,right,0,450,108,428,108,true,false,NaN,NaN,!,,Link1_4,&lt;/serializedpath&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;thickness&gt;1&lt;/thickness&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;color&gt;#000000&lt;/color&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;linetype /&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">            &lt;islocked&gt;false&lt;/islocked&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">        &lt;/visual-attributes&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">    &lt;/link&gt;</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">&lt;/workflow&gt;</p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;In multi-user scenarios to view the response details of other users ensure that the Input Instance XML name and Output Instance XML name is same for the Invoke Form activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformactivity.html" target="_self">Invoke Form Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

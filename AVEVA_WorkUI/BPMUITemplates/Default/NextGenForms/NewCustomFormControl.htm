@@ -1,0 +1,147 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Custom Form Control</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri;
+        var deviceOS = "Web", applicationName, formId, versionStamp, viewModelObject;
+        var popupWindow = null;
+
+        function CreateNewCustomFormControl(inputParameterObject, eventArgs)
+        {
+            ////Validation pending
+            var convJSONXml = new X2JS();
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": val,
+                "lcsuri": paramlcsuri
+            });
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/CreateNewCustomFormControl", "application/json; charset=utf-8", jsonHelper, "json", NewCustomFormControlSubmitSucceeded, NewCustomFormControlSubmitFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+        function NewCustomFormControlSubmitSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true)
+            {
+                if (res.RedirectLocation.length > 0)
+                {
+                    window.location.href = res.RedirectLocation;
+                }
+            }
+            else
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFCustomFormCotrolPageSaveError"), null, res.ErrorMessage);
+                logger.logError(skelta.localize.getString("FormsNGFCustomFormCotrolPageSaveError") + '\n' + res.ErrorMessage);
+            }
+        }
+
+        function checkFormsAccessRights(lcsuri, deviceType)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": ["ActionCreate"],
+                "deviceType": deviceType
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetCurrentContextWithSecurityCheck", "application/json; charset=utf-8", params, "json", CheckFormsAccessRightsSucceeded, null, null, false);
+        }
+
+        function CheckFormsAccessRightsSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showAlert(result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            }
+            else
+            {
+                var clientData = $.parseJSON(result.Result);
+                applicationName = clientData.fAppName;
+                formId = clientData.fId;
+                versionStamp = clientData.fVer;
+                skeltaUtils.loadPageDefault();
+                document.title = skelta.localize.getString("FormsNGFCustomFormCotrolPageTitle");
+                LoadGetNewCustomFormControlDefinition();
+            }
+        }
+        function NewCustomFormControlSubmitFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFCustomFormCotrolPageSaveError"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, '<br>'));
+            logger.logError(skelta.localize.getString("FormsNGFCustomFormCotrolPageSaveError") + '\n' + skeltaUtils.getAjaxErrorDetailsMessage(result, '\n'));
+        }
+        $(document).ready(function ()
+        {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkFormsAccessRights(paramlcsuri, deviceOS);
+                ////skeltaUtils.LoadPageDefault();
+                ////LoadGetNewFormDefinition();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFCustomFormCotrolPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormsNGFCustomFormCotrolPageError") + '\n' + exception.message);
+            }
+        });
+
+        function LoadGetNewCustomFormControlDefinition()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "lcsuri": paramlcsuri
+            });
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetNewCustomFormControlDefinition", "application/json; charset=utf-8", jsonHelper, "json", NewCustomFormControlSucceeded, NewCustomFormControlFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+        function NewCustomFormControlSucceeded(resultData)
+        {
+            //document.getElementById("viewAndViewModel").value = resultData.d;
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(skeltaUtils.getFormUniqueKey(applicationName, formId + "_CC", versionStamp));
+            viewModelObject.onSave.subscribeEvent(CreateNewCustomFormControl);
+            viewModelObject.onCancel.subscribeEvent(skeltaUtils.closeForm);
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function NewCustomFormControlFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFCustomFormCotrolPageError"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, '<br>'));
+            logger.logError(skelta.localize.getString("FormsNGFCustomFormCotrolPageError") + '\n' + skeltaUtils.getAjaxErrorDetailsMessage(result, '\n'));
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

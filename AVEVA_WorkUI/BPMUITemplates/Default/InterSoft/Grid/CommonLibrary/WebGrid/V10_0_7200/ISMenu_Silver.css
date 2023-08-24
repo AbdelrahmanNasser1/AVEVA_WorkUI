@@ -1,0 +1,54 @@
+.Menu-DisabledItemStyle-Over
+{
+    background-color: WhiteSmoke;
+    font-family: segoe ui,tahoma;
+    font-size: 8.25pt;
+    font-weight: normal;
+    border: 1px #e7e7e7 solid;
+    color: Gray;
+}
+.Menu-DisabledItemStyle-Normal
+{
+    font-family: Segoe UI, Tahoma;
+    font-size: 8.25pt;
+    font-weight: normal;
+    color: Silver;
+}
+.Menu-CheckedItemStyle-Over
+{
+    background-color: #ffab32;
+    border: 1px #ffab32 solid;
+}
+.Menu-CheckedItemStyle-Normal
+{
+    background-color: #fb8c3c;
+    border: 1px #fb8c3c solid;
+}
+.Menu-Separator
+{
+    border-top: 1px #bcbdbd solid;
+}
+.Menu-FrameStyle
+{
+    background-color: White;
+    border: 1px #bcbdbd solid;
+}
+.Menu-ItemStyle-Over
+{
+    background-image: url(/CommonLibrary/Images/wg7b_conmenubg.gif);
+    background-color: #c2a959;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8.25pt;
+    font-weight: normal;
+    border: 1px #FFBD69 solid;
+}
+.Menu-ItemStyle-Normal
+{
+    font-family: segoe ui,tahoma;
+    font-size: 8.25pt;
+    font-weight: normal;
+}
+.Menu-Strip
+{
+    background-color: #e7e7e7!important;
+}   

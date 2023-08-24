@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> End Child Workflow Execution Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601976" class="heading3">End Child Workflow Execution Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">This activity enables the user to end a child workflow from the parent workflow.</p>
+<p class="subheading">Application Scenario</p>
+<p class="paragraph">Consider a scenario where a child workflow is associated to the parent workflow. The parent workflow has an &quot;Approval Activity&quot;. On the other hand, the child workflow contains a &quot;Wait for Event&quot; activity which is set to execute when a list item is deleted. &nbsp;This scenario, however, requires that if the user executes the approval activity in the parent workflow, the workflow need not wait for the completion of the child workflow which has the wait for event activity waiting to be executed. In such a scenario, the End Child Workflow Execution activity can be used to end the child workflow. This activity helps the user ensure that the parent workflow completes without any child workflow waiting for execution.</p>
+<p class="paragraph">Refer to&nbsp;User Scenarios&nbsp;given in the&nbsp;<i class="emphasis">User Guide</i>&nbsp;for a detailed understanding of this activity.</p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">The End Child Workflow Execution activity has to be configured by specifying appropriate values for different properties in the&nbsp;<b class="uicontrol">Activity Properties</b>&nbsp;pane. This pane can be accessed by clicking on the Activity Properties tool in the&nbsp;<b class="uicontrol">Tool Bar</b>&nbsp;or by selecting the Activity Properties option from the context menu of End Child Workflow Execution activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51085" src="51085.jpg" class="embeddedimage100%scalinglive" alt="" height="619" width="247" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name and Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property is to be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property can be used to specify a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in this group have been described below. You can use these properties to configure the functionality of this activity.</p>
+<p class="paragraph"><b class="uicontrol">Workflow Details</b> - This property is used to specify the workflow which needs to be ended. The user has an option to either set this property or the Specify workflow execution ID property.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set to end the workflow.)</p>
+<p class="paragraph">See&nbsp;<a id="h51090" class="jump-currentwindowlive" title="End Child Workflow: Workflow Details" href="workflowdetails1.html" target="_self">End Child Workflow: Workflow Details</a> for a more detailed understanding of its properties.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Specify workflow execution ID</b>&nbsp;- This property is used to specify the workflow execution ID of the child workflow. The user has an option to either set this property or the Workflow Details property.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set to end the workflow.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set Specify Workflow Execution ID</p>
+<ol class="step"><li class="step">To specify this property, type the child workflow execution ID in the field. Alternatively, click the expression editor icon and select a variable assigned to the child workflow in the expression editor window.</li></ol><p class="paragraph"><b class="uicontrol">Specify Loop Execution Step Entry</b>&nbsp;- This property is used to specify the name of the loop execution step entry activity used in the parent workflow.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="procedureheading">Steps to set Select loop execution step entry</p>
+<ol class="step"><li class="step">To specify this property, type the name of the loop execution step entry activity used in the parent workflow. Alternatively, click the expression editor icon and select a variable assigned to the child workflow in the expression editor window.</li></ol><p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Error If Activity Instance Not Found</b>: This property helps you to set the output of this activity as &quot;Error encountered&quot; or &quot;Successful&quot; when the workflow to be ended has already been executed or is yet to be executed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set to end the workflow.)</p>
+<p class="paragraph"><b class="uicontrol">Yes</b>: If this value is assigned, then the End Child Workflow Execution activity gives an output as &quot;Error encountered&quot; whenever the instance of the child workflow that is to be executed is not found. In other words, if the child workflow execution is not yet started or is already completed, then this error is encountered.</p>
+<p class="paragraph"><b class="uicontrol">No</b>: If this value is assigned, then the End Child Workflow Execution activity will give the output as &quot;Successful&quot;.</p>
+<p class="paragraph">Specify Value:&nbsp;This option can be used during the runtime execution of the workflow. You can assign the 'Yes' or 'No' values to a variable which will be used to know the value of this property. Alternatively, you can click the expression editor icon and select a variable assigned to the workflow in the expression editor window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the <b class="uicontrol">Looping Behavior</b> group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop-down field.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="workflowdetails1.html" target="_self">End Child Workflow: Workflow Details</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

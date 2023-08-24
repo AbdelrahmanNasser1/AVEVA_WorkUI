@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Output Instance XML </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601958" class="heading4">Invoke Form - Output Instance XML</h4>
+<p class="paragraph">This property is used to get the data from the Forms which you have edited from the Work items page. Depending on the type of XML variable selected in this property, the XML data is stored,&nbsp;provided the output instance XML has the same schema of the Form.</p>
+<p class="paragraph">For instance:</p>
+<ol class="olitem"><li class="olitem">If the&nbsp;<b class="uicontrol">Output Instance XML</b>&nbsp;is of type&nbsp;<b class="uicontrol">XML List</b>&nbsp;, then the XML data received from the Form is stored in the respective&nbsp;AVEVA Work Tasks List depending on the list item scope defined for the XML Variable.<ol class="olsubitem"><li class="olsubitem">The list item scope should be New , if a new list item has to be added with the Form data in list.</li><li class="olsubitem">The list item scope should be Current, if the list item that initiated the workflow has to be updated.</li><li class="olsubitem">The list item scope should be List Query, if a specific list item has to be updated in the list.</li></ol></li><li class="olitem">If the&nbsp;<b class="uicontrol">Output Instance XML</b>&nbsp;is of type&nbsp;<b class="uicontrol">XML Document</b>, then the XML data received is stored in the workflow itself.</li></ol><p class="paragraph"><strong class="strong">Scenario:</strong> Display an existing list item data using&nbsp;<b class="uicontrol">Invoke Form</b>&nbsp;and then store the updated Form data in a different list (destination list): An intermediate XML Variable is required for such scenarios. Use an&nbsp;<b class="uicontrol">Update Variable</b>&nbsp;activity before the&nbsp;<b class="uicontrol">Invoke Form</b>&nbsp;activity, to assign the Source list XML values to the Intermediate XML Variable, Then use this intermediate XML variable as&nbsp;<b class="uicontrol">Input Instance XML</b>&nbsp;and destination XML List as&nbsp;<b class="uicontrol">Output Instance XML</b>.</p>
+<p class="paragraph">Steps to create Output Instance XML variable</p>
+<ol class="step"><li class="step">Select an existing output XML variable from the&nbsp;<b class="uicontrol">Output Instance XML</b>&nbsp;drop-down list, Or Click the edit button corresponding to Create a&nbsp;<b class="uicontrol">Output Instance XML</b>&nbsp;variable.<p class="stepinfo">The following screen will be displayed.</p>
+<p class="stepinfo">&nbsp;<img id="f50922" src="50922.png" class="embeddedimage100%scalinglive" alt="" height="260" width="522" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo">Create a Output Instance XML Variable</p>
+</li><li class="step">Select a form from the&nbsp;<b class="uicontrol">Form Name</b>&nbsp;drop-down list.</li><li class="step">Select&nbsp;&nbsp;a version from the&nbsp;<b class="uicontrol">Version</b>&nbsp;drop-down list.&nbsp;<br>&nbsp;<img id="f50923" src="50923.png" class="embeddedimage100%scalinglive" alt="" height="260" width="522" vspace="0" hspace="0" align="bottom" border="0"><p class="note"><strong class="notelabel">Note:</strong> By default, the No option is selected and the screen as shown in the image above is displayed. If the Yes option is selected, the following screen is displayed. The difference, as you can notice, is that the No option allows you to select a form, whereas the Yes option allows you to select a list.</p>
+<p class="stepinfo"><img id="f50874" src="50874.png" class="embeddedimage100%scalinglive" alt="" height="260" width="522" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="note"><strong class="notelabel">Note:</strong> On this screen, select a list from the&nbsp;List&nbsp;drop-down.</p>
+</li><li class="step">Enter a name for the output XML variable in the&nbsp;<b class="uicontrol">XMLVariable</b> Name&nbsp;field.</li><li class="step">Enter a description for the output XML variable in the&nbsp;<b class="uicontrol">XMLVariable Description</b>&nbsp;field.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit</b>.</li><li class="step">The output XML variable is created. The created output XML variable will be available in Start activity.</li></ol><p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformactivity.html" target="_self">Invoke Form Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

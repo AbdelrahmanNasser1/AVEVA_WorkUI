@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Basic Configuration </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t483239" class="heading4">Basic Configuration</h4>
+<p class="paragraph">You use the <strong class="strong">Basic Configuration</strong> tab to define the schedules at which the analysis must be run. You can also run the BAM reports for the workflow immediately with the <b class="uicontrol">Process Now</b>&nbsp;option available in this window.</p>
+<p class="paragraph">You can process the BAM Reports in one of the following two ways:</p>
+<ul class="ulitem"><li class="ulitem">Manual proce<b class="uicontrol">ss</b></li><li class="ulitem">Scheduled process</li></ul><p class="paragraph">In the manual process, click the&nbsp;<b class="uicontrol">Process Now</b>&nbsp;button to synchronize the report data. You can achieve similar output by scheduling the process through the BAM Scheduler.</p>
+<p class="subheading">BAM Web Services Configuration</p>
+<p class="paragraph">Configure the web services for scheduling the BAM Process using which you can send and email with the embedded graph. Use the BAM Configuration page for this configuration. DO the following to access the configuration page:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Right-click on any workflow, and click&nbsp;<b class="uicontrol">BAM Configuration.</b><p class="stepresult">The <b class="windowtitle">BAM Configuration</b> page appears.</p>
+<ul class="stepchoice"><li class="stepchoice">Alternatively, go to&nbsp;<b class="uicontrol">Process Designer, </b>click <b class="uicontrol">Settings</b>, and then click <b class="uicontrol">BAM Configuration.</b></li></ul></li><li class="step">Click the <b class="uicontrol">Basic Configuration</b> tab.<p class="stepinfo"><br>&nbsp;<img id="f47330" src="47330.jpg" class="embeddedimage100%scalinglive" alt="" height="516" width="542" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click the&nbsp;<b class="uicontrol">Click here</b>&nbsp;link. <p class="stepresult">The <b class="windowtitle">Configure Web Service</b> section appears.</p>
+<p class="stepinfo">The <b class="windowtitle">Configuration Web Service</b> section contains the default web service URL in the&nbsp;<b class="uicontrol">Web Service URL</b>&nbsp;field. The default web service URL is based on the mapped repository. </p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f47331" src="47331.jpg" class="embeddedimage100%scalinglive" alt="" height="454" width="528" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">You can change the default Web Service by entering the Web Service URL in the&nbsp;<b class="uicontrol">Web Service URL</b>&nbsp;field. Enter a valid and accessible Web Service URL. Enter the username and password as the credentials for the Web Service. In case of Windows authentication, specify the user name with the domain name. For example domain\username.</p>
+<p class="stepinfo">Click <b class="uicontrol">Restore to Default</b>&nbsp;to restore the default URL.</p>
+<p class="stepinfo">In case of any difficulty in populating the Web Service, create a Web Service with the <i class="emphasis">ProcessBAMService.asmx </i>specified in the following path:</p>
+<p class="stepinfo"><b class="filepath">..\AVEVA\Work Tasks\Web\BPMUITemplates\Default\BAM\WS\ProcessBAMService.asmx</b>.</p>
+</li></ol><p class="procedureheading"></p>
+<p class="procedureheading">To schedule the analysis:</p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">Define the start and end dates. To run the reports indefinitely, leave the end date empty.</li><li class="step">Select the <b class="uicontrol">Schedule Task</b>. Tasks can be scheduled on daily, weekly or monthly basis.</li><li class="step">Select the months, days or weeks in which the analysis task must run. </li><li class="step">Select the day of the month or week or the hour of day when the task must be run.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f189344" src="189344.png" class="embeddedimage100%scalinglive" alt="" height="422" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">To delete a BAM schedule, click the <b class="uicontrol">Delete Schedule</b> button. <p class="stepresult">The schedule is deleted, and the respective database entries are removed.</p>
+<p class="stepinfo">The <b class="uicontrol">Delete Schedule</b> button appears only after you save a schedule. If you do not see the <b class="uicontrol">Delete Schedule</b> button even after saving the schedule, refresh the page, or close the page and open the page again.</p>
+<p class="stepinfo"><img id="f189345" src="189345.png" class="embeddedimage100%scalinglive" alt="" height="453" width="557" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

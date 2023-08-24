@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating an XML Iterator Type XML Variable for Grid Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t49387" class="heading5">Creating an XML Iterator Type XML Variable for Grid Items</h5>
+<p class="paragraph">XML Iterator type XML variable is used to iterate though the child items (grid items) of a list item in a workflow.</p>
+<p class="procedureheading">To create an XML Iterator type XML Variable for grid items</p>
+<ol class="step"><li class="step">Right-click the <b class="uicontrol">Start</b> Activity, and select <b class="uicontrol">Activity Properties</b>. </li><li class="step">Click the edit icon in the <b class="uicontrol">XMLVariables</b> field. The<b class="uicontrol"> XMLVariables</b> screen appears, with the list of the existing XML variables. </li><li class="step">You have to create a XML List Iterator type XML variable before creating XML Iterator type XML variable. If you have already created XML List Iterator type XML variable, you can proceed to the following step. See Creating XML List type XML Variable to create XML List XMLvariable. </li><li class="step">Click <b class="uicontrol">New Variable</b> to add a new variable. </li><li class="step">Type a variable name in the <b class="uicontrol">Variable Name</b> field. </li><li class="step">Select <b class="uicontrol">XML Iterator</b> from the <b class="uicontrol">Type</b> drop-down list. </li><li class="step">Select a <b class="uicontrol">XML Variable</b> from the <b class="uicontrol">XML Variable</b> drop-down list as shown in the following screen. <p class="stepinfo"><strong class="notelabel">Note:</strong> If you need to loop through the grid items of an item while iterating through the list items, you need to select the respective XML List Iterator type XML variable.</p>
+<p class="stepinfo"><img id="f181543" src="181543.png" alt="" height="462" width="502" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Select a repeating node from the <b class="uicontrol">Node Select</b> drop-down list. Select the XML node which is mapped for the grid in the list. <p class="stepinfo"><img id="f181544" src="181544.png" alt="" height="462" width="503" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">When you select a node, the following screen is displayed.<p class="stepinfo"><img id="f181545" src="181545.png" alt="" height="463" width="503" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click <b class="uicontrol">Save Variable</b>. The message 'Variable Updated' is displayed. Close the window.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="xmlvariableforlist.html" target="_self">XML Variable for List</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

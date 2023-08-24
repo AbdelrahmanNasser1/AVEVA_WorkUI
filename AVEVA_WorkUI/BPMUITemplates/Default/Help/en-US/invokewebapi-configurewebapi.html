@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Web API: Configure Web API </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602383" class="heading4">Invoke Web API: Configure Web API</h4>
+<p class="paragraph">You can configure the Web APIs in the&nbsp;<b class="uicontrol">Set Web API Configurations</b>&nbsp;window. This window lists all the Web APIs configured for the application or workflow.</p>
+<p class="subheading">Http Method: </p>
+<p class="paragraph">The <b class="uicontrol">Invoke Web API</b> activity supports the following HTTP request methods: </p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">GET</b>: The GET method retrieves information from the given server using a given URI. Requests using GET should only retrieve data and should have no other effect on the data. </li><li class="ulitem"><b class="uicontrol">POST</b>: A POST request sends data to the server, for example customer information, file upload, using HTML forms. </li><li class="ulitem"><b class="uicontrol">PUT</b>: A PUT request replaces all current representations of the target resource with the uploaded content. </li><li class="ulitem"><b class="uicontrol">DELETE</b>: A DELETE request removes all current representations of the target resource given by the URI. </li></ul><p class="subheading">Web API</p>
+<p class="paragraph">Web APIs are frameworks to build HTTP services for browsers and mobile devices.</p>
+<p class="paragraph">If the Web API is Windows authenticated, then the status of the Windows Authentication must be set to <b class="uicontrol">Enabled</b> for the&nbsp;<b class="uicontrol">EnterpriseConsole</b>&nbsp;site under&nbsp;<b class="uicontrol">WorkflowManagementSites</b>&nbsp;site in the&nbsp;<b class="uicontrol">IIS Manager</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraph">If the Web API requires ArchestrA Security Token Service (ASTS) access token authentication, then the Workflow Engine Service must first be registered as a client in the ASTS server through<b class="uicontrol"> Central Configuration </b>site. Web API with the Access Token enabled Authentication gets listed in the Web API drop-down list, so that it can be used within the workflow. </p>
+<p class="subheading">Request URI </p>
+<p class="paragraph">The Request URI is a Uniform Resource Identifier and identifies the resource upon which to apply the request. </p>
+<p class="paragraph">Example: </p>
+<ul class="ulitem"><li class="ulitem">Request URI without parameters: <b class="uicontrol">api/product/1</b> for <b class="uicontrol">http://localhost/MySite/api/product/1</b> </li><li class="ulitem">Request URI with parameters: <b class="uicontrol">api/{product}/{ID}</b> for <b class="uicontrol">http://localhost/MySite/api</b> </li></ul><p class="subheading">Use System Authentication</p>
+<p class="paragraph">Select the <b class="uicontrol">Use System Authentication</b> check box to use the access token of the Workflow Engine Service.</p>
+<p class="subheading">Content Type</p>
+<p class="paragraph">You can configure the content type of the Post Data. The available options are <b class="uicontrol">JSON</b>, <b class="uicontrol">XML</b>, and <b class="uicontrol">URL ENCODED</b>. </p>
+<p class="paragraph">This field is displayed only when the value of <b class="uicontrol">Http Method</b> is set to <b class="uicontrol">POST</b> or <b class="uicontrol">PUT</b>.</p>
+<p class="subheading">POST Data </p>
+<p class="paragraph"><strong class="strong">Passing data to POST and PUT Methods</strong> </p>
+<p class="paragraph">You can pass data to POST and PUT methods either through parameters or through the request body. If you pass data through request body, use the adjacent text box for the body content. If web API method uses [FromBody] attribute, select the <b class="uicontrol">Yes</b> option for the <b class="uicontrol">FromBody Attribute</b> property. </p>
+<p class="subheading">Output Settings</p>
+<p class="paragraph"><strong class="strong">Save Output In</strong></p>
+<p class="paragraph">Use the options in this field to save the return value from the Web Method so that you can use it in subsequent activities. You can save the return value as either a&nbsp;<b class="uicontrol">Variable</b>&nbsp;or as an&nbsp;<b class="uicontrol">XML Variable</b>. </p>
+<p class="paragraph">To save the output as a&nbsp;<b class="uicontrol">Variable</b>, select the variable that you created in the&nbsp;<b class="uicontrol">Start</b>&nbsp;activity. To save the output as an XML variable, select the<b class="uicontrol">&nbsp;XML Variable</b>&nbsp;that you created in the&nbsp;<b class="uicontrol">Start</b>&nbsp;activity. You can also create the XML variable using the&nbsp;<b class="uicontrol">Create New</b>&nbsp;option.</p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> Create XML variable will work only if the web API returns valid data. Therefore, for Delete, Put, and Post, use an existing variable.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokewebapiactivity.html" target="_self">Invoke Web API Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

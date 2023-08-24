@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Defining Work Items List Layouts for a User </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t483092" class="heading5">Defining Work Items List Layouts for a User</h5>
+<p class="paragraph">Individual users can perform the following activities to customize Work items list layouts:</p>
+<ul class="ulitem"><li class="ulitem">Customize layout (For more information about customization options, see&nbsp;<a id="h46846" class="jump-currentwindowlive" title="Work Items List Layout Customization" href="workitemlistcustomizationoptions.html" target="_self">Work Items List Layout Customization</a>.)</li><li class="ulitem">Save a customized layout</li><li class="ulitem">Delete a customized layout</li></ul><p class="subheading">Saving Customized Layouts</p>
+<p class="paragraph">Customized views of a Work items list can be saved under a personalized name. To save the custom settings:</p>
+<ol class="step"><li class="step">Right-click the folder name that contains the customized view. For example, if you have customized the Work items list for Inbox, right-click <b class="uicontrol">Inbox</b>.</li><li class="step">Select <b class="uicontrol">Save Layout</b><p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46847" src="46847.jpg" class="embeddedimage100%scalinglive" alt="" height="213" width="363" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Enter the name of the new layout at the <b class="uicontrol">Enter the view name</b> prompt. The name of the saved layout appears in the folder list under the folder.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46848" src="46848.jpg" class="embeddedimage100%scalinglive" alt="" height="126" width="488" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">The new folder displays the same list of items as the default folder that was customized. The work items will also be displayed in the default folder. For example, in the following figure, Inbox has been customized and the layout saved as <b class="uicontrol">Travel Expense</b>.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46849" src="46849.png" class="embeddedimage100%scalinglive" alt="" height="134" width="568" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="subheading">Deleting Customized Layouts</p>
+<p class="paragraph">Right-click the folder name for the layout, and then select <b class="uicontrol">Delete saved Layout</b>. The layout is deleted.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46850" src="46850.jpg" class="embeddedimage100%scalinglive" alt="" height="240" width="312" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

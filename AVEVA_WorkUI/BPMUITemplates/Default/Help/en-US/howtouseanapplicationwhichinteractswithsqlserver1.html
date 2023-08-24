@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Use an Application that Interacts with the SQL Server? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t50207" class="heading4">How to Use an Application that Interacts with the SQL Server?</h4>
+<p class="paragraph">This example illustrates how to use an application which interacts with SQL server.</p>
+<p class="paragraph"><strong class="strong">PROCEDURE</strong></p>
+<p class="paragraph"><strong class="strong">NAMESPACE USED</strong></p>
+<p class="codeblock1">System</p>
+<p class="codeblock1">System.Collections.Generic</p>
+<p class="codeblock1">System.Text</p>
+<p class="codeblock1">System.Data.sqlClient</p>
+<p class="codeblock1">System.Data</p>
+<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1">using System.Data.SqlClient;</p>
+<p class="codeblock1">using System.Data;</p>
+<p class="codeblock1">namespace HumanResource</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">public class EmployeeMaster</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">private string _Server;</p>
+<p class="codeblock1">public string ServerName</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _Server; }</p>
+<p class="codeblock1">set { _Server = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">private string _User;</p>
+<p class="codeblock1">public string User</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _User; }</p>
+<p class="codeblock1">set { _User = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">private string _Password;</p>
+<p class="codeblock1">public string Password</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _Password; }</p>
+<p class="codeblock1">set { _Password = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">private string _ID;</p>
+<p class="codeblock1">public string EmployeeID</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _ID; }</p>
+<p class="codeblock1">set { _ID = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">private string _Name;</p>
+<p class="codeblock1">public string Name</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _Name; }</p>
+<p class="codeblock1">set { _Name = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">private string _Address;</p>
+<p class="codeblock1">public string Address</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">get { return _Address; }</p>
+<p class="codeblock1">set { _Address = value; }</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">static SqlConnection objConnect;</p>
+<p class="codeblock1">static string sConnection = &quot;&quot;;</p>
+<p class="codeblock1">public EmployeeMaster(string sServer, bool bWindowsAuthent, string sUser, string sPasswd)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">string sdatabaseName = &quot;HRMS&quot;;</p>
+<p class="codeblock1">if (sServer == string.Empty)</p>
+<p class="codeblock1">sServer = &quot;skeltanb54&quot;;</p>
+<p class="codeblock1">if ((sUser == string.Empty) || (sPasswd == string.Empty))</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">bWindowsAuthent = true;</p>
+<p class="codeblock1">sConnection = &quot;Data Source=&quot; + sServer + &quot;; Database=&quot; + sdatabaseName + &quot;;       </p>
+<p class="codeblock1">Trusted_Connection = true&quot; ;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">else</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">sConnection = &quot;Data Source=&quot; + sServer + &quot;; Database=&quot; + sdatabaseName + &quot;;UID=&quot; + sUser +</p>
+<p class="codeblock1">&quot;; PWD=&quot; + sPasswd;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"></p>
+<p class="codeblock1">//objConnect = new SqlConnection(sConnection);</p>
+<p class="codeblock1">//objConnect.Open();</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">~EmployeeMaster()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">if (objConnect != null)</p>
+<p class="codeblock1">objConnect = null;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public SqlConnection GetDataBaseConnection()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">try</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">if (objConnect == null)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">objConnect = new SqlConnection(sConnection);</p>
+<p class="codeblock1">objConnect.Open();</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">else</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">if ( objConnect.State == ConnectionState.Closed)</p>
+<p class="codeblock1">objConnect.Open();</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">catch (Exception ex)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">throw ex;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">return objConnect;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public void CloseDatabaseConnectio()</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">objConnect.Close();</p>
+<p class="codeblock1">objConnect = null;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public string GetEmployeeName(string id)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">try</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">string sSQL = &quot;select * from Employees where employeeID = '&quot; + id + &quot;'&quot;;</p>
+<p class="codeblock1">GetDataBaseConnection();</p>
+<p class="codeblock1">SqlDataAdapter adp = new SqlDataAdapter(sSQL, objConnect);</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">DataSet ds = new DataSet();</p>
+<p class="codeblock1">adp.Fill(ds);</p>
+<p class="codeblock1">_Name = ds.Tables[0].Rows[0][&quot;Name&quot;].ToString();</p>
+<p class="codeblock1">_ID = ds.Tables[0].Rows[0][&quot;EmployeeID&quot;].ToString();</p>
+<p class="codeblock1">_Address = ds.Tables[0].Rows[0][&quot;Address&quot;].ToString();</p>
+<p class="codeblock1">return ds.Tables[0].Rows[0][&quot;Name&quot;].ToString();</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">catch (Exception ex)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">throw ex;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public void GetEmployeeDetails(string id)</p>
+<p class="codeblock1"> {</p>
+<p class="codeblock1"> try</p>
+<p class="codeblock1"> {</p>
+<p class="codeblock1"> string sSQL = &quot;select * from Employees where employeeID = '&quot; + id + &quot;'&quot;;</p>
+<p class="codeblock1"> GetDataBaseConnection();</p>
+<p class="codeblock1"> SqlDataAdapter adp = new SqlDataAdapter(sSQL, objConnect);</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1"> DataSet ds = new DataSet();</p>
+<p class="codeblock1">adp.Fill(ds);</p>
+<p class="codeblock1">_Name = ds.Tables[0].Rows[0][&quot;Name&quot;].ToString();</p>
+<p class="codeblock1">_ID = ds.Tables[0].Rows[0][&quot;EmployeeID&quot;].ToString();</p>
+<p class="codeblock1">_Address = ds.Tables[0].Rows[0][&quot;Address&quot;].ToString();</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">catch (Exception ex)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">throw ex;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">public string GetConnectEmployeeName( SqlConnection SqlConn, string id)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">try</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">string sSQL = &quot;select * from Employees where employeeID = '&quot; + id + &quot;'&quot;;</p>
+<p class="codeblock1">SqlDataAdapter adp = new SqlDataAdapter(sSQL, SqlConn);</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">DataSet ds = new DataSet();</p>
+<p class="codeblock1">adp.Fill(ds);</p>
+<p class="codeblock1">_Name = ds.Tables[0].Rows[0][&quot;Name&quot;].ToString();</p>
+<p class="codeblock1">ID = ds.Tables[0].Rows[0][&quot;EmployeeID&quot;].ToString();</p>
+<p class="codeblock1">_Address = ds.Tables[0].Rows[0][&quot;Address&quot;].ToString();</p>
+<p class="codeblock1">return ds.Tables[0].Rows[0][&quot;Name&quot;].ToString();</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">catch (Exception ex)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">throw ex;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">Table Structure</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">Employees &#8211; Master table to store employee details</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">CREATE TABLE [dbo].[Employees](</p>
+<p class="codeblock1">[ID] [int] IDENTITY(1,1) NOT NULL,</p>
+<p class="codeblock1">[EmployeeID] [nchar](10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,</p>
+<p class="codeblock1">[Name] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,</p>
+<p class="codeblock1">[Address] [nvarchar](max) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,</p>
+<p class="codeblock1">[DOJ] [datetime] NULL</p>
+<p class="codeblock1">) ON [PRIMARY]</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">Table to store Leave Balance</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">CREATE TABLE [dbo].[LeaveBalance](</p>
+<p class="codeblock1">[ID] [int] NULL,</p>
+<p class="codeblock1">[CL_Balance] [numeric](18, 2) NULL,</p>
+<p class="codeblock1">[SL_Balance] [numeric](18, 2) NULL</p>
+<p class="codeblock1">) ON [PRIMARY]</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="codesamples1.html" target="_self">SOA</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

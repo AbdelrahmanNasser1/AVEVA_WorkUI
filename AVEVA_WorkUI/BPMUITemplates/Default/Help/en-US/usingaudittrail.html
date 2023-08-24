@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Deleted List Items </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t477296" class="heading4">Using Deleted List Items</h4>
+<p class="paragraph">Consider a scenario from a&nbsp;pharmaceutical company, say Telematics Pharma which has a set of critical business processes being controlled through the use of workflows.</p>
+<p class="paragraph">Workflows are designed to automate the business processes.&nbsp;So, whenever any workflow is removed or deleted from the system, the company wishes to maintain a record of that. The record maintained must have details such as the Workflow Owner, Modified Date Time etc. Also there should be a provision to retrieve the deleted workflows in the form of Definition XML whenever required.</p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Deleted List Items</b>&nbsp;feature helps the company to achieve the above scenario.</p>
+<p class="procedureheading">Steps to achieve the scenario:</p>
+<ol class="step"><li class="step">Telematics Pharma has a workflow named WF_Check_Ingredients, which has to be discontinued due to some business requirements. However, a &nbsp;deletion record has to be maintained for the deleted workflow. Right-click and select&nbsp;<b class="uicontrol">Delete</b>&nbsp;to delete the workflow.</li><li class="step">Open&nbsp;<b class="uicontrol">Deleted List Items</b>&nbsp;from the Enterprise Console menu.</li><li class="step">A folder&nbsp;<b class="uicontrol">Workflow</b>&nbsp;gets created in the&nbsp;<b class="uicontrol">Deleted List Items</b>&nbsp;list.</li><li class="step">Double-click the Workflow folder to see the record of the deleted workflow.<p class="stepinfo">Find below a brief description of some of the important fields being displayed for the deleted list item:</p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="96"><p class="tableheader">Column Name</p>
+</td>
+<td style="border:1px solid #010101;" width="480"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">Title</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">This field contains the title of the list item which has been deleted.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">List Type</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">This field contains the type of the list item which has been deleted. For example, Workflow, Form.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">User Id</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">The user id field is populated based on the provider configured for the repository:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Active Directory provider:&nbsp;Name</b>&nbsp;is populated as the User Id.</li><li class="ulitem"><b class="uicontrol">Forms Provider:&nbsp;GUID</b>&nbsp;is populated as the User Id.</li><li class="ulitem"><b class="uicontrol">ASP.NET Membership:&nbsp;Name/GUID/Integer</b>&nbsp;(depending on the provider configuration)</li></ul></td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">Instance Xml</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">This field contains the form instance XML of the deleted list item.</p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;Each list has been internally mapped to a form and each list item is mapped to a run-time instance of the form. The Form Instance XML contains the run-time information of the form associated with the list.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">Item Details</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">This field contains information about the list item like Title, Owner, Version History, Created Date Time, and Last Modified Date Time.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">Audit Details</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">This field contains the audit history of the deleted list item.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="96"><p class="tableparagraph">Definition Xml</p>
+</td>
+<td bgcolor="#FEFEFE" style="border:1px solid #010101;" width="480"><p class="tableparagraph">This field is applicable only for list types such as workflows, forms, and lists. The exported definition XML of the deleted list item can be used to restore the list item in any repository.</p>
+</td>
+</tr>
+
+</table>
+</li><li class="step">You can export the definition XML of the workflow using the option available in the context menu. The exported XML can then be used to import the workflow definition in any repository, if required.</li></ol><p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

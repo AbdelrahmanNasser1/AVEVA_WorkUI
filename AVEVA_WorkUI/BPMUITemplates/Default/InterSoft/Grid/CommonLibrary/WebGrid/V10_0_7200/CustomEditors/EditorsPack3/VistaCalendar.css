@@ -1,0 +1,171 @@
+﻿.WSB1_CalendarFrameStyle
+{
+    width: 180px;
+    border: solid 1px #6593CF;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    background-color: White;
+}
+.WSB1_CalendarTableStyle
+{
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    text-align: center;
+}
+.WSB1_CalendarHeaderStyle
+{
+    background-color: #BDDBFF;
+    text-align: center;
+    font-family: Segoe UI, Tahoma;
+    font-size: 9pt;
+}
+.WSB1_CalendarWeekNumberStyle
+{
+    border-right: solid 1px #BDDBFF;
+    font-family: Segoe UI, Tahoma;
+    font-size: 6pt;
+    text-align: right;
+}
+.WSB1_CalendarInboundCellStyle
+{
+    background-color: #FDC74D;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    text-align: right;
+}
+.WSB1_CalendarOutboundCellStyle
+{
+    color: gray;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    text-align: right;
+}
+.WSB1_CalendarWeekNameStyle
+{
+    border-bottom: solid 1px #BDDBFF;
+    font-family: Segoe UI, Tahoma;
+    font-size: 9pt;
+}
+.WSB1_CalendarSelectedCellStyle
+{
+    background-color: #FDC74D !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    vertical-align: middle;
+}
+.WSB1_CalendarTodayStyle
+{
+    border: solid 1px red !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+}
+.WSB1_HolidayStyle
+{
+    color: Red !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+}
+.WSB1_FooterStyle
+{
+    border-top: solid 1px #BDDBFF;
+    width: 100%;
+    text-align: center;
+}
+.WSB1_ButtonStyle
+{
+    font-family: Segoe UI, Tahoma;
+    font-size: 9pt;
+    color: Black;
+    text-decoration: none;
+}
+.WSB1_ButtonStyle:hover
+{
+    cursor: pointer;
+    color: #0066cc;
+}
+
+.WSB2_CalendarFrameStyle
+{
+    width: 180px;
+    border: solid 1px #4C535C;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    background-color: White;
+}
+.WSB2_CalendarTableStyle
+{
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    text-align: center;
+}
+.WSB2_CalendarHeaderStyle
+{
+    background-color: #c9c9c9;
+    text-align: center;
+    font-family: Segoe UI, Tahoma;
+    font-size: 9pt;
+}
+.WSB2_CalendarWeekNumberStyle
+{
+    border-right: solid 1px #E3E5E8;
+    font-family: Segoe UI, Tahoma;
+    font-size: 6pt;
+    text-align: right;
+}
+.WSB2_CalendarInboundCellStyle
+{
+    background-color: #FDC74D !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    text-align: right;
+}
+.WSB2_CalendarOutboundCellStyle
+{
+    color: gray;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    text-align: right;
+}
+.WSB2_CalendarWeekNameStyle
+{
+    border-bottom: solid 1px #E3E5E8;
+    font-family: Segoe UI, Tahoma;
+    font-size: 9pt;
+}
+.WSB2_CalendarSelectedCellStyle
+{
+    background-color: #FDC74D !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+    vertical-align: middle;
+}
+.WSB2_CalendarTodayStyle
+{
+    border: solid 1px red !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+}
+.WSB2_HolidayStyle
+{
+    color: Red !important;
+    font-family: Segoe UI, Tahoma;
+    font-size: 8pt;
+}
+.WSB2_FooterStyle
+{
+    border-top: solid 1px #E3E5E8;
+    width: 100%;
+    text-align: center;
+}
+.WSB2_ButtonStyle
+{
+    font-family: Segoe UI, Tahoma;
+    font-size: 9pt;
+    color: Black;
+    text-decoration: none;
+}
+.WSB2_ButtonStyle:hover
+{
+    cursor: pointer;
+    color: #0066cc;
+}

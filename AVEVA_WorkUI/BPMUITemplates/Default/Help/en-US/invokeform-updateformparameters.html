@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Update Form Parameters </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488156" class="heading4">Invoke Form - Update Form Parameters</h4>
+<p class="paragraph">A parameter represents a value that is passed to a variable. The parameter value is defined when the variable is declared in the procedure. A procedure can be defined with no parameters, one parameter, or more than one. The part of the procedure definition that specifies the parameters is called the parameter list.</p>
+<p class="paragraph">Here, parameters represent the form variables where the user can define while designing the form. These parameters can be used in Forms scripts, in user look up controls to build the filter expression, and as a parameter for the lookup query.</p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;Form parameters values are not stored either in form definition or in database. These values are rendered when the form is rendered.</p>
+<p class="paragraph"><strong class="strong">How to define parameters:</strong>&nbsp;To work with parameters, the Form should have parameters defined. To define the Form parameter, on the corresponding&nbsp;Forms Designer&nbsp;screen, click&nbsp;<b class="uicontrol">Edit properties of the form</b>&nbsp;on the top. Click the&nbsp;<b class="uicontrol">Advanced</b>&nbsp;tab. You can define the parameter in the&nbsp;<b class="uicontrol">Form Properties</b>&nbsp;section. You can define the parameter clicking the&nbsp;<b class="uicontrol">Add Row</b>.</p>
+<p class="subheading">How Form parameters can be used?</p>
+<p class="paragraph">Form parameter can be used in Form scripts, in user look up controls to build the filter expression, and as a parameter for the lookup query. Below is the sample scenario for how parameters can be used in form scripts.</p>
+<p class="paragraph">Suppose in our form we have two controls Employee id &amp; Manager Name. Based on the Employee id entered, we can populate the Manager name. To achieve this, we need to write the script (C#) to update the Manager name value from Form parameters. This parameter value can be updated from workflow.</p>
+<p class="paragraph">Steps to set Update form parameters:</p>
+<ol class="step"><li class="step">Click the edit button corresponding to&nbsp;<b class="uicontrol">Update form parameters</b>. The following screen will be displayed.&nbsp;&nbsp;<br><img id="f50934" src="50934.png" class="embeddedimage100%scalinglive" alt="" height="221" width="352" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">To select a form parameter from the drop-down list, click the drop-down. The following screen is displayed.</li><li class="step">Expand the tree by clicking on the '+' sign. The associated parameters of the form are displayed.</li><li class="step">Select the desired parameter by clicking the name. The following screen will be displayed.</li><li class="step">Click&nbsp;<b class="uicontrol">Enter value</b>&nbsp;to display a text box. Enter the new value for the parameter in the text box. <br>You can also select a new value by clicking&nbsp;<img id="f50935" src="50935.png" class="embeddedimage100%scalinglive" alt="" height="22" width="16" vspace="0" hspace="0" align="bottom" border="0">.</li><li class="step">Select the desired new parameter to be updated by clicking it.</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>. The new parameter is updated.</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformactivity.html" target="_self">Invoke Form Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

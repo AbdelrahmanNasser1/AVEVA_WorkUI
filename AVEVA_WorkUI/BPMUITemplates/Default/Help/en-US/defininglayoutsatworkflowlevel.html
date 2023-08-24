@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Defining Layouts at Workflow Level </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t597310" class="heading5">Defining Layouts at Workflow Level</h5>
+<p class="paragraph">The layout for the Work items list can be defined for a Workflow in the <b class="uicontrol">Process Designer</b> by selecting the Work item list Layout option from the <b class="uicontrol">Settings</b> menu.  Selecting this option brings up the <b class="uicontrol">WorkList Layout Customization</b> window. The Worklist Layout can be customized for the following:</p>
+<ul class="ulitem"><li class="ulitem">Column positions</li><li class="ulitem">Column selection</li><li class="ulitem">Grouping a column</li><li class="ulitem">Sorting a column</li></ul><p class="paragraph">If you set the <b class="uicontrol">ShowInboxViewonly</b> property to true, Workflow layouts will not be applied. </p>
+<p class="paragraph">The default view of Work items list in the Enterprise Console cannot be customized. The above customization applies only to work item lists created by embedding the Work Item List Control in an ASPX page. For more information about using AVEVA Work Tasks Controls as a part of a project, see <i class="emphasis">Using AVEVA Work Tasks Controls in Applications</i> in the<i class="emphasis"> Developer Guide</i>.</p>
+<p class="subheading">Work items list Layout Option in Process Designer</p>
+<p class="paragraphimage"><img id="f106780" src="106780.png" class="embeddedimage100%scalinglive" alt="" height="223" width="480" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">WorkList Layout Customization</p>
+<p class="paragraph">The WorkList Layout Customization window allows you to customize the layout of Work items lists assigned from the Workflow. For more information on customization options, refer to Work items list Customization Options.</p>
+<p class="subheading">WorkList Layout Customization for Workflow Window</p>
+<p class="paragraphimage"><img id="f106781" src="106781.png" class="embeddedimage100%scalinglive" alt="" height="250" width="585" vspace="0" hspace="0" align="bottom" border="0"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

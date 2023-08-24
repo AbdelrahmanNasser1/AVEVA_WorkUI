@@ -1,0 +1,1267 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Forms Designer</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.Designer.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="../CommonUXControls/scripts/actionBar/actionBar.js"></script>
+    <script type="text/javascript" src="../CommonUXControls/scripts/jquery.easing.1.3.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.css" />
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaDesigner.min.css" />
+    <link rel="stylesheet" href="css/custom/SkeltaCustomControlDesigner.css" />
+    <link rel="stylesheet" href="css/menustyles.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style>
+        .formsCopyrightInfo
+        {
+            font-size: 12px;
+            padding: 5px;
+            padding-left: 10px;
+            border-top: 1px solid #fff;
+            color: #000;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var skeltaUtils = skelta.forms.utilities, skeltaUI = skelta.forms.ui;
+        var logger = skeltaUtils.getLogger();
+        var cacheKey, applicationName, userId;
+        var versionStamp;
+        var listName;
+        var listFormName = "";
+        var skeltaLocalize = skelta.localize;
+        var skeltaUserContext = skelta.userContext;
+        var formId;
+        window.isListForm = false;
+        var ActionBarDesigner = jQuery.extend(true, {}, ActionBar);
+        try
+        {
+            window.moveTo(0, 0);
+            window.resizeTo(screen.availWidth, screen.availHeight);
+        }
+        catch (err)
+        {
+            logger.logError(err.message);
+        }
+        function checkFormsAccessRightsSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showAlert(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            }
+            else
+            {
+                var formData = $.parseJSON(result.Result);
+                skelta.userContext.setUserContextFor("appN", formData.fAppName);
+                skelta.userContext.setUserContextFor("uId", formData.fUserId);
+                skelta.userContext.setUserContextFor("fName", formData.fName);
+                skelta.userContext.setUserContextFor("vStamp", formData.fVer);
+                skelta.userContext.setUserContextFor("itemId", formData.fId);
+                skelta.userContext.setUserContextFor("listName", formData.fListName);
+
+                applicationName = skelta.userContext.getUserContextFor("appN");
+                userId = skelta.userContext.getUserContextFor("uId");
+                var formName = skelta.userContext.getUserContextFor("fName");
+                var vStamp = skelta.userContext.getUserContextFor("vStamp");
+                var itemId = skelta.userContext.getUserContextFor("itemId");
+                var listName = skelta.userContext.getUserContextFor("listName");
+                skeltaUtils.loadPageDefault(true);
+
+                $(".formsCopyrightInfo").html(skelta.localize.getString("FormCopyRightInformation"));
+
+                //TODO: Below code needs to be moved to LoadDesigner later.
+                $("img").each(function ()
+                {
+                    $(this).mousedown(function (e) { e.preventDefault() }) // For older browsers
+                        .attr('unselectable', 'on') // For IE9 - This property is not inherited, needs to be placed onto everything
+                        .attr('draggable', 'false') // For IE9 - This property is not inherited, needs to be placed onto everything
+                        .on('dragstart', function () { return false; });
+                });
+
+                //TODO: Not required at present.
+                loadDesigner(paramlcsuri, applicationName, userId, formName, vStamp, itemId);
+            }
+        }
+
+        var paramlcsuri = "";
+        $(document).ready(function ()
+        {
+            try
+            {
+                if (window.focus)
+                {
+                    window.focus();
+                }
+            }
+            catch (err1)
+            {
+                logger.logError(err1.message);
+            }
+
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                $("html").addClass("skd"); // For Media Queries check not to be applied in Designer Mode
+                checkFormsDesignTimeLicense();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skeltaLocalize.getDesignerString("FormNGFHTLoadPageDefaults") + exception.message);
+                logger.logError(skeltaLocalize.getDesignerString("FormNGFHTLoadPageDefaults") + exception.message);
+                skeltaUtils.pageLoadComplete("");
+            }
+        });
+
+        function checkFormsAccessRights(lcsuri, deviceType)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": ["ActionEdit"],
+                "deviceType": deviceType
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetCurrentContextWithSecurityCheck", "application/json; charset=utf-8", params, "json", checkFormsAccessRightsSucceeded, null, null, false);
+        }
+
+        function checkFormsDesignTimeLicense()
+        {
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetFormsDesignTimeLicenseCheck", "application/json; charset=utf-8", null, "json", checkFormsLicenseSucceeded, checkFormsLicenseFailed, null, false);
+        }
+
+        function checkFormsLicenseSucceeded(resultData)
+        {
+            var result = JSON.parse(resultData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showAlert(document.title, result.ErrorMessage, function () { window.close(); });
+            }
+            else
+            {
+                paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+                checkFormsAccessRights(paramlcsuri, "Web");
+            }
+
+        }
+
+        function checkFormsLicenseFailed(resultData)
+        {
+            var result = JSON.parse(resultData.d);
+            skeltaUtils.showError(document.title, result.ErrorMessage, function () { window.close(); });
+        }
+
+        function loadDesigner(paramlcsuri, applicationName, userId, formName, vStamp, itemId)
+        {
+            try
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "listParameterValue": paramlcsuri,
+                });
+                skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetJsonFormDesignerInitialData", "application/json; charset=utf-8", jsonHelper, "html", ajaxSucceeded, ajaxFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (err)
+            {
+                skeltaUtils.showError(document.title, skeltaLocalize.GetDesignerString("FormNGFHTLoadDesigner"), null, err.message);
+                logger.logError(err.message);
+            }
+        }
+
+        ///
+        /// Method to reload the designer after import form defintion from the designer
+        ///
+        function RefreshDesignerOnImport()
+        {
+            var formName = skelta.userContext.getUserContextFor("fName");
+            var vStamp = skelta.userContext.getUserContextFor("vStamp");
+            var itemId = skelta.userContext.getUserContextFor("itemId");
+            loadDesigner(paramlcsuri, applicationName, userId, formName, vStamp, itemId);
+            loadActionBar();
+        }
+
+        ///
+        /// Method to covert label into edit mode and TagName validations
+        ///
+        function toggleTagName(id)
+        {
+            if ($("[id$='_txt']")[0] != null)
+            {
+                var elementId = $("[id$='_txt']")[0].id.split("_");
+                updateTagName(elementId[0], $("[id$='_txt']")[0], onclick, onmouseover, onmouseout, onmousedown);
+                removeControlsParentAttributes(elementId[0]);
+                removeControlAttributes(elementId[0]);
+            }
+            removeControlsParentAttributes(id);
+            var onclick = $("#" + id).attr("onclick");
+            var onmouseover = $("#" + id).attr("onmouseover");
+            var onmouseout = $("#" + id).attr("onmouseout");
+            var onmousedown = $("#" + id).attr("onmousedown");
+            removeControlAttributes(id);
+
+            var labelTargetType = $("#" + id + "_lbl")[0].parentNode.parentNode.getAttribute(dataAttributes.targetType),
+                flyTextInputLength = "";
+            if (!skeltaUtils.isUndefined(labelTargetType) && labelTargetType === "Skelta.Forms.Core.Controls.Tab")
+            {
+                var labelOffsetWidth = parseInt($("#" + id + "_lbl")[0].offsetWidth) - 40,
+                    flyTextInputLength = " style= \"width: " + labelOffsetWidth + "px !important;\"";
+            }
+
+            $("#" + id + "_lbl").hide();
+
+            $("#" + id + "_lbl").before("<input type=\"text\" maxlength=\"150\"" + flyTextInputLength + " id=\"" + id + "_txt\" class=\"skflyctr\" onblur=\"updateTagName('" + id + "',this, '" + onclick + "', '" + onmouseover + "', '" + onmouseout + "', '" + onmousedown + "');\" />");
+            $("#" + id + "_txt").val($("#" + id + "_lbl").text());
+            $("#" + id + "_txt").show();
+            $("#" + id + "_txt").select();
+
+            $("#" + id).mouseleave(function (sender, event)
+            {
+                $("#" + id).unbind("mouseleave");
+
+                try
+                {
+                    $("#" + id + "_txt").trigger("blur");
+                }
+                catch (e)
+                {
+                    // Ignore this error.
+                }
+            });
+
+            $("#" + id + "_txt").mousedown(function (e)
+            {
+                $("#" + id + "_txt").val($("#" + id + "_txt").val());
+                // In FireFox, chrome and safari on mouse click, caret position was not getting set, workaround to achieve the same, won't affect IE10
+                this.selectionStart = this.selectionEnd = -1;
+                //e.cancelbubble = true;
+            });
+
+            $("#" + id + "_txt").on("keydown", function (e)
+            {
+                if ($("#" + id + "_error_lbl").length != 0)
+                {
+                    $("#" + id + "_error_lbl").remove();
+                }
+                ///Prevent single and double quotes
+                if (e.which === 222)
+                {
+                    e.preventDefault();
+                }
+                ///In edit mode if user enters escape key, tagname should not be updated and should go back to the old value
+                if (e.which == 13)
+                {
+                    e.preventDefault();
+                    updateTagName(id, this, onclick, onmouseover, onmouseout, onmousedown);
+                }
+                else if (e.which == 27)
+                {
+                    ///In Edit mode if user presses enter tagName should be updated
+                    $(this).val($("#" + id + "_lbl").text());
+                    updateTagName(id, this, onclick, onmouseover, onmouseout, onmousedown);
+                }
+            });
+
+            $("#" + id + "_txt").on("keyup", function (e)
+            {
+
+                //alert(this.value);
+                if (this.value.indexOf('\'') >= 0 || this.value.indexOf('"') >= 0 || e.which === 222)
+                {
+                    if ($("#" + id + "_error_lbl").length != 0)
+                    {
+                        $("#" + id + "_error_lbl").remove();
+                    }
+                    /// TODO : Instead of trimming of show proper error message for the control
+                    showErrorMessage(id);
+                }
+                else
+                {
+                    if ($("#" + id + "_error_lbl").length != 0 && e.shiftKey)
+                    {
+                        $("#" + id + "_error_lbl").remove();
+                    }
+                }
+            });
+        }
+
+        function showErrorMessage(id)
+        {
+            $("<div id=\"" + id + "_error_lbl\" class=\"skevm\">" + skelta.localize.getString("FormNGFTagNameNoQuotes") + "</div>").insertAfter("#" + id + "_txt");
+        }
+
+        // On TagName change, the event is fired twice, when we type the tag name and press enter.
+        var updateTagName = skelta.forms.utilities.throttle(updateTagNameForThrottle, 100, { trailing: false });
+
+        function updateTagNameForThrottle(id, ele, onclick, onmouseover, onmouseout, onmousedown)
+        {
+            if ($("#" + id + "_txt").length < 1)
+            {
+                return;
+            }
+
+            var oldValue = $("#" + id + "_lbl").text();
+            var newValue = ele.value;
+
+            // Remove the #<id>_txt element and unbind the mouseleave event, else the event would fire twice.
+            $("#" + id).unbind("mouseleave");
+            $("#" + id + "_txt").remove();
+
+            var updateValueFn = function (oldValue, newValue)
+            {
+                $("#" + id + "_error_lbl").remove();
+                $("#" + id + "_lbl").text(newValue);
+                $("#" + id + "_lbl").show();
+
+                if (oldValue !== newValue)
+                {
+                    $("#" + id).attr(dataAttributes.controlName, newValue);
+                }
+
+                setControlsParentAttributes(id, onclick, onmouseover, onmouseout, onmousedown);
+                setControlAttributes(id, onclick, onmouseover, onmouseout, onmousedown);
+            }
+
+            if (oldValue === newValue)
+            {
+                updateValueFn(oldValue, newValue);
+                return;
+            }
+
+            if (isNewValueValid(ele, newValue))
+            {
+                if (newValue.indexOf('\\') >= 0)
+                {
+                    newValue.replace('\\', '\\\\');
+                }
+
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "cacheKey": cacheKey,
+                    "listName": listName,
+                    "versionStamp": versionStamp,
+                    "controlId": id,
+                    "tagName": newValue,
+                    "applicationName": applicationName,
+                    "userId": userId
+                });
+
+                skeltaUtils.callServerMethod("POST",
+                    "NextGenFormService.aspx/UpdateTagName",
+                    "application/json; charset=utf-8",
+                    jsonHelper,
+                    "json",
+                    function (data)
+                    {
+                        var resultData = $.parseJSON(data.d);
+
+                        if (!resultData.IsSuccess)
+                        {
+                            newValue = oldValue;
+                            skeltaUtils.showError(document.title, resultData.ErrorMessage);
+                        }
+
+                        updateValueFn(oldValue, newValue);
+                    },
+                    function ()
+                    {
+                        newValue = oldValue;
+                        updateValueFn(oldValue, newValue);
+
+                        skeltaUtils.showError(document.title,
+                            skelta.localize.getString("FormNGFErrorWhileUpdatingTagName"));
+                        logger.logError(skelta.localize.getString("FormNGFErrorWhileUpdatingTagName"));
+                    });
+            }
+            else
+            {
+                if ($("#" + id + "_error_lbl").length != 0)
+                {
+                    $("#" + id + "_error_lbl").remove();
+                }
+                showErrorMessage(id);
+            }
+        }
+
+        function removeControlAttributes(id)
+        {
+            $("#" + id).removeAttr("onclick");
+            $("#" + id).removeAttr("onmouseover");
+            $("#" + id).removeAttr("onmouseout");
+            $("#" + id).removeAttr("onmousedown");
+        }
+        function removeControlsParentAttributes(id)
+        {
+            if (skeltaUtils.isUndefined($("#" + id)[0]))
+            {
+                return;
+            }
+
+            var parent = skelta.forms.ui.getParentContainerForm($("#" + id)[0]);
+            while (parent.getAttribute(dataAttributes.isMainForm) === "0")
+            {
+                $(parent).removeAttr("onclick");
+                $(parent).removeAttr("onmouseover");
+                $(parent).removeAttr("onmouseout");
+                $(parent).removeAttr("onmousedown");
+                parent = skelta.forms.ui.getParentContainerForm(parent);
+            }
+
+            if (parent.getAttribute(dataAttributes.isMainForm) === "1")
+            {
+                $(parent).removeAttr("onmousedown");
+            }
+        }
+
+        function setControlAttributes(id, onclick, onmouseover, onmouseout, onmousedown)
+        {
+            $("#" + id).attr("onclick", onclick);
+            $("#" + id).attr("onmouseover", onmouseover);
+            $("#" + id).attr("onmouseout", onmouseout);
+            $("#" + id).attr("onmousedown", onmousedown);
+        }
+
+        function setControlsParentAttributes(id, onclick, onmouseover, onmouseout, onmousedown)
+        {
+            var parent = skelta.forms.ui.getParentContainerForm($("#" + id)[0]);
+            while (parent.getAttribute(dataAttributes.isMainForm) === "0")
+            {
+                $(parent).attr("onclick", onclick);
+                $(parent).attr("onmouseover", onmouseover);
+                $(parent).attr("onmouseout", onmouseout);
+                $(parent).attr("onmousedown", onmousedown);
+                parent = skelta.forms.ui.getParentContainerForm(parent);
+            }
+
+            if (parent.getAttribute(dataAttributes.isMainForm) === "1")
+            {
+                $(parent).attr("onmousedown", onmousedown);
+            }
+
+        }
+
+        function isNewValueValid(ele, newValue)
+        {
+            if (newValue.indexOf('\'') >= 0 || newValue.indexOf('"') >= 0)
+            {
+                showErrorMessage(ele.id);
+                logger.logError(ele.id);
+                return false;
+            }
+            return true;
+        }
+        function ajaxSucceeded(resultData)
+        {
+            var jsonData = $.parseJSON(resultData);
+
+            if (jsonData.DefinitionError)
+            {
+                skeltaUtils.showError(document.title, jsonData.DefinitionError, function () { window.close(); });
+                logger.logError(jsonData.DefinitionError);
+                return;
+            }
+            if (jsonData.FailedCustomControl && jsonData.FailedCustomControl.length > 0)
+            {
+                var problematicCustomControls = skelta.utilities.getStringFromArray(jsonData.FailedCustomControl, "", ",", "&", true, "\"", "\"");
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFErrorLoadingCustomControl") + " " + problematicCustomControls);
+                logger.logError(problematicCustomControls);
+            }
+            var hidItemId = document.getElementById("hiditemid");
+            var hidListId = document.getElementById("hidlistid");
+            var hidunlock = document.getElementById("hidunlock");
+            listFormName = jsonData.FormName;
+            cacheKey = jsonData.ItemId;
+            versionStamp = jsonData.Version;
+            listName = "Forms List";
+            formId = jsonData.FormId;
+            window.isListForm = jsonData.isListForm;
+            $("#repoName").text(jsonData.RepoName);
+            $("#formName").text(jsonData.FormName);
+            $("#formVersion").text(jsonData.Version);
+            $("." + cssClasses.topLevelTitle).text(jsonData.FormName);
+            if (jsonData.Description && jsonData.Description == "")
+            {
+                $("." + cssClasses.topLevelDescription).text("(" + jsonData.Description + ")");
+            }
+
+            $("#formDesignerArea").html(jsonData.FormView);
+            document.title = jsonData.PageTitle;
+            hidListId.value = jsonData.ListId;
+            hidItemId.value = jsonData.ItemId;
+            hidunlock.value = jsonData.UnlockState;
+            $("#controls").html(jsonData.ControlsList);
+
+            // Initialize the drag n drop targets for controls
+            $('.' + cssClasses.control).each(function (i)
+            {
+                sfd._DragDropTargets.push($(this).attr('id'));
+            });
+
+            // Initialize the drag n drop targets for containers
+            $('.' + cssClasses.container).each(function (i)
+            {
+                sfd._DragDropTargets.push($(this).attr('id'));
+                if ($(this).attr(dataAttributes.targetType) && (skeltaUI.isPanelForm(this) || skeltaUI.isViewModeGrid(this)))
+                {
+                    sfd.initializeContainerColumnWidths(this);
+                }
+
+                if (!skeltaUI.isTopLevelForm(this))
+                {
+                    sfd.updateScrollDivTopPosition(this);
+                }
+            });
+
+            $("#C_CsaveButton").val(jsonData.ButtonText);
+            if (!skeltaUtils.isUndefined(jsonData.ErrorMessage))
+            {
+                skeltaUtils.showError(document.title, jsonData.ErrorMessage, function () { closeWindow(); });
+                logger.logError(jsonData.ErrorMessage);
+            }
+            else
+            {
+                closeWindow();
+            }
+
+            function closeWindow()
+            {
+                if (!skeltaUtils.isUndefined(jsonData.CloseWindow))
+                {
+                    if (jsonData.CloseWindow === "true")
+                    {
+                        window.close();
+                    }
+                }
+            }
+
+            $("img").each(function () { $(this).attr('draggable', 'false'); });  // For IE9 - This property is not inherited, needs to be placed onto everything
+            $("input[" + dataAttributes.role + "='skDtPkr']").each(function ()
+            {
+                $(this).kendoDatePicker();
+            });
+            $("input[" + dataAttributes.role + "='skTimePkr']").each(function ()
+            {
+                $(this).kendoTimePicker();
+            });
+            $("input[" + dataAttributes.role + "='skDtTimePkr']").each(function ()
+            {
+                $(this).kendoDateTimePicker();
+            });
+            $("input[" + dataAttributes.role + "='skNumPkr']").each(function ()
+            {
+                $(this).kendoNumericTextBox({ upArrowText: skelta.localize.getString('FormNGFNumberIncreaseValue'), downArrowText: skelta.localize.getString('FormNGFNumberDecreaseValue') });
+                addTitleToKendoNumber($(this));
+            });
+            $("textarea[" + dataAttributes.role + "='skEditor']").each(function ()
+            {
+                $(this).kendoEditor({
+                    tools: [
+                        "bold",
+                        "italic",
+                        "underline",
+                        "justifyLeft",
+                        "justifyCenter",
+                        "justifyRight",
+                        "justifyFull",
+                        "fontName",
+                        "fontSize",
+                        "backColor",
+                        "foreColor"
+                    ]
+                });
+            });
+
+            // To make rich text input control read-only in the forms designer
+            // START
+            if (!skeltaUtils.isUndefined($("textarea[" + dataAttributes.role + "='skEditor']").data("kendoEditor")))
+            {
+                var editorBody = $("textarea[" + dataAttributes.role + "='skEditor']").data("kendoEditor").body;
+                $(editorBody).attr("contenteditable", false);
+            }
+            // END
+
+            loadActionBar();
+            var actionbarConfiguration = jsonData.enableActionBar === "true" ? { enableActionBar: $.parseJSON(jsonData.enableActionBar), items: $.parseJSON(jsonData.actionBarItems) } : { enableActionBar: $.parseJSON(jsonData.enableActionBar) };
+            skelta.forms.utilities.loadDesignTimeActionBar(actionbarConfiguration);
+
+            skeltaLocalize.divTextLocalize();
+            skeltaLocalize.divTitleLocalize();
+            if (jsonData.FormDefinitionNotFound)
+            {
+                skeltaUtils.showError(document.title, jsonData.FormDefinitionNotFound);
+                logger.logError(jsonData.FormDefinitionNotFound);
+                return;
+            }
+
+            setTimeout(function ()
+            {
+                refreshListInGridPage();
+            }, 0);
+        }
+
+        function addTitleToKendoNumber(el)
+        {
+            if (el.length === 0)
+            {
+                return;
+            }
+
+            var bothElements = $(el[0].parentNode).find("input");
+            if (!bothElements.filter("input").attr("title"))
+            {
+                var numIndex = bothElements.index(bothElements.filter("input").attr("title"));
+                $(bothElements[numIndex]).attr("title", bothElements.filter("input[data-skrl='skNumPkr']").attr("title"));
+            }
+        }
+
+        function ajaxFailed(result)
+        {
+            skeltaUtils.showError(document.title, result.status + ' ' + result.statusText);
+            logger.logError(result.status + ' ' + result.statusText);
+        }
+
+        function updateViewComplete(data)
+        {
+            var jsonData = $.parseJSON(data);
+
+            $("#" + jsonData.id + "").replaceWith(jsonData.view);
+
+            try
+            {
+                var containerObj;
+                if (jsonData.newid != null)
+                {
+                    containerObj = $("#" + jsonData.newid + "");
+                }
+                else
+                {
+                    containerObj = $("#" + jsonData.id + "");
+                }
+                containerObj.find("input[" + dataAttributes.role + "='skDtPkr']").kendoDatePicker();
+                containerObj.find("input[" + dataAttributes.role + "='skTimePkr']").kendoTimePicker();
+                containerObj.find("input[" + dataAttributes.role + "='skDtTimePkr']").kendoDateTimePicker();
+                containerObj.find("input[" + dataAttributes.role + "='skNumPkr']").kendoNumericTextBox({ upArrowText: skelta.localize.getString('FormNGFNumberIncreaseValue'), downArrowText: skelta.localize.getString('FormNGFNumberDecreaseValue') });
+                containerObj.find("textarea[" + dataAttributes.role + "='skEditor']").kendoEditor({
+                    tools: [
+                        "bold",
+                        "italic",
+                        "underline",
+                        "justifyLeft",
+                        "justifyCenter",
+                        "justifyRight",
+                        "justifyFull",
+                        "fontName",
+                        "fontSize",
+                        "backColor",
+                        "foreColor"
+                    ]
+                });
+
+                addTitleToKendoNumber(containerObj.find("input[" + dataAttributes.role + "='skNumPkr']"));
+
+                if (!skeltaUI.isTopLevelForm(containerObj[0]))
+                {
+                    sfd.updateScrollDivTopPosition(containerObj[0]);
+                }
+
+                if (skeltaUI.isViewModeGrid(skeltaUI.getParentContainerForm(containerObj[0])))
+                {
+                    sfd.updateGridViewControlHeader(containerObj[0]);
+                }
+
+                if (containerObj.attr(dataAttributes.targetType).indexOf("PanelForm") < 1)
+                {
+                    containerObj = $(containerObj[0].parentNode.parentNode);
+                }
+
+                if (containerObj[0].parentNode.parentNode.getAttribute(dataAttributes.targetType) === "Skelta.Forms.Core.Controls.Tabs")
+                {
+                    var tabBody = jsonData.tabBody,
+                        mainTabsContainer = containerObj[0].parentNode.parentNode,
+                        containerId = mainTabsContainer.getAttribute("controlid"),
+                        tabIndex = $("#" + jsonData.id + "").attr(dataAttributes.tabIndex),
+                        currentSelectedTabIndex = mainTabsContainer.getAttribute(dataAttributes.selectedTabIndex);
+
+                    var bodyDiv = $("#" + containerId + "bodydiv" + tabIndex).replaceWith(tabBody);
+
+                    //
+                    // Always have the selection of the Tab done. In a scenario where the default
+                    // Tab Index is 1 and the 1st Tab is selected. When editing the 2nd Tab (without
+                    // selecting the 2nd Tab) and saving, both the 1st & 2nd Tab contents are visible.
+                    // Hence we need to always select the tab index.
+                    //
+                    sfd.selectTab(containerId, tabIndex);
+                }
+                else if ($("#" + jsonData.id + "")[0].getAttribute(dataAttributes.targetType) ===
+                    "Skelta.Forms.Core.Controls.Tabs")
+                {
+                    currentSelectedTabIndex =
+                        $("#" + jsonData.id + "")[0].getAttribute(dataAttributes.selectedTabIndex);
+                    sfd.selectTab(jsonData.id, currentSelectedTabIndex);
+                }
+
+                // Initialize the column widths for the container
+                sfd.initializeContainerColumnWidths(containerObj[0]);
+
+                $(containerObj[0]).find(".skcn").each(function ()
+                {
+                    sfd.initializeContainerColumnWidths(this);
+                });
+
+                if (!skelta.utilities.isUndefined(jsonData.enableActionBar))
+                {
+                    var actionbarConfiguration = jsonData.enableActionBar === "true" ? { enableActionBar: $.parseJSON(jsonData.enableActionBar), items: $.parseJSON(jsonData.actionBarItems) } : { enableActionBar: $.parseJSON(jsonData.enableActionBar) };
+                    skelta.forms.utilities.loadDesignTimeActionBar(actionbarConfiguration);
+                }
+            }
+            catch (err)
+            {
+                logger.logError(err.message);
+            }
+            if (window["doNotCloseEditPage"] !== true)
+            {
+                skeltaUtils.closePropertiesFrame();
+            }
+
+            skeltaLocalize.divTextLocalize();
+            skeltaLocalize.divTitleLocalize();
+        }
+
+        function refreshParentGrid()
+        {
+            try
+            {
+                unlock();
+                refreshListInGridPage();
+            }
+            catch (e)
+            {
+                logger.logError(e);
+            }
+        }
+
+        function refreshListInGridPage()
+        {
+            try
+            {
+                if (window.opener)
+                {
+                    if (!(window.opener.parent.document.getElementById('gridframe') == undefined || window.opener.parent.document.getElementById('gridframe') == null))
+                    {
+                        window.opener.parent.document.getElementById('gridframe').contentWindow.RefreshGrid();
+                    }
+                    else
+                    {
+                        var radWindowFn = (window.opener.getRadWindow || window.opener.GetRadWindow);
+
+                        if (skelta.utilities.isUndefined(radWindowFn))
+                        {
+                            return;
+                        }
+
+                        radWindowFn().BrowserWindow.window.document.getElementById('mainframe').contentWindow.document.getElementById("gridframe").contentWindow.RefreshGrid();
+                    }
+                }
+            }
+            catch (e)
+            {
+                logger.logError(e);
+            }
+        }
+
+        function setunlockhidvalue()
+        {
+            document.getElementById("hidunlock").value = "false";
+        }
+
+        function getXMLHttpRequest()
+        {
+            if (window.XMLHttpRequest)
+            {
+                return new window.XMLHttpRequest;
+            }
+            else
+            {
+                try
+                {
+                    return new ActiveXObject("MSXML2.XMLHTTP.3.0");
+                }
+                catch (ex)
+                {
+                    logger.logError(ex);
+                    return null;
+                }
+            }
+        }
+
+        function S4()
+        {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        function getguid()
+        {
+            return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+        }
+        function unlock()
+        {
+            var hidItemId = document.getElementById("hiditemid");
+            var hidListId = document.getElementById("hidlistid");
+            var hidunlock = document.getElementById("hidunlock");
+            if (hidItemId != null)// consider unlock
+            {
+                var unlock;
+                var itemid = hidItemId.value;
+                var listid = hidListId.value;
+                if (hidunlock == null)
+                {
+                    unlock = "true";
+                }
+                else
+                {
+                    unlock = hidunlock.value;
+                }
+                if (unlock == "true")
+                {
+                    var tempId = getguid();
+                    var url = "../Repository/Site/Unlock.aspx?listid=" + listid + "&itemid=" + itemid + "&tempid=" + tempId;
+
+                    if (navigator && navigator.sendBeacon)
+                    {
+                        navigator.sendBeacon(url, null);
+                    }
+                    else
+                    {
+                        var oReq = getXMLHttpRequest();
+                        oReq.open("GET", url, false);
+                        oReq.send(null);
+                    }
+                }
+            }
+        }
+
+        function expandOrCollapse()
+        {
+            if ($("#controlsContainer").css("width") == "275px")
+            {
+                $("#controlsContainer").animate({
+                    width: "110px"
+                }, 500);
+                //$("#controls").css("overflow", "hidden");
+                $('#imgexpandcollapse').attr("data-skimgr", "1");
+
+            }
+            else
+            {
+                $("#controlsContainer").animate({
+                    width: "275px"
+                }, 500);
+                //$("#toolboxwrapper").css("visibility", "hidden");
+                $('#imgexpandcollapse').attr("data-skimgr", "0");
+            }
+        }
+
+        function scrollUpOrDown()
+        {
+            if ($("#imagescrollupdown")[0].getAttribute("data-skimgr") == 0)
+            {
+                $("#actiontoolbar").slideDown("slow");
+                $("#imagescrollupdown").attr("data-skimgr", "1");
+            }
+            else
+            {
+                $("#actiontoolbar").slideUp("slow");
+                $("#imagescrollupdown").attr("data-skimgr", "0");
+            }
+        }
+
+        function dragAndDropControl(sender)
+        {
+            var isfromtoolbar = sender.attributes["fromtoolbar"].value;
+            var options = sender.attributes["options"].value;
+            var formid = sender.attributes["formid"].value;
+            var listname = sender.attributes["listname"].value;
+            var version = sender.attributes["versionstamp"].value;
+            var sourceId = sender.id;
+
+            sfd.ddm.start(sender, sourceId, arguments, isfromtoolbar, options, formid, listname, version);
+        }
+
+        function editFormLevelProperties()
+        {
+            sfd.openEditWindow(formId, cacheKey, listName, "formdesigner", versionStamp);
+        }
+
+        function validateListForm()
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "applicationName": applicationName,
+                "listName": listFormName,
+                "userId": userId
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetListFormValidationErrorCount", "application/json; charset=utf-8", params, "json", validateFormCallSucceeded, null, null, false);
+
+        }
+
+        function validateFormCallSucceeded(valErrorCount)
+        {
+            var res = $.parseJSON(valErrorCount.d);
+            if (skelta.utilities.isUndefined(res.IsSuccess))
+            {
+                if (parseInt(valErrorCount.d) > 0)
+                {
+                    showListFormValidationPage(applicationName, listFormName);
+                }
+                else
+                {
+                    skeltaUtils.showAlert(document.title, skeltaLocalize.getDesignerString("FormNGFHTValidationSuccess"));
+                }
+            }
+            else
+            {
+                if (res.IsSuccess === false)
+                {
+                    skeltaUtils.showError(document.title, res.ErrorMessage);
+                }
+            }
+
+        }
+
+        function showListFormValidationPage(applicationName, listName)
+        {
+            try
+            {
+                url = "../Repository/Site/CreateDLFValidate.aspx";
+                url = url + "?ApplicationName=" + applicationName;
+                url = url + "&ListName=" + listName;
+                url = url + "&ValidationType=OnFormSave";
+                var oWindow1 = window.open(url, "Validation Error", "location=1,status=1,scrollbars=1,width=700,height=500");
+                oWindow1.moveTo((screen.availWidth / 2) - 350, (screen.availHeight / 2) - 250);
+            } catch (e)
+            {
+
+            }
+        }
+
+        //function for action bar items
+        function openPreviewWindow()
+        {
+            sfd.openPreviewWindow();
+        }
+
+        function openDeviceWindow(deviceName)
+        {
+            sfd.showWorkTasksPreview(deviceName);
+        }
+
+        function openPublishWindow()
+        {
+            sfd.openPublishWindow();
+        }
+
+        function editFormLevelProperty()
+        {
+            editFormLevelProperties();
+        }
+
+        function clearAllControls()
+        {
+            sfd.clearControls();
+        }
+
+        function openImportWindow()
+        {
+            sfd.openImportWindow();
+        }
+
+        function openExportWindow()
+        {
+            sfd.openExportWindow();
+        }
+
+        function openListStructureWindow()
+        {
+            sfd.openListStructureWindow();
+        }
+
+        //Load Action bar
+        function loadActionBar()
+        {
+            actionBarJsonData();
+            var fromListDesigner = skeltaUtils.getUrlParameterValue(window, 'fromListDesigner');
+            if (fromListDesigner != null && fromListDesigner == 'True')
+            {
+                loadActionbarValidateList();
+            }
+
+            if (window.isListForm === "true")
+            {
+                loadActionbarListStructure();
+            }
+
+            ActionBar.init("", "actionBarDiv", false);
+            ActionBar.showRightMenu(actionBarJsonObj);
+        }
+
+        function hideSubMenu()
+        {
+            ActionBar.hideSubMenus();
+        }
+
+        function loadActionbarListStructure()
+        {
+            var appendJson =
+            {
+                "List Structure":
+                {
+                    "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                    "Text": skelta.localize.getString("FormNGFHTListStructureTitle"),
+                    "Tooltip": skelta.localize.getString("FormNGFHTListStructureTitle"),
+                    "Image": 'images/ListStructure.png',
+                    "HoverImage": 'images/ListStructure-Hover.png',
+                    "OnClick": "openListStructureWindow()",
+                    "Action": "",
+                    "OpenMode": "Popup",
+                    "SubItems": []
+                }
+            };
+            actionBarJsonObj.push(appendJson);
+        }
+
+        function loadActionbarValidateList()
+        {
+            //append json object
+            var appendJson =
+            {
+                "ValidateList":
+                {
+                    "Id": "498D4CBB-2446-493D-983A-8DFF0BD20AD8",
+                    "Text": skelta.localize.getString("FormNGFHTValidateList"),
+                    "Tooltip": skelta.localize.getString("FormNGFHTValidateWithList"),
+                    "Image": 'images/Validate.png',
+                    "HoverImage": 'images/Validate-Hover.png',
+                    "Action": "javascript:validateListForm()",
+                    "OpenMode": "Popup",
+                    "SubItems": []
+                }
+            };
+            actionBarJsonObj.push(appendJson);
+        }
+
+        //Action bar json object
+        function actionBarJsonData()
+        {
+            actionBarJsonObj =
+                [
+                    {
+                        "Clear All":
+                        {
+                            "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                            "Text": skelta.localize.getString("FormNGFHTClearAllTitle"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTClearAllTitle"),
+                            "Image": 'images/ClearAll.png',
+                            "HoverImage": 'images/ClearAll-Hover.png',
+                            "Action": "javascript:clearAllControls()",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    },
+                    {
+                        "Import":
+                        {
+                            "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                            "Text": skelta.localize.getString("FormNGFHTImportTitle"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTImportTitle"),
+                            "Image": 'images/Import.png',
+                            "HoverImage": 'images/Import-Hover.png',
+                            "OnClick": "openImportWindow()",
+                            "Action": "",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    },
+                    {
+                        "Export":
+                        {
+                            "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                            "Text": skelta.localize.getString("FormNGFHTExportTitle"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTExportTitle"),
+                            "Image": 'images/Export.png',
+                            "HoverImage": 'images/Export-Hover.png',
+                            "Action": "javascript:openExportWindow()",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    },
+                    {
+                        "Preview":
+                        {
+                            "Id": "498D4CBB-2446-493D-983A-8DFF0BD20AD8",
+                            "Text": skelta.localize.getString("FormNGFHTNormalView"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTNormalView"),
+                            "Image": 'images/Web-Preview.png',
+                            "HoverImage": 'images/Web-Preview-Hover.png',
+                            "Action": "javascript:openPreviewWindow()",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    },
+                    {
+                        "DevicePreview":
+                        {
+                            "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                            "Text": skelta.localize.getString("FormNGFHTDeviceView"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTDeviceView"),
+                            "Image": 'images/Mobile-View.png',
+                            "HoverImage": 'images/Mobile-View-Hover.png',
+                            "Action": "javascript:openDeviceWindow('WorkTasksPreview')",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    },
+                    {
+                        "Publish":
+                        {
+                            "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                            "Text": skelta.localize.getString("FormNGFHTPublishTitle"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTPublishTitle"),
+                            "Image": 'images/Publish.png',
+                            "HoverImage": 'images/Publish-Hover.png',
+                            "Action": "javascript:openPublishWindow()",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    },
+                    {
+                        "Property":
+                        {
+                            "Id": "D71DAC6A-C7E8-4BCA-B62E-8E65CCC259E7",
+                            "Text": skelta.localize.getString("FormNGFHTTPEdit"),
+                            "Tooltip": skelta.localize.getString("FormNGFHTTPEdit"),
+                            "Image": 'images/Setting.png',
+                            "HoverImage": 'images/Setting-Hover.png',
+                            "OnClick": "editFormLevelProperty()",
+                            "Action": "",
+                            "OpenMode": "Popup",
+                            "SubItems": []
+                        }
+                    }
+
+                ];
+        }
+
+    </script>
+</head>
+<body onunload="refreshParentGrid();" class="skdbackgroundcolor" style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute; z-index: 10000000;"></div>
+    <div id="sfd_DragDiv" class="sfd-ddbox" onselectstart="return false;" style="display: none; visibility: hidden; position: absolute;">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <img id="dragboxImg" style="width: 22px; height: 22px; display: inline-block;" src="" alt="" />
+                    </td>
+                    <td id="dragboxText" class="designerdisplaytext" align="left"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form id="form1">
+        <div class="skfc skfdc skfas" style="width: 100%; height: 100%; overflow-x: auto;">
+            <input type="hidden" id="hiditemid" value="" />
+            <input type="hidden" id="hidlistid" value="" />
+            <input type="hidden" id="hidunlock" value="" />
+            <div id="content" class="skflx skfc skfdr skfas skfdrnowrap" style="overflow: auto; min-width: 1300px;">
+                <div id="designwrapper" class="skcontentwrapper"></div>
+                <div class="skfc skfdc">
+                    <!--<div id="fomsDesignerTitle">
+                    </div>-->
+                    <div id="controlsContainer" class="skflx skcontrolToolbox">
+                        <!--<div id="toolboxwrapper" class="skwrapperdiv" onclick="ExpandOrCollapse();"></div>-->
+                        <div id="controls" class="sksa">
+                        </div>
+                    </div>
+                </div>
+                <div class="skcontrolDesignerSplitter skfc skfdr skfac" style="width: 9px;">
+                    <div id="dvArrow" onclick="expandOrCollapse();">
+                        <img id="imgexpandcollapse" src="images/Splitter-Arrow-Collapse-White.png" data-skimgr="0" />
+                    </div>
+                </div>
+                <div class="skflx skfc skfdc skfas">
+                    <div id="actiontoolbar" class="skfdr">
+                        <div class="formdetails">
+                            <span id="repoName"></span>&nbsp;<span>/</span>&nbsp;<span id="formName"></span>&nbsp;<span>/</span>&nbsp;<span id="formVersion"></span>
+                        </div>
+                        <div class="skflx">
+                            <div class="breadcrumb">
+                                <div class="actionItem" style="display: none;"></div>
+                                <div id="actionBarDiv" class="actionBarDiv" style="display: block;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skactionsplitter">
+                        <div id="divSlide" onclick="scrollUpOrDown();">
+                            <div id="imagescrollupdown" data-skimgr="1"></div>
+                        </div>
+                    </div>
+                    <div class="skdesignercontent skflx">
+                        <div id="formDesignerArea" class="sksa skfc skfdc skfas"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="formsCopyrightInfo"></div>
+        </div>
+    </form>
+    <iframe id="editframe" data-skipw="0" style="border: none;"></iframe>
+    <div id="scriptFrameDiv" class="popuptemplate" style="z-index: 1000002; display: none;">
+        <div class="skpopup_overlay"></div>
+        <div class="skpopup_maindivPopupForm" style="height: 90%; width: 90%; margin: 0; top: 5%; left: 5%; min-width: 1000px !important;">
+            <iframe id="scriptframe" data-sksw="0" style="border: none;"></iframe>
+        </div>
+    </div>
+
+    <div id="mapingFrameDiv" class="popuptemplate" style="z-index: 1000002; display: none;">
+        <div class="skpopup_overlay"></div>
+        <div class="skpopup_maindivPopupForm" style="height: 90%; width: 90%; margin: 0; top: 5%; left: 5%; min-width: 1000px !important;">
+            <iframe id="mappingframe" data-sksw="0" style="border: none;"></iframe>
+        </div>
+    </div>
+
+    <!--NOTE- Same Div is being used for Heirarchical List control also-->
+    <div id="gridConfigFrameDiv" class="popuptemplate" style="z-index: 1000002; display: none;">
+        <div class="skpopup_overlay"></div>
+        <div class="skpopup_maindivPopupForm" style="height: 90%; width: 90%; margin: 0; top: 5%; left: 5%; min-width: 1000px !important;">
+            <iframe id="gridframe" data-sksw="0" style="border: none;"></iframe>
+        </div>
+    </div>
+
+    <iframe id="reportViewerFrame" data-sksw="0" style="border: none;"></iframe>
+    <iframe id="fschemaframe" data-skfsw="0" style="border: none;"></iframe>
+    <iframe id="propertyLookupFrame" data-skfsw="0" style="border: none;"></iframe>
+    <iframe id="replaceframe" data-skrcw="0" style="border: none;"></iframe>
+    <iframe id="liststructureframe" data-sklsw="0" style="border:none;"></iframe>
+    <iframe id="formimportframe" data-skfiw="0" style="border:none;"></iframe>
+    <iframe id="formexportframe" style="display:none"></iframe>
+
+    <div id="previewOverlayId" class="previewOverlay">
+        <div class="skdevicepreview">
+            <iframe id="mobileFrame" class="skmobileframe" src="" style="border: none;"></iframe>
+        </div>
+        <div class="skpreviewclose" onclick="sfd.closePreviewOverlay();"></div>
+        <div class="skpreviewrotate" onclick="sfd.rotatePreviewOverlay();"></div>
+    </div>
+
+
+</body>
+</html>

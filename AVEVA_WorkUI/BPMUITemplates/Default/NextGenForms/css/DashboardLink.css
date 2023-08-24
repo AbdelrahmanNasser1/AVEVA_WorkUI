@@ -1,0 +1,80 @@
+.md-tab:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 20px;
+	width: 1px;
+	margin-top: 17px;
+	background-color: #CCCCCC;
+}
+
+.md-tab {
+	transition: none;
+	width: 150px;
+	color: #1b1b1b !important;
+	font-size: 16px;
+	text-decoration: none;
+	text-transform: none;
+	font-family: "Helvetica Neue",sans-serif;
+}
+
+.md-tab:last-of-type::after {
+	content: none;
+}
+
+.md-button {
+	text-align: center !important;
+	background-color: #007626 !important;
+	font-size:14px !important;
+}
+
+.md-button:hover {
+	background-color: #0446A6 !important;
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {
+	color: white !important;
+}
+
+.dynamicResolution {
+	height: 100%;
+	width: 100%;
+}
+
+.tabLabel {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+md-tabs.md-no-animation md-tab-content {
+	transition: none;
+}
+
+md-tabs.md-no-animation md-ink-bar {
+	transition: none;
+}
+
+md-ink-bar {
+	background: #666666 !important;
+	height: 4px;
+}
+
+md-tab-content > div {
+	height: 100%;
+}
+
+md-tabs > md-tabs-content-wrapper {
+	border-top: solid;
+	border-color: #d1d1d1;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-bottom-width: 0px;
+	border-top-width: 1px;
+}
+
+md-tab-item:hover {
+	background-color: black;
+	color: white !important;
+}

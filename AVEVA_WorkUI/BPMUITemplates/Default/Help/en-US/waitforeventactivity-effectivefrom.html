@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for Event: Effective From </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49689" class="heading4">Wait for Event: Effective From</h4>
+<p class="paragraph">You can specify effective from date for the association in this property window. If left blank, the date on which the association was created will be considered as the start date to wait for an event. To open this window, click the edit button for the 'Effective From' property.</p>
+<p class="paragraph"><strong class="strong">Note:</strong>&nbsp;You can also specify the time in the text editor. The time entered can be in either 24 hour or 12 hour format. If time is entered in 12 hour format then AM/PM has to be specified.</p>
+<p class="paragraph">Example:</p>
+<p class="paragraph">Date and time in 24 hour format</p>
+<p class="paragraph">08/18/2010 22:30:00</p>
+<p class="paragraph">Date and time in 12 hour format</p>
+<p class="paragraph">08/18/2010 10:30:00 PM</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51465" src="51465.png" class="embeddedimage100%scalinglive" alt="" height="174" width="649" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The window has a text editor to enter the date. You can do this either by entering a discrete value directly in the text editor or by using the&nbsp;<b class="uicontrol">Field</b>&nbsp;controls at the top of the window. These controls are described below:</p>
+<ul class="ulitem"><li class="ulitem">The value type drop down - You can select the type of value here. You can specify SendTo, Variable, Content, or XMLVariables here.</li><li class="ulitem">The Value text box/drop down - You can specify the actual value of the Redirect URL. The control displayed depends on the option selected in the first drop down. If you had selected &quot;Value&quot;, it will display a text box here. You can enter the Custom Document View URL in this box. If you had selected &quot;Variable&quot;, &quot;Content&quot;, or &quot;XMLVariables&quot; instead, there will be a drop down instead of the field. This drop down will have the variable collection or content collection or XMLVariables collection from which you can select an appropriate option to assign the Custom Document View URL.</li><li class="ulitem"><b class="uicontrol">Append</b>&nbsp;- You can click on this button to add the specified value, variable or content to the text editor.</li></ul><p class="paragraph">The text tool bar above the text editor allows you to manage and format. It has the following text tools &#8211;</p>
+<ul class="ulitem"><li class="ulitem">Cut (Ctrl+X) - to cut text</li><li class="ulitem">Copy (Ctrl+C) - to copy text</li><li class="ulitem">Paste (Ctrl+V) - to paste text</li><li class="ulitem">Undo (Ctrl+Z) - to undo the last action</li><li class="ulitem">Redo (Ctrl+Y) - to undo the last action</li><li class="ulitem">Repeat Last Command (F4) - to repeat the last command that was executed</li></ul><p class="paragraph">It also has the following formatting &amp; other tools &#8211;</p>
+<ul class="ulitem"><li class="ulitem">Bold (Ctrl+B) - to make text bold</li><li class="ulitem">Italic (Ctrl+I) - to italicize text</li><li class="ulitem">Underline (Ctrl+U) - to underline text</li><li class="ulitem">Font Name - to select the font for the subject</li><li class="ulitem">Size - to specify the font size</li><li class="ulitem">Paragraph Style - to select a paragraph style</li><li class="ulitem">Zoom - to zoom in and zoom out the view</li><li class="ulitem">Foreground Color - to set text color</li><li class="ulitem">Background Color - to set the background color</li><li class="ulitem">Print - to print the text</li></ul><p class="paragraph">At the bottom of the window, you will find the following buttons:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update&nbsp;</b>- You can click this button to save the date specified.</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- You can click this button to close this window.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="WaitForEventActivity.html" target="_self">Wait for Event Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+</script>	
+
+ </body>
+ </html>

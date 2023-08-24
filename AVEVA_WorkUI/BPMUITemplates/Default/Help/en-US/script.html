@@ -1,0 +1,190 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> Script: Code </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="Script: Code">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('49564');expand('49553');expand('49354');highlight('49565')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<h4 id="t49565" class="heading4">Script: Code</h4>
+<p class="subheading">Code Property Window</p>
+<p class="paragraph">You can set the code of the script in the&nbsp;<b class="uicontrol">Code</b>&nbsp;property window. To open this window, click the button for the &quot;Code&quot; property.</p>
+<p class="paragraph">The following image shows the script&nbsp;<b class="uicontrol">Code</b>&nbsp;property window:</p>
+<p class="paragraph"><img id="f51031" src="51031.png" class="embeddedimage100%scalinglive" alt="" height="480" width="646" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Code</b>&nbsp;property window contains a text editor to enter the script code. You can do this either by entering a discrete value directly in the text editor. You can use the text tool bar in the text editor to manage and format the code.</p>
+<p class="paragraph">The text tool bar contains the following options:</p>
+<table class="tableintopic" width="741" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableheader">Options</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableheader">Shortcut Key</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Cut</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+X</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Cut text</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Copy</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+C</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Copy text</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Paste</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+V</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Paste copied text</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Undo</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+Z</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Undo the last action</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Redo</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+Y</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Redo an action that you undid</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Repeat Last Command</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">F4</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Repeat the last command that was executed</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Bold</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+B</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Make text bold</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Italic</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+I</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Italicize text</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Underline</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">Ctrl+U</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Underline text</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Font Name</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Select the font for the parameter</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Size</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Enter the font size</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Paragraph Style</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Select a paragraph style</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Zoom</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Zoom in and zoom out the view</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Foreground Color</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Set text color</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Background Color</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Set the background color</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="181"><p class="tableparagraph">Print</p>
+</td>
+<td style="border:1px solid #010101;" width="183"><p class="tableparagraph">-</p>
+</td>
+<td style="border:1px solid #010101;" width="377"><p class="tableparagraph">Print the text</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph">The&nbsp;<b class="uicontrol">Code</b>&nbsp;property window also contains the following tabs:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>:&nbsp;Use this tab to save the parameter.</li><li class="ulitem"><b class="uicontrol">Close</b>:&nbsp;Use this tab to close this window.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="script12.html" target="_self">Script Activity</a></p><p class="relateditem"><a href="script-references1.html" target="_self">Script: References</a></p><p class="relateditem"><a href="script-returnvalues1.html" target="_self">Script: Return Values</a></p></td>
+</tr>
+</table>
+
+
+<input id="topicId" type="hidden" value="49565" />
+<input id="topicDescription" type="hidden" value="Script: Code" />
+<input id="footer-modified" type="hidden" value="Last modified: 4/27/2015 1:18:08 PM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

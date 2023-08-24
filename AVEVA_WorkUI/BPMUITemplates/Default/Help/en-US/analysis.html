@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> BAM Analyze Reports </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t597562" class="heading3">BAM Analyze Reports</h3>
+<p class="paragraph">The Analyze reports constitute the reports available out-of-the-box in AVEVA Work Tasks. It has two sets of reports,  Transaction and Execution.</p>
+<p class="paragraph">The Analyze section also shows <b class="uicontrol">Performance Analysis</b> reports if the performance analysis configuration has been set for the workflow. For more information, refer to BAM Configuration&nbsp;and&nbsp;Performance Analysis Reports.</p>
+<p class="subheading">Transaction Reports</p>
+<p class="paragraph">These reports present workflow execution information related to transactions in the workflow. There are seven types of reports in this group:</p>
+<ul class="ulitem"><li class="ulitem">Activity Details</li><li class="ulitem">Work Item Details</li><li class="ulitem">Transaction Type Details</li><li class="ulitem">Escalation Report</li><li class="ulitem">My Activities</li><li class="ulitem">Activity Time Details</li><li class="ulitem">Activity Performance Details</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity Details</strong>               </p>
+<p class="paragraph">This report presents details related to activity-level transactions. The following image shows an <b class="uicontrol">Activity Details</b> report. It has been split into three for convenience.</p>
+<p class="paragraphimage"><img id="f611110" src="611110.png" alt="" height="223" width="574" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f611111" src="611111.png" alt="" height="182" width="585" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><strong class="strong">Work Item Details</strong>               </p>
+<p class="paragraph">This report presents details related to work item-level transactions. The following image has been split into three for viewing convenience.</p>
+<p class="paragraphimage"><img id="f611112" src="611112.png" alt="" height="170" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f611113" src="611113.png" alt="" height="171" width="569" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f611114" src="611114.png" alt="" height="150" width="585" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Transaction Type Details</strong>               </p>
+<p class="paragraph">This report presents details of different transaction types as shown in the following example.</p>
+<p class="paragraphimage"><img id="f611115" src="611115.png" alt="" height="222" width="580" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Escalation Report</strong>               </p>
+<p class="paragraph"><b class="uicontrol">Description:</b></p>
+<p class="paragraph">The Escalation Report gives in-depth details regarding escalations. It shows the user name, date, timeout settings, escalation type (Recurring or Non-Recurring) and task, workflow, and application details. The report has a drill down feature which shows the Process execution view for the instance. Double-click the data displays the Process execution view.</p>
+<p class="paragraph"><b class="uicontrol">Location:</b>   </p>
+<p class="paragraph">Selecting Reports from the<b class="uicontrol"> Enterprise Console</b> menu displays the <b class="uicontrol">Business Activity Monitoring</b> (BAM) interface. In the BAM left panel tree view, click <b class="uicontrol">Analyze</b> and then <b class="uicontrol">Transaction</b>. Finally, click <b class="uicontrol">Escalation Report</b>.</p>
+<p class="paragraph"><strong class="strong">Report Parameters</strong>:</p>
+<p class="paragraph">By selecting the &#8216;From&#8217; date and &#8216;To&#8217; date, one can get the details of the escalations that occurred for the given date range. You can see the Process execution view for the instance by double-clicking the data.</p>
+<p class="paragraphimage"><img id="f611116" src="611116.png" alt="" height="257" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Report view:</strong></p>
+<p class="paragraph">It shows the user name, date, timeout settings, escalation type (Recurring or Non-Recurring) and task, workflow, and application details. The <b class="uicontrol">Escalation Report</b> has the column filter feature available in the other reports.</p>
+<p class="paragraphimage"><img id="f46886" src="46886.png" class="embeddedimage100%scalinglive" alt="" height="76" width="558" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Double-clicking the data for the instance displays the Process execution view.</p>
+<p class="paragraph"><strong class="strong">Process execution view:</strong></p>
+<p class="paragraphimage"><img id="f46887" src="46887.png" class="embeddedimage100%scalinglive" alt="" height="365" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Scenario:</strong></p>
+<p class="paragraph">John Smith works as an Administrator for &#8216;XYZ&#8217; organization. He wants to monitor the escalations that occurred in the workflow for a given date range. By using the Escalation Report, he can get the details of the same and take the necessary steps.</p>
+<p class="paragraph"><strong class="strong">My Activities</strong>                </p>
+<p class="paragraph"><strong class="strong">Description</strong>:</p>
+<p class="paragraph">Do you ever want to see the activities that have been acted upon? The My Activities option is useful to keep track of the activities that you have acted on. By default, AVEVA Work Tasks keeps a copy of workflow history that you have acted on in My Activities. Based on security rights, the My Activities option is displayed.</p>
+<p class="paragraph"><strong class="strong">Location:</strong>   </p>
+<p class="paragraph">Selecting Reports from the Enterprise Console menu displays the Business Activity Monitoring (BAM) interface. In the BAM left panel tree view, click Analyze and then Transaction. Finally, click My Activities.</p>
+<p class="paragraph"></p>
+<p class="paragraph">My Activities will give in-depth details regarding activities. It shows the Instance Id, Activity Name, Activity Type, Action Status, Assigned On, Inlink Action Output, Updated On, Ended On, Output, and Workflow details.</p>
+<p class="paragraph">It has a drill-down feature which shows the &#8216;Process execution view&#8217; for the instance. Double-clicking the data brings up the Process execution view for the workflow.</p>
+<p class="paragraph"><strong class="strong">Activity Time Details</strong>                       </p>
+<p class="paragraph">This report presents details related to <b class="uicontrol">Activity Time</b> transactions, as shown in the following image. The report displays the time taken by each activity and its average time. This is related to all the Activities.</p>
+<p class="paragraphimage"><img id="f611117" src="611117.png" alt="" height="285" width="595" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><strong class="strong">Activity Performance Details</strong>        </p>
+<p class="paragraph">This report presents details related to Activity Performance transactions, as shown in the following image. This is only related to the <strong class="strong">Human Activities</strong>.</p>
+<p class="paragraph">The report displays in descending order, from Best Time (least time taken to execute a particular activity) to Slow Time (most time taken to execute a particular activity).</p>
+<p class="paragraphimage"><img id="f611118" src="611118.png" alt="" height="139" width="566" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

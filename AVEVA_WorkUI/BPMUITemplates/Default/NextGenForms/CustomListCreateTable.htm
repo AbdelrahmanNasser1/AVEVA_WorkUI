@@ -1,0 +1,403 @@
+﻿<!doctype html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode, viewAndViewModel,listItemId,tableName;
+        paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+        applicationName = skeltaUtils.getUrlParameterValue(window, 'applicationName');
+        listItemId = skeltaUtils.getUrlParameterValue(window, 'listItemId');
+        mode = skeltaUtils.getUrlParameterValue(window, 'listcreationmode');  
+        tableName = skeltaUtils.getUrlParameterValue(window, 'listtablename');
+
+
+        function GetRadWindow() {
+            var oWindow = null;
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+            return oWindow;
+        }
+
+        function closeWin() {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function validateForSpecialCharacters(control, currentvalue, message, restrictedmessage) {
+                        
+            var specialCharacters = "@!#%^&*()+={}[]|/\\\"'<>?:;.,~`_\\ ";            
+            for (var i = 0; i < specialCharacters.length; i++) {
+                if (currentvalue.indexOf(specialCharacters[i]) >= 0)
+                    return new ValidationOptions(false, message);
+            }
+
+            if (currentvalue.toLowerCase() == "galaxyusers" ||
+                currentvalue.toLowerCase() == "galaxyroles" ||
+                currentvalue.toLowerCase() == "galaxyroleusermappings" ||
+                currentvalue.toLowerCase() == "galaxyrolesecuritygroupmappings") {
+
+                return new ValidationOptions(false, restrictedmessage);
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function validateForColumnNames(control, currentvalue, message, reservedwordmessage) {            
+            var specialCharacters = "@!#%^&*()+={}[]|/\\\"'<>?:;.,~`_\\ ";
+            for (var i = 0; i < specialCharacters.length; i++) {
+                if (currentvalue.indexOf(specialCharacters[i]) >= 0)
+                    return new ValidationOptions(false, message);
+            }
+            
+            //if (control.findByXmlNode("ReservedWords").value.toLowerCase().split(",").includes(currentvalue.toLowerCase()) == true)
+            if (control.findByXmlNode("ReservedWords").value.toLowerCase().split(",").indexOf(currentvalue.toLowerCase()) >= 0)            
+            {
+                return new ValidationOptions(false, reservedwordmessage);
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function onColumnTypeChanged(control) {            
+            var maxlengthControl = control.findByXmlNode("MaxLength");
+            var scaleControl = control.findByXmlNode("ColumnScale");           
+            maxlengthControl.value = "";
+            scaleControl.value = "";           
+        }
+
+        function enableDiableMaxLengthColumn(control) {
+            var columnTypeControl = control.findByXmlNode("ColumnType");
+
+            if (!columnTypeControl.enable) {
+                return false;
+            }
+
+            var columnTypeValue = columnTypeControl.value;
+            if (columnTypeValue == "char" ||
+                columnTypeValue == "decimal" ||
+                columnTypeValue == "nchar" ||
+                columnTypeValue == "numeric" ||
+                columnTypeValue == "nvarchar" ||
+                columnTypeValue == "varchar" ||
+                columnTypeValue == "varbinary")
+                return true;
+            else
+                return false;            
+        }
+
+        function validateMaxLengthColumn(control, currentvalue, message)
+        {
+            var columnTypeValue = control.findByXmlNode("ColumnType").value;
+            var intCurrentValue = parseInt(currentvalue); 
+
+            if (columnTypeValue == "nchar" && intCurrentValue > 4000) {
+                return new ValidationOptions(false, message);
+            }
+            else if (columnTypeValue == "char" && intCurrentValue > 8000) {
+                return new ValidationOptions(false, message);
+            }         
+            else if (columnTypeValue == "decimal" && intCurrentValue > 38) {
+                return new ValidationOptions(false, message);
+            }
+            else if (columnTypeValue == "numeric" && intCurrentValue > 38) {
+                return new ValidationOptions(false, message);
+            }
+            else if (columnTypeValue == "nvarchar" && intCurrentValue > 4000) {
+                return new ValidationOptions(false, message);
+            }
+            else if (columnTypeValue == "varchar" && intCurrentValue > 8000) {
+                return new ValidationOptions(false, message);
+            }
+            else if (columnTypeValue == "varbinary" && intCurrentValue > 8000) {
+                return new ValidationOptions(false, message);
+            }
+            return new ValidationOptions(true, "");
+        }
+
+        function validateScaleColumn(control, currentValue, message) {
+                        
+            if (control.enable == true && currentValue != "") {
+                var columnMaxLengthValue = control.findByXmlNode("MaxLength").value;
+
+                if (parseInt(currentValue) >= parseInt(columnMaxLengthValue)) {
+                    return new ValidationOptions(false, message);
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function checkMaxLengthMandatory(control) {
+            var columnTypeValue = control.findByXmlNode("ColumnType").value;
+            
+            if (columnTypeValue == "nchar" || columnTypeValue == "char" || columnTypeValue == "decimal" || columnTypeValue == "numeric" || columnTypeValue == "nvarchar" || columnTypeValue == "varchar" || columnTypeValue == "varbinary") {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        function enableDiableScaleColumn(control)
+        {
+            var columnTypeControl = control.findByXmlNode("ColumnType");
+
+            if (!columnTypeControl.enable) {
+                return false;
+            }
+
+            var columnTypeValue = columnTypeControl.value;
+
+            if (columnTypeValue == "decimal" || columnTypeValue == "numeric") {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        function checkScaleMandatory(control)
+        {
+            var columnTypeValue = control.findByXmlNode("ColumnType").value;
+
+            if (columnTypeValue == "decimal" || columnTypeValue == "numeric") {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        function validateForm(control) {
+
+            var recs = control.findByXmlNode("CustomlistTabledata").records();
+            var duplicatesFound = false;
+
+            $.each(recs, function (index, rec) {
+
+                $.each(recs, function (subindex, subrec) {
+                    if (index < subindex) {
+                        if (rec.findByXmlNode("ColumnName").value.toLowerCase() == subrec.findByXmlNode("ColumnName").value.toLowerCase()) {
+                            duplicatesFound = true;
+                            return false;
+                        }
+                    }
+                });
+
+                if (duplicatesFound) {
+                    return false;
+                }
+            });
+
+            if (duplicatesFound) {
+                SFU.showError(document.title, skelta.localize.getString("CustomList_CreateTable_DuplicateColumn_ErrorMessage"));
+                return;
+            }
+
+            control.submitForm(event);
+
+        }
+     
+        function onSave(inputParameterObject, eventArgs) {            
+            var columnRecords = viewModelObject.findByXmlNode("CustomlistTabledata").records();
+
+            var areNewColumnsPresent = false;
+
+            if (mode === "Edit") {
+                $.each(columnRecords, function (index, columnRecord) {
+                    if (columnRecord.isNewRecord) {
+                        areNewColumnsPresent = true;
+                        return false;
+                    }
+                });
+            }
+            else {
+                areNewColumnsPresent = true;
+            }
+
+            if (!areNewColumnsPresent) {
+                closeWin();
+                return;
+            }
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "applicationName": applicationName,
+                "instanceXml": skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                "mode":mode
+            });            
+            try {
+                skeltaUtils.callServerMethod("POST", "CustomListCreateTableService.aspx/CreateTableFromForm", "application/json; charset=utf-8", jsonHelper, "json", newWorkflowFormSubmitSucceeded, newFormSubmitFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (e) {
+                skeltaUtils.showError(skelta.localize.getString("CustomList_CreateTable_Save_Error_title"),
+                    skelta.localize.getString("CustomList_CreateTable_Save_Error"));
+                logger.logError(skelta.localize.getString("CustomList_CreateTable_Save_Error_title"));
+                logger.logError(e.message);
+            }
+        }
+
+        function newWorkflowFormSubmitSucceeded(resultData) {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true) {
+                if (mode == "Add") {
+                    skeltaUtils.showAlert(skelta.localize.getString("CustomList_CreateTable_SaveMessage_title"),
+                        skelta.localize.getString("CustomList_CreateTable_SaveMessage"),
+                        function () {
+                            closeWin();
+                        });
+                }
+                else {
+                    skeltaUtils.showAlert(skelta.localize.getString("CustomList_CreateTable_SaveMessage_title"),
+                        skelta.localize.getString("CustomList_CreateTable_EditMessage"),
+                        function () {
+                            closeWin();
+                        });
+                }
+            }
+            else {
+                skeltaUtils.showError(skelta.localize.getString("CustomList_CreateTable_Save_Error_title"),
+                    skelta.localize.getString("CustomList_CreateTable_Save_Error"));
+                logger.logError(skelta.localize.getString("CustomList_CreateTable_Save_Error"));
+                logger.logError(res.ErrorMessage.replace("\\\\", ""));
+            }
+        }
+
+        function newFormSubmitFailed(result) {
+            skeltaUtils.showError(skelta.localize.getString("CustomList_CreateTable_Save_Error_title"),skelta.localize.getString("CustomList_CreateTable_Save_Error"));
+            logger.logError(skelta.localize.getString("CustomList_CreateTable_Save_Error"));
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+
+        function initializeCreateTableForm() {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "applicationName": applicationName,
+                "listItemId": listItemId,
+                "mode": mode
+            });
+
+            skeltaUtils.callServerMethod("GET", "CustomListCreateTableService.aspx/GetFormForCustomListCreateTable", "application/json; charset=utf-8", jsonHelper, "html", newEventSucceeded, newEventFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function newEventSucceeded(resultData) {
+            viewAndViewModel = resultData;          
+            if (mode == "Edit")
+            {                
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "applicationName": applicationName,
+                    "tableName": tableName
+                });
+                skeltaUtils.callServerMethod("GET", "CustomListCreateTableService.aspx/GetInstanceXmlForCreateTableForm", "application/json; charset=utf-8", jsonHelper, "json", getInstanceXmlSucceeded, getInstanceXmlFailed, getInstanceXmlCompleted, false);
+            }
+            else
+            {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, listItemId + "_CustomListCreateTable", "");
+                skeltaUtils.createDataModelObject(uniqueKey);                                
+                $("#viewModel").html(viewAndViewModel);
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                viewModelObject.onSave.subscribeEvent(onSave);
+                viewModelObject.onCancel.subscribeEvent(closeWin);
+
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+
+                $("#viewModel")[0].style.display = "";
+                viewModelObject.topLevelForm.initializeFocus(0);
+            }
+
+        }
+
+        function getInstanceXmlSucceeded(resultData) {            
+
+            var res = $.parseJSON(resultData.d);            
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, listItemId + "_CustomListCreateTable", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+            skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res));
+            document.getElementById("viewAndViewModel").value = viewAndViewModel;
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+        
+            if (mode == "Edit")
+            {
+                viewModelObject.findByXmlNode("TableName").enable = false;
+                viewModelObject.findByXmlNode("CustomlistTabledata").readEditAddBehaviour=2;                
+            }
+
+            viewModelObject.onSave.subscribeEvent(onSave);
+            viewModelObject.onCancel.subscribeEvent(closeWin);
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function getInstanceXmlCompleted() {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function getInstanceXmlFailed(result) {
+            var errorMsg = skelta.localize.getString("CustomList_CreateTable_InstanceXML_Retrieve_Error")
+                .replace("<@application@>", applicationName)
+                .replace("<@formid@>", formId);
+            skeltaUtils.showError(skelta.localize.getString("CustomList_CreateTable_Retrieve_Error_title"),
+                skelta.localize.getString("CustomList_CreateTable_Retrieve_Error"));
+            logger.logError(errorMsg + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function newEventFailed(result) {
+            skeltaUtils.showError(skelta.localize.getString("CustomList_CreateTable_Retrieve_Error_title"),skelta.localize.getString("CustomList_CreateTable_Retrieve_Error"));
+
+            logger.logError(skelta.localize.getString("CustomList_CreateTable_Retrieve_Error")
+                + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        $(document).ready(function () {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');                                  
+            
+            try {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                initializeCreateTableForm();                
+            }
+            catch (exception) {
+                skeltaUtils.showError(skelta.localize.getString("CustomList_Retrieve_Error_title"),
+                    skelta.localize.getString("CustomList_CreateTable_Load_Error"));
+                logger.logError(skelta.localize.getString("CustomList_CreateTable_Load_Error") + ' ' + exception.message);
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Items List User Interface Elements </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t597307" class="heading3">Work Items List User Interface Elements</h3>
+<p class="paragraph">The Work items list provides enhanced usability features. Workflow actors can view and respond to work items assigned in a user-interface that is similar to Microsoft Outlook. Work items are delivered to the actor's Inbox with a detailed view available on selection of the item. The name of the logged-in user is displayed at the top right corner of the window.</p>
+<p class="paragraph">The detail view of the Work items list has the following user interface elements:</p>
+<ul class="ulitem"><li class="ulitem"><a id="h119781" class="jump-currentwindowlive" title="Work Items List Folders" href="worklistfolders.html" target="_self">Work Items List Folders</a></li><li class="ulitem"><a id="h119783" class="jump-currentwindowlive" title="Work Items List View" href="inboxview.html" target="_self">Work Items List View</a></li><li class="ulitem"><a id="h119785" class="jump-currentwindowlive" title="Work Item Details" href="workitemdetails.html" target="_self">Work Item Details</a></li><li class="ulitem"><a id="h119787" class="jump-currentwindowlive" title="Work Items List Toolbar" href="workitemlisttoolbar.html" target="_self">Work Items List Toolbar</a></li></ul><p class="paragraph">The Work items list also provides properties that enable customization and configuration of elements of the user interface. For details on customizing the view, see <a id="h119789" class="jump-currentwindowlive" title="Customizing Work Items List" href="customizingworkitemlistview.html" target="_self">Customizing Work Items List</a>.</p>
+<p class="paragraph">The Work items list allows participants in queues to manage items in their queues. A separate <a id="h119791" class="jump-currentwindowlive" title="Work Items List Manager View" href="managersview.html" target="_self">Work Items List Manager View</a> forms a part of the Work items list. It allows actors who are also managers to administer activities assigned to their team members.</p>
+<p class="subheading">Work items list - Detail View</p>
+<p class="paragraph"><img id="f106779" src="106779.png" class="embeddedimage100%scalinglive" alt="" height="382" width="571" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> When you click a work item to edit, the editor appears in a modal window. You have to close the modal window to access the parent window.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="worklistfolders.html" target="_self">Work Items List Folders</a></p><p class="relateditem"><a href="inboxview.html" target="_self">Work Items List View</a></p><p class="relateditem"><a href="workitemdetails.html" target="_self">Work Item Details</a></p><p class="relateditem"><a href="workitemlisttoolbar.html" target="_self">Work Items List Toolbar</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

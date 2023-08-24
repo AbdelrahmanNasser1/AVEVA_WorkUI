@@ -1,0 +1,928 @@
+@font-face {
+    font-family: 'SE-Software';
+    src: url('../../../../Common/fonts/SE-Software.eot?9cmng1');
+    src: url('../../../../Common/fonts/SE-Software.eot?9cmng1#iefix') format('embedded-opentype'), url('../../../../Common/fonts/SE-Software.woff2?9cmng1') format('woff2'), url('../../../../Common/fonts/SE-Software.ttf?9cmng1') format('truetype'), url('../../../../Common/fonts/SE-Software.woff?9cmng1') format('woff'), url('../../../../Common/fonts/SE-Software.svg?9cmng1#SE-Software') format('svg');
+    src: url("../../../../Common/fonts/SE-Software.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="sw-"], [class*=" sw-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'SE-Software' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.sw-Products-AlarmAdvisor:before {
+    content: "\40";
+}
+.sw-Products-AppServer:before {
+    content: "\41";
+}
+.sw-Products-Avantis-PRO:before {
+    content: "\42";
+}
+.sw-Products-CEM:before {
+    content: "\43";
+}
+.sw-Products-DAServer:before {
+    content: "\44";
+}
+.sw-Products-Forms:before {
+    content: "\45";
+}
+.sw-Products-Foundation:before {
+    content: "\46";
+}
+.sw-Products-FSGateway:before {
+    content: "\47";
+}
+.sw-Products-Historian:before {
+    content: "\48";
+}
+.sw-Products-HistorianClient:before {
+    content: "\49";
+}
+.sw-Products-HistorianPublisher:before {
+    content: "\4a";
+}
+.sw-Products-InBatch:before {
+    content: "\4b";
+}
+.sw-Products-InformationServer:before {
+    content: "\4c";
+}
+.sw-Products-IntelaTrac:before {
+    content: "\4d";
+}
+.sw-Products-Intelligence:before {
+    content: "\4e";
+}
+.sw-Products-InTouch:before {
+    content: "\4f";
+}
+.sw-Products-InTouchWindowMaker:before {
+    content: "\50";
+}
+.sw-Products-InTouchWindowViewer:before {
+    content: "\51";
+}
+.sw-Products-LanguageAssistant:before {
+    content: "\52";
+}
+.sw-Products-LanguageManager:before {
+    content: "\53";
+}
+.sw-Products-MES:before {
+    content: "\54";
+}
+.sw-Products-RecipeManagerPlus:before {
+    content: "\55";
+}
+.sw-Products-SkeltaBPM:before {
+    content: "\56";
+}
+.sw-Products-SmartGlance:before {
+    content: "\57";
+}
+.sw-Products-SystemPlatform:before {
+    content: "\58";
+}
+.sw-Products-InTouchAccessAnywhere:before {
+    content: "\59";
+}
+.sw-Products-Skyline:before {
+    content: "\5a";
+}
+.sw-Command-Activate:before {
+    content: "\100";
+}
+.sw-Command-Activate2:before {
+    content: "\101";
+}
+.sw-Command-Add:before {
+    content: "\102";
+}
+.sw-Command-AddBottom2:before {
+    content: "\103";
+}
+.sw-Command-AddBottom:before {
+    content: "\104";
+}
+.sw-Command-AddLeft:before {
+    content: "\105";
+}
+.sw-Command-AddRight:before {
+    content: "\106";
+}
+.sw-Command-AddTop:before {
+    content: "\107";
+}
+.sw-Command-Back:before {
+    content: "\108";
+}
+.sw-Command-Build:before {
+    content: "\109";
+}
+.sw-Command-CancelPending:before {
+    content: "\10a";
+}
+.sw-Command-CheckIn:before {
+    content: "\10b";
+}
+.sw-Command-CheckOut:before {
+    content: "\10c";
+}
+.sw-Command-Chevron:before {
+    content: "\10d";
+}
+.sw-Command-CloseWindow:before {
+    content: "\10e";
+}
+.sw-Command-Collapsed:before {
+    content: "\10f";
+}
+.sw-Command-Convert:before {
+    content: "\110";
+}
+.sw-Command-Copy:before {
+    content: "\111";
+}
+.sw-Command-Cut:before {
+    content: "\112";
+}
+.sw-Command-Deactivate:before {
+    content: "\113";
+}
+.sw-Command-Deactivate3:before {
+    content: "\114";
+}
+.sw-Command-Deactivate2:before {
+    content: "\115";
+}
+.sw-Command-DuplicateScreen:before {
+    content: "\116";
+}
+.sw-Command-Edit:before {
+    content: "\117";
+}
+.sw-Command-Expand:before {
+    content: "\118";
+}
+.sw-Command-Expand2:before {
+    content: "\119";
+}
+.sw-Command-Export2:before {
+    content: "\11a";
+}
+.sw-Command-Export:before {
+    content: "\11b";
+}
+.sw-Command-FullScreen:before {
+    content: "\11c";
+}
+.sw-Command-Help:before {
+    content: "\11d";
+}
+.sw-Command-Import:before {
+    content: "\11e";
+}
+.sw-Command-In:before {
+    content: "\11f";
+}
+.sw-Command-Join:before {
+    content: "\120";
+}
+.sw-Command-Lock:before {
+    content: "\121";
+}
+.sw-Command-MaximizeWindow:before {
+    content: "\122";
+}
+.sw-Command-MinimizeWindow:before {
+    content: "\123";
+}
+.sw-Command-Navigate:before {
+    content: "\124";
+}
+.sw-Command-New:before {
+    content: "\125";
+}
+.sw-Command-Notify:before {
+    content: "\126";
+}
+.sw-Command-Open:before {
+    content: "\127";
+}
+.sw-Command-Pair:before {
+    content: "\128";
+}
+.sw-Command-Paste:before {
+    content: "\129";
+}
+.sw-Command-Pinned:before {
+    content: "\12a";
+}
+.sw-Command-Print:before {
+    content: "\12b";
+}
+.sw-Command-Redo:before {
+    content: "\12c";
+}
+.sw-Command-Redo2:before {
+    content: "\12d";
+}
+.sw-Command-Remove:before {
+    content: "\12e";
+}
+.sw-Command-Rename:before {
+    content: "\12f";
+}
+.sw-Command-Revert:before {
+    content: "\130";
+}
+.sw-Command-Save:before {
+    content: "\131";
+}
+.sw-Command-Save2:before {
+    content: "\132";
+}
+.sw-Command-SaveClose:before {
+    content: "\133";
+}
+.sw-Command-Settings:before {
+    content: "\134";
+}
+.sw-Command-SignOn:before {
+    content: "\136";
+}
+.sw-Command-Split:before {
+    content: "\137";
+}
+.sw-Command-Undo:before {
+    content: "\138";
+}
+.sw-Command-Undo2:before {
+    content: "\139";
+}
+.sw-Command-Unlocked:before {
+    content: "\13a";
+}
+.sw-Command-Unpin:before {
+    content: "\13b";
+}
+.sw-Command-Zoom:before {
+    content: "\13c";
+}
+.sw-Command-AttributeAdd:before {
+    content: "\13d";
+}
+.sw-Command-AttributeRemove:before {
+    content: "\13e";
+}
+.sw-Command-CheckboxRemove:before {
+    content: "\13f";
+}
+.sw-Command-CheckboxAdd:before {
+    content: "\140";
+}
+.sw-Command-ChoiceAdd:before {
+    content: "\141";
+}
+.sw-Command-ChoiceRemove:before {
+    content: "\142";
+}
+.sw-Command-ChoiceGroupAdd:before {
+    content: "\143";
+}
+.sw-Command-ChoiceGroupRemove:before {
+    content: "\144";
+}
+.sw-Command-DownArrow:before {
+    content: "\145";
+}
+.sw-Command-UpArrow:before {
+    content: "\146";
+}
+.sw-Command-Wizard:before {
+    content: "\147";
+}
+.sw-Command-Test:before {
+    content: "\148";
+}
+.sw-Command-Search:before {
+    content: "\149";
+}
+.sw-Command-SaveAll:before {
+    content: "\e900";
+}
+.sw-Command-CollapseAll:before {
+    content: "\e901";
+}
+.sw-Command-ExpandAll:before {
+    content: "\e902";
+}
+.sw-Command-Reset:before {
+    content: "\e903";
+}
+.sw-Activity-ContextMenu:before {
+    content: "\170";
+}
+.sw-Activity-Advanced:before {
+    content: "\171";
+}
+.sw-Activity-ApplicationModel:before {
+    content: "\172";
+}
+.sw-Activity-Attributes:before {
+    content: "\173";
+}
+.sw-Activity-Connect:before {
+    content: "\174";
+}
+.sw-Activity-Deploy:before {
+    content: "\175";
+}
+.sw-Activity-DisablePairing:before {
+    content: "\176";
+}
+.sw-Activity-Foundation:before {
+    content: "\177";
+}
+.sw-Activity-Health:before {
+    content: "\178";
+}
+.sw-Activity-Maintain:before {
+    content: "\179";
+}
+.sw-Activity-Menu:before {
+    content: "\17a";
+}
+.sw-Activity-Model:before {
+    content: "\17b";
+}
+.sw-Activity-Navigate:before {
+    content: "\17c";
+}
+.sw-Activity-Presentation:before {
+    content: "\17d";
+}
+.sw-Activity-Script:before {
+    content: "\17e";
+}
+.sw-Activity-Services:before {
+    content: "\17f";
+}
+.sw-Activity-Simulation:before {
+    content: "\180";
+}
+.sw-Activity-Standards:before {
+    content: "\181";
+}
+.sw-Activity-Start:before {
+    content: "\182";
+}
+.sw-Activity-Tools:before {
+    content: "\183";
+}
+.sw-Activity-Visualize:before {
+    content: "\184";
+}
+.sw-Activity-VisualToolbox:before {
+    content: "\185";
+}
+.sw-Activity-Compile:before {
+    content: "\e904";
+}
+.sw-Activities-Diagnostics:before {
+    content: "\e905";
+}
+.sw-Activity-Sort:before {
+    content: "\e906";
+}
+.sw-Activity-ComputerSetup:before {
+    content: "\e907";
+}
+.sw-Activity-ComputerSetup2:before {
+    content: "\e908";
+}
+.sw-Activity-ProfileWizard:before {
+    content: "\e909";
+}
+.sw-Entity-Alarm:before {
+    content: "\200";
+}
+.sw-Entity-Area:before {
+    content: "\201";
+}
+.sw-Entity-Cloud:before {
+    content: "\202";
+}
+.sw-Entity-DAServer:before {
+    content: "\203";
+}
+.sw-Entity-Dashboard:before {
+    content: "\204";
+}
+.sw-Entity-Folder:before {
+    content: "\205";
+}
+.sw-Entity-Footnote:before {
+    content: "\206";
+}
+.sw-Entity-Galaxy:before {
+    content: "\207";
+}
+.sw-Entity-Gesture:before {
+    content: "\208";
+}
+.sw-Entity-Graphic:before {
+    content: "\209";
+}
+.sw-Entity-Keyboard:before {
+    content: "\20a";
+}
+.sw-Entity-Layout:before {
+    content: "\20b";
+}
+.sw-Entity-LicenseServer:before {
+    content: "\20c";
+}
+.sw-Entity-Light:before {
+    content: "\20d";
+}
+.sw-Entity-Mobile:before {
+    content: "\20e";
+}
+.sw-Entity-Object:before {
+    content: "\20f";
+}
+.sw-Entity-ObjectServer:before {
+    content: "\210";
+}
+.sw-Entity-ProjectServer:before {
+    content: "\211";
+}
+.sw-Entity-Radio:before {
+    content: "\212";
+}
+.sw-Entity-Role:before {
+    content: "\213";
+}
+.sw-Entity-Screen:before {
+    content: "\214";
+}
+.sw-Entity-Script:before {
+    content: "\215";
+}
+.sw-Entity-Solution:before {
+    content: "\216";
+}
+.sw-Entity-Sound:before {
+    content: "\217";
+}
+.sw-Entity-Trend:before {
+    content: "\218";
+}
+.sw-Entity-ViewApp:before {
+    content: "\219";
+}
+.sw-Entity-Voice:before {
+    content: "\21a";
+}
+.sw-Entity-Workspace:before {
+    content: "\21b";
+}
+.sw-Entity-Workstation:before {
+    content: "\21c";
+}
+.sw-Entity-Project:before {
+    content: "\e90a";
+}
+.sw-Entity-Topology:before {
+    content: "\e90b";
+}
+.sw-Entity-Visualisation:before {
+    content: "\e90c";
+}
+.sw-Entity-Security:before {
+    content: "\e90d";
+}
+.sw-Entity-License:before {
+    content: "\e90e";
+}
+.sw-Entity-Equipment:before {
+    content: "\e90f";
+}
+.sw-Entity-AlarmServer:before {
+    content: "\e910";
+}
+.sw-Entity-EcoStruxureWebServer:before {
+    content: "\e911";
+}
+.sw-Entity-OPCDAServer:before {
+    content: "\e912";
+}
+.sw-DataType-BigString:before {
+    content: "\270";
+}
+.sw-DataType-Boolean:before {
+    content: "\271";
+}
+.sw-DataType-Counter:before {
+    content: "\272";
+}
+.sw-DataType-CustomEnum:before {
+    content: "\273";
+}
+.sw-DataType-CustomStruct:before {
+    content: "\274";
+}
+.sw-DataType-DateTime:before {
+    content: "\285";
+}
+.sw-DataType-Double:before {
+    content: "\286";
+}
+.sw-DataType-ElapsedTime:before {
+    content: "\287";
+}
+.sw-DataType-Enum:before {
+    content: "\288";
+}
+.sw-DataType-Float:before {
+    content: "\289";
+}
+.sw-DataType-Integer:before {
+    content: "\28a";
+}
+.sw-DataType-InternationalString:before {
+    content: "\28b";
+}
+.sw-DataType-MXStatus:before {
+    content: "\28c";
+}
+.sw-DataType-QualityType:before {
+    content: "\28d";
+}
+.sw-DataType-Reference:before {
+    content: "\28e";
+}
+.sw-DataType-SecurityClassEnum:before {
+    content: "\28f";
+}
+.sw-DataType-String:before {
+    content: "\290";
+}
+.sw-DataType-Unknown:before {
+    content: "\291";
+}
+.sw-Option-Details:before {
+    content: "\2a0";
+}
+.sw-Option-Filter:before {
+    content: "\2a1";
+}
+.sw-Option-FlyOut:before {
+    content: "\2a2";
+}
+.sw-Option-Hierarchical:before {
+    content: "\2a3";
+}
+.sw-Option-NoFlyOut:before {
+    content: "\2a4";
+}
+.sw-Option-OnOff:before {
+    content: "\2a5";
+}
+.sw-Option-Tiles:before {
+    content: "\2a6";
+}
+.sw-Option-Unfilter:before {
+    content: "\2a7";
+}
+.sw-Step-Next:before {
+    content: "\2e0";
+}
+.sw-Step-One:before {
+    content: "\2e1";
+}
+.sw-Step-Two:before {
+    content: "\2e2";
+}
+.sw-Step-Three:before {
+    content: "\2e3";
+}
+.sw-State-Default:before {
+    content: "\2c0";
+}
+.sw-State-Inherited:before {
+    content: "\2c1";
+}
+.sw-State-Linked:before {
+    content: "\2c2";
+}
+.sw-State-Locked:before {
+    content: "\2c3";
+}
+.sw-State-Paired:before {
+    content: "\2c4";
+}
+.sw-State-Required:before {
+    content: "\2c5";
+}
+.sw-State-Run:before {
+    content: "\2c6";
+}
+.sw-State-Selected:before {
+    content: "\2c7";
+}
+.sw-State-Shared:before {
+    content: "\2c8";
+}
+.sw-State-Stop:before {
+    content: "\2c9";
+}
+.sw-State-Unlinked:before {
+    content: "\2ca";
+}
+.sw-State-Unlocked:before {
+    content: "\2cb";
+}
+.sw-State-Unselected:before {
+    content: "\2cc";
+}
+.sw-State-Pause:before {
+    content: "\e913";
+}
+.sw-State-Warning:before {
+    content: "\2cd";
+}
+.sw-State-Error:before {
+    content: "\e914";
+}
+.sw-State-Information:before {
+    content: "\e915";
+}
+.sw-Execution-DataChange:before {
+    content: "\300";
+}
+.sw-Execution-OffScan:before {
+    content: "\301";
+}
+.sw-Execution-OnFalse:before {
+    content: "\302";
+}
+.sw-Execution-OnScan:before {
+    content: "\303";
+}
+.sw-Execution-OnTrue:before {
+    content: "\304";
+}
+.sw-Execution-Periodic:before {
+    content: "\305";
+}
+.sw-Execution-Shutdown:before {
+    content: "\306";
+}
+.sw-Execution-Startup:before {
+    content: "\307";
+}
+.sw-Execution-WhileFalse:before {
+    content: "\308";
+}
+.sw-Execution-WhileTrue:before {
+    content: "\309";
+}
+.sw-Editor-Draw2Arc:before {
+    content: "\400";
+}
+.sw-Editor-Draw2Chord:before {
+    content: "\401";
+}
+.sw-Editor-Draw2Pie:before {
+    content: "\402";
+}
+.sw-Editor-Draw3Arc:before {
+    content: "\403";
+}
+.sw-Editor-Draw3Chord:before {
+    content: "\404";
+}
+.sw-Editor-Draw3Pie:before {
+    content: "\405";
+}
+.sw-Editor-DrawAlignLeft:before {
+    content: "\406";
+}
+.sw-Editor-DrawAlignTop:before {
+    content: "\407";
+}
+.sw-Editor-DrawAllowSizeChange:before {
+    content: "\408";
+}
+.sw-Editor-DrawAnchor:before {
+    content: "\409";
+}
+.sw-Editor-DrawBitmap:before {
+    content: "\40a";
+}
+.sw-Editor-DrawBitmapOriginal:before {
+    content: "\40b";
+}
+.sw-Editor-DrawButton:before {
+    content: "\40c";
+}
+.sw-Editor-DrawCalendar:before {
+    content: "\40d";
+}
+.sw-Editor-DrawCheckBox:before {
+    content: "\40e";
+}
+.sw-Editor-DrawComboBox:before {
+    content: "\40f";
+}
+.sw-Editor-DrawCurve:before {
+    content: "\410";
+}
+.sw-Editor-DrawDatePicker:before {
+    content: "\411";
+}
+.sw-Editor-DrawFlip:before {
+    content: "\412";
+}
+.sw-Editor-DrawFmtBold:before {
+    content: "\413";
+}
+.sw-Editor-DrawFmtBringForward:before {
+    content: "\414";
+}
+.sw-Editor-DrawFmtBringToFront:before {
+    content: "\415";
+}
+.sw-Editor-DrawFmtDecreaseRadius:before {
+    content: "\416";
+}
+.sw-Editor-DrawFmtFill:before {
+    content: "\417";
+}
+.sw-Editor-DrawFmtFont:before {
+    content: "\418";
+}
+.sw-Editor-DrawFmtFontColor:before {
+    content: "\419";
+}
+.sw-Editor-DrawFmtIncreaseRadius:before {
+    content: "\41a";
+}
+.sw-Editor-DrawFmtItalic:before {
+    content: "\41b";
+}
+.sw-Editor-DrawFmtLine:before {
+    content: "\e932";
+}
+.sw-Editor-DrawFmtLineEnd:before {
+    content: "\e933";
+}
+.sw-Editor-DrawFmtLineSize:before {
+    content: "\e934";
+}
+.sw-Editor-DrawFmtLineStyle:before {
+    content: "\41c";
+}
+.sw-Editor-DrawFmtSendBackward:before {
+    content: "\41d";
+}
+.sw-Editor-DrawFmtSendToBack:before {
+    content: "\41e";
+}
+.sw-Editor-DrawFmtTextAlignment:before {
+    content: "\41f";
+}
+.sw-Editor-DrawFmtTextBigger:before {
+    content: "\420";
+}
+.sw-Editor-DrawFmtTextSmaller:before {
+    content: "\421";
+}
+.sw-Editor-DrawFmtTransparency:before {
+    content: "\422";
+}
+.sw-Editor-DrawFmtUnderline:before {
+    content: "\423";
+}
+.sw-Editor-DrawGrid:before {
+    content: "\424";
+}
+.sw-Editor-DrawGroup:before {
+    content: "\425";
+}
+.sw-Editor-DrawHorizontal:before {
+    content: "\426";
+}
+.sw-Editor-DrawHVLine:before {
+    content: "\427";
+}
+.sw-Editor-DrawInputBox:before {
+    content: "\428";
+}
+.sw-Editor-DrawLine:before {
+    content: "\429";
+}
+.sw-Editor-DrawListBox:before {
+    content: "\42a";
+}
+.sw-Editor-DrawLockedPosition:before {
+    content: "\42b";
+}
+.sw-Editor-DrawLockSize:before {
+    content: "\42c";
+}
+.sw-Editor-DrawMajor:before {
+    content: "\42d";
+}
+.sw-Editor-DrawOriginalClientSize:before {
+    content: "\42e";
+}
+.sw-Editor-DrawOval:before {
+    content: "\42f";
+}
+.sw-Editor-DrawPath:before {
+    content: "\430";
+}
+.sw-Editor-DrawPoly:before {
+    content: "\431";
+}
+.sw-Editor-DrawPolyCurve:before {
+    content: "\432";
+}
+.sw-Editor-DrawRadioButton:before {
+    content: "\433";
+}
+.sw-Editor-DrawRect:before {
+    content: "\434";
+}
+.sw-Editor-DrawRotate:before {
+    content: "\435";
+}
+.sw-Editor-DrawRoundedRect:before {
+    content: "\436";
+}
+.sw-Editor-DrawSizeLarger:before {
+    content: "\437";
+}
+.sw-Editor-DrawSmoothing:before {
+    content: "\438";
+}
+.sw-Editor-DrawSnapGrid:before {
+    content: "\439";
+}
+.sw-Editor-DrawStatus:before {
+    content: "\440";
+}
+.sw-Editor-DrawSymbol:before {
+    content: "\441";
+}
+.sw-Editor-DrawText:before {
+    content: "\442";
+}
+.sw-Editor-DrawTextBox:before {
+    content: "\443";
+}
+.sw-Editor-DrawUnlockedPosition:before {
+    content: "\444";
+}
+.sw-Editor-DrawVertical:before {
+    content: "\445";
+}
+.sw-Editor-DrawWKCC:before {
+    content: "\446";
+}
+.sw-Editor-Pointer:before {
+    content: "\447";
+}
+.sw-Editor-ZoomIn:before {
+    content: "\448";
+}
+.sw-Editor-ZoomNormal:before {
+    content: "\449";
+}
+.sw-Editor-ZoomOut:before {
+    content: "\44a";
+}
+.sw-Editor-ZoomRegion:before {
+    content: "\44b";
+}
+.sw-Editor-ZoomSelected:before {
+    content: "\44c";
+}
+

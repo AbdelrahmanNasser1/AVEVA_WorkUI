@@ -1,0 +1,17 @@
+FormWidget_Name_HIERARCHYSELECTOR:Hierarchy Selector
+FormWidget_HIERARCHYSELECTOR_ConfName_HIERARCHY:Hierarchy
+FormWidget_HIERARCHYSELECTOR_ConfName_HIERARCHY_SAMPLEDATA:Hierarchy SampleData
+FormWidget_HIERARCHYSELECTOR_Property_DATA:Data
+FormWidget_HIERARCHYSELECTOR_Property_SELECTEDVALUE:Selected Value
+FormWidget_HIERARCHYSELECTOR_Property_SELECTEDOBJ:Selected Object
+FormWidget_HIERARCHYSELECTOR_Script_ONINITIALIZE:On Initialize
+@@WidgetHSWidgetTitle@@:Add Event
+@@WidgetHSHeader@@:Reason Groups
+@@WidgetHSParentCaption@@:Select a reason group to view its reasons.
+@@WidgetHSChildCaption@@:Reasons for 
+@@WidgetHSCaptionNoParentSelected@@:Reasons
+@@WidgetHSNoChildAvailable@@:No reasons available
+@@WidgetHSNoData@@:(No Data)
+@@WidgetHSErrorLoadingConfiguration@@:Error loading configuration.
+@@WidgetHSErrorSetDataConvertToObject@@:Set data fail. Not able to convert text to object. 
+@@WidgetHSErrorSetDataConvertToObjectFromEmptyUndefined@@:Set data fail. Not able to convert empty text or undefined to object. 

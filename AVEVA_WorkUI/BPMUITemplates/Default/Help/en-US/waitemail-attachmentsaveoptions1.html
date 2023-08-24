@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for Email: Attachment Save Options </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49658" class="heading4">Wait for Email: Attachment Save Options</h4>
+<p class="paragraph">You can set the options to save the email attachments in this property window. To open this window, click the button for the 'Attachment Save Options' property.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51372" src="51372.png" class="embeddedimage100%scalinglive" alt="" height="140" width="614" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">In user specified location, you have to append the mail id i.e, if user specified location is &quot;C:\SkeltaMailAttachements\&quot;, then actual location will be &quot;C:\SkeltaMailAttachements\&lt;mailId&gt;&quot; .</p>
+<p class="paragraph"><strong class="strong">Example</strong></p>
+<p class="paragraph">Location : c:\Temp\</p>
+<p class="paragraph">Actual: c:\Temp\123 &#8211;(123 is last mailid )</p>
+<p class="paragraph">This window has the following fields to specify the pattern to save attachments.</p>
+<ul class="ulitem"><li class="ulitem">The attachment drop-down field can be used to specify the attachment option by selecting the appropriate property from the drop-down field. You can choose to save all attachment files, specific files or file contents.</li><li class="ulitem">The value type drop-down field can be used to specify the value type to assign to the option selected in the attachment drop-down field.</li><li class="ulitem">The value text box/ drop-down field can be used to specify the pattern which matches with the &quot;File Name&quot; or &quot;File Content&quot; property selected in the attachment drop-down field. The control displayed here depends on the option selected in the value drop-down field. If you select &quot;Value&quot;, a text box is displayed here, where you can enter the pattern directly. If you select Variable or Content, then a drop-down is displayed with a list of related collections. You can select the appropriate option from this drop-down field.</li></ul><p class="paragraph">There are two buttons at the bottom of the screen.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>&nbsp;- You can click this button to save the newly added pattern settings.</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- You can click this to close the property window without saving the newly added settings.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="waitforemailaction1.html" target="_self">Wait for Email Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

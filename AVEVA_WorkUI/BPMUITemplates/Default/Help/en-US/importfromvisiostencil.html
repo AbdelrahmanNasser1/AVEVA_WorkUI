@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Importing Process Definition from Visio </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601406" class="heading3">Importing Process Definition from Visio</h3>
+<p class="paragraph">This window opens when you select the <b class="uicontrol">Import from Visio</b> option from the <b class="uicontrol">Tools</b> menu. </p>
+<p class="paragraphimage"><img id="f107709" src="107709.png" class="embeddedimage100%scalinglive" alt="" height="247" width="398" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage">Import Visio Process Definition window</p>
+<p class="paragraph">You can use the following controls to import a process definition created with the ITP-Commerce Process Modeler for Visio.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Select a valid XML file created with ITP-Commerce Process Modeler</b> - You can enter the name of a valid XML Process definition file from the Visio stencil in this field or click <b class="uicontrol">Browse</b> to select the XML file.</li><li class="ulitem"><b class="uicontrol">Import</b> - After selecting a Visio process definition XML file, you can click this button to import it.</li><li class="ulitem"><b class="uicontrol">Cancel</b> - You can click this button to cancel the selection and close this window.<p class="note"><strong class="notelabel">Note:</strong> The import routine maps Visio BPMN activities to native AVEVA Work Tasks activities. You should configure the necessary properties after import.</p>
+</li></ul>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

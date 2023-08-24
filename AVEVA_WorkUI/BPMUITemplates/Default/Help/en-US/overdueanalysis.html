@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Overdue Analysis </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t483227" class="heading4">Overdue Analysis</h4>
+<p class="paragraph">You can use the&nbsp;<b class="uicontrol">Overdue Analysis</b>&nbsp;tab to setup the threshold for total pending workflow instances at any time and for selected time slots.</p>
+<p class="paragraph"><img id="f47322" src="47322.png" class="embeddedimage100%scalinglive" alt="" height="503" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><b class="uicontrol">Total Pending Workflows Threshold</b>: Select&nbsp;<b class="uicontrol">Value</b>&nbsp;to set a limit on the total workflows that may be pending at any time.</p>
+<p class="subheading">Overdue Analysis Configuration</p>
+<p class="paragraph">Overdue workflows may be analyzed in 10 time slots.</p>
+<ul class="ulitem"><li class="ulitem"><i class="emphasis">Slot Period</i>: Select the time period for defining threshold values in each slot.</li><li class="ulitem"><i class="emphasis">Threshold</i>: Select the threshold option.<ul class="ulsubitem"><li class="ulsubitem">Not Set: This indicates there is no threshold.</li><li class="ulsubitem">Value: Select this option and enter a threshold value for the number of pending workflows in the time slot.</li><li class="ulsubitem">% of Total: Select this option to enter the threshold of pending workflows as a percentage of total active workflows in the time slot.</li></ul></li><li class="ulitem">Click&nbsp;<b class="uicontrol">Save</b>.</li></ul>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

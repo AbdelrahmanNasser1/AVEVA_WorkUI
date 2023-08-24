@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Identifying Mandatory Properties </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601407" class="heading3">Identifying Mandatory Properties</h3>
+<p class="paragraph">You need to set some properties of all <b class="uicontrol">AVEVA Work Tasks</b> Activities as they are essential for the execution of the activities. These mandatory properties can be identified by the red icon with a white exclamation mark superimposed on the red circle that is placed next to the property labels.</p>
+<p class="paragraph"><img id="f47346" src="47346.jpg" class="embeddedimage100%scalinglive" alt="" height="176" width="466" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Mandatory properties</p>
+<p class="paragraph">In the above example, you can see two mandatory properties for the Checklist activity. The first property &#8211; Questions &#8211; helps configure the functionality of the activity. The second property that is visible &#8211; Assign Actor(s) &#8211; determines the actors to whom the activity will be assigned. Both these properties cannot be left empty. To ensure that users are aware of the importance of setting the mandatory properties, a message stating that the value cannot be left empty is displayed on placing the mouse over the mandatory icon. This icon is removed once the mandatory properties have been set to some value.</p>
+<p class="paragraph">The mandatory icon is also superimposed on the outline of the Activity icon when it is added, indicating that its properties have not been set. The icon is removed after all mandatory properties have been set for this activity.</p>
+<p class="paragraphimage"><img id="f47347" src="47347.jpg" class="embeddedimage100%scalinglive" alt="" height="95" width="96" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Checklist Activity indicating that properties have not been set.</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

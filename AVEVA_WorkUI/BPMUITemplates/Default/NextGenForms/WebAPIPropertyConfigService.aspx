@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" Debug="true" AutoEventWireup="true" Inherits="Skelta.WebAPI.CodeBehind.WebAPIPropertyConfigService" EnableViewState="true" %>

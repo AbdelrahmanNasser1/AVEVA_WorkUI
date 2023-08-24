@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" Inherits="Skelta.Repository.CodeBehind.Codebehind.Site.WebApiService" %>

@@ -1,0 +1,12 @@
+@import url('FormDecorator.css');
+@import url('TabStrip.css');
+@import url('Editor.css');
+@import url('Window.css');
+@import url('Widgets.css');
+@import url('MultiPage.css');
+
+@import url("Editor.SkeltaEditor.css");
+@import url("FormDecorator.SkeltaEditor.css");
+@import url("TabStrip.SkeltaEditor.css");
+@import url("Window.SkeltaEditor.css");
+@import url("Widgets.SkeltaEditor.css");

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Resource Calendar </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t482947" class="heading3">Resource Calendar</h3>
+<p class="subheading">Configuring a Resource Calendar</p>
+<p class="paragraph">Configure a resource calendar by inheriting the settings of a specified top-level calendar. A resource calendar is the lowest level calendar that you can create and it cannot have a child-calendar.</p>
+<p class="paragraph">See&nbsp;<a id="h46688" class="jump-currentwindowlive" title="Configuring Resource Calendar by Administrator" href="configurationofresourcecalendarbyadministrator.html" target="_self">Configuring Resource Calendar by Administrator</a>&nbsp;for more details.</p>
+<p class="paragraph">You must select the time zone for the resource in the&nbsp;<b class="uicontrol">Time Zone</b>&nbsp;drop down. You also need to select the top-level calendar from which this resource calendar is to inherit properties in the&nbsp;Inherit <b class="uicontrol">Calendar</b>&nbsp;field.</p>
+<p class="paragraph">You can access the <b class="uicontrol">Resource Calendar</b> feature from the Inbox.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46702" src="46702.png" class="embeddedimage100%scalinglive" alt="" height="93" width="551" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage">On clicking the icon, the Resource Calendar screen opens.</p>
+<p class="paragraphimage"><br><img id="f46703" src="46703.png" class="embeddedimage100%scalinglive" alt="" height="180" width="551" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">After configuring the settings, you can click the&nbsp;<b class="uicontrol">Save</b>&nbsp;button to save the resource calendar. This displays the configuration window below the above one. You can configure the calendar using the same steps described for configuring the Calendar Control.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46704" src="46704.png" class="embeddedimage100%scalinglive" alt="" height="323" width="530" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage">You can click on the&nbsp;<b class="uicontrol">View&nbsp;List</b>&nbsp;button to return to the Calendar List view.</p>
+<p class="paragraphimage"><br><img id="f46705" src="46705.png" class="embeddedimage100%scalinglive" alt="" height="237" width="559" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">For more information about configuring Resource Calendars from the Work items list window. see <a id="h188340" class="jump-currentwindowlive" title="Work Items List" href="AboutSkeltaWorkItemsList.html" target="_self">Work Items List</a></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

@@ -1,0 +1,83 @@
+﻿.skdbackgroundcolor
+{
+    background-color: #EAECED;
+}
+
+#dvArrow
+{
+    background-color: #5B6BE3;
+}
+
+#divSlide
+{
+    background-color: #EAECED;
+}
+
+.skcontrolDesignerSplitter
+{
+    background-color: #EAECED;
+}
+
+.skti[data-sktbi="move"]:hover,
+.skti[data-sktbi="edit"]:hover,
+.skti[data-sktbi="delete"]:hover,
+.skti[data-sktbi="clone"]:hover,
+.skti[data-sktbi="replace"]:hover,
+.skptbc:hover,
+.sktbc:hover > .sktbci
+{
+    background-color: #5B6BE3;
+}
+
+.skptb
+{
+    background-color: #EAECED;
+}
+
+.actionBar
+{
+    background-color: #EAECED !important;
+}
+
+.skptb
+{
+    height: 40px;
+}
+
+    .skptb[data-skdt="1"][data-skptbc="0"]
+    {
+        width: 205px;
+    }
+
+        .skptb[data-skdt="1"][data-skptbc="0"][data-skcn="Tabs"],
+        .skptb[data-skdt="1"][data-skptbc="0"][data-skcn="PopupForm"],
+        .skptb[data-skdt="1"][data-skptbc="0"][data-skcn="HierarchicalList"],
+        .skptb[data-skdt="1"][data-skptbc="0"][data-skcn="Signature"],
+        .skptb[data-skdt="1"][data-skptbc="0"][data-skcn="ElectronicSignatureForm"],
+        .skcn[data-skcnt="EmbeddedForm"] > .skptb[data-skdt="1"][data-skptbc="0"]
+        {
+            width: 170px;
+        }
+
+        .skptb[data-skdt="1"][data-skptbc="0"][data-skcn="Tab"]
+        {
+            width: 90px;
+	    height: 40px;
+        }
+
+.skptb[data-skdt="1"][data-skptbc="1"][data-skcn="Tab"]
+{
+    height: 40px;
+}
+
+.skti
+{
+    height: 36px;
+    width: 36px;
+    margin: 2px 0 0 1px;
+}
+
+.skptb[data-skcn="Tab"] > .skti
+{
+    margin: 1px 0 0 1px;
+}

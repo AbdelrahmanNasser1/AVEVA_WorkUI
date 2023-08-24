@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Items List Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601897" class="heading3">Work Items List Control</h3>
+<p class="paragraph">The <b class="uicontrol">AVEVA Work Tasks Work items list</b> allows the workflow actors to view and respond to the work items assigned to them in a user interface that is similar to Outlook. Work items are delivered to the actor's Inbox with a detailed view available on selection of the item.</p>
+<p class="procedureheading">To add Work items list Control using a panel:</p>
+<ol class="step"><li class="step">Before adding the Work Items List control in a panel, create an ASP.NET project in Visual Studio .NET 2012. </li><li class="step">Open <b class="uicontrol">WorkItemList.aspx.cs</b> page. </li><li class="step">Ensure that you have created the User Context object as per the steps described in Creating User Context. </li><li class="step">In the underlying code, create a new instance of control and add the instance to the panel in the <b class="uicontrol">OnInit</b>, as shown in the example below: <p class="codeblock1">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(&quot;ListRepo&quot;);//Repository name</p>
+<p class="codeblock1">object loggedinUserId = &quot;4952ffff-e0db-401b-bb7d-70a0fec1df07&quot;;</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;);</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;; // This is mandatory.</p>
+<p class="codeblock1">wi.ApplicationName = userContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString = userContext.LoggedInUserId; //Provide user ID string. This is mandatory.</p>
+<p class="codeblock1">wi.Height = Unit.Percentage(100);</p>
+<p class="codeblock1">wi.Width = Unit.Percentage(100);</p>
+<p class="codeblock1">wi.ReadingPaneInPopupWindow = true;</p>
+<p class="codeblock1">Panel1.Controls.Add(wi);</p>
+</li><li class="step">In the <b class="uicontrol">WorkItemList.aspx</b> page use the following JavaScript function within the &lt;head&gt; tag for Internet Explorer 11 compatibility. <p class="codeblock1">&lt;script type=&quot;text/javascript&quot;&gt;</p>
+<p class="codeblock1">function isIE11() {</p>
+<p class="codeblock1">return !!navigator.userAgent.match(/Trident.*rv[ :]*11\./);</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">function ResizeGrid() {</p>
+<p class="codeblock1">if (isIE11()) {</p>
+<p class="codeblock1">window.setTimeout(function () { wgDoResize(true, true); }, 600);</p>
+<p class="codeblock1">return true;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">} &lt;/script&gt;</p>
+</li><li class="step">Call the following function within the &lt;body&gt; tag. <p class="codeblock1">&lt;body onload=&quot;ResizeGrid();&quot;&gt;</p>
+</li></ol><p class="subheading">Different properties that can be set for Work items list:</p>
+<p class="paragraph">The properties for the Work items list Web Part are categorized as:</p>
+<p class="paragraph"><strong class="strong">Actions:</strong></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Allow AutoOwnership on row click</b>: Selecting this option allows you to take ownership of the work items by clicking on the row. </li><li class="ulitem"><b class="uicontrol">Enable hold</b>: Selecting this option allows you to put work items on hold. The Hold button would be visible for the work item, only if hold is enabled. </li><li class="ulitem"><b class="uicontrol">Enable Export</b>: Selecting this option allows you to control the visibility of the export icon in the Work Item details grid status bar. </li></ul><p class="paragraph"><strong class="strong">Display:</strong></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Show Inbox Details without Left Grid view</b>: On selecting this option, only the Inbox view without the folder list to the left tree menu will be displayed. </li><li class="ulitem"><b class="uicontrol">Show Manager View</b>: On selecting this option, only the Manager View for the list will be displayed. </li><li class="ulitem"><b class="uicontrol">Show Filter Bar Always</b>: Selecting this option enables you to either show or hide the filter bar. </li><li class="ulitem"><b class="uicontrol">Display left tree menu without workflow(s) grouping</b>: On selecting this option, you can view the Work items list page without grouping the workflow(s). </li><li class="ulitem"><b class="uicontrol">Show Queues</b>: Selecting this option displays a folder for the Queues that you are participating in. </li><li class="ulitem"><b class="uicontrol">Show Work Item Fields</b>: Selecting this option displays work item fields. </li><li class="ulitem"><b class="uicontrol">Record Size</b>: The number of messages displayed in the work item is based on the property specified here. For example, suppose, there are totally 35 messages and this property is set as 20, then 20 messages out of 35 will be displayed in the work items. </li><li class="ulitem"><b class="uicontrol">Retain the Sort Column</b>: To retain the selection of recently sorted column after submitting the work item and also while expanding the left tree menu view items. If this is set to true, then selection of the recently sorted column is retained. If set to false, then the selection of the recently sorted column is not retained. </li><li class="ulitem"><b class="uicontrol">Queue Name</b>: Enter the Queue name to be displayed in the left tree menu of the AVEVA Work Tasks Work Items Web Part. If the Queue name is not specified, all the available queues will be displayed in the left tree menu. <br><br>Multiple Queue names can be specified separated by a semicolon. For example: Manager;Support </li><li class="ulitem"><b class="uicontrol">Layout View Name</b>: This property loads a specific layout. </li><li class="ulitem"><b class="uicontrol">Show CustomLink in Left Grid Menu</b>: Selecting this option enables you to display a custom link in the left pane of AVEVA Work Tasks Work Items Web Part. </li><li class="ulitem"><b class="uicontrol">Show Queues in the LHS grid view menu only if they have work items</b>: On selecting this option, the queues in the left hand side grid view menu will be displayed only if they have work items. </li><li class="ulitem"><b class="uicontrol">Display the count in the Left Hand Side Grid View</b>: Enabling this option will display the work items count in the left hand side grid view. </li><li class="ulitem"><b class="uicontrol">Display Classic Paging</b>: Enabling this option will allow you to display the Classic Paging properties. The navigation feature of Work item Control is not supported with Classic Paging enabled. </li><li class="ulitem"><b class="uicontrol">Show Standard Columns</b>: This property displays the work item field columns based on the Workflow Name property of Workitemcontrol. </li><li class="ulitem"><b class="uicontrol">Display the columns with auto fit</b>: If you have less number of columns to be displayed, enable or check this option. If you have more number of columns to be displayed, disable or uncheck this option. Then you can use the scroll bar to view all the columns. </li></ul><p class="paragraph"><strong class="strong">Multi Select:</strong></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Enable Multi Select</b>: Selecting this option enables you to select multiple work items. </li><li class="ulitem"><b class="uicontrol">Show multi select window in center</b>: This option will display a multi select window in the center of the page. </li><li class="ulitem"><b class="uicontrol">Show detail view with multi select option enabled</b>: Selecting this option will display the detail view with the multi select option enabled by default. </li><li class="ulitem"><b class="uicontrol">Display multi select option by default for queue items</b>: Selecting this option will display the queue items with the multi select option by default. <p class="note"><strong class="notelabel">Note: </strong>You cannot select multiple work items of Forms and Forms 2011 together.</p>
+</li></ul><p class="paragraph"><strong class="strong">Item Details:</strong></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Show Reading pane in popup window</b>: If this option is selected, the work item details will be displayed in a separate window and not in the Reading Pane below the Inbox. </li><li class="ulitem"><b class="uicontrol">ShowDetailsonRowDoubleClick</b>: Selecting this option enables you to open the Work Item Details page (Custom ASPX page) on double-click. </li><li class="ulitem"><b class="uicontrol">Display Navigation buttons Next and Previous in the Work Item detailed view</b>: Selecting this option enables you to navigate to the next or previous work item from the Work Item Details view page. </li><li class="ulitem"><b class="uicontrol">Enable Move to the next work item after submitting the work item from the detailed view</b>: Enabling this option will take you to the next work item when a work item is submitted from the detailed view. </li><li class="ulitem"><b class="uicontrol">Show Queue Detailed View Without Picking</b>: Selecting this option allows you to act on a work item without picking it. </li></ul><p class="paragraph"><strong class="strong">Filter and Group:</strong></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Workflow Name</b>: Enter the workflow name to be displayed in the left tree menu of the AVEVA Work Tasks Work items Web Part. If the workflow name is not specified, all the available workflows will be displayed in the left tree menu. Multiple workflow names can be specified with semicolon. Example:Leave Application;HRProcess </li><li class="ulitem"><b class="uicontrol">Group Total Columns</b>: This property is used to calculate the total of the column(s) name when the grouping operation is performed on columns. Multiple column names can be specified with semicolon. Example:Expense Amount,true;Leave Days,false </li><li class="ulitem"><b class="uicontrol">Group Count Columns</b>: This property is used to calculate the count of the columns when the grouping operation is performed on columns. Multiple column names can be specified with semicolon. Example:Leave Days;Expense Type </li><li class="ulitem"><b class="uicontrol">Group Average Columns</b>: This property is used to calculate the average of the columns when the grouping operation is performed on columns. Multiple column names can be specified with semicolon. Example:Expense Amount,true;Leave Days,false </li></ul><p class="paragraph"><strong class="strong">DisplayGroupUI </strong></p>
+<p class="paragraph">If the DisplayGroupUI property is set to 'false', the option to enable and disable the Multi-select option icon will not be displayed in the Work Item List Control.</p>
+<p class="paragraph">If multiple work items related to approval activities get displayed in the Work items list, you can select all the check boxes related to the approval activity and then act on all the work items from the GroupUI window.</p>
+<p class="paragraph"><strong class="strong">DisplayLeftTreeMenuAtApplicationLevel</strong></p>
+<p class="paragraph">If the DisplayLeftTreeMenuAtApplicationLevel property is set to 'true', then the work items of all the workflows will be displayed at Application Level and there will not be workflow segregation displayed in the Left Tree menu view of Work Item control. </p>
+<p class="paragraph"><strong class="strong">DisplayManagerView </strong></p>
+<p class="paragraph">If the DisplayManagerView property is set to 'false', the Manager View will not be displayed. Using this property, the manager can see all the tasks assigned to his/her subordinates (peers) who report to him/her. The Manager can perform the following operations from the Manager view:</p>
+<ul class="ulitem"><li class="ulitem">Reassign a work item to another user. </li><li class="ulitem">Delegate a work item to another user. </li><li class="ulitem">Set the priority for the work items assigned to his subordinates (peers). </li></ul><p class="paragraph">The Manager View will be displayed only for managers. For this property to function correctly, it is mandatory to have the purpose=&quot;manager&quot; attribute set in the entity data source provider as well as at the Entity Level.</p>
+<p class="paragraph"><strong class="strong">Set RecordSize</strong></p>
+<p class="paragraph">Using this property, we can control the number of work items that will be displayed per page.</p>
+<p class="paragraph"><strong class="strong">Show Queue</strong></p>
+<p class="paragraph">If the ShowQueues property is set to 'true', only the &quot;Queue&quot; icon and the Queue will be displayed in the Left Tree menu view.</p>
+<p class="paragraph">If the ShowQueues property is set to 'false', the Queue icon and the Queue will not displayed in the Left Tree menu view.</p>
+<p class="paragraph"><strong class="strong">Work item Fields</strong></p>
+<p class="paragraph">If the ShowWorkItemFields property is set to 'true', the work item fields will be displayed in the work items details grid. However, this property will be effective only if you are loading the Work items list control with the Detail view and you have not customized the view by creating Global Layout or Workflow level Layout. </p>
+<p class="paragraph">If the ShowWorkItemFields property is set to 'false' then the work item fields will be displayed in the work item details grid.</p>
+<p class="paragraph"><strong class="strong">ShowInboxViewOnly</strong></p>
+<p class="paragraph">If the ShowInboxViewOnly property is set to 'true', only the work item details grid will be displayed and the Left Tree menu view showing the workflow segregation will not be displayed.</p>
+<p class="paragraph">If the ShowInboxViewOnly property is set to 'false', the work items details grid as well as the Left Tree menu view showing the workflow segregation will be displayed.</p>
+<p class="paragraph"><strong class="strong">ShowManagerViewOnly </strong></p>
+<p class="paragraph">If the ShowManagerViewOnly property is set to 'true' then the Manager can see all the tasks assigned to the subordinates (peers) who report to him/her without the Left Tree menu view of workflow segregation display. The Manager can perform the following operations from the Manager View: </p>
+<p class="paragraph">Reassign a work item to another user </p>
+<p class="paragraph">Delegate a work item to another user </p>
+<p class="paragraph">Set the priority for the work items assigned to his subordinates (peers) </p>
+<p class="paragraph"><strong class="strong">UserIdString</strong></p>
+<p class="paragraph">Provides the UserIdString of the Actor who will act on the activity.</p>
+<p class="paragraph"><strong class="strong">Different UserIdString formats</strong></p>
+<ul class="ulitem"><li class="ulitem">If the repository is mapped to AVEVA Work Tasks List user provider, the UserIdString will be skeltalist::[GUID]. Here, the GUID is taken from the SKEUsers table present in the Repository DB. <br><br>For example: skeltalist:: C99B4110-C8CC-410B-BF70-93F3A7E34EDF </li><li class="ulitem">If the repository is mapped to Active Directory user provider, the UserIdString will be activedirectory::[samAccountName]. Here, samAccountName is an active directory property value. <br><br>For example: activedirectory::stephen </li><li class="ulitem">If the repository is mapped to Forms user provider, the UserIdString will be sqlprovider::[UniqueIdentifier]. Here, the UniqueIdentifier is the unique identifier ID for the resource. <br><br>For example: sqlprovider::6fb03011-68b7-437e-972e-21c67e4e2fe7 </li><li class="ulitem">If the repository is mapped to ASP.NET Membership user provider, the UserIdString will be membershipprovider::[UniqueIdentifier]. Here, the UniqueIdentifier is the unique identifier ID for the resource. <br><br>For example: membershipprovider::a9bfc969-cc82-4c4b-99b9-50d9e1a91c01 </li></ul><p class="paragraph"><strong class="strong">EnableHold</strong></p>
+<p class="paragraph">If the EnableHold property is set to 'true' then in the Manage Work Item drop-down list, &quot;Hold&quot; will be displayed so that the Actor can put the work item on hold.</p>
+<p class="paragraph">The Hold option will be available only if the activity is assigned to a single user. If the activity is assigned to multiple users, the Hold option will not be displayed in the Manage Work Item drop down.</p>
+<p class="paragraph"><strong class="strong">ShowFilterBarAlways</strong></p>
+<p class="paragraph">This property can be set for displaying or hiding the filter bar. For example, if the ShowFilterBarAlways property is set to false, the filter bar will not be displayed.</p>
+<p class="paragraph">If the ShowFilterBarAlways property is set to true, the filter bar will be displayed.</p>
+<p class="paragraph"><strong class="strong">Application Name</strong></p>
+<p class="paragraph">Provides the Application or Repository Name. </p>
+<p class="paragraph">Workflow Names</p>
+<p class="paragraph">Based on the Workflow Names property specified, the Left Tree menu view shows the workflows.</p>
+<p class="paragraph"><strong class="strong">EnableExport</strong></p>
+<p class="paragraph">Based on this property, you can control the visibility of the Export icon in the work item details grid status bar. If the EnableExport property is set to 'true', the &quot;EnableExport&quot; icon will be displayed.</p>
+<p class="paragraph">If the EnableExport property is set to 'false', the &quot;EnableExport&quot; icon will not be displayed. </p>
+<p class="paragraph"><strong class="strong">QueueDisplayOrder</strong></p>
+<p class="paragraph">The QueueDisplayOrder property is used to display the queues in a specific order in which you want them to appear in the Left Tree menu view. </p>
+<p class="paragraph">Create a SortedDictionary&lt;int,string&gt; that specifies the Order and the QueueName. Assign the SortedDictionary to the QueueDisplayOrder Property of the Workitemcontrol.</p>
+<p class="paragraph">For example, if the Queue Names are A,B,C and if you want to display them in &quot;C,A,B&quot; order, the following code can be used:</p>
+<p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;; // This is mandatory.</p>
+<p class="codeblock1">wi.ApplicationName = uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId ; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">System.Collections.Generic.SortedDictionary&lt;int, string&gt; Qdisplay = new System.Collections.Generic.SortedDictionary&lt;int, string&gt;();</p>
+<p class="codeblock1">Qdisplay.Add(1,&quot;C&quot;);</p>
+<p class="codeblock1">Qdisplay.Add(2,&quot;A&quot;);</p>
+<p class="codeblock1">Qdisplay.Add(3,&quot;B&quot;);</p>
+<p class="codeblock1">wi.QueueDisplayOrder = Qdisplay;//Assign the SortedDictionary to the QueueDisplayOrder Property of the Workitemcontrol</p>
+<p class="codeblock1">Panel1.Controls.Add(wi);</p>
+<p class="codeblock1">&nbsp;</p>
+<p class="paragraph"><strong class="strong">ShowStandardColumns</strong></p>
+<p class="paragraph">If the ShowStandardColumns property is set to True then the standard columns will be displayed. If the ShowStandardColumns property is set to 'false', then the specific work item fields related to the workflow along with the Subject column will be displayed.</p>
+<p class="paragraph">The columns (fields) will get displayed based on the Workflow Name property specified. If the property is not set, then the work item fields for all the workflows of the repository will be displayed.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><strong class="strong">GroupTotalColumns</strong></p>
+<p class="paragraph">The Group Total Columns property is used to calculate the total of the column(s) name when the grouping operation is performed on columns.</p>
+<p class="paragraph">For example, consider a scenario where the 'Leave Days' and 'LeaveReason' are added as work item fields for the workflow 'Employee Leave Details'. To calculate the total number of leaves taken by the employee:</p>
+<ol class="step"><li class="step">Set the GroupTotalColumns property for the columns for which the total has to be calculated when the grouping operation is performed on other columns. </li><li class="step">The following code snippet shows how to use GroupTotalColumns property: <p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;; // This is mandatory.</p>
+<p class="codeblock1">wi.ApplicationName = uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">//The bool parameter in the SortedDictionary is to specify whether the currency symbol should appear before the column values are not.</p>
+<p class="codeblock1">System.Collections.Generic.SortedDictionary&lt;string, bool&gt; groupcolumns = new System.Collections.Generic.SortedDictionary&lt;string, bool&gt;();</p>
+<p class="codeblock1">groupcolumns.Add(&quot;LeaveDays&quot;, false); </p>
+<p class="codeblock1">wi.GroupTotalColumns = groupcolumns;</p>
+<p class="codeblock1">Panel1.Controls.Add(wi);</p>
+</li><li class="step">Go to Inbox. The total number of leaves are displayed as shown below when the grouping is done on any column. In this case, it is the Activity Display Name column. </li></ol><p class="paragraph"><strong class="strong">GroupCountColumns</strong></p>
+<p class="paragraph">The <b class="uicontrol">GroupCountColumns </b>property is used to calculate the count of the columns when the grouping operation is performed on columns.</p>
+<p class="paragraph">For example: Consider a scenario where the 'Leave Days' and 'LeaveReason' are added as work item fields for the workflow 'Employee Leave Details'. To calculate the number of rows based on LeaveReason column:</p>
+<ol class="step"><li class="step">Set the <b class="uicontrol">GroupCountColumns</b> property for the column for which the count is to be calculated. </li><li class="step">The following code snippet shows how to use the GroupCountColumns property. <p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;; // This is mandatory.</p>
+<p class="codeblock1">wi.ApplicationName = uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">System.Collections.Generic.SortedDictionary&lt;string, string&gt; groupcntcolumns = new System.Collections.Generic.SortedDictionary&lt;string, string&gt;();</p>
+<p class="codeblock1">groupcntcolumns.Add(&quot;LeaveReason&quot;, &quot;LeaveReason&quot;);</p>
+<p class="codeblock1">wi.GroupCountColumns = groupcntcolumns;</p>
+<p class="codeblock1">Panel1.Controls.Add(wi);</p>
+</li><li class="step">Go to Inbox. The total count is displayed when we group the Activity Display Name. </li></ol><p class="paragraph"><strong class="strong">GroupAverageColumns</strong></p>
+<p class="paragraph">The GroupAverageColumns property is used to calculate the average of the columns when the grouping operation performed on a column. The user can also display the currency symbol ($) for numeric fields. </p>
+<p class="paragraph">This property is of type SortedDictionary&lt;string,bool&gt; where key&lt;string&gt; specifies the column name and value&lt;bool&gt; specifies whether the currency symbol needs to be displayed or not.</p>
+<p class="paragraph">For example: Suppose that the 'Expense Amount' and 'Expense Type' work item fields are added to the 'Expense Approval' workflow and you want to calculate the average of the 'Expense Amount' column.</p>
+<ol class="step"><li class="step">Set the GroupAverageColumns property with the column name for which the total is to be calculated. <p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;; // This is mandatory.</p>
+<p class="codeblock1">wi.ApplicationName = uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">System.Collections.Generic.SortedDictionary&lt;string, string&gt; groupavgcolumns = new System.Collections.Generic.SortedDictionary&lt;string, string&gt;();</p>
+<p class="codeblock1">groupavgcolumns.Add(&quot;Expense Amount&quot;, &quot;Expense Amount&quot;);</p>
+<p class="codeblock1">wi.GroupAverageColumns = groupavgcolumns;</p>
+<p class="codeblock1">Panel1.Controls.Add(wi);</p>
+</li><li class="step">Go to <b class="uicontrol">Inbox</b>. The average of <b class="uicontrol">'Expense Amount'</b> will be displayed. </li></ol><p class="paragraph"><strong class="strong">WorkflowDisplayOrder</strong></p>
+<p class="paragraph">The WorkflowDisplayOrder property is used to display the workflows in a specified order. </p>
+<p class="paragraph">Create a SortedDictionary&lt;int,string&gt; variable, which specifies the Order and the Workflow Name. Assign the SortedDictionary to the WorkflowDisplayOrder Property of the Workitemcontrol.</p>
+<p class="paragraph">For example, if the Workflow Names are Employee Leave Details, Expense Approval, and Purchase Order and if you want to display them as Expense Approval, Purchase Order, and Employee Leave Details, then use the following code.</p>
+<p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;; // This is mandatory.</p>
+<p class="codeblock1">wi.ApplicationName = uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">System.Collections.Generic.SortedDictionary&lt;int, string&gt; Qdisplay = new System.Collections.Generic.SortedDictionary&lt;int, string&gt;();</p>
+<p class="codeblock1">wDisplayOrder.Add(3, &quot;Employee Leave Details&quot;);</p>
+<p class="codeblock1">wDisplayOrder.Add(1, &quot;Expense Approval&quot;);</p>
+<p class="codeblock1">wDisplayOrder.Add(2, &quot;Purchase Order&quot;); </p>
+<p class="codeblock1">wi.WorkflowDisplayOrder = wDisplayOrder;</p>
+<p class="codeblock1">Panel1.Controls.Add(wi); </p>
+<p class="paragraph"><strong class="strong">LayoutViewName</strong></p>
+<p class="paragraph">This property is used to load a specific view when we load a Work items list control.</p>
+<p class="paragraph"><strong class="strong">ShowCounter</strong></p>
+<p class="paragraph">This property is used to show or hide the counters for the work items Inbox. When this property is set to False, you will not be able to see the number of items count under each section in the Left tree menu view in the work item Inbox.</p>
+<p class="codeblock1">ShowCounter = true;</p>
+<p class="paragraph">If this property is set to False, you will not be able to see how many items there are in the work item Inbox.</p>
+<p class="paragraph"><strong class="strong">Sample Code</strong></p>
+<p class="codeblock1">Skelta.Entity.UserContext usrcn = new Skelta.Entity.UserContext(&quot;John&quot;, new Skelta.Core.ApplicationObject(&quot;Telematics&quot;), &quot;activedirectory&quot;, &quot;&quot;, &quot;&quot;, false);</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ID = &quot;WorkItemControl&quot;;</p>
+<p class="codeblock1">wi.ShowCounter = false;</p>
+<p class="codeblock1">wi.ApplicationName = uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">Panel1.Controls.Add(wi); </p>
+<p class="paragraph"><strong class="strong">ShowDetailsOnRowDoubleClick</strong></p>
+<p class="paragraph">This property enables you to open the Work Item Detail view on double-click of the row in the Work Item details grid.</p>
+<p class="paragraph">Sort on the subject column in Work Item Inbox has been enabled. Also, the sort order in Work Item Inbox will be retained after submitting a work item.</p>
+<p class="paragraph"><strong class="strong">ShowQueuesWithWorkitems</strong></p>
+<p class="paragraph">Showing the queues with work items under the left hand side workflow grouping of the Work items list control is controlled by the Workitemlist Control Property - ShowQueuesWithWorkitems. Based on this property, you can control the behavior of showing only the queues with work items under the workflows even though you may be a participant of those queues.</p>
+<p class="paragraph"><strong class="strong">ShowDetailViewWithMultiSelect</strong></p>
+<p class="paragraph">Showing the work items detailed view with the Multi Select option is controlled by the Workitemlist Control property (ShowDetailViewWithMultiSelect). Based on this property, you can control the behavior of showing the Work Item Detail view with the Multi Select window enabled. <br>Showing the Work Item Detail view with the Multi Select option also depends on the ShowDetailsonRowDoubleClick property. </p>
+<p class="paragraph">If the ShowDetailsonRowDoubleClick is set as 'true', the Work Item Detail view will open on double-clicking the row with the Multi Select option enabled. </p>
+<p class="paragraph">If ShowDetailsonRowDoubleClick is set as 'false', then the Work Item Detail view will open on selecting the row with Multi Select option enabled.</p>
+<p class="paragraph">You can select all the work items within a group and act on it with the help of Selectallwithingroup option available as context menu with the Multi Select mode.</p>
+<p class="paragraph"><strong class="strong">ShowMultiSelectWindowInCenter</strong></p>
+<p class="paragraph">The Multi Select window displayed in the center of the screen is controlled by the Workitemlist Control Property - ShowMultiSelectWindowInCenter. Based on this property, you can control the behavior of showing the Multi Select window.</p>
+<p class="paragraph"><strong class="strong">QueueDetailViewWithoutPicking</strong></p>
+<p class="paragraph">Showing the Queue Detail view without picking the item from the Queue is controlled by the Work items list control property - QueueDetailViewWithoutPicking. Based on this property, you can enable or disable this feature in the Work items list control. By default, this feature is disabled.</p>
+<p class="paragraph">Viewing the Queue Detail View page is possible in two ways. </p>
+<ul class="ulitem"><li class="ulitem">Double-click the item from the grid to get the Detail view. </li><li class="ulitem">Through the context menu </li></ul><p class="paragraph">The Queue Detail View page can be seen from the context menu option available from the Queue Work Item. Select Form Instances &gt; Main Form to view the work items in detail.</p>
+<p class="paragraph"><strong class="strong">EnableMoveNextPreviousWorkitem</strong></p>
+<p class="paragraph">This property enables you to navigate between different work items from the Work Item Detail view. This prevents the need to go back to the main details grid which shows the list of work items. You can also sort the Work Item Detail grid in some particular order and then navigate through the work items in that order. </p>
+<p class="paragraph"><strong class="strong">EnableAutoMoveNextWorkitem</strong></p>
+<p class="paragraph">This feature enables you to view the Work Item Details for the next work item after submitting a work item. Moving to the next work item on submission of the work item from the detailed view is controlled by the WorkItemlist control property - EnableAutoMoveNextWorkitem. </p>
+<p class="paragraph">A check box Show next work item on submission is available on the Work Item Detail view. </p>
+<p class="paragraph">If selected, details of the next work item are shown after submission of the current work item. </p>
+<p class="paragraph">If de-selected, the Work Item Detail view window will get closed without navigating to the next work item. </p>
+<p class="paragraph"><strong class="strong">Split Bar in the Work Item List control</strong></p>
+<p class="paragraph">Split bar has been implemented in the Work Item List control. It can be used to adjust the width of the Work Item List control, if the workflow name or the Queue name is very long.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="usingeventsofworkitemlistcontrol.html" target="_self">Using Events of Work Item List Control</a></p><p class="relateditem"><a href="test.html" target="_self">Layout Customization</a></p><p class="relateditem"><a href="showingcustomlinkinworkitemlistcontrol.html" target="_self">Showing Custom Link in Work Item List Control</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,240 @@
+.RadTabStrip_SkeltaEditor {
+  color: #333333;
+  font: 12px "Segoe UI", Arial, Helvetica, sans-serif;
+  line-height: 26px; }
+  .RadTabStrip_SkeltaEditor .rtsGhostTab {
+    border-color: #8a8a8a;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #fafafa; }
+
+.RadTabStrip_SkeltaEditor .rtsLI,
+.RadTabStrip_SkeltaEditor .rtsLink {
+  color: #000;
+  font: 12px/26px "Segoe UI", Arial, sans-serif; }
+
+.RadTabStripLeft_SkeltaEditor .rtsSeparator,
+.RadTabStripRight_SkeltaEditor .rtsSeparator {
+  background: #828282; }
+
+/* <disabled tabs> */
+.RadTabStrip_SkeltaEditor .rtsDisabled {
+  color: #aaa; }
+
+/* </disabled tabs> */
+/* <scrolling arrows> */
+.RadTabStrip_SkeltaEditor .rtsNextArrow,
+.RadTabStrip_SkeltaEditor .rtsPrevArrow,
+.RadTabStrip_SkeltaEditor .rtsPrevArrowDisabled,
+.RadTabStrip_SkeltaEditor .rtsNextArrowDisabled {
+  background-image: url('TabStrip/TabStripStates.png'); }
+
+/* </scrolling arrows> */
+/* <tab backgrounds> */
+.RadTabStripTop_SkeltaEditor .rtsLevel {
+  background-color: transparent; }
+
+.RadTabStripTop_SkeltaEditor .rtsLevel .rtsLink,
+.RadTabStripTop_SkeltaEditor .rtsLevel .rtsOut,
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsLink,
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsOut,
+.RadTabStripTop_SkeltaEditor_Baseline .rtsLevel,
+.RadTabStripBottom_SkeltaEditor_Baseline .rtsLevel {
+  background-image: url('TabStrip/TabStripVStates.png'); }
+
+.RadTabStripLeft_SkeltaEditor .rtsLink,
+.RadTabStripRight_SkeltaEditor .rtsLink {
+  background-image: url('TabStrip/tabLeftOn.gif'); }
+
+.RadTabStripLeft_SkeltaEditor .rtsLast .rtsLink,
+.RadTabStripRight_SkeltaEditor .rtsLast .rtsLink {
+  border-bottom: 1px solid #898C95; }
+
+/* </tab backgrounds> */
+/* <background positioning: overlapping tabs> */
+/* <orientation: top> */
+.RadTabStripTop_SkeltaEditor .rtsLink {
+  background-position: 0 -52px; }
+
+.RadTabStripTop_SkeltaEditor .rtsFirst .rtsLink {
+  background-position: 0 0; }
+
+.RadTabStripTop_SkeltaEditor .rtsOut {
+  background-position: 100% -52px; }
+
+.RadTabStripTop_SkeltaEditor .rtsLast .rtsOut {
+  background-position: 100% 0; }
+
+.RadTabStripTop_SkeltaEditor .rtsLI .rtsSelected {
+  background-position: 0 -26px; }
+
+.RadTabStripTop_SkeltaEditor .rtsSelected .rtsOut {
+  background-position: 100% -78px; }
+
+.RadTabStripTop_SkeltaEditor .rtsLI .rtsAfter {
+  background-position: 0 -78px; }
+
+.RadTabStripTop_SkeltaEditor .rtsLast .rtsSelected .rtsOut {
+  background-position: 100% -26px; }
+
+.RadTabStripTop_SkeltaEditor_Baseline .rtsLevel {
+  background-position: 0 100%;
+  background-repeat: repeat-x; }
+
+/* </orientation: top> */
+/* <orientation: bottom> */
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsLink {
+  background-position: 0 -130px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsFirst .rtsLink {
+  background-position: 0 -182px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsOut {
+  background-position: 100% -130px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsLast .rtsOut {
+  background-position: 100% -182px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsLI .rtsSelected {
+  background-position: 0 -156px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsSelected .rtsOut {
+  background-position: 100% -104px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsLI .rtsAfter {
+  background-position: 0 -104px; }
+
+.RadTabStripBottom_SkeltaEditor .rtsLevel .rtsLast .rtsSelected .rtsOut {
+  background-position: 100% -156px; }
+
+.RadTabStripBottom_SkeltaEditor_Baseline .rtsLevel {
+  background-position: 0 -599px;
+  background-repeat: repeat-x; }
+
+/* </orientation: bottom> */
+/* <orientation: right> */
+.RadTabStripRight_SkeltaEditor .rtsUL .rtsLink,
+.RadTabStripRight_SkeltaEditor .rtsUL .rtsLI .rtsDisabled:hover {
+  background-position: 100% 0;
+  text-align: left; }
+
+.RadTabStripRight_SkeltaEditor .rtsUL .rtsLink:hover {
+  background-position: 100% -200px; }
+
+.RadTabStripRight_SkeltaEditor .rtsUL .rtsSelected,
+.RadTabStripRight_SkeltaEditor .rtsUL .rtsSelected:hover {
+  background-position: 100% -400px; }
+
+/* </orientation: right> */
+/* <orientation: top (RTL)> */
+.RadTabStrip_SkeltaEditor_rtl .rtsLevel .rtsLink {
+  padding-left: 0;
+  padding-right: 9px; }
+
+.RadTabStrip_SkeltaEditor_rtl .rtsLevel .rtsOut {
+  padding-left: 9px;
+  padding-right: 0; }
+
+.RadTabStrip_SkeltaEditor_rtl .rtsLevel .rtsLink,
+.RadTabStrip_SkeltaEditor_rtl .rtsLevel .rtsOut {
+  background-image: url('TabStrip/tabRightOn.gif'); }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsLink {
+  background-position: 100% -52px; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsFirst .rtsLink {
+  background-position: 100% 0; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsOut {
+  background-position: 0 -52px; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsLast .rtsOut {
+  background-position: 0 0; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsLI .rtsSelected {
+  background-position: 100% -26px; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsSelected .rtsOut {
+  background-position: 0 -78px; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsLI .rtsAfter {
+  background-position: 100% -78px; }
+
+.RadTabStripTop_SkeltaEditor_rtl .rtsLevel .rtsLast .rtsSelected .rtsOut {
+  background-position: 0 -26px; }
+
+/* </orientation: top (RTL)> */
+/* <orientation: bottom (RTL)> */
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsLink {
+  background-position: 100% -130px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsOut {
+  background-position: 0 -130px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsFirst .rtsLink {
+  background-position: 100% -182px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsLast .rtsOut {
+  background-position: 0 -182px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsLI .rtsSelected {
+  background-position: 100% -156px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsSelected .rtsOut {
+  background-position: 0 -104px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsLI .rtsAfter {
+  background-position: 100% -104px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsFirst .rtsSelected {
+  background-position: 100% -156px; }
+
+.RadTabStripBottom_SkeltaEditor_rtl .rtsLevel .rtsLast .rtsSelected .rtsOut {
+  background-position: 0 -156px; }
+
+/* </orientation: bottom (RTL)> */
+/* </background positioning: overlapping tabs> */
+/* <simplistic sub-item styles> */
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel2,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel3,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel4 {
+  background: #fff; }
+
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel2 .rtsSelected,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel3 .rtsSelected,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel4 .rtsSelected {
+  text-decoration: underline; }
+
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel2 .rtsLink,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel2 .rtsOut,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel2 .rtsIn,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel3 .rtsLink,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel3 .rtsOut,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel3 .rtsIn,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel4 .rtsLink,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel4 .rtsOut,
+.RadTabStrip_SkeltaEditor_SimpleSubItems .rtsLevel4 .rtsIn {
+  background: none; }
+
+/* </simplistic sub-item styles> */
+/* <disable state> */
+.RadTabStrip_SkeltaEditor_disabled .rtsLink {
+  color: #a5a5a5;
+  cursor: SkeltaEditor; }
+
+/* </disable state> */
+/** DropClues */
+.rtsDropClue_SkeltaEditor {
+  background-image: url('../Common/TabStrip/rtsDropClueSprite.png'); }
+
+.rtsDropClueTop_SkeltaEditor {
+  background-position: 0 -20px; }
+
+.rtsDropClueRight_SkeltaEditor {
+  background-position: 0 -30px; }
+
+.rtsDropClueBottom_SkeltaEditor {
+  background-position: 0 0; }
+
+.rtsDropClueLeft_SkeltaEditor {
+  background-position: 0 -10px; }

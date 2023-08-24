@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for Logic App Alert Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t564292" class="heading2">Wait for Logic App Alert Activity</h2>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">Use Wait for Logic App Alert activity to wait for an alert from the Logic App based on the alert key filter.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">To use Wait for Logic App Alert activity, follow the given steps:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the <strong class="strong">Process Designer</strong> window, select <b class="uicontrol">Call Logic App</b> activity.</li><li class="step">Drag and drop the <b class="uicontrol">Wait for Logic App Alert</b> activity on the <b class="uicontrol">Process Designer</b> window.</li><li class="step">Right-click the <b class="uicontrol">Wait for Logic App Alert</b> activity and then select <b class="uicontrol">Activity Properties</b>.</li></ol><p class="paragraph"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph">Use the name and description properties to specify the name and description for the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Name</strong>: Use this property to enter a name for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory.</p>
+</li><li class="ulitem"><strong class="strong">Description</strong>: Use this property to enter a brief description to be displayed for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required.</p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph">Use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Logic App Alert Filter</b>: Use this property to set the alert key along with the Web API URL to post from the Logic App.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory</p>
+<p class="lcontinue"></p>
+<p class="lcontinue">In the Logic App Alter Filter window, configure these as follows:</p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Enterprise Console</b>: Select an Enterprise Console site. The list shows Enterprise Console sites to which repositories are mapped, and for which Azure Service Bus (with Shared Access Signatures) are configured.</li><li class="ulsubitem"><b class="uicontrol">URI</b>: The URI is automatically generated based on the selected Enterprise Console.</li><li class="ulsubitem"><b class="uicontrol">Authorization Token</b>: The authorization token is automatically generated based on the selected Enterprise Console.</li><li class="ulsubitem"><b class="uicontrol">Logic App Alert Key</b>: Enter a value for the alert key or click <b class="uicontrol">Expression Builder</b> to generate value from an expression, if required.</li></ul><p class="lcontinue"></p>
+</li><li class="ulitem"><strong class="strong">Valid for Alert</strong>: Use this property to set the number of alerts from the Logic App. If the value is set to <b class="uicontrol">0</b>, then there is no limit for the number of alerts from the Logic App.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory</p>
+<p class="lcontinue"></p>
+</li><li class="ulitem"><b class="uicontrol">Logic App Output XML</b>:  Use this property to set the XML variable to post from the Logic App.<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional</p>
+<p class="lcontinue"></p>
+<p class="lcontinue">In the Logic App Output XML window, configure these as follows:</p>
+<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Logic App JSON Data</b>: Enter the JSON schema to be passed from the Logic App.</li><li class="ulsubitem"><b class="uicontrol">Logic App XML Schema</b>: After entering the JSON schema for <b class="uicontrol">Logic App JSON Data</b>, click <b class="uicontrol">Get XML Schema</b> to auto generate the XML schema.</li><li class="ulsubitem"><b class="uicontrol">Output XML Variable Name </b>: Enter a name for the XML variable. Upon saving, this variable will hold the schema.</li></ul></li></ul><p class="paragraph"></p>
+<p class="subheading">Exception Behavior</p>
+<p class="paragraph">Each activity has the <strong class="strong">Raise Error on Unhandled Linked Output</strong> property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Looping Behavior</b></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b>&nbsp;- This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.&nbsp;The looping option for this activity is&nbsp;Completed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Wait for Logic App Alert activity returns the following values:</p>
+<ul class="ulitem"><li class="ulitem">If the Valid for Alert property is set to/or is 0, then after receiving an alert from the Logic App, the output will be Alert Received, and the activity will be in sleep state.</li><li class="ulitem">If the Valid for Alert property is set to/or is 1, then after receiving an alert from the Logic App, the output will both Alert Received and Action Completed, and the activity will be in completed state.</li><li class="ulitem">If the Valid for Alert property is set to/or is more than 1, then after receiving an alert from the Logic App, the output will Alert Received, and the activity will be in sleep state.</li></ul><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> While posting alert from the Logic app, ensure the following are part of the HTTP request:<br>- <b class="uicontrol">URI</b> as generated based on the selected Enterprise Console.<br>- <b class="uicontrol">Authorization Token</b>, as generated based on the selected Enterprise Console, is in the header.<br>- <b class="uicontrol">ApplicationName</b> and <b class="uicontrol">LogicAppAlertKey</b> in JSON schema are in the body.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

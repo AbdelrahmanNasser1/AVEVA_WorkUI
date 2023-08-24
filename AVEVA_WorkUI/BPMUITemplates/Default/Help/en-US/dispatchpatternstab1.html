@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Dispatch Patterns Tab </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t482957" class="heading4">Dispatch Patterns Tab</h4>
+<p class="paragraph">Click the&nbsp;<b class="uicontrol">Dispatch Patterns</b>&nbsp;tab to open the dispatch patterns setting view of the Queue Management window. You can either configure automatic dispatch settings or manual dispatch settings here.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">Dispatch Patterns</b>&nbsp;tab of the&nbsp;<b class="uicontrol">Queue Management</b>&nbsp;window:</p>
+<p class="paragraphimage"><img id="f46721" src="46721.png" class="embeddedimage100%scalinglive" alt="" height="527" width="559" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Automatic Dispatch</p>
+<p class="paragraph">You can configure the following settings for automatic (or push type) dispatch of tasks:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Consider Same (Previous Allocated) Resource For Similar/Repetitive Tasks</b>&nbsp;- You can check this option to allocate a task, which is similar to a previously allocated task, to the same user to whom it was allocated in the first case. This can also be used to consider the same user for tasks that are repeated.</li><li class="ulitem">You must specify the global field to be used to identify if a task is similar to an earlier one or is repeated by selecting from the <b class="uicontrol">Matching Global Field</b>&nbsp;drop down.</li><li class="ulitem">Specify the location to search for the matching task using the&nbsp;Search In&nbsp;radio buttons.<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">Queue</b>&nbsp;- If you select this option, a matching task will be searched for in the queues.</li><li class="ulsubitem"><b class="uicontrol">Work item</b>&nbsp;- If you select this option, a match will be searched for in the Work items list.</li></ul></li><li class="ulitem">Specify the automatic dispatch pattern next by selecting one of the following radio buttons in the&nbsp;<b class="uicontrol">Specify Dispatch Pattern</b>&nbsp;option:<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">No Provider</b>&nbsp;- This option specifies that no provider is available for dispatch. This option cannot be selected for both Automatic and Manual dispatch. The Dispatch Pattern has to be set for at least one mode.</li><li class="ulsubitem"><b class="uicontrol">Least Used Resource</b>&nbsp;- This option ensures that the queue control identifies the participant who has the lowest work load to assign the task to.</li><li class="ulsubitem"><b class="uicontrol">Round Robin</b>&nbsp;- This option enables round robin task allocation where the participants will be allocated tasks by rotation.</li><li class="ulsubitem"><b class="uicontrol">Random</b>&nbsp;- This option sets the queue to allocate the tasks in a random fashion.</li></ul></li></ul><p class="subheading">Manual Dispatch</p>
+<p class="paragraph">You can configure the following settings for manual (or pull type) dispatch of tasks:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Show &quot;Get Next Item&quot; in Work item</b>&nbsp;- You can check this option to enable the display of the Get Next Item option in the Work items list. Participants can click this option after completing the allocated task to get the next task in the queue. You must set the following properties for the Get Next Item option:</li><li class="ulitem"><b class="uicontrol">Do OrderBy</b>&nbsp;-&nbsp;You must specify the order in which tasks in the queue must be sorted by selecting the parameters from the<b class="uicontrol"> Do OrderBy</b> drop-down and clicking Set. The parameters are separated by commas and can be applied in ascending or descending order by selecting <b class="uicontrol">Asc</b> or <b class="uicontrol">Desc</b> from the drop-down provided.</li><li class="ulitem">Specify the manual dispatch pattern by selecting one of the following radio buttons in the&nbsp;Specify Dispatch Pattern&nbsp;option:<ul class="ulsubitem"><li class="ulsubitem"><b class="uicontrol">No Provider</b>&nbsp;- This option cannot be selected for both Automatic and Manual dispatch. Dispatch pattern has to be set for at least one mode.</li><li class="ulsubitem"><b class="uicontrol">LIFO</b>&nbsp;- This option sets the queue to allow users to access the tasks on a Last In First Out basis.</li><li class="ulsubitem"><b class="uicontrol">FIFO</b>&nbsp;- This option sets the queue to allow users to access the tasks on a First In First Out basis.</li></ul></li></ul><p class="paragraph">After setting the Dispatch Patterns, click&nbsp;<b class="uicontrol">Update Dispatch Patterns</b>&nbsp;to save the settings.</p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

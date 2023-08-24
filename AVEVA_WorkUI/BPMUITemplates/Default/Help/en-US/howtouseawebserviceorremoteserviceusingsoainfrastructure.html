@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Use a Web Service or Remote Service using SOA Infrastructure? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602334" class="heading4">How to Use a Web Service or Remote Service using SOA Infrastructure?</h4>
+<p class="paragraph">This example illustrates how to use a web service or remote service using SOA infrastructure. The example is a very simple one which can be modified to have a more practical scenario.</p>
+<p class="paragraph"><strong class="strong">PROCEDURE</strong></p>
+<p class="paragraph"><strong class="strong">NAMESPACE USED</strong></p>
+<p class="codeblock1">System</p>
+<p class="codeblock1">System.Web</p>
+<p class="codeblock1">System.Web.Services</p>
+<p class="codeblock1">System.Web.Services.Protocols</p>
+<p class="subheading">Create a New Web Service</p>
+<ol class="step"><li class="step">On the Windows&nbsp;Start&nbsp;menu, point to&nbsp;All Programs, and then click&nbsp;Microsoft Visual Studio. The&nbsp;Visual Studio Start Page&nbsp;appears.</li><li class="step">In the&nbsp;File&nbsp;menu, point to&nbsp;New,&nbsp;and then click&nbsp;Web Site. The&nbsp;New Web Site&nbsp;dialog box appears.</li><li class="step">In the Templates pane, select&nbsp;ASP.NET Web Service. This is selected by default, and you can retain the default.</li><li class="step">Enter a name for the website by changing the default name in the Location text box, for example,&nbsp;M:\Work\WebSite8. You can retain the default selection of File System in the Location drop down.</li><li class="step">Click&nbsp;OK.<p class="stepinfo">Sample Code for creating Web serviceusing System;</p>
+<p class="codeblock1">using System.Web;</p>
+<p class="codeblock1">using System.Web.Services;</p>
+<p class="codeblock1">using System.Web.Services.Protocols;</p>
+<p class="codeblock1">[WebService(Namespace = &quot;http://skeltaSoa.org/&quot;)]</p>
+<p class="codeblock1">[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]</p>
+<p class="codeblock1">public class Service : System.Web.Services.WebService</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">    public Service ()</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        //Uncomment the following line if using designed components</p>
+<p class="codeblock1">        //InitializeComponent();</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">    [WebMethod]</p>
+<p class="codeblock1">    public string SkeltaTest()</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        return &quot;This is my SketlaTest&quot;;</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1">  &nbsp;</p>
+<p class="codeblock1">}</p>
+</li></ol><p class="procedureheading">Creating a Web Site</p>
+<p class="paragraph">Complete the following steps to create a web site to host the created web service:</p>
+<ol class="step"><li class="step">Open IIS Manager.<ul class="stepchoice"><li class="stepchoice">For Windows Server 2012, on the&nbsp;Start&nbsp;page click the&nbsp;Server Manager&nbsp;tile, and then click&nbsp;OK. In the&nbsp;Server Manager, click the&nbsp;Tools&nbsp;menu, and then click&nbsp;Internet Information Services (IIS) Manager.</li><li class="stepchoice">For Windows 8.1, on the&nbsp;Start&nbsp;page type&nbsp;Control Panel, and then click the&nbsp;Control Panel&nbsp;icon in the search results. On the&nbsp;Control Panel&nbsp;screen, click&nbsp;System and Security, click&nbsp;Administrative Tools, and then click&nbsp;Internet Information Services (IIS) Manager.</li></ul></li><li class="step">In the&nbsp;Connections&nbsp;pane, right-click the&nbsp;Sites&nbsp;node in the tree, and then click&nbsp;Add Website.</li><li class="step">In the&nbsp;Add Website&nbsp;dialog box, enter a friendly name for your website in the&nbsp;Site name&nbsp;box.</li><li class="step">If you want to select a different application pool than the one listed in the&nbsp;Application Pool&nbsp;box, click&nbsp;Select. In the&nbsp;Select Application Pool&nbsp;dialog box, select an application pool from the&nbsp;Application Pool&nbsp;list and then click&nbsp;OK.</li><li class="step">In the&nbsp;Physical path&nbsp;box, enter the physical path of the website's folder, or click the browse button to navigate the file system to find the folder.</li><li class="step">If the physical path that you entered in the previous step is to a remote share, click&nbsp;Connect&nbsp;as to specify credentials that have permission to access the path. If you do not use specific credentials, select the&nbsp;Application user&nbsp;(pass-through authentication) option in the&nbsp;Connect As&nbsp;dialog box.</li><li class="step">Select the protocol for the website from the&nbsp;Type&nbsp;list.</li><li class="step">If you must specify a static IP address for the website (by default, this is set to&nbsp;All Unassigned), enter the IP address in the&nbsp;IP address&nbsp;box.</li><li class="step">Enter a port number in the&nbsp;Port&nbsp;text box.</li><li class="step">Optionally, enter a host header name for the website in the&nbsp;Host Header&nbsp;box.</li><li class="step">If you do not have to make any changes to the site, and you want the website to be immediately available, select the&nbsp;Start Web site&nbsp;immediately&nbsp;check box.</li><li class="step">Click&nbsp;OK.</li></ol><p class="subheading">Creating Proxy dll</p>
+<p class="paragraph">We have to create a Proxy dll since the proxy does all the marshalling and serialization/deserialization of parameters and returns to/from a web service.</p>
+<p class="subheading">Creating proxy dll using WSDL</p>
+<p class="paragraph">Create the proxy class of the web service using the WSDL tool. Use the&nbsp;wsdl.exe utility to generate code for XML web service clients and XML web service using ASP.NET from WSDL contract files, XSD &nbsp;schemas, and discomap discovery documents. This tool can be used in conjunction with disco.exe.</p>
+<p class="paragraph">In Visual Studio Command Prompt, run the following command:</p>
+<p class="paragraph">C:\Program Files\Microsoft Visual Studio\VC&gt; wsdl /namespace:SkeltaSOAWebProxy   http://localhost:1508/WebService_New/MyWebService.asmx?wsdl&nbsp;<br>&nbsp;<img id="f52797" src="52797.jpg" class="embeddedimage100%scalinglive" alt="" height="257" width="641" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading">Creating proxy dll using CSC command        </p>
+<ol class="step"><li class="step">Create DLL using CSC command.</li><li class="step">Create a new project 'SOAWebServiceUse'.</li><li class="step">Right-click 'SOAWebServiceUse' project which created and click&nbsp;Add Reference.</li><li class="step">Add reference 'SkeltaSOAService.Dll' to use.</li></ol><p class="paragraph"><strong class="strong">Step 3:</strong>&nbsp;Place this compiled proxy class in the dll and refer the same from where you want to access the Web Service.</p>
+<p class="paragraph">Create a .net Assembly to consume the Web Service method.</p>
+<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1">using SOAWebProxy;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">namespace SOAWebSeriveUsage</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">    public class SOAWebSeriveUsage</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        public SOAWebSeriveUsage() { }</p>
+<p class="codeblock1">        public string GetWebServiceData()</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            SOAWebProxy.Service ser = new SOAWebProxy.Service();</p>
+<p class="codeblock1">            return ser.SkeltaTest();</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1">}</p>
+<p class="paragraph">Do not forget to add the Proxy.dll in the reference.</p>
+<p class="paragraph"><img id="f52798" src="52798.png" class="embeddedimage100%scalinglive" alt="" height="335" width="183" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Figure - Solution Explorer</p>
+<p class="paragraph"><strong class="strong">Adding New SOA Folder</strong></p>
+<p class="paragraph">The very basic component of SOA repository is the Folder. Basically you need to register a folder to consume the assemblies from the folder. Add the reference folder into the SOA Folders.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Adding new folder in the SOA Folder option:</strong></p>
+<ol class="step"><li class="step">Go to&nbsp;<b class="uicontrol">Start &gt;&nbsp;All Programs &gt;&nbsp;AVEVA &gt; AVEVA Work Tasks &gt; Central Configuration</b>.</li><li class="step">Go to&nbsp;<b class="uicontrol">AVEVA Work Tasks&nbsp;Repository List</b>.</li><li class="step">Click&nbsp;Site Path&nbsp;from which you would like to login to the repository. This redirects to the&nbsp;AVEVA Work Tasks Enterprise Portal.</li><li class="step">Click arrow button to enter into the&nbsp;<b class="uicontrol">Enterprise Console</b>.</li><li class="step">In the&nbsp;<b class="uicontrol">Enterprise Console</b>, enter the&nbsp;<b class="uicontrol">User Name</b>&nbsp;and&nbsp;<b class="uicontrol">Password</b>. Click the icon next to the Password field to login.</li><li class="step">From the <b class="uicontrol">Enterprise Console</b> menu, select&nbsp;<b class="uicontrol">Tools &gt;&nbsp;SOA Assembly</b>.</li><li class="step">In the ribbon bar, click&nbsp;<b class="uicontrol">New Folder</b>.</li><li class="step">In the&nbsp;<b class="uicontrol">Title</b>&nbsp;text box, enter the folder name as 'MySkeltaTest'.</li><li class="step">In the&nbsp;<b class="uicontrol">Description</b>&nbsp;text area, enter a description for the folder.</li><li class="step">In the<b class="uicontrol">&nbsp;Physical Path</b>&nbsp;text box, enter the physical path to verify the presence of the assembly using the view assembly option.</li><li class="step">Click&nbsp;<b class="uicontrol">Verify Assemblies</b>.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>.</li></ol><p class="paragraph"><strong class="strong">Adding Assembly</strong></p>
+<p class="paragraph">There are two options to add assembly into the SOA repository i.e.&nbsp;<b class="uicontrol">From GAC&nbsp;or&nbsp;From Assembly Folder</b>.</p>
+<p class="paragraph">To add an assembly in the SOA repository, choose the&nbsp;<b class="uicontrol">SOA &gt; Assemblies</b>&nbsp;option from the Enterprise Console.</p>
+<p class="paragraph"><img id="f52799" src="52799.png" class="embeddedimage100%scalinglive" alt="" height="174" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="codesamples1.html" target="_self">SOA</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

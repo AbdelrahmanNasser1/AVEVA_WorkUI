@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Logger Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601979" class="heading3">Logger Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Logger Activity can be used to log messages like information, warnings, and errors to the logger console from the workflow.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Logger activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Logger activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51140" src="51140.png" class="embeddedimage100%scalinglive" alt="" height="451" width="256" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b>&nbsp;- This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b>&nbsp;- This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">LogType</b>&nbsp;- This property allows the user to select the type of message to be logged. The drop down lists the following options: Information, Warning, and Error.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"><b class="uicontrol">LogMessage&nbsp;</b>- This property allows the user to specify the message to be logged.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Log Message property</p>
+<p class="paragraph">See&nbsp;<a id="h51145" class="jump-currentwindowlive" title="Log - Log Message" href="log-logmessage.html" target="_self">Log - Log Message</a>&nbsp;for a detailed description of the Log Message property window. </p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong> </p>
+<p class="paragraph">The Logger Activity does not return any value. </p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Example for a Logger:</strong> </p>
+<p class="paragraph"><strong class="strong">Step 1:</strong>&nbsp;In&nbsp;the Activity Properties of the Logger1, select LogType as Information, and click&nbsp;Save&nbsp;button of Activity Properties. </p>
+<p class="paragraph"><strong class="strong">Step 2:</strong> <b class="uicontrol">Log Message</b> -&nbsp;Select the field as&nbsp;<b class="uicontrol">Variable</b>&nbsp;in the first drop-down. In the second drop-down, select the&nbsp;Variable.SubmittedBy.DisplayName,&nbsp;and then click&nbsp;<b class="uicontrol">Append</b>. </p>
+<p class="paragraph"><strong class="strong">Step 3:</strong>&nbsp;The entry would be as this: &lt;%#Variable.SubmittedBy.DisplayName%&gt;. The '#' Symbol is just for quick identification of data in the Logger.</p>
+<p class="paragraph"> <br><img id="f51141" src="51141.png" class="embeddedimage100%scalinglive" alt="" height="207" width="637" vspace="0" hspace="0" align="bottom" border="0"><br>Note:&nbsp;Before publishing the workflow, start the&nbsp;AVEVA Work Tasks&nbsp;Logger Console. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output:</strong> </p>
+<p class="paragraph">In the logger, you can see the contents of the variable Variable.SubmittedBy.UserName with the '#' symbols.&nbsp;</p>
+<p class="paragraph">In the below figure you can see the name Administrator at the end of the # symbols.</p>
+<p class="paragraph"></p>
+<p class="paragraph">&nbsp;<img id="f51142" src="51142.jpg" class="embeddedimage100%scalinglive" alt="" height="295" width="549" vspace="0" hspace="0" align="bottom" border="0"><br></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior</strong> </p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.&nbsp;</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="log-logmessage.html" target="_self">Log - Log Message</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

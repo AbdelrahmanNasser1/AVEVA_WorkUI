@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Resource Variable Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49596" class="heading3">Resource Variable Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Resource Variable Activity can be used to identify an actor to perform a workflow activity, through a variable. It sets the resource properties to a variable. If the variable type is set as 'resource' then the resource property is set to the variable. If variable is set as 'string' then the actor IDs are assigned to variable. The activity gives the output &quot;Activity Executed&quot; which is the output condition to be set to link this activity to the next. This activity can also be used to assign the next activity based on actor workload to the person with the lightest load, in order to properly balance workload.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Resource Variable activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Resource Variable activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51155" src="51155.png" class="embeddedimage100%scalinglive" alt="" height="674" width="254" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Assign Resource</b> - This property allows the user to select the variable to which the resource properties will be set. The variables will have to be created in the properties for the Start activity. The variables can be one of the three types - String, Array or Resource. String variables take one UserID at a time, while Arrays take in a number of UserIDs pointing to different resources. Resource variables will take the complete resource properties.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph"><b class="uicontrol">Enable Workload Balancing</b> - This property allows the user to set the Enable Workload Balancing property by selecting from the drop down. Setting this property value to Yes, enables workload balancing. This ensures that the task assignment will be done taking workload balancing into consideration.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"><b class="uicontrol">MaxUsers Count</b> - This property allows the user to specify the maximum number of actors who will be considered for task assignment. This property is related to the previous property. If workload balancing is set to Yes, then this property needs to be set to a value greater than 1, in order for workload balancing to be performed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>  (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Actors</strong></p>
+<p class="paragraph">The property in the Actors group has been described below. You can use this property to specify the actors who will work on the activity.</p>
+<p class="paragraph"><b class="uicontrol">Actors</b> - This property specifies the actor(s) who are to be assigned to the variable using the ResourceVariable activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the activity is to be executed.)</p>
+<p class="paragraph">Steps to set the Actors property</p>
+<ol class="step"><li class="step">To specify the actors, click on the button for the 'Actors' property to open the property window.</li><li class="step">In this window, build an expression to select the actors using the actors properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression in the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it. </li></ol><p class="paragraph">See <a id="h51156" class="jump-currentwindowlive" title="Resource Variable - Actors" href="resvar-actors1.html" target="_self">Resource Variable - Actors</a>&nbsp;for a detailed description of the Actors property window.</p>
+<p class="paragraph">See the Using XML Variables section in the&nbsp;About the XML Variable User Interface&nbsp;topic for details on how to use the XMLVariables to build the expression.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Resource Variable Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Not Enough Resources</b>: Displayed when filter Condition did not yield enough resources</p>
+<p class="paragraph"><b class="uicontrol">Activity Executed</b>: Displayed when the Resource variable is set successfully</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="resvar-actors1.html" target="_self">Resource Variable - Actors</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

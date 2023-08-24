@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Configuring Resource Calendar by Administrator </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t482950" class="heading3">Configuring Resource Calendar by Administrator</h3>
+<p class="paragraph">Users with administrative rights can configure the resource calendar for other users.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the<b class="uicontrol">&nbsp;Enterprise Console</b>, click the&nbsp;<b class="uicontrol">Menu</b>&nbsp;button, click&nbsp;<b class="uicontrol">Settings</b>,&nbsp;and then click&nbsp;<b class="uicontrol">Calendar</b>. <p class="stepresult">The&nbsp;<b class="uicontrol">Calendar Control</b>&nbsp;page appears.</p>
+<p class="stepresult">One global calendar should be defined to set the Resource Calendar.</p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Set Resource Calendar</b>.</li><li class="step">Select the required provider from the Provider drop down.</li><li class="step">Select the user for whom the Resource Calendar is to be set in the&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;pop-up.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46696" src="46696.jpg" class="embeddedimage100%scalinglive" alt="" height="418" width="581" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">The following image shows user lookup with the selected resource:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46697" src="46697.jpg" class="embeddedimage100%scalinglive" alt="" height="467" width="591" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Calendar Control will be displayed for the selected user.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46698" src="46698.png" class="embeddedimage100%scalinglive" alt="" height="130" width="594" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Save the calendar and then set the work slots.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f46699" src="46699.png" class="embeddedimage100%scalinglive" alt="" height="343" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li></ol><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;The&nbsp;right&nbsp;<b class="uicontrol">Can Add Resource Calendar</b> is added to the&nbsp;<b class="uicontrol">Calendar&nbsp;Control Rights</b>&nbsp;to set whether a user can configure Resource Calendars or not. By default, the administrator will have the <b class="uicontrol">Can Add Resource Calendar</b> right checked.</p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f46700" src="46700.png" class="embeddedimage100%scalinglive" alt="" height="261" width="375" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

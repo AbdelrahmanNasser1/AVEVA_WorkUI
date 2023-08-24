@@ -1,0 +1,8 @@
+﻿<ContextMenus>
+	<Menu Name="SOAMenu" Width="65">
+		<Item Image="../Images/Edit.gif" Text="Edit" PostBack="True" />				
+	</Menu>
+	<Menu Name="SOANoMenu" Width="65">
+	</Menu>
+</ContextMenus>
+

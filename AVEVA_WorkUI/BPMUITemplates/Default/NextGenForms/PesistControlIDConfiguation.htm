@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Text Control Configuration</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                skeltaUtils.loadPageDefault();
+                loadControlConfiguration();
+
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFTextControlConfigPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormsNGFTextControlConfigPageError") + '\n' + exception.message);
+            }
+        });
+
+        function updateControlID(inputParameterObject, eventArgs)
+        {
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            var selectedControl = viewModelObject.findById("_sys_Forms_persistcontrol").value;
+           
+
+            editPageVm.findByXmlNode("PersistIdOfBoundControl").value = selectedControl;
+            closeControlConfig();
+        }
+
+        function closeControlConfig()
+        {
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").src = "";
+        }
+
+        function loadControlConfiguration()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp")
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetControlConfigForm", "application/json; charset=utf-8", jsonHelper, "json", success, fail, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+        function success(resultData)
+        {
+            document.title = skelta.localize.getString("FormsNGFTextControlConfigPageTitle");
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_AC", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            var controlID = editPageVm.findByXmlNode("PersistIdOfBoundControl").value;
+
+            if (controlID !== "")
+            {
+                var valueJson = ({
+                    PersistControl: controlID
+                });
+
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, valueJson);
+            }
+
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            viewModelObject.onSave.subscribeEvent(updateControlID);
+            viewModelObject.onCancel.subscribeEvent(closeControlConfig);
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFTextControlConfigPageError"), null, result.status + '<br>' + result.statusText + '<br>' + result.responseText);
+            logger.logError(skelta.localize.getString("FormsNGFTextControlConfigPageError") + '\n' + result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+    </script>
+
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

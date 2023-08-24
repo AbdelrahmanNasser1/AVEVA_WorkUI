@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> KPI Data Points </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t483236" class="heading4">KPI Data Points</h4>
+<p class="paragraph">You can use the KPI Data Points to define the data points that you want to monitor for overdue analysis. These data points are monitored in addition to the thresholds set for the overall pending workflows in the Overdue Analysis tab.</p>
+<p class="paragraph"><img id="f47323" src="47323.png" class="embeddedimage100%scalinglive" alt="" height="494" width="577" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">KPI Data points may be defined for conditions that include one or more of the following:</p>
+<p class="paragraph"><strong class="strong">Workflow status</strong></p>
+<p class="paragraph"><img id="f47324" src="47324.png" class="embeddedimage100%scalinglive" alt="" height="475" width="557" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Activity status</strong></p>
+<p class="paragraph"><img id="f47325" src="47325.png" class="embeddedimage100%scalinglive" alt="" height="470" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Activity Inlink Condition</strong>&nbsp;where the link to the activity has a specified condition.</p>
+<p class="paragraph"><strong class="strong">Example</strong></p>
+<p class="paragraph">In a customer support workflow, you would like to monitor all workflows that have status as&nbsp;Workflow Pending&nbsp;and in which the&nbsp;Close Support Ticket&nbsp;activity has the status&nbsp;Activity Execution Pending&nbsp;and the result of the previous activity&nbsp;Get Customer Feedback&nbsp;is not&nbsp;No Feedback Received from Customer.</p>
+<p class="subheading">Setting KPI Data Points</p>
+<ol class="step"><li class="step">Click&nbsp;<b class="uicontrol">New</b>.&nbsp;A dialog box appears.</li><li class="step">Enter the following information:<ol class="substep"><li class="substep"><b class="uicontrol">Name</b>: Name for the Data Point.</li><li class="substep"><b class="uicontrol">Condition based on</b>: Select the condition type from&nbsp;<b class="uicontrol">Workflow Status</b>,&nbsp;<b class="uicontrol">Activity Status</b>, or&nbsp;<b class="uicontrol">Activity Inlink Condition</b>.</li></ol></li><li class="step">Select the condition for the<b class="uicontrol">&nbsp;Workflow Status</b>,&nbsp;<b class="uicontrol">Activity Status</b>, or<b class="uicontrol">&nbsp;Activity Inlink Condition</b>&nbsp;selected.</li><li class="step">Click&nbsp;<b class="uicontrol">Insert</b>.</li><li class="step">Select another condition type, if required.</li><li class="step">Click&nbsp;<b class="uicontrol">Insert with 'And'</b>&nbsp;or&nbsp;<b class="uicontrol">Insert with 'Or'</b>&nbsp;to add the new condition with and/or to the existing condition.</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>.</li></ol>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

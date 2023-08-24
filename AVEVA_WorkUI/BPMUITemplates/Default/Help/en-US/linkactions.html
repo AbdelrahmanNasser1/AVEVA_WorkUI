@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Link Actions </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46514" class="heading3">Link Actions</h3>
+<p class="paragraph">This window is opened when you click the&nbsp;Link&nbsp;tool in the toolbar.</p>
+<p class="paragraphimage"><img id="f47337" src="47337.jpg" class="embeddedimage100%scalinglive" alt="" height="161" width="357" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">Link Actions window</p>
+<p class="paragraph">You can use the following controls to link two activities in the design mosaic:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">From Action</b>&nbsp;- Specify the first action to link by selecting it from this drop-down</li><li class="ulitem"><b class="uicontrol">To Action</b>&nbsp;- Specify the second action to link by selecting it from this drop-down</li><li class="ulitem"><b class="uicontrol">OK</b>&nbsp;- After selecting the two activities, click this button to link them</li><li class="ulitem"><b class="uicontrol">Cancel</b>&nbsp;- Click this button to cancel the selection and close this window</li></ul><p class="paragraph"><br></p>
+<p class="paragraph">&nbsp;</p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

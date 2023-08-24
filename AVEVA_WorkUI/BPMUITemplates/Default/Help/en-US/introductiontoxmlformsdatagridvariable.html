@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Introduction to 'XML Forms Data Grid' Variable </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601933" class="heading4">Introduction to 'XML Forms Data Grid' Variable</h4>
+<p class="paragraph"><b class="uicontrol">Xml Forms Data Grid</b>&nbsp;variable is used to read or modify the selected values of a Data Grid control used in&nbsp;AVEVA Work Tasks&nbsp;Forms or Lists.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">XML Variable of type 'XML Forms Data Grid'</p>
+<p class="paragraph">When the variable type is selected as XML Forms Data Grid, following properties are displayed as seen in the image given below:</p>
+<p class="paragraph"><img id="f50471" src="50471.png" class="embeddedimage100%scalinglive" alt="" height="237" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Description:</strong></p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableheader">'XML Forms Data Grid' XML Variable Property</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph"><strong class="strong">Select Xml Variable</strong></p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">Xml variables of type Xml Document and Xml list are listed here.</p>
+<p class="tableparagraph">Select the parent Xml Variable that is mapped to Forms or Lists which have a Data Grid control.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph"><strong class="strong">Select Xml Node</strong></p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">Only nodes of the parent variable selected above are displayed here. Select the Xml Node which is mapped to the Forms Data Grid control.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="tableparagraph"><strong class="strong">Select Data Grid</strong></p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="tableparagraph">Lists the Grid Configurations created.</p>
+<p class="tableparagraph">Select the Data Grid Configuration mapped for the selected Xml node. The Grid Configuration selected here should match with the Grid Configuration for the Xml node selected above.</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph">See &nbsp;<a id="h50472" class="jump-currentwindowlive" title="Creating XML Variable of Type 'XML Forms Data Grid'" href="creatingxmlvariableoftypexmlformsdatagrid.html" target="_self">Creating XML Variable of Type 'XML Forms Data Grid'</a>&nbsp;for more information.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="creatingxmlvariableoftypexmlformsdatagrid.html" target="_self">Creating XML Variable of Type 'XML Forms Data Grid'</a></p><p class="relateditem"><a href="usingxmlformsdatagrid.html" target="_self">Using 'XML Forms Data Grid' XML Variable</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Business Activity Monitoring and Reports </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t597554" class="heading2">Business Activity Monitoring and Reports</h2>
+<p class="paragraph">The BAM Control provides extensive reporting capability and true BAM functionality. It provides users with several out-of-the-box reporting and activity monitoring views. In addition, it allows users to configure Data Points and KPIs for comprehensive business activity monitoring. It is one of the crucial controls in AVEVA Work Tasks.</p>
+<p class="paragraph"></p>
+<p class="paragraph">You can see a three-dimensional view of the following BAM Reports by rotating the axis of the graphs:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">KPI Bar Chart</li><li class="ulitem">KPI&nbsp;Pie Chart</li><li class="ulitem">Overdue Analysis</li><li class="ulitem">Workflow instances</li><li class="ulitem">Workflow status</li></ul><p class="paragraph"></p>
+<p class="subheading">Default Report View</p>
+<p class="paragraphimage"><img id="f611236" src="611236.png" alt="" height="383" width="561" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="subheading"></p>
+<p class="paragraph">The BAM Control page displays the following default report view when the Control is executed. You can set the application name and workflow name to the respective property of the BAM Control. If no workflow name is set then the BAM Reports are shown for the entire application, covering all the workflows in it. This constitutes the &quot;Global Reports&quot;. At the top right of the Report window are the [+] and [-] icons to expand and collapse all the nodes respectively.</p>
+<p class="subheading"></p>
+<p class="subheading">Report Type Tree View</p>
+<p class="subheading"></p>
+<p class="paragraph">The Default Report window represents the general layout of the BAM Control user-interface, which it shares with all other report windows. The user-interface elements and functionality described in this topic apply to all the other report windows. The window has the&nbsp;<b class="uicontrol">Workflow</b>&nbsp;list at the upper left. It lists all the workflow names in the application along with the &quot;Global Reports&quot; option. When any workflow name is selected from the list, all the reports will display information related to the selected workflow.</p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The Report Type tree has the following nodes:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Dashboard</b>:&nbsp;This report type represents the activity monitoring dashboard of the BAM Control. It has two dashboard views, <b class="uicontrol">Workflow Status</b>&nbsp;and&nbsp;<b class="uicontrol">Workflow Instances</b>.</li><li class="ulitem"><b class="uicontrol">Analyze</b>:&nbsp;This report type represents a number of out-of-the-box reports grouped under two sub-types, <b class="uicontrol">Transaction</b>&nbsp;and&nbsp;<b class="uicontrol">Execution, </b>each with a set of reports.</li></ul><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;The BAM tree in the Business Activity Monitoring interface, by default, shows a one level expanded view instead of a fully expanded tree view.</p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The report view is on the right of the window. It presents the report information in several columns, with the column displayed depending on the type of report selected. You can right-click a column name to open the shortcut menu, where you can perform report list management operations such as sorting and grouping on the columns.</p>
+<p class="paragraphimage"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Sort Ascending: </b> Select this option to sort the list on this column in the ascending order</li><li class="ulitem"><b class="uicontrol">Sort Descending:</b> Select this option to sort the list on this column in the descending order</li><li class="ulitem"><b class="uicontrol">Group By This Field:</b> You can use this option to group the list by this column</li><li class="ulitem"><b class="uicontrol">Group By Box:</b> You can use this option to display the Group By box at the top. You can drag-and-drop a column header in this box to group the list by that field. This is an alternative way to group the list.</li><li class="ulitem"><b class="uicontrol">Remove This Column: </b>You can use this option to remove the selected column</li><li class="ulitem"><b class="uicontrol">Best Fit: </b>You can use this option to change the column width to best fit</li><li class="ulitem"><b class="uicontrol">Filter Bar:</b> You can use this option to turn on or turn off the filter bar</li><li class="ulitem"><b class="uicontrol">Select Columns: </b>You can use this option to expand a menu with all the column headers as shown in the following image. Each column name has a check box that you can use to select it or to remove the selection. After making any change to the column selection, you can click the&nbsp;<b class="uicontrol">Apply Changes</b>&nbsp;option for the new settings to take effect. You can click the&nbsp;<b class="uicontrol">Reset</b>&nbsp;option.</li></ul><p class="subheading"></p>
+<p class="subheading">Save Layout</p>
+<p class="subheading"></p>
+<p class="paragraph">You can customize the view and save the layout by clicking the&nbsp;<b class="uicontrol">Save Layout</b>&nbsp;icon. This opens a window where you can specify a name with which the customized report layout will saved.</p>
+<p class="paragraph">You can enter the file name for the saved layout in the&nbsp;<b class="uicontrol">Layout Name</b>&nbsp;box. After specifying the name, click&nbsp;<b class="uicontrol">OK</b>&nbsp;to save the layout. You can click&nbsp;<b class="uicontrol">Cancel</b>&nbsp;to close the window without saving the layout. Any layout saved in this window will be added under the node corresponding to the report type being saved as a custom layout (for example, Executing). You can select it from here to view the report in the customized layout.</p>
+<p class="paragraph">In addition to the other icons, a&nbsp;<b class="uicontrol">Delete</b>&nbsp;icon is displayed when you open a custom layout. You can click the delete icon to delete the open custom layout.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Export Settings</p>
+<p class="paragraph"></p>
+<p class="paragraph">Use the <strong class="strong">Export Settings</strong> icon to set the number of records to export.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f190086" src="190086.png" class="embeddedimage100%scalinglive" alt="" height="40" width="144" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">When you click the <strong class="strong">Export Settings</strong> icon, the <strong class="strong">Export Settings</strong> dialog box appears.</li><li class="step">Enter the number of records that you want to export. <p class="stepinfo">You can enter only valid positive integer values.</p>
+</li><li class="step">Click <strong class="strong">Update</strong>.<p class="stepresult">The Reports grid refreshes and displays the number of records entered in the <strong class="strong">Export Settings</strong> dialog box.</p>
+</li><li class="step">Click the <strong class="strong">Export Grid</strong> icon to export the report. </li></ol><p class="paragraph"></p>
+<p class="paragraph">When you enter a value for export, the number of records exported will be the first record to the number entered. For example, if the grid contains 25 records and you want to export 12 records, records from 1 to 12 will be displayed in the refreshed grid and can be exported. You cannot enter a value range for export. Also, if the number entered exceeds the maximum records present, the highest number of records present will be exported.</p>
+<p class="subheading"></p>
+<p class="subheading">Export Grid</p>
+<p class="subheading"></p>
+<p class="paragraph">You can export the contents of the report to different formats using the&nbsp;Export grid&nbsp;tool at the lower right of the window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46882" src="46882.jpg" class="embeddedimage100%scalinglive" alt="" height="37" width="79" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Clicking the export tool opens the export type selector, which lists all the available types with radio buttons to select them. </p>
+<p class="paragraph"></p>
+<p class="paragraph">There are three sets of options. The first has the<strong class="strong">&nbsp;Export root table,</strong> which can be clicked to select the root table for export. The second set lists all the common file formats, such as HTML, PDF, XML,&nbsp;Excel, TIFF, RTF, and TEXT. The last set has the&nbsp;<strong class="strong">Portrait</strong>&nbsp;and&nbsp;<strong class="strong">Landscape</strong>&nbsp;options to select the orientation of the exporter report. After making the export settings you need to click&nbsp;Export now&nbsp;to export the file.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Escalation Report:</p>
+<p class="subheading"></p>
+<p class="paragraph"><strong class="strong">Description:</strong></p>
+<p class="paragraph">The Escalation Report gives in-depth details about escalations. It shows the user name, date, timeout settings, escalation type (Recurring or Non-Recurring), task details, and workflow and application details. The report has a drill down feature which shows the <b class="uicontrol">Process Execution</b> view for the instance. Double-click the data to view the Process execution details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Location:</strong>  &nbsp;</p>
+<p class="paragraph">On <b class="uicontrol">Enterprise Console</b>, clicking the&nbsp;<b class="uicontrol">left &lt;Analysis&gt;</b>&nbsp;button brings up the <b class="uicontrol">Business Activity</b> <b class="uicontrol">Monitoring </b>(BAM). In the BAM Left Panel Tree view, click the&nbsp;<b class="uicontrol">&lt;Analyze&gt;</b> node. Under this, you can locate the <b class="uicontrol">&lt;Transaction </b>&gt; node which has the <b class="uicontrol">Escalation Report</b> option. See the following image to identify the report.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Report Parameters</strong>:</p>
+<p class="paragraph"></p>
+<p class="paragraph">By selecting the &#8216;From&#8217; and &#8216;To&#8217; dates, the user can get the details of the escalations that occurred for the given date range. To see the &#8216;Process execution view&#8217; for the instance, double-click the data.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Report view:</strong></p>
+<p class="paragraph">It shows the user name, date, timeout settings, escalation type (Recurring or Non-Recurring), task details, and workflow and application details. Escalation report also has the column filter features available in other reports.</p>
+<p class="paragraph"></p>
+<p class="paragraph">Double-click the data for the instance to view the <b class="uicontrol">Process</b> <b class="uicontrol">execution</b> view.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Process execution view</strong>:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f46887" src="46887.png" class="embeddedimage100%scalinglive" alt="" height="365" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Scenario:</strong></p>
+<p class="paragraph">John Smith works as the Administrator for &#8216;XYZ&#8217; organization. He wants to monitor the Escalations that occurred in the workflow for a given date range. By using the escalation report, Smith can get the details of the same and can take the necessary steps.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="dashboard.html" target="_self">BAM Dashboard View</a></p><p class="relateditem"><a href="bamexecutionreports.html" target="_self">BAM Execution Reports</a></p><p class="relateditem"><a href="analysis.html" target="_self">BAM Analyze Reports</a></p><p class="relateditem"><a href="processviews.html" target="_self">BAM Process Execution View</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

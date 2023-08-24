@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Events of Work Item List Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602354" class="heading4">Using Events of Work Item List Control</h4>
+<p class="subheading">Code snippets for using events of Work Item List Control are explained below:</p>
+<p class="paragraph">Sample code snippets for adding a&nbsp;work item&nbsp;control and adding events. There are several delegate events available for&nbsp;work item&nbsp;control. They are&nbsp;InitializeDataSourceEvent, InitializeLayoutEvent, InitializeWorkItemRowEvent, ColumnsAlignmentEvent, ColumnstoMakeInVisible events.</p>
+<p class="paragraph">The following code snippet shows how to add a&nbsp;work item&nbsp;list control using the events.</p>
+<p class="codeblock1">protected override void OnInit(EventArgs e)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl WIL = new   Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">WIL.ApplicationName = uContext.Repository.ApplicationName;</p>
+<p class="codeblock1">WIL.UserIdString = uContext.LoggedInUserId;</p>
+<p class="codeblock1">WIL.ID = &quot;WorkItemListControl&quot;;</p>
+<p class="codeblock1">WIL.DisplayGroupUI = true;</p>
+<p class="codeblock1">WIL.Height = Unit.Percentage(100);//680;</p>
+<p class="codeblock1">WIL.ReadingPaneInPopupWindow = true;</p>
+<p class="codeblock1">WIL.EnableHold = true;</p>
+<p class="codeblock1">WIL.ShowInboxViewOnly = false;</p>
+<p class="codeblock1">WIL.ShowManagerViewOnly = false;</p>
+<p class="codeblock1">WIL.DisplayLeftTreeMenuAtApplicationLevel = false;</p>
+<p class="codeblock1">WIL.ShowStandardColumns = true;</p>
+<p class="codeblock1">WIL.ShowDetailsonRowDoubleClick = true;</p>
+<p class="codeblock1">WIL.ShowWorkItemFields = true;</p>
+<p class="codeblock1">WIL.ColumnstoMakeInVisibleEvent += new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl.ColumnstoMakeInVisible(WIL_ColumnstoMakeInVisibleEvent);</p>
+<p class="codeblock1">WIL.InitializeDataSourceEvent += new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl.InitializeDataSource(WIL_InitializeDataSourceEvent);</p>
+<p class="codeblock1">WIL.InitializeWorkItemRowEvent += new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl.InitializeWorkItemRow(WIL_InitializeWorkItemRowEvent);</p>
+<p class="codeblock1">WIL.InitializeLayoutEvent += new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl.InitializeLayout(WIL_InitializeLayoutEvent);</p>
+<p class="codeblock1">WIL.ColumnsAlignmentEvent += new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl.ColumnsAlignment(WIL_ColumnsAlignmentEvent);</p>
+<p class="codeblock1">PanelWIL.Controls.Add(WIL);</p>
+<p class="codeblock1">}</p>
+<p class="paragraph">Sample code snippet for adding a new column to the dataset which gets passed from the event used for showing the&nbsp;work item&nbsp;details grid.</p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// To add a new column to the dataset which gets passed from the event</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">void WIL_InitializeDataSourceEvent(object sender, Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorklistDataSourceEventArgs e)</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        DataColumn checkdatacolumn = new DataColumn();</p>
+<p class="codeblock1">        checkdatacolumn.ColumnName = &quot;New Column&quot;;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        if (!e.workItemListDataSet.Tables[0].Columns.Contains(checkdatacolumn.ColumnName))</p>
+<p class="codeblock1">            e.workItemListDataSet.Tables[0].Columns.Add(checkdatacolumn);</p>
+<p class="codeblock1">    }</p>
+<p class="paragraph"><br></p>
+<p class="paragraph">Sample code snippet for adding a new column to view it in the&nbsp;work item&nbsp;details grid.</p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// To add the new column to the see in the grid</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">void WIL_InitializeLayoutEvent(object sender, Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorklistInitialzeLayoutEventArgs e)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkitemListColumns workitemListcolumn = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkitemListColumns();</p>
+<p class="codeblock1">workitemListcolumn.Name = &quot;New Column&quot;;</p>
+<p class="codeblock1">workitemListcolumn.Caption = &quot;New Column&quot;;</p>
+<p class="codeblock1">workitemListcolumn.Bound = false;</p>
+<p class="codeblock1">workitemListcolumn.ColumnType = &quot;text&quot;;</p>
+<p class="codeblock1">workitemListcolumn.Width = 50;</p>
+<p class="codeblock1">workitemListcolumn.AllowGrouping = false;</p>
+<p class="codeblock1">workitemListcolumn.AllowSorting = true;</p>
+<p class="codeblock1">workitemListcolumn.AllowSizing = false;</p>
+<p class="codeblock1">workitemListcolumn.WorkitemListColumnCollection.Add(workitemListcolumn.Name, workitemListcolumn);</p>
+<p class="codeblock1">e.WorkItemColumnsList = workitemListcolumn.WorkitemListColumnCollection;</p>
+<p class="codeblock1">}</p>
+<p class="paragraph">Sample code snippet for setting values for the added column for the row in the&nbsp;work item&nbsp;details grid.</p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// To set the values for the added column for the row in the grid</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">void WIL_InitializeWorkItemRowEvent(object sender, Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorklistDataRowEventArgs e)</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">      &nbsp;&nbsp;DataRowView dr = e.WorkItemRowView;</p>
+<p class="codeblock1">        string value = dr.Row[&quot;ExecutionId&quot;].ToString();</p>
+<p class="codeblock1">        e.WorkItemColumnTextandValue.Add(&quot;New Column&quot;, value);</p>
+<p class="codeblock1">    }</p>
+<p class="paragraph">Sample code snippet for aligning the columns and setting the formatstring. We have to specify the exact ColumnName and not the caption of the ColumnName.</p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// Event to use to align the columns and setting formatstring</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">/// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</p>
+<p class="codeblock1">void WIL_ColumnsAlignmentEvent(object sender, Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorklistAlignmentArgs e)</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">        &nbsp;Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkitemListAlignmentColumns           wilAlignColumns1 = new                                                                 Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkitemListAlignmentColumns();</p>
+<p class="codeblock1">        &nbsp;wilAlignColumns1.ColumnName = &quot;ActivityDisplayName&quot;;</p>
+<p class="codeblock1">        &nbsp;wilAlignColumns1.ColumnAlignment = &quot;right&quot;;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">                      Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkitemListAlignmentColumns wilAlignColumns2 = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkitemListAlignmentColumns();</p>
+<p class="codeblock1">  &nbsp;wilAlignColumns2.ColumnName = &quot;CreatedDateTime&quot;;</p>
+<p class="codeblock1">            wilAlignColumns2.DataFormatString = &quot;dd.MM.yyyy&quot;;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">          &nbsp;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">            e.WorkitemAlignmentColumnList.Add(wilAlignColumns1.ColumnName, wilAlignColumns1);</p>
+<p class="codeblock1">            e.WorkitemAlignmentColumnList.Add(wilAlignColumns2.ColumnName, wilAlignColumns2);</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">}</p>
+<p class="paragraph"><strong class="strong">Options available for ColumnAlignment are</strong>: Left, Right, and Center.</p>
+<p class="paragraph"><strong class="strong">Options available for DataFormatString are:</strong></p>
+<p class="paragraph">For Date Columns, you can define this format:</p>
+<ol class="olitem"><li class="olitem">&quot;dd.MM.yyyy&quot; - It will display the date like 04.08.2008</li><li class="olitem">&quot;d&quot; - It will display as short date like 08/26/2008</li><li class="olitem">&quot;D&quot; - It will display as long date like Tuesday, August 26, 2008</li></ol><p class="paragraph">For Numeric Columns you can define this format:</p>
+<ol class="olitem"><li class="olitem">&quot;N&quot; - Displays as general format.</li><li class="olitem">&quot;F&quot; - Displays as Fixed format.</li><li class="olitem">&quot;c&quot; - Displays as Currency Format.</li></ol><p class="paragraph">Sample code snippet for hiding the columns in the Work Item Details grid.</p>
+<p class="codeblock1">/// &lt;summary&gt;</p>
+<p class="codeblock1">/// To hide the columns</p>
+<p class="codeblock1">/// &lt;/summary&gt;</p>
+<p class="codeblock1">/// &lt;returns&gt;&lt;/returns&gt; &nbsp;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">    string[] WIL_ColumnstoMakeInVisibleEvent()</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        string[] columns = new string[2] { &quot;ResponseBy&quot;,&quot;CreatedDateTime&quot;};</p>
+<p class="codeblock1">        return columns; </p>
+<p class="codeblock1">    }</p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workitemlistcontrols.html" target="_self">Work Items List Control</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

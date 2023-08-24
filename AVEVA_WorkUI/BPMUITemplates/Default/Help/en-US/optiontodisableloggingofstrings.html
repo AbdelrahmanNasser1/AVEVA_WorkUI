@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Option to Disable Logging of Strings </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h1 id="t602236" class="heading1">Option to Disable Logging of Strings</h1>
+<p class="paragraph">You use this&nbsp;feature to control the string messages that are logged into the logger files without making any change to the debug level.</p>
+<p class="paragraph"><b class="uicontrol">Debug Level</b>:&nbsp;The number of messages getting displayed in the logger console varies based on the Debug level set in&nbsp;the&nbsp;Farm Configuration Wizard.</p>
+<ol class="step"><li class="step">Open the<b class="uicontrol">&nbsp;Farm Configuration</b> Wizard.</li><li class="step">Click&nbsp;<b class="uicontrol">Next</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">Service Settings</b>, and then select<b class="uicontrol">&nbsp;Global Settings</b>.</li><li class="step">Select&nbsp;<b class="uicontrol">Log/Transaction</b>&nbsp;tab.&nbsp;Here you can select the <b class="uicontrol">Debug</b> level from the drop-down list.  <br><br>To know more about setting debug level, see<i class="emphasis">&nbsp;Prerequisites</i>&nbsp;section in the<i class="emphasis"> Administrator Guide</i>.</li></ol><p class="paragraph"><strong class="strong">Example Scenario:</strong></p>
+<p class="paragraph">Suppose the debug level is set as 2, and you want to restrict some messages containing text, for example, &quot;Inserting Local Variables&quot; from getting logged into the logger file without changing your current debug level.</p>
+<ol class="step"><li class="step">Create a new key in the <b class="uicontrol">AVEVA Work Tasks</b> registry named &quot;DoNotLogMessages&quot; of type multi-string value.</li><li class="step">Specify the text&nbsp;of the messages which are to be ignored while&nbsp;writing to the log files.<p class="stepinfo"></p>
+<p class="stepinfo"><br><img id="f52334" src="52334.jpg" class="embeddedimage100%scalinglive" alt="" height="319" width="359" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Restart the <b class="uicontrol">AVEVA Work Tasks</b> services.</li></ol><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note</strong>: These steps control the string messages logged into the AVEVA Work Tasks log files. The same messages appears in the Logger Console.</p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

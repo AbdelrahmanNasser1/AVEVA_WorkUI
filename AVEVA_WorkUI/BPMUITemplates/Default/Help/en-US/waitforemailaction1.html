@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for Email Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602002" class="heading3">Wait for Email Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Wait for Email Activity can be used to wait for a number of emails for a particular time period, both of which can be set in the activity's properties. It can also be used to filter incoming mails using specific conditions set in the properties. It can store emails (completely or partially) into specified variables. Options to save attachments, including the location to save, can also be specified. Depending on different property settings the activity will give different outputs.</p>
+<p class="paragraph">See Localizing the response sent for an invalid email to the AVEVA Work Tasks Communication Engine for more information on localizing an email.</p>
+<p class="subheading">Variables for capturing EmailIds</p>
+<p class="paragraph">To get Email Id of the last received mail, use the AVEVA Work Tasks System variable. The variable name has to be prefixed with <b class="uicontrol">&quot;@&quot;+CurrActivity.Name + &quot;^MailID&quot;.</b></p>
+<p class="paragraph">For example, If activity name is Waitforemail1, then variable name should be &quot;@ Waitforemail1^MailID&quot;.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The use of AVEVA Work Tasks System variable CurrActivity.Name + &quot;^EMailID&quot; has been retained to ensure backward compatibility. For example, If activity name is Waitforemail1, then variable name should be &quot;Waitforemail1^EMailID&quot;.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Wait for Email activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Wait for Email activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51362" src="51362.png" class="embeddedimage100%scalinglive" alt="" height="750" width="255" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Filter Expression</b> - This property is used to filter the incoming email. It will add an email filter. On execution, the SMTP Notification Engine will be notified about the newly added filter so that it will search for this pattern in the next email.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be assigned to any resource(s).)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Filter Expression property</p>
+<ol class="step"><li class="step">To set the condition to filter the incoming emails, click the button for the 'Filter Expression' property to open the property window.</li><li class="step">In this window build an expression to set the filter. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression in the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it.</li></ol><p class="paragraph">See <a id="h194293" class="jump-currentwindowlive" title="Wait for Email: Filter Expression" href="waitemail-filterexpression1.html" target="_self">Wait for Email: Filter Expression</a> for a detailed description of the Filter Expression property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Valid for Emails</strong> - This property is used to specify the number of emails for which the action should wait. It indicates that the action should wait till the specified number of emails are received.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Set Variables And Contents from Email</b> - This property is used for assigning the email partly/ fully to a variable or content.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Set Variables And Contents from Email property</p>
+<ol class="step"><li class="step">To set the filtered email can be  to variables and contents, click the button for the 'Set Variables And Contents from Email' property to open the property window.</li><li class="step">In this window, first select the variable from the <b class="uicontrol">Variable</b> drop down.</li><li class="step">Next specify the <b class="uicontrol">search criteria</b> in the Search criteria field.  You can either enter the regular expression directly or click on the <b class="uicontrol">Generate RegExp for Selected Row</b> button to generate a regular expression.</li><li class="step">If you click the <b class="uicontrol">Generate RegExp for Selected Row</b> button it displays a set of fields and buttons at the bottom of the property window.</li><li class="step">Specify the start string for the regular expression in the <b class="uicontrol">Start String</b> field and <b class="uicontrol">Start</b> and <b class="uicontrol">End</b> delimiters in the corresponding text boxes of the <b class="uicontrol">Delimiters</b> fields.</li><li class="step">After specifying these values, click <b class="uicontrol">Generate</b> to generate the regular expression.</li><li class="step">Click <b class="uicontrol">Hide</b> to hide these fields.</li><li class="step">Specify where to search in by selecting an appropriate option from the Search in drop down. You can set the action to search in the entire email, the subject, and the attachments among other options.</li><li class="step">Specify the name of a group to which the variable should belong in the <b class="uicontrol">Set variable in the named group</b> field.</li><li class="step">Click the <b class="uicontrol">New row</b> tab to add the current search expression and display a blank row to add another expression.</li><li class="step">If you need to remove any search expressions, you can select them and click<b class="uicontrol"> Remove selected</b>.</li><li class="step">After specifying all the search parameters, click <b class="uicontrol">Update</b> to save the new settings.</li></ol><p class="paragraph">See <a id="h194294" class="jump-currentwindowlive" title="Wait for Email: Set Variables And Contents from Email" href="waitemail-setvariablesandcontentsfromemail1.html" target="_self">Wait for Email: Set Variables And Contents from Email</a> from Email for a detailed description of the Set Variables And Contents from Email property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Attachment Save Options</strong> - This property is used for setting the attachment saving options. The mail attachments can saved according to specified options. Filter attachments to save by searching for a string in the file name or file content.</p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> <br>- Attaching an email message as an attachment is not supported.<br>- Supported file types for attachment include .au,.avi,.bas,.bmp,.cdr,.drw,.dwg,.dxf,.eml,.eps,.gif,.ico,.img,.jpeg,.jpg,.log,.mid,.midi,.mov,.movie,.mp1,.mp2,.mp3,.mpeg,.mpg,.msg,.nws,.obd,.pcx,.pdd,.pdf,.pic,.pps,.pub,.qbb,.qbw,.qdb,.ra,.snd,.text,.tga,.tif,.tsv, and .txt.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Property Type: Mandatory</b> (This property needs to be set.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Attachment Save Options property</p>
+<ol class="step"><li class="step">To specify the attachment save options, click the button for the 'Attachment Save Options' property to open the property window.</li><li class="step">Select the save option from the first drop down.<ol class="substep"><li class="substep">If you select &quot;All Files&quot;, it will save all the attachment files</li><li class="substep">If you select &quot;File Names&quot; or &quot;File Contents&quot;, it will save either the specified files or the specified contents of the attachment file. This will display the corresponding fields/drop downs to specify the parameters.</li></ol></li><li class="step">Select the type of value (Value, Variable, Content) from the second drop down, and specify the corresponding value for the property from the next text box (if &quot;Value&quot; is selected) or drop down.</li><li class="step">Click <b class="uicontrol">Update</b> to save the new option.<p class="note"><strong class="notelabel">Note:</strong> In user specified location, you have to append the mail id i.e, if user specified location is &quot;C:\SkeltaMailAttachments\&quot;, then actual location will be &quot;C:\SkeltaMailAttachments\&lt;mailId&gt;&quot; .</p>
+</li></ol><p class="paragraph"><strong class="strong">Example</strong></p>
+<p class="paragraph">Location : c:\Temp\</p>
+<p class="paragraph">Actual: c:\Temp\123 &#8211;(123 is last mailid )</p>
+<p class="paragraph">Location : c:\Temp</p>
+<p class="paragraph">Actual: c:\Temp123 &#8211;(123 is last mailid )</p>
+<p class="paragraph">See <a id="h194295" class="jump-currentwindowlive" title="Wait for Email: Attachment Save Options" href="waitemail-attachmentsaveoptions1.html" target="_self">Wait for Email: Attachment Save Options</a> for a detailed description of the Attachment Save Options property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Attachment Save Location</strong> - This property is used to specify the location in which to save the attachments.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Attachment Save Location property</p>
+<ol class="step"><li class="step">To specify the location to save the attachment, click the button for the 'Attachment Save Location' property to open the property window.</li><li class="step">Select the protocol to be used to save the file in the location from the 'Protocol' property.</li><li class="step">Specify the path of the location in the Location property. Build an expression to assign the location details by selecting the operator, type of value (Value, Variable, Content, XMLVariables), and the value for the property from the corresponding drop downs.</li><li class="step">In the same way, you can assign a search pattern to filter the type of file to be copied or transferred as the value for the <b class="uicontrol">Pattern</b> field. For example, you can specify &quot;*.doc&quot; as the filter pattern. This will select only files with the extension .doc for copying or transferring.</li><li class="step">You can also assign the user name and password of the source file/directory in the <b class="uicontrol">User Name</b> and <b class="uicontrol">Password</b> fields respectively, by following the same procedure that is used in step 3.</li><li class="step">In addition, you can assign the domain name and port number of the source in the <b class="uicontrol">DomainName</b> and <b class="uicontrol">PortNumber </b>fields respectively, by following the same procedure that is used in step 3.</li><li class="step">After adding the parameter, click <b class="uicontrol">Submit</b> to save it.</li></ol><p class="paragraph">See <a id="h194296" class="jump-currentwindowlive" title="Wait for Email: Attachment Save Location" href="waitemail-attachmentsavelocation1.html" target="_self">Wait for Email: Attachment Save Location</a> for a detailed description of the Attachment Save Location property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Escalation &amp; Timeout</strong></p>
+<p class="paragraph">The properties in the Escalation &amp; Timeout group have been described below. You can use these properties to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"><strong class="strong">Timeout Warning</strong> - This property is used for setting the Timeout warning.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Timeout for Action</b> - This property is used for setting timeouts for this action. If specified, the action will be timed out after the specified time span.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong>&nbsp;</p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The Wait for Email Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Timeout Warning:</b> Displayed when a warning for timeout is to be generated</p>
+<p class="paragraph"><b class="uicontrol">Email Received(Waiting):</b> Displayed when an email matching the specified filter condition is received</p>
+<p class="paragraph"><strong class="strong">Timeout</strong>: Displayed when the activity has timed out</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="waitemail-filterexpression1.html" target="_self">Wait for Email: Filter Expression</a></p><p class="relateditem"><a href="waitemail-setvariablesandcontentsfromemail1.html" target="_self">Wait for Email: Set Variables And Contents from Email</a></p><p class="relateditem"><a href="waitemail-attachmentsaveoptions1.html" target="_self">Wait for Email: Attachment Save Options</a></p><p class="relateditem"><a href="waitemail-attachmentsavelocation1.html" target="_self">Wait for Email: Attachment Save Location</a></p><p class="relateditem"><a href="Communication-SetCalendarForTimeout.html" target="_self">Wait for Email: Set Variables And Contents from Email</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

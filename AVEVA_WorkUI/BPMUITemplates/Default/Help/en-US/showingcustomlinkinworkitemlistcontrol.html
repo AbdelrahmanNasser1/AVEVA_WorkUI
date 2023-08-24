@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Showing Custom Link in Work Item List Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602355" class="heading4">Showing Custom Link in Work Item List Control</h4>
+<p class="paragraphimage">This feature enables you to create custom links in the left hand side tree view menu of the Work items list control.</p>
+<p class="subheading">Scenario</p>
+<p class="paragraph">John is the manager in Telematics organization acting on the HR and Accounts Payable Process. He wants to view a custom page like the Workflows list page from his work items Inbox on click of a link from the LHS tree menu view of Work items list control. He also wants this custom link to be secure so that only the users with proper rights should be able to view it. He also wants sub links under the main custom link with different navigations.</p>
+<p class="paragraph">You can create custom links through the <b class="uicontrol">Navigation List of Repository Settings</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50263" src="50263.png" class="embeddedimage100%scalinglive" alt="" height="325" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Whenever a new repository is created, an entry -&nbsp;<b class="uicontrol">ec_menu_WorkitemCustomLinks</b>&nbsp;is created in the Navigation List. You can create sub links under this Navigation link or can edit the link for adding a page if no sub link is needed.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50264" src="50264.png" class="embeddedimage100%scalinglive" alt="" height="422" width="576" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f50265" src="50265.png" class="embeddedimage100%scalinglive" alt="" height="188" width="578" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workitemlistcontrols.html" target="_self">Work Items List Control</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

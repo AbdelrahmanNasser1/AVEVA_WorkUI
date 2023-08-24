@@ -1,0 +1,89 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> AVEVA Work Tasks Connector for Information Server </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="AVEVA Work Tasks Connector for Information Server">
+</head>
+<body  onload="if (isTOCLoaded()) {highlight('194297')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<h1 id="t194297" class="heading1">AVEVA Work Tasks Connector for Information Server</h1>
+<p class="subheading">Introduction</p>
+<p class="paragraph"></p>
+<p class="paragraph">Using the <strong class="strong">AVEVA Work Tasks Connector for Information Server</strong>, you can configure the AVEVA Work Tasks Repository. In this document, you will learn about the following:</p>
+<ul class="ulitem"><li class="ulitem">Provide connectivity from AVEVA Work Tasks Connector for Information Server to the AVEVA Work Tasks Repository.</li><li class="ulitem">Enable AVEVA Work Tasks Connector for Information Server users to access the AVEVA Work Tasks Repository functionality from within AVEVA Work Tasks Connector for Information Server.</li><li class="ulitem">Enable access to Central Configuration where users can create or edit AVEVA Work Tasks repositories, and use its functionalities.</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuring AVEVA Work Tasks Repository and AVEVA Work Tasks Farm for AVEVA Work Tasks Connector for Information Server</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuring Database Credentials for AVEVA Work Tasks</strong></p>
+<p class="paragraph"></p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">Run the AVEVA Work Tasks Connector for Information Server application (Programs &gt; AVEVA &gt; Work Tasks &gt; Information Server &gt; AVEVA Work Tasks Connector for Information Server).<p class="stepresult">The Database Server Name and Database Name appears.</p>
+<ul class="ulsubitem"><li class="ulsubitem">Database Server Name: Displays the Information Server Database Server name. This is auto-populated from the Registry and is Read-only.</li><li class="ulsubitem">Database Name: Displays the Information Server Database name. This is Read-only.</li></ul></li><li class="steptestdonotuse">Select the Windows radio button to test the connection using Windows authentication mode. You need not type User Id or Password if you select this option.<p class="stepinfo">Alternatively, select the SQL Server radio button to test the connection using SQL Server authentication mode. You need to type User Id or Password if you select this option.</p>
+</li><li class="steptestdonotuse">Enter the SQL Server username in User Id.</li><li class="steptestdonotuse">Enter the SQL Server password in Password.<p class="stepinfo">Note: The credentials should have row insertion and deletion permission for the SuiteVoyager database.</p>
+</li><li class="steptestdonotuse">Click <b class="uicontrol">Test Connection</b>.<ul class="ulsubitem"><li class="ulsubitem">If the connection succeeds, the next button will be enabled.</li><li class="ulsubitem">If the connection fails, you need to re-enter the details.</li></ul></li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuring AVEVA Work Tasks Server to add the Repository Details of AVEVA Work Tasks</p>
+<p class="paragraph"></p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">To configure the AVEVA Work Tasks server to add the repository details of AVEVA Work Tasks:<ol class="substep"><li class="substep">Enter the Unique Environment Name. <p class="substepinfo">The Unique Environment Name, by default, is a combination of the machine name and Information Server, and is editable the first time. Once repository configuration is done, it cannot be edited.</p>
+</li><li class="substep">Enter the AVEVA Work Tasks Workflow server address.</li><li class="substep">Enter the AVEVA Work Tasks user domain.</li><li class="substep">Enter the user Id of the AVEVA Work Tasks user.</li><li class="substep">Enter the AVEVA Work Tasks user password.<p class="substepinfo">Note: Your User Id should be added to the Administrators, SkeltaAdmins, or SkeltaRemoteUsers role for authentication to succeed.</p>
+</li></ol></li><li class="steptestdonotuse">To check if authentication is successful, and to see the list of repositories available, click <strong class="strong">Test Connection</strong>. <p class="stepinfo">If the authentication is successful, the Repository Name field is populated with repositories available. If the connection fails, you need to re-enter the details.</p>
+</li><li class="steptestdonotuse">Select one repository from the drop down. The provisioning screen appears.</li><li class="steptestdonotuse">Select the provider from the drop-down list, username and password, depending on provider selection. Click Authorize to enable provisioning.<p class="stepinfo"></p>
+<p class="stepinfo"><strong class="strong">Using the Advanced Tabs</strong></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">The <strong class="strong">Advanced </strong>tab is available for <strong class="strong">Outbound Connection Info</strong> settings.</p>
+<p class="stepinfo"><strong class="strong">Outbound Connection Info</strong>: Advanced Options</p>
+<p class="stepinfo"><strong class="strong">Outbound Connector Port</strong>: This field can be edited after you provision the AVEVA Work Tasks Repository for the Information Server.</p>
+<p class="stepinfo"><strong class="strong">Outbound Connector Binding</strong>:</p>
+<p class="stepinfo"><strong class="strong">TCP</strong>: Default. Binding protocol for the connection, preferably used when AVEVA Work Tasks Server is within the same network.</p>
+<p class="stepinfo"><strong class="strong">HTTPS</strong>: Secure connectivity over the Internet.</p>
+<p class="stepinfo"><strong class="strong">Operation Timeout</strong>: Time period after which the request made to the AVEVA Work Tasks server will end if not connected.</p>
+<p class="stepinfo"><strong class="strong">Connection Life Time</strong>: Time period that the connection will last between the Information Server and the AVEVA Work Tasks Server.</p>
+<p class="stepinfo"><strong class="strong">User Provided Name</strong>: Repository user provider. This can be Active Directory or AVEVA Work Tasks List.</p>
+<p class="stepinfo"><strong class="strong">Theme</strong>: Repository theme, Grey or default.</p>
+<p class="stepinfo"><strong class="strong">Enterprise Site Console URL</strong>: The URL used to access the AVEVA Work Tasks Repository from the AVEVA Work Tasks Server.</p>
+<p class="stepinfo"><strong class="strong">Repository Auth User Id</strong>: Captured during provisioning and displayed.</p>
+<p class="stepinfo"><strong class="strong">Repository Auth User Password</strong>: Captured during provisioning.</p>
+<p class="stepresult"></p>
+<p class="stepresult">The <b class="windowtitle">AVEVA Work Tasks Server and Repository Details </b>screen appears. </p>
+</li><li class="steptestdonotuse">Click <b class="uicontrol">Connect </b>to configure the repository for Information Server. <p class="stepresult">The <b class="windowtitle">Manage Connected Workflow Repositories</b> screen appears.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><strong class="strong">Manage Connected Workflow Repositories</strong></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">- You can add or delete AVEVA Work Tasks repositories using the Add New or Delete buttons respectively.</p>
+<p class="stepinfo">- When you connect, this repository is listed in the Information Server under the AVEVA Work Tasks Repositories node. Also, the Central Configuration link of the Repository is created under the AVEVA Work Tasks Farm node.</p>
+</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Using AVEVA Work Tasks Activities</a></p><p class="relateditem"><a href="optiontodisableloggingofstrings.html" target="_self">Option to Disable Logging of Strings</a></p><p class="relateditem"><a href="usinglocalvariables.html" target="_self">Using Local Variables</a></p><p class="relateditem"><a href="settingcustompropertiesforrepositorydatasource.html" target="_self">Setting Custom Properties for Repository Data Source</a></p><p class="relateditem"><a href="enablingskeltaxcopydeployment.html" target="_self">Enabling AVEVA Work Tasks Xcopy Deployment</a></p><p class="relateditem"><a href="timeoutenhancement.html" target="_self">Human Activity - Enhancement for Escalation and Time out</a></p><p class="relateditem"><a href="workitemfield.html" target="_self">Modifying the Number of WorkItem Fields Limit Per Data Type</a></p><p class="relateditem"><a href="managerlookupforskeltauserslist.html" target="_self">Manager Lookup for AVEVA Work Tasks Users List</a></p><p class="relateditem"><a href="redirectingloginpage.html" target="_self">Redirecting the Log On Page</a></p><p class="relateditem"><a href="rolelookup.html" target="_self">About Role Lookup</a></p><p class="relateditem"><a href="using_work_action.html" target="_self">Using Work Activity</a></p><p class="relateditem"><a href="automapping.html" target="_self">Auto Mapping of Active Directory Providers</a></p><p class="relateditem"><a href="customizingloginpage.html" target="_self">Customizing the Log On Page</a></p><p class="relateditem"><a href="understandingskeltabpmnet2007providers.html" target="_self">AVEVA Work Tasks Providers for Controls</a></p><p class="relateditem"><a href="persistingloggedexceptionstodatabase.html" target="_self">Persisting Logged Exceptions to Database</a></p><p class="relateditem"><a href="localizingtheresponsesentforaninvalidemailtotheskeltacommunicationengine.html" target="_self">Localizing the Response Sent for an Invalid Email to the AVEVA Work Tasks Communication Engine</a></p><p class="relateditem"><a href="codesamples1.html" target="_self">SOA</a></p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1.html" target="_self">Embedding AVEVA Work Tasks Controls in the Application</a></p><p class="relateditem"><a href="differentemailtemplatefordifferentactivityinaworkflow.html" target="_self">Different Email Template for Different Activity in a Workflow</a></p><p class="relateditem"><a href="provisioning_2.html" target="_self">Work Items List</a></p><p class="relateditem"><a href="businessactivitymonitoringreports.html" target="_self">Business Activity Monitoring and Reports</a></p><p class="relateditem"><a href="setappearanceproperties.html" target="_self">Set Appearance Properties for Activity Icons</a></p><p class="relateditem"><a href="searchforcontent.html" target="_self">Searching for Content in Workflow</a></p><p class="relateditem"><a href="usingtheprocessmapimagefornavigation.html" target="_self">Using the Process Map Image for Navigation</a></p><p class="relateditem"><a href="processmodelingsavingtheanalystsview.html" target="_self">Process Modeling and Saving the Analyst's View</a></p><p class="relateditem"><a href="SettingActivityandLinkProperties.html" target="_self">Setting Activity and Link Properties</a></p><p class="relateditem"><a href="LinkingActivitiesinProcessDesigner.html" target="_self">Linking Activities in Process Designer</a></p><p class="relateditem"><a href="AddingActivitiesinProcessDesigner.html" target="_self">Adding Activities in Process Designer</a></p><p class="relateditem"><a href="ImportandExportFunctionsinProcessDesigner.html" target="_self">Import and Export Functions in Process Designer</a></p><p class="relateditem"><a href="ProcessDesignerEditOperations.html" target="_self">Process Designer Edit Operations</a></p><p class="relateditem"><a href="ProcessDesignerFileOperations.html" target="_self">Process Designer File Operations</a></p><p class="relateditem"><a href="abouttheprocessdesigner.html" target="_self">About the Process Designer</a></p><p class="relateditem"><a href="workingwiththecalendar.html" target="_self">AVEVA Work Tasks Calendars</a></p><p class="relateditem"><a href="queuemanagement.html" target="_self">Queue Management</a></p><p class="relateditem"><a href="opcuarepositoryprovisioningtool.html" target="_self">AVEVA Work Tasks OPC UA Repository Provisioning Tool</a></p></td>
+</tr>
+</table>
+
+
+
+<input id="topicId" type="hidden" value="194297" />
+<input id="topicDescription" type="hidden" value="AVEVA Work Tasks Connector for Information Server" />
+<input id="footer-modified" type="hidden" value="Last modified: 6/24/2015 6:41:45 AM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

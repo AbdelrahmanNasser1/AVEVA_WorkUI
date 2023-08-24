@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Web Parts Infrastructure </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601381" class="heading3">Using Web Parts Infrastructure</h3>
+<p class="paragraph">The Enterprise Console provides a rich set of tools and user controls to manage, control workflows, users. All the AVEVA Work Tasks Controls can be accessed inside the Enterprise console based on the security rights.</p>
+<p class="paragraph">Personalization of the controls play an important role in many of the scenarios where in which user can configure their configuration or settings for the control overriding the global or public configuration or view.</p>
+<p class="paragraph">And also in many scenarios, there is a requirement of setting the customized home page for the application site where the AVEVA Work Tasks controls should be able to place inside a specific layout and configure properties for the same.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="webpartsframework.html" target="_self">Web Parts Framework</a></p><p class="relateditem"><a href="aboutwebparts-out-of-the-box.html" target="_self">Out-of-the-Box Web Parts</a></p><p class="relateditem"><a href="otherwebpartproperties.html" target="_self">Other Web Part Properties</a></p><p class="relateditem"><a href="authenticationandpersonalization.html" target="_self">Authentication and Personalization</a></p><p class="relateditem"><a href="creatingcustomwebparts.html" target="_self">Creating Custom Web Parts</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+</script>	
+
+ </body>
+ </html>

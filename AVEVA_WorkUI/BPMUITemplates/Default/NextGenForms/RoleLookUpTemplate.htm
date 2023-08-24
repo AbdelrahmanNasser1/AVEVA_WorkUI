@@ -1,0 +1,101 @@
+﻿<div class="skpopup_overlay"></div>
+<div class="skpopup_maindiv">
+    <div id="skpopup_loader" class="skpopup_loader" data-bind="visible: showLoader"></div>
+    <div id="scrollView" class="skpopup_scrollview">
+        <div class="skpopup_pagesearch" id="pageSearch" data-skpop="0">
+            <div class="skh">
+                <div class="skm_bb" data-bind="click: cancel"></div>
+                <div class="skm_h" data-bind="text: selectedControlName"></div>
+            </div>
+            <div class="skcb skflx" data-skcw="none" data-skal="1" data-skt="0" data-bind="attr: { 'data-sknoc': numberOfColumns }">
+                <div data-sklp="3" class="skctr skfdc" data-bind="visible: isMultiple">
+                    <div class="skccon skfdr">
+                        <div class="skfl">
+                            <div class="skfli" data-bind="text: skelta.localize.getString('FormNGFULProvider')"></div>
+                        </div>
+                        <div class="skffb skflx">
+                            <select class="skdd" data-bind="options: providers, optionsText: 'Name', optionsValue: 'Value', value: selectedProvider">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div data-sklp="3" class="skctr skfdc" data-bind="attr: { 'data-sknoc': numberOfColumns }">
+                    <div class="skccon skfdr">
+                        <div class="skfl">
+                            <div id="T2_par" class="skfli" data-bind="text: skelta.localize.getString('FormNGFRLSearch')"></div>
+                        </div>
+                        <div class="skffb skflx " data-skm="0">
+                            <div class="skm" data-bind="visible: _isMandatory"></div>
+                            <input id="NF1ULSearchBox" type="text" class="ski" data-bind="mandatory: _isMandatory, hasfocus: _lostFocus, value: _value, valueUpdate: 'afterkeydown', event: { 'keypress': onEnterSearch }" />
+                        </div>
+                    </div>
+                    <div class="skvm" style="display: block !important;" data-bind="text: validationErrorMessage, visible: validationError"></div>
+                </div>
+            </div>
+        </div>
+        <div data-bind="visible: showResult" class="skpopup_pageresult" id="pageResult" data-skpop="0">
+            <div class="skh">
+                <div class="skm_bb" data-bind="click: noResultClick, clickBubble: false"></div>
+                <div class="skm_h" data-bind="text: selectedControlName"></div>
+            </div>
+
+            <div data-skpoprl="MobileView" data-bind="event: { 'keypress': onEnterSave }">
+                <div class="skfdc" data-bind="foreach: availableResourcesList">
+                    <div style="width: 100%;">
+                        <label>
+                            <input type="radio" name="ResourceList" data-bind="checked: $root.selectedAvailableResourcesList, attr: { value: Value }" />
+                            <span data-bind="text: Name"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skul-resourcelist" data-skpoprl="WebView" data-bind="event: { 'keypress': onEnterSave }">
+                <div data-skimf="0" data-skcnt="BaseForm" data-skvm="1" class="skcn" data-skbfr="1">
+                    <div class="skcfw skfdc">
+                        <div class="skcw">
+                            <div class="skcb skflx " data-skbfc="0">
+                                <div class="skfdc skgv" data-skgvcc="2">
+                                    <div class="skgvth">
+                                        <div data-bind="text: skelta.localize.getString('FormNGFRLResource')"></div>
+                                        <div data-bind="text: skelta.localize.getString('FormNGFRLProvider')"></div>
+                                    </div>
+                                    <div class="skgvtb" data-bind=" foreach: availableResourcesList">
+                                        <div>
+                                            <div style="width: 50% !important">
+                                                <label>
+                                                    <input type="radio" name="ResourceList" data-bind="checked: $root.selectedAvailableResourcesList, attr: { value: Value }" />
+                                                    <span data-bind="text: Name.split('[')[0]"></span>
+                                                </label>
+                                            </div>
+                                            <div style="width: 50% !important">
+                                                <span data-bind="text: Name.split('[')[1].substring(0, Name.split('[')[1].length - 1)"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-bind="visible: noResult" id="pageNoResult" data-skpop="0" class="skpopup_noresult">
+            <div class="skh">
+                <div class="skm_bb" data-bind="click: noResultClick, clickBubble: false"></div>
+                <div class="skm_h" data-bind="text: selectedControlName"></div>
+            </div>
+            <div data-sklp="2" class="skctr skfdc">
+                <div class="skccon skfdr" data-skla="4" data-sksl="0">
+                    <div class="skl" data-bind="text: skelta.localize.getString('FormNGFULNoResult')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="skf">
+        <input class="skbtn" type="button" data-bind="click: searchClick, visible: !showResult(), value: skelta.localize.getString('FormNGFRLSearchButton')" />
+        <input class="skbtn" type="button" data-bind="click: submit, visible: showResult, value: skelta.localize.getString('FormNGFRLSaveButton')" />
+        <input class="skbtn" data-skbtn="cancel" type="button" data-bind="click: cancel, value: skelta.localize.getString('FormNGFRLCancelButton')" />
+        <input class="skbtn" data-skbtn="cancel" type="button" data-bind="click: clear, visible: showResult, value: skelta.localize.getString('FormNGFRLClearButton')" style="float: left" />
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating a Workflow for a List in a Single Step </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601921" class="heading5">Creating a Workflow for a List in a Single Step</h5>
+<p class="paragraph">The List Workflow option in the Workflows ribbon bar helps to create and associate a workflow to a list in a single step.</p>
+<p class="procedureheading">To create a Workflow for a list</p>
+<ol class="step"><li class="step">Log on to the<b class="uicontrol">&nbsp;Enterprise Console</b>&nbsp;and create a list.</li><li class="step">Click the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;menu on the top and select&nbsp;<b class="uicontrol">Workflows</b>&nbsp;from the drop-down list. The Workflows screen is displayed. <p class="stepinfo"></p>
+</li><li class="step">Click<b class="uicontrol"> New</b> and then click&nbsp;<b class="uicontrol">List</b>&nbsp;on the ribbon bar. The&nbsp;<b class="uicontrol">New List Workflow</b>&nbsp;screen appears. <br>Enter the required details.<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="0" style="border-collapse:collapse">
+<tr>
+<td width="192" height="0"></td>
+<td width="384" height="0"></td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="lcontinue">Field</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="lcontinue">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" colspan="2" width="576"><p class="lcontinue"><strong class="strong">New List Workflow</strong></p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="lcontinue">Title</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="lcontinue">Enter a title of workflow for the List in this field.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="lcontinue">Description</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="lcontinue">Enter a description for the workflow in this field.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" colspan="2" width="576"><p class="lcontinue"><strong class="strong">Associate to List Event</strong>&nbsp;- This can also be done using the 'Associate' icon in the AVEVA Work Tasks Workflow List Menu.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="lcontinue">List</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="lcontinue">Select a list ID. The&nbsp;<b class="uicontrol">List Explorer</b>&nbsp;screen opens. Select the list name from the drop-down list and click&nbsp;<b class="uicontrol">Submit</b>.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="192"><p class="lcontinue">Event</p>
+</td>
+<td style="border:1px solid #010101;" width="384"><p class="lcontinue">Select an event from this drop-down list.</p>
+<p class="lcontinue">The available options are&nbsp;<b class="uicontrol">OnCreate</b>,&nbsp;<b class="uicontrol">OnDelete</b>,&nbsp;<b class="uicontrol">OnPublish</b>,&nbsp;<b class="uicontrol">OnUnPublish</b>, and&nbsp;<b class="uicontrol">OnVersionChange</b>.</p>
+</td>
+</tr>
+
+</table>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Save &amp; Continue</b>. The following screen is displayed.&nbsp;<br>&nbsp;<img id="f50409" src="50409.png" class="embeddedimage100%scalinglive" alt="" height="313" width="535" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Select the required task, and then click&nbsp;<b class="uicontrol">Finish</b>. The&nbsp;<b class="uicontrol">Process Designer</b>&nbsp;screen opens.&nbsp;<br></li><li class="step">Following behavior is observed while using List Workflow.</li></ol><ul class="ulitem"><li class="ulitem">Workflow Creation <br>When you click&nbsp;<b class="uicontrol">Finish</b>, a workflow is created for the selected list. You can open this workflow either by selecting&nbsp;Design the Workflow now&nbsp;from tasks or using&nbsp;<b class="uicontrol">Design Workflow</b>&nbsp;in the context menu of the workflow item.</li><li class="ulitem">List XML Variable  <br>An XML variable of XML List type is also created by default and the List name is used as the Variable name. To view the XML Variable, go to the workflow designer screen. Right-click the&nbsp;<b class="uicontrol">Start</b>&nbsp;activity, select&nbsp;<b class="uicontrol">Activity Properties</b>&nbsp;from the options and then select the&nbsp;<b class="uicontrol">XML Variables</b>&nbsp;icon from the&nbsp;<b class="uicontrol">Activity Properties</b>. <br><br><img id="f50411" src="50411.png" class="embeddedimage100%scalinglive" alt="" height="478" width="555" vspace="0" hspace="0" align="bottom" border="0"></li></ul><p class="paragraph">You can notice that, the variable is created with scope as&nbsp;<b class="uicontrol">Current</b>, which means, this variable is responsible to give the information of the list item which initiates the workflow. The XML variables displayed in tree-view are the XML nodes that are mapped to the controls while creating the list.</p>
+<p class="paragraph">System nodes are also created automatically for internal use. This helps you to save the list item in to another version as published or draft and also helps to save the item as folder for the list item.</p>
+<ul class="ulitem"><li class="ulitem">List Event Association <br>This workflow is associated to the list event that you have selected at the time of execution. To view the associations, select the workflow, right click and select&nbsp;<b class="uicontrol">View Associations</b>&nbsp;from the options. <br><br><img id="f191012" src="191012.png" class="embeddedimage100%scalinglive" alt="" height="130" width="575" vspace="0" hspace="0" align="bottom" border="0"></li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="xmlvariableforlist.html" target="_self">XML Variable for List</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

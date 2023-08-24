@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Embedding Controls in the Application </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601894" class="heading3">Embedding Controls in the Application</h3>
+<p class="paragraph"><strong class="strong">AVEVA Work Tasks</strong> provides out-of-box server controls. You can configure the properties of<strong class="strong"> AVEVA Work Tasks</strong> server controls to suit diverse applications.</p>
+<p class="paragraph">The controls should be added using a panel.</p>
+<p class="procedureheading">To Add Controls Using a Panel:</p>
+<ol class="step"><li class="step">Drag and drop a panel.</li><li class="step">In the underlying code, create a new instance of control and add the instance to the panel as in the example below:&nbsp;&nbsp;<p class="codeblock1">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(&quot;Telematics&quot;);//Repository name</p>
+<p class="codeblock1">object loggedinUserId = &quot;2d52b2c0-4cf8-4af6-acad-a0c9908eeab5&quot;;</p>
+<p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;);</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl WIL = new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">WIL.ApplicationName = uContext.Repository.ApplicationName;</p>
+<p class="codeblock1">WIL.UserIdString = uContext.LoggedInUserId;</p>
+<p class="codeblock1">WIL.ID = &quot;WorkItemListControl&quot;;</p>
+<p class="codeblock1">WIL.DisplayGroupUI = true;</p>
+<p class="codeblock1">WIL.Height = Unit.Percentage(100);</p>
+<p class="codeblock1">WIL.ReadingPaneInPopupWindow = true;</p>
+<p class="codeblock1">Panel1.Controls.Add(WIL);//add control to the panel</p>
+</li></ol><p class="paragraph">&nbsp;</p>
+<p class="note"><strong class="notelabel">Note:</strong> To load all the controls separately on aspx page, set the user context first. For example:&nbsp;Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;)</p>
+<p class="subheading">Server Controls</p>
+<p class="paragraph">AVEVA Work Tasks provides the following server controls out of box:</p>
+<ol class="olitem"><li class="olitem"><a id="h50242" class="jump-currentwindowlive" title="Process Designer Control" href="processdesignercontrol.html" target="_self">Process Designer Control</a></li><li class="olitem"><a id="h50243" class="jump-currentwindowlive" title="Work Items List Control" href="workitemlistcontrols.html" target="_self">Work Items List Control</a></li><li class="olitem"><a id="h50244" class="jump-currentwindowlive" title="Calendar Control" href="calendarcontrol.html" target="_self">Calendar Control</a></li><li class="olitem"><a id="h50245" class="jump-currentwindowlive" title="BAM Control" href="bamcontrol.html" target="_self">BAM Control</a></li><li class="olitem"><a id="h50246" class="jump-currentwindowlive" title="Queue Control" href="queuecontrol.html" target="_self">Queue Control</a></li><li class="olitem"><a id="h50247" class="jump-currentwindowlive" title="List Control" href="listcontrols.html" target="_self">List Control</a></li><li class="olitem"><a id="h50248" class="jump-currentwindowlive" title="Workflow Execution View Control" href="workflowexecutingreportcontrol.html" target="_self">Workflow Execution View Control</a></li></ol>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

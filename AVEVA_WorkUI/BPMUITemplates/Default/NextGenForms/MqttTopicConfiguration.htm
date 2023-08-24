@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>MQTT Topic Configuration</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/paho-mqtt-min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script type="text/javascript" src="js/jsonpath.min.js"></script>
+    <script type="text/javascript" src="js/pbkdf2-min.js"></script>
+    <script type="text/javascript" src="js/aes-min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/SkeltaFormsEditControl.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style>
+        .txtSubscribedValueCustomStyle_skctr, .txtSubscribedValueCustomStyle_skffb, .btnCustomStyle_skffb
+        {
+            padding-bottom: 0;
+        }
+
+        .txtSubscribedValueCustomStyle_skc, .txtExtractedvalueCustomStyle_skc
+        {
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .btnCustomStyle_skctr
+        {
+            padding-top: 0;
+        }
+
+        .btnCustomStyle_skffb
+        {
+            text-align: right;
+        }
+    </style>
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var editFrame = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"] : window.parent.frames["editframe"].contentWindow;
+        var skeltaUserContext = skelta.userContext;
+        var viewModelObject, editPageVm;
+        var popupWindow = null;
+        var rowIndex = null;
+        var isAutoSaved = false;
+        var mqttConfigXmlWithCData;
+        var mqttConnectionDetail;
+        var mqtt;
+        var subscribeTimer;
+        $(document).ready(function ()
+        {
+            try
+            {
+                rowIndex = skeltaUtils.getUrlParameterValue(window, 'rowIndex');
+
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                skeltaUtils.loadPageDefault();
+                loadMqttTopicConfigurationForm();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGF_MqttTopicConfigFormPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormsNGF_MqttTopicConfigFormPageError") + "\n" + exception.message);
+            }
+        });
+
+        //Set value from script editor to script field
+        function setValueToControl(id, value)
+        {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(value))
+            {
+                var cSectionData = skelta.utilities.addCDataSection(value);
+                viewModelObject.findById(id)._value(cSectionData);
+            }
+            else
+            {
+                viewModelObject.findById(id)._value(value);
+            }
+        }
+
+        //Load MQTT Topic configuration form
+        function loadMqttTopicConfigurationForm()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "cId": editFrame.sfdcontainer,
+                "cName": window.parent.skelta.userContext.getUserContextFor("fName")
+            });
+
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetMqttFormConfiguration", "application/json; charset=utf-8", jsonHelper,
+                "json",
+                success,
+                fail,
+                function ()
+                {
+                    skeltaUtils.pageLoadComplete("");
+                }, false);
+        }
+
+        function success(resultData)
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_MTC", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+            editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            mqttConfigXmlWithCData = editPageVm.findByXmlNode("MqttTopics").records()[rowIndex].findByXmlNode("MqttTopic").value;
+
+            var mqttConfigXml = "";
+
+            if (!skelta.utilities.isUndefinedNullOrEmpty(mqttConfigXmlWithCData))
+            {
+                mqttConfigXml = skelta.utilities.removeCdataSection(mqttConfigXmlWithCData);
+                mqttConfigXml = skelta.utilities.decodeXmlValue(mqttConfigXml);
+            }
+
+            document.title = skelta.localize.getString("FormsNGF_MqttTopicConfigFormPageTitle");
+
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            viewModelObject.onSave.subscribeEvent(updateFormDetails);
+            viewModelObject.onCancel.subscribeEvent(closeFormDetailsConfig);
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+
+            if (skelta.utilities.isUndefinedNullOrEmpty(mqttConfigXml))
+            {
+                viewModelObject.topLevelForm.findByXmlNode("TopicName").value = "";
+                var ctrlControlname = viewModelObject.topLevelForm.findByXmlNode("ControlName");
+                var ctrlMqttConnection = viewModelObject.topLevelForm.findByXmlNode("MqttConnection");
+                var ctrlActionType = viewModelObject.topLevelForm.findByXmlNode("ActionType");
+
+                if (ctrlMqttConnection.options.length > 0)
+                    ctrlMqttConnection.value = ctrlMqttConnection.options[0].optionvalue;
+
+                if (ctrlActionType.options.length > 0)
+                    ctrlActionType.value = ctrlActionType.options[0].optionvalue;
+
+                if (ctrlControlname.options.length > 0)
+                    ctrlControlname.value = ctrlControlname.options[0].optionvalue;
+
+                return;
+            }
+
+            var mqttTopicConfigForm = skeltaUtils.getJSONObjectFromXml(mqttConfigXml).MqttTopic;
+            viewModelObject.topLevelForm.findByXmlNode("TopicName").value = mqttTopicConfigForm.TopicName;
+            viewModelObject.topLevelForm.findByXmlNode("JsonPath").value = mqttTopicConfigForm.JsonPath;
+            var dataTypeValue = skelta.utilities.isUndefinedNullOrEmpty(mqttTopicConfigForm.DataType) ? viewModelObject.topLevelForm.findByXmlNode("DataType").options[0].optionvalue : mqttTopicConfigForm.DataType;
+            viewModelObject.topLevelForm.findByXmlNode("DataType").value = dataTypeValue;
+            viewModelObject.topLevelForm.findByXmlNode("IsArray").value = mqttTopicConfigForm.IsArray;
+            viewModelObject.topLevelForm.findByXmlNode("ActionType").value = mqttTopicConfigForm.ActionType;
+            if (mqttTopicConfigForm.ActionType === "1")
+            {
+                if (isControlExists(viewModelObject.topLevelForm.findByXmlNode("ControlName"), mqttTopicConfigForm.ControlName))
+                {
+                    viewModelObject.topLevelForm.findByXmlNode("ControlName").value = mqttTopicConfigForm.ControlName;
+                }
+            }
+            else
+            {
+                viewModelObject.topLevelForm.findByXmlNode("ActionScript").value = mqttTopicConfigForm.ActionScript.__cdata;
+            }
+
+
+            if (mqttTopicConfigForm.IsArray.toLowerCase() === "true")
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(mqttTopicConfigForm.ArraySeparator))
+                {
+                    viewModelObject.topLevelForm.findByXmlNode("ArraySeparator").value = mqttTopicConfigForm.ArraySeparator.__cdata;
+                }
+
+                if (!skelta.utilities.isUndefinedNullOrEmpty(mqttTopicConfigForm.ElementPosition))
+                {
+                    viewModelObject.topLevelForm.findByXmlNode("ElementPosition").value = mqttTopicConfigForm.ElementPosition;
+                }
+            }
+            viewModelObject.topLevelForm.findByXmlNode("MqttConnection").value = mqttTopicConfigForm.MqttConnection;
+        }
+
+        function isControlExists(ctrlControlName, controlName)
+        {
+            var isElementExists = false;
+
+            if (!skelta.utilities.isUndefined(ctrlControlName))
+            {
+                var elementOption = ctrlControlName.options.find(function (element)
+                {
+                    return element.optionvalue === controlName;
+                });
+
+                if (!skelta.utilities.isUndefined(elementOption))
+                {
+                    isElementExists = true;
+                }
+            }
+
+            return isElementExists;
+        }
+
+        function IsControlAlreadyLinked(currentIndex)
+        {
+            let isControlLinked = false;
+            var ctrlControlname = viewModelObject.topLevelForm.findByXmlNode("ControlName");
+            $.each(editPageVm.findByXmlNode("MqttTopics").records(), function (index, item)
+            {
+                var mqttConfigXmlWithCData = editPageVm.findByXmlNode("MqttTopics").records()[index].findByXmlNode("MqttTopic").value;
+                if (!skelta.utilities.isUndefinedNullOrEmpty(mqttConfigXmlWithCData))
+                {
+                    mqttConfigXml = skelta.utilities.removeCdataSection(mqttConfigXmlWithCData);
+                    mqttConfigXml = skelta.utilities.decodeXmlValue(mqttConfigXml);
+                    var mqttTopic = skeltaUtils.getJSONObjectFromXml(mqttConfigXml).MqttTopic;
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(mqttTopic.ControlName) && skelta.utilities.parseNumberValue(currentIndex) !== index && mqttTopic.ControlName === ctrlControlname.value)
+                    {
+                        isControlLinked = true;
+                        return false;
+                    }
+                }
+            });
+            return isControlLinked;
+        }
+
+        function fail(result)
+        {
+            skeltaUtils.showError(document.title, result.status + '<br>' + result.statusText + '<br>' + result.responseText);
+            logger.logError(result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+
+        function makeFrameInvisible()
+        {
+            parent.document.getElementById("propertyLookupFrame").attributes["data-skfsw"].value = 0;
+            parent.document.getElementById("propertyLookupFrame").src = "";
+        }
+
+        function closeFormDetailsConfig()
+        {
+            editPageVm.findByXmlNode("MqttTopics").records()[rowIndex].findByXmlNode("MqttTopic").value = mqttConfigXmlWithCData;
+            if (isAutoSaved === true)
+            {
+                updateProperties();
+            }
+            makeFrameInvisible();
+        }
+
+        function updateFormDetails(inputParameterObject, eventArgs)
+        {
+            if (IsControlAlreadyLinked(rowIndex) === true)
+            {
+                var ctrlControlname = control.findByXmlNode("ControlName");
+                if (ctrlControlname.options.length > 0)
+                    ctrlControlname.value = "";
+
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGF_ControlAlreadyLinked"));
+                skeltaUtils.pageLoadComplete("");
+                return;
+            }
+            var extractedVal = control.findByXmlNode("ExtractedValue").value;
+            if (skelta.utilities.isUndefinedNullOrEmpty(extractedVal))
+            {
+                skeltaUtils.showConfirmation(skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Title"),
+                    skelta.localize.getString("FormsNGF_MQTT_Extracted_Value_Empty"),
+                    function (res)
+                    {
+                        if (res)
+                        {
+                            submitForm(inputParameterObject);
+                        } else
+                        {
+                            skeltaUtils.pageLoadComplete("");
+                            return;
+                        }
+                    },
+                    skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Ok"),
+                    skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Cancel"),
+                    "");
+            }
+            else
+            {
+                submitForm(inputParameterObject);
+            }
+        }
+
+        function submitForm(inputParameterObject)
+        {
+            if (!skelta.utilities.isUndefinedNullOrEmpty(inputParameterObject.instanceXml) &&
+                !skelta.utilities.isUndefinedNullOrEmpty(inputParameterObject.instanceXml.MqttTopic) &&
+                !skelta.utilities.hasCDataSection(inputParameterObject.instanceXml.MqttTopic.ActionScript))
+            {
+                var cSecData = skelta.utilities.addCDataSection(inputParameterObject.instanceXml.MqttTopic.ActionScript);
+                inputParameterObject.instanceXml.MqttTopic.ActionScript = cSecData;
+            }
+
+            if (!skelta.utilities.isUndefinedNullOrEmpty(inputParameterObject.instanceXml) &&
+                !skelta.utilities.isUndefinedNullOrEmpty(inputParameterObject.instanceXml.MqttTopic) &&
+                !skelta.utilities.hasCDataSection(inputParameterObject.instanceXml.MqttTopic.ArraySeparator))
+            {
+                var cSecArrSepData = skelta.utilities.addCDataSection(inputParameterObject.instanceXml.MqttTopic.ArraySeparator);
+                inputParameterObject.instanceXml.MqttTopic.ArraySeparator = cSecArrSepData;
+            }
+
+            var configXml = skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml);
+            var encodeXml = skelta.utilities.encodeXmlValue(configXml);
+            var secCData = skelta.utilities.addCDataSection(encodeXml);
+            editPageVm.findByXmlNode("MqttTopics").records()[rowIndex].findByXmlNode("MqttTopic").value = secCData;
+            makeFrameInvisible();
+        }
+
+        function getConnectionDetails(connectionName)
+        {
+            var conndetails = "";
+            var appName = window.parent.skeltaUserContext.getUserContextFor("appN");
+            var params = skeltaUtils.createJsonRequestHelper({
+                "applicationName": appName,
+                "connectionName": connectionName
+            });
+
+            skeltaUtils.callServerMethod("GET",
+                "NextGenFormService.aspx/GetMqttConnectionDetail",
+                "application/json; charset=utf-8",
+                params,
+                "json",
+                function (resultData)
+                {
+                    if (skelta.utilities.isUndefinedNullOrEmpty(resultData.d))
+                    {
+                        return "";
+                    }
+                    conndetails = $.parseJSON(resultData.d);
+                },
+                null,
+                null,
+                false);
+            return conndetails;
+        }
+
+        // Connect to MQTT server to message for Topic
+        function connectMqttServer(control)
+        {
+            if (skelta.utilities.isUndefinedNullOrEmpty(mqttConnectionDetail))
+            {
+                return;
+            }
+            control.findByXmlNode("SubscribedValue").value = "";
+            var ctlTopicName = control.findByXmlNode("TopicName");
+            var topicName = ctlTopicName.value;
+            var connectionDetail = {
+                host: mqttConnectionDetail.Host,
+                port: mqttConnectionDetail.Port,
+                webSocketEndPath: mqttConnectionDetail.WebSocketEndPath,
+                userId: mqttConnectionDetail.UserId,
+                password: mqttConnectionDetail.Password,
+                reconnectAttempts: 0,
+                clientId: GetUniqueClientId(),
+                onConnect: function (message)
+                {
+                    if (!skelta.utilities.isUndefined(mqtt))
+                    {
+                        mqtt.subscribe(topicName, 2);
+                        //After 5 seconds disconnected
+                        subscribeTimer = window.setTimeout(function ()
+                        {
+                            disconnectMqtt(control);
+                            var subscribedValue = control.findByXmlNode("SubscribedValue").value;
+                            //When subscribed value is empty and prompted to retrieve with refresh click
+                            if (skelta.utilities.isUndefinedNullOrEmpty(subscribedValue))
+                            {
+                                var message = skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Subscribed_Empty");
+                                skeltaUtils.showAlert(skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Title"), message);
+                            }
+                            enableDisableRefershButton(control, mqttConnectionDetail);
+                        }, 5000);
+                        mqttConnectionDetail.isMqttConnected = true;
+                        enableDisableRefershButton(control, mqttConnectionDetail);
+                    }
+                },
+                onFailure: function (message)
+                {
+                    mqttConnectionDetail.isMqttConnected = false;
+                    enableDisableRefershButton(control, mqttConnectionDetail);
+                    var connectionName = control.findByXmlNode("MqttConnection").value;
+                    var errorMessage = skelta.localize.getString("FormsNGF_Error_MQTT_Connection").replace("<@connectionname@>", connectionName);
+                    logger.logError(errorMessage + ": " + message.errorMessage);
+                    skeltaUtils.showError(skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Title"), errorMessage);
+                },
+                onMessageArrived: function (message)
+                {
+                    if (!skelta.utilities.isUndefined(mqtt))
+                    {
+                        if (topicName === message.destinationName)
+                        {
+                            //null char is replaced with empty string.
+                            var msgString = message.payloadString.replace(/\0/g, "");
+                            control.findByXmlNode("SubscribedValue").value = msgString;
+                            refreshExtractedData(control);
+                            disconnectMqtt(control);
+                        }
+                    }
+                },
+                onConnectionLost: function (responseObject)
+                {
+                    mqttConnectionDetail.isMqttConnected = false;
+                    enableDisableRefershButton(control, mqttConnectionDetail);
+                    //clear subscribe timer
+                    if (!skelta.utilities.isUndefined(subscribeTimer))
+                    {
+                        window.clearTimeout(subscribeTimer);
+                        subscribeTimer = null;
+                    }
+                },
+                topics: [topicName],
+                source: "MQTTTopicPageConfiguration",
+                connectionName: control.findByXmlNode("MqttConnection").value,
+                connectionSecured: mqttConnectionDetail.ConnectionSecured,
+                mqttVersion: mqttConnectionDetail.MqttVersion
+            };
+
+            try
+            {
+                mqtt = new skelta.Mqtt(connectionDetail);
+                mqtt.connect();
+                mqttConnectionDetail.isMqttConnected = true;
+                enableDisableRefershButton(control, mqttConnectionDetail);
+            }
+            catch (exception)
+            {
+                var connectionName = control.findByXmlNode("MqttConnection").value;
+                var errorMessage = skelta.localize.getString("FormsNGF_Error_MQTT_Connection")
+                    .replace("<@connectionname@>", connectionName);
+                logger.logError(errorMessage + ": " + message.errorMessage);
+                skeltaUtils.showError(skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Title"), errorMessage);
+            }
+        }
+
+        function disconnectMqtt(control)
+        {
+            if (!skelta.utilities.isUndefined(mqtt))
+            {
+                var ctlTopicName = control.findByXmlNode("TopicName");
+                mqtt.unsubscribe(ctlTopicName.value);
+                mqtt.disconnect();
+                if (!skelta.utilities.isUndefined(subscribeTimer))
+                {
+                    window.clearTimeout(subscribeTimer);
+                    subscribeTimer = null;
+                }
+            }
+            mqtt = null;
+            if (!skelta.utilities.isUndefined(mqttConnectionDetail) &&
+                !skelta.utilities.isUndefined(mqttConnectionDetail.isMqttConnected))
+            {
+                mqttConnectionDetail.isMqttConnected = false;
+            }
+
+            enableDisableRefershButton(control, mqttConnectionDetail);
+        }
+
+        function enableDisableRefershButton(control, mqttConnectionDetail)
+        {
+            control.associatedForm.btnRefresh.enable = true;
+            if (!skelta.utilities.isUndefined(mqttConnectionDetail) &&
+                !skelta.utilities.isUndefined(mqttConnectionDetail.isMqttConnected) &&
+                mqttConnectionDetail.isMqttConnected === true)
+            {
+                control.associatedForm.btnRefresh.enable = false;
+            }
+        }
+
+        // Refresh extracted data
+        function refreshExtractedData(control)
+        {
+            try
+            {
+                // set the value to control Instance
+                //clear the Extracted value
+                var ctrlExtractedVal = control.findByXmlNode("ExtractedValue");
+                ctrlExtractedVal.value = "";
+
+                var subscribedValue = control.findByXmlNode("SubscribedValue").value;
+                //subscribedValue is empty return
+                if (skelta.utilities.isUndefinedNullOrEmpty(subscribedValue))
+                {
+                    return;
+                }
+
+                //Mqtt topic detail object created  to set value to control instance
+                var mqttTopicDetails = new skelta.MqttConnectionTopicDetails(null, viewModelObject.topLevelForm);
+
+                //Topic objects created to set the extracted value
+                var topic = {
+                    isArray: (control.findByXmlNode("IsArray").value === "True"),
+                    elementPosition: skelta.utilities.isUndefinedNullOrEmpty(control.findByXmlNode("ElementPosition")
+                        .value)
+                        ? 1
+                        : control.findByXmlNode("ElementPosition").value,
+                    arraySeparator: "<![CDATA[" + control.findByXmlNode("ArraySeparator").value + "]]>",
+                    topicName: control.findByXmlNode("TopicName").value,
+                    topicDataType: control.findByXmlNode("DataType").value,
+                    actionType: control.findByXmlNode("ActionType").value,
+                    jsonPath: control.findByXmlNode("JsonPath").value
+                };
+                //Get extracted specific value based on jsonpath, datatype, array, separator, topic, action type
+                var extractedValue = mqttTopicDetails.getExtractedSpecificValue(subscribedValue, topic);
+                //Set extracted value based on action type
+                setExtractedValueBasedAction(control, mqttTopicDetails, extractedValue, topic);
+            }
+            catch (err)
+            {
+                var topicPath = control.findByXmlNode("TopicName").value;
+                logger.logError(skelta.localize.getString("FormsNGF_Json_Parse_Failed").replace("<@topicname@>", topicPath) + " - " + err.message);
+            }
+        }
+
+        function setExtractedValueBasedAction(control, mqttTopicDetails, extractedValue, topic)
+        {
+            var ctrlExtractedVal = control.findByXmlNode("ExtractedValue");
+            //Assign value based on action type
+            if (topic.actionType === "1")
+            {
+                var controlType = getControlType(control);
+                if (!skelta.utilities.isUndefinedNullOrEmpty(controlType))
+                {
+                    var ctrlvalue = mqttTopicDetails.getValueForControl(controlType, extractedValue, topic);
+                    //Link to control
+                    ctrlExtractedVal.value = ctrlvalue.toString();
+                }
+            }
+            else if (topic.actionType === "2")
+            {
+                //Link to action script
+                ctrlExtractedVal.value = extractedValue.toString();
+            }
+        }
+
+        function getControlType(control)
+        {
+            var controlType = "";
+            var ctlControlName = control.findByXmlNode("ControlName");
+            //Control Type tag
+            if (!skelta.utilities.isUndefinedNullOrEmpty(ctlControlName.value))
+            {
+                var elementOption = ctlControlName.options.find(function (element)
+                {
+                    return element.optionvalue === ctlControlName.value;
+                });
+
+                if (!skelta.utilities.isUndefined(elementOption))
+                {
+                    controlType = elementOption.tag;
+                }
+            }
+            return controlType;
+        }
+
+        //on topic changed
+        function onTopicChanged(control, currentValue)
+        {
+            if (!skelta.utilities.isUndefined(mqttConnectionDetail) &&
+                !skelta.utilities.isUndefined(mqttConnectionDetail.isMqttConnected)
+                && mqttConnectionDetail.isMqttConnected === true)
+            {
+                disconnectMqtt(control);
+            }
+            connectMqttServer(control);
+            refreshExtractedData(control);
+        }
+
+        //on Mqtt connection changed
+        function onMqttConnectionChanged(control, currentValue)
+        {
+            control.findByXmlNode("SubscribedValue").value = "";
+            control.findByXmlNode("ExtractedValue").value = "";
+            //existing connection is not same, disconnect mqtt connection
+            if (!skelta.utilities.isUndefinedNullOrEmpty(mqttConnectionDetail))
+            {
+                if (mqttConnectionDetail.connectionTitle !== currentValue)
+                {
+                    if (!skelta.utilities.isUndefined(mqttConnectionDetail.isMqttConnected) && mqttConnectionDetail.isMqttConnected === true)
+                    {
+                        disconnectMqtt(control);
+                    }
+                }
+            }
+
+            mqttConnectionDetail = getConnectionDetails(currentValue);
+            mqttConnectionDetail.connectionTitle = currentValue;
+            mqttConnectionDetail.isMqttConnected = false;
+            if (!skelta.utilities.isUndefinedNullOrEmpty(mqttConnectionDetail))
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(mqttConnectionDetail.Password))
+                {
+                    var mqttTopicDetails = new skelta.MqttConnectionTopicDetails(null, viewModelObject.topLevelForm);
+                    mqttConnectionDetail.Password = mqttTopicDetails.getDecryptedstring(mqttConnectionDetail.Password,
+                        mqttConnectionDetail.Passkey,
+                        mqttConnectionDetail.VectorKey,
+                        mqttConnectionDetail.Salt);
+                }
+                connectMqttServer(control);
+                refreshExtractedData(control);
+            }
+        }
+
+
+        //on Refresh button clicked
+        function onRefreshButtonClicked(control)
+        {
+            if (!skelta.utilities.isUndefined(mqttConnectionDetail.isMqttConnected) && mqttConnectionDetail.isMqttConnected === true)
+            {
+                disconnectMqtt(control);
+            }
+            connectMqttServer(control);
+            refreshExtractedData(control);
+        }
+
+        //on Json path changed
+        function onJsonPathDataChanged(control, currentValue)
+        {
+            refreshExtractedData(control);
+        }
+
+        //on Data type changed
+        function onDatatypeChanged(control, currentValue)
+        {
+            refreshExtractedData(control);
+        }
+
+        //on Array data changed
+        function onArrayDataChanged(control)
+        {
+            var ctlIsArray = control.findByXmlNode("IsArray");
+            var txtArraySeparator = control.findByXmlNode("ArraySeparator");
+            var numElementPosition = control.findByXmlNode("ElementPosition");
+            if (ctlIsArray.value.toLowerCase() === "true")
+            {
+                txtArraySeparator.visible = true;
+                numElementPosition.visible = true;
+                numElementPosition.value = "";
+                txtArraySeparator.value = "";
+                txtArraySeparator.isMandatory = true;
+            }
+            else
+            {
+                txtArraySeparator.visible = false;
+                numElementPosition.visible = false;
+                numElementPosition.value = "";
+                txtArraySeparator.value = "";
+                txtArraySeparator.isMandatory = false;
+            }
+            refreshExtractedData(control);
+        }
+
+        //On separator value changed
+        function onSeparatorDataChanged(control, currentValue)
+        {
+            refreshExtractedData(control);
+        }
+
+        //On element position changed
+        function onElementPositionChanged(control, currentValue)
+        {
+            refreshExtractedData(control);
+        }
+
+        //on action type changed
+        function onActionTypeChange(control, currentValue)
+        {
+            var controlName = control.findByXmlNode("ControlName");
+            var actionScript = control.findByXmlNode("ActionScript");
+            var extractValue = control.findByXmlNode("ExtractedValue");
+            controlName.visible = controlName.isMandatory = false;
+            actionScript.visible = actionScript.isMandatory = false;
+
+            if (currentValue === "1")
+            {
+                controlName.visible = controlName.isMandatory = true;
+                actionScript.isMandatory = false;
+                actionScript.value = "";
+                extractValue.value = "";
+            }
+            else if (currentValue === "2")
+            {
+                actionScript.visible = actionScript.isMandatory = true;
+                controlName.isMandatory = false;
+                controlName.value = "";
+            }
+            refreshExtractedData(control);
+        }
+
+        //On linked control changed
+        function onLinkControlChange(control, currentValue)
+        {
+            refreshExtractedData(control);
+        }
+
+        function GetUniqueClientId(clientIdPrefix)
+        {
+            var clientUniqueId = skelta.forms.utilities.getGuId();
+            if (!skelta.utilities.isUndefined(clientIdPrefix) && !skelta.utilities.isEmpty(clientIdPrefix))
+            {
+                clientUniqueId = clientIdPrefix + clientUniqueId;
+            }
+            return clientUniqueId;
+        }
+
+        function updateTopicForm()
+        {
+            var topicInstanceXml = viewModelObject.topLevelForm.records()[0].getFormSubmissionData();
+            var configXml = skeltaUtils.getXmlFromJSONObject(topicInstanceXml);
+            configXml = "<![CDATA[" + skelta.utilities.encodeXmlValue(configXml) + "]]>";
+            editPageVm.findByXmlNode("MqttTopics").records()[rowIndex].findByXmlNode("MqttTopic").value = configXml;
+        }
+
+        function updateTopicConfigFormDefinition()
+        {
+            isAutoSaved = true;
+            updateTopicForm();
+            updateProperties();
+        }
+
+        function updateProperties()
+        {
+            var editFrameData = editFrame.viewModelObject.topLevelForm.records()[0].getFormSubmissionData();
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": editFrame.skeltaUtils.getXmlFromJSONObject(editFrameData),
+                "cacheKey": editFrame.cacheKey,
+                "listName": editFrame.listName,
+                "version": editFrame.versionstamp,
+                "selectedControl": editFrame.sfdcontainer,
+                "applicationName": editFrame.paramApplicationName,
+                "userId": editFrame.paramUserId
+            });
+            editFrame.doNotCloseEditPage = true;
+            editFrame.updateFormDefinition(jsonHelper);
+        }
+
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

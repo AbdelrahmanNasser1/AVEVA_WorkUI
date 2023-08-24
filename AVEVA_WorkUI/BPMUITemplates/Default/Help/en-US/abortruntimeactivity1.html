@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> End Activity Execution Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601974" class="heading3">End Activity Execution Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">This activity enables the user to end or terminate the execution of an activity in a workflow. The user can end an activity present either in the same (parent) workflow or the child workflow which is associated to the parent workflow.</p>
+<p class="subheading">Application Scenario</p>
+<p class="paragraph">Consider a workflow with a 'Wait For Event' activity and an 'Approval' activity. The Wait For Event activity is executed only when a new list item is added, otherwise the activity will be in a waiting state. This scenario, however, requires that if the user executes the approval activity, the workflow need not wait for the execution of the Wait For Event activity and hence end the activity. In such scenarios, the End Activity Execution activity can be used. This activity helps the user to ensure that a workflow completes without any activity in waiting state.</p>
+<p class="paragraph">Refer to the&nbsp;User Scenarios&nbsp;given in the&nbsp;<i class="emphasis">User Guide</i> for a detailed understanding of this activity.</p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">The End Activity Execution activity has to be configured by specifying appropriate values for different properties in the&nbsp;<b class="uicontrol">Activity Properties</b>&nbsp;pane. This pane can be accessed by clicking on the Activity Properties tool in the<b class="uicontrol">&nbsp;Tool Bar</b>&nbsp;or by selecting the Activity Properties option from the context menu of End Activity Execution activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51075" src="51075.jpg" class="embeddedimage100%scalinglive" alt="" height="462" width="247" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the <b class="uicontrol">Name &amp; Description</b> group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property is to be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property can be used to specify a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">The properties in this group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph">Activity Details - This property is used to specify the activity that is to ended and the workflow in which the activity is used.</p>
+<p class="paragraph">Property Type: Mandatory (This property must be set to end the activity in a workflow.)</p>
+<p class="paragraph">See&nbsp;<a id="h51080" class="jump-currentwindowlive" title="End Activity Execution: Activity Details" href="abort-activitydetails.html" target="_self">End Activity Execution: Activity Details</a>&nbsp;for a more detailed understanding of its properties.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the <b class="uicontrol">Looping Behavior</b> group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop-down field.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="abort-activitydetails.html" target="_self">End Activity Execution: Activity Details</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

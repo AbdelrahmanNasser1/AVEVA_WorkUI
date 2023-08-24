@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using the Actors Selection Wizard </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601410" class="heading4">Using the Actors Selection Wizard</h4>
+<p class="paragraph">The AVEVA Work Tasks Actors Selection Wizard can be used to set the properties related to the actors who will take part in the workflow process. You can access this wizard by selecting the&nbsp;Setup Actors&nbsp;option from the context menu of Human Activities, such as, Approval, Checklist.</p>
+<p class="paragraph">The following image shows the wizard to launch the Setup Actors:</p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><img id="f47349" src="47349.jpg" class="embeddedimage100%scalinglive" alt="" height="423" width="523" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="procedureheading">Setting the Properties through the Wizard</p>
+<p class="paragraph"><strong class="strong">Step 1: Selecting the Actors</strong></p>
+<p class="paragraph">When you right-click a resource action and select the &quot;Actors Selection Wizard&quot; option from the menu, the window shown below, corresponding to the first step of the wizard, is displayed. In this step, the wizard guides you through the selection of resources to set as the actors. You can search for resources by specifying a search parameter. You can specify a value corresponding to user-related parameters like &quot;Employee Name&quot; or &quot;Role in Project&quot; partially or fully in the field provided and click the&nbsp;<b class="uicontrol">Search</b>&nbsp;button to start the search. You can change the parameter by selecting from the drop-down here. The resources brought up in the search are displayed in the&nbsp;<b class="uicontrol">Available Resources</b>&nbsp;list box. You can add a resource to the&nbsp;Selected Resources&nbsp;list by selecting the resource name in the first list and clicking the [&gt;] button. To add all resources, click the [<b class="uicontrol">&gt;&gt;</b>] button. Similarly, you can use the [&lt;] button to remove a resource from the selected resources list or the [&lt;&lt;] button to clear all the selected resources. After selecting the resources, click the&nbsp;<b class="uicontrol">Next</b>&nbsp;button to go to the next step in the Actors Selection Wizard.</p>
+<p class="paragraphimage"><img id="f46697" src="46697.jpg" class="embeddedimage100%scalinglive" alt="" height="467" width="591" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Step 2: Setting Limits for Actors and Activities</strong></p>
+<p class="paragraph">When you click the<b class="uicontrol">&nbsp;Next</b>&nbsp;button in the first window of the Actors Selection Wizard, the window shown below is displayed. In this step the wizard guides you through the process of setting limits for the actors and activities through a series of intuitive steps. The first limit to be set is the number of actors who need to acknowledge receipt of the activity. First, specify whether or not multiple actors must acknowledge the activity by selecting &quot;Yes&quot; from the corresponding drop-down. After making the selection, you can set the minimum and maximum number of actors who will have to acknowledge in the next two fields. You can specify either the number of actors or the percentage of the total number of actors. Next, specify whether multiple actors will act on the task by selecting &quot;Yes&quot; from the corresponding drop-down. After making the selection, you can set the maximum and minimum number of actors who will have to act in the next two fields. You can specify either the number of actors or the percentage of the total number of actors. After setting the limits, click&nbsp;<b class="uicontrol">Next</b>&nbsp;to go to the next step. If you need to make any changes to the values specified in the previous step, click the&nbsp;<b class="uicontrol">Previous</b>&nbsp;button.</p>
+<p class="paragraph">The following image shows how to set the limits:</p>
+<p class="paragraph"><img id="f47350" src="47350.jpg" class="embeddedimage100%scalinglive" alt="" height="323" width="657" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"><strong class="strong">Step 3: Overwriting Values Set through the Action Properties</strong></p>
+<p class="paragraph">When you click&nbsp;<b class="uicontrol">Next</b>&nbsp;in the second window of the Actors Selection Wizard, the window shown below is displayed. In this step the wizard asks you whether you would like to overwrite the values set through the Action Properties for the activity. If you choose to overwrite the existing values with the new settings, click&nbsp;<b class="uicontrol">Finish</b>. This will save the new values and close the wizard. If you prefer not to overwrite the values, you can click&nbsp;<b class="uicontrol">Close</b>&nbsp;to exit the wizard. If you need to make any changes to the values specified in the previous step(s), click&nbsp;<b class="uicontrol">Previous</b>.</p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

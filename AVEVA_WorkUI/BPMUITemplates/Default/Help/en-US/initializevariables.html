@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Initialize Variables </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t487987" class="heading3">Initialize Variables</h3>
+<p class="paragraph">As soon as you create a variable, you have the option to initialize it.</p>
+<p class="paragraph"><img id="f50492" src="50492.png" class="embeddedimage100%scalinglive" alt="" height="615" width="275" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">You can update the variable values using the Update Variable activity, if needed. The supported types for initialization are:</p>
+<ul class="ulitem"><li class="ulitem">Variables</li><li class="ulitem">Content variables</li><li class="ulitem">XML variables</li></ul><p class="paragraph"><img id="f50493" src="50493.png" class="embeddedimage100%scalinglive" alt="" height="420" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="note"><strong class="notelabel">Note:</strong><br>You can also use the Expression Editor to initialize variables.<br>For number data types, the minimum and maximum values are not validated. Enter only valid numeric values for number data types. <br>For DateTime, Date, or Time data types, ensure that the date or time input format is based on the culture set. You can enter the input or use the Date and Time picker to enter the required date and time. <br>Date.CurrentDate is not supported. Use the tree view option to pick the required date and time. <br>The time format supports long data type to enable you to enter seconds. </p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="startactivity.html" target="_self">Start Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

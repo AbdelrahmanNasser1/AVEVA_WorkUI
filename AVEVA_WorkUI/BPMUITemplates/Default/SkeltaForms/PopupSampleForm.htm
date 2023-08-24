@@ -1,0 +1,169 @@
+﻿<!-- POPUP Sample Form -->
+
+<!DOCTYPE html>
+<html style="height:100%; overflow:auto;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sample Popup Form</title>
+    
+    <link rel="Stylesheet" href="StyleSheet/redmond/jquery-ui-1.8.23.custom.css" type="text/css" />
+    <link rel="stylesheet" href="StyleSheet/SkeltaForm.css" type="text/css" />
+    <link rel="Stylesheet" href="StyleSheet/SkeltaTabs.css" type="text/css" />
+    <script type="text/javascript" language="javascript">
+        //
+        // IE browsers do not support indexOf method for an Array. Hence 
+        // we add it below after performing the check on the existence of
+        // the same.
+        //
+        if (!Array.prototype.indexOf)
+        {
+            Array.prototype.indexOf = function (obj, start)
+            {
+                for (var i = (start || 0), j = this.length; i < j; i++)
+                {
+                    if (this[i] === obj)
+                    {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+        }
+    </script>
+    <script src="javascript/jquery-1.8.0.min.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/knockout-2.1.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/xml2json.js" type="text/javascript" language="javascript"></script>
+    <script src="javascript/jquery-ui-1.8.23.min.js" type="text/javascript" language="javascript"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <style type="text/css">
+        .gridCSS
+        {
+            padding: 1em;
+            background-color: #EEEEDD;
+            border: 1px solid #CCC;
+            max-width: 98%;
+            height: auto;
+            overflow: auto;
+        }
+        .gridCSS input
+        {
+            font-family: Arial;
+        }
+        .gridCSS b
+        {
+            font-weight: bold;
+        }
+        .gridCSS p
+        {
+            margin-top: 0.9em;
+            margin-bottom: 0.9em;
+        }
+        .gridCSS select[multiple]
+        {
+            width: 100%;
+            height: 8em;
+        }
+        .gridCSS h2
+        {
+            margin-top: 0.4em;
+        }
+        .formVisibility[aria-visible=true]
+        {
+            display:block;
+            visibility:visible;
+        }
+        .formVisibility[aria-visible=false]
+        {
+            display:none;
+            visibility:hidden;
+        }
+    </style>
+</head>
+<body style="height:100%; overflow:auto; margin:0;border:0">
+<p>First name: <input data-bind="value: firstName" /></p>
+<p>Last name: <input data-bind="value: lastName" /></p>
+<p>Full name: <strong data-bind="text: fullName"></strong></p>
+<button data-bind="click: capitalizeLastName">Go caps</button>
+<br />
+<button data-bind="click: SubmitForm">Submit</button>
+<button data-bind="click: CancelForm">Cancel</button>
+
+<script type="text/javascript">
+
+    function GetParent()
+    {
+        try
+        {
+            //debugger;
+            if (window.frameElement != null)
+            {
+                return window.frameElement;
+            }
+            else
+            {
+                return window.opener;
+            }
+        }
+        catch (err)
+        {
+            return null;
+        }
+    }
+
+    // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+    function AppViewModel()
+    {
+        this.firstName = ko.observable("Bert");
+        this.lastName = ko.observable("Bertington");
+        this.fullName = ko.computed(function ()
+        {
+            return this.firstName() + " " + this.lastName();
+        }, this);
+        this.capitalizeLastName = function ()
+        {
+            var currentVal = this.lastName();        // Read the current value
+            this.lastName(currentVal.toUpperCase()); // Write back a modified value
+        };
+
+        this.SubmitForm = function ()
+        {
+            if (GetParent() != null)
+            {
+                // Method 1: Does not work
+
+                //                GetParent().setAttribute("valueParam", this.fullName());
+                //                GetParent().setAttribute("buttonClicked", "Submit");
+                //                GetParent().setAttribute("state", "close");
+
+                // Method 2: Does not work
+
+                //                GetParent().setAttribute("valueParam", this.fullName());
+                //                GetParent().setAttribute("buttonClicked", "Submit");
+                //                GetParent().setAttribute("state", "close");
+
+                //                GetParent().attributes["valueParam"].change();
+                //                GetParent().attributes["buttonClicked"].change();
+                //                GetParent().attributes["state"].change();
+
+                GetParent().SetValue(this.fullName());
+                GetParent().SetButtonClicked("Submit");
+                GetParent().SetState("close");
+            }
+        };
+        this.CancelForm = function ()
+        {
+            if (GetParent() != null)
+            {
+                GetParent().SetValue("");
+                GetParent().SetButtonClicked("Cancel");
+                GetParent().SetState("close");
+            }
+        };
+    }
+
+    // Activates knockout.js
+    ko.applyBindings(new AppViewModel());
+            
+</script>
+</body>
+</html>

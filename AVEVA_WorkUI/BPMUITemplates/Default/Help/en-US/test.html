@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Layout Customization </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t482157" class="heading4">Layout Customization</h4>
+<p class="paragraphimage">You can define have a specific view for a repository so that the defined view appears when you load the&nbsp;work item&nbsp;list control.</p>
+<p class="paragraph">You can save a specific layout or global layout by selecting&nbsp;<b class="uicontrol">Settings &gt; Global Work Item Layout</b>&nbsp;from the Enterprise Console pull-down menu.</p>
+<p class="paragraph">On clicking <b class="uicontrol">Global Work Item Layout</b>, the following page will be displayed:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f50260" src="50260.png" class="embeddedimage100%scalinglive" alt="" height="215" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">There are two ways to set layouts:</p>
+<ol class="olitem"><li class="olitem">GlobalLayout</li><li class="olitem">CustomLayout</li></ol><p class="paragraph"></p>
+<p class="procedureheading">To Save Layout as Global Layout:</p>
+<ol class="step"><li class="step">Select&nbsp;<b class="uicontrol">Settings &gt; GlobalWorkItem Layout</b>&nbsp;from the Enterprise Console pull-down menu.</li><li class="step">In the global layout page, select&nbsp;<b class="uicontrol">GlobalLayout</b>&nbsp;from the<b class="uicontrol">&nbsp;Layout names</b>&nbsp;drop-down.</li><li class="step">Right-click any column fields and select the required column fields, as shown below<p class="stepinfo"></p>
+<p class="stepinfo"><br><img id="f50261" src="50261.jpg" class="embeddedimage100%scalinglive" alt="" height="379" width="517" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Select&nbsp;<b class="uicontrol">Apply Changes</b>&nbsp;and then&nbsp;<b class="uicontrol">Save Layout</b>.</li><li class="step">Go to Inbox. The layout will be displayed with specified column fields defined.</li></ol><p class="paragraph">There may be a scenario where we want to have different layout specific to different processes.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">To Save Layout as Specific Layout:</p>
+<ol class="step"><li class="step">Select&nbsp;<b class="uicontrol">Settings &gt; GlobalWorkItem Layout</b>&nbsp;from the <b class="uicontrol">Enterprise Console</b> menu.</li><li class="step">In the global layout page, select&nbsp;<b class="uicontrol">CustomLayout</b>&nbsp;from the&nbsp;<b class="uicontrol">Layout names</b>&nbsp;drop-down.</li><li class="step">Click&nbsp;<b class="uicontrol">New Custom layout</b>.</li><li class="step">Give a layout name in the&nbsp;<b class="uicontrol">New Custom layout name</b>&nbsp;text box. For example, 'Leave Details View'.</li><li class="step">Right-click any column and select the required column fields.</li><li class="step">Select&nbsp;<b class="uicontrol">Apply Changes</b>&nbsp;and then&nbsp;<b class="uicontrol">Save Layout</b>.</li><li class="step">The following code snippet shows you how to specify a custom layout for the work item control. Set the<b class="uicontrol">&nbsp;LayoutViewName</b>&nbsp;property with the custom layout name. For example, 'Leave Details View'.<p class="codeblock1">Skelta.Entity.UserContext uContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl wi = &nbsp;new Skelta.HWS.WorkListChannel.Web.WorkItemListControl.WorkItemControl();</p>
+<p class="codeblock1">wi.ApplicationName =&nbsp;uContext.Repository.ApplicationName; //Provide Application or Repository name. This is mandatory.</p>
+<p class="codeblock1">wi.UserIdString =uContext.LoggedInUserId; //Provide user id string. This is mandatory.</p>
+<p class="codeblock1">System.Collections.Generic.SortedDictionary&lt;int, string&gt; Qdisplay = new System.Collections.Generic.SortedDictionary&lt;int, string&gt;();</p>
+<p class="codeblock1">wi.LayoutViewName = &quot;Leave Details View&quot;; </p>
+<p class="codeblock1">//LayoutViewName property is used to load the specified layout.</p>
+<p class="codeblock1">&nbsp;</p>
+<p class="stepinfo"><strong class="notelabel">Note:</strong> If the LayoutViewName has not been specified, then the Global Layout created for the repository will be considered as the default layout for the Work Item list control.</p>
+</li><li class="step">Go to the <b class="uicontrol">Work items list</b> Inbox. The layout will be displayed with specified column fields.</li></ol><p class="paragraph"><br></p>
+<p class="note"><strong class="notelabel">Note:</strong> If you save the customized layout with the <b class="uicontrol">Actor Name</b> column, this column will be displayed in the Work Item List control only for the Queue view. However, this column will not be displayed for the Inbox and Manager views.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workitemlistcontrols.html" target="_self">Work Items List Control</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

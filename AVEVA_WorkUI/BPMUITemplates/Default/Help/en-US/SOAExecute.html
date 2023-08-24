@@ -1,0 +1,53 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> SOA Execute Activity </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="SOA Execute Activity">
+</head>
+<body  onload="if (isTOCLoaded()) {expand('49553');expand('49354');highlight('49578')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<h3 id="t49578" class="heading3">SOA Execute Activity</h3>
+<p class="paragraph">SOA Execute is the SOA activity supported by AVEVA AVEVA Work Tasks. This activity is used to execute an SOA registered method. You can use this activity to use SOA directly through expression editor. Based on the status, it returns successful or unsuccessful result.</p>
+<p class="procedureheading">Steps to use SOA Execute activity:</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">In the&nbsp;<b class="uicontrol">Integration Activities</b>, select&nbsp;<b class="uicontrol">SOA Execute</b>&nbsp;activity.</li><li class="steptestdonotuse">Drag and drop&nbsp;<b class="uicontrol">SOA Execute</b>&nbsp;activity on the&nbsp;<b class="uicontrol">Process Designer</b>&nbsp;window.</li><li class="steptestdonotuse">Right-click the&nbsp;<b class="uicontrol">SOA Execute</b>&nbsp;property, and then select&nbsp;<b class="uicontrol">Activity Properties</b>.<p class="stepinfo"></p>
+<p class="stepinfo"><br>&nbsp;<img id="f51071" src="51071.png" class="embeddedimage100%scalinglive" alt="" height="486" width="262" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="steptestdonotuse">The main property is&nbsp;<b class="uicontrol">Execute an SOA Expression</b>&nbsp;which brings up the Expression Editor and it returns successful or unsuccessful output.<p class="stepinfo"></p>
+<p class="stepinfo">&nbsp;<br><img id="f51072" src="51072.jpg" class="embeddedimage100%scalinglive" alt="" height="206" width="840" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="steptestdonotuse">Use<b class="uicontrol">&nbsp;Expression Editor</b>&nbsp;to build the expression. Expression Editor comes with a new node text which shows all the available methods or properties. Members of the each instance can be used to build the expression in the Expression builder. (See Figure 3).</li><li class="steptestdonotuse">Click&nbsp;<b class="uicontrol">OK</b>.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="IntegrationActivities.html" target="_self">Integration Activities</a></p><p class="relateditem"><a href="comobjectaction1.html" target="_self">COM-Object Activity</a></p><p class="relateditem"><a href="createofficedocument1.html" target="_self">Create-Open-Office-Document Activity</a></p><p class="relateditem"><a href="invokewebservice1.html" target="_self">InvokeWebService Activity</a></p><p class="relateditem"><a href="invokewebapiactivity.html" target="_self">Invoke Web API Activity</a></p><p class="relateditem"><a href="script12.html" target="_self">Script Activity</a></p><p class="relateditem"><a href="shell11.html" target="_self">Shell Activity</a></p><p class="relateditem"><a href="skeltafilesystemaction1.html" target="_self">File Operations Activity</a></p><p class="relateditem"><a href="statuschangeaction1.html" target="_self">Change Workflow Status Activity</a></p><p class="relateditem"><a href="xmlaction1.html" target="_self">XML Action Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<input id="topicId" type="hidden" value="49578" />
+<input id="topicDescription" type="hidden" value="SOA Execute Activity" />
+<input id="footer-modified" type="hidden" value="Last modified: 6/25/2015 3:55:03 AM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

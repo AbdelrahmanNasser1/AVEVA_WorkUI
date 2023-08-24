@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="Skelta.Package.CodeBehind.NewPackageTemplateService" %>

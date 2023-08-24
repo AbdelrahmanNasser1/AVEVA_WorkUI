@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Expression Editor to Build Expressions for Properties </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t483253" class="heading4">Using Expression Editor to Build Expressions for Properties</h4>
+<p class="procedureheading">Building an expression </p>
+<ol class="step"><li class="step">Drag and drop the methods or properties of the different objects from the Object Browser to the Editor panel. In the following example image, the <b class="uicontrol">Concat(System.String str0,System.String str1)</b> is being dragged and dropped. The next image shows the method in the Editor. The parameters are shown as hypertext and can be replaced by actual values. <p class="stepinfo">The following image shows how to drag and drop a method to the Editor:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f107712" src="107712.png" class="embeddedimage100%scalinglive" alt="" height="516" width="540" vspace="0" hspace="0" align="bottom" border="0">:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo">The following image shows method dropped on the editor:</p>
+<p class="stepinfo"><img id="f107713" src="107713.png" class="embeddedimage100%scalinglive" alt="" height="486" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">After dropping the System.String.Concat method on the Editor, you must replace its parameters. You can do so by typing text on the parameters. The text that is typed must be enclosed in double quotes as shown here. <p class="stepinfo">The following image shows how to replace method parameters by typing in text:</p>
+<p class="stepinfo"><img id="f107714" src="107714.png" class="embeddedimage100%scalinglive" alt="" height="557" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Alternatively, you can replace the parameters by placing string objects on the parameters by dragging and dropping them on to the method parameters that are shown in hypertext format. You can also use the existing variables or contents of the application by exploring the Workflow Instance node and dragging and dropping variables on to the parameters as shown in the image below. The result is shown in the image following the one below. <p class="stepinfo">The following image shows how to replace method parameters by dragging and dropping Workflow Instance object nodes:</p>
+<p class="stepinfo"><img id="f107715" src="107715.png" class="embeddedimage100%scalinglive" alt="" height="493" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">The following image shows how to replace method parameters by dragging and dropping:</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f107716" src="107716.png" class="embeddedimage100%scalinglive" alt="" height="445" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">After completing the expression, you must click the OK button to save it. The submitted expression will be compiled and saved using the C# code compiler. If any error is present in the expression, a message box appears.<p class="note"><strong class="notelabel">Note:</strong> Copy-paste of variable texts from notepad will not parse the actual variable value as the referenced functions are not available. Referenced functions are available only in case of drag and drop of variable node, available from the left tree.</p>
+</li></ol><p class="subheading"></p>
+<p class="subheading">Debugging the expression</p>
+<p class="paragraph">You can view the errors if any in an expression in the<b class="uicontrol"> Error List</b> and debug the expression. First, you need to click the <b class="uicontrol">OK </b>button in the error message box to close it. You will find the <b class="uicontrol">Error List</b> link at the bottom left of the Expression Editor window. You can move the mouse over this link to open the Error List shown below.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f107717" src="107717.png" class="embeddedimage100%scalinglive" alt="" height="475" width="540" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Expression added to the property</p>
+<p class="paragraph">After the expression is completed without errors, it is added to the text box of the corresponding property in the Action Properties section. In the example shown below, the expression that was built in the previous steps is displayed as the value for the <b class="uicontrol">Action Display Name</b> property. You can edit the expression by clicking on the Expression Editor icon. A &quot;Clear Expression&quot; icon will be displayed next to the expression. You can click on this icon to clear the expression in order to specify a different value.</p>
+<p class="paragraph">The following image shows the saved expression displayed in the action properties:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f107718" src="107718.png" class="embeddedimage100%scalinglive" alt="" height="249" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

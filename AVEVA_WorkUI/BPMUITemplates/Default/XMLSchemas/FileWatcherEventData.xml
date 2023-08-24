@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<FileWatcherEventData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<FileEvent>FileWatcherEvents</FileEvent>
+<FileWatcher>
+<EventType>OnCreate</EventType>
+<FileName>filewatcher.txt</FileName>
+<FilePath>D:\filewatcher</FilePath>
+</FileWatcher>
+
+</FileWatcherEventData>

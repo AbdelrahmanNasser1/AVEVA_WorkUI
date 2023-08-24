@@ -1,0 +1,12 @@
+FormWidget_Name_BASEGRID:BaseGrid
+FormWidget_BASEGRID_ConfName_BASEGRID:BaseGrid
+FormWidget_BASEGRID_ConfName_BASEGRID_LOOKUP:BaseGrid Lookup
+FormWidget_BASEGRID_ConfName_BASEGRID_SAMPLEDATA:BaseGrid SampleData
+FormWidget_BASEGRID_Property_NOTIFY:Notify
+FormWidget_BASEGRID_Property_DATA:Data
+FormWidget_BASEGRID_Property_PREVROWVALUE:Previous Row Value
+FormWidget_BASEGRID_Property_NEWCELLVALUE:New Cell Value
+FormWidget_BASEGRID_Script_ONCELLCHANGE:On Cell Change
+@@WidgetBaseGridWidgetTitle@@:Title
+@@WidgetBaseGridErrorLoadingConfiguration@@:Error loading configuration
+

@@ -1,0 +1,79 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.dhtmlwindow{
+position: absolute;
+border: 1px solid #666666;
+visibility: hidden;
+background-color: white;
+}
+
+.drag-handle{ /*CSS for Drag Handle*/
+padding-left:15px;
+padding-top:10px;
+font-family: "Roboto", "Segoe UI", "Arial", "Verdana" !important;
+font-size:14px;
+background-color: #666;
+height: 25px;
+color:#ffffff;
+cursor: move;
+overflow: hidden;
+opacity: 1;
+}
+
+.drag-handle .drag-controls{ /*CSS for controls (min, close etc) within Drag Handle*/
+position: absolute;
+right: 10px;
+top: 10px;
+cursor: hand;
+cursor: pointer;
+}
+
+* html .drag-handle{ /*IE6 and below CSS hack. Width must be set to 100% in order for opaque title bar to render*/
+width: 100%;
+}
+
+
+.drag-contentarea{ /*CSS for Content Display Area div*/
+background-color: white;
+color: black;
+height: 150px;
+padding: 2px;
+overflow: auto;
+border:none;
+}
+
+.drag-statusarea{ /*CSS for Status Bar div (includes resizearea)*/
+border-top: 1px solid gray;
+background-color: #F8F8F8;
+height: 13px; /*height of resize image*/
+}
+
+
+.drag-resizearea{ /*CSS for Resize Area itself*/
+float: right;
+width: 13px; /*width of resize image*/
+height: 13px; /*height of resize image*/
+cursor: nw-resize;
+font-size: 0;
+}

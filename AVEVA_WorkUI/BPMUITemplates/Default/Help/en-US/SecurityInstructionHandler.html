@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Security Instruction Handler </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t488896" class="heading3">Security Instruction Handler</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">Security Instruction Handler activity is responsible for the completion of an operation (Say, Delete, Disable, Enable, Publish), if while setting the rights for a specific security group, user has selected the option as &quot;Requires Approval&quot; or &quot;Requires Approval with Prompt&quot; for that operation.</p>
+<p class="subheading">Scenario</p>
+<p class="paragraph">Consider a scenario, where while setting the security rights for Administrator, <b class="uicontrol">Can Publish Item</b> right has been set as <b class="uicontrol">Requires Approval</b>, with the selected workflow as<b class="uicontrol"> Security Approval Workflow</b>. </p>
+<p class="paragraph">Security Approval workflow ensures that the Publish operation completes successfully only after approval from the concerned person. Security Approval workflow internally uses Security Instruction Handler Activity to complete the Publish operation after the approval has been given.</p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><img id="f187133" src="187133.png" alt="" height="442" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Activity Properties:</strong></p>
+<p class="paragraph">The Security Instruction Handler activity has to be configured by specifying appropriate values for the different properties in the Action Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Approval activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f187134" src="187134.png" alt="" height="486" width="258" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><strong class="strong">Name</strong> - This property can be used to specify a name for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Description</strong> - This property specifies a brief description to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Miscellaneous</strong></p>
+<p class="paragraph"><strong class="strong">Error Description</strong></p>
+<p class="paragraph">This property is not being used currently. It is being reserved for future use.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">The property in the Exception Behavior group has been described below. You can use these properties to raise exceptions if the output is not linked to the next activity in the workflow and also define and configure email templates and users for the exception mails.</p>
+<p class="paragraph"><strong class="strong">Raise Error on Unhandled Linked Output?</strong> &#8211; This property can be configured to raise an error if the output is not linked to the next activity in the workflow. </p>
+<p class="paragraph"><strong class="strong">Property type: Optional</strong> (This property needs to be set only if necessary)</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="note"><strong class="notelabel">Note:</strong> The user needs to add a variable with the name &quot;Error Message&quot; in the Start activity of the workflow which is using the Security Instruction Handler activity. This variable is used to capture any errors which have might occur during the process of completion of the various operations (Say, Delete, Disable, Enable, Publish).</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f187135" src="187135.png" alt="" height="197" width="553" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="SecurityActivities.html" target="_self">Security Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Introduction to Property Setting Wizards </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601409" class="heading4">Introduction to Property Setting Wizards</h4>
+<p class="paragraph">AVEVA Work Tasks comes with significant improvements in terms of user-friendliness in designing the workflow. A totally new Visio-like user-interface for the Process Designer allows users to drag and drop activities and link them by dragging and dropping links. In addition to the normal method of property setting, there is an Expression Editor to create expressions for specifying the values of activity properties. Besides these, the new version of AVEVA Work Tasks comes with Wizards, which present a third mode of property setting. The Wizards are intuitive and guide the user through the different steps involved in setting key properties. There are two property wizards - Actors Selection Wizard and Escalation Email Wizard - that can be used to set the different properties related to each.</p>
+<p class="subheading">Accessing the Wizards</p>
+<p class="paragraph">You can access the wizards to set the corresponding properties by right-clicking on the property icon in the Designer and selecting the appropriate wizard option in the menu. These options are only displayed in the right-click menu of the activities that have wizards.</p>
+<p class="paragraph"><br></p>
+<p class="paragraph"><img id="f47348" src="47348.jpg" class="embeddedimage100%scalinglive" alt="" height="429" width="467" vspace="0" hspace="0" align="bottom" border="0"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

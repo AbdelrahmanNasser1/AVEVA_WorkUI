@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+
+<html class="skep">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri, viewModelObject, applicationName, formId, mode, viewAndViewModel;
+        var mode = skeltaUtils.getUrlParameterValue(window, 'mode');
+        var workflowName = skeltaUtils.getUrlParameterValue(window, 'WorkflowName');
+        var workflowVersion = skeltaUtils.getUrlParameterValue(window, 'wfFilename');
+        var applicationName = skeltaUtils.getUrlParameterValue(window, 'ApplicationName');
+        var selectedProperty = skeltaUtils.getUrlParameterValue(window, 'selectedProperty');
+        var selectedAction = skeltaUtils.getUrlParameterValue(window, 'selectedaction');
+        var pdsuri = skeltaUtils.getUrlParameterValue(window, 'pdsuri');
+        var designerInstanceId = skeltaUtils.getUrlParameterValue(window, 'designerid');
+        var userId = skeltaUtils.getUrlParameterValue(window, 'userId');
+        var xmlvariable;
+        var xmlVariableCreated = false;
+        var updatexml = skeltaUtils.getUrlParameterValue(window,'updatevalue');
+        if (updatexml === "true")
+        {
+            xmlvariable = skeltaUtils.getUrlParameterValue(window,'xmlvalue');
+        }
+
+        var impersonationUserTitle = skeltaUtils.getUrlParameterValue(window, 'UserTitle');
+        var openerWebAPIListItemId, openerHttpMethod, openerContentType, openerIsOpenApi, openerRequestUri, openerPostData, openerOpenApiObject;
+        var openerWebAPIHeader;
+
+        $(document).ready(function () {
+            
+            try {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                LoadCreateXmlVariableForm();
+                if (updatexml === "true")
+                {
+                    viewModelObject.findById("TextInputXmlVariableName").value = xmlvariable;
+                    viewModelObject.findById("TextInputXmlVariableName").enable = false;
+                    viewModelObject.findById("F2").buttonText = skelta.localize.getString("Update_Title");                   
+                }
+            }
+            catch (exception) {
+                skeltaUtils.showError(skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title"),
+                    skelta.localize.getString("WebAPICreateXmlVar_Load_Error"),
+                    null,
+                    exception.message);
+                logger.logError(skelta.localize.getString("WebAPICreateXmlVar_Load_Error") + ' ' + exception.message);
+            }
+        });
+
+        function LoadCreateXmlVariableForm() {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "applicationName": applicationName,
+                "actionName": selectedAction
+            });
+            skeltaUtils.callServerMethod("GET", "WebAPIPropertyConfigService.aspx/GetBaseFormForCreateXmlVariable", "application/json; charset=utf-8", jsonHelper, "json", LoadCreateXmlVariableFormSucceed, LoadCreateXmlVariableFormFailed, function () { skeltaUtils.pageLoadComplete(""); }, false);
+        }
+
+        function LoadCreateXmlVariableFormSucceed(resultData) {
+            viewAndViewModel = resultData.d;
+            var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, selectedAction + "_CreateXmlVariable", "");
+            skeltaUtils.createDataModelObject(uniqueKey);
+            if (window.opener == null) {
+                skeltaUtils.closeForm();
+            }
+
+            var instanceXml = window.opener.childInstanceXml;
+            setOpenerVariableValues();
+
+            var dataModelInput = skeltaUtils.getJSONObjectFromXml(instanceXml);
+            skeltaUtils.setDataModelObject(uniqueKey, dataModelInput);
+            $("#viewModel").html(viewAndViewModel);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+            viewModelObject.onSave.subscribeEvent(onSave);
+            viewModelObject.onCancel.subscribeEvent(function () { ReloadOrCloseForm(true); });
+            if (skelta.utilities.isUndefinedNullOrEmpty(instanceXml) || instanceXml.length < 80) {
+                viewModelObject.findById("TabParameters")._visible(false);
+            }            
+
+            skelta.localize.divTextLocalize();
+            skelta.localize.divTitleLocalize();
+
+            $("#viewModel")[0].style.display = "";
+            document.title = skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title");
+            skeltaUtils.loadPageDefault();
+            viewModelObject.findById("TextInputXmlVariableName").setFocus();
+        }
+
+        function setOpenerVariableValues() {            
+            openerWebAPIListItemId = window.opener.webAPIListItemId;
+            openerHttpMethod = window.opener.httpMethod;
+            openerContentType = window.opener.contentType;
+            openerIsOpenApi = window.opener.isOpenApi;
+            openerOpenApiObject = window.opener.openApiObject;
+            openerPostData = window.opener.postData;
+            openerRequestUri = window.opener.requestUri;
+            openerWebAPIHeader = window.opener.webApiHeaders;
+        }
+
+        function LoadCreateXmlVariableFormFailed(result) {
+            skeltaUtils.showError(skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title"), JSON.parse(result.responseText).Message, function () { ReloadOrCloseForm(true); }, null);
+            logger.logError(skelta.localize.getString("WebAPICreateXmlVar_Save_Error") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function onSave(inputParameterObject, eventArgs)
+        {        
+            var xmlVariableName = viewModelObject.findById("TextInputXmlVariableName")._value();
+            var includeChildNode = viewModelObject.findById("IncludeChildNode")._value();
+            xmlVariableParameters = {
+                "XmlVariableName": xmlVariableName,
+                "ApplicationName": applicationName,
+                "WebAPIListItemId": openerWebAPIListItemId,
+                "UserId": userId,
+                "ImpersonationUserTitle": impersonationUserTitle,
+                "HttpMethod": openerHttpMethod,
+                "ContentType": openerContentType,
+                "IsOpenApi": openerIsOpenApi,
+                "RequestUri": openerRequestUri,
+                "PostData": openerPostData,
+                "WorkflowName": workflowName,
+                "WorkflowVersion": workflowVersion,
+                "DesignerInstanceId": designerInstanceId,
+                "InstanceXml": skeltaUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                "UpdateXml": updatexml,
+                "OpenApiObjectJson": JSON.stringify(openerOpenApiObject),
+                "IncludeChildNode": includeChildNode,
+                "WebAPIHeader": JSON.stringify(openerWebAPIHeader)
+            };
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({ "xmlVariableParameters": xmlVariableParameters});
+            try {
+                skeltaUtils.callServerMethod("POST", "WebAPIPropertyConfigService.aspx/CreateXmlVariable", "application/json; charset=utf-8", jsonHelper, "json", newWorkflowFormSubmitSucceeded, newFormSubmitFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+            catch (e) {
+                skeltaUtils.showError(skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title"),
+                    skelta.localize.getString("WebAPICreateXmlVar_Save_Error"),
+                    null,
+                    e.message);
+                logger.logError(skelta.localize.getString("WebAPICreateXmlVar_Save_Error"));
+                logger.logError(e.message);
+            }
+        }
+
+        function newWorkflowFormSubmitSucceeded(resultData) {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true) {
+                xmlVariableCreated = true;
+                if (updatexml === "true")
+                {
+                    skeltaUtils.showAlert(skelta.localize.getString("WebAPIUpdateXmlVar_SaveMsg_title"),
+                    skelta.localize.getString("WebAPIUpdateXmlVar_SaveMsg"),
+                    function () {
+                        ReloadOrCloseForm(true);
+                    });
+                }
+                else
+                {
+                    skeltaUtils.showAlert(skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title"),
+                    skelta.localize.getString("WebAPICreateXmlVar_SaveMsg"),
+                    function () {
+                        ReloadOrCloseForm(true);
+                    });
+                }
+            }
+            else {
+                xmlVariableCreated = false;
+                if (updatexml === "true")
+                {   
+                    skeltaUtils.showError(skelta.localize.getString("WebAPIUpdateXmlVar_SaveMsg_title"),
+                    skelta.localize.getString("WebAPIUpdateXmlVar_Save_Error"),
+                    null,
+                    res.ErrorMessage.replace("\\\\", ""));
+                    logger.logError(skelta.localize.getString("WebAPIUpdateXmlVar_Save_Error"));
+                    logger.logError(res.ErrorMessage.replace("\\\\", ""));
+                }
+                else
+                {
+                    skeltaUtils.showError(skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title"),
+                    skelta.localize.getString("WebAPICreateXmlVar_Save_Error"),
+                    null,
+                    res.ErrorMessage.replace("\\\\", ""));
+                    logger.logError(skelta.localize.getString("WebAPICreateXmlVar_Save_Error"));
+                    logger.logError(res.ErrorMessage.replace("\\\\", ""));
+                }
+            }
+        }
+
+        function newFormSubmitFailed(result) {
+            skeltaUtils.showError(skelta.localize.getString("WebAPICreateXmlVar_SaveMsg_title"),
+                skelta.localize.getString("WebAPICreateXmlVar_Save_Error"),
+                null,
+                "Failed submission. " + result.status + ' ' + result.statusText + '<br/>' + result.responseText);
+            logger.logError(skelta.localize.getString("WebAPICreateXmlVar_Save_Error"));
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+        }
+
+        function ReloadOrCloseForm(includeCloseForm) {
+            if (window.opener != null) {
+                var xmlVariableName = '';
+                if (updatexml === "true" || xmlVariableCreated == true) {
+                    xmlVariableName = viewModelObject.findById("TextInputXmlVariableName")._value();
+                }
+
+                window.opener.selectCreatedXmlVariable(xmlVariableName);
+            }
+
+            skeltaUtils.closeForm();
+            //// The below code need to make it working for ArchestrA, InTouch HMI, OMI etc.
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

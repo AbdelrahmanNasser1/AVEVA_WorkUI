@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Updating the List Item that Alerted the Workflow </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t601924" class="heading6">Updating the List Item that Alerted the Workflow</h6>
+<p class="paragraph">AVEVA Work Tasks allows you to update the list item that alerted the workflow using XML List Type XML Variable. Update Variable activity can be used to add/update an item to the list. To update an item, you need to select the scope as Current from Choose the List Item to Work on options. You can also use List Navigator Activity to set the scope. With the help of a scenario, we will explain this function.</p>
+<p class="paragraph">Assume that you have created a list called Purchase Orders with the following fields and alerted the workflow.</p>
+<ul class="ulitem"><li class="ulitem">Reference Number</li><li class="ulitem">Purchase Order Date</li><li class="ulitem">Raised By User</li><li class="ulitem">Deliver To User</li><li class="ulitem">Status</li><li class="ulitem">Purchase Order Details<ul class="ulsubitem"><li class="ulsubitem">Item Name</li><li class="ulsubitem">Quantity</li><li class="ulsubitem">Unit Price</li><li class="ulsubitem">Item Total</li></ul></li><li class="ulitem">Total Purchase amount</li></ul><p class="paragraph">Now you want to update an item in the same list. Follow the procedure given below.</p>
+<p class="procedureheading">To update the list item that alerted the workflow</p>
+<ol class="step"><li class="step">Login to the<b class="uicontrol">&nbsp;Enterprise Console</b>&nbsp;and go to the&nbsp;Workflow Designer&nbsp;page.</li><li class="step">You need to create an&nbsp;<b class="uicontrol">XML List</b>&nbsp;type XML Variable for the Purchase Orders list. If the variable is not created, follow the below mentioned procedure to create.</li><li class="step">Click the edit icon in the&nbsp;<b class="uicontrol">XMLVariables&nbsp;</b>property from the&nbsp;<b class="uicontrol">Start</b>&nbsp;Activity Properties. The following screen is displayed. <br><img id="f50414" src="50414.png" class="embeddedimage100%scalinglive" alt="" height="435" width="548" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click&nbsp;<b class="uicontrol">New Variable</b>&nbsp;to add a new variable.</li><li class="step">Type the variable name as 'purchaseorders'.</li><li class="step">Select type as&nbsp;<b class="uicontrol">XML List</b>&nbsp;from<b class="uicontrol">&nbsp;Type</b>&nbsp;the drop-down list.</li><li class="step">Type the List name in the&nbsp;<b class="uicontrol">Select List</b>&nbsp;field or click the&nbsp;<img id="f50389" src="50389.png" class="embeddedimage100%scalinglive" alt="" height="32" width="34" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to select the list. In this case, select 'Purchase Orders' list.</li><li class="step">Select&nbsp;Current&nbsp;as the scope from the&nbsp;<b class="uicontrol">ListItem Scope Option</b>&nbsp;to point to an item in the Purchase Orders list.&nbsp;<br><img id="f50423" src="50423.png" class="embeddedimage100%scalinglive" alt="" height="481" width="555" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Now you can see the XML nodes in a tree-view that are mapped to the controls while creating the list.</li><li class="step">Click&nbsp;<b class="uicontrol">Save Variable</b>. A message is displayed saying 'Variable Updated'. Close the window.  <br><b class="uicontrol">Note</b>: If you set the scope as&nbsp;<b class="uicontrol">New</b>&nbsp;while creating the&nbsp;<b class="uicontrol">XML List</b>&nbsp;type XML variable, you can change it to&nbsp;Current&nbsp;using&nbsp;List Navigator&nbsp;activity.</li><li class="step">Drag and drop&nbsp;<b class="uicontrol">Update Variable</b>&nbsp;activity to update an item in the list.</li><li class="step">Click the edit icon in the&nbsp;<b class="uicontrol">Set Variables</b>&nbsp;property. The following screen is displayed. <br><img id="f50417" src="50417.png" class="embeddedimage100%scalinglive" alt="" height="266" width="550" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Click the Select link and select the respective field of the XML List type XML Variable created for the list (in this case 'purchaseorders'). The fields displayed in the tree-view represent the XML nodes of the controls in the list.&nbsp;<br>&nbsp;<img id="f50418" src="50418.png" class="embeddedimage100%scalinglive" alt="" height="377" width="547" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">Select a field for which you want set the value from the tree menu. Enter the value for the field in the right-hand side text box or click the&nbsp;<img id="f50419" src="50419.png" class="embeddedimage100%scalinglive" alt="" height="28" width="25" vspace="0" hspace="0" align="bottom" border="0">&nbsp;icon to set the value.   <br><img id="f50420" src="50420.png" class="embeddedimage100%scalinglive" alt="" height="233" width="571" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">If you want to set the value, select 'enter a value' from the tree-view and then enter the value. Also, you can select variables or contents or any XML variables nodes directly by selecting the respective node from the tree-view. If you want to combine multiple node values, you can build an expression by selecting Build Expression.&nbsp;&nbsp;<br>&nbsp;<img id="f50421" src="50421.png" class="embeddedimage100%scalinglive" alt="" height="131" width="550" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">The same way, you can set the value for other fields that you want to update. In this case, you are only updating the field 'Title' which has the value 'Order for Illustrator'.</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>. When you execute this workflow, the item get updated based on the value that you have set.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="'XMLList'XMLVariableScenarios.html" target="_self">'XML List'  XML Variable Scenarios</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> View Effective Security Rights for User/Role </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t611123" class="heading6">View Effective Security Rights for User/Role</h6>
+<p class="paragraph">You can search for a particular user and view the security group and its rights assigned to the user.</p>
+<p class="procedureheading">To view security and its rights for the role:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Standard Settings</b>&nbsp;tab, click&nbsp;<b class="uicontrol">View Effective Security Rights For User/Role</b>. The&nbsp;<b class="uicontrol">Role Based</b>&nbsp;and&nbsp;<b class="uicontrol">User Based</b>&nbsp;tabs appear.</li><li class="step">Click&nbsp;<b class="uicontrol">User Based</b>&nbsp;tab. The&nbsp;<b class="uicontrol">View Effective Security Rights For User/Role</b>&nbsp;section appears.</li><li class="step">Select a user using the&nbsp;<b class="uicontrol">User Lookup</b>&nbsp;dialog box.</li><li class="step">Click&nbsp;<b class="uicontrol">View Rights</b>&nbsp;to view the effective security group and rights for the selected user.</li><li class="step">Click&nbsp;<b class="uicontrol">Security Snapshots</b>&nbsp;to view&nbsp;the user name, roles mapped for the user along with priority, user mapping and effective security group for the selected role.</li></ol><p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

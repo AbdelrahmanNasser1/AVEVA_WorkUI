@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Report Generator Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t476744" class="heading3">Report Generator Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">You use the Report Generator activity to run a report template and save the report in the Reports list.</p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f52083" src="52083.jpg" class="embeddedimage100%scalinglive" alt="" height="644" width="257" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><strong class="strong">Name</strong> - This property is to be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type:</strong> Mandatory (This property must be set.)</p>
+<p class="paragraph"><strong class="strong">Description</strong> - This property can be used to specify a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type:</strong> Optional (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph">The properties in this group have been described below. You can use these properties to configure the functionality of this activity.</p>
+<p class="paragraph"><strong class="strong">Configure Report Template</strong> -&nbsp;This property is to be used to configure the Report Template from the list of available &nbsp;report templates.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set for the configuration.)</p>
+<p class="procedureheading">Steps to set the Configure Report Template Property</p>
+<ol class="step"><li class="step">To specify the&nbsp;<b class="uicontrol">Configure Report Template</b>&nbsp;properties, click the edit button of the property and the property window opens.</li><li class="step">Select the required report template from the&nbsp;<b class="uicontrol">Report&nbsp;Template</b>&nbsp;drop-down field. All the parameters related to the selected report template will be listed in the Parameters field.</li><li class="step">Select the required&nbsp;<b class="uicontrol">Parameters</b>.</li><li class="step">Select the &quot;Generate Report Reference Variable automatically&quot; option to populate the variable in the Report Reference Variable field.</li><li class="step">Alternatively, select the &quot;Create Report Reference Variable manually&quot; option to create the variable manually.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit</b>.</li></ol><p class="paragraph">See&nbsp;<a id="h50570" class="jump-currentwindowlive" title="Configure Report Template" href="configuressrstemplate1.html" target="_self">Configure Report Template</a>&nbsp;for a more detailed understanding of its properties.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Report Name</strong> -&nbsp;This property is used to specify a name for the report to be generated.</p>
+<p class="paragraph">User can also pass the folder path in this field. For example, Team\Research\GroupPeriodReport. Here the root level folder name is&nbsp;Team&nbsp;under which the<i class="emphasis">&nbsp;Research</i>&nbsp;folder will be the destination for saving the report &quot;GroupPeriodReport&quot;. If the given path is not present, then the Report Generator activity will create the required folders.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set for the report to display a name.)</p>
+<p class="paragraph">The default name for the selected Report Template is:</p>
+<p class="paragraph">[Selected Report Template Name]_#workflow#_#year#_#month#_#day#_#hour#_#minutes#</p>
+<p class="paragraph">The default name is a combination of the name of the selected Report Template Name and the place holders. The following table shows the place holders supported for the report name:</p>
+<p class="paragraph"></p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">Place holders</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">Format</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableheader">Description</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#day#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">dd</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current day.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#month#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">MM</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current month.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#year#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">yyyy</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current year.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#hour#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">HH</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current hour.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#minutes#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">mm</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current minutes.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#seconds#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">ss</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current seconds.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#application#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph"><br></p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the repository name.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#workflow#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph"><br></p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the workflow name.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#activity#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph"><br></p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the current activity name.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#executionid#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph"><br></p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the workflow execution ID.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">#executiondetailsid#</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph"><br></p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">It will replace with the execution details ID.</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Report Type</strong>&nbsp;- This property is used to select the type of the report to be exported from the reporting server.</p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional</p>
+<p class="paragraph">Default type is PDF. &nbsp;Other supported types are MS Excel and Image.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Retry</strong>&nbsp;- This property is used to specify if the activity must retry to connect to the reporting service.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Yes:</strong> This is the default value. If you select Yes, the activity retries three times to connect to the SQL Server Reporting Service, if the web service does not respond at the first attempt.</p>
+<p class="paragraph"><strong class="strong">No:</strong> If you select No, the activity does not retry to connect to the web service.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Timeout</strong>&nbsp;- This property is used to specify the web service ( SQL Server Reporting Service) time out. By default, the timeout is 30 minutes. Use this property to modify the timeout.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the&nbsp;Raise Error on Unhandled Linked Output&nbsp;property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See&nbsp;<a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a>&nbsp;for more details.</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph">The property in the<b class="uicontrol"> Looping Behavior</b> group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop-down field.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="configuressrstemplate1.html" target="_self">Configure Report Template</a></p><p class="relateditem"><a href="creatingahistorianconnection1.html" target="_self">Creating a Historian Connection</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

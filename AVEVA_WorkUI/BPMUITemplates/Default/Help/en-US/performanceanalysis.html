@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Performance </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t483238" class="heading4">Performance</h4>
+<p class="paragraph">You can use the Performance Analysis configuration tab to define criteria for work to be monitored for resource analysis, work, and resource performance. </p>
+<p class="procedureheading">Steps to configure Performance Analysis:</p>
+<ol class="step"><li class="step">Define&nbsp;<b class="uicontrol">type of work</b>&nbsp;to be monitored. To add a new work type, click New Type of Work.</li><li class="step">Enter the name for the type of work.</li><li class="step">Setup conditions for monitoring the work. Work types can be configured to include conditions that comprise workflow status, activity status, activity in link conditions, work item fields and queues.</li><li class="step">The options displayed below the 'Condition based on' field depend on the condition type.</li><li class="step">Click&nbsp;<b class="uicontrol">Insert with And</b>&nbsp;or&nbsp;<b class="uicontrol">Insert with Or</b>&nbsp;to build the condition further. <br><br>&nbsp;<img id="f47327" src="47327.png" class="embeddedimage100%scalinglive" alt="" height="467" width="550" vspace="0" hspace="0" align="bottom" border="0"></li><li class="step">In Settings tab, select <b class="uicontrol">the Work Item</b> fields to be monitored. All work item fields in the activities and workflows selected in<b class="uicontrol"> Type of Work are available for selection</b>.</li><li class="step">Select <b class="uicontrol">Consider Acknowledgment Date for Work Item</b> to consider the time for the work item from the acknowledgment date and not on assignment date.</li><li class="step">Select a date range for measuring performance. Select Apply date range for weighted average to use the same period for calculating weighted average. A resource performance is compared with the weighted average and slotted accordingly.</li><li class="step">Select the date range for calculating the weighted average of the performance for this work type. <br><br></li></ol><p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

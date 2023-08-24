@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Template Path </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601961" class="heading4">Invoke Form - Template Path</h4>
+<p class="subheading">Standard Template</p>
+<p class="paragraph">If you are using the template in general, then you can use the generic template which is placed in the physical path across the workflow. </p>
+<p class="paragraph">The standard template is available in [AVEVA Work Tasks Installed Path]\AVEVA\Work Tasks\WorkflowElements\Default\en-US\Templates\FormEmailTemplate\ folder.</p>
+<p class="paragraph">The standard template 'InvokeFormEmail.html' is shown in the figure below:</p>
+<p class="paragraph"><img id="f187054" src="187054.png" alt="" height="504" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The text enclosed within @@ are taken from Locales folder ([AVEVA Work Tasks Installed Path]\AVEVA\Work Tasks\Locales\en-US) and you can customize these text. These are marked in the figure below.</p>
+<p class="paragraph"><img id="f187055" src="187055.png" alt="" height="518" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">To customize text within '@@', follow the steps given below:</p>
+<ol class="step"><li class="step">Go to the following path [AVEVA Work Tasks Installed Path]\AVEVA\Work Tasks\Locales\en-US</li><li class="step">Open the required file and customize the required text. </li></ol><p class="subheading">Customizing Template</p>
+<p class="paragraph">If you want to specify the template for different activities then you can create different templates for different activities. You can store the created templates wherever engine is running. Example: You can create a manger template for manager, Employee template for employee, leave application template for all employees and salary template etc.</p>
+<p class="note"><strong class="notelabel">Note:</strong> In an Enterprise Server scenario, if there are two servers running, then the template path will be considered for which engine has got the request.</p>
+<p class="paragraph">To create a new template, there are two ways:</p>
+<p class="paragraph"><strong class="strong">First Option:</strong></p>
+<p class="paragraph">Create a HTML file and place it in any place wherever the engine is running. Enter the entire path in the Template Path property. </p>
+<p class="note"><strong class="notelabel">Note:</strong> Make sure that, while creating a template, you should use the marked text in the template in order to get the Work Items from AVEVA Work Tasks. </p>
+<p class="paragraph"><strong class="strong">Second Option</strong>:</p>
+<p class="paragraph">Take a copy of<b class="uicontrol"> 'InvokeFormEmail.html'</b> and place it in any physical path and customize the text however you want. </p>
+<p class="paragraph"><strong class="strong">The following table depicts the Placeholder which you can customize in your template:</strong></p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">Placeholder</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">Description</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableheader">Example</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#ActorName%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Name of the user to whom the email has to be sent, using the template.</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">Sam&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#Submitedby%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Name of the user who submitted the workflow</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">John</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#Body%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">The content specified in the Body property will be reflected.</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">Please fill a form below to process your tax declaration.</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#TaskName%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Activity name</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">Leave Application Form</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#Description%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Activity description</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">Detailed leave information of the employee</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#SubmitedDate%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Date when workflow was submitted</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">12/10/2008</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#SubmitedTime%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Time when workflow was submitted</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">04:00:24</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#LocalUrl%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Enterprise Console local URL to send form link as an email.</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">http://localhost:8000/enterpriseconsole/BPMUITemplates/Default/Email/</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#IntranetUrl%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Enterprise Console Intranet URL to send form link as an email.</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">http://machinename:8000/enterpriseconsole/BPMUITemplates/Default/Email/</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#InternetUrl%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Enterprise Console Internet URL to send form link as an email.</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">http://www.skelta.com/enterpriseconsole/BPMUITemplates/Default/Email/</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#ApplicationPath%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Enterprise Console path will be considered from SKAddInProviderSettings table for the respective repository.</p>
+<p class="tableparagraph">&nbsp;</p>
+<p class="tableparagraph">If you are not getting the mail from SMTP exchange server , you need to do some manual entry in the&nbsp;SKAddInProviderSettings&nbsp;table.</p>
+<p class="tableparagraph">&nbsp;</p>
+<p class="tableparagraph">In the&nbsp;Settings&nbsp;column of the&nbsp;SKAddInProviderSettings&nbsp;table, change the entry 'http://[ApplicationPath]/BPMUITemplates/Default/Email/' to your local machine name/IP address with port. </p>
+<p class="tableparagraph">&nbsp;</p>
+<p class="tableparagraph">Example: Change&nbsp;ApplicationPath&nbsp;to EnterpriseConsole url</p>
+<p class="tableparagraph">&nbsp;</p>
+<p class="tableparagraph">In the Application column of the&nbsp;SKAddInProviderSettings&nbsp;table, change the entry 'Default' to repository name.            </p>
+<p class="tableparagraph">&nbsp;</p>
+<p class="tableparagraph">Example: Change&nbsp;Application&nbsp;to&nbsp;EmployeeRepo</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">http://skeltanb24:8000/enterpriseconsole/BPMUITemplates/Default/Email/</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#QueryString%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">The query string which contains the Work Item information in encrypted format.</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">mcuri=uSR0tBXvLACdY2J-e1EPXjPewxFYxLx6G5Rg2zPgzpr8EYiyP63v6QSY0jdq26OnLOrwfy8iDwUhUUCdeEsOzKWgI4D7MF_9Y-LWRlb05T0pfbBP12oTqK0hRvyZsnCBxDeX190sSTkyt2mGY3nCDzCkVPrLMu82msEhQdm_g8HeO5SY_fWhiWgGDKjPai0O&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#DocViewQueryString%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Document View page details</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">Emaildocview.aspx?mailviewuri=nLOVXOa2m4x43xcG4kWt0Zi7gsePioiAfQsnck92w-Fr-uMXWj5scuZy-xVNkzCQhOKoFPTpRGuRQobt4kbSlJD4TXQXi6e9mDkPXOrR5UGBQiGOq88IvRJqleRkwK5PXKgWPIbdLChdMYl1Xl5IIebMMjeVsHi4KXFuiw9Maa1vp2805TjpiBAbODvy1dO6NX8oBEaoiKu1XiHUKX1Lwpd2nkCb26C_jEpvKDBKAwHvqpHWZViDFoDlKmUa8YvgHfrm3Xf-xAWy02z5IJ4WvPUe6kgQoFwLDleRfF-W6hw!</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">&lt;%#ExecutionViewQueryString%&gt;</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Process Execution page details</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">EmaiExecutionView.aspx?mailviewuri=nLOVXOa2m4x43xcG4kWt0Zi7gsePioiAfQsnck92w-Fr-uMXWj5scuZy-xVNkzCQhOKoFPTpRGuRQobt4kbSlJD4TXQXi6e9mDkPXOrR5UGBQiGOq88IvRJqleRkwK5PXKgWPIbdLChdMYl1Xl5IIebMMjeVsHi4KXFuiw9Maa1vp2805TjpiBAbODvy1dO6ROMtM-aBMo5QlRzS6Ad9MrGhjuLxkHy4ebMtncEUuH3zXPnGUpSzT-qRBduN4iOWF53PJF1MHI_nIyLmNBJloxMz5RqzgDfKM8BLur3QOwtc3lUZBT0M-JKH-EYpbAfgDHUq9uhDWhBbBhMsxYN09M30_NyJmL20HiBVbDQrxwHQrZrxBLpQRlJKSymutzHM</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">For configuring workflow variables</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Using Variables in Invoke Form Activity</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">For configuring workflow contents</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Using Contents in Invoke Form Activity</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&nbsp;</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">For configuring workflow Xml variables</p>
+</td>
+<td style="border:1px solid #010101;" width="144"><p class="tableparagraph">Using XML Variables in Invoke Form Activity</p>
+</td>
+<td style="border:1px solid #010101;" width="288"><p class="tableparagraph">&nbsp;</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="invokeformactivityemailtemplate.html" target="_self">Invoke Form Activity Email Template</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

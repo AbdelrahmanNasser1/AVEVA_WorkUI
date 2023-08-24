@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Approval - Assign Queue(s) </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49418" class="heading4">Approval - Assign Queue(s)</h4>
+<p class="subheading">Assign Queue(s) Property Window</p>
+<p class="paragraph">You can select the queues to which the approval work item is to be sent in this property window. To open this window, click the button for the <b class="uicontrol">'Assign Queue(s)' property</b>.</p>
+<p class="paragraph"><img id="f50546" src="50546.png" class="embeddedimage100%scalinglive" alt="" height="330" width="450" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has a pair of list boxes to specify the queue(s). The&nbsp;<b class="uicontrol">Available Queues</b>&nbsp;list shows all the available queues. You can select the required queue(s) from this list box. The&nbsp;<b class="uicontrol">Selected Queues</b>&nbsp;list shows all the selected queues to which the activity will be assigned.</p>
+<p class="paragraph">You can use the following buttons located between the list boxes to move the queues to and from the list boxes.</p>
+<ul class="ulitem"><li class="ulitem">[&gt;&gt;] - You can click this button to add all the queues in the Available Queues list to the Selected Queues list.</li><li class="ulitem">[&gt;] - You can click this button to add the selected queue(s) to the Selected Queues list.</li><li class="ulitem">[&lt;] - You can click this button to add the selected queue(s) from the Selected Queues list to the Available Queues list.</li><li class="ulitem">[&lt;&lt;] - You can click this button to add all the queues in the Selected Queues list to the Available Queues list.</li></ul><p class="paragraph">At the bottom of the window you will find the following buttons:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Assign</b>&nbsp;- You can click this button to assign the activity to the selected queues.</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- You can click this button to close this window.</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Assigning queue system variable</p>
+<p class="paragraph">To assign queues instead of setting the queue through&nbsp;Assign Queue&nbsp;property, add a variable with a name prefixed by '^', with the following syntax:</p>
+<p class="paragraph">&nbsp;<b class="uicontrol">&quot;^&quot;+ CurrentActivity.Name + &quot;_QueueVariable&quot;.</b></p>
+<p class="paragraph">For example,&nbsp;if the activity name is 'Approval1' then declare the variable as ^Approval1_QueueVariable in the&nbsp;<b class="uicontrol">Start</b>&nbsp;activity with the Type as&nbsp;<b class="uicontrol">String</b>. Using the &quot;Update Variable&quot; activity, assign the queue-id (GUID) for this variable in the workflow.</p>
+<p class="paragraph">To assign multiple queues, specify the queue-ids with semicolon (;)&nbsp;separator.&nbsp;<b class="uicontrol">Skelta.HWS.Queue.QueueCollection</b>&nbsp;class can be used to retrieve queue information.</p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="approvalaction1.html" target="_self">Approval Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

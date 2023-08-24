@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Form List Webpart Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49347" class="heading3">Form List Webpart Control</h3>
+<p class="paragraph"><b class="uicontrol">Forms List Webpart Control</b> will list out the forms available.</p>
+<p class="procedureheading">To add FormsList WebPart control using a panel:</p>
+<ol class="step"><li class="step">Before adding the Process Designer control in a panel,&nbsp;<a id="h50251" class="jump-currentwindowlive" title="Creating an ASP.NET Project in Visual Studio .NET" href="creatinganaspnetprojectinvisualstudionet20082010.html" target="_self">Creating an ASP.NET Project in Visual Studio .NET</a>.</li><li class="step">Go to FormsWebPart.aspx.cs page.</li><li class="step">Ensure to initialize  the User Context based on r the steps given in&nbsp;<a id="h50255" class="jump-currentwindowlive" title="Creating User Context" href="creatingusercontext.html" target="_self">Creating User Context</a></li><li class="step">Add the following style within the &lt;head&gt; tag. <p class="codeblock1">&lt;style type=&quot;text/css&quot;&gt;<br>html, body, form {<br>height: 100%;<br>margin:0;<br>padding:0;<br>width:100%;<br>box-sizing:border-box;<br>}<br>&lt;/style&gt;</p>
+</li><li class="step">Modify &lt;div&gt; as follows: <p class="codeblock1">&lt;div style=&quot;width:100%;height:98%;box-sizing:border-box;&quot;&gt;</p>
+</li><li class="step">In the underlying code, create a new instance of control and add the instance to the panel in the&nbsp;<b class="uicontrol">Page_Load</b>&nbsp;as in the example below.<p class="codeblock1">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(&quot;ListRepo&quot;);//Repository name</p>
+<p class="codeblock1">object loggedinUserId = &quot;89b95a29-4931-44f1-8f4d-3e78036a936f&quot;;</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;);</p>
+<p class="codeblock1">Skelta.WebParts.FormList frmWebPart = new Skelta.WebParts.FormList();</p>
+<p class="codeblock1">frmWebPart.ID = &quot;formListWebpart&quot;;</p>
+<p class="codeblock1">frmWebPart.ApplicationName = userContext.Repository.ApplicationName;</p>
+<p class="codeblock1">frmWebPart.LoginName = userContext.LoggedInUserId;</p>
+<p class="codeblock1">frmWebPart.Height = new Unit(100, UnitType.Percentage);</p>
+<p class="codeblock1">frmWebPart.Width = new Unit(99, UnitType.Percentage); </p>
+<p class="codeblock1">frmWebPart.InlineFormHeight = new Unit(90, UnitType.Percentage);</p>
+<p class="codeblock1">Panel1.Controls.Add(frmWebPart);</p>
+<p class="codeblock1"></p>
+<p class="codeblock1"></p>
+</li></ol><p class="subheading">Different Properties that can be set for FormListWebPart Control are:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">ApplicationName</b>: Provide the ApplicationName or Repository Name for the workflow report to be viewed. </li><li class="ulitem"><b class="uicontrol">LoginName</b>: Provide the User ID of the user who has logged in. Click here to view the different UserIdString formats. &nbsp;</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1_1.html" target="_self">Embedding Controls in the Application</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

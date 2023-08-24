@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Edit Form</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramlcsuri;
+        var deviceOS = "Web", viewModelObject, applicationName, versionStamp, formId;
+        var popupWindow = null;
+
+        function updateForm(inputParameterObject, eventArgs)
+        {
+            var convJSONXml = new X2JS();
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": val,
+                "lcsuri": paramlcsuri
+            });
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/UpdateForm", "application/json; charset=utf-8", jsonHelper, "json", formSubmitSucceeded, formSubmitFailed, null);
+        }
+        function formSubmitSucceeded(resultData)
+        {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsSuccess === true)
+            {
+                if (res.RedirectLocation.length > 0)
+                {
+                    closeWin();
+                    openWin(res.RedirectLocation);
+                }
+            }
+            else
+            {
+                skeltaUtils.showError(document.title, res.ErrorMessage);
+                logger.logError(res.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+            }
+        }
+
+        function getRadWindow()
+        {
+            var oWindow = null;
+
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+
+            return oWindow;
+        }
+
+        function closeWin()
+        {
+            var oWindow = getRadWindow();
+            oWindow.close();
+        }
+        function hideWin()
+        {
+            var oWindow = getRadWindow();
+            oWindow.hide();
+        }
+
+        function openWin(uri)
+        {
+            var w, h;
+
+            if (document.all || document.layers)
+            {
+                w = screen.availWidth;
+                h = screen.availHeight;
+            }
+
+            var winIsResizable = "1";
+            var winIsScrollable = "0";
+
+            var winHeight = (h * 85 / 100);
+            var winWidth = (w * 85 / 100);
+
+            var winLeft = (w - winWidth) / 2;
+            var winTop = (h - winHeight) / 2;
+
+            window.open(uri, '', "left=" + winLeft + ",top=" + winTop + ",width=" + winWidth + ",height=" + winHeight + ",resizable=" + winIsResizable + ",scrollbars=" + winIsScrollable + "\"");
+        }
+
+        function checkFormsAccessRights(lcsuri, deviceType)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": ["ActionEdit"],
+                "deviceType": deviceType
+            });
+
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetCurrentContextWithSecurityCheck", "application/json; charset=utf-8", params, "json", checkFormsAccessRightsSucceeded, null, null, false);
+        }
+
+        function checkFormsAccessRightsSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showError(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            } else
+            {
+                var clientData = $.parseJSON(result.Result);
+                applicationName = clientData.fAppName;
+                formId = clientData.fId;
+                versionStamp = clientData.fVer;
+                skeltaUtils.loadPageDefault();
+                loadGetEditFormDefinition();
+            }
+        }
+        function formSubmitFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFEditFormSaveError"), null, result.status + '<br>' + result.statusText + '<br>' + result.responseText);
+            logger.logError(skelta.localize.getString("FormNGFEditFormSaveError") + "\n" + result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+        $(document).ready(function ()
+        {
+            paramlcsuri = skeltaUtils.getUrlParameterValue(window, 'lcsuri');
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkFormsAccessRights(paramlcsuri, deviceOS);
+                document.title = skelta.localize.getString("FormNGFEditFormTitle");
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, "Error while loading the edit form.", null, exception.message);
+                logger.logError("Error while loading the edit form." + "\n" + exception.message);
+            }
+        });
+
+        function loadGetEditFormDefinition()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "lcsuri": paramlcsuri
+            });
+            skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetFormDefinition", "application/json; charset=utf-8", jsonHelper, "json", editFormSucceeded, editFormFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+        function editFormSucceeded(resultData)
+        {
+            var result = JSON.parse(resultData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showError(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                closeWin();
+                return false;
+            }
+            else
+            {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, formId + "_EF", versionStamp);
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(result.instanceXml));
+                //document.getElementById("viewAndViewModel").value = result.spa;
+                ////dataModel = skeltaUtils.getJSONObjectFromXml(result.instanceXml);
+                $("#viewModel").html(result.spa);
+                viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                viewModelObject.onSave.subscribeEvent(updateForm);
+                viewModelObject.onCancel.subscribeEvent(skeltaUtils.closeForm);
+                $("#viewModel")[0].style.display = "";
+                viewModelObject.topLevelForm.initializeFocus(0);
+            }
+        }
+
+        function editFormFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFEditFormLoadError"), null, result.status + '<br>' + result.statusText + '<br>' + result.responseText);
+            logger.logError(skelta.localize.getString("FormNGFEditFormLoadError") + "\n" + result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

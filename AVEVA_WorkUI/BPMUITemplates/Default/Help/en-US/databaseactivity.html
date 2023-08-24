@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Database Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t476737" class="heading3">Database Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph">The database activity enables execution of queries, stored procedures, and functions from the workflow. The database activity establishes connection with the database server and retrieves or updates data in the database. The activity gets the schema of the database table to an XML variable according to the query, stored procedures, or functions passed.</p>
+<p class="subheading">Application Scenario</p>
+<p class="paragraph">Consider a scenario where a manager wants to send appraisal forms to all the employees. The manager can add the database activity with a query to select the email address column from the Employee Database. The Output XML will have the schema based on the query and this XML variable can used to assign employees to whom the appraisal forms are to be sent. When the workflow is initiated, the query in the database activity will be executed and all the employees will receive the appraisal form in their Inbox.</p>
+<p class="note"><b class="uicontrol">Note:</b> When you are connecting to an Oracle database, it is recommended to use case-sensitive commands based on the Oracle database settings, and also install Oracle Client on your machine. </p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph">The Database activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Database activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51094" src="51094.jpg" class="embeddedimage100%scalinglive" alt="" height="558" width="241" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="note"><strong class="notelabel">Note:</strong> Every time you input a value for a property, ensure to save the data. Click the&nbsp;<b class="uicontrol">Save</b>&nbsp;button on the&nbsp;<b class="uicontrol">Activity Properties</b>&nbsp;window. You need to save the property so that the subsequent properties in the activity can inherit the required information.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong>&nbsp;&nbsp;</p>
+<p class="paragraph">You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b>&nbsp;- This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type:&nbsp;Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description</b>&nbsp;- This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type:&nbsp;Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Database Connection</strong></p>
+<p class="paragraph">Database connection property is used to get the connection to the Database Server. You can use this property to select the Database connection (which has been configured in <b class="uicontrol">Enterprise Console &gt; Settings &gt; Database Connections</b>).</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Mandatory</b> (This property must be set if the activity has to establish connection with the database server.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Query Builder</strong></p>
+<p class="paragraph">To enter the query, click the <b class="uicontrol">Query Builder</b> property to open the property window.</p>
+<p class="paragraph">In this window, set the following properties:</p>
+<ol class="olitem"><li class="olitem">Command Type</li><li class="olitem">Query</li><li class="olitem">Output XML variable<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f286153" src="286153.png" alt="" height="600" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="paragraph"><strong class="strong">Command Type</strong>: The command types that can be selected</p>
+<ul class="ulitem"><li class="ulitem">Query</li><li class="ulitem">Stored Procedure</li><li class="ulitem">Functions</li></ul><p class="paragraph"><strong class="strong">Enter Query</strong>: As the Command Type is selected, you can enter a query, Stored Procedure, or Function.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The <strong class="strong">Expression Editor &lt;&gt;</strong> icon is displayed only for the <strong class="strong">Command Type &quot;Query &quot;,</strong> as the expressions set cannot be evaluated in design time for stored procedures and functions. </p>
+<p class="paragraph"><strong class="strong">Query:</strong>  Query can be entered in the text box or from the Expression Builder.</p>
+<p class="paragraph">For example, the query can be &quot;<b class="uicontrol">Select * from EmployeeTable</b>&quot; and if the query is to be passed with parameters then the query will be<b class="uicontrol"> &quot;Select * from EmployeeTable where EmployeeID=@Id</b>&quot;. Here @Id is the parameter. When you click on &quot;Load Parameters&quot;, it will load the parameters within the query. In the Value field you can pass the value for the parameter.</p>
+<p class="paragraph">Query with 'Order By', 'Group By' keywords are supported.</p>
+<p class="paragraph">The following Parameter values can be saved with empty values:</p>
+<ul class="ulitem"><li class="ulitem">Name: Displays the name of the parameter.</li><li class="ulitem">Type: Select the Parameter type from the drop-down list. This type helps you to execute the query with internally defined default values only while generating the database schema. The appropriate Type needs to be selected for the Query and Functions. For stored procedures the Types will be automatically selected.</li><li class="ulitem">Value: Type the value of the parameter.</li></ul><p class="paragraph">Parameter helps you retrieving values from the database where the value is null or empty.</p>
+<p class="paragraph">If the query is to retrieve values from the database we have to specify the Output XML variable name. For more information, see the table <i class="emphasis">Database Activity</i>.</p>
+<p class="paragraph">Multiple queries are not supported. If multiple queries are used, &nbsp;XML variable will carry the result of the last query written.</p>
+<p class="paragraph">Click on <b class="uicontrol">'View Schema'</b> to view the schema of the output XML variable &quot;outXML&quot;</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f286160" src="286160.png" alt="" height="420" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">XML variable used in one activity cannot be reused within other database activities.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f262644" src="262644.png" class="embeddedimage100%scalinglive" alt="Database_4" height="373" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">If the output schema containing return values have been modified after the property is saved, open the Query Builder property and click&nbsp;Save. The Schema will get updated with the latest values. Click&nbsp;<b class="uicontrol">View Schema</b>&nbsp;to see the updated changes.</p>
+<p class="paragraph"></p>
+<p class="paragraph">This XML Variable &quot;outXML&quot; will be added in the&nbsp;<b class="uicontrol">Start&nbsp;&gt;&nbsp;XML Variables</b>&nbsp;as shown below.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51098" src="51098.png" class="embeddedimage100%scalinglive" alt="" height="482" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Parameter values cannot update data types like 'image', 'blob' and 'unique identifier' from XML variables or variables.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Stored Procedure</strong></p>
+<p class="paragraph">Stored procedures can be executed by simply specifying the name of the Stored Procedure (provided there is a stored procedure created in your database server). On the click of &quot;Load Parameters&quot; it will load the parameters present in the Stored Procedure. If you want to retrieve values on executing the Stored Procedure you can specify the name of the&nbsp;XML&nbsp;variable. If return values from the stored procedure are stored in output parameters, the activity will load the&nbsp;XML&nbsp;schema with the output parameters.</p>
+<p class="paragraph">To discover the output XML schema, system internally executes stored procedure with parameter values as empty string or null. If a stored procedure has validations on parameter or data integrity constraints, you cannot configure a stored procedure. </p>
+<p class="paragraph"></p>
+<p class="paragraph">If a stored procedure returns the values for return Result Set and output parameters, then both the values will be available in the XML variable. </p>
+<p class="note"><strong class="notelabel">Note:</strong> If there are multiple Return Result Sets, then only the first return Result Set will be considered.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Skip Execution of Stored Procedure</b>: To avoid the execution of stored procedure to get the output xml schema, select this check box so that you can configure stored procedure with parameter validation or data integrity constraints. </li></ul><p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> <br>-  It is recommended to use proper parameter values/variables that has appropriate values at runtime to execute the stored procedure.<br>-  To execute a stored procedure, which expects default values for execution, you can create a wrapper stored procedure with the same parameter. You can then call the actual stored procedure with default values passed to the stored procedure if the parameter values are empty or null.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Functions</strong></p>
+<p class="paragraph">Functions are executed in the same way as executed in the database server, for e.g. &quot;select dbo.FunctionName&quot;. If the function contains parameters you should specify the exact parameters. For e.g. &quot;select dbo.FunctionName(@param1, @param2)&quot; (provided there is the function created in your database server). If you want to retrieve values on executing the function you can specify the name of the&nbsp;XML&nbsp;variable. If return values from the function are stored in output parameters, the activity will load the&nbsp;XML&nbsp;schema with the output parameters.</p>
+<p class="note"><strong class="notelabel">Note:</strong> <br>- Table valued functions are not supported.<br>- To execute a function in the Oracle environment, add <strong class="strong">from dual</strong> after the function name. <br>  For example: select MYFUNCTION('SK-Fresh', 'FN') from dual</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output&nbsp;XML&nbsp;Variable for return value:</strong></p>
+<p class="paragraph">Output&nbsp;XML&nbsp;variable will have the schema of the table as per the query entered. If the query is &quot;Select * from EmployeeData&quot; then the&nbsp;XML&nbsp;variable will have all the columns as nodes in the schema which can be looped through and used in the subsequent activities. Output&nbsp;XML&nbsp;Variable name should be unique, it cannot be repeated.</p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;To create an&nbsp;XML&nbsp;Iterator of the output&nbsp;XML&nbsp;Variable the node selected should always be the &quot;Table&quot; node.</p>
+<p class="paragraph"></p>
+<p class="subheading">Capture runtime exceptions in a variable </p>
+<p class="paragraph"></p>
+<p class="paragraph">You can create a variable with the name <b class="uicontrol">^&lt;ActivityName&gt;Error</b> in the <b class="uicontrol">Start</b> activity. The exception message will be available in the variable if an exception occurs.</p>
+<p class="paragraph">For example: For an activity named as &quot;DBAct1&quot;, you have to create a variable with name as <b class="uicontrol">^DBAct1Error</b> in the <b class="uicontrol">Start </b>activity. </p>
+<p class="paragraph">For more information on creating variables, see <a id="h262284" class="" title="Start - Variables" href="start-variables.html" target="_self">Start - Variables</a>.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the activity is to retrieving any value from the database (i.e. if query is of &quot;select&quot; type, else this field will be optional because it will not load any schema for 'insert', 'update' or 'delete' type of query)</p>
+<p class="paragraph"><b class="uicontrol">Retry Connections</b>:&nbsp;This property allows setting&nbsp;the maximum retries if a Database goes Offline at run time. By default the value set will be 1.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Looping Behavior</b></p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b>&nbsp;- This property is used to specify the condition for looping the activity by selecting an activity output from the drop down. &nbsp;The looping option for this activity is&nbsp;Completed.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs</strong>:</p>
+<p class="paragraph">The Database Activity returns the following values:</p>
+<p class="paragraph">Successful: Displayed when the query is executed.</p>
+<p class="paragraph">Unsuccessful: Displayed when the query execution is unsuccessful.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a> for more details</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The following table shows the SQL database types and their corresponding parameter types for a database activity:</p>
+<table class="tableintopic" width="576" cellpadding="2" cellspacing="0" border="1" style="border-collapse:collapse; border:1px solid #010101">
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="tableheader">SQL Database Type</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="tableheader">Database Activity Parameter Type</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">bigint</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Integer</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">binary</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Byte</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">bit</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Boolean</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">char</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">String</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">date</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Date</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">datetime</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">DateTime</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">datetime2</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">DateTime</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">datetimeoffset</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">DateTime</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">decimal</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Decimal</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">float</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Double</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">int</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Integer</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">money</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Currency</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">nchar</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">String</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">numeric</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Decimal</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">nvarchar</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">String</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">real</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Single</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">smalldatetime</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">DateTime</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">smallint</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Integer</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">smallmoney</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Currency</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">sql_variant</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Object</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">time</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Time</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">timestamp</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Binary</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">tinyint</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Byte</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">uniqueidentifier</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Guid</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">varbinary</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Binary</p>
+</td>
+</tr>
+<tr align="left" valign="top">
+<td style="border:1px solid #010101;" width="144"><p class="paragraph">xml</p>
+</td>
+<td style="border:1px solid #010101;" width="432"><p class="paragraph">Xml</p>
+</td>
+</tr>
+
+</table>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="EngineActivities.html" target="_self">Engine Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

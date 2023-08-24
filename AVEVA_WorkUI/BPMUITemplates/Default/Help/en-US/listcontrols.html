@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> List Control </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t601908" class="heading3">List Control</h3>
+<p class="paragraph">List Controls lists out the Workflows, Navigation Details, Users, Event Providers and Event Associations.</p>
+<p class="procedureheading">To add List control using a panel:</p>
+<ol class="step"><li class="step">Before adding the Process Designer control in a panel,&nbsp;<a id="h50251" class="jump-currentwindowlive" title="Creating an ASP.NET Project in Visual Studio .NET" href="creatinganaspnetprojectinvisualstudionet20082010.html" target="_self">Creating an ASP.NET Project in Visual Studio .NET</a>.</li><li class="step">Go to List.aspx.cs page.</li><li class="step">Make sure that you have initialized the User Context object as per the steps given in&nbsp;<a id="h50255" class="jump-currentwindowlive" title="Creating User Context" href="creatingusercontext.html" target="_self">Creating User Context</a></li><li class="step">In the underlying code, create a new instance of control, and add the instance to the panel in the Page_Load as shown in the following example: <p class="codeblock2"></p>
+<p class="codeblock2">Skelta.Core.ApplicationObject application = new Skelta.Core.ApplicationObject(&quot;Telematics Repository&quot;);//Repository name</p>
+<p class="codeblock2">        object loggedinUserId = &quot;81734457-B3DB-4BC9-894A-C3149828C65C&quot;;</p>
+<p class="codeblock2">        Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext(loggedinUserId, application, &quot;skeltalist&quot;);</p>
+<p class="codeblock2">        Skelta.Repository.Web.ListControl listControl = new Skelta.Repository.Web.ListControl();</p>
+<p class="codeblock2">        listControl.RepositoryName = userContext.Repository.ApplicationName;</p>
+<p class="codeblock2">        listControl.ListName = &quot;Users&quot;;</p>
+<p class="codeblock2">        listControl.ID = &quot;listControl1&quot;;</p>
+<p class="codeblock2">        listControl.LoggedInUserId = userContext.LoggedInUserId;</p>
+<p class="codeblock2">        listControl.FilterColumn = &quot;&quot;;</p>
+<p class="codeblock2">        listControl.FilterValue = &quot;&quot;;</p>
+<p class="codeblock2">        listControl.Height = Unit.Percentage(100);</p>
+<p class="codeblock2">Panel1.Controls.Add(listControl);</p>
+<p class="codeblock2"></p>
+<p class="codeblock2"></p>
+<p class="codeblock1">&nbsp;</p>
+</li></ol><p class="subheading">Different Properties that can be set for List Control: </p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Repository Name:</b> Provide the repository name created by the user. </li><li class="ulitem"><b class="uicontrol">Filter Column:</b> Provide column name for which user needs to apply filter. Example: Filter column = Title </li><li class="ulitem"><b class="uicontrol">Filter Value:</b> Provide the value for filtering. Example: If Filter value=test then &quot;test&quot; is searched based on &quot;List Name&quot; provided. Suppose, if the List Name is 'Workflow' then the workflow with name 'test' will be searched. </li><li class="ulitem"><b class="uicontrol">Filter Query:</b> Use the FilterQuery property if you want to filter with more than one condition.
+<p class="stepinfo">Sample code:</p>
+<p class="codeblock1">Skelta.Entity.UserContext userContext = new Skelta.Entity.UserContext();</p>
+<p class="codeblock1">Skelta.Repository.Web.ListControl listControl = new Skelta.Repository.Web.ListControl ();</p>
+<p class="codeblock1">listControl.RepositoryName = userContext.Repository.ApplicationName;</p>
+<p class="codeblock1">listControl.ListName = &quot;Workflow&quot;;</p>
+<p class="codeblock1">listControl.ID = &quot;listControl1&quot;;</p>
+<p class="codeblock1">listControl.LoggedInUserId = userContext.LoggedInUserId;</p>
+<p class="codeblock1">ListControl1.FilterColumns = &quot;ItemType&quot;;</p>
+<p class="codeblock1">ListControl1.FilterQuery = &quot;ItemType = 2 or ItemType = 3&quot;;</p>
+<p class="codeblock1">Panel1.Controls.Add(listControl);</p>
+<p class="stepinfo">In this example, the ItemType refers to the filter query conditions to be specified in order to categorize the list of workflows. </p>
+</li><li class="ulitem"><b class="uicontrol">List Name:</b> Provide the List Name. <ul class="ulsubitem"><li class="ulsubitem"><strong class="strong">Example1</strong>: If List Name= Workflow, then the workflows are displayed depending on List Id or List Item. </li><li class="ulsubitem"><strong class="strong">Example 2</strong>: If List Name= NavigationDetails, then information regarding the navigation of AVEVA Work Tasks control is displayed. </li><li class="ulsubitem"><strong class="strong">Example 3</strong>: If List Name=Users, then all the &quot;list provider&quot; users are displayed. </li><li class="ulsubitem"><strong class="strong">Example 4</strong>: If List Name= Event Providers, then different providers for association are displayed. </li><li class="ulsubitem"><strong class="strong">Example 5</strong> :If List Name = Event Associations, then all the workflows for which association is created is displayed. </li></ul></li><li class="ulitem"><b class="uicontrol">LoggedInUserId</b>: Provide the user ID of the user. Click here to view the different UserIdString formats. </li></ul><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1_1.html" target="_self">Embedding Controls in the Application</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

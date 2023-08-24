@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Executing Methods with Out Parameters in SOA </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602005" class="heading4">Executing Methods with Out Parameters in SOA</h4>
+<p class="subheading">Using Out Parameter in SOA</p>
+<p class="paragraph"><b class="uicontrol">Out Parameter</b>: The out parameter can be used to return more than one value in the same variable passed as a parameter of the method. Any changes made to the parameter will be reflected in the variable.</p>
+<p class="paragraph">If an Assembly has a method with the Out Parameter, then you can make use of the Out Parameter to update the variables or for building the Expression through SOA.</p>
+<p class="paragraph">To execute the methods with Out Parameter in SOA, follow the steps given below:</p>
+<ol class="step"><li class="step">Prepare an Assembly with the following code.<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">namespace FinalTest</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">    public class SOAOutParameter</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        private int _a;</p>
+<p class="codeblock1">        private int _b;</p>
+<p class="codeblock1">        public int A</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            get</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                return _a;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">            set</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                _a = value;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        public int B</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            get</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                return _b;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">            set</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                _b = value;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        public SOAOutParameter(int a, int b)</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            this.A = a;</p>
+<p class="codeblock1">            this.B = b;</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        public void AddTwoNumbers(out int Result)</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            Result = this.A + this.B;</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1">}</p>
+</li><li class="step">You have to register the assembly in AVEVA Work Tasks SOA Assembly to use members of the assembly in the workflow.</li><li class="step">To register a assembly, select&nbsp;<b class="uicontrol">Settings &gt; SOA Folder &gt; New Assembly Folder</b>&nbsp;from the<b class="uicontrol">&nbsp;Enterprise Console</b>&nbsp;pull-down menu. Register an assembly called 'SOAOutParameter'.<p class="stepinfo"><img id="f52813" src="52813.png" class="embeddedimage100%scalinglive" alt="" height="430" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>. Now the SOAOutParameter assembly has been registered as shown below.</li><li class="step">Select&nbsp;<b class="uicontrol">Tools &gt; SOA Assembly &gt; From Assembly Folder</b>&nbsp;from the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;pull-down menu. Expand SOAOutParameter and select dll and click&nbsp;<b class="uicontrol">Next</b>.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f52814" src="52814.jpg" class="embeddedimage100%scalinglive" alt="" height="347" width="541" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">The&nbsp;<b class="uicontrol">Object Setup</b>&nbsp;screen is displayed. Expand all class, methods and properties as shown below.<p class="stepinfo"><img id="f52815" src="52815.png" class="embeddedimage100%scalinglive" alt="" height="343" width="546" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;Finish &amp; Publish&nbsp;to save the assembly. This will be listed in the Assembly List as shown below.</li><li class="step">You need to create an instance for the class to use the members of the class. To make use of the static members, there is no need to create any instance. Static members can be directly used in the Expression Editor.</li><li class="step">To create an instance, you first need to design a workflow.</li><li class="step">Right-click the&nbsp;Start&nbsp;Activity and then select&nbsp;Activity Properties.</li><li class="step">Select the&nbsp;SOA Object Instances&nbsp;property.</li><li class="step">The SOA Object Instance screen is displayed. SOAOutParameter is the Assembly, under that SOAOutParameter as NameSpace, under that SOAOutParameter as Class and under that .ctor(Int32 a, Int32 b) is the constructor as shown in the following figure.<p class="stepinfo"><img id="f52816" src="52816.png" class="embeddedimage100%scalinglive" alt="" height="430" width="544" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click the Constructor and then click Set to set the constructor values. The Constructor will be displayed in the Expression Editor.<p class="stepinfo"><img id="f52817" src="52817.png" class="embeddedimage100%scalinglive" alt="" height="198" width="545" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Pass the parameter value to the Constructor. For example, pass (20, 20) as the parameter for the Add Method. Click&nbsp;Save.<p class="stepinfo"><img id="f52818" src="52818.png" class="embeddedimage100%scalinglive" alt="" height="211" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;Save&nbsp;in the&nbsp;Activity Properties&nbsp;window.<p class="stepinfo"><img id="f52819" src="52819.png" class="embeddedimage100%scalinglive" alt="" height="434" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><br><img id="f52820" src="52820.png" class="embeddedimage100%scalinglive" alt="" height="190" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Make use of&nbsp;SOAExecute&nbsp;activity to execute the method and update the AVEVA Work Tasks Variable 'varResult'.<p class="stepinfo"><img id="f52821" src="52821.jpg" class="embeddedimage100%scalinglive" alt="" height="210" width="562" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Right-click the&nbsp;SOA Execute&nbsp;activity and select&nbsp;Activity Properties.</li><li class="step">Select&nbsp;Execute an SOA Expression&nbsp;property to build the expression.<p class="stepinfo"><img id="f52822" src="52822.png" class="embeddedimage100%scalinglive" alt="" height="353" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click the AddTwoNumbers method to bring it into the Expression Editor.<p class="stepinfo"><img id="f52823" src="52823.png" class="embeddedimage100%scalinglive" alt="" height="218" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">AddTwoNumbers is of Void as return type and expects integer as parameter with out keyword.<p class="stepinfo"><img id="f52824" src="52824.png" class="embeddedimage100%scalinglive" alt="" height="223" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Declare a variable called intResult with value as '0'. Pass 'intResult' as parameter to AddTwoNumbers method with 'out' keyword,&nbsp;as shown in the following figure.<p class="stepinfo"><img id="f52825" src="52825.png" class="embeddedimage100%scalinglive" alt="" height="223" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Drag and drop the AVEVA Work Tasks Variable to be updated with the out return value.<p class="stepinfo"><img id="f52826" src="52826.png" class="embeddedimage100%scalinglive" alt="" height="362" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Here the variable to be updated is 'intResult'.<p class="stepinfo"><img id="f52827" src="52827.png" class="embeddedimage100%scalinglive" alt="" height="373" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">OK</b>&nbsp;and then click&nbsp;<b class="uicontrol">Save</b>&nbsp;in the&nbsp;Activity Properties&nbsp;window.</li><li class="step">Display the value in the logger using&nbsp;Logger&nbsp;activity. Right-click the&nbsp;Logger&nbsp;activity and select&nbsp;Activity Properties. Select&nbsp;LogMessage&nbsp;property and then type the logger message in the&nbsp;Logger Message&nbsp;window.</li><li class="step">Select&nbsp;LogMessage&nbsp;property and then type the logger message in the&nbsp;Logger Message&nbsp;window.</li><li class="step">Click&nbsp;Update&nbsp;and then click&nbsp;Save&nbsp;in the&nbsp;Activity Properties&nbsp;window.</li><li class="step">Execute the workflow. The method will be executed at run time and the out parameter will be updated to the AVEVA Work Tasks Variable.<p class="stepinfo"><img id="f52828" src="52828.png" class="embeddedimage100%scalinglive" alt="" height="251" width="541" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li></ol><p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="483180.html" target="_self">SOA Execute Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

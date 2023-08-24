@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> ArchestrA Wait for Event </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t571162" class="heading3">ArchestrA Wait for Event</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph"></p>
+<p class="paragraph">Use the ArchestrA Wait for Event activity to wait for a number of events from ArchestrA Event Services platform for a particular time period, and then consume the events in a defined workflow. You can set the number of events and the time period in the properties of that activity. It can store the event context details in the specified XML variables. </p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph"></p>
+<p class="paragraph">Enter appropriate values in the <strong class="strong">Activity Properties</strong> area to configure the ArchestrA Wait for Event activity. Click the <strong class="strong">Activity Properties</strong> icon in the tool bar or select the appropriate option from the right-click menu for the activity. </p>
+<p class="paragraph">The following image shows the <strong class="strong">Activity Properties</strong> window of the ArchestrA Wait for Event activity:</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f239759" src="239759.png" class="embeddedimage100%scalinglive" alt="" height="620" width="277" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph"></p>
+<p class="paragraph">Use the name and description properties to specify the name and description for the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Name</strong>: Use this property to enter a name for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory.</p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Description</strong>: Use this property to enter a brief description to be displayed for the activity.<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required.</p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph"></p>
+<p class="paragraph">Use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Set ArchestrA Event Filters</strong>: Use this property to filter the ArchestrA events. Whenever an event occurs, it will check this filter, and if a match is found, the activity will be alerted. <p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory</p>
+<p class="lcontinue">For more information, see <a id="h241754" class="jump-currentwindowlive" title="Set ArchestrA Event Filters" href="SetArchestrAEventFilters.html" target="_self">Set ArchestrA Event Filters</a>.</p>
+</li></ul><p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Valid for Events</strong>: Use this property to specify the number of events for which the activity should wait. It indicates that the activity should wait till the specified number of events are received.<p class="lcontinue"><strong class="strong">Default Value</strong>: The default value is 0 which means that the Archestra Wait for Events activity waits for infinite occurrences of the events, and the workflow does not proceed to the next step in the flow. However, the workflow ends only if there is an exception in the workflow.</p>
+<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required. If not set, the default value is considered.</p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Escalation &amp; Timeout </p>
+<p class="paragraph"></p>
+<p class="paragraph">Use this property to specify escalation and timeout settings for the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Timeout for Action</strong>: Use this property to set timeouts for this activity. If specified, the activity will be timed out after the specified time span.<p class="lcontinue"><strong class="strong">Default Value</strong>: 0</p>
+<p class="lcontinue"><strong class="strong">Format</strong>: d.hh:mm:ss, where &quot;d&quot; denotes the number of days the schedule is set for, and the time setting denotes the number of hours, minutes, and seconds.</p>
+<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required. </p>
+</li></ul><p class="paragraph"></p>
+<p class="subheading">Exception Behavior</p>
+<p class="paragraph"></p>
+<p class="paragraph">Each activity has the <strong class="strong">Raise error on unhandled linked output</strong> property. Click on this to see the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="subheading">Looping Behavior </p>
+<p class="paragraph"></p>
+<p class="paragraph">Use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Loop through this action if output is</strong>: Use this property to specify the condition for looping the activity by selecting an activity output from the drop down. Available options are as follows:<ul class="ulsubitem"><li class="ulsubitem"><strong class="strong">No Loop</strong></li><li class="ulsubitem"><strong class="strong">Action Completed</strong>: This output is displayed when the activity has timed out. </li><li class="ulsubitem"><strong class="strong">Event Received</strong>: This output is displayed when an ArchestrA event matching the specified filter condition is received.</li></ul><p class="lcontinue"></p>
+</li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="ArchestrAEventsActivities.html" target="_self">ArchestrA Events</a></p><p class="relateditem"><a href="SetArchestrAEventFilters.html" target="_self">Set ArchestrA Event Filters</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

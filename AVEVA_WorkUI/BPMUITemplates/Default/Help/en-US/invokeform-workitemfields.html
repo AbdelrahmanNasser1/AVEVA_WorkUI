@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Invoke Form - Work Item Fields </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488152" class="heading4">Invoke Form - Work Item Fields</h4>
+<p class="subheading">Purpose</p>
+<p class="paragraph">You can set the Work Item Fields for this activity in this property window. To open this window, click the button for the <b class="uicontrol">'Work Item Fields'</b> property.</p>
+<p class="paragraph"><img id="f187051" src="187051.png" alt="" height="326" width="565" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has a grid listing all the Work Item Fields that have been set for the process. </p>
+<ul class="ulitem"><li class="ulitem">Each row in the grid represents a Work Item Field. You can click on a Work Item Field to select it. </li><li class="ulitem">The context menu has the Set WorkItemField option, which you can use to set the selected Work Item Field for this activity. It also has the UnSet WorkItemField option to remove the Work Item Field setting. </li><li class="ulitem"><b class="uicontrol">Close</b> - You can use this button to close the window. <p class="note"><strong class="notelabel">Note</strong>: While entering a value in the Work Item field, it is recommended to keep it less than the specified database column size. If there is a need to increase the size of the Work Item field, the user should manually increase the column size in the database. </p>
+</li></ul><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformactivity.html" target="_self">Invoke Form Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+</script>	
+
+ </body>
+ </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> AttributeReadWrite Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602405" class="heading3">AttributeReadWrite Activity</h3>
+<p class="paragraph">Use the <strong class="strong">AttributeReadWrite</strong> activity to perform the read and write operation between AVEVA Work Tasks and ArchestrA IDE.</p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Activity Properties:</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">You can configure the <strong class="strong">AttributeReadWrite </strong>activity by specifying appropriate values for the properties in the <strong class="strong">Activity Properties</strong> area. Click <strong class="strong">Activity Properties</strong> in the toolbar or select the <strong class="strong">Properties </strong>option from the short-cut menu of the <strong class="strong">AttributeReadWrite </strong>to access the Activity Properties. </p>
+<p class="paragraph">The following image shows the <b class="windowtitle">Activity Properties</b> dialog box:</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f191060" src="191060.png" class="embeddedimage100%scalinglive" alt="" height="716" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">Name &amp; Description</p>
+<p class="paragraph"></p>
+<p class="paragraph">You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Name</strong>: Use this property to specify a name for the activity. <p class="lcontinue"><strong class="strong">Property Type</strong>: Mandatory</p>
+</li><li class="ulitem"><strong class="strong">Description</strong>: Use this property to add a brief description about the activity. <p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required.</p>
+</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Configuration</p>
+<p class="paragraph"></p>
+<p class="paragraph">You can use these properties to configure the functionality of this activity.</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Unique Environment Name</strong>: Identifies the Galaxy and Runtime node on which the galaxy is deployed to perform the read or write operation on the System Platform attribute.  <ul class="ulsubitem"><li class="ulsubitem">You can manually enter the value for this property. This value will be considered for further execution of the current activity. <p class="lsubcontinue">Or</p>
+</li><li class="ulsubitem">If the property does not have a value, then the value defined for this property in the &quot;ArchestrAXMLData&quot; XML variable is used during the execution of the <strong class="strong">AttributeRead/Write</strong> activity. The &quot;ArchestrAXMLData&quot; XML variable is automatically created when you associate a workflow with an ArchestrA event.</li></ul><p class="lcontinue">See also: <a id="h254553" class="jump-currentwindowlive" title="Configuring AttributeReadWrite Activity to Perform Read Operation" href="configuringactivitytoperformreadoperation.html" target="_self">Configuring AttributeReadWrite Activity to Perform Read Operation</a> and <a id="h254554" class="jump-currentwindowlive" title="Configuring AttributeReadWrite Activity to Perform Write Operation" href="configuringactivitytoperformwriteoperation.html" target="_self">Configuring AttributeReadWrite Activity to Perform Write Operation</a>.</p>
+</li><li class="ulitem"><strong class="strong">Relative Reference Object</strong>: Relative references are especially useful in templates while passing context parameters to workflows. <ul class="ulsubitem"><li class="ulsubitem">You can manually enter the value for this property. This value will be considered for further execution of the current activity.  <p class="lsubcontinue">Or</p>
+</li><li class="ulsubitem">If the property does not have a value, then the value defined for this property in the &quot;ArchestrAXMLData&quot; XML variable is used during the execution of the <strong class="strong">AttributeRead/Write</strong> activity. The &quot;ArchestrAXMLData&quot; XML variable is automatically created when you associate a workflow with an ArchestrA event.</li></ul><p class="lcontinue">For more information, see <a id="h64640" class="jump-currentwindowlive" title="Relative Referencing" href="relativereferencing.html" target="_self">Relative Referencing</a>. </p>
+</li><li class="ulitem"><strong class="strong">Retry Count</strong>: Use this property to enter the number of retries, in case of a communication error. If the error is due to invalid data, it will not be retried. <p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required. </p>
+</li><li class="ulitem"><strong class="strong">Retry Wait Time</strong>: Use this property to enter retry wait time in seconds, in case of an error.<p class="lcontinue"><strong class="strong">Property Type</strong>: Optional. Set this property only if required.</p>
+</li><li class="ulitem"><strong class="strong">Attribute Operation</strong>: Define the attribute operation type. The attribute operation type defines whether the action should be read or write. </li><li class="ulitem"><strong class="strong">Select Attribute</strong>: Select the attribute type for the Attribution Operation. </li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Looping Behavior </p>
+<p class="paragraph"></p>
+<p class="paragraph">You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong>: This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Exception Behavior</p>
+<p class="paragraph"></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property. Click this property to see the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="configuringactivitytoperformreadoperation.html" target="_self">Configuring AttributeReadWrite Activity to Perform Read Operation</a></p><p class="relateditem"><a href="configuringactivitytoperformwriteoperation.html" target="_self">Configuring AttributeReadWrite Activity to Perform Write Operation</a></p><p class="relateditem"><a href="relativereferencing.html" target="_self">Relative Referencing</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

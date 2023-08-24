@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Setting Escalations for Queues </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t46124" class="heading3">Setting Escalations for Queues</h3>
+<p class="paragraph">You can set the Escalation for the queue from the&nbsp;<b class="uicontrol">Escalation&nbsp;</b>tab of the queue management interface.</p>
+<p class="procedureheading">To set the escalation:</p>
+<ol class="step"><li class="step">In the&nbsp;<b class="uicontrol">Escalation</b>&nbsp;tab, click&nbsp;<b class="uicontrol">Add</b>&nbsp;to open the Escalation settings window.</li><li class="step">In this window, specify the name of the workflow corresponding to the queue. Select the required workflow from the list for the&nbsp;<b class="uicontrol">Workflows</b>&nbsp;field.</li><li class="step">Next, specify the stage in the queue at which the escalation should be triggered. Select this from the&nbsp;<b class="uicontrol">Queue Items Stages</b>&nbsp;list.&nbsp;Choose either <b class="uicontrol">Queue Item Created</b> or<b class="uicontrol"> Queue Item Picked</b>.</li><li class="step">Enter the&nbsp;<b class="uicontrol">Escalation Time Interval</b>&nbsp;in the corresponding field.</li><li class="step">Select the&nbsp;<b class="uicontrol">Recurrence</b>&nbsp;check box to set the escalation to recur.</li><li class="step">Select the required escalation type check box, under the&nbsp;<b class="uicontrol">Escalation Type</b>&nbsp;section.<ol class="substep"><li class="substep">If you select&nbsp;<b class="uicontrol">Reminder Message</b>, it will generate a reminder message to be sent to the participant assigned a task from the queue</li><li class="substep">If you select&nbsp;<b class="uicontrol">Notification</b>, it will send a notification to the participant that the assigned task has not been acted upon</li><li class="substep">If you select&nbsp;<b class="uicontrol">Move To Different Queue</b>, it will move the task that has not been acted on to a different queue</li><li class="substep">If you select&nbsp;<b class="uicontrol">Reassign</b>, it will reassign the task that has not been acted on to a different participant</li><li class="substep">If you select&nbsp;<b class="uicontrol">Trigger Escalate Output</b>, it will trigger the &quot;Escalate&quot; output for the task that has not been acted on</li><li class="substep">If you select&nbsp;<b class="uicontrol">Call a Workflow</b>, it will execute the specified Workflow when the task has to be escalated</li><li class="substep">If you select&nbsp;<b class="uicontrol">Put Back In Queue</b>, it will put the task that is not acted on back in the queue.</li></ol></li></ol><p class="paragraph"></p>
+<p class="paragraph">The following steps provide information to set the different Escalation Types.</p>
+<p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Setting Reminder Message or Notification Properties</strong></p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">Select the <b class="uicontrol">Reminder Message</b> or <b class="uicontrol">Notification</b> escalation type check box. <p class="stepresult">The <b class="uicontrol">Set Properties</b> button appears next to it.</p>
+</li><li class="step">Click <b class="uicontrol">Set Properties</b>. <p class="stepresult">The <b class="uicontrol">Escalation Properties</b> window appears.</p>
+</li><li class="step">Specify the subject of the Reminder Message or Notification either by entering a discrete value&nbsp;in the <b class="uicontrol">Subject</b> box or by selecting an option from the <b class="uicontrol">Field</b> list and then click <b class="uicontrol">Append</b>.</li><li class="step">Specify the message of the Reminder Message or Notification in the&nbsp;<b class="uicontrol">Notes</b>&nbsp;box.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit</b>&nbsp;to save the Reminder Message or Notification.</li></ol><p class="procedureheading"></p>
+<p class="procedureheading"><strong class="strong">Setting Reassign properties</strong></p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">Select the <b class="uicontrol">Reassign</b> check box. <p class="stepresult">The <b class="uicontrol">Set Properties</b> button appears next to it.</p>
+</li><li class="step">Click <b class="uicontrol">Set Properties</b>.<p class="stepresult">The<b class="uicontrol"> Escalation Properties</b> window appears.</p>
+</li><li class="step">Select the participant to whom you want to reassign the task.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit.</b></li></ol><p class="procedureheading"></p>
+<p class="procedureheading"><strong class="strong">Setting Call a Workflow properties</strong></p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">Select the <b class="uicontrol">Call a Workflow</b> check box.<p class="stepresult">The <b class="uicontrol">Set Properties</b> button appears next to it.</p>
+</li><li class="step">Click <b class="uicontrol">Set Properties</b>.<p class="stepresult">The<b class="uicontrol"> Escalation Properties</b> window appears.</p>
+</li><li class="step">Specify the following:<ol class="substep"><li class="substep">In the&nbsp;<b class="uicontrol">Application Name</b>&nbsp;box, type the application name.</li><li class="substep">In the&nbsp;<b class="uicontrol">Workflow Name</b>&nbsp;box, specify the workflow name.</li><li class="substep">In the&nbsp;<b class="uicontrol">Version</b>&nbsp;box, specify the version details.</li></ol></li><li class="step">Specify the contents to be passed to the called Workflow by selecting the value type (variable, content, or value) from the first list for&nbsp;<b class="uicontrol">Field</b>&nbsp;and selecting the corresponding variable or content collection from the second drop-down list.</li><li class="step">Click&nbsp;<b class="uicontrol">Append</b>&nbsp;to add the selection to the&nbsp;<b class="uicontrol">Contents</b>&nbsp;text area.</li><li class="step">Click&nbsp;<b class="uicontrol">Submit</b>.</li></ol><p class="paragraph"><br></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+</script>	
+
+ </body>
+ </html>

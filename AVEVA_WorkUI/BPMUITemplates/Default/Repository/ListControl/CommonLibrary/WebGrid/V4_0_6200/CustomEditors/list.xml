@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CustomEditors>
+  <CustomEditor name="Calculator" filename="Calculator.wce" installer="Editors Pack 1" />
+  <CustomEditor name="NumericUpDown" filename="NumericUpDown.wce" installer="Editors Pack 1" />
+  <CustomEditor name="RichTextBox" filename="RichTextBox.wce" installer="Editors Pack 1" />
+  <CustomEditor name="WebInputNET" filename="WebInputNET.wce" installer="WebInput.NET Installer" />
+  <CustomEditor name="Slidebar" filename="Slidebar.wce" installer="Editors Pack 2" />
+  <CustomEditor name="HtmlEditor" filename="HtmlEditor.wce" installer="Editors Pack 2" />
+</CustomEditors>

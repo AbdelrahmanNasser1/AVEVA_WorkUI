@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Multiple Forms</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        //Global Variables
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+
+        $(document).ready(function ()
+        {
+
+            skelta.DeviceOS = skeltaUtils.getUrlParameterValue(window, 'dType');
+            //Form 2 finish click functionality goes here
+            function form2FinishClick(data, evt)
+            {
+                alert(data.InstanceJSON);
+            }
+
+            //Form 1 finish click functionality goes here
+            function form1FinishClick(data, evt)
+            {
+                alert(data.InstanceJSON);
+            }
+
+            //Form 1 ajax completed
+            function fillFormAjaxSucceeded(resultData)
+            {
+                var result = JSON.parse(resultData.d);
+                var id = skelta.forms.utilities.getFormUniqueKey("<repositoryName>", "<form Id>", "<form version>");
+                ko.cleanNode(document.getElementById(id));
+                $("#" + id).html(result.ViewAndViewModel);
+                var viewModel1 = skeltaUtils.getViewModelObject(id);
+                viewModel1.onSave.subscribeEvent(form1FinishClick);
+            }
+
+            //Form 2 ajax completed
+            function fillFormAjaxSucceeded1(resultData)
+            {
+                var result = JSON.parse(resultData.d);
+                var id = skelta.forms.utilities.getFormUniqueKey("<repositoryName>", "<form id>", "<form version>");
+                ko.cleanNode(document.getElementById(id));
+                $("#" + id).html(result.ViewAndViewModel);
+                var viewModel2 = skeltaUtils.getViewModelObject(id);
+                viewModel2.onSave.subscribeEvent(form2FinishClick);
+            }
+
+            // Ajax failed method
+            function fillFormAjaxFailed()
+            {
+                alert("Eror while ajax call");
+            }
+
+
+            //load form1 button click event
+            $("#form1Load").click(function ()
+            {
+                skelta.userContext.setUserContextFor("uId", "<user id>");
+                skelta.userContext.setUserContextFor("appN", "<repositoryName>");
+                var id = skelta.forms.utilities.getFormUniqueKey("<repositoryName>", "<form id>", "<form version>");
+                $("#form1").append("<div id='" + id + "' style=\"height:100%; position:relative; \"></div>");
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "applicationName": "<repositoryName>",
+                    "userId": "<user id>",
+                    "formName": "<form name>",
+                    "versionStamp": "<form version>",
+                    "listName": "Forms List",
+                    "deviceType": skelta.DeviceOS
+                });
+
+                skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetViewAndViewModel", "application/json; charset=utf-8", jsonHelper, "json", fillFormAjaxSucceeded, fillFormAjaxFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            });
+
+            //load form2 button click event
+            $("#form2Load").click(function ()
+            {
+                skelta.userContext.setUserContextFor("uId", "<user id>");
+                skelta.userContext.setUserContextFor("appN", "<repositoryName>");
+                var id = skelta.forms.utilities.getFormUniqueKey("<repositoryName>", "<form id>", "<form version>");
+                $("#form1").append("<div id='" + id + "' style=\"height:100%; position:relative; \"></div>");
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "applicationName": "<repositoryName>",
+                    "userId": "<user id>",
+                    "formName": "<form name>",
+                    "versionStamp": "<form version>",
+                    "listName": "Forms List",
+                    "deviceType": skelta.DeviceOS
+                });
+
+                skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetViewAndViewModel", "application/json; charset=utf-8", jsonHelper, "json", fillFormAjaxSucceeded1, fillFormAjaxFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            });
+            skeltaUtils.loadPageDefault();
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <!--<div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>-->
+    <!--<form class="">-->
+    <input id="form1Load" value="load form1" type="button" />
+    <input id="form2Load" value="load form2" type="button" />
+    <div id="form1" style="height: 50%"></div>
+    <div id="form2" style="height: 50%"></div>
+    <!--</form>-->
+</body>
+</html>

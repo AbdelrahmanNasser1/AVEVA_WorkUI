@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Wait for Event Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t488898" class="heading3">Wait for Event Activity</h3>
+<p class="subheading">Activity Description</p>
+<p class="paragraph"></p>
+<p class="paragraph">The Wait for Event Activity is used to wait for list events and list item events like creating workflows, publishing workflows, creating users etc. This activity waits for one or more event and once the event is triggered, the workflow proceeds. When the activity is waiting for an event it can be paused,resumed or killed through process execution view.  </p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties</p>
+<p class="paragraph"></p>
+<p class="paragraph">The Wait for Event activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking the Activity Properties tool in the tool bar or by selecting the appropriate option from the right-click menu for the Wait for Event activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194479" src="194479.png" alt="" height="750" width="245" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><strong class="strong">Name</strong> - This property can be used to specify a name for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional </strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Description</strong> - This property specifies a brief description to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Display Name </strong>- This property specifies the name to be displayed for the activity. </p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property need not be set if the display name is already configured in the Actions.xml. The name entered here overrides any display name that is configured for this activity in the Actions.xml file.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuration</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Event Scope </strong>- This property is used to select the scope to which event association is required. Available options are - List and ListItem.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory </strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194480" src="194480.png" alt="" height="85" width="254" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Event Scope Explanation: </strong></p>
+<p class="paragraph"></p>
+<ol class="olitem"><li class="olitem">List: Select this scope option only when List Id is required.</li><li class="olitem">List Item: Select this scope option when List Id and Listitem Id is required.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to select the Event Scope property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Select scope from the Event Scope drop-down list.</li><li class="step">If you select List as event scope, then you need to specify only list name.</li><li class="step">If you select ListItem as event scope, then you need to specify list name and list item under the list.</li><li class="step">Click Save in the Activity Properties window.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Event Type </strong>- This property is used to select the event type. Items should change depending on Event Scope property selection.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">If you select Event Scope property as List, then the following are the available event types:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194481" src="194481.png" alt="" height="118" width="255" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">If you select Event Scope property as ListItem, then the following are the available event types:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194482" src="194482.png" alt="" height="230" width="248" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"> The options shown for Event type are dependent on Event Scope property selection.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="notelabel">Note: </strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The following Event types are not supported:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">OnSaveAsNextVersion</li><li class="ulitem">OnSaveAsNextMajorVersion</li><li class="ulitem">OnSaveAsNextMinorVersion</li><li class="ulitem">OnSaveAsSpecificVersion</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps for selecting Event Type property</p>
+<p class="paragraph"></p>
+<ol class="olitem"><li class="olitem">Select event type from the Event Type drop-down list.</li><li class="olitem">Click Save in the Activity Properties window.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">List ID</strong> - This property is for taking list name or list item to which the event to be associated and waited. List ID property window displays the items depending on the Event Scope property selection. If you select Event Scope property as 'List', then the List ID property window will ask only List name to select. If you select Event Scope property as 'ListItem', then the List ID property window will ask List name as well as ListItem name. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note: </strong>The options shown for List ID are dependent on Event Scope property selection.</p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the List ID property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To select the List ID property, click the edit button for the 'List ID' property to open the property window.</li><li class="step">If you select List as event scope, then select list name from the List Name drop-down list.</li><li class="step">If you select ListItem as event scope, select list name from the List Name drop-down list and select list item from the ListItem drop-down list.</li><li class="step">Click Save in the Activity Properties window.</li></ol><p class="paragraph"></p>
+<p class="paragraph">See <a id="h194478" class="jump-currentwindowlive" title="Wait for Event: List ID" href="notification-to1_3.html" target="_self">Wait for Event: List ID</a> for a detailed description of the List ID property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">List Item ID</strong> - This property displays the list item id which was selected in List ID property.</p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> List Item ID are dependent on Event Scope property selection. </p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">No of Events</strong> - This property is used to execute the wait for event activity by specified number of events. If you specified No Of Events as '0' then this activity will wait for 'n' number of times. If you specified No Of Events as '4' then this activity will wait for four times and next time it will not wait for the event.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps for specifying No Of Events property</p>
+<p class="paragraph"></p>
+<p class="paragraph">To select the No Of Events property, click the edit button for the 'No Of Events' property to open the property window.</p>
+<ol class="step"><li class="step">You can directly type in the text editor.</li><li class="step">Or you can specify the No of Events by using field controls and then click Append.</li><li class="step">Click Update.</li><li class="step">Click Save in the Activity Properties window.</li></ol><p class="paragraph"></p>
+<p class="paragraph">See Wait for Event for a detailed description of the No Of Events property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Effective From</strong> - This property is used to specify the effective from date for the association, i.e the date starting from which the activity will wait for the events. If left blank, the activity will wait for events starting from the day the association is created.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set Effective From property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To select the Effective From property, click the edit button for the Effective Form property to open the property window.</li><li class="step">You can directly type in the text editor, or you can specify the date by using field controls and then click Append.</li><li class="step">Click Update.</li><li class="step">Click Save in the Activity Properties window.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">See <a id="h194485" class="jump-currentwindowlive" title="Wait for Event: Effective From" href="waitforeventactivity-effectivefrom1.html" target="_self">Wait for Event: Effective From</a> From for a detailed description of the Effective From window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Effective To </strong>- This property is used to set the Effective To Date. Enter the effective to date for the association, i.e the date till which the activity will wait for the events. If left blank, it will be wait till the activity is paused/killed or the workflow is aborted.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set Effective To property</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">To select the Effective To property, click the edit button for the Effective To property to open the property window.</li><li class="step">You can directly type in the text editor, or you can specify the date by using field controls and then click Append.</li><li class="step">Click Update.</li><li class="step">Click Save in the Activity Properties window.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">See <a id="h194486" class="jump-currentwindowlive" title="Wait for Event: Effective To" href="waitforeventactivity-effectiveto1.html" target="_self">Wait for Event: Effective To</a>  for a detailed description of the Effective To window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output Values</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Event XML Data Variable</strong>. - This property is used to capture the Output details of the wait for event activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary).</p>
+<p class="paragraph"></p>
+<p class="paragraph">See <a id="h194489" class="jump-currentwindowlive" title="Wait for Event: Workflow Event Data XML Variable" href="gatewayplaceholder1_2.html" target="_self">Wait for Event: Workflow Event Data XML Variable</a> for details on Event XML Data Variable and the output details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Looping Behavior</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The properties in the Looping Behavior group have been described below. You can use these properties to specify the looping Behavior of the activity. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Loop through this action if output is</strong> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down. Available options are - Event Received and List Item Not Found. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">If you select Enable Errors Encountered Output property as No, then the following are the available outputs:</p>
+<p class="paragraph"></p>
+<p class="paragraph">If you select Enable Errors Encountered Output property as Yes, then the following are the available outputs:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f194490" src="194490.png" alt="" height="154" width="252" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> The options shown for Looping through this action if output is are dependent on Enable Errors Encountered Output property selection.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The Wait For Event Activity returns the following values -</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Event Received</strong>: Displayed when the event is received. </p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">List Item Not Found</strong>: Displayed when the list item is not found.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Error Encountered:</strong> Displayed when an error encountered.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Action Completed:</strong> Displayed when no event is received.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">These options of AVEVA AVEVA Work Tasks 2009 have now been integrated with Raise Error on Unhandled Linked Output and Exception Email Template Configuration in the latest version of the product.</p>
+<p class="paragraph"></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected. </p>
+<p class="paragraph"></p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a> for more details.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Property Type: Optional </strong>(This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="notification-to1_3.html" target="_self">Wait for Event: List ID</a></p><p class="relateditem"><a href="waitforeventactivity-noofevents1.html" target="_self">Wait for Event: No Of Events</a></p><p class="relateditem"><a href="waitforeventactivity-effectivefrom1.html" target="_self">Wait for Event: Effective From</a></p><p class="relateditem"><a href="waitforeventactivity-effectiveto1.html" target="_self">Wait for Event: Effective To</a></p><p class="relateditem"><a href="gatewayplaceholder1_2.html" target="_self">Wait for Event: Workflow Event Data XML Variable</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

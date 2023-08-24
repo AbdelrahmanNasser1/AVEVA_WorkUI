@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Send SMS Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t602001" class="heading3">Send SMS Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The SendSMS Activity can be used to send SMS to a selected number of actor(s) and/or to a specified phone number. The actor(s) can be selected by building a query. The workflow engine evaluates this query and sends an SMS to all the actors resulting from the query.</p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The SendSMS activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the tool bar or by selecting the appropriate option from the right-click menu for the SendSMS activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51350" src="51350.jpg" class="embeddedimage100%scalinglive" alt="" height="661" width="259" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> In scenarios where different resource providers like Active Directory, Forms,&nbsp;AVEVA Work Tasks&nbsp;List and ASP.NET Membership are used for different repositories, the resource fields like Email-Id, Mobile Provider, and Mobile No used for SMS configurations should have same field name across all resource providers. For example, let's say fields like Email, Mobile phone provider and SMS Number is used in Active Director provider as Email-Id, Mobile Provider, and Mobile No respectively, then In Forms provider/SkeltaList provider/ASP.NET membership provider also should have these fields like Email-Id, Mobile Provider, and Mobile No to support SMS functionality.</p>
+<p class="subheading"></p>
+<p class="subheading"></p>
+<p class="subheading"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><strong class="strong">Notification Contents</strong></p>
+<p class="paragraph">The properties in the Notification Contents group have been described below. You can use these properties to specify the content of the notification.</p>
+<p class="paragraph"><b class="uicontrol">Sender</b> - This property is used to set the sender's phone number.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if required.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">RecipientResource</b> - This property is used to build a query for selecting the resources for sending SMS. The phone number of the resource will be taken from the resource table. The phone number fields should be configured in the CommunicationConfig.xml.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property alternates with the 'Recipient' property. One of these properties must be set if the SMS is to be sent to any resource(s).)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the RecipientResource property</p>
+<ol class="step"><li class="step">To specify the actors to receive the SMS, click on the button for the 'RecipientResource' property to open the property window.</li><li class="step">In this window build an expression to select the actors using the resource properties. Select an attribute from the first drop down list, then select the operator, type of value (Value, Variable, Content, XMLVariables), and the corresponding value for the property from the corresponding drop downs. Select &quot;End&quot; from the last drop down to complete the expression. If you are building a compound expression, you can select one of the logical operators to connect the different conditions that form the expression.</li><li class="step">Add the condition to the expression by clicking <b class="uicontrol">Add</b>. This will display the expression to the text area.</li><li class="step">You can remove a condition already added to the expression by clicking <b class="uicontrol">Undo</b>.</li><li class="step">You can also clear an existing expression if necessary by clicking <b class="uicontrol">Clear</b>. This is useful if you want to clear large expressions in the text area in order to build a new expression.</li><li class="step">After building the expression, click <b class="uicontrol">Update</b> to save it.</li></ol><p class="paragraph">See <a id="h51351" class="jump-currentwindowlive" title="Send SMS: RecipientResource" href="sendsms-recipientresource1.html" target="_self">Send SMS: RecipientResource</a>&nbsp;for a detailed description of the RecipientResource property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Recipient&nbsp;</b>- This property is used to specify any Phone Number for sending the SMS.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property alternates with the 'RecipientResource' property. One of these properties must be set if the SMS is to be sent to any resource(s).)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Message</b>&nbsp;- This property is used to enter the message of the SMS.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property needs to be set.)</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the Message property</p>
+<ol class="step"><li class="step">To specify the message, click the button for the 'Message' property to open the property window.</li><li class="step">In this window, enter the message text directly in the text editor.</li><li class="step">If you want to customize the message you can do so using the&nbsp;<b class="uicontrol">Field</b>&nbsp;controls to add resource property values.</li><li class="step">Click&nbsp;<b class="uicontrol">Append</b>&nbsp;add the expression to the text editor.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the subject, click&nbsp;<b class="uicontrol">Update</b>&nbsp;to save it.</li><li class="step">Click&nbsp;<b class="uicontrol">Close</b>&nbsp;to close the window without saving the message.</li></ol><p class="paragraph">See&nbsp;<a id="h51352" class="jump-currentwindowlive" title="Send SMS: Message" href="sendsms-message1.html" target="_self">Send SMS: Message</a>&nbsp;for a&nbsp;detailed description of the Message property window.</p>
+<p class="paragraph"><b class="uicontrol">Retry</b>&nbsp;- This property allows the user to enable the activity to retry up to three times if the first attempt to execute fails. By default it is set to &quot;Yes.&quot; </p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional&nbsp;</b>(This property needs to be set.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity outputs:</strong></p>
+<p class="paragraph">The SendSMS Activity does not return any value.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h186839" class="jump-currentwindowlive" title="Mapped Error Output" href="MappedErrorOutput.html" target="_self">Mapped Error Output</a>&nbsp;for more details.</p>
+<p class="note"><strong class="notelabel">Note:</strong>&nbsp;Setting value for Set Variables and Contents from SMS property in Wait for SMS activity, through XML variable is not supported.</p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="sendsms-recipientresource1.html" target="_self">Send SMS: RecipientResource</a></p><p class="relateditem"><a href="sendsms-message1.html" target="_self">Send SMS: Message</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

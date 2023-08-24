@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/knockout.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/xml2json.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/app/Skelta.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="../NextGenForms/js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="../NextGenForms/css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="../NextGenForms/css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="../NextGenForms/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../NextGenForms/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <script type="text/javascript">
+        var pageTitle= 'Add / Edit Package Template';
+        var minimumPageWidth = 830;
+        // Set path for NextGenForms web method
+        skelta.serverUrl = "../NextGenForms/";
+
+        function GetRadWindow() {
+            var oWindow = null;
+            if (window) {
+                if (window.radWindow) {
+                    oWindow = window.radWindow;
+                } else if (window.frameElement) {
+                    if (window.frameElement.radWindow) {
+                        oWindow = window.frameElement.radWindow;
+                    }
+                }
+            }
+            return oWindow;
+        }
+
+        function CenterWindowParent() {
+            // set size (50% of the parent) and position (at center of the parent)
+            var oWindow = GetRadWindow();
+            if (oWindow) {
+                oWindow.maximize();
+                var parentWidth = oWindow.get_width();
+                var parentHeight = oWindow.get_height();
+                oWindow.set_width(Math.max(minimumPageWidth, parentWidth / 2));
+                oWindow.set_height(parentHeight / 2);
+                oWindow.center();
+            }
+        }
+
+        function CenterWindowBrowserWindow() {
+            // set size (50% of the BrowserWindow) and position (at center of the BrowserWindow)
+            var browserWidth = window.parent.parent.innerWidth;
+            var browserHeight = window.parent.parent.innerHeight;
+            var oWindow = GetRadWindow();
+            if (oWindow) {
+                oWindow.set_width(Math.max(minimumPageWidth, browserWidth / 2));
+                oWindow.set_height(browserHeight / 2);
+                oWindow.center();
+            }
+        }
+
+        function CloseRadWindow()
+        {
+            var oWindow = GetRadWindow();
+            if (oWindow) {
+                oWindow.close();
+            }
+        }
+
+        function FormLoadComplete() {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+
+        function SelectNewlyCreatedPackageInParentPagePackageListDropdown(packageTemplateName) {
+            packageTemplateName = packageTemplateName.split(',').join('@')
+            var tempUrl = updateQueryStringParameter(window.parent.location.href, 'title', packageTemplateName);
+            // This dummy parameter is added to protect the space in packageTemplateName. If packageTemplateName is the last parameter in querystring, space in the end will be trimmed off as url can not contain space at end. always add some dummy parameter at the end of the URL so that it will retain some space in the middle of the url.
+            tempUrl = updateQueryStringParameter(tempUrl, 'dPFT', 'val');
+            window.parent.location = tempUrl;
+        }
+
+        function SavePackageTemplateSucceeded(resultData) {
+            var res = $.parseJSON(resultData.d);
+            if (res.IsRequestProcessedSuccessfully === true) {
+                if (res.ResponseCommand === 'SelectNewlyCreatedPackageInParentPagePackageListDropdown') {
+                    se.ui.messageDialog.showAlert(pageTitle, res.Message);
+                    SelectNewlyCreatedPackageInParentPagePackageListDropdown(res.AdditionalParameter);
+                } else if (res.ResponseCommand === 'RedirectToAddToPackageTemplatePage') {
+                    se.ui.messageDialog.showAlert(pageTitle, res.Message);
+                    window.location.href = res.AdditionalParameter;
+                } else {
+                    se.ui.messageDialog.showAlert(pageTitle, res.Message, CloseRadWindow);
+                }
+                return;
+            } else {
+                se.ui.messageDialog.showError(pageTitle, res.Message);
+                logger.logError(res.Message);
+            }
+        }
+
+        function SavePackageTemplateFailed(result) {
+            skeltaUtils.showAlert("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+            skelta.forms.utilities.hideLoader();
+        }
+
+        function SavePackageTemplate(inputParameterObject, eventArgs) {
+            var convJSONXml = new X2JS();
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "secureParameters": skeltaUtils.getUrlParameterValue(window, 'lcsuri'),
+                "applicationName": skeltaUtils.getUrlParameterValue(window, 'appName'),
+                "xmlInstance": val
+            });
+
+            skeltaUtils.callServerMethod("POST", "NewPackageTemplateService.aspx/SavePackageTemplate", "application/json; charset=utf-8", jsonHelper, "json", SavePackageTemplateSucceeded, SavePackageTemplateFailed, FormLoadComplete);
+        }
+
+        function LoadPackageTemplateFormSucceeded(resultData) {
+            var result = $.parseJSON(resultData);
+            var res = $.parseJSON(result.d);
+            pageTitle = res.PageTitle;
+            document.title = pageTitle;
+            skelta.userContext.setUserContextFor("appN", res.ApplicationName);
+            skelta.userContext.setUserContextFor("uId", res.UserId);
+            skeltaUtils.loadPageDefault();
+            var oWindow = GetRadWindow();
+            if (oWindow) {
+                oWindow.set_title(pageTitle);
+            }
+
+            if (res.IsRequestProcessedSuccessfully === true) {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(res.ApplicationName, '_sys_package_template_form', 'Default');
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res.instanceXml));
+                $("#viewModel").html(res.viewModelObject);
+                var newFormViewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                newFormViewModelObject.onSave.subscribeEvent(SavePackageTemplate);
+                newFormViewModelObject.onCancel.subscribeEvent(CloseRadWindow)
+                $("#viewModel")[0].style.display = "";
+                newFormViewModelObject.topLevelForm.initializeFocus(0);
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+            } else { 
+                se.ui.messageDialog.showError(pageTitle, res.Message, CloseRadWindow);
+                logger.logError(res.Message);
+            }
+        }
+
+        function LoadPackageTemplateFormFailed(result) {
+            if (result.responseText) {
+                skeltaUtils.showAlert(result.status + ' ' + result.statusText + ' ' + result.responseText);
+                logger.logError(result.status + ' ' + result.statusText + ' ' + result.responseText);
+            }
+        }
+
+        $(document).ready(function () {
+            try {
+                // set default page title
+                document.title = pageTitle;
+
+                // set size and position at center
+                if (true) {
+                    CenterWindowBrowserWindow();
+                } else {
+                    CenterWindowParent();
+                }
+
+                // set page loading annimation
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                // load form
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "secureParameters": skeltaUtils.getUrlParameterValue(window, 'lcsuri'),
+                    "applicationName": skeltaUtils.getUrlParameterValue(window, 'appName')
+                });
+                skeltaUtils.callServerMethod("GET", "NewPackageTemplateService.aspx/LoadPackageTemplateForm", "application/json; charset=utf-8", jsonHelper, "html", LoadPackageTemplateFormSucceeded, LoadPackageTemplateFormFailed, FormLoadComplete);
+            }
+            catch (exception) {
+                skeltaUtils.showError(pageTitle, skelta.localize.getString("PackageTemplateLoadViewAndViewModelFromServer") + exception.message);
+                logger.logError(skelta.localize.getString("PackageTemplateLoadViewAndViewModelFromServer") + exception.message);
+                FormLoadComplete();
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: hidden; height: 0px; width: 0px;"></textarea>
+</body>
+</html>

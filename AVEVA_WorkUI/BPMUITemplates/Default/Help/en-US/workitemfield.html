@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> Modifying the Number of WorkItem Fields Limit Per Data Type </title>
+    <script type="text/javascript">
+        function isTOCLoaded() {
+            //this function for loading the topic within the application if loaded by itself
+            //i.e. open the topic .html file or as search engines link
+            var url = window.location.href;
+            var baseUrl = url.substring(0, url.lastIndexOf("/") + 1);
+            var topicNo = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf(".html"))
+            var newUrl = baseUrl + "index.html#" + topicNo;
+            location.href = newUrl;
+            return false;
+        }
+    </script>
+<meta name="Keywords" content="Modifying the Number of WorkItem Fields Limit Per Data Type">
+</head>
+<body  onload="if (isTOCLoaded()) {highlight('50056')}">
+<!-- Conditional BETA statement -->
+<p id="BetaStatement" class="heading1" style="font-family: Verdana; font-size: 16pt; margin-top: 3pt; margin-bottom: 6pt; font-weight: bold; color:red; background-color:#FFFFFF"></p>
+<script type="text/javascript">
+	var elem = document.getElementById("BetaStatement");
+	if(elem.innerHTML == "") {
+		elem.parentNode.removeChild(elem);
+	}
+</script>
+<!-- End conditional BETA statement -->
+
+<h1 id="t50056" class="heading1">Modifying the Number of WorkItem Fields Limit Per Data Type</h1>
+<p class="paragraph">You can alter the number of WorkItem Fields used for a Repository.</p>
+<p class="paragraph">The table&nbsp;SKWorkItemFieldTypeCounts&nbsp;stores the column count for each data type (number, decimal, string, and datetime) supported by WorkItem fields. The count for each data type can be varied in the column&nbsp;ColumnCount&nbsp;of this table.</p>
+<p class="paragraph">Based on the&nbsp;SKWorkItemFieldTypeCounts&nbsp;table, mapping field gets filled in&nbsp;SKWorkItemFieldsDefinition&nbsp;table when you create a WorkItem field from the process designer settings menu.</p>
+<p class="paragraph">Consider that you want to increase the string type by one column. That is, currently you can have 18 string WorkItem fields and you want to have 19 string WorkItem fields. Complete the following steps to increase the string type:</p>
+<ol class="steptestdonotuse"><li class="steptestdonotuse">In&nbsp;SKWorkItemFieldTypeCounts&nbsp;table, increase the count to 19 from 18 for the string type.</li><li class="steptestdonotuse">Add the column&nbsp;nvarchar19&nbsp;in the&nbsp;SKWorkItemFields&nbsp;table.&nbsp;SKWorkitemfields&nbsp;table contains all the runtime value details of WorkItem fields used in an activity.</li><li class="steptestdonotuse">In the&nbsp;<b class="uicontrol">Process Designer</b>, create a new string type WorkItem field.</li><li class="steptestdonotuse">The created WorkItem field can be used in activities by setting it from the Property &quot;Set Workitemfields&quot;.</li></ol><p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Using AVEVA AVEVA Work Tasks Activities</a></p><p class="relateditem"><a href="optiontodisableloggingofstrings.html" target="_self">Option to Disable Logging of Strings</a></p><p class="relateditem"><a href="usinglocalvariables.html" target="_self">Using Local Variables</a></p><p class="relateditem"><a href="settingcustompropertiesforrepositorydatasource.html" target="_self">Setting Custom Properties for Repository Data Source</a></p><p class="relateditem"><a href="enablingskeltaxcopydeployment.html" target="_self">Enabling AVEVA AVEVA Work Tasks Xcopy Deployment</a></p><p class="relateditem"><a href="timeoutenhancement.html" target="_self">Human Activity - Enhancement for Escalation and Time out</a></p><p class="relateditem"><a href="managerlookupforskeltauserslist.html" target="_self">Manager Lookup for AVEVA AVEVA Work Tasks Users List</a></p><p class="relateditem"><a href="redirectingloginpage.html" target="_self">Redirecting the Log On Page</a></p><p class="relateditem"><a href="rolelookup.html" target="_self">About Role Lookup</a></p><p class="relateditem"><a href="using_work_action.html" target="_self">Using Work Activity</a></p><p class="relateditem"><a href="automapping.html" target="_self">Auto Mapping of Active Directory Providers</a></p><p class="relateditem"><a href="customizingloginpage.html" target="_self">Customizing the Log On Page</a></p><p class="relateditem"><a href="understandingskeltabpmnet2007providers.html" target="_self">AVEVA AVEVA Work Tasks Providers for Controls</a></p><p class="relateditem"><a href="persistingloggedexceptionstodatabase.html" target="_self">Persisting Logged Exceptions to Database</a></p><p class="relateditem"><a href="localizingtheresponsesentforaninvalidemailtotheskeltacommunicationengine.html" target="_self">Localizing the Response Sent for an Invalid Email to the AVEVA AVEVA Work Tasks Communication Engine</a></p><p class="relateditem"><a href="codesamples1.html" target="_self">SOA</a></p><p class="relateditem"><a href="embeddingskeltacontrolsintheapplication1.html" target="_self">Embedding AVEVA AVEVA Work Tasks Controls in the Application</a></p><p class="relateditem"><a href="differentemailtemplatefordifferentactivityinaworkflow.html" target="_self">Different Email Template for Different Activity in a Workflow</a></p><p class="relateditem"><a href="provisioning_2.html" target="_self">Work Items List</a></p><p class="relateditem"><a href="businessactivitymonitoringreports.html" target="_self">Business Activity Monitoring and Reports</a></p><p class="relateditem"><a href="setappearanceproperties.html" target="_self">Set Appearance Properties for Activity Icons</a></p><p class="relateditem"><a href="searchforcontent.html" target="_self">Searching for Content in Workflow</a></p><p class="relateditem"><a href="usingtheprocessmapimagefornavigation.html" target="_self">Using the Process Map Image for Navigation</a></p><p class="relateditem"><a href="processmodelingsavingtheanalystsview.html" target="_self">Process Modeling and Saving the Analyst's View</a></p><p class="relateditem"><a href="SettingActivityandLinkProperties.html" target="_self">Setting Activity and Link Properties</a></p><p class="relateditem"><a href="LinkingActivitiesinProcessDesigner.html" target="_self">Linking Activities in Process Designer</a></p><p class="relateditem"><a href="AddingActivitiesinProcessDesigner.html" target="_self">Adding Activities in Process Designer</a></p><p class="relateditem"><a href="ImportandExportFunctionsinProcessDesigner.html" target="_self">Import and Export Functions in Process Designer</a></p><p class="relateditem"><a href="ProcessDesignerEditOperations.html" target="_self">Process Designer Edit Operations</a></p><p class="relateditem"><a href="ProcessDesignerFileOperations.html" target="_self">Process Designer File Operations</a></p><p class="relateditem"><a href="abouttheprocessdesigner.html" target="_self">About the Process Designer</a></p><p class="relateditem"><a href="workingwiththecalendar.html" target="_self">AVEVA AVEVA Work Tasks Calendars</a></p><p class="relateditem"><a href="queuemanagement.html" target="_self">Queue Management</a></p><p class="relateditem"><a href="opcuarepositoryprovisioningtool.html" target="_self">AVEVA AVEVA Work Tasks OPC UA Repository Provisioning Tool</a></p><p class="relateditem"><a href="194297.html" target="_self">AVEVA AVEVA Work Tasks Connector for Information Server</a></p></td>
+</tr>
+</table>
+
+
+
+<input id="topicId" type="hidden" value="50056" />
+<input id="topicDescription" type="hidden" value="Modifying the Number of WorkItem Fields Limit Per Data Type" />
+<input id="footer-modified" type="hidden" value="Last modified: 4/27/2015 1:16:50 PM" />
+</body>
+<script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"><script type="text/javascript"> function hideElementWithClassName(className) { try { var relatedTableEleList = document.getElementsByClassName(className); if (relatedTableEleList != null) { if (relatedTableEleList.length > 0) { relatedTableEleList[0].style.display = "none"; } } } catch (e) { } } function isTOCLoaded() { hideElementWithClassName("relatedtopics belowtopictext"); hideElementWithClassName("relatedtopics aboveheading"); return false; }</script><link rel=stylesheet type=text/css href="stylesheet.css"></html>

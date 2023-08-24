@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Workflow - Variables for ChildWorkflow </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t49602" class="heading4">Workflow - Variables for ChildWorkflow</h4>
+<p class="subheading">Variables for ChildWorkflow Property window</p>
+<p class="paragraph">You can specify the variables to be passed to the child workflow in this property window. To open this window, click the button for the 'Variables for ChildWorkflow' property.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">Variables for ChildWorkflow</b>&nbsp;property dialog box:<br>&nbsp;<img id="f51171" src="51171.png" class="embeddedimage100%scalinglive" alt="" height="241" width="593" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has a grid that lists the parent workflow variables that can be passed to the child workflow. It has the following columns &#8211;&nbsp;<b class="uicontrol">Variables</b>,&nbsp;<b class="uicontrol">Type</b>, and&nbsp;<b class="uicontrol">Choose</b>. You can click the&nbsp;<b class="uicontrol">Choose</b>&nbsp;check box to select the variable. You can click&nbsp;<b class="uicontrol">Update</b>&nbsp;to set selected the variables to be passed.</p>
+<p class="note"><strong class="notelabel">Note</strong>: You can create a local variable (that is, variables prefixed with '@', for example, @EmpId) which can be passed to the child workflow. For the child workflow to get this variable value, it should have a variable with the same name but without the '@'. For example, if a parent workflow has a local variable '@EmpId', then the child workflow should have a variable 'EmpId' to get its value.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><br></p>
+<p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workflowaction.html" target="_self">Workflow Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

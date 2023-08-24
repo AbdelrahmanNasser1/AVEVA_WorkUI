@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Start Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t601910" class="heading2">Start Activity</h2>
+<p class="subheading">Activity Description:</p>
+<p class="paragraph">The Start Activity is the first activity in a workflow. The icon corresponding to this activity is displayed by default in the Design Area. The Contents and Variables used in the execution of the workflow are declared here. The starting point for redirection can also be set in this activity. This will enable redirection at the beginning of the workflow until it is turned off later in the workflow.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Start activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking the Activity Properties tool in the tool bar or by selecting the appropriate option from the right-click menu for the Start activity.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><img id="f489822" src="489822.png" alt="" height="746" width="271" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="note"><strong class="notelabel">Note:</strong> Every time you input a value for a property, ensure to save the data. Click the <b class="uicontrol">Save</b> button on the <b class="uicontrol">Activity Properties</b> window. You need to save the property so that the subsequent properties in the activity can inherit the required information.</p>
+<p class="paragraph">The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="subheading">&nbsp;<strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">You can use these properties to specify the name and description of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b>&nbsp;- This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b>&nbsp;- This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b>&nbsp;(This property needs to be set only if necessary.)</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading"><strong class="strong">Configuration</strong></p>
+<p class="paragraph">You can use these properties to specify the web service details.</p>
+<p class="paragraph"><b class="uicontrol">Variables</b>&nbsp;-&nbsp;The variables used in the workflow, including Local Variables, can be specified using this property.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b>&nbsp;(<i class="emphasis">Set this property only if needed</i>.)</p>
+<p class="procedureheading">Steps to set the variable property</p>
+<ol class="step"><li class="step">To specify the variables, click the button for the 'Variables' property to open the property window.</li><li class="step">Enter the variable name in the <b class="uicontrol">Workflow Variables</b> field. Prefix the variable name with '@' if it is a local variable.</li><li class="step">Select the corresponding variable type from the <b class="uicontrol">Type</b> drop down field.</li><li class="step">After entering the variable details, click <b class="uicontrol">Add Row</b> to add this variable and to display a new row for entering another variable. </li><li class="step">Remove rows if necessary by selecting them and clicking <b class="uicontrol">Remove Selected</b>. </li><li class="step">After entering all the variables, click <b class="uicontrol">Update</b>. </li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set Variable for Queue Action user</p>
+<ol class="step"><li class="step">To specify the variable, right-click the Start activity icon in the workflow and select Activity Properties. </li><li class="step">To declare the variable, click the icon near Variables property. </li><li class="step">In the Workflow Variables, define the variable in the following format: <br><br><b class="uicontrol">^+CurrentActivityName+'QueueActingUsers'</b><br><br>For example, ^HRFormQueueActingUsers <br><br>HRForm is the activity name. </li><li class="step">Select the Type as &quot;<b class="uicontrol">Array</b>&quot;. </li><li class="step">Click <b class="uicontrol">Update</b> to save the variable. </li><li class="step">Click <b class="uicontrol">Save</b> in the Activity properties pane to save all the data entered. <br>The value of the user who acts on the HRForm activity will be stored in the variable. The Approval1 task will be assigned to the same user.</li></ol><p class="paragraph">See <a id="h185863" class="jump-currentwindowlive" title="Start - Variables" href="start-variables.html" target="_self">Start - Variables</a> for a detailed description of the Variables property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Contents</b> - The contents that can be passed to the workflow can be specified using this property.</p>
+<p class="paragraph"><b class="uicontrol">Property Type</b>: Optional (Set this property only if needed.)</p>
+<p class="procedureheading">Steps to set the contents property</p>
+<ol class="step"><li class="step">To specify the content, click the button for the 'Content' property to open the property window. </li><li class="step">Enter the content description in the <b class="uicontrol">Content Description</b> field. </li><li class="step">Select the content type from the <b class="uicontrol">Type</b> drop down field. </li><li class="step">Enter the XPath expression in the <b class="uicontrol">XPath Expression</b> field. </li><li class="step">Enter the attribute name in the <b class="uicontrol">Attribute Name Blank for InnerString</b> field. This parameter is optional and needs to be set only if necessary. </li><li class="step">After entering the content details, click<b class="uicontrol"> Add Row</b> to add this content and display a new row for entering another content. </li><li class="step">Remove rows if necessary, by selecting them and clicking<b class="uicontrol"> Remove Selected</b>. </li><li class="step">After specifying the contents, click Update. </li></ol><p class="paragraph">See <a id="h185865" class="jump-currentwindowlive" title="Start - Contents" href="start-contents.html" target="_self">Start - Contents</a> for a detailed description of the Contents property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">XML Variables</b> - The XML Variables used in the workflow can be specified using this property.</p>
+<p class="paragraph"><b class="uicontrol">Property Type: Optional</b> (Set this property only if necessary.)</p>
+<p class="procedureheading">Steps to set the XML Variables property</p>
+<ol class="step"><li class="step">To specify the XML Variables, click the button for the 'XML Variables' property to open the XML Variables window. </li><li class="step">Click <b class="uicontrol">New Variable</b> to add a new variable. </li><li class="step">This will enable the <b class="uicontrol">Variable Name</b> field. Enter the name of the new XML Variable in this field and a description in the <b class="uicontrol">Description</b> field. </li><li class="step">Now select the XML Variable type from <b class="uicontrol">Type</b> drop down. You can select from either<b class="uicontrol"> XMLDocument</b> or <b class="uicontrol">XMLIterator</b>. </li><li class="step">Click the <b class="uicontrol">Schema</b> tab caption 'Schema' to specify the schema for the XML variable. <ul class="ulsubitem"><li class="ulsubitem">If XMLDocument was selected in Step 4, clicking this tab will display the corresponding set of controls. <ul class="ulsubsubitem"><li class="ulsubsubitem">You can select Variable or Content as the option for internal storage from Use [ ] for Internal Storage drop down field. </li><li class="ulsubsubitem">Specify a file name or browse for the file containing XML Data. Click the Load button to load the contents of the file. The XMLschema corresponding to the loaded file is displayed in the configuration area. <br>You can also build the schema from scratch within this area.</li></ul></li><li class="ulsubitem">If XMLIterator was selected in Step 4, clicking this tab will display the corresponding set of controls. <ul class="ulsubsubitem"><li class="ulsubsubitem">You can select the XML Variable from which you can extract the node to be set as the XML Iterator. </li><li class="ulsubsubitem">Select the node to be set from the Select Node drop down field. The XML schema corresponding to the selected node is displayed in the configuration area. <br>You can also build the schema from scratch within this area.</li></ul><ol class="olsubsubitem"><li class="olsubsubitem">Click the Save Variable button, to save the new XML Variable. </li><li class="olsubsubitem">Click Close to close the Property window. </li></ol></li></ul></li></ol><p class="paragraph">See <a id="h185867" class="jump-currentwindowlive" title="XML Variables" href="XMLVariables.html" target="_self">XML Variables</a> for a detailed description of the XML Variables window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Analyst's Process Model Filename for Execution View</strong> - This property is used to specify the file name of the Process Model, which has been saved as the Business Analyst's view. This view will be displayed to the Analyst as the Process Execution view. You can specify this property by entering the file name in the text box for the property or by building an expression for the file name using the Expression Editor, which you can open by clicking the <b class="uicontrol">Expression Editor</b> icon next to the property name.</p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional (Set this property only if necessary.)</p>
+<p class="paragraph"><strong class="strong">SOA Object Instances</strong> - This property is used to create multiple instances of a class. Without instantiating a class, you cannot consume the methods available in a class. The Static member of the class can be consumed without creating any instance. </p>
+<p class="paragraph"><strong class="strong">Property Type</strong>: Optional (Set this property only if necessary.) </p>
+<p class="paragraph">See <i class="emphasis">SOA Object Instances in SOA Property topic in Developer Guide</i> for more information.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading">Exception Behavior</p>
+<p class="paragraph">You can use these properties to raise exceptions if the output is not linked to the next activity in the workflow and also define and configure email templates and users for the exception mails.</p>
+<p class="paragraph"><b class="uicontrol">Raise Error on Unhandled Linked Output?</b> &#8211; This property can be configured to raise an error if the output is not linked to the next activity in the workflow. </p>
+<p class="paragraph"><strong class="strong">Property type: Optional</strong> (This property needs to be set only if necessary)</p>
+<p class="paragraph">The Configurable values for this property are <b class="uicontrol">Default [Backward Compatible],Yes</b> and <b class="uicontrol">No</b>. If the value is set as <b class="uicontrol">Default [Backward Compatible],</b> then the workflow will behave as per the existing behavior.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading">Scenario</p>
+<p class="paragraph">Telematics Organization maintains different workflows like Invoice Workflow and Leave Workflow under the Telematics repository for their HR and Accounts Payable Processes. John has designed a workflow using the Human Activities and has assigned the human activities to the actors. When the activities are getting executed, if a particular actor is not found, then the Workflow Engine will give the output as 'Not Enough Resources to Acknowledge'. If this output is not linked to the next activity, then the workflow will finish successfully. However, if 'Yes' is selected for the Raise Error on Unhandled Linked Output property, the workflow will raise errors at finish.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="procedureheading">Steps to set the Raise Error on unhandled linked output</p>
+<ol class="step"><li class="step">Select Yes or No from the <b class="uicontrol">Raise Error on Unhandled Linked Output</b> drop-down list. </li></ol><p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property. If you click on it, all the default configured mapped error outputs in red with the respective check boxes selected will be displayed.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading">Mapped Error Outputs</p>
+<p class="paragraph">The Mapped Error Outputs list contains the error outputs (shown in red) that cause the workflow to complete abruptly. This can happen if the error outputs are not linked to the next activity in the workflow. To change the mapped error outputs, check or uncheck the relevant options and click Ok.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading">Workflow Behavior for Error Outputs </p>
+<p class="paragraph">If the error outputs are not linked to the next activity in the workflow, and if the 'Stop with Error' option is selected, the workflow will complete with errors. Similarly, if the 'Exit Activity with Error Output' option is selected, the workflow will not finish with errors but will give an Error Encountered output. </p>
+<p class="note"><strong class="notelabel">Note:</strong> The changes made to this property will take effect only if you set the value for Raise Error on Unhandled Linked Output to <b class="uicontrol">Yes</b> in the Start Activity.</p>
+<p class="paragraph"><b class="uicontrol">Exception Mail Template Configuration</b> &#8211; This property can be used to define and configure Email Templates and Users for the exception mails, whenever an exception occurs in workflow execution. </p>
+<p class="paragraph"><strong class="strong">Property type: Optional</strong> (This property needs to be set only if necessary)</p>
+<p class="paragraph">The Exception Mail Template and Users at the repository level are configured from the Central Configuration site section. For more information, refer to <i class="emphasis">Configuring Exception Mail Template</i> under the <i class="emphasis">Administration Tasks</i> in the<i class="emphasis"> Administrator's Guide</i>.</p>
+<p class="paragraph"><b class="uicontrol">Property type: Optional</b> (This property needs to be set only if necessary)</p>
+<p class="paragraph">You can configure Exception Email Templates for two groups - Group A and Group B, both at the workflow level. </p>
+<p class="paragraph">It is not mandatory to set both Users Groups A and B.</p>
+<p class="paragraph">For example Administrator type of users can be configured under Group A and Normal type of users can be configured under Group B.</p>
+<p class="paragraph">Email Templates can be configured through two modes &#8211; one is by selecting an existing predefined Default or Sample template, and the other is by using an editor. </p>
+<p class="paragraph">Based on the Exception Mail Configuration, the members of each group will receive mails.</p>
+<p class="paragraph">The Template file has to be placed in the folder 'Exception Template' under the 'Workflow elements' folder. In the Template file, we can place the Variables, Contents and XMLVariables Placeholders in the html file.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="subheading">Scenario</p>
+<p class="paragraph">John has designed a workflow using Human Activities and he has assigned these activities to the actors. When the activities are getting executed, if a particular actor is not found, then the Workflow Engine will give the output as 'Not Enough Resources to Acknowledge'. If this output is not linked to the next activity, the workflow will finish successfully. However, if the Raise Error on Unhandled Linked Output property is selected as 'Yes', then the workflow will raise errors at finish. </p>
+<p class="paragraph">There should be a notification to the users about the Exception occurred in an activity. These users should be configurable and the template for the exception mails should be configurable.</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="procedureheading">Steps to configure the Exception Mail Template</p>
+<ol class="step"><li class="step">Click the edit button of the <b class="uicontrol">Exception Mail Template Configuration</b> property. The <b class="uicontrol">Exception Mail Settings</b> window appears. <p class="stepinfo">Users can be configured through the User Lookup screen or the Role Lookup screen. By default, the User is selected.</p>
+</li><li class="step">Click the <b class="uicontrol">User Lookup</b> icon. The <b class="uicontrol">User Lookup</b> screen appears.</li><li class="step">Select the required Provider from the <b class="uicontrol">User-based Advanced Search in provider</b> drop-down list. </li><li class="step">Key-in the name of the user in the <b class="uicontrol">Search For</b> field and select the Display Name from the drop-down list. </li><li class="step">Click <b class="uicontrol">Search</b>. </li><li class="step">All the users get listed in the <b class="uicontrol">Available Resources</b> field. </li><li class="step">Select the required user and click the right arrow to display the users in the <b class="uicontrol">Selected Resources</b>. </li><li class="step">Click <b class="uicontrol">Update</b>. </li><li class="step">To configure a user through the Role Lookup, select the <b class="uicontrol">Role </b>radio button.</li><li class="step">Select the required provider from the provider drop-down. Also, note that the provider drop-down doesn't appear, if the repository has a single provider only. </li><li class="step">Key-in the name of the required role and click <b class="uicontrol">Search</b>. </li><li class="step">All the users get listed in the <b class="uicontrol">Available Roles</b> field. </li><li class="step">Select the required role and click the right arrow to display the users in the Selected Roles. </li><li class="step">Click <b class="uicontrol">Update</b>. <p class="stepinfo">The user's name (either User or Role) will now appear in the<b class="uicontrol"> Exception Mail Group A</b> field. </p>
+</li><li class="step">Select the template from the<b class="uicontrol"> Template File</b> drop-down list. <p class="stepinfo">You can select either a Default template or a Sample template. </p>
+</li><li class="step">Follow the same steps to select a User or Role and a template for the <b class="uicontrol">Exception Mail Group B</b>. </li><li class="step">Click <b class="uicontrol">OK</b>. </li></ol><p class="paragraph">&nbsp;</p>
+<p class="paragraph">&nbsp;</p>
+<p class="procedureheading">To create your own template for the exception mail</p>
+<ol class="step"><li class="step">Select the <b class="uicontrol">Create/Open</b> option in the <b class="uicontrol">Exception Mail Settings</b> screen. The Editor screen appears. </li><li class="step">Select the required values from the <b class="uicontrol">Field</b> and <b class="uicontrol">Standard Placeholders</b> drop-down lists and click <b class="uicontrol">Append</b>. </li><li class="step">Use the editor to design your template and click <b class="uicontrol">Update </b>and <b class="uicontrol">Close</b>.<p class="note"><strong class="notelabel">Note</strong>: You must use only the actor variable, and not any of its sub properties, to initialize a variable of type actor.</p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="start-variables.html" target="_self">Start - Variables</a></p><p class="relateditem"><a href="start-contents.html" target="_self">Start - Contents</a></p><p class="relateditem"><a href="XMLVariables.html" target="_self">XML Variables</a></p><p class="relateditem"><a href="initializevariables.html" target="_self">Initialize Variables</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

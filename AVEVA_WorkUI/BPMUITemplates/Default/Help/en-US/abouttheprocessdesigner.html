@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> About the Process Designer </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t598319" class="heading2">About the Process Designer</h2>
+<p class="paragraphimage">The <strong class="strong">Process Designer</strong> provides the interface to model workflow processes. Workflows can be modeled, designed, and deployed from this window. It opens when the Process Designer control is executed from a web form in the web application.</p>
+<p class="paragraph">The <strong class="strong">Process Designer</strong> is an AJAX based ASP.NET server control that can be embedded in any web based product, ASP Engine, or web page. It is a browser based application that requires no plug-in or IDE. It provides a comprehensive set of standard activities, which can be easily dragged and dropped on a design mosaic and linked to design processes.</p>
+<p class="paragraph">The <strong class="strong">Process Designer</strong> user interface has the following parts:</p>
+<ul class="ulitem"><li class="ulitem">Menu bar</li><li class="ulitem">Tool bar</li><li class="ulitem">Design Mosaic</li><li class="ulitem">Activities</li><li class="ulitem">Activity Properties</li></ul><p class="paragraph"></p>
+<p class="paragraph">The following image shows the<b class="windowtitle"> Process Designer</b> window:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f482449" src="482449.png" class="embeddedimage100%scalinglive" alt="ProcessDesignerWindow" height="401" width="574" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="subheading">Menu bar</p>
+<p class="paragraph"></p>
+<p class="paragraphimage">The following image shows the menu bar of the <b class="windowtitle">Process Designer</b> window:</p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f47258" src="47258.png" class="embeddedimage100%scalinglive" alt="" height="26" width="561" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> To change the Menu in the Process Designer, edit the <strong class="strong">pdmenu.txt</strong> file under the <strong class="strong">Locales</strong> folder. </p>
+<p class="paragraph"></p>
+<p class="paragraph">The menu bar has the following menus.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">File</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">File </strong>menu has the following options to perform various activities on the files in which workflow process designs are saved:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f254601" src="254601.png" class="embeddedimage100%scalinglive" alt="" height="136" width="152" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><a id="h47298" class="jump-currentwindow-customtextlive" title="Saving File as EMF Image" href="saveasemfimage.html" target="_self">Save As EMF Image</a>: Use this option to save the current process design as an image file in the Enhanced Windows Metafile (EMF) format. This is the ideal format for printing the process or to embed it in MS Office files.</li><li class="ulitem"><a id="h47299" class="jump-currentwindow-customtextlive" title="Saving File as PNG Image" href="saveaspngimage.html" target="_self">Save As PNG Image</a>: Use this option to save the current process design to a PNG image file.</li><li class="ulitem">Clear Diagram: Use this option to clear the current process design from the design area.</li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Edit</strong></p>
+<p class="paragraph">The <strong class="strong">Edit </strong>menu has the following options to perform various activities on the Workflow process design:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47259" src="47259.jpg" class="embeddedimage100%scalinglive" alt="" height="284" width="155" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Undo: </b>Use this option to undo the previous actions.</li><li class="ulitem"><b class="uicontrol">Redo: </b>Use this option to redo the previous actions.</li><li class="ulitem"><b class="uicontrol">Delete: </b>Use this option to delete the selected activity.</li><li class="ulitem"><b class="uicontrol">Copy: </b>Use this option to copy the selected activity.</li><li class="ulitem"><b class="uicontrol">Paste: </b>Use this option to paste the activity copied using the&nbsp;<strong class="strong">Copy</strong>&nbsp;command.</li><li class="ulitem"><b class="uicontrol">Full Screen: </b>Use this option to switch between the full screen and normal display modes.</li><li class="ulitem"><b class="uicontrol">Activity Properties: </b>Use this option to open the <strong class="strong">Activity Properties</strong> window to set the properties for the selected activity.</li></ul><p class="subheading"></p>
+<p class="subheading"></p>
+<p class="subheading">Publish:</p>
+<p class="paragraph">A workflow is deployed and activated only if it is published.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47260" src="47260.jpg" class="embeddedimage100%scalinglive" alt="" height="99" width="157" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><strong class="strong">Publish</strong>: Use this option to publish the workflow design.</li><li class="ulitem"><strong class="strong">Validate Definition</strong>: Use this option to validate the workflow definition.</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Tools:</strong></p>
+<p class="paragraph">The <strong class="strong">Tools </strong>menu has the following options to export and import workflow definitions:</p>
+<p class="stepinfo"></p>
+<p class="paragraphimage"><img id="f47261" src="47261.jpg" class="embeddedimage100%scalinglive" alt="" height="138" width="154" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<ul class="ulitem"><li class="ulitem"><a id="h47300" class="jump-currentwindowlive" title="Importing Process Definition XML File" href="import.html" target="_self">Import</a>: Use this option to import process definition XML files, which were exported earlier, into the Process Designer.</li><li class="ulitem"><a id="h47301" class="jump-currentwindow-customtextlive" title="Exporting Process Definition XML file" href="export.html" target="_self">Export</a>: Use this option to export a workflow definition to an XML file. The exported XML definition can be manually edited or moved to another database.</li><li class="ulitem"><a id="h47302" class="jump-currentwindowlive" title="Importing Process Definition from Visio" href="importfromvisiostencil.html" target="_self">Import from Visio</a>: Use this option to import a workflow process model XML file created using IT Pearls BPMN Stencil for Visio.</li></ul><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Settings:</strong></p>
+<p class="paragraph">The <strong class="strong">Settings </strong>menu has the following options to configure different process level settings for other AVEVA Work Tasks Controls:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47262" src="47262.jpg" class="embeddedimage100%scalinglive" alt="" height="175" width="158" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem"><a id="h47303" class="jump-currentwindow-customtextlive" title="Adding Work Item Fields" href="workitemfields.html" target="_self">Work Item Fields</a>: Use this option to add and configure work item fields.</li><li class="ulitem"><a id="h46830" class="jump-currentwindow-customtextlive" title="Alternate Actors" href="alternateactors.html" target="_self">Alternate Actors</a>: Use this option to specify alternate actors to the actual assigned actors.</li><li class="ulitem"><a id="h46889" class="jump-currentwindowlive" title="BAM Configuration" href="bamconfiguration.html" target="_self">BAM Configuration</a>: Use this option to setup critical performance measurement criteria for a workflow.</li><li class="ulitem"><a id="h262122" class="" title="Defining Layouts at Workflow Level" href="defininglayoutsatworkflowlevel.html" target="_self">Work Item List Layout</a>: Use this option to display all the work item fields that have been added.<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+</li></ul><p class="paragraph"><strong class="strong">Tool bar</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47263" src="47263.jpg" class="embeddedimage100%scalinglive" alt="" height="31" width="433" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The tool bar is located just below the menu bar at the top of the <strong class="strong">Process Designer</strong> window. It has the following tools:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Undo</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47264" src="47264.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Undo </strong>tool can be used to undo the previous actions that were performed in the Process Designer.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Redo</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47265" src="47265.jpg" class="embeddedimage100%scalinglive" alt="" height="28" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Redo </strong>tool can be used to repeat the previous actions that were performed in the Process Designer.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Delete</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47266" src="47266.jpg" class="embeddedimage100%scalinglive" alt="" height="28" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Delete </strong>tool can be used to delete an activity from the workflow.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Copy</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47267" src="47267.jpg" class="embeddedimage100%scalinglive" alt="" height="29" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Copy </strong>tool can be used to copy an activity in a workflow to paste it elsewhere.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Paste</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47268" src="47268.jpg" class="embeddedimage100%scalinglive" alt="" height="29" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Paste </strong>tool can be used to paste a cut or copied activity in the workflow.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activities Toolbox</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47269" src="47269.jpg" class="embeddedimage100%scalinglive" alt="" height="29" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Activities Toolbox</strong> tool can be used to show or hide the Activities Toolbox (AVEVA Work Tasks activities), which has the list of activities.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Activity Properties</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f47270" src="47270.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Activity Properties</strong> tool can be used to show or hide the properties area for the selected activity.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Edit Text</strong></p>
+<p class="paragraphimage"><img id="f47271" src="47271.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Edit Text</strong> tool can be used to edit the text corresponding to the selected element on the design mosaic. It could be an activity or a link.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Show Grid</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47272" src="47272.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Show Grid</strong> tool can be used to show or hide the grid pattern on the design mosaic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Search</b></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47273" src="47273.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Search </strong>tool can be used to search for a specific value in the workflow. You can enter the value to be searched in the field and click the magnifying glass icon next to it to start the search.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Zoom</b></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47274" src="47274.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="25" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The <strong class="strong">Zoom </strong>tool can be used to zoom in or out on the workflow design in the design mosaic. You can do this by specifying the percentage of zoom using the Zoom Level drop-down in the window that opens. You can also use this image to navigate through the process diagram.</p>
+<p class="paragraph">See Also: <a id="h47304" class="jump-currentwindowlive" title="Using the Process Map Image for Navigation" href="usingtheprocessmapimagefornavigation.html" target="_self">Using the Process Map Image for Navigation</a></p>
+<p class="paragraph">This feature is browser dependent. FireFox is not supported.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Link</b></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47275" src="47275.jpg" class="embeddedimage100%scalinglive" alt="" height="27" width="28" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The&nbsp;<a id="h47305" class="jump-currentwindowlive" title="Link Actions" href="linkactions.html" target="_self">Link</a>&nbsp;tool can be used to create a new link between two activities. You can do this by specifying the two activities to be linked in the window that &nbsp;is displayed.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Help</b></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47277" src="47277.jpg" class="embeddedimage100%scalinglive" alt="" height="28" width="25" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">The <strong class="strong">Help </strong>tool can be used to access help content for the Process Designer and its elements.</p>
+<p class="paragraph"></p>
+<p class="subheading">Activities</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"></p>
+<p class="paragraph">You can use the AVEVA Work Tasks activities area to access the different activities that can be used to design the workflow process in the Process Designer. There are several activities organized under different groups, which you can access from the drop-down list. These correspond to the standard workflow activities available with AVEVA Work Tasks.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Human Activities</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">When this option is selected from the drop-down list, it displays all the activities in this group. They can be used to enable human-workflow interaction. These activities include Approval, Check-List, Choice, Invoke Form, Resource Set, Information, Resource Set, Task, and Work.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f482450" src="482450.png" class="embeddedimage100%scalinglive" alt="HumanActivities" height="610" width="142" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Integration Activities</strong></p>
+<p class="paragraph">This option displays the activities that can be used to integrate workflows with external applications, scripts and databases. Activities include Create-Open-Office-Document, InvokeWebService, Script, File Operations, Change Workflow Status, and XML Action.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f482490" src="482490.png" class="embeddedimage100%scalinglive" alt="IntegrationActivities" height="501" width="142" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Engine Activities</strong></p>
+<p class="paragraph">This option displays the workflow-engine related activities. These include BlockingOutput, Database Activity, Decision, ForEach-Loop, For-Loop, Logger, Next-Loop, Resource Variable, Rule, Set Workflow output variable, Synchronize, Update Parent Variables, Update Variable, Workflow, and Xml Navigator.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47281" src="47281.png" class="embeddedimage100%scalinglive" alt="" height="787" width="377" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Scheduler Activities</strong></p>
+<p class="paragraph">This option displays the activities that can be used to schedule the execution of other workflow activities. These include Control Custom Timer, Set Custom Timer, Scheduler, and Time Trigger.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47282" src="47282.jpg" class="embeddedimage100%scalinglive" alt="" height="336" width="144" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Communication</strong></p>
+<p class="paragraph">This option displays the activities that can be used to enable communication from the workflows. These activities include Email, Notification, Send SMS, Wait for Email, and Wait for SMS.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47283" src="47283.jpg" class="embeddedimage100%scalinglive" alt="" height="494" width="143" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">BPMN Elements</strong></p>
+<p class="paragraph">This option displays the different BPMN elements available in AVEVA Work Tasks. These activities include Gateway Placeholder, Group Box, Intermediate Event Placeholder, Lane, Placeholder, and Pool.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47284" src="47284.jpg" class="embeddedimage100%scalinglive" alt="" height="493" width="140" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">List Activities</strong></p>
+<p class="paragraph">This option displays the activities that can be used to change the scope of the Xml List xml variable during workflow execution. These activities include List Navigator and Wait For Event.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f47285" src="47285.jpg" class="embeddedimage100%scalinglive" alt="" height="183" width="133" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Security</strong></p>
+<p class="paragraph">This option displays the activities that can be used for security. These include Cancel Approval Workflow and Security Instruction Handler.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47286" src="47286.jpg" class="embeddedimage100%scalinglive" alt="" height="186" width="162" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Report Activities</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph">You use the Report Generator activity to run a report template and save the report in the Reports list.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f47289" src="47289.png" class="embeddedimage100%scalinglive" alt="" height="122" width="144" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><strong class="strong">ArchestrA Events</strong></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">Use the ArchestrA Wait for Event activity to wait for a number of events from ArchestrA Event Services platform for a particular time period, and then consume the events in a defined workflow. You can set the number of events and the time period in the properties of that activity. It can store the event context details in the specified XML variables. </p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f254602" src="254602.png" class="embeddedimage100%scalinglive" alt="" height="128" width="161" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Design Mosaic</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f47290" src="47290.png" class="embeddedimage100%scalinglive" alt="" height="367" width="430" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph">You can create and edit workflows in the Design Mosaic. Initially, it displays only the icon for the Start activity. You can click and drop different activities from the list of activities to the Design Mosaic. This will display the icons corresponding to the selected activities, on the Design Mosaic. These activity icons can be lined to one another.</p>
+<p class="paragraph">A splitter has been provided on the left side of the Design Mosaic. You can click this splitter to hide the Activities pane and enlarge the Design Mosaic in that direction. The following image shows the Process Designer with the splitter clicked to enlarge the design area:</p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraphimage"><img id="f47291" src="47291.jpg" class="embeddedimage100%scalinglive" alt="" height="374" width="428" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">&nbsp;</p>
+<p class="paragraph"><strong class="strong">Activity Properties</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage">The <strong class="strong">Activity Properties</strong> pane at the right of the screen shows the property fields corresponding to the selected Activity. The following image shows the Activity Properties for the Logger activity:</p>
+<p class="paragraphimage"></p>
+<p class="paragraphimage"><img id="f47292" src="47292.jpg" class="embeddedimage100%scalinglive" alt="" height="692" width="286" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="saveasemfimage.html" target="_self">Saving File as EMF Image</a></p><p class="relateditem"><a href="saveaspngimage.html" target="_self">Saving File as PNG Image</a></p><p class="relateditem"><a href="import.html" target="_self">Importing Process Definition XML File</a></p><p class="relateditem"><a href="export.html" target="_self">Exporting Process Definition XML file</a></p><p class="relateditem"><a href="importfromvisiostencil.html" target="_self">Importing Process Definition from Visio</a></p><p class="relateditem"><a href="workitemfields.html" target="_self">Adding Work Item Fields</a></p><p class="relateditem"><a href="alternateactors.html" target="_self">Alternate Actors</a></p><p class="relateditem"><a href="bamconfiguration.html" target="_self">BAM Configuration</a></p><p class="relateditem"><a href="linkactions.html" target="_self">Link Actions</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

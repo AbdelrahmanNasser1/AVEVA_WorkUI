@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Localization culture="de-DE" description="">
+  <CommonText>
+    <Ready>Fertig.</Ready>
+    <More>Lade weitere Daten...</More>
+    <LoadGroup>Lade Gruppe...</LoadGroup>
+    <Sort>Sortiere Spalte...</Sort>
+    <Group>Gruppiere Spalte...</Group>
+    <Ungroup>Gruppierung Spalte aufheben...</Ungroup>
+    <ChangeGroup>Ändere Gruppenüberschrift...</ChangeGroup>
+    <FilterText>Filtere Spalten...</FilterText>
+    <LoadChild>Lade Kindzeilen...</LoadChild>
+    <ColumnChange>Ändere Spalten...</ColumnChange>
+    <Refresh>Daten neu laden...</Refresh>
+    <RefreshAll>Daten und Struktur neu laden...</RefreshAll>
+    <RefreshChild>Kindtabelle neu laden...</RefreshChild>
+    <AddRow>Zeile hinzufügen...</AddRow>
+    <UpdateRow>Zeile aktualisieren...</UpdateRow>
+    <DeleteRow>Zeile löschen...</DeleteRow>
+    <ReadyError>Fertig mit unbehandelter Ausnahme bei letzter Anforderung.</ReadyError>
+    <ColumnMove>Spalte verschieben...</ColumnMove>
+    <Loaded>[n] von [total] geladen</Loaded>
+    <ExportText>Exportiere...</ExportText>
+    <NoData>Keine Spalten in dieser Ansicht.</NoData>
+    <NewRowInfo>Hier klicken um eine neue Zeile zu erstellen...</NewRowInfo>
+    <GroupByBoxInfo>Spaltenüberschrift zur Gruppierung in dieses Feld ziehen.</GroupByBoxInfo>
+    <LoadSelfRefChild>Lade selbstreferenzierende Kindzeilen...</LoadSelfRefChild>
+    <CalendarToday>heute</CalendarToday>
+    <CalendarNone>keines</CalendarNone>
+  </CommonText>
+  <MessageBoxText>
+    <NoChildRow>Zu diesem Datensatz gibt es keine Kinddatensätze.</NoChildRow>
+    <InProgress>Bitte warten während die Anfrage ausgeführt wird...</InProgress>
+    <UnhandledError>Unbehandelte Ausnahme. Siehe folgende Details.</UnhandledError>
+    <LoadMoreException>Weitere Daten können nur geladen werden wenn keine gruppierten Spalten in der Basistabelle vorhanden sind.</LoadMoreException>
+    <AddNewRow>Die neue Zeile wurde bearbeitet. Möchten Sie die Zeile hinzufügen?</AddNewRow>
+    <UpdateRow>Die gewählte Zeile wurde bearbeitet. Möchten Sie die Änderungen speichern?</UpdateRow>
+    <DeleteRow>Möchten Sie diese Zeile wirklich löschen?</DeleteRow>
+  </MessageBoxText>
+  <Tooltip>
+    <Refresh>Tabellendaten neu laden</Refresh>
+    <LoadMore>Weitere Daten laden</LoadMore>
+    <ExportText>Tabelle exportieren</ExportText>
+    <Help>WebGrid.NET Benutzerhilfe</Help>
+  </Tooltip>
+  <Grouping>
+	<Today>Heute</Today>
+	<Yesterday>Gestern</Yesterday>
+	<LastWeek>Letzte Woche</LastWeek>
+	<TwoWeeksAgo>Vor zwei Wochen</TwoWeeksAgo>
+	<ThreeWeeksAgo>Vor drei Wochen</ThreeWeeksAgo>
+	<LastMonth>Letzter Monat</LastMonth>
+	<Older>Älter</Older>
+  </Grouping>
+  <ContextMenu>
+    <Column>
+      <SortAsc>Sortierung aufsteigend</SortAsc>
+      <SortDesc>Sortierung absteigend</SortDesc>
+      <GroupByThisField>Gruppierung nach diesem Feld</GroupByThisField>
+      <UngroupField>Gruppierung für dieses Feld aufheben</UngroupField>
+      <GroupByBox>Gruppierungsfeld</GroupByBox>
+      <RemoveColumn>Spalte entfernen</RemoveColumn>
+      <BestFit>Größe optimal anpassen</BestFit>
+      <FilterBar>Filterzeile</FilterBar>
+      <SelectColumns>Spalten auswählen</SelectColumns>
+      <ApplyChanges>Änderungen übernehmen</ApplyChanges>
+      <Reset>Zurücksetzen</Reset>
+    </Column>
+    <Row>
+	  <CopyCell>Zelle kopieren</CopyCell>
+      <CopyRow>Zeile kopieren</CopyRow>
+      <CopyTable>Tabelle kopieren</CopyTable>
+      <Update>Änderungen speichern</Update>
+      <Cancel>Änderungen verwerfen</Cancel>
+      <ShowChildRows>Kindzeilen anzeigen</ShowChildRows>
+      <HideChildRows>Kindzeilen verbergen</HideChildRows>
+      <Edit>Ändern</Edit>
+      <Delete>Löschen</Delete>
+      <Expand>Erweitern</Expand>
+      <Collapse>Verbergen</Collapse>
+      <ExpandAll>Alle erweitern</ExpandAll>
+      <CollapseAll>Alle verbergen</CollapseAll>
+      <PerformAdd>Neuanlage durchführen</PerformAdd>
+      <CancelAdd>Neuanlage abbrechen</CancelAdd>
+      <ApplyFilter>Alle Filter anwenden</ApplyFilter>
+      <ClearFilter>Alle Filter löschen</ClearFilter>
+    </Row>
+    <Filter>
+      <NotSet>Nicht festgelegt</NotSet>
+      <GTET>Größer oder gleich</GTET>
+      <GT>Größer als</GT>
+      <ET>Gleich</ET>
+      <NET>Nicht gleich</NET>
+      <LTET>Kleiner oder gleich</LTET>
+      <LT>Kleiner</LT>
+      <Like>Wie</Like>
+      <NotLike>Nicht wie</NotLike>
+      <Between>Zwischen</Between>
+      <NotBetween>Nicht zwischen</NotBetween>
+      <IsNull>Ist null</IsNull>
+      <NotIsNull>Ist nicht null</NotIsNull>
+      <IsEmpty>Ist leer</IsEmpty>
+      <NotIsEmpty>Ist nicht leer</NotIsEmpty>
+      <ApplyAll>Alle Filter anwenden</ApplyAll>
+      <Clear>Filter löschen</Clear>
+      <ClearAll>Alle Filter löschen</ClearAll>
+    </Filter>
+    <Export>
+      <ExportRoot>Tabelle exportieren</ExportRoot>
+      <ExportChild>Kindtabelle exportieren</ExportChild>
+      <Portrait>Hochformat</Portrait>
+      <Landscape>Querformat</Landscape>
+      <DoExport>Exportieren</DoExport>
+    </Export>
+    <Custom description="Add your row custom menu text here">
+      <CustomText1>
+      </CustomText1>
+      <CustomText2>
+      </CustomText2>
+    </Custom>
+  </ContextMenu>
+</Localization>

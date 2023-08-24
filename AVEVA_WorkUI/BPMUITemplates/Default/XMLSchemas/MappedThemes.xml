@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<mappedThemes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <theme name="Belltown" mappedTo="Default"></theme>
+  <theme name="Breeze2" mappedTo="Grey"></theme>
+  <theme name="Cardinal" mappedTo="Default"></theme>
+  <theme name="Citrus" mappedTo="Default"></theme>
+  <theme name="Classic" mappedTo="Default"></theme>
+  <theme name="Granite" mappedTo="Default"></theme>
+  <theme name="Jet" mappedTo="Grey"></theme>
+  <theme name="Lacquer" mappedTo="Default"></theme>
+  <theme name="Lichen" mappedTo="Default"></theme>
+  <theme name="Obsidian" mappedTo="Default"></theme>
+  <theme name="Petal" mappedTo="Default"></theme>
+  <theme name="Plastic" mappedTo="Default"></theme>
+  <theme name="Reflector" mappedTo="Default"></theme>
+  <theme name="simple" mappedTo="Default"></theme>
+  <theme name="Verdant" mappedTo="Default"></theme>
+  <theme name="Vintage" mappedTo="Default"></theme>
+  <theme name="Wheat" mappedTo="Default"></theme>
+  
+  <!--SharePOint 2010 themes-->
+  <theme name="Azure" mappedTo="SSA2010"></theme>
+  <theme name="Berry" mappedTo="SSA2010"></theme>
+  <theme name="Bittersweet" mappedTo="SSA2010"></theme>
+  <theme name="Cay" mappedTo="SSA2010"></theme>
+  <theme name="Classic2010" mappedTo="SSA2010"></theme>
+  <theme name="Contruct" mappedTo="SSA2010"></theme>
+  <theme name="Convention" mappedTo="SSA2010"></theme>
+  <theme name="Felt" mappedTo="SSA2010"></theme>
+  <theme name="Graham" mappedTo="SSA2010"></theme>
+  <theme name="Grapello" mappedTo="SSA2010"></theme>
+  <theme name="Laminate" mappedTo="SSA2010"></theme>
+  <theme name="Mission" mappedTo="SSA2010"></theme>
+  <theme name="Modern Rose" mappedTo="SSA2010"></theme>
+  <theme name="Municipal" mappedTo="SSA2010"></theme>
+  <theme name="Pinnate" mappedTo="SSA2010"></theme>
+  <theme name="Ricasso" mappedTo="SSA2010"></theme>
+  <theme name="Summer" mappedTo="SSA2010"></theme>
+  <theme name="Vantage" mappedTo="SSA2010"></theme>
+  <theme name="Viewpoint" mappedTo="SSA2010"></theme>
+  <theme name="Yoshi" mappedTo="SSA2010"></theme>
+  
+  <!--SharePoint 2013 themes-->
+  <theme name="Orange" mappedTo="Default"></theme>
+  <theme name="Sea Monster" mappedTo="Default"></theme>
+  <theme name="Green" mappedTo="Default"></theme>
+  <theme name="Lime" mappedTo="Default"></theme>
+  <theme name="Nature" mappedTo="Default"></theme>
+  <theme name="Blossom" mappedTo="Default"></theme>
+  <theme name="Sketch" mappedTo="Default"></theme>
+  <theme name="City" mappedTo="Default"></theme>
+  <theme name="Orbit" mappedTo="Default"></theme>
+  <theme name="Grey" mappedTo="Default"></theme>
+  <theme name="Characters" mappedTo="Default"></theme>
+  <theme name="Office" mappedTo="Default"></theme>
+  <theme name="Breeze" mappedTo="Default"></theme>
+  <theme name="Immerse" mappedTo="Default"></theme>
+  <theme name="Red" mappedTo="Default"></theme>
+  <theme name="Purple" mappedTo="Default"></theme>
+  <theme name="Wood" mappedTo="Default"></theme>
+  <theme name="Default" mappedTo="Default"></theme>	 
+  <theme name="SSA2010" mappedTo="Default"></theme> 	
+  
+</mappedThemes>

@@ -1,0 +1,14 @@
+﻿.skdbackgroundcolor 
+{
+    background-color: #f3f4f5;
+}
+
+.k-splitbar 
+{
+    background-color: #DFE3E6 !important;
+}
+
+li.CodeMirror-hint-active
+{
+    background-color: #003052;
+}

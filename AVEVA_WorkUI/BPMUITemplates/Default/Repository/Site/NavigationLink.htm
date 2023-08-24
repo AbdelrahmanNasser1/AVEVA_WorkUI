@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/knockout.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/xml2json.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/app/Skelta.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/date.min.js"></script>
+    <script src="../../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var pageTitle = skelta.localize.getString("ec_newnavigation_title");
+        var formViewModelObject;
+        skelta.serverUrl = "../../NextGenForms/";
+        Number.isInteger = Number.isInteger || function (value) {
+            return typeof value === "number" &&
+                   isFinite(value) &&
+                   Math.floor(value) === value;
+        };
+
+        function GetRadWindow() {
+            var oWindow = null;
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+            return oWindow;
+        }
+
+        function closeWin() {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function FormLoadComplete() {
+            skeltaUtils.pageLoadComplete("");
+        }
+
+        function ShowMessage(message, messageType) {
+            if (typeof (messageType) !== "undefined" || messageType != null) {
+                    se.ui.messageDialog.showAlert(pageTitle, message, closeWin);
+            } else {
+                se.ui.messageDialog.showError(pageTitle, message);
+            }
+        }
+
+        function SaveNavigationLinkSucceeded(resultData) {
+            var res = $.parseJSON(resultData.d);
+            ShowMessage(res.script, res.messageType);
+        }
+
+        function SaveNavigationLinkFailed(result) {
+            if (result.responseText.indexOf('u0027') > -1 || result.responseText.indexOf('There was an error processing the request') > -1) {
+                se.ui.messageDialog.showError(pageTitle, skelta.localize.getString("ec_newnavigationlink_title_duplicate"));
+            } else {
+                se.ui.messageDialog.showError(pageTitle, skelta.localize.getString("ec_ssrs_template_listsavefailed"));
+            }
+            logger.logError("Failed submission. " + result.status + ' ' + result.statusText + ' ' + result.responseText);
+            skelta.forms.utilities.hideLoader();
+        }
+
+        function SaveNavigationLink(inputParameterObject, eventArgs) {
+            var convJSONXml = new X2JS();
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "secureParameters": skeltaUtils.getUrlParameterValue(window, 'lcsuri'),
+                "xmlInstance": val
+            });
+
+            if (/[`^~<>"'#&+"'|]/.test(formViewModelObject.findById('_sys_navigationlink_new_title').value.trim().replace(" ", ""))) {
+                se.ui.messageDialog.showError(pageTitle, skelta.localize.getString("ec_newnavigation_title_validate"), function () { skeltaUtils.pageLoadComplete(""); });
+                return;
+            }
+
+            var menuOrder = parseInt(formViewModelObject.findById('_sys_navigationlink_menuorder').value);
+            if (menuOrder) {
+                if (!(Number.isInteger(menuOrder) && menuOrder >= 0)) {
+                    se.ui.messageDialog.showError(pageTitle, skelta.localize.getString("ec_newnavigation_menuorder_validate"), function () { skeltaUtils.pageLoadComplete(""); });
+                    return;
+                }
+            }
+
+            skeltaUtils.callServerMethod("POST", "NavigationLinkService.aspx/SaveNavigationLink", "application/json; charset=utf-8", jsonHelper, "json", SaveNavigationLinkSucceeded, SaveNavigationLinkFailed, FormLoadComplete);
+        }
+
+        function LoadNavigationLinkSucceeded(resultData) {
+            var result = $.parseJSON(resultData);
+            var res = $.parseJSON(result.d);
+            var oWindow = GetRadWindow();
+            if (oWindow) {
+                oWindow.set_title(res.windowTitle);
+            }
+            pageTitle = res.windowTitle;
+            document.title = pageTitle;
+            if (res.redirectionURL) {
+                window.location.href = res.redirectionURL;
+                return;
+            }
+            if (res.IsRequestProcessedSuccessfully === true) {
+                var uniqueKey = skeltaUtils.getFormUniqueKey(res.applicationName, '_sys_new', 'Default');
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res.instanceXml));
+                $("#viewModel").html(res.viewModelObject);
+                formViewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                formViewModelObject.onSave.subscribeEvent(SaveNavigationLink);
+                formViewModelObject.onCancel.subscribeEvent(closeWin)
+                $("#viewModel")[0].style.display = "";
+                formViewModelObject.topLevelForm.initializeFocus(0);
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+            } else {
+                se.ui.messageDialog.showError(pageTitle, skelta.localize.getString("Check_Logger"), closeWin);
+                logger.logError(res.Message);
+            }
+
+            if (res.pageMode == "_sys_edit") {
+                formViewModelObject.findById('_sys_navigationlink_new_title').enable = false;
+            }
+        }
+
+        function LoadNavigationLinkFailed(result) {
+            if (result.responseText) {
+                se.ui.messageDialog.showError(result.status + ' ' + result.statusText + ' ' + result.responseText);
+                logger.logError(result.status + ' ' + result.statusText + ' ' + result.responseText);
+            }
+        }
+
+
+        function checkFormsAccessRights(lcsuri, deviceType) {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": ["ActionCreate"],
+                "deviceType": deviceType
+            });
+
+            skeltaUtils.callServerMethod("GET", "../../NextGenForms/NextGenFormService.aspx/GetCurrentContextWithSecurityCheck", "application/json; charset=utf-8", params, "json", checkFormsAccessRightsSucceeded, null, null, false);
+        }
+
+        function checkFormsAccessRightsSucceeded(successData) {
+            var result = JSON.parse(successData.d);
+
+            if (result.IsSuccess === false) {
+                skeltaUtils.showError(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            } else {
+                var clientData = $.parseJSON(result.Result);
+                skelta.userContext.setUserContextFor("appN", clientData.fAppName);
+                skelta.userContext.setUserContextFor("uId", clientData.fUserId);
+                skeltaUtils.loadPageDefault();
+                loadNavigationLinkForm();
+            }
+        }
+
+        function loadNavigationLinkForm() {
+            //load form
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "secureParameters": skeltaUtils.getUrlParameterValue(window, 'lcsuri')
+            });
+
+            skeltaUtils.callServerMethod("GET", "NavigationLinkService.aspx/LoadNavigationLinkForm", "application/json; charset=utf-8", jsonHelper, "html", LoadNavigationLinkSucceeded, LoadNavigationLinkFailed, FormLoadComplete);
+        }
+
+        $(document).ready(function () {
+            try {
+                 //set page loading annimation
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkFormsAccessRights(skeltaUtils.getUrlParameterValue(window, 'lcsuri'), "Web");
+            }
+            catch (exception) {
+                skeltaUtils.showError(pageTitle, skelta.localize.getString("SSRSReportLoadViewAndViewModelFromServer") + exception.message);
+                logger.logError(skelta.localize.getString("SSRSReportLoadViewAndViewModelFromServer") + exception.message);
+                FormLoadComplete();
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <script type="text/javascript">
+        se.ui.messageDialog.setGlobalOptions({
+            localization: {
+                            closeButtonCaption: skelta.localize.getString("se_ui_messagedialog_close_caption"),
+                            okButtonCaption: skelta.localize.getString("se_ui_messagedialog_ok_caption"),
+                            cancelButtonCaption: skelta.localize.getString("se_ui_messagedialog_cancel_caption"),
+                            showDetailsCaption: skelta.localize.getString("se_ui_messagedialog_showdetails_caption"),
+                            hideDetailsCaption: skelta.localize.getString("se_ui_messagedialog_hidedetails_caption")
+                        }
+                        });
+    </script>
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: hidden; height: 0px; width: 0px;"></textarea>
+</body>
+</html>

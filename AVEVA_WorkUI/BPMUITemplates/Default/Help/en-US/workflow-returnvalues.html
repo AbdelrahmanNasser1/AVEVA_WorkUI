@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Workflow - Return Values </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488962" class="heading4">Workflow - Return Values</h4>
+<p class="subheading">Return Values Property window</p>
+<p class="paragraph">You can set the return values for the child workflow in this property window. To open this window, click the button for the 'Return Values' property. It displays the values in a grid, which also has a blank row where you can enter a new return value.</p>
+<p class="paragraph"><img id="f51175" src="51175.png" class="embeddedimage100%scalinglive" alt="" height="226" width="455" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The window has two tabs at the top to manage the rows of return values in the grid.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Add Row</b>&nbsp;- You can click this tab to add the newly entered return value and display a new row to the grid where you can add another value.</li><li class="ulitem"><b class="uicontrol">Remove Selected</b>&nbsp;- You can click this tab to remove the return value selected in the grid.</li></ul><p class="paragraph">The grid has the following parameters that you need to specify for the new return value.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Return Value</b>&nbsp;- You can use this field to enter the return value. </li></ul><p class="paragraph">There are two buttons and a check box at the bottom of the screen.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>&nbsp;- You can click this button to save the newly added return value(s)</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- You can click this to close the property window without saving the newly added return value(s)</li><li class="ulitem"><b class="uicontrol">Last Row needs to be added</b>&nbsp;- You need to select this check box to save the last row added.</li></ul><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workflowaction.html" target="_self">Workflow Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

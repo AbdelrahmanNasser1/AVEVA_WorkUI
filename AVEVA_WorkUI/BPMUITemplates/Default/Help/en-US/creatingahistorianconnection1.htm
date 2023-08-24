@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Creating a Historian Connection </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488893" class="heading4">Creating a Historian Connection</h4>
+<p class="paragraph">You can configure the Historian Connection information in the Database Connections Settings in the Enterprise Console.</p>
+<ol class="step"><li class="step">On the&nbsp;<b class="uicontrol">Enterprise Console</b>, select&nbsp;<b class="uicontrol">Settings</b>,&nbsp;and then click&nbsp;<b class="uicontrol">Database Connections</b>. The Database Connection page appears. This page lists the&nbsp;<b class="uicontrol">Connection List</b>.&nbsp;</li><li class="step">Click&nbsp;<b class="uicontrol">New</b>. The&nbsp;<b class="uicontrol">New Connection</b>&nbsp;dialog box appears.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f52099" src="52099.png" class="embeddedimage100%scalinglive" alt="" height="182" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Enter the details as shown in the image given below:&nbsp;<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f52100" src="52100.png" class="embeddedimage100%scalinglive" alt="" height="439" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Then click&nbsp;<b class="uicontrol">Save</b>. The database connection is saved and will appear in the Connection List page.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f52101" src="52101.png" class="embeddedimage100%scalinglive" alt="" height="213" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="reportgeneratoractivity1.htm" target="_self">Report Generator Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

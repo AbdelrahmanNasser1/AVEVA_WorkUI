@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Pass Variables/Contents from Parent Workflow to Child Workflow? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601985" class="heading4">How to Pass Variables/Contents from Parent Workflow to Child Workflow?</h4>
+<p class="paragraph">The Workflow Activity enables the execution of a second (child) workflow from a (parent) workflow. The workflow activity can be used to call a child workflow from a parent workflow. The <b class="uicontrol">Variables for the child workflow</b> property and <b class="uicontrol">XMLVariables for the child workflow</b> property enable parent workflow to pass variable and XML variable information to the child workflow respectively. </p>
+<p class="paragraph">To pass variables or contents from parent workflow to child workflow, follow the steps given below:</p>
+<ol class="step"><li class="step">In the parent workflow, right-click <b class="uicontrol">Workflow Activity</b>, and then select <b class="uicontrol">Activity Properties</b>. </li><li class="step">Enter the repository name for <b class="uicontrol">Repository</b> property. The child workflow should belong to the same repository of the parent workflow. The repository property of a child workflow is exposed for backward compatibility. </li><li class="step">Enter the name of the workflow to be executed in the <b class="uicontrol">Workflow</b> property. </li><li class="step">Enter the version only if any specific version of the (child) workflow to be executed in the Version property. Leave this as blank, if the latest published version of (child) workflow has to be executed. </li><li class="step">Build the content to be passed to the child workflow, if required in the <b class="uicontrol">Contents for ChildWorkflow</b> property. <br>Use one of the following options to specify the content to be passed: <ul class="ulsubitem"><li class="ulsubitem">Set the contents to be passed as same as Parent Contents </li><li class="ulsubitem">Append some more contents to the parent workflow contents </li><li class="ulsubitem">New workflow contents</li></ul></li></ol><p class="paragraph"></p>
+<p class="procedureheading"><strong class="strong">Steps to set the Contents for ChildWorkflow property:</strong></p>
+<ol class="step"><li class="step">To specify the contents to be passed to the child workflow, click the button for the 'Contents for ChildWorkflow' property to open the property window. </li><li class="step">In the <b class="uicontrol">Set Contents</b> window, the <b class="uicontrol">Set Contents</b> tab is selected by default and the corresponding window is displayed. </li><li class="step">Click the <b class="uicontrol">Set the Parent Contents</b> check box to pass the parent contents XML to the child workflow.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187085" src="187085.png" alt="" height="228" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click <b class="uicontrol">Set</b> to set this property. </li><li class="step">Alternatively, you can append XML content to the parent workflow contents and pass them to the child workflow. To do this, click <b class="uicontrol">Append</b> to open the corresponding window. </li><li class="step">Select a type of value (Variable or Content) and the corresponding value collection from the respective drop-down and click <b class="uicontrol">Insert</b> to add the selection to the text area<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187086" src="187086.png" alt="" height="228" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Add more XML contents if necessary. After adding all the values, click Append to save the setting. </li><li class="step">Third options to build complete XML content and can pass these contents to child workflow. To do this, click New to open the corresponding window. </li><li class="step">In this window, select a type of value (Variable or Content) and the corresponding value collection from the respective drop-down and click the Insert button to add the selection to the text area.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187087" src="187087.png" alt="" height="228" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">After specifying the new content, click Add button to save the settings. </li></ol><p class="paragraph">Select the variables that need to be passed to the child workflow from Variables for ChildWorkflow property.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the <b class="uicontrol">Variables for ChildWorkflow</b> property: </p>
+<ol class="step"><li class="step">To specify the variables to be passed to the child workflow, click the button for the 'Variables for ChildWorkflow' property to open the property window. </li><li class="step">In the <b class="uicontrol">Variables for ChildWorkflow</b> window, select the required variables to be passed to the child workflow.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187088" src="187088.png" alt="" height="241" width="428" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">After specifying the data, click Update. <p class="note"><strong class="notelabel">Note:</strong> These variables are expected to exist in the child workflow. Make sure to define variables with same name and type as defined in parent workflow.</p>
+</li></ol><p class="paragraph">Select the XML variables that need to be passed to the child workflow from XMLVariables for ChildWorkflow property.</p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to set the XMLVariables for ChildWorkflow property:</p>
+<ol class="step"><li class="step">To specify the XML variables to be passed to the child workflow, click the button for the<b class="uicontrol"> 'XMLVariables for ChildWorkflow'</b> property to open the property window. </li><li class="step">In the <b class="uicontrol">XMLVariables for ChildWorkflow</b> window, choose the required variables to be passed to the child workflow.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187089" src="187089.png" alt="" height="184" width="457" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click the Update button. <p class="note"><strong class="notelabel">Note:</strong> These XML variables are expected to exist in the child workflow. Make sure to define XML variables with same name and type as defined in parent workflow. <br>To work with any XML variables or resource activities, SKEventData XML variables must be passed in the child workflow, where SKEventData contains some events information related to parent workflow which needs to be passed to child workflow. If SKEventData variable is not created, user can create XML variable of type XMLDocument with the same name 'SKEventData' by locating the 'SKEventData.xml' from the following path: [AVEVA Work Tasks Installed Folder]\AVEVA\Work Tasks\Web\BPMUITemplates\Default\XMLSchemas<br></p>
+</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">To create SPEventData XML Variable, use one of the following options:</p>
+<ol class="step"><li class="step">Create XML variable of type XMLDocument with the same name 'SPEventData' by locating the 'SPEventData.xml' from the following path - [AVEVA Work Tasks Installed Folder]\AVEVA\Work Tasks\Web\BPMUITemplates\Default\XMLSchemas <br>Example: The following figure shows that XMLVariables named SPEventData, LeaveApplication and InfopathForm need to be passed to the child workflow. In this case, the child workflow is expected to have SPEventData, LeaveApplication and InfopathForm XML variables defined. <p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187090" src="187090.png" alt="" height="183" width="574" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Select Yes from the Wait for Child Workflow drop-down.This will wait for the child workflow to complete the execution.</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Configuring Parent Workflow to wait till Child Workflow Completes Execution</strong></p>
+<p class="procedureheading">Steps to be followed for Parent Workflow configuration:</p>
+<ol class="step"><li class="step">Set Wait for the child workflow? property as Yes to wait for the child workflow to complete the execution. </li><li class="step">Use Return Values property to set the routing condition after completion of child workflow. Example: 'ChildWfCompleted'. </li></ol><p class="paragraph">This will dynamically create a link output named 'ChildWfCompleted' for the activity. Once the child workflow complete its execution, it returns back to the parent workflow with the return value specified in the child workflow (In this case, child workflow should return 'ChildWfCompleted' value) and then it will continue with further execution. </p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to be followed for Child Workflow configuration:</p>
+<ol class="step"><li class="step">Right-click the workflow activity to open child workflow using the context menu item Open Sub Process. </li><li class="step">Declare a variable named 'ParentWorkflowOutput' of type string in the child workflow Start activity. </li><li class="step">Use <b class="uicontrol">Update Variable</b> activity to set the variable 'ParentWorkflowOutput' value as 'ChildWfCompleted' (This value should be same as the value for the Return Values property in parent workflow action properties). </li><li class="step">The<b class="uicontrol"> Update Variable</b> activity to update the parent workflow output should be placed after the logical conclusion of child workflow.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f187091" src="187091.png" alt="" height="156" width="467" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+</li></ol><p class="procedureheading">After configuring child workflow, do the following steps:</p>
+<ol class="step"><li class="step">Go back to the parent and set routing condition based on the output 'ChildWfCompleted'. </li><li class="step">Parent workflow goes to sleep mode after the child is executed. </li><li class="step">Child completes execution with Update Variable as the last action. </li><li class="step">Once the child completes execution, the value set in Update variable is given as output for the workflow action in parent. <p class="stepinfo"><strong class="notelabel">Note:</strong> If the child workflow needs to update any of the parent workflow variables, it is a must for parent workflow to wait for the child workflow to complete.</p>
+</li><li class="step">Select <b class="uicontrol">Asynchronous </b>from <b class="uicontrol">Execution mode</b> drop-down list. </li><li class="step">Select <b class="uicontrol">Yes</b> from <b class="uicontrol">Control child workflow?</b> drop-down. </li></ol><p class="paragraph">&nbsp;</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="workflowaction.html" target="_self">Workflow Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

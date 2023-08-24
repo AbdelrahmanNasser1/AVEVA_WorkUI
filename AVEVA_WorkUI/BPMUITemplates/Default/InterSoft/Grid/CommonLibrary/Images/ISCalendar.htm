@@ -1,0 +1,185 @@
+<html>
+<head>
+    <title>Intersoft Date Picker</title>
+    <style> 
+        .backgroundStyle { FONT-SIZE: 8pt; FONT-FAMILY: Verdana }
+	    .topPanelStyle { FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #5f76b1 }
+	    .dayDescStyle { BORDER-RIGHT: silver 1px solid; BORDER-TOP: silver 1px solid; FONT-SIZE: 7pt; BORDER-LEFT: silver 1px solid; BORDER-BOTTOM: silver 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fffbf7 }
+	    .selectStyle { FONT-SIZE: 8pt; FONT-FAMILY: Verdana }
+	    .todayStyle { BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid; FONT-FAMILY: Verdana }
+	    .selectedDayStyle { FONT-SIZE: 8pt; COLOR: white; FONT-FAMILY: Verdana; BACKGROUND-COLOR: darkblue }
+	    .buttonStyle { BORDER-RIGHT: darkblue 1px solid; BORDER-TOP: darkblue 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: darkblue 1px solid; BORDER-BOTTOM: darkblue 1px solid; FONT-FAMILY: Verdana }
+	    .bottomPanelStyle { BORDER-TOP: silver 1px solid }
+	</style>
+</head>
+<body leftmargin="0" style="border-right: 0px; border-top: 0px; border-left: 0px;
+    border-bottom: 0px" scroll="no" topmargin="0">
+    <table border="0" cellpadding="0" cellspacing="0" width="170" style="border-right: navy 1px solid;
+        border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
+        class="backgroundStyle">
+        <tr>
+            <td valign="top">
+                <table border="0" cellpadding="0" cellspacing="1" width="100%" bgcolor="#5f76b1"
+                    class="topPanelStyle">
+                    <tr>
+                        <td>
+                            <img id="btnPrev" onclick="parent.goPrev()" src="BtnPrev.gif" style="cursor: hand"
+                                title="Previous Month"></td>
+                        <td width="100%" align="middle">
+                            <select id="cbMonth" name="cbMonth" onkeydown="parent.calKBHandler()" onchange="parent.getCalendar( cbMonth.value, cbYear.value ); parent.ensureVisible()"
+                                class="selectStyle">
+                                <option selected value="1">Jan</option>
+                                <option value="2">Feb</option>
+                                <option value="3">Mar</option>
+                                <option value="4">Apr</option>
+                                <option value="5">May</option>
+                                <option value="6">Jun</option>
+                                <option value="7">Jul</option>
+                                <option value="8">Aug</option>
+                                <option value="9">Sep</option>
+                                <option value="10">Oct</option>
+                                <option value="11">Nov</option>
+                                <option value="12">Dec</option>
+                            </select>
+                            &nbsp;<select id="cbYear" name="cbYear" onkeydown="parent.calKBHandler()" onchange="parent.getCalendar( cbMonth.value, cbYear.value ); parent.ensureVisible()"
+                                class="selectStyle">
+                            </select></td>
+                        <td>
+                            <img id="btnNext" onclick="parent.goNext()" src="BtnNext.gif" style="cursor: hand"
+                                title="Next Month"></td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="0" style="table-layout: fixed" cellspacing="1" class="dayDescStyle"
+                    width="100%">
+                    <tr id="trDayDesc">
+                        <td align="middle" width="22" style="overflow-x: hidden; width: 22px">
+                            Sun</td>
+                        <td align="middle" width="22" style="overflow-x: hidden; width: 22px">
+                            Mon</td>
+                        <td align="middle" width="22" style="overflow-x: hidden; width: 22px">
+                            Tue</td>
+                        <td align="middle" width="22" style="overflow-x: hidden; width: 22px">
+                            Wed</td>
+                        <td align="middle" width="22" style="overflow-x: hidden; width: 22px">
+                            Thu</td>
+                        <td align="middle" width="22" style="overflow-x: hidden; width: 22px">
+                            Fri</td>
+                        <td align="middle">
+                            Sat</td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="1" class="backgroundStyle" width="100%"
+                    id="dpCalGrid" onclick="parent.dayClick()" style="cursor: hand">
+                    <tr>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                        <td align="middle" width="22">
+                        </td>
+                    </tr>
+                </table>
+                <table id="Table1" class="bottomPanelStyle" cellspacing="0" cellpadding="2" width="100%"
+                    border="0">
+                    <tr>
+                        <td nowrap align="middle">
+                            <input id="Button1" type="button" onclick="parent.setToday()" value="Today" name="Button1"
+                                class="buttonStyle" style="width: 60px"></td>
+                        <td nowrap align="middle">
+                            <input id="Button2" type="button" onclick="parent.setNone()" value="None" name="Button1"
+                                class="buttonStyle" style="width: 60px"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Copy and Paste Activities </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t598326" class="heading3">Copy and Paste Activities</h3>
+<p class="paragraph">In the <strong class="strong">Process Designer, </strong>you can copy and paste activities of AVEVA Work Tasks. You can use this feature when you are designing large process diagrams. </p>
+<p class="paragraph">If the same activity occurs at many places in the process design, you can copy the first instance and paste it at the new location. When you copy an activity all the configured property settings are also copied. However the links between the activities are not copied. You can modify the settings as required. </p>
+<p class="paragraph">You can copy and paste activities within the same workflow in all the supported browsers. In Internet Explorer, you can copy activities from one workflow and paste the copied activity in another workflow across the instances.</p>
+<p class="paragraph"></p>
+<p class="paragraph">When you copy and paste BPMN elements, only the BPMN elements are copied and pasted, and not the activities enclosed within the BPMN elements.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">To copy and paste activities:</p>
+<p class="procedureheading"></p>
+<ol class="step"><li class="step">Click on the activity to be copied to select it.</li><li class="step">From the <b class="uicontrol">Edit</b> menu, select <b class="uicontrol">Copy</b>.</li><li class="step">Position the mouse cursor at the location where you wish to place the copy.</li><li class="step">From the <b class="uicontrol">Edit</b> menu, select <b class="uicontrol">Paste</b>.</li></ol><p class="procedureheading"></p>
+<p class="procedureheading">Alternatively, you can do the following:</p>
+<ol class="step"><li class="step">Right-click the activity and select <b class="uicontrol">Copy </b>from the menu.</li><li class="step">Right-click at the location where you wish to place the copy.</li><li class="step">From the right-click menu, select <b class="uicontrol">Paste</b>.</li></ol><p class="paragraph"></p>
+<p class="paragraph">You can also use the copy and pastes icons in the toolbar to copy and paste the activities.</p>
+<p class="paragraph">You can select to copy and paste multiple activities together. To copy and paste multiple activities at the same time use the copy and paste options in the Edit menu or in the toolbar.</p>
+<p class="paragraph"></p>
+<p class="paragraph">The following images shows different copy options in the Process Designer:</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Copy option in the toolbar:</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f199411" src="199411.png" class="embeddedimage100%scalinglive" alt="" height="73" width="215" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Copy option in the menu:</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f199412" src="199412.png" class="embeddedimage100%scalinglive" alt="" height="231" width="139" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Copy option in the context sensitive menu:</strong></p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f199413" src="199413.png" class="embeddedimage100%scalinglive" alt="" height="270" width="238" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

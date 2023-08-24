@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Localization culture="it-IT" description="">
+  <CommonText>
+    <Ready>Pronto.</Ready>
+    <More>Caricamento ulteriori dati in corso...</More>
+    <LoadGroup>Caricamente gruppi...</LoadGroup>
+    <Sort>Ordinamento colonne...</Sort>
+    <Group>Raggruppamento in corso...</Group>
+    <Ungroup>Scioglimento gruppi in corso...</Ungroup>
+    <ChangeGroup>Cambioamento gruppi...</ChangeGroup>
+    <FilterText>Applicazione filtri in corsi...</FilterText>
+    <LoadChild>Caricamento righe...</LoadChild>
+    <ColumnChange>Cambiamento colonne...</ColumnChange>
+    <Refresh>Aggiornamento dati in corso...</Refresh>
+    <RefreshAll>Aggiornamento struttura in corso...</RefreshAll>
+    <RefreshChild>Aggiornamento sottotabelle...</RefreshChild>
+    <AddRow>Aggiunta riga in corso...</AddRow>
+    <UpdateRow>Modifica in corso...</UpdateRow>
+    <DeleteRow>Eliminazione in corso...</DeleteRow>
+    <ReadyError>Si sono verificati dei problemi.</ReadyError>
+    <ColumnMove>Spostamento colonne...</ColumnMove>
+    <Loaded>Caricate [n] righe su [total] totali</Loaded>
+    <ExportText>Esport in corso...</ExportText>
+    <NoData>Non ci sono dati.</NoData>
+    <NewRowInfo>Clicca qua per aggiungere una riga.</NewRowInfo>
+    <GroupByBoxInfo>Trascina qui l'intestazione delle colonne per raggruppare.</GroupByBoxInfo>
+    <LoadSelfRefChild>Caricamento in corso...</LoadSelfRefChild>
+    <CalendarToday>Oggi</CalendarToday>
+    <CalendarNone>None</CalendarNone>
+  </CommonText>
+  <MessageBoxText>
+    <NoChildRow>Non ci sono ulteriori righe.</NoChildRow>
+    <InProgress>Aggiornamento in corso, attendere prego.</InProgress>
+    <UnhandledError>Si è verificato un problema. </UnhandledError>
+    <LoadMoreException>E' possibile caricare ulteriori dati solo se non ci sono colonne raggruppate.</LoadMoreException>
+    <AddNewRow>La nuova riga è stata inserita, desideri agiungere nuove righe?</AddNewRow>
+    <UpdateRow>La riga selezionata è stata modificata. Desideri modificare ulteriori righe?</UpdateRow>
+    <DeleteRow>Are you sure want to delete this row?</DeleteRow>
+  </MessageBoxText>
+  <Tooltip>
+    <Refresh>Aggiorna i dati.</Refresh>
+    <LoadMore>Carica ulteriori righe.</LoadMore>
+    <ExportText>Export.</ExportText>
+    <Help>WebGrid.NET Client Help</Help>
+  </Tooltip>
+  <Grouping>
+    <Today>Oggi</Today>
+    <Yesterday>Ieri</Yesterday>
+    <LastWeek>Ultima settimana</LastWeek>
+    <TwoWeeksAgo>Due settimane fa</TwoWeeksAgo>
+    <ThreeWeeksAgo>Tre settimane fa</ThreeWeeksAgo>
+    <LastMonth>Ultimo mese</LastMonth>
+    <Older>Older</Older>
+  </Grouping>
+  <ContextMenu>
+    <Column>
+      <SortAsc>Ordina crescente</SortAsc>
+      <SortDesc>Ordina decrescente</SortDesc>
+      <GroupByThisField>Raggruppa per questo campo</GroupByThisField>
+      <UngroupField>Dividi gruppi di questo campo</UngroupField>
+      <GroupByBox>Raggruppa per colonna</GroupByBox>
+      <RemoveColumn>Rimuovi questa colonna</RemoveColumn>
+      <BestFit>Dimensioni ottimali</BestFit>
+      <FilterBar>Barra di ricerca</FilterBar>
+      <SelectColumns>Colonna selezionata</SelectColumns>
+      <ApplyChanges>Applica cambiamenti</ApplyChanges>
+      <Reset>Reset</Reset>
+    </Column>
+    <Row>
+      <CopyCell>Copia questa cella</CopyCell>
+      <CopyRow>Copia questa riga</CopyRow>
+      <CopyTable>Copia questa tabella</CopyTable>
+      <Update>Aggiorna modifiche</Update>
+      <Cancel>Cancella modifiche</Cancel>
+      <ShowChildRows>Mostra righe collegate</ShowChildRows>
+      <HideChildRows>Nascondi righe collegate</HideChildRows>
+      <Edit>Modifice</Edit>
+      <Delete>Cancella</Delete>
+      <Expand>Espandi</Expand>
+      <Collapse>Chiudi</Collapse>
+      <ExpandAll>Espandi tutte</ExpandAll>
+      <CollapseAll>Chiudi tutte</CollapseAll>
+      <PerformAdd>Applica</PerformAdd>
+      <CancelAdd>Cancella</CancelAdd>
+      <ApplyFilter>Applica tutti i filtri</ApplyFilter>
+      <ClearFilter>Clear all filters</ClearFilter>
+    </Row>
+    <Filter>
+      <NotSet>Non impostato</NotSet>
+      <GTET>Maggiore o uguale</GTET>
+      <GT>Maggiore</GT>
+      <ET>Uguale</ET>
+      <NET>Diverso da</NET>
+      <LTET>Minore o uguale</LTET>
+      <LT>Minore</LT>
+      <Like>Contiene</Like>
+      <NotLike>Non contiene</NotLike>
+      <Between>Tra</Between>
+      <NotBetween>Non tra</NotBetween>
+      <IsNull>E' null</IsNull>
+      <NotIsNull>Non è null</NotIsNull>
+      <IsEmpty>E' vuoto</IsEmpty>
+      <NotIsEmpty>Non è vuoto</NotIsEmpty>
+      <ApplyAll>Applica tutti i filtri</ApplyAll>
+      <Clear>Cancella i filtri</Clear>
+      <ClearAll>Clear All Filters</ClearAll>
+    </Filter>
+    <Export>
+      <ExportRoot>Export tabella</ExportRoot>
+      <ExportChild>Export sottotabella selezionata</ExportChild>
+      <Portrait>Maiuscolo</Portrait>
+      <Landscape>Paesaggio</Landscape>
+      <DoExport>Export now</DoExport>
+    </Export>
+    <Custom description="Add your row custom menu text here">
+      <CustomText1>
+      </CustomText1>
+      <CustomText2>
+      </CustomText2>
+    </Custom>
+  </ContextMenu>
+</Localization>

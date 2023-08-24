@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Script Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49564" class="heading3">Script Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The Script Activity enables the execution of script written in languages, such as Jscript and VBScript, from the workflow. When the Script activity is included in the workflow, the activity calls the Run method in the script. The references to the assemblies in the script are taken from the activity properties. The string value returned from the Run method of the script is assigned to the Output parameter. The Script activity executes the script and gives the return values specified in the properties. The link matching this value is picked up to continue workflow execution.</p>
+<p class="subheading">Features of Script Activity</p>
+<ul class="ulitem"><li class="ulitem">Compilation of the script code is made at design time to enable discovery of syntax or other errors during design.</li><li class="ulitem">Loading all scripts defined through script activities as a single assembly. All script activities are compiled as a single assembly and only one assembly is loaded during workflow execution. This significantly improves performance.</li><li class="ulitem">When a workflow is published, the script details are stored in the SWScriptCode table to enable identification of source code and assembly references.<p class="note"><strong class="notelabel">Note:</strong> Framework 4.0 has a library named System.Action and results in an ambiguity between the System.Action and Workflow.NET.Action. To avoid this ambiguity, it is recommended to name the Action class with complete namespace as 'Workflow.NET.Action' if it is used in the scripts inside script activity, while running BPM.NET 2011 SP2 in Framework 4.0.</p>
+</li></ul><p class="subheading">Activity Properties:</p>
+<p class="paragraph">The Script activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the Script activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph">The following image shows the Script Activity Properties window:</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51024" src="51024.png" class="embeddedimage100%scalinglive" alt="" height="609" width="258" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Name &amp; Description</strong></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph">The following image shows the Name &amp; Description properties of Script Activity:</p>
+<p class="paragraph"><b class="uicontrol">Name </b>- This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"><b class="uicontrol">Description</b> - This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Programming</strong></p>
+<p class="paragraph">The properties in the Programming group have been described below. You can use these properties to program the script activity.</p>
+<p class="paragraph">The following image shows the Programming Properties of the Script Activity:</p>
+<p class="paragraph"><strong class="strong">Language</strong> - This property specifies the language of the script to be run. This property can be set to 'C#.NET', 'Jscript' or 'VBScript' depending on the scripting language required.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph"><b class="uicontrol">Code</b> - This property specifies the code of the script to be run.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph">Steps to set the Code property</p>
+<ol class="step"><li class="step">To enter the code, click on the button for the 'Code' property to open the property window.</li><li class="step">In this window enter the code directly in the text editor.</li><li class="step">If you want to assign the code dynamically during run-time, you can do so using the <b class="uicontrol">Field</b> controls. For example, you can add a variable or content pointing to the code from the two drop downs for <b class="uicontrol">Field</b> and click on the <b class="uicontrol">Append</b> button. This will add the placeholder for the variable or content in the text editor. At run-time this placeholder will be replaced by the corresponding value, i.e. the code.</li><li class="step">You can manipulate the text using the appropriate tools from the tool bar. You can cut, copy and paste text, undo and redo changes, zoom in and zoom out the view as well as print the text.</li><li class="step">You can format the text, if necessary, using the formatting tools. You can make text bold or italic or change the font or size, set text color or background color.</li><li class="step">After adding the code, click the <b class="uicontrol">Update</b> button to save it</li><li class="step">Click the <b class="uicontrol">Close</b> button to close the window without saving the code.</li></ol><p class="paragraph"><a id="h51027" class="" title="Script: Code" href="script111.html" target="_self">See Script - Code</a>&nbsp;for a detailed description of the Code property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Reference</b>&nbsp;- This property specifies the global objects that can be referenced in the script.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the References property</p>
+<ol class="step"><li class="step">To specify the References, click on the button for the 'References' property to open the property window</li><li class="step">In this window, enter the reference object in the&nbsp;<b class="uicontrol">References</b>&nbsp;field</li><li class="step">Next, enter the corresponding assembly path in the&nbsp;<b class="uicontrol">Assembly Path</b>&nbsp;field</li><li class="step">After entering the return value details, click the&nbsp;<b class="uicontrol">Add Row</b>&nbsp;button to add this reference and display a new row for entering another reference</li><li class="step">Remove rows if necessary by selecting them and clicking the&nbsp;<b class="uicontrol">Remove Selected</b>&nbsp;button</li><li class="step">After specifying the references, click the&nbsp;<b class="uicontrol">Update</b>&nbsp;button.</li></ol><p class="paragraph">See&nbsp;<a id="h51028" class="jump-currentwindowlive" title="Script: References" href="script-references1.html" target="_self">Script - References</a>&nbsp;for a detailed description of the References property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Output Values</strong></p>
+<p class="paragraph">The properties in the Output Values group have been described below. You can use these properties to specify the output values for the activity.</p>
+<p class="paragraph">The following image shows the Output Values Properties of the Script Activity:</p>
+<p class="paragraph"><b class="uicontrol">Return Values</b> - This property allows the user to specify the return values for this action. These values become the conditions for the workflow engine to pick up the next action to execute.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the Return Values property</p>
+<ol class="step"><li class="step">To specify the Return Values, click on the button for the 'Return Values' property to open the property window</li><li class="step">In this window, enter the return value in the <b class="uicontrol">Return Values</b> field</li><li class="step">After entering the return value details, click the <b class="uicontrol">Add Row</b> button to add this return value and display a new row for entering another return value</li><li class="step">Remove rows if necessary by selecting them and clicking the <b class="uicontrol">Remove Selected</b> button</li><li class="step">After specifying all the return values, click the <b class="uicontrol">Update</b> button.</li></ol><p class="paragraph">See <a id="h51029" class="jump-currentwindowlive" title="Script: Return Values" href="script-returnvalues1.html" target="_self">Script: Return Values</a>&nbsp;for a detailed description of the Return Values property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Action outputs:</strong></p>
+<p class="paragraph">The Script Action does not have any standard return value. It will output the value specified by the user in the&nbsp;Return Values&nbsp;property.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="script111.html" target="_self">Script: Code</a></p><p class="relateditem"><a href="script-references1.html" target="_self">Script: References</a></p><p class="relateditem"><a href="script-returnvalues1.html" target="_self">Script: Return Values</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

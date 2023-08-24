@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Work Items List Layout Customization </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t483089" class="heading5">Work Items List Layout Customization</h5>
+<p class="paragraph">The Work items list view provides list management features for sorting, grouping, column selection, filtering and rearranging. Right-clicking on any column in the column header bar brings up a menu with the available options.</p>
+<p class="subheading">List Management Options</p>
+<p class="paragraphimage"><img id="f46845" src="46845.png" class="embeddedimage100%scalinglive" alt="" height="405" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph">A description of the available options follows:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Sort A to Z</b>&nbsp;- Sorts the list on the selected column in ascending order</li><li class="ulitem"><b class="uicontrol">Sort Z to A</b>&nbsp;- Sorts the list on the selected column in descending order</li><li class="ulitem"><b class="uicontrol">Group By This Field</b>&nbsp;- Groups the list by the selected column</li><li class="ulitem"><b class="uicontrol">Group By Box</b>&nbsp;- Displays the Group By box at the top. You can drag and drop a column header in this box to group the list by that field. This is an alternative way to group the list.</li><li class="ulitem"><b class="uicontrol">Remove This Column</b>&nbsp;- Removes the selected column. &nbsp;The removed column can be restored by reselecting the column from the&nbsp;Select Columns&nbsp;option.</li><li class="ulitem"><b class="uicontrol">Best Fit</b>&nbsp;- Changes the column width to best fit</li><li class="ulitem"><b class="uicontrol">Filter Bar</b>&nbsp;- Toggles the filter bar from on and off</li><li class="ulitem"><b class="uicontrol">Select Columns</b>&nbsp;- Provides a selection list with all available column headers. Columns displayed in the view are checked. Click&nbsp;Apply Changes&nbsp;for the new settings to take effect. Click&nbsp;Reset&nbsp;to revert to the previous settings. You can also rearrange the columns by dragging and dropping them to a new position.</li></ul>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

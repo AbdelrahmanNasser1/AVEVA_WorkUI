@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Localization culture="default" description="Default Language">
+  <CommonText>
+    <Ready>Klar.</Ready>
+    <More>Henter mere data...</More>
+    <LoadGroup>Henter gruppe...</LoadGroup>
+    <Sort>Sorterer ...</Sort>
+    <Group>Grupperer...</Group>
+    <Ungroup>Nulstiller gruppering...</Ungroup>
+    <ChangeGroup>Ændrer gruppering...</ChangeGroup>
+    <FilterText>Filtrer...</FilterText>
+    <LoadChild>Henter underinddeling...</LoadChild>
+    <ColumnChange>Ændre kolonne...</ColumnChange>
+    <Refresh>Genopfrisker informationer...</Refresh>
+    <RefreshAll>Genopfrisker struktur og informationer...</RefreshAll>
+    <RefreshChild>Genopfrisker underinddeling...</RefreshChild>
+    <AddRow>Tilføjer ny række...</AddRow>
+    <UpdateRow>Opdaterer række...</UpdateRow>
+    <DeleteRow>Sletter række...</DeleteRow>
+    <ReadyError>Der opstod en uventet fjel. Klik på mere for at se detaljer.</ReadyError>
+    <ColumnMove>Flytter kolonne...</ColumnMove>
+    <Loaded>Hentet [n] af [total]</Loaded>
+    <ExportText>Eksporterer...</ExportText>
+    <NoData>Der er ingen data.</NoData>
+    <NewRowInfo>Klik her for at tilføje en ny række...</NewRowInfo>
+    <GroupByBoxInfo>Flyt kolonne til dette område for at gruppere efter kolonnen.</GroupByBoxInfo>
+    <LoadSelfRefChild>Henter underordnede rækker...</LoadSelfRefChild>
+    <CalendarToday>Idag</CalendarToday>
+    <CalendarNone>Ingen</CalendarNone>
+    <Filtered>Filtreret</Filtered>
+    <Unfiltered>Ufiltreret</Unfiltered>
+    <LoadPreviewRow>Henter ekstra informationer...</LoadPreviewRow>
+    <InputRequiredStatus>En eller flere celler er obligatoriske.</InputRequiredStatus>
+    <UpdateSuccess>Opdatering af rækken gennemført.</UpdateSuccess>
+    <AddSuccess>Rækken blev indsat korrekt.</AddSuccess>
+    <DeleteSuccess>Rækken blev slettet.</DeleteSuccess>
+    <ReadOnlyCell>Dette felt kan ikke ændres.</ReadOnlyCell>
+    <ModifiedCell>Dette felt er ændret.</ModifiedCell>
+    <EditedCell>Dette felt er ved at blive ændret.</EditedCell>
+    <PagingLoading>Henter side {0}...</PagingLoading>
+    <PagingStatus>Side {0} af {1}</PagingStatus>
+    <PagingPartialGroup>(Række {0}-{1} af {2})</PagingPartialGroup>
+  </CommonText>
+  <MessageBoxText>
+    <NoChildRow>Der er ingen underordnede rækker for denne række.</NoChildRow>
+    <InProgress>Vent venligst til forespørgslen er færdig...</InProgress>
+    <UnhandledError>Der opstod en uventet fejl. Se efterfølgende for flere detaljer.</UnhandledError>
+    <LoadMoreException>Hent mere data er kun mulig når der ikke er nogen grupperede kolonner på øverst niveau.</LoadMoreException>
+    <AddNewRow>Den nye række er ændret. Vil du tilføje rækken ?</AddNewRow>
+    <UpdateRow>Den valgte række er ændret. Vil du opdatere den ændrede række ?</UpdateRow>
+    <DeleteRow>Er du sikker på du vil slette denne række?</DeleteRow>
+  </MessageBoxText>
+  <Tooltip>
+    <Refresh>Genopfrisk information</Refresh>
+    <LoadMore>Hent flere rækker</LoadMore>
+    <ExportText>Eksporter rækker</ExportText>
+    <Help>Hjælp</Help>
+    <RemoveFilters>Klik her for at fjerne filtrene fra rækkerne</RemoveFilters>
+    <RestoreFilters>Klik her for at filtrere rækkerne med det sidst gemte filter</RestoreFilters>
+    <NoFilter>Der er ikke noget filter</NoFilter>
+    <InputRequired>Dette felt kræver indtastning</InputRequired>
+    <PagingFirst>Første side</PagingFirst>
+    <PagingPrev>Forrige side</PagingPrev>
+    <PagingNext>Næste side</PagingNext>
+    <PagingLast>Sidste side</PagingLast>
+    <PagingGoTo>Gå til side</PagingGoTo>
+    <PagingSlider>Træk eller klip her for at ændre sidens udseende</PagingSlider>
+    <GridView>Skift til Tabel Udseende</GridView>
+    <PivotChartView>Skift til PivotTabel udseende</PivotChartView>
+  </Tooltip>
+  <Grouping>
+    <Today>Idag</Today>
+    <Yesterday>I går</Yesterday>
+    <LastWeek>Sidte uge</LastWeek>
+    <TwoWeeksAgo>2 uger siden</TwoWeeksAgo>
+    <ThreeWeeksAgo>3 uger siden</ThreeWeeksAgo>
+    <LastMonth>Sidste måned</LastMonth>
+    <Older>Ældre</Older>
+  </Grouping>
+  <ContextMenu>
+    <Column>
+      <SortAsc>Sorter stigende</SortAsc>
+      <SortDesc>Sorter faldende</SortDesc>
+      <GroupByThisField>Grupper efter dette felt</GroupByThisField>
+      <UngroupField>Fjern gruppering for dette felt</UngroupField>
+      <GroupByBox>Grupperings område</GroupByBox>
+      <RemoveColumn>Fjern denne kolonne</RemoveColumn>
+      <BestFit>Auto tilpas</BestFit>
+      <FilterBar>Filtrering</FilterBar>
+      <SelectColumns>Vælg kolonner</SelectColumns>
+      <ApplyChanges>Anvend</ApplyChanges>
+      <Reset>Nulstil</Reset>
+      <FreezePane>Lås område</FreezePane>
+      <UnfreezePane>Frigør Lås på område</UnfreezePane>
+      <SortAscText>Sorter A til Å</SortAscText>
+      <SortAscNumber>Sorter mindst til størst</SortAscNumber>
+      <SortAscDate>Sorter ældst til yngst</SortAscDate>
+      <SortAscBool>Sorter ikke valgt til valgt</SortAscBool>
+      <SortDescText>Sorter Å til A</SortDescText>
+      <SortDescNumber>Sort størst til mindst</SortDescNumber>
+      <SortDescDate>Sort nyeste til ældst</SortDescDate>
+      <SortDescBool>Sort valgt til ikke valgt</SortDescBool>
+      <ClearFilter>Slet filter</ClearFilter>
+      <TextFilters>Tekst filtre</TextFilters>
+      <NumberFilters>Nummeriske filtre</NumberFilters>
+      <DateFilters>Dato Filtre</DateFilters>
+      <BoolFilters>Filtre</BoolFilters>
+    </Column>
+    <Row>
+      <CopyCell>Kopier dette felt</CopyCell>
+      <CopyRow>Kopier denne række</CopyRow>
+      <CopyTable>Kopier denne tabel</CopyTable>
+      <Update>Opdater ændringer</Update>
+      <Cancel>Fortryd ændringer</Cancel>
+      <ShowChildRows>Vis underordnede rækker</ShowChildRows>
+      <HideChildRows>Skjul underordnede rækker</HideChildRows>
+      <Edit>Ret</Edit>
+      <Delete>Slet</Delete>
+      <Expand>Foild ud</Expand>
+      <Collapse>Fold sammen</Collapse>
+      <ExpandAll>Fold alle ud</ExpandAll>
+      <CollapseAll>Fold alle sammen</CollapseAll>
+      <PerformAdd>Tilføj</PerformAdd>
+      <CancelAdd>Fortryd tilføj</CancelAdd>
+      <ApplyFilter>Benyt alle filtre</ApplyFilter>
+      <ClearFilter>Slet alle filtre</ClearFilter>
+      <AddNewRow>Tilføj ny række</AddNewRow>
+      <PasteToNewRow>Indsæt fra klippebord</PasteToNewRow>
+      <GotoFilterRow>Gå til filter-række</GotoFilterRow>
+      <ClearFilterCell>Slet filtre for denne kolonne</ClearFilterCell>
+      <Refresh>Genopfrisk liste</Refresh>
+      <LoadMore>Hent mere data</LoadMore>
+      <Export>Eksporter data</Export>
+      <Help>Vis hjælp</Help>
+    </Row>
+    <FilterSuggest>
+      <ET>Lig {0}</ET>
+      <NET>Er ikke lig {0}</NET>
+      <Contain>Indeholder {0}</Contain>
+      <NotContain>Indeholder ikke {0}</NotContain>
+      <LTET>Mindre end eller lig med {0}</LTET>
+      <GTET>Større end eller lig med {0}</GTET>
+      <OnBefore>Denne eller før {0}</OnBefore>
+      <OnAfter>Denne eller efter {0}</OnAfter>
+      <Checked>Er valgt (Sand)</Checked>
+      <NotChecked>Er ikke valgt (Falsk)</NotChecked>
+      <Tomorrow>I morgen</Tomorrow>
+      <Today>I dag</Today>
+      <Yesterday>I går</Yesterday>
+      <NextWeek>Næste uge</NextWeek>
+      <ThisWeek>Denne uge</ThisWeek>
+      <LastWeek>Sidste uge</LastWeek>
+      <NextMonth>Næste måned</NextMonth>
+      <ThisMonth>Denne måned</ThisMonth>
+      <LastMonth>Sidste måned</LastMonth>
+      <Past>Fortid</Past>
+      <Future>Fremtid</Future>
+      <Blank>Blank</Blank>
+    </FilterSuggest>
+    <Filter>
+      <NotSet>Ikke angivet</NotSet>
+      <GTET>Større end eller lig med</GTET>
+      <GT>Større end</GT>
+      <ET>Lig med</ET>
+      <NET>Er ikke lig med</NET>
+      <LTET>Mindre end eller lig med</LTET>
+      <LT>Mindre end</LT>
+      <Like>Ligner</Like>
+      <NotLike>Ligner ikke</NotLike>
+      <Contain>Indeholder</Contain>
+      <NotContain>Indeholder ikke</NotContain>
+      <Between>Er Mellem</Between>
+      <NotBetween>Er Ikke Mellem</NotBetween>
+      <IsNull>Er Null</IsNull>
+      <NotIsNull>Er ikke Null</NotIsNull>
+      <IsEmpty>Er Tom</IsEmpty>
+      <NotIsEmpty>Er ikke Tom</NotIsEmpty>
+      <ApplyAll>Benyt alle filtre</ApplyAll>
+      <Clear>Slet dette filter</Clear>
+      <ClearAll>Slet alle filtre</ClearAll>
+    </Filter>
+    <Export>
+      <ExportRoot>Eksporter overordnede tabel</ExportRoot>
+      <ExportChild>Eksport valgte underordne tabeller</ExportChild>
+      <Portrait>Portræt</Portrait>
+      <Landscape>Landskap</Landscape>
+      <DoExport>Eksport nu</DoExport>
+    </Export>
+    <Paging>
+      <PageFormat>Side {0}</PageFormat>
+    </Paging>
+    <Custom description="Add your row custom menu text here">
+      <CustomText1>
+      </CustomText1>
+      <CustomText2>
+      </CustomText2>
+    </Custom>
+  </ContextMenu>
+  <Charting>
+    <Loading>Henter diagram...</Loading>
+    <DropFilterField>Slip Filter felter her</DropFilterField>
+    <DropDataField>Slip Data felter her</DropDataField>
+    <DropSeriesField>Slip Data serier her</DropSeriesField>
+    <DropCategoryField>Slip Kategori fleter her</DropCategoryField>
+    <DropXData>Slip X Data felter her</DropXData>
+    <DropYData>Slip Y Data felter her</DropYData>
+    <DropBubbleData>Slip Bubble data felter her</DropBubbleData>
+    <DropHighData>Slip Max data felter her</DropHighData>
+    <DropLowData>Slip Minimum data felter her</DropLowData>
+    <DropOpenData>Slip Åbene data elter here</DropOpenData>
+    <DropCloseData>Slip Luk data felter her</DropCloseData>
+    <DropThetaData>Slip Theta data felter her</DropThetaData>
+    <DropRadiusData>Slip Radius data felter her</DropRadiusData>
+    <ShowHideRibbon>Vis / Skjul</ShowHideRibbon>
+    <FilterSortRibbon><![CDATA[Filter & Sort]]></FilterSortRibbon>
+    <ChartRibbon>Diagram</ChartRibbon>    
+    <TitlesRibbon>Titler</TitlesRibbon>
+
+    <FieldListButton><![CDATA[Field<br/>Liste]]></FieldListButton>
+    <DropZoneButton>Drop Zone</DropZoneButton>
+    <LegendButton>Legende</LegendButton>
+    <AutoFilterButton><![CDATA[Auto<br/>Filter]]></AutoFilterButton>
+    <AscendingButton>Stigende</AscendingButton>
+    <DescendingButton>Faldende</DescendingButton>
+    <ChartTypeButton><![CDATA[Chart<br/>Type]]></ChartTypeButton>
+    <SwitchRowColumnButton><![CDATA[Switch Row & Column]]></SwitchRowColumnButton>
+    <UpdateButton>Opdater</UpdateButton>
+    
+    <TitleXAxis>X Akse</TitleXAxis>
+    <TitleYAxis>Y Akse</TitleYAxis>
+    <TitleZAxis>Z Akse</TitleZAxis>
+    
+  </Charting>
+</Localization>

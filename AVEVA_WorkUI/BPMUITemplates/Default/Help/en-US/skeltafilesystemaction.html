@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> File Operations Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h3 id="t49571" class="heading3">File Operations Activity</h3>
+<p class="subheading">Activity description:</p>
+<p class="paragraph">The File Operation Activity can be used to perform file transfers from within the workflow. It can be used to transfer files within local networks as well as using HTTP and FTP protocols.</p>
+<p class="subheading">File Transfers Supported:</p>
+<p class="paragraph">The list of supported file transfers:</p>
+<ul class="ulitem"><li class="ulitem">UNC &#8212; HTTP - Example: \\computername\sharename\filename &#8212; Http://computername/ WebFolder /filename</li><li class="ulitem">File &#8212; HTTP - Example: \\DriveName\foldername\filename &#8212; Http://computername/ WebFolder /filename</li><li class="ulitem">File &#8212; FTP - Example: \\Drivename\ftpFolder\FileName &#8212; Ftp://computername/Sharename/filename</li><li class="ulitem">FTP &#8212; Filen - Example: Ftp://computername/Sharename/filename &#8212; Drivename\FolderName\</li><li class="ulitem">HTTP &#8212; UNC - Example: Http://computername/WebFolder /filename &#8212; \\computername\sharename\filename</li><li class="ulitem">UNC &#8212; UNC - Example: \\computername\sharename\filename &#8212; \\computername\sharename\filename</li><li class="ulitem">File &#8212; File Example: \\DriveName\foldername\filename &#8212; DriveName\foldername\filename</li><li class="ulitem">UNC &#8212; HTTP (Directory Transfer) Example: \\Computername\sharename\filename &#8212; Http://ComputerName/WebFolder</li><li class="ulitem">File &#8212; HTTP (Directory Transfer) Example: \\Drivename\FolderName &#8212; Http://computername/WebFolder</li><li class="ulitem">File &#8212; FTP (Directory Transfer) Example: Drivename\FolderName &#8212; Ftp://computername/ftpFolder<p class="stepinfo"><strong class="notelabel">Note:</strong> The above examples are in the following format: Source Details &#8212; Destination Details</p>
+</li></ul><p class="paragraphimage"><img id="f51047" src="51047.jpg" class="embeddedimage100%scalinglive" alt="" height="119" width="444" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">The File Operation activity is not supported if the Source and Destination paths are in the combinations given below:</p>
+<ul class="ulitem"><li class="ulitem">FTP and HTTP</li><li class="ulitem">FTP and FTP</li><li class="ulitem">HTTP and FTP</li><li class="ulitem">HTTP and HTTP</li></ul><p class="subheading"></p>
+<p class="subheading"></p>
+<p class="subheading">Variable for getting the list of files that were transferred</p>
+<p class="paragraph">The list of files that were transferred using the  File Operations activity can be retrieved using a variable of type array, with the following syntax:</p>
+<p class="paragraph"><strong class="strong">^'+CurrentActivity.Name+ 'FilesUploaded'</strong></p>
+<p class="paragraph">For example, ^TransferFileOperationFilesUploaded</p>
+<p class="subheading">Variable for getting the list of files that were not transferred</p>
+<p class="paragraph">The list of files that were not transferred using the  File Operations activity can be retrieved using a variable of type array, with the following syntax:</p>
+<p class="paragraph">'<strong class="strong">^'+CurrentActivity.Name+ 'FilesNotUploaded'</strong></p>
+<p class="paragraph">For example, ^TransferFileOperationFilesNotUploaded</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Activity Properties:</p>
+<p class="paragraph">The File Operation activity has to be configured by specifying appropriate values for the different properties in the Activity Properties area. The Activity Properties can be accessed by clicking on the Activity Properties tool in the Tool Bar or by selecting the appropriate option from the right click menu for the File Operation activity. The Activity Properties are organized under the following groups of related properties. The properties under each group are described in this topic.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f51049" src="51049.png" class="embeddedimage100%scalinglive" alt="" height="509" width="276" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">File Operations Activity Properties</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Name &amp; Description</b></p>
+<p class="paragraph">The properties in the Name &amp; Description group have been described below. You can use these properties to specify the name and description for the activity.</p>
+<p class="paragraph"><b class="uicontrol">Name</b> - This property can be used to specify a name for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional (</strong>This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Description </b>- This property specifies a brief description to be displayed for the activity.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading"><b class="uicontrol">Configuration</b></p>
+<p class="paragraph">The properties in the Configuration group have been described below. You can use these properties to configure the functionality of the activity.</p>
+<p class="paragraph"><b class="uicontrol">SourceDetails</b> - This property allows the user to specify the details of the file source, like its location, the transfer protocol, etc.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong> (This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the SourceDetails property</p>
+<ol class="step"><li class="step">To specify the details of the file source, click on the button for the 'SourceDetails' property to open the property window.</li><li class="step">In this window specify the file operation (transfer) protocol by selecting an option from the drop down for the <b class="uicontrol">Protocol</b> field.</li><li class="step">Next assign the URI/UNC of the source file or directory as the value for the <b class="uicontrol">Location</b> field. Build an expression to assign the location details by selecting the operator, type of value (Value, Variable, Content, XMLVariables), and the value for the property from the corresponding drop downs.</li><li class="step">In the same way, you can assign a search pattern to filter the type of file to be copied or transferred as the value for the <b class="uicontrol">Pattern</b> field. For example, you can specify &quot;*.doc&quot; as the filter pattern. This will select only files with the extension .doc for copying or transferring.</li><li class="step">You can also assign the user name and password of the source file/directory in the User Name and Password  fields respectively, by following the same procedure that is used in step 3.</li><li class="step">In addition, you can assign the domain name and port number of the source in the <b class="uicontrol">DomainName </b>and <b class="uicontrol">PortNumber</b> fields respectively, by following the same procedure that is used in step 3.</li><li class="step">After adding the parameter, click <b class="uicontrol">Submit</b> to save it.</li></ol><p class="paragraph">See <a id="h51050" class="jump-currentwindowlive" title="File Operations: Source Details" href="fileops-sourcedetails1.html" target="_self">File Operations: Source Details</a>&nbsp;for a detailed description of the Source Details property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">DestinationDetails</b>&nbsp;- This property allows the user to specify the details of the file destination.</p>
+<p class="paragraph"><strong class="strong">Property Type: Mandatory</strong>&nbsp;(This property must be set if the action is to be executed.)</p>
+<p class="paragraph">Steps to set the Destination Details property</p>
+<ol class="step"><li class="step">To specify the details of the file destination, click the button for the 'DestinationDetails' property to open the property window.</li><li class="step">In this window specify the file operation (transfer) protocol by selecting an option from the drop down for the&nbsp;<b class="uicontrol">Protocol</b>&nbsp;field.</li><li class="step">Next assign the URI/UNC of the destination file or directory as the value for the&nbsp;<b class="uicontrol">Location</b>&nbsp;field. Build an expression to assign the location details by selecting the operator, type of value (Value, Variable, Content, XMLVariables), and the value for the property from the corresponding drop downs.</li><li class="step">In the same way, you can assign a search pattern to filter the type of file to be copied or transferred as the value for the&nbsp;<b class="uicontrol">Pattern</b>&nbsp;field. For example, you can specify &quot;*.doc&quot; as the filter pattern. This will select only files with the extension .doc for copying or transferring.</li><li class="step">You can also assign the user name and password of the source file/directory in the&nbsp;<b class="uicontrol">User Name</b>&nbsp;and&nbsp;<b class="uicontrol">Password</b>  fields respectively, by following the same procedure that is used in step 3.</li><li class="step">In addition, you can assign the domain name and port number of the source in the&nbsp;<b class="uicontrol">DomainName</b>&nbsp;and&nbsp;<b class="uicontrol">PortNumber</b>&nbsp;fields respectively, by following the same procedure that is used in step 3.</li><li class="step">After adding the parameter, click&nbsp;<b class="uicontrol">Submit</b>&nbsp;to save it.</li></ol><p class="paragraph">See&nbsp;<a id="h51051" class="jump-currentwindowlive" title="File Operations: Destination Details" href="fileops-destinationdetails1.html" target="_self">File Operations: Destination Details</a>&nbsp;for a detailed description of the Destination Details property window.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Looping Behavior</strong>      </p>
+<p class="paragraph">The property in the Looping Behavior group has been described below. You can use this property to specify the looping behavior of the activity.</p>
+<p class="paragraph"><b class="uicontrol">Loop through this action if output is</b> - This property is used to specify the condition for looping the activity by selecting an activity output from the drop down.</p>
+<p class="paragraph"><strong class="strong">Property Type: Optional</strong> (This property needs to be set only if necessary.)</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><b class="uicontrol">Action outputs:</b></p>
+<p class="paragraph">The File Operations Activity returns the following values -</p>
+<p class="paragraph"><b class="uicontrol">Successful:</b> Displayed when the file transfer is successful.</p>
+<p class="paragraph"><b class="uicontrol">Failure:</b> Displayed when the file transfer is unsuccessful.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Exception Behavior</strong></p>
+<p class="paragraph">Each activity has the Raise Error on Unhandled Linked Output property on click of which, it shows all the default configured mapped error outputs in red with their check boxes selected.</p>
+<p class="paragraph">See <a id="h187139" class="jump-currentwindowlive" title="Mapped Error Outputs" href="mappederroroutputs.html" target="_self">Mapped Error Outputs</a>&nbsp;for more details.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="fileops-sourcedetails1.html" target="_self">File Operations: Source Details</a></p><p class="relateditem"><a href="fileops-destinationdetails1.html" target="_self">File Operations: Destination Details</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

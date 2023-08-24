@@ -1,0 +1,7 @@
+﻿[controlid="procedureLabel"] > div > [data-skm="0"], [controlid="pDetails"] > div > [data-skm="0"] {
+    display: none;
+}
+
+[controlid="isMappedToControl"] + span {
+    display: none;
+}

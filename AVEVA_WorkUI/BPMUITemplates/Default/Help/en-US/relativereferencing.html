@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Relative Referencing </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t486982" class="heading4">Relative Referencing</h4>
+<p class="paragraph">Relative references are especially useful in templates while passing context parameters to workflows. You can use relative references like <i class="emphasis">MyContainer, MyPlatform, MyEngine, MyArea, and Me</i> to refer to contained objects within that container. </p>
+<p class="paragraph"></p>
+<p class="paragraph">Relative referencing supports event context at the parameter level and the attribute read or write at the <strong class="strong">AttributeReadWrite </strong>activity level. </p>
+<p class="paragraph"></p>
+<p class="paragraph">The following valid relative references refer to the current object:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">Me </li><li class="ulitem">MyContainer </li><li class="ulitem">MyArea </li><li class="ulitem">MyPlatform </li><li class="ulitem">MyEngine </li></ul><p class="paragraph"></p>
+<p class="paragraph">When you use relative references, like <i class="emphasis">MyContainer</i>, you can refer to contained objects within that container. For example, a reference to <i class="emphasis">MyContainer.InletValve.PV</i> is equivalent to <i class="emphasis">Tank1.InletValve.PV</i> in the following hierarchy:</p>
+<p class="paragraph"></p>
+<ul class="ulitem"><li class="ulitem">Tank1: Cannot reference at this level because this is not contained. </li><li class="ulitem">InletValve: Can reference at this level because this object is contained. </li></ul><p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Example</strong>:</p>
+<p class="paragraph"></p>
+<p class="paragraph">If System Platform-Workflow Connector Version 1.1.1222.0 is used and events to trigger workflows are configured, then do the following steps to use the relative referencing support in the <strong class="strong">System Platform-Workflow Connector Version 1.5.1229</strong> for the existing events:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Select an existing event, and then click <strong class="strong">Verify </strong>to ensure correctness of workflow infrastructure for this object icon. <p class="stepinfo"></p>
+<p class="limage"><img id="f435743" src="435743.png" class="embeddedimage100%scalinglive" alt="RelativeReferencing_Verify" height="125" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Select a workflow, and then click the <strong class="strong">Synchronize XML</strong> option for that workflow. <p class="stepinfo"></p>
+<p class="limage"><img id="f191064" src="191064.png" class="embeddedimage100%scalinglive" alt="" height="235" width="570" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Deploy the existing gateway object again. </li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="ArchestrARWrite.html" target="_self">AttributeReadWrite Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,692 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Skelta.Repository.Web.CodeBehind.MasterPage" %>
+<%@ Register Assembly="Skelta.Repository.Web" Namespace="Skelta.Repository.Web" TagPrefix="cc1" %>
+<%@ Register Namespace="Workflow.NET.Ajax" Assembly="Workflow.NET.NET2" TagPrefix="ajaxControl" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+
+
+<!DOCTYPE HTML>
+<html>
+<head id="Head1" runat="server">
+    <title><%:pageTitle%></title>
+    <script src="../../Common/JavaScripts/jquery.min.js"></script>
+    <script src="../../CommonUXControls/scripts/window/se.ui.min.js"></script>
+        
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script type="text/javascript" src="../../CommonUXControls/scripts/angularMaterial/angular.min.js"></script>
+    <script type="text/javascript" src="../../CommonUXControls/scripts/angularMaterial/angular-animate.min.js"></script>
+    <script type="text/javascript" src="../../CommonUXControls/scripts/angularMaterial/angular-aria.min.js"></script>
+
+
+    <!-- Angular Material Library -->
+    <script type="text/javascript" src="../../CommonUXControls/scripts/angularMaterial/angular-material.min.js"></script>
+        
+    <style>
+        html, body
+        {
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        var idleInterval;
+        var IDLETIME_SESSIONKEY = "SE_userIdleTime";
+        if(typeof(Storage) !== "undefined" && window.location.href.indexOf('FromArchestrA') < 0) {
+            localStorage.setItem(IDLETIME_SESSIONKEY,0);
+        }
+
+        function StartTimer(){
+            idleInterval = setInterval(timerIncrement, 10000);
+        }
+
+        function timerIncrement() {
+            var currentIdleTime = Number(localStorage.getItem(IDLETIME_SESSIONKEY));
+            currentIdleTime = Number(currentIdleTime) + 10;
+            localStorage.setItem(IDLETIME_SESSIONKEY,currentIdleTime.toString());
+            LogOffUser();
+        }
+    </script>
+</head>
+
+<script type="text/javascript">
+    runner();
+    function runner() {
+        setTimeout("runner();", 50);
+    }
+
+    $(document).ready(function(){
+        se.ui.messageDialog.setGlobalOptions({
+            localization: {
+                closeButtonCaption: "<%=GetLangSpecText("se_ui_messagedialog_close_caption") %>",
+                okButtonCaption: "<%=GetLangSpecText("se_ui_messagedialog_ok_caption") %>",
+                cancelButtonCaption: "<%=GetLangSpecText("se_ui_messagedialog_cancel_caption") %>",
+                showDetailsCaption: "<%=GetLangSpecText("se_ui_messagedialog_showdetails_caption") %>",
+                hideDetailsCaption: "<%=GetLangSpecText("se_ui_messagedialog_hidedetails_caption") %>"
+            }
+        });});
+
+    function setBodyScroll(scrl) {
+        document.getElementById('MasterBody').scroll = scrl;
+    }       
+
+    function onUnload() {
+
+        window.open("LogOut.aspx", "LogOut", "status=1,toolbar=0", "");
+    }
+
+    var isLoadedFromEC = "<%=IsFromEC%>";
+    var autoLogOffTime = <%=AutoLogOffTime%>;
+    var isLoadedFromArchestrA = "<%=isLoadedFromArchestrA%>";
+    var isCoreCountLicense = "<%=isCoreCountLicense%>";
+
+setTimeout(function(){ 
+if(isLoadedFromArchestrA == "True")
+{
+$("div#pnlcont").css("margin-left",0);
+}
+ }, 500);
+
+    if(typeof(Storage) !== "undefined" && isLoadedFromEC){
+        sessionStorage.setItem("SE_LoadedFromEC",isLoadedFromEC);
+    }
+    $(document).ready(function () {
+
+        if (isLoadedFromEC && (autoLogOffTime > 0 && autoLogOffTime <= 360)){
+            
+            localStorage.setItem(IDLETIME_SESSIONKEY,0);
+            clearInterval(idleInterval);
+            StartTimer();
+
+            $(this).mousemove(function (e) {
+                localStorage.setItem(IDLETIME_SESSIONKEY,0);
+                clearInterval(idleInterval);
+                idleInterval = setInterval(timerIncrement, 10000);
+            });
+            $(this).keypress(function (e) {
+                localStorage.setItem(IDLETIME_SESSIONKEY,0);
+                clearInterval(idleInterval);
+                idleInterval = setInterval(timerIncrement, 10000);
+            });
+        }
+    });
+        
+
+    function LogOffUser() {
+             if ( Number(localStorage.getItem(IDLETIME_SESSIONKEY))/60 >= autoLogOffTime) {            
+            calllogoutmenuitem();
+            localStorage.removeItem(IDLETIME_SESSIONKEY);
+            clearInterval(idleInterval);
+        }
+    }   
+    var validNavigation = false;       
+    $(function () {
+        $(document).on("keydown", function (e)
+        {           
+            if (e.which === 116 || e.keyCode === 116) {
+                validNavigation = true;                
+            }
+            if (e.keyCode == 82 && e.ctrlKey) {
+                validNavigation = true;
+            }
+            if (e.keyCode == 82 && e.shiftKey && e.ctrlKey) {
+                validNavigation = true;
+            }
+            if (e.keyCode == 116 && e.ctrlKey) {
+                validNavigation = true;                
+            }
+             if (e.which === 13 || e.keyCode === 13) {
+                validNavigation = true;
+            }
+             if (e.which === 18 || e.keyCode === 18) {
+                validNavigation = true;
+            }            
+        });
+
+        $(document).on("keypress", function (e)
+        {            
+            if (e.which === 116 || e.keyCode === 116) {
+                validNavigation = true;                
+            }
+            if (e.keyCode == 82 && e.ctrlKey) {
+                validNavigation = true;
+            }
+            if (e.keyCode == 82 && e.shiftKey && e.ctrlKey) {
+                validNavigation = true;
+            }
+            if (e.keyCode == 116 && e.ctrlKey) {
+                validNavigation = true;
+            }            
+             if (e.which === 13 || e.keyCode === 13) {
+                validNavigation = true;
+            }
+             if (e.which === 18 || e.keyCode === 18) {
+                validNavigation = true;
+            }
+        });       
+
+        $(document).on("mousedown", function (e)
+        {                    
+            validNavigation = true;                    
+        });
+        $(document).on("mouseleave", function (e)
+        {
+            validNavigation = false;
+        });
+
+        $("#click").on("click", function () {
+            validNavigation = false;
+        });
+        
+        $(document).on("click", "a", function () {
+            validNavigation = true;
+        });
+    });
+
+    $(window).on('beforeunload', function ()
+    {
+        if (isCoreCountLicense == "False")
+        {
+            if (!validNavigation) {
+                ReleaseClientLicenseOnClosingofBrowser();
+            }
+        }
+    });
+</script>
+<script type="text/javascript">    
+    var len = history.length;
+
+    var userInfo = document.cookie;
+    if (userInfo.search('skucontextinfo') == -1) {
+        history.forward(len);
+    }
+    function AdjustPanelSize() {
+        document.getElementById("pnlcont").style.height = screen.availHeight - 90 + 'px';
+
+    }
+    function resizehtml() {
+
+     }
+    function open_win(path) {
+         var leftPos = 0;
+         var topPos = 0;
+
+         try {
+             leftPos = Math.floor((screen.availWidth - 840) / 2);
+             topPos = Math.floor((screen.availHeight - 620) / 2);
+         }
+         catch (err)
+         { }
+         finally {
+             leftPos = (leftPos < 0) ? 0 : leftPos;
+             topPos = (topPos < 0) ? 0 : topPos;
+         }
+
+         window.open(path, "", "menubar=0,resizable=1,left=" + leftPos + ",top=" + topPos + ",width=840,height=620");
+     }
+
+     function rdMenuClicked(sender, args) {
+         try {
+             if (args.Item) {
+                 if (args.Item.LinkElement) {
+                     if (args.Item.LinkElement.href.indexOf("javascript:") == 0) {
+                         setTimeout(function () { sender.Close(); }, 1000);
+                     }
+                 }
+             }
+         }
+         catch (err)
+         { }
+     }
+
+     function ReleaseClientLicenseOnClosingofBrowser()
+     {
+         $.ajax({
+             async: true,
+             type: "POST",
+             url: "ReleaseClientLicense.aspx"
+         });
+     }
+    
+     function ShowMenu(e)
+     {
+         var rightMenu = $find("<%=SkeltaRightMenu.ClientID %>");
+        if ((!e.relatedTarget) || (!$telerik.isDescendantOrSelf(contextMenu.get_element(), e.relatedTarget))) {
+            rightMenu.showAt(e.clientX - 330, e.clientY - 20);
+        }
+        $telerik.cancelRawEvent(e);
+     }
+
+     function calllogoutmenuitem()
+     {
+         var rightMenu = $find("<%=SkeltaRightMenu.ClientID %>");
+         var menuItem = rightMenu.findItemByValue("log out");
+         menuItem.click();
+     }
+
+    function OnClientLoad(sender, args) {
+            var $contextMenuElement = $telerik.$(sender.get_contextMenuElement());
+ 
+            function hideMenu(ev) {
+                if ($telerik.$(ev.target).parents('.RadMenu_Context').length > 0) {
+                    sender.hide();
+                }
+            }
+                     
+            $contextMenuElement.on('mouseleave', hideMenu);
+ 
+        }
+
+</script>
+
+<body ng-app="myApp" id="MasterBody" class="bodytext" onload="resizehtml();" style="height: 100%;" >
+	
+    <div id="controllerBody" ng-controller="AppCtrl" >
+	<link href="<%=ThemeURL%>CommonUXControls/StyleSheet/se.ui.min.css" rel="stylesheet" />
+    <form id="form1" runat="server" style="height: 100%;">
+		<%= System.Web.Helpers.AntiForgery.GetHtml() %>
+        <ajaxControl:AjaxPageControl ID="ajaxControlForMenu" runat="server" Style="z-index: 104; left: 440px; position: absolute; top: 88px"></ajaxControl:AjaxPageControl>
+                 <link href="<%=ThemeURL%>Common/StyleSheet/Global.css" rel="stylesheet" />
+            <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>CommonUXControls/StyleSheet/UXControls.css">
+         <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>CommonUXControls/StyleSheet/style.css">
+            <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>CommonUXControls/StyleSheet/angular-material.min.css">   
+         <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>TelerikAjax/StyleSheet/SkeltaMenu/Menu.SkeltaMenu.css">
+         <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>TelerikAjax/StyleSheet/AWTWindow/Window.AWTWindow.css">
+    <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>TelerikAjax/StyleSheet/AWTWindow/Window.css">
+        <link rel="stylesheet" type="text/css" href="<%=ThemeURL%>TelerikAjax/StyleSheet/AWTTreeView/TreeView.AWTTreeView.css">
+            <script type="text/javascript" src="../../CommonUXControls/scripts/jquery.min.js"></script>
+            <script type="text/javascript" src="../../CommonUXControls/scripts/jquery.easing.1.3.js"></script>
+
+        <!--New layout starts here-->
+        <div class="header-greenband">
+           
+          <div class="actionItemmenu" id="menuContainer" runat="server">  
+            <div layout="column" ng-cloak="" class="sidenavdemoCustomSidenav" id="navId">
+   <section layout="row" flex="" class="materialNav">
+      <img src="../../Themes/Default/images/UpArrow.png" class="upIconNavigation" />
+      <div class="overall">
+         <md-backdrop class="md-sidenav-backdrop md-opaque md-default-theme md-sidenav-backdrop-custom" ng-click="checkClosingForm()" ng-show="frState==1 || scState==1 "></md-backdrop>
+         <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="8" md-is-open="isSidenavOpen"  >
+            <div class="parentSide">
+               <md-content layout-margin="">
+                  <table>
+                     <div class="menuText" ng-init="onloadColor()">
+                        <div>
+                           <div>
+                              <md-content>
+                                 <div class="md-accordion" ng-repeat="data in accordianData | customSearch: searchText" ng-animate="animate">
+                                    <md-toolbar ng-if="data.subItems.length>0 && windowWidth>730"  data-toggle="tooltip" title="{{data.title}}" >
+                                       <div class="md-toolbar-tools accordText"  ng-attr-id ="{{data.id}}" ng-click="toggleFirst($index,data)"  ng-class="{'selectedMenu': $index == fIndex }">
+                                          <div class="iconCol" ng-click="$event.stopPropagation(); toggleLeftSubMenu($index,data)">
+                                             <img ng-src ="{{data.imageUrl}} " class="displayIcon" ng-if="data.imageUrl.indexOf('.png') != -1 || data.imageUrl.indexOf('.gif') != -1"/>  
+                                                <img src ="../../Themes/Default/Repository/Site/Images/MenuIcons/ListIcon.png" class="displayIcon" ng-if="data.imageUrl.indexOf('.png') == -1 && data.imageUrl.indexOf('.gif') == -1"/>
+                                               <div class="smallArrow" ></div> 
+                                          </div>
+                                          <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                                      {{data.title}}   </button>
+                                          <span flex=""></span>					
+                                          <div class="upArrowPng" ng-if="data.subItems.length >0" > </div>
+                                       </div>
+                                    </md-toolbar>
+                                    <md-toolbar ng-if="data.subItems.length>0 && windowWidth<730" ng-init="data.expanded = false"  data-toggle="tooltip" title="{{data.title}}">
+                                       <div class="md-toolbar-tools accordText"  ng-click="collapseAll(data,$index)" ng-attr-id ="{{data.id}}" >
+                                          <div class="iconCol" ng-click="toggleLeft()">
+                                             <img ng-src ="{{data.imageUrl}} " class="displayIcon"/>  
+                                              <div class="smallArrow" ></div>  
+                                          </div>
+                                          <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                                      {{data.title}}    </button>
+                                          <span flex=""></span>					
+                                          <div class="upArrowPng" ng-if="data.subItems.length >0"  ng-class="{expandCollapse:true, active:data.expanded}" > </div>
+                                       </div>
+                                    </md-toolbar>
+                                    <md-toolbar ng-if="data.subItems.length==0"  ng-click="navigationFunc(data)"  
+                                       ng-attr-data-isselected ="{{isNavItemSelected(data.id)}}" ng-attr-data-ischildselected ="{{isNavChildItemSelected(data.subItems.id)}}"  data-toggle="tooltip" title="{{data.title}}">
+                                       <div class="md-toolbar-tools accordText">
+                                          <div class="iconCol">
+                                             <img ng-src ="{{data.imageUrl}} " class="displayIcon" ng-if="data.imageUrl.indexOf('.png') != -1 || data.imageUrl.indexOf('.gif') != -1"/>
+                                              <img src ="../../Themes/Default/Repository/Site/Images/MenuIcons/ListIcon.png" class="displayIcon" ng-if="data.imageUrl.indexOf('.png') == -1 && data.imageUrl.indexOf('.gif') == -1"/>
+                                          </div>
+                                          <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                                         {{data.title}}  </button>
+                                          <span flex=""></span>					
+                                          <div class="upArrowPng" ng-if="data.subItems.length >0" > </div>
+                                       </div>
+                                    </md-toolbar>
+                                    <div ng-repeat="subitem in data.subItems " class="subListItems" ng-attr-data-isselected ="{{isNavItemSelected(subitem.id)}}" ng-if="windowWidth<730" >
+                                       <div ng-class="{dataContent:true, activeContent:data.expanded, subListItemsPadding:subitem.subItems.length > 0}" class="subEachItem"  data-toggle="tooltip" title="{{subitem.title}}">
+                                          <span ng-if="subitem.subItems.length==0" class="havNoSuperSub" ng-click="navigationFunc(subitem)"
+                                             >
+                                          {{subitem.title}} </span>               
+                                          <div class="nextNavSub"   ng-click="toggleSecondLevel($index,subitem)" ng-class="{'selectedMenu': $index == scIndex }" ng-if="subitem.subItems.length>0">
+                                             <span ng-if="subitem.subItems.length>0" class="havSuperSub" >{{subitem.title}} 
+                                             </span>
+                                             <span flex=""></span>	
+                                             <div class="upArrowPng SuperSub" ng-if="subitem.subItems.length >0"  ng-class="{expandCollapse:true}"> </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </md-content>
+                           </div>
+                        </div>
+                     </div>
+                  </table>
+               </md-content>
+            </div>
+         </md-sidenav>
+         <div class="secondLevels">
+            <div class="firstLevelMenu" ng-if="frState==1 ">
+               <div ng-repeat="subitem in users.subItems "   class="subListItems md-accordion " ng-attr-data-isselected ="{{isNavItemSelected(subitem.id)}}">
+                  <div  class="subEachItem">
+                     <md-toolbar ng-if= "subitem.subItems.length == 0"  ng-click="navigationFunc(subitem)" data-toggle="tooltip" title="{{subitem.title}}">
+                        <div class="md-toolbar-tools accordText">
+                           <div class="iconCol">
+                                <img ng-src ="{{subitem.imageUrl}} " class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') != -1 || subitem.imageUrl.indexOf('.gif') != -1|| subitem.imageUrl.indexOf('.PNG') != -1"/>
+                                              <img src ="../../Themes/Default/Repository/Site/Images/MenuIcons/ListIcon.png" class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') == -1 && subitem.imageUrl.indexOf('.gif') == -1 && subitem.imageUrl.indexOf('.PNG') == -1"/>     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                        {{subitem.title}}  </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" > </div>
+                        </div>
+                     </md-toolbar>
+                     <md-toolbar ng-if="subitem.subItems.length>0" data-toggle="tooltip" title="{{subitem.title}}">
+                        <div class="md-toolbar-tools accordText"  ng-attr-id ="{{subitem.id}}" ng-click="toggleSecondLevel($index,subitem)" ng-class="{'selectedMenu': $index == scIndex }" >
+                           <div class="iconCol" >
+                              <img ng-src ="{{subitem.imageUrl}} " />     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                         {{subitem.title}} </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" > </div>
+                        </div>
+                     </md-toolbar>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="thirdLevels">
+            <div class="secondLevelMenu" ng-if="scState==1 ">
+               <div class="mobilArrowClass" ng-if="windowWidth<730">
+                  <div class="iconMobileArrow">
+                     <img src="../../Themes/Default/images/BackNavigation.png" class="mobileBackArrow"  ng-click="mobileToggleBack()"  />
+                  </div>
+                  <span class="mobileSubTitle"> {{titlesecond}}</span>
+               </div>
+               <div ng-repeat="subitem in usersecond.subItems "   class="subListItems md-accordion " ng-attr-data-isselected ="{{isNavItemSelected(subitem.id)}}">
+                  <div  class="subEachItem">
+                     <md-toolbar ng-if= "subitem.subItems.length == 0"  ng-click="navigationFunc(subitem)" data-toggle="tooltip" title="{{subitem.title}}">
+                        <div class="md-toolbar-tools accordText">
+                           <div class="iconCol">
+                              <img ng-src ="{{subitem.imageUrl}} " class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') != -1 || subitem.imageUrl.indexOf('.gif') != -1"/>
+                                              <img src ="../../Themes/Default/Repository/Site/Images/MenuIcons/ListIcon.png" class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') == -1 && subitem.imageUrl.indexOf('.gif') == -1"/>     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                           {{subitem.title}} </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" ></div>
+                        </div>
+                     </md-toolbar>
+                     <md-toolbar ng-if="subitem.subItems.length>0" data-toggle="tooltip" title="{{subitem.title}}" >
+                        <div class="md-toolbar-tools accordText"  ng-attr-id ="{{subitem.id}}" ng-click="toggleThirdLevel($index,subitem)" ng-class="{'selectedMenu': $index == trIndex }">
+                           <div class="iconCol" >
+                              <img ng-src ="{{subitem.imageUrl}} " />     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                            {{subitem.title}} </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" > </div>
+                        </div>
+                     </md-toolbar>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="fourthLevels">
+            <div class="thirdLevelMenu" ng-if="trState==1 ">
+               <div class="mobilArrowClass" ng-if="windowWidth<730">
+                  <div class="iconMobileArrow">
+                     <img src="../../Themes/Default/images/BackNavigation.png" class="mobileBackArrow"  ng-click="mobileToggleBackSecond()"  />
+                  </div>
+                  <span class="mobileSubTitle"> {{titlethird}}</span>
+               </div>
+               <div ng-repeat="subitem in userthird.subItems"   class="subListItems md-accordion " ng-attr-data-isselected ="{{isNavItemSelected(subitem.id)}}">
+                  <div  class="subEachItem">
+                     <md-toolbar ng-if= "subitem.subItems.length == 0"  ng-click="navigationFunc(subitem)" data-toggle="tooltip" title="{{subitem.title}}">
+                        <div class="md-toolbar-tools accordText">
+                           <div class="iconCol">
+                              <img ng-src ="{{subitem.imageUrl}} " class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') != -1 || subitem.imageUrl.indexOf('.gif') != -1"/>
+                                              <img src ="../../Themes/Default/Repository/Site/Images/MenuIcons/ListIcon.png" class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') == -1 && subitem.imageUrl.indexOf('.gif') == -1"/>
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                            {{subitem.title}}   </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" ></div>
+                        </div>
+                     </md-toolbar>
+                     <md-toolbar ng-if="subitem.subItems.length>0" data-toggle="tooltip" title="{{subitem.title}}" >
+                        <div class="md-toolbar-tools accordText"  ng-attr-id ="{{subitem.id}}" ng-click="toggleFourthLevel($index,subitem)" ng-class="{'selectedMenu': $index == foIndex }" >
+                           <div class="iconCol" >
+                              <img ng-src ="{{subitem.imageUrl}} " />     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                           {{subitem.title}} </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" > </div>
+                        </div>
+                     </md-toolbar>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="fifthLevels">
+            <div class="fourthLevelMenu" ng-if="foState==1 ">
+               <div class="mobilArrowClass" ng-if="windowWidth<730">
+                  <div class="iconMobileArrow">
+                     <img src="../../Themes/Default/images/BackNavigation.png" class="mobileBackArrow"  ng-click="mobileToggleBackThird()"  />
+                  </div>
+                  <span class="mobileSubTitle"> {{titlefourth}}</span>
+               </div>
+               <div ng-repeat="subitem in userfourth.subItems"   class="subListItems md-accordion " ng-attr-data-isselected ="{{isNavItemSelected(subitem.id)}}">
+                  <div  class="subEachItem">
+                     <md-toolbar ng-if= "subitem.subItems.length == 0"  ng-click="navigationFunc(subitem)" data-toggle="tooltip" title="{{subitem.title}}">
+                        <div class="md-toolbar-tools accordText">
+                           <div class="iconCol">
+                              <img ng-src ="{{subitem.imageUrl}} " class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') != -1 || subitem.imageUrl.indexOf('.gif') != -1"/>
+                                              <img src ="../../Themes/Default/Repository/Site/Images/MenuIcons/ListIcon.png" class="displayIcon" ng-if="subitem.imageUrl.indexOf('.png') == -1 && subitem.imageUrl.indexOf('.gif') == -1"/>     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                          {{subitem.title}}  </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0" ></div>
+                        </div>
+                     </md-toolbar>
+                     <md-toolbar ng-if="subitem.subItems.length>0" data-toggle="tooltip" title="{{subitem.title}}">
+                        <div class="md-toolbar-tools accordText"  ng-attr-id ="{{subitem.id}}" ng-click="toggleThirdLevel($index,subitem)" >
+                           <div class="iconCol" >
+                              <img ng-src ="{{subitem.imageUrl}} " />     
+                           </div>
+                           <button class="menuTextButton md-button-toggle md-button md-ink-ripple"  data-toggle='collapse' data-target='#collapsediv1' aria-expanded='false'>                                      
+                            {{subitem.title}} </button>
+                           <span flex=""></span>					
+                           <div class="upArrowPng" ng-if="subitem.subItems.length >0"> </div>
+                        </div>
+                     </md-toolbar>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <img src="../../Themes/Default/images/DownArrow.png" ng-show="iconHeight > windowHeight" class="iconNavigation" />
+      
+               <button type="button" class="menuHamburger" ng-click="toggleLeft()" >
+                  <img src="../../CommonUXControls/images/Menu.png" class="menuIcon" />
+               </button>
+         
+   </section>
+</div>   	
+          </div>
+            <div class="actionItem">
+                    <div id="click" class="menuButton">
+                        <asp:ContentPlaceHolder ID="MenuTitle" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            
+            <div class="product-title"><%=productHeader%></div>
+            <div class="sep-title">                
+                <img src="<%$ReplaceTemplateExpn:WorkItemList/Images/Separator.png%>" runat="server" class="sep-img"/>
+            </div>
+             
+            <div class="application-title"><%=enterpriseTitle%></div>
+
+            <div class="beta-title"><%=betaTitle%></div>
+
+            <div id="gracePeriod" class="grace-period" >
+                    <img id="imageGraceWarning" runat="server" src="<%$ReplaceTemplateExpn:Repository/Site/images/Warning-Icon.png%>" style="padding-right:3px;vertical-align:middle; width:36px;height:36px" visible="false"/>
+            </div>
+            <div id="gracePeriodT" class="grace-periodText" >
+                   <%=gracePeriodText %>
+            </div>  
+            <div class="RightMenuSelectDisabled">                
+                <span class="MpReposubtitle" runat="server" id="userNamePlaceholder" onclick="javascript:ShowMenu(event);"></span>                
+                <img src="<%$ReplaceTemplateExpn:Repository/Site/images/usericon.png%>" onclick="javascript:ShowMenu(event);" runat="server" id="imageUserIcon" style="vertical-align:middle;" />                
+            </div>
+
+            <telerik:RadScriptManager ID="RadMgr1" runat="server"></telerik:RadScriptManager>	
+            <telerik:RadContextMenu RenderMode="Lightweight"  ID="SkeltaRightMenu" runat="server" Flow="Horizontal"
+            EnableRoundedCorners="true" EnableShadows="true" Skin="SkeltaMenu" ClickToOpen="true"  Height="20px" IconColumnWidth="0" BackColor="Transparent" 
+            OnClientItemClicking="OnClientItemClicking" OnItemClick="RadMenu1_ItemClick" EnableEmbeddedSkins="false" OnClientLoad="OnClientLoad">
+                    <Items>
+                        <telerik:RadMenuItem  ID="MenuRepoProvDetails"  runat="server" IsSeparator="false" Width="300px">                                     
+                                <ItemTemplate>  
+                                    <%= repoProviderDetails%>                                                                          
+
+                                </ItemTemplate>
+                        </telerik:RadMenuItem>                       
+                        <telerik:RadMenuItem ID="RepoSettingsMenuItem"  runat="server" Text="Repository Settings" IsSeparator="false" Width="300px" NavigateUrl="RepositorySettings.aspx"/>
+                        <telerik:RadMenuItem ID="CCMenuItem"  runat="server" Text="CentralConfig" IsSeparator="false" Width="300px"/>
+                        <telerik:RadMenuItem ID="DownloadQRCodeRadMenuItem" runat="server" Text="QR Code" IsSeparator="false" Width="300px"/>
+                        <telerik:RadMenuItem ID="LoggerMenuItem"  runat="server" Text="Logger" IsSeparator="false" Width="300px"/>
+                        <telerik:RadMenuItem ID="LogOffMenuItem"  runat="server" Text="Log Out" IsSeparator="false" Width="300px"/>
+                    </Items>
+            </telerik:RadContextMenu>     
+
+        </div>
+        <!--New Layout Ends here-->
+        
+        <asp:ContentPlaceHolder ID="MenuPlaceHolder" runat="server">
+
+       
+
+            <telerik:RadWindowManager ID="RadWindowManagerX" Skin="AWTWindow" EnableEmbeddedSkins="false" EnableEmbeddedBaseStylesheet="false"
+                                    runat="server"  Behaviors="Close"   DestroyOnClose="true" Overlay="false" RenderMode="Classic" VisibleStatusbar="false">  
+                                        <Windows>
+                                            <telerik:RadWindow ID="PackageWindow" Height="700px" Width="400px" runat="server" Skin="AWTWindow" EnableEmbeddedSkins="false" EnableEmbeddedBaseStylesheet="false" RenderMode="Classic" VisibleStatusbar="false"  Behaviors="Close,Minimize,Maximize">
+                                            </telerik:RadWindow>                                            
+                                        </Windows>
+            </telerik:RadWindowManager>
+
+        <script type="text/javascript" src="../../CommonUXControls/scripts/menu/MenuItem.js"></script>
+        <script type="text/javascript" src="../../CommonUXControls/scripts/menu/UXMenu.js"></script>
+
+        <script type="text/javascript" src="../../CommonUXControls/scripts/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            var NAME$3 = 'collapse';
+            var VERSION$3 = '4.4.1';
+            var DATA_KEY$3 = 'bs.collapse';
+            var EVENT_KEY$3 = "." + DATA_KEY$3;
+            var DATA_API_KEY$3 = '.data-api';
+            var Selector$3 = {
+                ACTIVES: '.show, .collapsing',
+                DATA_TOGGLE: '[data-toggle="collapse"]'
+            };
+            var eventName = "click" + EVENT_KEY$3 + DATA_API_KEY$3;
+            var selectorName = Selector$3.DATA_TOGGLE;
+
+            $(document).on(eventName, selectorName, function (event)
+            {
+                if (event.currentTarget.tagName !== 'A')
+                {
+                    event.preventDefault();
+                }
+            });
+        </script>
+                    
+        <div id="mainDiv" class="mainDiv"></div>
+        </asp:ContentPlaceHolder>
+
+
+
+        <div style="position: absolute; top: 62px; bottom: 0; left: 0; right: 0;" id="pnlcont">
+            <asp:Panel ID="Panel1" runat="server" Height="100%" Width="100%">
+                <asp:ContentPlaceHolder ID="Cont" runat="server">
+                </asp:ContentPlaceHolder>
+            </asp:Panel>
+        </div>
+
+
+
+    </form>
+
+    <script type="text/javascript">
+        
+        CallServerSideMethod(null, 'CallForMenu', "DataTableCondition", CallBackForBuildingMenu, 'table', "Nodatatopass");
+        
+           function CallBackForBuildingMenu(context, result, response) {
+			
+				if (result != null && response.Error == false) {
+                    
+                    var jsonObj = eval(result);
+
+                    if (typeof (app) != 'undefined') 
+					{
+						angular.element(document).ready(function () 
+						{
+							angular.element(document.getElementById('controllerBody')).scope().UIIcon(jsonObj, "icondiv");
+							$(".subListItems[data-isselected='true']").siblings("md-toolbar").css("background", "#ddd");                      
+						});
+					}
+                }
+            }
+        (function () {
+            var menuTitle = "<%=Microsoft.Security.Application.Encoder.JavaScriptEncode(Request.QueryString["listLinkTitle"], false)%>";
+            if (menuTitle) {                
+                $("[class='menuButton']").children("div").text(menuTitle);
+            }
+        })();
+
+       function OnClientItemClicking(sender , args)  
+       {
+           if(args.get_item().get_text() === "Logger")  
+           {
+               args.set_cancel(true);  
+               sender.hide();
+               var win = window.open("LiveLogger.aspx", '_blank');
+               win.focus();
+           }
+           else if (args.get_item().get_text() === "<%=CentralConfigurationValue%>")
+           {
+               args.set_cancel(true);
+               sender.hide();
+               var result = "<%=CentralConfigUrl%>";
+               var win = window.open(result, '_blank');
+               win.focus();
+           }
+           else if (args.get_item().get_text() === "View QR Code")
+           {
+		            var oWindow = radopen("ViewQRCode.aspx", null);
+		            oWindow.SetSize(680, 570);
+		            oWindow.SetTitle("<%=GetLangSpecText("ec_menu_downloadqrcode")%>");
+		            oWindow.SetActive(true);
+		            oWindow.Center();
+                eventArgs.set_cancel(true);
+                var menu1 = $find("<%=SkeltaRightMenu.ClientID %>");
+                menu1.hide();
+           }
+       }
+
+    </script>
+                </div>
+        
+</body>
+</html>

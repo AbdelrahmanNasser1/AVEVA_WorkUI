@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Settings Tab </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t482960" class="heading4">Settings Tab</h4>
+<p class="paragraph">Click the&nbsp;<b class="uicontrol">Settings</b>&nbsp;tab to open the corresponding view of the Queue Management window.</p>
+<p class="paragraph">The following image shows the&nbsp;<b class="uicontrol">Settings</b>&nbsp;tab of the&nbsp;<b class="uicontrol">Queue Management</b>&nbsp;window:</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f46722" src="46722.png" class="embeddedimage100%scalinglive" alt="" height="279" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph">This view has the&nbsp;<b class="uicontrol">Check if actor is available during auto dispatch</b>.&nbsp;You can select this check box to set the queue control to first check for the availability of actors before an auto dispatch of tasks is done. If you enable this option, you will need to select one of the two follow-on actions to be performed if the actor is unavailable. You can enable manual dispatch of the task by selecting the&nbsp;<b class="uicontrol">Manual Dispatch</b>&nbsp;button. Alternatively, you can have the control generate the action output &quot;Resource Unavailable For Queue&quot; by selecting the second button&nbsp;<b class="uicontrol">Show &quot;Resource Unavailable for the Queue&quot;.</b> Click<b class="uicontrol">&nbsp;Update Settings</b>&nbsp;to save the new settings.</p>
+<p class="paragraph">The WorkList Customization for Queues section enables you to customize the view of work items displayed in the queue folder. For more information about worklist customization, see&nbsp;<a id="h46723" class="jump-currentwindowlive" title="Defining Layouts for Queues" href="defininglayoutsforqueues.html" target="_self">Defining Layouts for Queues</a>.</p>
+<p class="paragraph"></p>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

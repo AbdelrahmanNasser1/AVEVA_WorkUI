@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Customizing Work Items List Views </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t597313" class="heading4">Customizing Work Items List Views</h4>
+<p class="paragraph">The Work items list view and interface can be customized by setting appropriate properties for the Work items list control. The properties that enable customized views are as follows:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">DisplayLeftTreeMenuAtApplicationLevel</b>: This property enables all work items to be grouped by the parent application instead of the default grouping by Workflow.</li><li class="ulitem"><b class="uicontrol">WorkflowNames</b>: This property enables you to list only work items assigned by the specified workflows.</li><li class="ulitem"><b class="uicontrol">ShowQueueNames</b>: This property enables you to display work item folders for only the specified queues.</li><li class="ulitem"><b class="uicontrol">ShowInboxViewOnly</b>: This property enables you to display only the Work items list for the Inbox folder without the view of the folder structure.</li><li class="ulitem"><b class="uicontrol">ShowManagerViewOnly</b>: This property enables you to display only the Work items list for the Manager View.</li></ul><p class="paragraph">The default view of the Work items list in the Enterprise Console cannot be customized. The above customization applies only to work item lists created by embedding the Work items list control in an ASPX page. For more information about using AVEVA Work Tasks Controls as a part of a project, see <i class="emphasis">Using AVEVA Work Tasks Controls in Applications</i> in the <i class="emphasis">AVEVA Work Tasks Developer Guide</i>.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="displayingworkitemlistbyapplication.html" target="_self">Displaying Work Items List by Application</a></p><p class="relateditem"><a href="displayingworkitemslistgroupedbyworkflows.html" target="_self">Displaying Work Items List Grouped by Workflows</a></p><p class="relateditem"><a href="displayingworkitemlistforspecifiedworkflows.html" target="_self">Displaying Work Items List for Specified Workflows</a></p><p class="relateditem"><a href="displayingworkitemlistforspecifiedqueues.html" target="_self">Displaying Work Items List for Specified Queues</a></p><p class="relateditem"><a href="displayinginboxview.html" target="_self">Displaying Inbox View</a></p><p class="relateditem"><a href="displayingmanagersview.html" target="_self">Displaying Manager's View</a></p></td>
+</tr>
+</table>
+
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

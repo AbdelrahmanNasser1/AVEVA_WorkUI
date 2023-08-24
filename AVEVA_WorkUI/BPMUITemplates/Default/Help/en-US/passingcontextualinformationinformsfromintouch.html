@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Passing Contextual Information in Forms from InTouch </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602422" class="heading4">Passing Contextual Information in Forms from InTouch</h4>
+<p class="paragraph">You can pass real-time values from InTouch symbols to the AVEVA Work Tasks InTouch FillForm symbol. </p>
+<p class="paragraph">Passing Contextual Information in Forms from <strong class="strong">InTouch</strong>, through attributes, is supported only for <strong class="strong">String</strong> data type.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Requirement</strong></p>
+<p class="paragraph">From InTouch Windows viewer, the run time values of InTouch symbols should be able to populate in a AVEVA Work Tasks form symbol at a predefined event.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Procedure</strong></p>
+<p class="paragraph">The steps to achieve this requirement will be explained with the Reactor Demo example that can be created by default while creating Galaxy.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Create the form to be filled on the Intouch event in the repository that is connected to the WorkflowGateway object. In this example, a &quot;DrumFall&quot; form is created with two text inputs that will display the Drum count and the Conveyor speed.</li><li class="step">From the ArchestrA IDE, create a UDA of the type string and user writeable to the WorkflowGateway object.</li><li class="step">From the ArchestrA IDE, open the WorkflowGateway object instance and select the graphics tab. Create a new graphic object named DrumFallForm.</li><li class="step">Double-click the symbol name and open the ArchestrA graphic symbol editor. </li><li class="step">On the top of the graphic editor, click on the Embed Graphic icon which will pop up the Galaxy Browser. </li><li class="step">Select the Graphic Tool box icon on the top left corner of the Galaxy Browser. </li><li class="step">Select the FillFormControl symbol and click OK.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64688" src="64688.jpg" class="embeddedimage100%scalinglive" alt="" height="462" width="707" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click on the graphic editing area which will paste the FillForm symbol in the editor. </li><li class="step">Double-click on the graphic symbol to configure. Provide the form name to be filled.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64689" src="64689.jpg" class="embeddedimage100%scalinglive" alt="" height="334" width="715" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click on the DataBinding tab of the Animations window. For the &quot;InputXML&quot; field, click on the button in the &quot;Reference column&quot;. <p class="stepresult">This opens the Galaxy Browser.</p>
+<p class="stepresult"><strong class="notelabel">Note:</strong> The value from the Value script takes precedence over the InputXML (that is the value for the controls) and the Default Value, and the InputXML takes precedence over the Default Value for the controls on the form.</p>
+<p class="stepresult"></p>
+<p class="stepinfo"><img id="f64690" src="64690.jpg" class="embeddedimage100%scalinglive" alt="" height="330" width="714" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">From the Galaxy Browser, select the object on which the UDA &quot;DrumFallEventXML&quot; was created and press OK.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64691" src="64691.jpg" class="embeddedimage100%scalinglive" alt="" height="262" width="717" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Click OK and then click on Save and Close on the Graphic Editor.<p class="stepinfo">This will successfully create the FillForm graphic control.</p>
+<p class="stepinfo">Deploy the WorkflowGateway object.</p>
+</li><li class="step">Create a window in the InTouch window maker. Double-click on the ViewEngine object (aaReactorDemo) to open the windows maker.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64692" src="64692.jpg" class="embeddedimage100%scalinglive" alt="" height="271" width="243" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Create a new window from the windows maker by selecting File&gt; New window, and name it &quot;DrumFallForm&quot;. Set the Window type as &quot;Popup&quot;.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64693" src="64693.jpg" class="embeddedimage100%scalinglive" alt="" height="265" width="722" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Right-click inside the window area and select &quot;Embed ArchestrA Graphic&quot;. This opens the Galaxy Browser.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64694" src="64694.jpg" class="embeddedimage100%scalinglive" alt="" height="450" width="739" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">From the Galaxy Browser, select the Object instances icon and select the instance to which the Fill Form control has been added. Double-click the &quot;DrumFallForm&quot; symbol. Click on the window area which will paste the symbol to the window.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64695" src="64695.jpg" class="embeddedimage100%scalinglive" alt="" height="282" width="712" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Next, create tags. From the Tools window, double-click to open the &quot;Tagname Dictionary&quot; and click on New.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64696" src="64696.jpg" class="embeddedimage100%scalinglive" alt="" height="465" width="717" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Type a name for the tag (DrumFallDataTag) and select the &quot;type&quot; as I/O &quot;Message&quot;.<p class="stepinfo">Set the Access Name property as &quot;Galaxy&quot;.</p>
+<p class="stepinfo">In the Item property, give the name &quot;Objectname.UDA&quot;&nbsp; to which the tag should write values. (WorkflowGateway_002.DrumFallEventXML)</p>
+</li><li class="step">Click Save and Close to save and close the Tagname Dictionary.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64697" src="64697.jpg" class="embeddedimage100%scalinglive" alt="" height="275" width="571" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Write the required script.<p class="stepinfo">From the Windows and Scripts box, double-click to open the &quot;WinName&quot; script.&nbsp; The condition &quot;WinName==2&quot; is when the drum fall happens.</p>
+<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64698" src="64698.jpg" class="embeddedimage100%scalinglive" alt="" height="353" width="712" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo">In this condition, first assign the data to the DrumFallDataTag created.&nbsp;The data should be in XML format which should match the syntax of the instance XML of the &quot;DrumFall&quot; form, when previewed. As the maximum length of an attribute in System Platform cannot exceed 1023 characters, pass only the XML for the required controls. Add the required&nbsp; dynamic values from the Drum Conveyor in the XML as shown.</p>
+<p class="stepinfo">For example,</p>
+<p class="stepinfo">DrumFallDataTag=&quot;&lt;SKRootDefinition&gt;&lt;TEXTINPUT1&gt;&quot;+Galaxy:Drum_Conveyor.DrumCount+&quot;&lt;/TEXTINPUT1&gt;&lt;ConveyorSpeed&gt;&quot;+Galaxy:Drum_Conveyor.Speed+&quot;&lt;/ConveyorSpeed&gt;&lt;/SKRootDefinition&gt;&quot;;</p>
+</li><li class="step">Write the script to open the DrumFallForm window.<p class="stepinfo">For example, Show&quot;DrumFallForm&quot;;</p>
+</li><li class="step">Click Validate and if successfully validated, save the script.<p class="stepinfo"></p>
+<p class="stepinfo"><img id="f64699" src="64699.jpg" class="embeddedimage100%scalinglive" alt="" height="314" width="719" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+<p class="stepinfo"></p>
+</li><li class="step">Save all the open windows and exit the window maker.</li><li class="step">Deploy the ViewEngine object (aaReactorDemo).</li></ol><p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">Run the conveyor example. The form pops up.</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">Open the InTouch viewer and login with the credentials.</li><li class="step">Click on the Open window and select the Conveyor window.</li><li class="step">Change the control from Auto to Manual, and manually transfer a drum and make it fall.<p class="stepresult">The DrumFallForm will get displayed with the current drum count and the conveyor speed at the time of fall.</p>
+<p class="stepresult"></p>
+<p class="stepinfo"><img id="f64700" src="64700.jpg" class="embeddedimage100%scalinglive" alt="" height="382" width="740" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li></ol><p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="usingworkflowlistinsideintouch1.htm" target="_self">Using Forms Inside InTouch</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

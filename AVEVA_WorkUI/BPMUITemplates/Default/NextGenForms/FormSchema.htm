@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <title>Form Schema</title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout.min.js"></script>
+    <script type="text/javascript" src="js/xml2json.min.js"></script>
+    <script type="text/javascript" src="app/Skelta.min.js"></script>
+    <script type="text/javascript" src="js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="js/date.min.js"></script>
+    <script src="../Common/JavaScripts/AutoLogoff.js"></script>
+    <link rel="stylesheet" href="css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="css/kendo.common.min.css" />
+    <link rel="stylesheet" href="css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var schemaLookUpId = skeltaUtils.getUrlParameterValue(window, 'id');
+        var ctrlTagName = skeltaUtils.getUrlParameterValue(window, 'ctrlTagName');
+        var ctrlId = skeltaUtils.getUrlParameterValue(window, 'ctrlId');
+        var eventLookupName = skeltaUtils.getUrlParameterValue(window, 'schemalkpName');
+        var skeltaUserContext = skelta.userContext;
+        var workflowdetails;
+        var xmlVariableName, viewModelObject;
+        var popupWindow = null;
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                skeltaUtils.loadPageDefault();
+                document.title = skelta.localize.getString("FormsNGFFormSchemaPageTitle");
+                loadGetNewFormSchemaSelection();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormsNGFFormSchemaPageError"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormsNGFFormSchemaPageError") + '\n' + exception.message);
+            }
+
+        });
+
+        function closeFormSchema()
+        {
+            parent.document.getElementById("fschemaframe").attributes["data-skfsw"].value = 0;
+        }
+
+        function updateFormXmlSchema(inputParameterObject, eventArgs)
+        {
+            var convJSONXml = new X2JS();
+            var val = convJSONXml.json2xml_str(inputParameterObject.instanceXml);
+
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "xmlInstance": val,
+                "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                "listName": "Forms List",
+                "workflowDetails": workflowdetails,
+                "xmlVariableName": xmlvariablename
+            });
+            skeltaUtils.callServerMethod("GET", "NextGenFormService.aspx/GetFullFormSchema", "application/json; charset=utf-8", jsonHelper, "json", formSchemaUpdated, schemaFailed, null, false);
+        }
+
+        function formSchemaUpdated(resultData)
+        {
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            var convJSONXml = new X2JS();
+
+            editPageVm.topLevelForm.findByXmlNode("FormSchema").value = resultData.d;
+            editPageVm.topLevelForm.findByXmlNode("DataGridId").value = viewModelObject.findById("_sys_Forms_datagrid").value;
+            editPageVm.topLevelForm.findByXmlNode("Schema").value = viewModelObject.findById("_sys_Forms_formshcematype").value;
+
+            parent.document.getElementById("fschemaframe").attributes["data-skfsw"].value = 0;
+        }
+
+        function loadGetNewFormSchemaSelection()
+        {
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+            workflowdetails = editPageVm.topLevelForm.findByXmlNode("WorkflowWithVersion").value;
+            xmlvariablename = editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value;
+
+            if (workflowdetails === "" || xmlvariablename === "")
+            {
+                skeltaUtils.showAlert(document.title, skelta.localize.getString("FormsNGFFormSchemaPageValidation"), function () { parent.document.getElementById("fschemaframe").attributes["data-skfsw"].value = 0; });
+            }
+            else
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "userId": window.parent.skeltaUserContext.getUserContextFor("uId"),
+                    "applicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                    "cacheKey": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                    "versionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                    "listName": "Forms List"
+                });
+
+                skeltaUtils.callServerMethod("POST", "NextGenFormService.aspx/GetNewFormSchema", "application/json; charset=utf-8", jsonHelper, "json", newFormSchemaSucceeded, newFormSchemaFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+        }
+
+        function newFormSchemaSucceeded(resultData)
+        {
+            var uniqueKey = skeltaUtils.getFormUniqueKey(window.parent.skeltaUserContext.getUserContextFor("appN"), window.parent.skeltaUserContext.getUserContextFor("itemId") + "_FS", window.parent.skeltaUserContext.getUserContextFor("vStamp"));
+
+            var editPageVm = window.parent.frames["editframe"].viewModelObject ? window.parent.frames["editframe"].viewModelObject : window.parent.frames["editframe"].contentWindow.viewModelObject;
+
+            var gridId = editPageVm.topLevelForm.findByXmlNode("DataGridId").value;
+            var schema = editPageVm.topLevelForm.findByXmlNode("Schema").value;
+
+            if (gridId !== "" && schema !== "")
+            {
+                var valueJson = ({
+                    Schema: schema,
+                    GridId: gridId
+                });
+
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, valueJson);
+            }
+
+            $("#viewModel").html(resultData.d);
+            viewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+
+            viewModelObject.onSave.subscribeEvent(updateFormXmlSchema);
+            viewModelObject.onCancel.subscribeEvent(closeFormSchema);
+
+            $("#viewModel")[0].style.display = "";
+            viewModelObject.topLevelForm.initializeFocus(0);
+        }
+
+        function schemaFailed(result)
+        {
+            skeltaUtils.hideLoader();
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFDataGridSchemaNotFound").replace("<controlid>", viewModelObject.findById("_sys_Forms_datagrid").value));
+            logger.logError(result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+
+        function newFormSchemaFailed(result)
+        {
+            skeltaUtils.showError(document.title, result.status + '<br>' + result.statusText + '<br>' + result.responseText)
+            logger.logError(result.status + '\n' + result.statusText + '\n' + result.responseText);
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0px; width: 0px;" />
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using Variables in Invoke Form Activity </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h6 id="t488158" class="heading6">Using Variables in Invoke Form Activity</h6>
+<p class="paragraph">Email templates can be used to display the values of the variables that have been created in a workflow.</p>
+<p class="paragraph"><strong class="strong">Scenario</strong></p>
+<p class="paragraph"><strong class="strong">Scenario Requirements:</strong></p>
+<p class="paragraph">Assume that, variable of type string by name '<b class="uicontrol">Status'</b> is created in&nbsp;<b class="uicontrol">Start</b>&nbsp;activity and its value is updated as <b class="uicontrol">&quot;Variable, status is updated&quot;.</b></p>
+<p class="paragraph">You want to,</p>
+<ol class="olitem"><li class="olitem">Display the variable's value in Invoke Form email.</li><li class="olitem">Display the variable's value after &quot;Submitted On&quot; row in the&nbsp;Task Details&nbsp;Table.</li></ol><p class="paragraph"><strong class="strong">Scenario Solution</strong></p>
+<p class="paragraph">To display this variable's value in Invoke Form email and to display the variable's value after &quot;Submitted On&quot; row in the&nbsp;Task Details&nbsp;Table, the following steps need to be followed:</p>
+<p class="paragraph"><strong class="strong">Steps:</strong></p>
+<ol class="step"><li class="step">Copy&nbsp;<b class="uicontrol">InvokeFormEmail.html</b>&nbsp;file.</li><li class="step">Use the<b class="uicontrol">&nbsp;&lt;%#Variable.</b>Variablename%&gt;&nbsp;placeholder in the html template for viewing the variable's value. Where &lt;Variablename&gt; is a name of the variable. Since the variable name is &quot;Status&quot;, the placeholder to be used is &lt;%#Variable.Status%&gt; where the value is to be displayed. The highlighted portion in the below code displays the position where the<b class="uicontrol">&nbsp;&lt;%#Variable.Status%&gt;</b>&nbsp;placeholder is added.<p class="codeblock1">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</p>
+<p class="codeblock1">&lt;html &gt;</p>
+<p class="codeblock1">&lt;head&gt;</p>
+<p class="codeblock1">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot; /&gt;</p>
+<p class="codeblock1">&lt;title&gt;&lt;/title&gt;</p>
+<p class="codeblock1">&lt;style type=&quot;text/css&quot;&gt;</p>
+<p class="codeblock1">&lt;!--</p>
+<p class="codeblock1">.style1 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 14px;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style2 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 11px;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style4 {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 15px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Normal;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.Username {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 13px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Bold;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.subject {</p>
+<p class="codeblock1">      &nbsp;font-family: Arial, Helvetica, sans-serif;</p>
+<p class="codeblock1">      &nbsp;font-size: 13px;</p>
+<p class="codeblock1">      &nbsp;font-weight: Bold;</p>
+<p class="codeblock1">      &nbsp;color: #333333;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style8 {</p>
+<p class="codeblock1">      &nbsp;color: #FF3300;</p>
+<p class="codeblock1">      &nbsp;font-weight: bold;</p>
+<p class="codeblock1">}</p>
+<p class="codeblock1">.style9 {font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">--&gt;</p>
+<p class="codeblock1">&lt;/style&gt;</p>
+<p class="codeblock1">&lt;/head&gt;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">&lt;body&gt;</p>
+<p class="codeblock1">&lt;table width=&quot;700&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;1&quot; bgcolor=&quot;#CCCCCC&quot; &gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td valign=&quot;top&quot;&gt;&lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;5&quot; bgcolor=&quot;#FFFFFF&quot;&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td&gt;&lt;p&gt;&lt;span class=&quot;Username&quot;&gt;@@Dear@@ &lt;%#ActorName%&gt;&lt;/span&gt;, &lt;/p&gt;</p>
+<p class="codeblock1">        &lt;p class=&quot;style2&quot;&gt;&lt;%#Body%&gt;&lt;/p&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#EBEBEB&quot;&gt;&lt;span class=&quot;style4&quot;&gt;@@Task Information@@ &lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td valign=&quot;top&quot; bgcolor=&quot;#FFFFFF&quot;&gt;</p>
+<p class="codeblock1">    &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;1&quot;&gt;</p>
+<p class="codeblock1">                    &lt;tr&gt;</p>
+<p class="codeblock1">                        &lt;td width=&quot;50%&quot;&gt;</p>
+<p class="codeblock1">                            &lt;table width=&quot;100%&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; bgcolor=&quot;#999999&quot;&gt;</p>
+<p class="codeblock1">                                &lt;tr&gt;</p>
+<p class="codeblock1">                                    &lt;td&gt;</p>
+<p class="codeblock1">                                        &lt;table width=&quot;100%&quot; border=&quot;1&quot; cellpadding=&quot;6&quot; cellspacing=&quot;0&quot; bordercolor=&quot;#CCCCCC&quot;</p>
+<p class="codeblock1">                                            bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td width=&quot;21%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Name@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td width=&quot;79%&quot; bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                  &nbsp;&nbsp;&lt;%#TaskName%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Description@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;%#Description%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Submittedby@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;%#Submitedby%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Date@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;%#SubmitedDate%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;@@Time@@&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td bgcolor=&quot;#EFEFEF&quot;&gt;</p>
+<p class="codeblock1">                                                    &lt;%#SubmitedTime%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                            &nbsp;&lt;tr&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;b&gt;Status&lt;/b&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                                &lt;td&gt;</p>
+<p class="codeblock1">                                                    &lt;%#Variable.Status%&gt;&lt;/td&gt;</p>
+<p class="codeblock1">                                            &lt;/tr&gt;</p>
+<p class="codeblock1">                                        &lt;/table&gt;</p>
+<p class="codeblock1">                                    &lt;/td&gt;</p>
+<p class="codeblock1">                                &lt;/tr&gt;</p>
+<p class="codeblock1">                            &lt;/table&gt;</p>
+<p class="codeblock1">                        &lt;/td&gt;</p>
+<p class="codeblock1">                    &lt;/tr&gt;</p>
+<p class="codeblock1">                &lt;/table&gt;</p>
+<p class="codeblock1">      &nbsp;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#FFFFFF&quot;&gt;&lt;span class=&quot;style2&quot;&gt;&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/Form/WorkItemViewEmail.aspx?&lt;%#QueryString%&gt;&quot;&gt;@@Click here@@&lt;/a&gt; @@to view the form@@&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td class=&quot;style2&quot;&gt;&lt;span class=&quot;style2&quot;&gt;@@Or@@ &lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td class=&quot;style2&quot;&gt;&lt;span class=&quot;style2&quot;&gt;@@Copy the below mentioned link in the browser area to view the form@@&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#FFFFFF&quot;&gt;&lt;span class=&quot;style2&quot;&gt;&lt;%#IntranetUrl%&gt;/Form/WorkItemViewEmail.aspx?&lt;%#QueryString%&gt;&lt;/span&gt;&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;tr bgcolor=&quot;#EBEBEB&quot;&gt;         </p>
+<p class="codeblock1">        &lt;td align=&quot;right&quot; class=&quot;style2&quot;&gt;</p>
+<p class="codeblock1">        &lt;span&gt;&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/Emaildocview.aspx?&lt;%#DocViewQueryString%&gt;&quot;&gt;@@Document View@@&lt;/a&gt;&lt;/span&gt;</p>
+<p class="codeblock1">        |</p>
+<p class="codeblock1">        &lt;span&gt;&lt;a href=&quot;&lt;%#IntranetUrl%&gt;/EmaiExecutionView.aspx?&lt;%#ExecutionViewQueryString%&gt;&quot;&gt;@@Current&nbsp;Execution Status@@&lt;/a&gt;&lt;/span&gt;</p>
+<p class="codeblock1">        &lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;     </p>
+<p class="codeblock1">  &lt;tr&gt;</p>
+<p class="codeblock1">    &lt;td bgcolor=&quot;#FFFFFF&quot; class=&quot;style2&quot;&gt;&lt;strong&gt;@@Regards@@,&lt;/strong&gt;&lt;br /&gt;</p>
+<p class="codeblock1">      @@Skelta Admin@@&lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">  &lt;/td&gt;</p>
+<p class="codeblock1">  &lt;/tr&gt;</p>
+<p class="codeblock1">&lt;/table&gt;</p>
+<p class="codeblock1">&lt;/body&gt;</p>
+<p class="codeblock1">&lt;/html&gt;</p>
+</li></ol><p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+<p class="paragraph">The actor will get the following Invoke Form email format for the above template.</p>
+<p class="paragraph"><img id="f50944" src="50944.png" class="embeddedimage100%scalinglive" alt="" height="418" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="note"><strong class="notelabel">Note:</strong> Out of box variables&nbsp;such as&nbsp;&lt;%#Variable.SubmittedBy.UserId%&gt;&nbsp;,&nbsp;&lt;%#Variable.SubmittedBy.UserName%&gt;, &nbsp;and&nbsp;&lt;%#Variable.SubmittedBy.UserDisplayName%&gt;&nbsp;can be used for Active Directory provider.</p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="invokeformactivityemailtemplate.html" target="_self">Invoke Form Activity Email Template</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,389 @@
+﻿<!doctype html>
+<html class="skep">
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="../../Common/JavaScripts/spin.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/knockout.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/xml2json.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../NextGenForms//js/aes-min.js"></script>
+    <script src="../../NextGenForms/app/Skelta.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/kendo.all.min.js" type="text/javascript"></script>
+    <script src="../../NextGenForms/js/knockout-kendo.min.js" type="text/javascript"></script>
+    <script src="../../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/UXControls.min.css" />
+
+    <style>
+        .k-list-filter {
+            margin: 10px 10px 0 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        var dataModel = null;
+        var skeltaUtils = skelta.forms.utilities;
+        var logger = skeltaUtils.getLogger();
+        var paramfxmuri, viewModelObject, applicationName, formId, mode, Name, Version, workflowXMlDataSource, formXMLDataSource,
+            mappingXML, InvokeWorkflowXmlSchema = "", InvokeWorkflowXmlSchemaType = "", InvokeWorkflowDataGridID = "", WorkflowInfo = "", xmlvariableInfo = "", securedUrl, InvokeWorkflowId,
+            InvokeWorkflowFrame, editPageVm;
+        skelta.serverUrl = "../../NextGenForms/";
+
+        function GetRadWindow()
+        {
+            var oWindow = null;
+
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+
+            return oWindow;
+        }
+
+        function closeWin()
+        {
+            if (mode == "InvokeWorkflow")
+            {
+                hideInvokeMappingScreen();
+            }
+            else
+            {
+                var oWindow = GetRadWindow();
+                oWindow.close();
+            }
+        }
+
+        function showInvokeMappingScreen()
+        {
+            setTimeout(function ()
+            {
+                window.top.$('#mapingFrameDiv').css("visibility", "visible");
+            }, 100);
+        }
+
+        function hideInvokeMappingScreen()
+        {
+            setTimeout(function ()
+            {
+                window.top.$('#mappingframe').attr('src', '');
+                window.top.$('#mapingFrameDiv').css("visibility", "hidden");
+            }, 100);
+        }
+
+        function OpenPopup(url)
+        {
+            var winHeight = (window.screen.availHeight * 85 / 100);
+            var winWidth = (window.screen.availWidth * 80 / 100);
+            var winLeft = (window.screen.availWidth - winWidth) / 2;
+            var winTop = (window.screen.availHeight - winHeight) / 2;
+            var windowFeatures = 'width=' + winWidth + ',height=' + winHeight + ',left=' + winLeft + ',top=' + winTop;
+            var win = window.open(url, "", windowFeatures);
+            if (win.focus)
+            {
+                win.focus();
+            }
+        }
+
+        function proceedClick(inputParameterObject, eventArgs)
+        {
+            if (mode != "InvokeWorkflow")
+            {
+                loadViewAndViewModelFromServer(inputParameterObject.InstanceJSON);
+            }
+            else
+            {
+                if (!skeltaUtils.isUndefined(editPageVm))
+                {
+                    var convJSONXml = new X2JS();
+                    mappingXML = convJSONXml.json2xml_str($.parseJSON(inputParameterObject.InstanceJSON));
+                    var mappingControl = editPageVm.topLevelForm.findByXmlNode("MappingsSchema");
+                    mappingControl.value = mappingXML;
+
+                skelta.forms.utilities.initializeMappingSchemaWithWorkflowDetails(mappingControl);
+
+                    $("#skloader").attr('data-skloader', 0);
+                    hideInvokeMappingScreen();
+                }
+            }
+        }
+
+        function loadViewAndViewModelFromServer(InstanceXMLData)
+        {
+            var convJSONXml = new X2JS();
+            mappingXML = convJSONXml.json2xml_str($.parseJSON(InstanceXMLData));
+            if (mappingXML != "")
+            {
+                saveMappingDetails();
+            }
+            $("#skloader").attr('data-skloader', 0)
+        }
+
+        function saveMappingDetails()
+        {
+            var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                "formXmlMapUri": paramfxmuri,
+                "mappingXML": mappingXML
+            });
+            skeltaUtils.callServerMethod("GET", "../../NextGenForms/AssociationService.aspx/SaveMapping", "application/json; charset=utf-8", jsonHelper, "json", SaveMappingSucceeded, SaveMappingFailed, function () { skeltaUtils.pageLoadComplete(""); });
+        }
+
+        function SaveMappingSucceeded(result)
+        {
+            if (result)
+            {
+                se.ui.messageDialog.showAlert(document.title, result.d);
+                closeWin();
+            }
+            else
+            {
+                se.ui.messageDialog.showAlert(document.title, skelta.localize.getString("MappingErrorMsg"));
+            }
+        }
+
+        function SaveMappingFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormDataMappingErrorLoading"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        function GetFormXMLMappingUI()
+        {
+            if (!skeltaUtils.isUndefined(editPageVm))
+            {
+                if (WorkflowInfo === "" || xmlvariableInfo === "")
+                {
+                    hideInvokeMappingScreen();
+                    document.title = skelta.localize.getString("FormXMlMappingSchemaTitle");
+                    skeltaUtils.showAlert(document.title, skelta.localize.getString("FormsNGFFormSchemaPageValidation"));
+                }
+                else if (InvokeWorkflowXmlSchema === "")
+                {
+                    hideInvokeMappingScreen();
+                    document.title = skelta.localize.getString("FormXMlMappingSchemaTitle");
+                    skeltaUtils.showAlert(document.title, skelta.localize.getString("FormNGFXmlSchemaValidation"));
+                }
+                else
+                {
+                    var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                        "ListId": window.parent.skeltaUserContext.getUserContextFor("itemId"),
+                        "ApplicationName": window.parent.skeltaUserContext.getUserContextFor("appN"),
+                        "FormName": window.parent.skeltaUserContext.getUserContextFor("fName"),
+                        "VersionStamp": window.parent.skeltaUserContext.getUserContextFor("vStamp"),
+                        "ListName": window.parent.skeltaUserContext.getUserContextFor("listName"),
+                        "Schema": InvokeWorkflowXmlSchemaType,
+                        "xmlvariable": xmlvariableInfo,
+                        "WorkflowInfo": WorkflowInfo,
+                        "GridNode": InvokeWorkflowDataGridID,
+                        "InvokeWorkflowId": InvokeWorkflowId,
+                        "rightCodes": ["ActionEdit"],
+                    });
+                    skeltaUtils.callServerMethod("GET", "../../NextGenForms/AssociationService.aspx/GetFormXMLMappingUIForInvokeWorkflow", "application/json; charset=utf-8", jsonHelper, "json", Succeeded, getMappingFailed, function () { skeltaUtils.pageLoadComplete(""); });
+                }
+            }
+            else
+            {
+                var jsonHelper = skeltaUtils.createJsonRequestHelper({
+                    "fxmuri": paramfxmuri,
+                    "Schema": InvokeWorkflowXmlSchemaType,
+                    "xmlvariable": xmlvariableInfo,
+                    "WorkflowInfo": WorkflowInfo,
+                    "GridNode": InvokeWorkflowDataGridID,
+                    "rightCodes": mode === "new" ? ["ActionCreate"] : ["ActionEdit"],
+                });
+                skeltaUtils.callServerMethod("GET", "../../NextGenForms/AssociationService.aspx/GetFormXMLMappingUI", "application/json; charset=utf-8", jsonHelper, "json", Succeeded, getMappingFailed, function () { skeltaUtils.pageLoadComplete(""); });
+            }
+        }
+
+        function Succeeded(resultData)
+        {
+            if (resultData.d != "" && resultData.d != "Error")
+            {
+                if (resultData.d.IsSuccess == undefined)
+                {
+                    var data = resultData.d;
+                    if (data.m == "InvokeWorkflow")
+                    {
+                        showInvokeMappingScreen();
+                    }
+
+                    applicationName = data.a;
+                    formId = data.l;
+                    mode = (data.m) ? data.m : "new";
+                    workflowXMlDataSource = $.parseJSON(data.workflowXMLDataSource);
+                    formXMLDataSource = $.parseJSON(data.formXMLDataSource);
+
+                    uniqueKey = skeltaUtils.getFormUniqueKey(applicationName, formId + "_Association", "");
+                    if (data.workflowXMLDataSource == "" || data.formXMLDataSource == "")
+                    {
+                        if (data.m == "InvokeWorkflow")
+                        {
+                            hideInvokeMappingScreen();
+                        }
+                        else
+                        {
+                            closeWin();
+                        }
+
+                        skeltaUtils.showError(document.title, skelta.localize.getString("FormDataMappingErrorLoading"), null, "");
+                        logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + "");
+                    }
+                    else
+                    {
+                        if (mode === "edit")
+                        {
+                            var instanceXml = data.insXML;
+                            skeltaUtils.createDataModelObject(uniqueKey);
+                            skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(instanceXml));
+                        }
+
+                        if (mode == "InvokeWorkflow")
+                        {
+                            if (!skeltaUtils.isUndefined(editPageVm))
+                            {
+                                var instanceXml = editPageVm.topLevelForm.findByXmlNode("MappingsSchema").value;
+                                skeltaUtils.createDataModelObject(uniqueKey);
+                                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(instanceXml));
+                            }
+                        }
+
+                        $("#viewModel").html(data.af);
+                        viewModelObject = skeltaUtils.getViewModelObject(skeltaUtils.getFormUniqueKey(applicationName, formId + "_Association", ""));
+                        viewModelObject.onSave.subscribeEvent(proceedClick);
+
+                        viewModelObject.onCancel.subscribeEvent(closeWin);
+
+                        $("#viewModel")[0].style.display = "";
+                        viewModelObject.topLevelForm.initializeFocus(0);
+
+                        setTimeout(function () {
+                            // load Primary Form Name and Form Version in mapping Dropdown in case of new mapping
+                            var primaryFormDetails = data.pf
+                            if (primaryFormDetails !== null) {
+                                viewModelObject.topLevelForm.findById("_sys_SchemaForm").value = primaryFormDetails[0];
+                                viewModelObject.topLevelForm.findById("_sys_FormVersion").value = primaryFormDetails[1];
+                            }
+                        }, 0);
+
+                        if (mode != "InvokeWorkflow")
+                        {
+                            document.title = skelta.localize.getString("FormXMlMappingTitle");
+                            var oWindow = GetRadWindow();
+                            oWindow.set_title(skelta.localize.getString("FormXMlMappingTitle"));
+                        }
+                    }
+                }
+                else
+                {
+                    if (!skeltaUtils.isUndefined(editPageVm))
+                    {
+                        hideInvokeMappingScreen();
+                    }
+                    else
+                    {
+                        closeWin();
+                    }
+
+                    if (resultData.d.ErrorMessage != null)
+                    {
+                        skeltaUtils.showAlert(document.title, resultData.d.ErrorMessage);
+                    }
+                    else
+                    {
+                        skeltaUtils.showAlert(document.title, skelta.localize.getString("FormDataMappingErrorLoading"));
+                    }
+
+                    skeltaUtils.pageLoadComplete("");
+                    return false;
+                }
+            }
+            else if (resultData.d == "Error")
+            {
+                hideInvokeMappingScreen();
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormDataMappingErrorLoading"), null, "");
+                logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + "");
+            }
+            else
+            {
+                if (!skeltaUtils.isUndefined(editPageVm))
+                {
+                    hideInvokeMappingScreen();
+
+                    document.title = skelta.localize.getString("FormXMlMappingSchemaTitle");
+                    skeltaUtils.showError(document.title, skelta.localize.getString("FormNGFMappingNotRequired"), null);
+                    logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + "");
+                }
+                else
+                {
+                    skeltaUtils.showError(document.title, skelta.localize.getString("FormDataMappingErrorLoading"), null, "");
+                    logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + "");
+                }
+
+            }
+        }
+
+        function getMappingFailed(result)
+        {
+            skeltaUtils.showError(document.title, skelta.localize.getString("FormDataMappingErrorLoading"), null, skeltaUtils.getAjaxErrorDetailsMessage(result, "<br>"));
+            logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + skeltaUtils.getAjaxErrorDetailsMessage(result, "\n"));
+        }
+
+        function XMlSchemaInfo()
+        {
+            if (!skeltaUtils.isUndefined(editPageVm))
+            {
+                InvokeWorkflowXmlSchema = editPageVm.topLevelForm.findByXmlNode("FormSchema").value;
+                InvokeWorkflowDataGridID = editPageVm.topLevelForm.findByXmlNode("DataGridId").value;
+                InvokeWorkflowXmlSchemaType = editPageVm.topLevelForm.findByXmlNode("Schema").value;
+                WorkflowInfo = editPageVm.topLevelForm.findByXmlNode("WorkflowWithVersion").value;
+                xmlvariableInfo = editPageVm.topLevelForm.findByXmlNode("XmlVariableName").value;
+                InvokeWorkflowId = editPageVm.topLevelForm.Data.Name + " (" + editPageVm.topLevelForm.Data.Id + ")";
+
+                parent.document.getElementById("fschemaframe").attributes["data-skfsw"].value = 0;
+            }
+        }
+
+        $(document).ready(function ()
+        {
+            InvokeWorkflowFrame = window.parent.frames["editframe"];
+            if (skeltaUtils.isUndefined(InvokeWorkflowFrame))
+            {
+                paramfxmuri = skeltaUtils.getUrlParameterValue(window, 'fxmuri');
+            }
+            else
+            {
+                editPageVm = InvokeWorkflowFrame.viewModelObject ? InvokeWorkflowFrame.viewModelObject : InvokeWorkflowFrame.contentWindow.viewModelObject;
+                XMlSchemaInfo();
+            }
+
+            try
+            {
+                
+                var spinnerEl = skeltaUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+
+                GetFormXMLMappingUI();
+            }
+            catch (exception)
+            {
+                skeltaUtils.showError(document.title, skelta.localize.getString("FormDataMappingErrorLoading"), null, exception.message);
+                logger.logError(skelta.localize.getString("FormDataMappingErrorLoading") + "\n" + exception.message);
+            }
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+    <textarea id="viewAndViewModel" cols="100" rows="30" style="visibility: collapse; height: 0; width: 0;" />
+</body>
+</html>

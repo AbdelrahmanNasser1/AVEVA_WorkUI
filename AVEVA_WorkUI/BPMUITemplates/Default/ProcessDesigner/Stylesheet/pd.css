@@ -1,0 +1,424 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.pdtoolbar {
+    font-size: 12px;
+    width: 100%;
+    color: white;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    height: 60px !important;
+    background-color: #9ab7c5;
+    position: absolute;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    overflow: hidden;
+}
+.pdtoolbarmenu {
+    font-size: 12px;
+    width: 100%;
+    color: Black;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    height: 30px !important;
+    background-color: #9ab7c5;
+    background-image: url(../graphics/PD-footer-bg.png);
+    background-repeat: repeat-x;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    overflow: hidden;
+}
+.pdtoolbox {
+    font-size: 12px;
+    width: 200px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    height: 100%;
+    background-color: #ffeed0;
+    position: absolute;
+    overflow: hidden;
+}
+.pdtoolboxanchor
+{
+	background-image: url(../graphics/collapsable-menu-barbg.png);
+	width: 9px;
+	position: absolute;	
+	cursor: pointer;
+}
+.pdtoolboxtitle {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    background-color: #ffeed0;
+    position: absolute;
+    overflow: clip;
+}
+
+.pdtoolbox_actionname {
+    font-weight: bold;
+    font-size: 10;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+.pdtoolbox_categoryname {
+    font-weight: bold;
+    font-size: 10;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+
+.pdcanvas
+{
+	position: absolute;
+}
+.pdstatusbar {
+    font-weight: bold;
+    font-size: 10;
+    color: Black;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    background-color: #e96a5d;
+    position: absolute;
+    background-image: url(../graphics/PD-footer-bg.png);
+}
+.pdstatustext {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    margin-right: 5px;
+    color: Black;
+}
+
+.pdaction
+{
+	BORDER-RIGHT: thin outset; BORDER-TOP: thin outset; BORDER-LEFT: thin outset; BORDER-BOTTOM: thin outset; POSITION: absolute; BACKGROUND-COLOR: lavender;
+}
+
+.pdactiontitle
+{
+	BORDER-RIGHT: thin outset; BORDER-TOP: thin outset; FONT-WEIGHT: bold; FONT-SIZE: xx-small; BORDER-LEFT: thin outset; BORDER-BOTTOM: thin; font-family: "Roboto", "Segoe UI", "Arial", "Verdana"; POSITION: absolute; BACKGROUND-COLOR: plum; TEXT-ALIGN: center; 
+}
+
+.pdactionimage
+{
+	OVERFLOW: hidden;HEIGHT: 50px; WIDTH: 50px; CLIP: rect(0px 50px 50px 0px); CURSOR: move; POSITION: absolute;
+}
+
+.pdactiondescription {
+    FONT-SIZE: x-small;
+    CURSOR: text;
+    FONT-FAMILY: "Roboto", "Segoe UI", "Arial", "Verdana";
+    POSITION: absolute;
+}
+
+.pdactionselected
+{
+	BORDER-RIGHT: black solid; BORDER-TOP: black solid; BORDER-LEFT: black solid; BORDER-BOTTOM: black solid; POSITION: absolute; BACKGROUND-COLOR: lavender
+}
+
+.pdactiontitleselected {
+    BORDER-RIGHT: black solid;
+    BORDER-TOP: black solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: xx-small;
+    BORDER-LEFT: black solid;
+    BORDER-BOTTOM: black;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    POSITION: absolute;
+    BACKGROUND-COLOR: plum;
+    TEXT-ALIGN: center;
+    cursor: url('hmove.cur');
+}
+.pdshape
+{
+}
+.pdshapeselected
+{
+	BORDER-RIGHT: red thin solid; 
+	BORDER-TOP: red thin solid; 
+	BORDER-LEFT: red thin solid; 
+	BORDER-BOTTOM: red thin solid; 
+}
+.pdshapetext {
+    FONT-SIZE: 12px;
+    CURSOR: text;
+    FONT-FAMILY: "Roboto", "Segoe UI", "Arial", "Verdana";
+    TEXT-ALIGN: center;
+    overflow: hidden;
+}
+.pdlinktext
+{
+	 overflow: hidden;
+	 FONT-SIZE: 12px;
+	 CURSOR: text;
+	 font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+	 font-style:italic;
+	 TEXT-ALIGN:center;
+	 color: Black;
+}
+.pdlinktext[class]
+{
+	 background-image: url(../Graphics/transparent.png);
+}
+
+
+/* styles for the tree */
+SPAN.TreeviewSpanArea A {
+    font-size: 10pt; 
+    font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+    text-decoration: none;
+    color: black
+}
+SPAN.TreeviewSpanArea A:hover {
+    //color: '#820082';
+}
+
+.pdmenubackground
+{
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+	border-top-style: none;
+	padding-top: 0px;
+	border-right-style: none;
+	border-left-style: none;
+	background-color: gainsboro;
+	border-bottom-style: none;
+}
+.pdmenuitem
+{
+	padding-right: 0px;
+	padding-left: 0px;
+	font-size: 12px;
+	padding-bottom: 0px;
+	margin: 0px;
+	vertical-align:middle;
+	color: black;
+	padding-top: 0px;
+	font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: transparent;
+	text-align: center;
+	text-decoration: none;
+}
+.pdmenuitemhighlighted
+{
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	border-left: black 1px solid;
+	border-bottom: black 1px solid;
+	font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+	font-size: 12px;
+	background-color: paleturquoise;
+	text-align: center;
+	text-decoration: none;
+	vertical-align:middle
+}
+.pdmenuitemopened
+{
+	border-right: black 1px solid;
+	padding-right: 0px;
+	border-top: black 1px solid;
+	padding-left: 0px;
+	font-size: 12px;
+	padding-bottom: 0px;
+	margin: 0px;
+	border-left: black 1px solid;
+	color: black;
+	padding-top: 0px;
+	border-bottom: white 1px solid;
+	font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+	background-color: lavender;
+	text-align: center;
+}
+
+.sktoolbartitle
+{
+	FONT-SIZE: 12px; 
+	font-family:"Roboto", "Segoe UI", "Arial", "Verdana";
+	color:Black;
+}
+
+.sktoolbartext
+{
+
+	FONT-SIZE: 12px; 
+	font-family:"Roboto", "Segoe UI", "Arial", "Verdana"; 
+    
+}
+
+.skpopupshadow {
+	background-color: gray;
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+.skpopupwindow
+{
+	
+	/*background-image:url(../graphics/PD-bg-skelta-activity.png);*/
+    background-color:#e0e1dd;	
+	color: White;
+}
+
+.skpopuptitle {
+    background-repeat: repeat-x;
+    color: white;
+    height: 20px;
+    FONT-SIZE: 14px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    cursor: default;
+    background-color: #cccccc;
+}
+
+.skpopuptitlefont {
+    FONT-SIZE: 14px;
+    color: Black;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    cursor: default;
+    margin-left: 5px;
+}
+
+.skproperties_title {
+    FONT-SIZE: 14px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    margin-left: 5px;
+    color: black;
+}
+
+.sktoolboxwindow {
+	background-color: #cccccc;
+	color:White;
+    vertical-align:top;
+    padding:0px;
+}
+
+.sktoolbox_title {
+    FONT-SIZE: 12px;
+    font-weight: bold;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+
+.sktoolboxtitlefont {
+    FONT-SIZE: 14px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    color: Black;
+    cursor: default;
+    margin-left: 6px;
+}
+
+.sktoolboxtitle {
+    /*background-image: url(../graphics/PD-bg-skelta-actions.png);*/
+    background-color: #cccccc;
+    background-repeat: repeat-x;
+    color: white;
+    height: 20px;
+    FONT-SIZE: 14px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    cursor: default;
+    padding-top: 2px;
+}
+
+.sk_toolbox_category {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    background-color: #ffffff;
+}
+
+.sk_toolbox_body
+{
+	background-color: #cccccc;
+    padding:0px;
+    vertical-align:top;
+}
+
+.sk_toolbox_action_title {
+    font-size: 12px;
+    color: Black;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+
+.sk_toolbar {
+    font-size: 8pt;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+}
+
+.skprogress_background
+{
+	
+}
+
+.skprogress_title {
+    font-weight: bold;
+    font-size: 12px;
+    color: Black;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    text-align: center;
+    vertical-align: middle;
+}
+
+.skprogress_white
+{
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	border-left: black 1px solid;
+	border-bottom: black 1px solid;
+	background-color: white;
+	width: 290px;
+	height: 20px;
+	margin: 5px;
+}
+
+.skprogress_bar
+{
+	background-color: blue;
+	margin: 1px;	
+	height: 18px;
+	width: 10px;
+}
+
+.propertiesboxbuttons {
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 12px;
+    color: #000;
+    /*border: 1px inset #447392;
+     background-image: url(../images/button-bg.gif);*/
+    background-color: #cccccc;
+    height: 25px;
+    width: 60px;
+}
+.sktooltip {
+    position: absolute;
+    left: -300px;
+    border: 1px solid black;
+    padding: 2px;
+    background-color: lightyellow;
+    visibility: hidden;
+    z-index: 100;
+    font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+    font-size: 10px;
+}
+.sktooltippointer
+{
+	position:absolute;
+	left: -300px;
+	z-index: 101;
+	visibility: hidden;
+}
+.pdMenuProperty {
+    background-color: #F3F4F5;
+    height: 30px;
+}

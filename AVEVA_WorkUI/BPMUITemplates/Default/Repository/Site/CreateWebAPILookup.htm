@@ -1,0 +1,1165 @@
+﻿<!DOCTYPE html>
+<html class="skep">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="content-type" content="Type=text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="../../Common/JavaScripts/spin.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/knockout.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/xml2json.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/app/Skelta.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/kendodependencies.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/knockout-kendo.min.js"></script>
+    <script type="text/javascript" src="../../NextGenForms/js/date.min.js"></script>
+    <script src="../../Common/JavaScripts/AutoLogoff.js"></script>
+    <script src="../../CommonUXControls/scripts/window/se.ui.min.js"></script>
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaForms.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/SkeltaTabs.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../NextGenForms/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/se.ui.min.css" />
+    <link rel="stylesheet" href="../../CommonUXControls/StyleSheet/UXControls.min.css" />
+    <style>
+        div[controlid~="formColumn"] .skcfw > .skcw > .skcb > .skgv > .skgvtb .skctr.skfdc .sklc {
+            line-height: initial;
+        }
+
+        div[controlid~="formColumn"] .skfdr > div {
+            align-items: center;
+        }
+
+        div[controlid~="formColumn"] .skcfw > .skcw > .skcb > .skgv > .skgvtb > div:nth-child(2n+1) {
+            background-color: white !important;
+            border-left: 1px solid white !important;
+            border-right: 1px solid white !important;
+            min-height: 35px;
+            max-height: 35px;
+        }
+
+        div[controlid~="formColumn"] .skcfw > .skcw > .skcb > .skgv > .skgvtb > div:nth-child(2n+2) {
+            background-color: white !important;
+            border-left: 1px solid white !important;
+            border-right: 1px solid white !important;
+            min-height: 35px;
+            max-height: 35px;
+        }
+
+        div[controlid~="formColumn"] .skcfw > .skcw > .skcb > .skgv > .skgvtb > div:last-child {
+            min-height: 50px;
+            max-height: 50px;
+        }
+
+        div[controlid~="formColumn"] > .skgvth {
+            min-height: 40px;
+            max-height: 40px;
+        }
+
+        div[controlid~="formColumn"] > div.skcfw.skfdc > .skcw > div.skcb.skflx > div.skfdc.skgv > div.skgvth:not(:empty) {
+            background-color: rgb(245, 245, 245) !important;
+            float: left;
+            font-size: 14px;
+            font-weight: normal;
+            color: #4D4D4D;
+            overflow: hidden;
+            height: 100%;
+            min-height: 40px !important;
+            max-height: 40px !important;
+            text-align: left;
+            align-content: center;
+        }
+
+        div[controlid~="formColumn"] > div.skcfw.skfdc > .skcw > div.skcb.skflx > div.skfdc.skgv > div.skgvth {
+            background-color: white !important;
+        }
+
+        div[controlid~="formColumn"] > div:first-child {
+            padding-right: 12px;
+        }
+
+        div[controlid~="B1"] > div:first-child {
+            padding-right: 12px;
+        }
+
+        div[controlid~="formHeader"] > div:first-child {
+            padding-right: 12px;
+        }
+
+        div[data-bind="visible: selColDesc._visible"] {
+            min-height: 0px !important;
+            max-height: 0px !important;
+        }
+
+        div[data-bind="text: selColDesc._description, visible: (selColDesc._description().length > 0 )"] {
+            position: relative;
+            top: -10px;
+        }
+
+        div[data-bind="visible: selColDesc._visible"] > div {
+            min-height: 0px !important;
+            max-height: 0px !important;
+        }
+
+        div[data-bind="visible: btnLoadColumns._visible,skgf: btnLoadColumns._skgf"].skctr.skfdc {
+            min-height: 40px !important;
+            max-height: 40px !important;
+            align-content: center;
+            padding: 0px;
+            padding-right: 5px;
+        }
+
+        div[data-bind="visible: btnLoadColumns._visible,skgf: btnLoadColumns._skgf"] {
+            min-height: 40px !important;
+            max-height: 40px !important;
+            padding: 0px;
+            padding-right: 5px;
+        }
+
+            div[data-bind="visible: btnLoadColumns._visible,skgf: btnLoadColumns._skgf"] > div {
+                min-height: 40px !important;
+                max-height: 40px !important;
+                align-content: center;
+                padding: 0px;
+                padding-right: 5px;
+            }
+
+        #divSelectAll {
+            position: relative;
+            top: -5px;
+            left: -2px;
+        }
+
+        .skrb, .skrb:disabled, .skchb, .skchb:disabled {
+            align-content: start;
+            overflow: hidden !important;
+        }
+
+            .skrb > div, .skchb > div {
+                padding: 3px 15px 5px 0;
+                align-content: start;
+                overflow: hidden !important;
+            }
+    </style>
+    <script type="text/javascript">
+        var skeltaFormsUtils = skelta.forms.utilities;
+        var skeltaUtility = skelta.utilities;
+        var logger = skeltaFormsUtils.getLogger();
+        var paramlcsuri, formViewModelObject;
+        var pageMode, pageTitle;
+        var operationGroupsTags = [], tagAndOperations = [], operationGroupsApi, operationIdWithPath = [];
+        var webMethods;
+        var isopenAPI = false;
+        var isLoadCall = true;
+        var columnsArray = [];
+        skelta.serverUrl = "../../NextGenForms/";
+
+        function GetRadWindow()
+        {
+            var oWindow = null;
+            if (window.radWindow)
+                oWindow = window.radWindow;
+            else if (window.frameElement.radWindow)
+                oWindow = window.frameElement.radWindow;
+            return oWindow;
+        }
+
+        function closeWin()
+        {
+            var oWindow = GetRadWindow();
+            oWindow.close();
+        }
+
+        function insertSelectAllOption(isEdit)
+        {
+            $('#divSelectAll').remove();
+            var strCheckAll = "<div id='divSelectAll' data-bind='text: $data'><input type='checkbox' id='chkSelectAll' name='selectAll' value='True' onchange='onSelectAllChanged(this)'/></div>";
+            $("div[controlid~='formColumn'] > div.skcfw.skfdc > .skcw > div.skcb.skflx > div.skfdc.skgv > div.skgvth:not(:empty) > div:last-child").replaceWith(strCheckAll);
+            if (isEdit)
+            {
+                $('input[type^=checkbox][id^=chkSelectAll]').click();
+            }
+            else
+            {
+                var checkAll = true;
+                $('input[type^=checkbox][controlid^=C1]').each(function (index, element)
+                {
+                    if (!$(element).is(":checked"))
+                    {
+                        checkAll = false;
+                    }
+                });
+
+                $('input[type^=checkbox][id^=chkSelectAll]').prop('checked', checkAll);
+            }
+
+            EnableDisableHeaderItems();
+        }
+
+        function onSelectAllChanged(e)
+        {
+            if (e.checked == true)
+            {
+                $('input[type^=checkbox][controlid^=C1]').each(function (index, element)
+                {
+                    if ($(element).is(":checked") === e.checked)
+                    {
+                        $(element).click();
+                    }
+                });
+            }
+
+            $('input[type^=checkbox][controlid^=C1]').each(function (index, element)
+            {
+                if ($(element).is(":checked") !== e.checked)
+                {
+                    $(element).click();
+                }
+            });
+        }
+
+        function clearUIvalues()
+        {
+            formViewModelObject.topLevelForm.findByXmlNode("RequestURI").value = "";
+            formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").options = [];
+            formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").options = [];
+            var columnBaseForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+            columnBaseForm.removeAll();
+            var paramBaseForm = formViewModelObject.topLevelForm.findByXmlNode("ParamForm");
+            paramBaseForm.removeAll();
+            columnsArray = [];
+            $('#chkSelectAll').remove();
+            $('#divSelectAll').remove();
+        }
+
+        function onWebAPILookupSave(inputParameterObject, eventArgs)
+        {
+            try
+            {
+                var ctrlWebAPI = formViewModelObject.topLevelForm.findByXmlNode("WebAPI");
+                if (ctrlWebAPI.value === "-1")
+                {
+                    formViewModelObject.topLevelForm.findByXmlNode("IsOpenAPI").value = "False";
+                    clearUIvalues();
+                    return;
+                }
+
+                skeltaFormsUtils.showLoader();
+                var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                    "secureParameters": paramlcsuri,
+                    "instanceXml": skeltaFormsUtils.getXmlFromJSONObject(inputParameterObject.instanceXml),
+                    "isOpenApi": isopenAPI
+                });
+
+                skeltaFormsUtils.callServerMethod("POST",
+                    "WebAPILookupControllerService.aspx/SaveLookupForm",
+                    "application/json; charset=utf-8",
+                    jsonHelper,
+                    "json",
+                    function (resultData)
+                    {
+
+                        var res = $.parseJSON(resultData.d);
+                        if (res.isRequestSuccessful === true)
+                        {
+                            skeltaFormsUtils.showAlert(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_save_msg"), closeWin);
+                        }
+                        else
+                        {
+                            var errorMsg = res.message;
+                            if (skelta.utilities.isUndefinedNullOrEmpty(errorMsg))
+                            {
+                                errorMsg = skelta.localize.getString("lkp_webapi_save_faild");
+                            }
+                            errorMsg = errorMsg.replaceString("\\", "", false, true);
+                            skeltaFormsUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), errorMsg);
+                            logger.logError(errorMsg);
+                        }
+                    },
+                    function (result)
+                    {
+                        skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_save_faild"), null, "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+                        logger.logError(skelta.localize.getString("lkp_webapi_save_faild") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+                    },
+                    function ()
+                    {
+                        skeltaFormsUtils.pageLoadComplete("");
+                    });
+            }
+            catch (e)
+            {
+                var errorMsg = skelta.localize.getString("lkp_webapi_save_faild");
+                skeltaFormsUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), errorMsg, null, e.message);
+                logger.logError(errorMsg);
+            }
+        }
+
+        function loadWebAPILookupForm()
+        {
+            skeltaFormsUtils.showLoader();
+            pageTitle = skelta.localize.getString("lkp_webapi_form_title");
+            var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                "secureParameters": paramlcsuri
+            });
+
+            skeltaFormsUtils.callServerMethod("GET",
+                "WebAPILookupControllerService.aspx/LoadLookupForm",
+                "application/json; charset=utf-8",
+                jsonHelper,
+                "json",
+                onLoadSucceeded,
+                function (result)
+                {
+                    skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_formload_error"), null, "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+                    logger.logError(skelta.localize.getString("lkp_webapi_formload_error") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+                },
+                function ()
+                {
+                    skeltaFormsUtils.pageLoadComplete("");
+                },
+                false);
+        }
+
+        function onLoadSucceeded(resultData)
+        {            
+            var res = $.parseJSON(resultData.d);
+            if (res.isRequestSuccessful === true)
+            {
+                pageTitle = res.windowTitle;
+                document.title = pageTitle;
+                var uniqueKey = skeltaUtils.getFormUniqueKey(res.applicationName, '_sys_new', 'Default');
+                skeltaUtils.createDataModelObject(uniqueKey);
+                skeltaUtils.setDataModelObject(uniqueKey, skeltaUtils.getJSONObjectFromXml(res.instanceXml));
+                $("#viewModel").html(res.viewModelObject);
+                formViewModelObject = skeltaUtils.getViewModelObject(uniqueKey);
+                formViewModelObject.onSave.subscribeEvent(onWebAPILookupSave);
+                formViewModelObject.onCancel.subscribeEvent(closeWin);
+                onIsOpenAPIDataChanged(formViewModelObject.topLevelForm);
+                pageMode = res.pageMode;
+                formViewModelObject.topLevelForm.findById("txtTitle").setFocus();
+                if (res.pageMode === "ActionCreate")
+                {
+                    var ctrlHeaderForm = formViewModelObject.topLevelForm.findByXmlNode("HeaderForm");
+                    ctrlHeaderForm.removeAll();
+                    formViewModelObject.topLevelForm.findById("btnLoadColumns").visible = false;
+                    if (!isopenAPI)
+                    {
+                        populateUI('', '', '');
+                    }
+                }
+                else
+                {
+                    formViewModelObject.topLevelForm.findById("txtDescription").setFocus();
+                    if (!isopenAPI)
+                    {
+                        formViewModelObject.topLevelForm.findById("btnLoadColumns").visible = true;
+                        var ctrlColumnsForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+                        if (skelta.utilities.isUndefinedNullOrEmpty(ctrlColumnsForm.Data))
+                        {
+                            ctrlColumnsForm.removeAll();
+                        }
+                        var ctrlHeaderForm = formViewModelObject.topLevelForm.findByXmlNode("HeaderForm");
+                        if (skelta.utilities.isUndefinedNullOrEmpty(ctrlHeaderForm.Data))
+                        {
+                            ctrlHeaderForm.removeAll();
+                        }
+                        var ctlShowAdvanceOption = formViewModelObject.topLevelForm.findByXmlNode("ShowAdvanceOption");
+                        onAdvanceDesignDataChanged(ctlShowAdvanceOption);
+                        var ctrlOperationsGroup = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroup");
+                        ctrlOperationsGroup.isMandatory = false;
+                        var ctrlOperationsGroupAPI = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroupAPI");
+                        ctrlOperationsGroupAPI.isMandatory = false;
+                        insertSelectAllOption(false);
+                    }
+                    else
+                    {
+                        formViewModelObject.topLevelForm.findById("btnLoadColumns").visible = false;
+                        var ctrlOperationsGroup = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroup");
+                        ctrlOperationsGroup.isMandatory = true;
+                        var ctrlOperationsGroupAPI = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroupAPI");
+                        ctrlOperationsGroupAPI.isMandatory = true;
+                        var ctrlColumnsForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+                        if (skelta.utilities.isUndefinedNullOrEmpty(ctrlColumnsForm.Data))
+                        {
+                            ctrlColumnsForm.removeAll();
+                        }
+                        var ctrlHeaderForm = formViewModelObject.topLevelForm.findByXmlNode("HeaderForm");
+                        if (skelta.utilities.isUndefinedNullOrEmpty(ctrlHeaderForm.Data))
+                        {
+                            ctrlHeaderForm.removeAll();
+                        }
+                        var requestUri = formViewModelObject.topLevelForm.findByXmlNode("RequestURI");
+                        requestUri.isMandatory = false;
+                        requestUri.visible = false;
+                        var ctlShowAdvanceOption = formViewModelObject.topLevelForm.findByXmlNode("ShowAdvanceOption");
+                        onAdvanceDesignDataChanged(ctlShowAdvanceOption);
+                        formViewModelObject.topLevelForm.findById("pnlParameter").visible = false;
+                        var drpWebAPI = formViewModelObject.topLevelForm.findById("drpWebAPI");
+                        var openApiInfo = findIndexByKeyValue(drpWebAPI.options, "optionvalue", drpWebAPI.value, "tag");
+                        var openApiInfoData = $.parseJSON(openApiInfo);
+                        isLoadCall = true;
+                        getOpenApiDetails(drpWebAPI, drpWebAPI.value);
+                    }
+                }
+
+                $("#viewModel")[0].style.display = "";
+                formViewModelObject.topLevelForm.initializeFocus(0);
+                skelta.localize.divTextLocalize();
+                skelta.localize.divTitleLocalize();
+                var oWindow = GetRadWindow();
+                if (!skelta.utilities.isUndefinedNullOrEmpty(oWindow))
+                {
+                    oWindow.set_title(pageTitle);
+                }
+            }
+            else
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(pageTitle))
+                {
+                    pageTitle = skelta.localize.getString("lkp_webapi_form_title");
+                }
+
+                var errorMessage = res.message;
+                if (skelta.utilities.isUndefinedNullOrEmpty(errorMessage))
+                {
+                    errorMessage = skelta.localize.getString("lkp_webapi_formload_error");
+                }
+
+                var oWindow = GetRadWindow();
+                if (!skelta.utilities.isUndefinedNullOrEmpty(oWindow))
+                {
+                    oWindow.set_title(pageTitle) = pageTitle;
+                }
+
+                errorMessage = errorMessage.replaceString("\\", "", false, true);
+                skeltaFormsUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), errorMessage);
+                logger.logError(errorMessage);
+            }
+        }
+
+        function populateUI(columns, displayColVal, valColValue)
+        {
+            var columnForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+            columnsArray = [];
+            var selectedItems = [];
+            $.each(columnForm.Data, function (index, value)
+            {
+                var dataObj = { optionvalue: value.ColumnName, optiontext: value.ColumnName };
+                selectedItems.push(dataObj);
+            });
+
+            if (!skelta.utilities.isUndefinedNullOrEmpty(columnForm))
+            {
+                columnForm.removeAll();
+
+                if (!skelta.utilities.isUndefinedNullOrEmpty(columns))
+                {
+                    var arrColumn = columns.split("~");
+                    //ColumnName, DataType, IsChecked
+                    for (var i = 0; i < arrColumn.length; i++)
+                    {
+                        var str = arrColumn[i].trim();
+                        columnsArray.push(str);
+                        var checkval = "";
+                        var itemval = findIndexByKeyValue(selectedItems, "optionvalue", str, "optionvalue");
+                        if (!skelta.utilities.isUndefinedNullOrEmpty(itemval))
+                        {
+                            checkval = "yes";
+                        }
+                        var dataObj = {
+                            ColumnName: str,
+                            DataType: "String",
+                            IsChecked: checkval
+                        };
+                        columnForm.addRecord(dataObj);
+                    }
+
+                    formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").options = selectedItems;
+                    formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").options = selectedItems;
+                    formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").value = displayColVal;
+                    formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").value = valColValue;
+                    insertSelectAllOption(false);
+                }
+            }
+            EnableDisableHeaderItems();
+        }
+
+        function EnableDisableHeaderItems()
+        {
+            if (isopenAPI === true)
+            {
+                $('[data-bind="click: formHeader.addRecordInWebUX.bind(formHeader), clickBubble:false"]').hide();
+                $('[controlid="formHeaderDeleteRecord"]').hide();
+                $('[controlid="txtHeaderKey"]').prop("disabled", true);
+                $('[data-bind="visible:formHeader._readEditAddBehaviour() !== 1"]').hide();
+            }
+            else
+            {
+                $('[data-bind="click: formHeader.addRecordInWebUX.bind(formHeader), clickBubble:false"]').show();
+                $('[controlid="formHeaderDeleteRecord"]').show();
+                $('[controlid="txtHeaderKey"]').prop("enabled", true);
+                $('[data-bind="visible:formHeader._readEditAddBehaviour() !== 1"]').show();
+            }
+        }
+
+        function onWebAPIDataChanged(control)
+        {
+            if (control.value === "")
+            {
+                formViewModelObject.topLevelForm.findByXmlNode("IsOpenAPI").value = "False";
+                clearUIvalues();
+                return;
+            }
+
+            var openApiInfo = findIndexByKeyValue(control.options, "optionvalue", control.value, "tag");
+            var openApiInfoData = $.parseJSON(openApiInfo);
+            clearUIvalues();
+            var headerForm = formViewModelObject.topLevelForm.findByXmlNode("HeaderForm");
+            headerForm.removeAll();
+            if (openApiInfoData.isOpenAPI)
+            {
+                isopenAPI = true;
+                formViewModelObject.topLevelForm.findById("btnLoadColumns").visible = false;
+                var requestUri = formViewModelObject.topLevelForm.findByXmlNode("RequestURI");
+                requestUri.isMandatory = false;
+                requestUri.visible = false;
+                formViewModelObject.topLevelForm.findByXmlNode("IsOpenAPI").value = "True";
+                control.findById("pnlParameter").visible = false;
+                var columnForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+                columnForm.removeAll();
+                formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").options = [];
+                formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").options = [];
+                isLoadCall = false;
+                getOpenApiDetails(control, control.value);
+            }
+            else
+            {
+                isopenAPI = false;
+                formViewModelObject.topLevelForm.findById("btnLoadColumns").visible = true;
+                formViewModelObject.topLevelForm.findByXmlNode("IsOpenAPI").value = "False";
+                var requestUri = formViewModelObject.topLevelForm.findByXmlNode("RequestURI");
+                requestUri.isMandatory = true;
+                requestUri.visible = true;
+                requestUri.value = openApiInfoData.requestUri;
+                formViewModelObject.topLevelForm.findByXmlNode("RequestURI").value = openApiInfoData.requestUri;
+            }
+
+            EnableDisableHeaderItems();
+        }
+
+        function onIsOpenAPIDataChanged(control)
+        {
+            var pnlOpenAPI = formViewModelObject.topLevelForm.findById('pnlOpenAPI');
+            var openApivalue = formViewModelObject.topLevelForm.findByXmlNode("IsOpenAPI").value;
+            isopenAPI = (skelta.utilities.isUndefinedNullOrEmpty(openApivalue) || openApivalue === 'False') ? false : true;
+            pnlOpenAPI.visible = isopenAPI;
+            if (isopenAPI)
+            {
+                var ctrlOperationsGroup = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroup");
+                ctrlOperationsGroup.isMandatory = true;
+                var ctrlOperationsGroupAPI = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroupAPI");
+                ctrlOperationsGroupAPI.isMandatory = true;
+            }
+            else
+            {
+                var ctrlOperationsGroup = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroup");
+                ctrlOperationsGroup.isMandatory = false;
+                var ctrlOperationsGroupAPI = formViewModelObject.topLevelForm.findByXmlNode("OperationsGroupAPI");
+                ctrlOperationsGroupAPI.isMandatory = false;
+            }
+        }
+
+        function getOpenApiDetails(control, openApiTitle)
+        {
+
+            skeltaFormsUtils.showLoader();
+            var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                "secureParameters": paramlcsuri,
+                "openApiTitle": openApiTitle
+            });
+
+            skeltaFormsUtils.callServerMethod("GET",
+                "WebAPILookupControllerService.aspx/LoadOpenApiSpecificationDetail",
+                "application/json; charset=utf-8",
+                jsonHelper,
+                "json",
+                function (resultData, control)
+                {
+                    getOpenApiDetailsSucceeded(resultData, control);
+                },
+                function (result)
+                {
+                    skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_LoadWebApiDetail_failed"), null, "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+                    logger.logError(skelta.localize.getString("lkp_webapi_LoadWebApiDetail_failed") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+                },
+                function ()
+                {
+                    skeltaFormsUtils.pageLoadComplete("");
+                },
+                true);
+        }
+
+        function getOpenApiDetailsSucceeded(resultData, control)
+        {
+            var result = JSON.parse(resultData.d);
+
+            if (result.isRequestSuccessful)
+            {
+                operationGroupsTags = prepareJsonFromList(JSON.parse(result.operationGroupsTags));
+                tagAndOperations = JSON.parse(result.tagAndOperations);
+                operationGroupsApi = JSON.parse(result.operationGroupsApi);
+                operationIdWithPath = JSON.parse(result.operationIdWithPath);
+                webMethods = JSON.parse(result.webMethods);
+                if (!isLoadCall)
+                {
+                    formViewModelObject.topLevelForm.findByXmlNode("RequestURI").value = '';
+                    formViewModelObject.topLevelForm.findByXmlNode("OperationsGroup").options = operationGroupsTags;
+                }
+                insertSelectAllOption(false);
+            }
+            else
+            {
+                var message = "";
+                if (!skelta.utilities.isUndefinedNullOrEmpty(result) && !skelta.utilities.isUndefinedNullOrEmpty(result.message))
+                {
+                    message = result.message;
+                }
+                skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_LoadWebApiDetail_failed"), null, "<br/>" + message + "<br/>");
+                logger.logError(message);
+            }
+        }
+
+        function prepareJsonFromList(data)
+        {
+            var dataObject = [];
+            $.each(data, function (index, value)
+            {
+                dataObject.push({
+                    optiontext: value,
+                    optionvalue: value
+                });
+            });
+            return dataObject;
+        }
+
+        function onRequestUriDataChanged(control)
+        {
+            if (skelta.utilities.isUndefinedNullOrEmpty(control.value))
+            {
+                var paramBaseForm = control.findByXmlNode("ParamForm");
+                paramBaseForm.removeAll();
+                paramBaseForm.showDetailsCaption = true;
+                control.findById("pnlParameter").visible = false;
+                clearUIvalues();
+            }
+
+            if (!SFU.isUndefined(control.value) && !SFU.isEmpty(control.value))
+            {
+                var result = control.value.match(/[{](?:[\-]*[\w+][\w+|\s*|-]*)[}]/g);
+                if (SFU.isUndefined(result) || SFU.isEmpty(result))
+                {
+                    var paramBaseForm = control.findByXmlNode("ParamForm");
+                    paramBaseForm.removeAll();
+                    paramBaseForm.showDetailsCaption = true;
+                    control.findById("pnlParameter").visible = false;
+                    clearUIvalues();
+                    return;
+                }
+
+                if (result.length > 0)
+                {
+                    var paramBaseForm = control.findByXmlNode("ParamForm");
+                    var paramFormData = paramBaseForm.getFormInstanceXML();
+                    paramBaseForm.removeAll();
+                    clearUIvalues();
+                    control.findById("pnlParameter").visible = true;
+                    for (var i = 0; i < result.length; i++)
+                    {
+                        var str = result[i].replace('{', '').replace('}', '');
+                        var val = "";
+                        if (!skelta.utilities.isUndefinedNullOrEmpty(paramFormData))
+                        {
+                            val = findIndexByKeyValue(paramFormData, "ParamLabel", str, "ParamValue");
+                        }
+
+                        var dataObj = {
+                            ParamLabel: str,
+                            ParamValue: val
+                        };
+                        paramBaseForm.addRecord(dataObj);
+                    }
+
+                    var columnBaseForm = control.findByXmlNode("ColumnForm");
+                    columnBaseForm.removeAll();
+                }
+            }
+        }
+
+        function findIndexByKeyValue(arr, key, value, valCol)
+        {
+            for (var i = 0; i < arr.length; i++)
+            {
+                if (arr[i][key] == value)
+                {
+                    return arr[i][valCol];
+                }
+            }
+            return "";
+        }
+
+        function btnLoadColumnsClicked(control)
+        {
+            var ctrlWebAPI = formViewModelObject.topLevelForm.findByXmlNode("WebAPI");
+            if (ctrlWebAPI.value === "-1")
+            {
+                clearUIvalues();
+                return;
+            }
+
+            skeltaUtils.showConfirmation(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_loadcolumns_confirm"),
+                function (res)
+                {
+                    if (res)
+                    {
+                        onLoadColumns(control);
+                    } else
+                    {
+                        skeltaUtils.pageLoadComplete("");
+                        return;
+                    }
+                }, skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Ok"), skelta.localize.getString("FormsNGF_MQTT_Topic_Config_Cancel"));
+
+        }
+
+        function onLoadColumns(control)
+        {
+            skeltaFormsUtils.showLoader();
+            var requestUri = control.findByXmlNode("RequestURI").value;
+            var webApiTitle = control.findByXmlNode("WebAPI").value;
+            var paramForm = control.findByXmlNode("ParamForm");
+            var paramXml = skelta.utilities.getXmlFromJSONObject(paramForm.parentForm.topLevelForm.getFormInstanceXML());
+            if (!SFU.isUndefined(requestUri) && !SFU.isEmpty(requestUri))
+            {
+                skeltaFormsUtils.showLoader();
+                var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                    "secureParameters": paramlcsuri,
+                    "webApiTitle": webApiTitle,
+                    "request": requestUri,
+                    "parameterXml": paramXml
+                });
+
+                skeltaFormsUtils.callServerMethod("GET",
+                    "WebAPILookupControllerService.aspx/GetColumnDetails",
+                    "application/json; charset=utf-8",
+                    jsonHelper,
+                    "json",
+                    function (resultData, control)
+                    {
+                        var res = $.parseJSON(resultData.d);
+                        if (res.isRequestSuccessful === true)
+                        {
+                            var displayColValue = formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").value;
+                            var valueColValue = formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").value;
+                            formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").options = [];
+                            formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").options = [];
+                            if (skelta.utilities.isUndefinedNullOrEmpty(res.webApiColumns))
+                            {
+                                skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webpi_columns_empty"));
+                                return;
+                            }
+                            else
+                            {
+                                populateUI(res.webApiColumns, displayColValue, valueColValue);
+                            }
+                        }
+                        else
+                        {
+                            var message = "";
+                            if (!skelta.utilities.isUndefinedNullOrEmpty(res) && !skelta.utilities.isUndefinedNullOrEmpty(res.message))
+                            {
+                                message = res.message;
+                            }
+
+                            skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_LoadColumns_failed"), null, "<br/>" + message + "<br/>");
+                            logger.logError(skelta.localize.getString("lkp_webapi_LoadWebApiDetail_failed") + message);
+                        }
+                    },
+                    function (result)
+                    {
+                        skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_LoadColumns_failed"), null, "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+                        logger.logError(skelta.localize.getString("lkp_webapi_LoadWebApiDetail_failed") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+                    },
+                    function ()
+                    {
+                        skeltaFormsUtils.pageLoadComplete("");
+                    },
+                    true);
+            }
+        }
+
+        function onColumnCheckDataChanged(control)
+        {
+            var dataObj = control.parentForm.Data;
+            var ctrlDisplayCol = formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn");
+            var ctrlValueCol = formViewModelObject.topLevelForm.findByXmlNode("ValueColumn");
+            var displayColValue = ctrlDisplayCol.value;
+            var valueColVal = ctrlValueCol.value;
+
+            var displayOptions = [];
+            $.each(ctrlDisplayCol.options, function (index, value)
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(value.optionvalue))
+                {
+                    var dataObj = { optionvalue: value.optionvalue, optiontext: value.optiontext };
+                    displayOptions.push(dataObj);
+                }
+            });
+
+            var valueOptions = [];
+            $.each(ctrlValueCol.options, function (index, value)
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(value.optionvalue))
+                {
+                    var dataObj = { optionvalue: value.optionvalue, optiontext: value.optiontext };
+                    valueOptions.push(dataObj);
+                }
+
+            });
+
+            if (control.value.toLowerCase().indexOf("yes") >= 0)
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(dataObj.ColumnName))
+                {
+                    var optionValue = findIndexByKeyValue(displayOptions, "optionvalue", dataObj.ColumnName, "optionvalue");
+                    if (skelta.utilities.isUndefinedNullOrEmpty(optionValue))
+                    {
+                        displayOptions.push({
+                            optionvalue: dataObj.ColumnName,
+                            optiontext: dataObj.ColumnName
+                        });
+                        valueOptions.push({
+                            optionvalue: dataObj.ColumnName,
+                            optiontext: dataObj.ColumnName
+                        });
+                    }
+                }
+            }
+            else
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(dataObj.ColumnName))
+                {
+                    remove(displayOptions, dataObj.ColumnName);
+                    remove(valueOptions, dataObj.ColumnName);
+                }
+            }
+
+            ctrlDisplayCol.options = displayOptions;
+            ctrlValueCol.options = valueOptions;
+            var dispOption = findIndexByKeyValue(displayOptions, "optionvalue", displayColValue, "optionvalue");
+            if (skelta.utilities.isUndefinedNullOrEmpty(dispOption))
+            {
+                displayColValue = (displayOptions.length > 0) ? displayOptions[0].optionvalue : "";
+            }
+
+            var valOption = findIndexByKeyValue(valueOptions, "optionvalue", valueColVal, "optionvalue");
+            if (skelta.utilities.isUndefinedNullOrEmpty(valOption))
+            {
+                valueColVal = (valueOptions.length > 0) ? valueOptions[0].optionvalue : "";
+            }
+
+            formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").value = displayColValue;
+            formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").value = valueColVal;
+        }
+
+        function remove(arr, item)
+        {
+            for (var i = arr.length; i--;)
+            {
+                if (arr[i].optiontext === item)
+                {
+                    arr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+        function onAdvanceDesignDataChanged(control)
+        {
+            var ctlDisplayRequestUri = control.findByXmlNode("DisplayValueRequestURI");
+            ctlDisplayRequestUri.visible = (control.value === "True");
+            var ctlJSONPath = control.findByXmlNode("JSONPath");
+            ctlJSONPath.visible = (control.value === "True");
+            var ctlPnlHeader = control.findById("pnlHeadForm")
+            ctlPnlHeader.visible = (control.value === "True");
+            var ctlDisplayValueGrid = control.findByXmlNode("IsDisplayValueColumnGrid");
+            ctlDisplayValueGrid.visible = (control.value === "True");
+        }
+
+        function onOperationGroupChanged(control, currentValue)
+        {
+            ClearOpenAPIDetails(control);
+            var operations = tagAndOperations[currentValue];
+
+            var operationsList = [];
+            $.each(operations, function (index, value)
+            {
+                if (!skelta.utilities.isUndefinedNullOrEmpty(value))
+                {
+                    var dataObj = { optionvalue: value, optiontext: value };
+                    operationsList.push(dataObj);
+                }
+            });
+
+            var ctrlOperationApi = control.findByXmlNode("OperationsGroupAPI");
+            ctrlOperationApi.options = operationsList;
+            formViewModelObject.topLevelForm.findByXmlNode("OperationsGroupAPI").value = "";
+        }
+
+        function ClearOpenAPIDetails(control)
+        {
+            formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").options = [];
+            formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").options = [];
+            formViewModelObject.topLevelForm.findByXmlNode("DisplayColumn").value = "";
+            formViewModelObject.topLevelForm.findByXmlNode("ValueColumn").value = "";
+            var columnForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+            columnForm.removeAll();
+            var headerForm = formViewModelObject.topLevelForm.findByXmlNode("HeaderForm");
+            headerForm.removeAll();
+            columnsArray = [];
+            $('#chkSelectAll').remove();
+            $('#divSelectAll').remove();
+        }
+
+        function onOperationChanged(control, currentValue)
+        {
+            ClearOpenAPIDetails(control);
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue) || currentValue === 'select')
+            {
+                return;
+            }
+            var apiPath = operationIdWithPath[currentValue];
+            formViewModelObject.topLevelForm.findByXmlNode("OpenAPIRequestUri").value = apiPath;
+            GetOpenAPISchemaDetail(control, currentValue);
+        }
+
+        function GetOpenAPISchemaDetail(control, operationApi)
+        {
+            var webApiTitle = formViewModelObject.topLevelForm.findByXmlNode("WebAPI").value;
+            skeltaFormsUtils.showLoader();
+            var jsonHelper = skeltaFormsUtils.createJsonRequestHelper({
+                "secureParameters": paramlcsuri,
+                "webApiTitle": webApiTitle,
+                "operationApi": operationApi
+            });
+
+            skeltaFormsUtils.callServerMethod("GET",
+                "WebAPILookupControllerService.aspx/LoadOpenApiColumns",
+                "application/json; charset=utf-8",
+                jsonHelper,
+                "json",
+                function (resultData, control)
+                {
+                    if (skelta.utilities.isUndefinedNullOrEmpty(resultData))
+                    {
+                        var errorMessage = skelta.localize.getString("lkp_webapi_LoadWebApiDetail_failed");
+                        skeltaFormsUtils.showError(pageTitle, errorMessage);
+                        return;
+                    }
+
+                    ////populate value
+                    var res = $.parseJSON(resultData.d);
+                    if (res.isRequestSuccessful === true)
+                    {
+                        ClearOpenAPIDetails(control);
+                        populateOpenApiColumnsAndHeader(res);
+                    }
+                    else
+                    {
+                        var message = "";
+                        if (!skelta.utilities.isUndefinedNullOrEmpty(res) && !skelta.utilities.isUndefinedNullOrEmpty(res.message))
+                        {
+                            message = res.message;
+                        }
+                        skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_LoadColumns_failed"), null, "<br/>" + message + "<br/>");
+                        logger.logError(skelta.localize.getString("lkp_webapi_LoadColumns_failed") + message);
+                    }
+                },
+                function (result)
+                {
+                    skeltaUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), skelta.localize.getString("lkp_webapi_LoadColumns_failed"), null, "<br/>" + result.status + ' ' + result.statusText + "<br/>" + result.responseText);
+                    logger.logError(skelta.localize.getString("lkp_webapi_LoadColumns_failed") + ' ' + result.status + ' ' + result.statusText + ' ' + result.responseText);
+                },
+                function ()
+                {
+                    skeltaFormsUtils.pageLoadComplete("");
+                },
+                true);
+        }
+
+        function populateOpenApiColumnsAndHeader(result)
+        {
+            var columnForm = formViewModelObject.topLevelForm.findByXmlNode("ColumnForm");
+            var selectedItems = [];
+            columnsArray = [];
+            $.each(columnForm.Data, function (index, value)
+            {
+                var dataObj = { optionvalue: value.ColumnName, optiontext: value.ColumnName };
+                selectedItems.push(dataObj);
+            });
+
+            if (!skelta.utilities.isUndefinedNullOrEmpty(result) && !skelta.utilities.isUndefinedNullOrEmpty(result.webApiColumns))
+            {
+                var columns = JSON.parse(result.webApiColumns);
+
+                $.each(columns, function (key, value)
+                {
+                    var checkval = "";
+                    var itemval = findIndexByKeyValue(selectedItems, "optionvalue", key, "optionvalue");
+                    if (!skelta.utilities.isUndefinedNullOrEmpty(itemval))
+                    {
+                        checkval = "yes";
+                    }
+                    var dataObj = {
+                        ColumnName: key,
+                        DataType: value,
+                        IsChecked: checkval
+                    };
+                    columnForm.addRecord(dataObj);
+                    columnsArray.push(key);
+                });
+                insertSelectAllOption(false);
+            }
+
+            var headerForm = formViewModelObject.topLevelForm.findByXmlNode("HeaderForm");
+            if (!skelta.utilities.isUndefinedNullOrEmpty(result) && !skelta.utilities.isUndefinedNullOrEmpty(result.headers))
+            {
+                var headers = JSON.parse(result.headers);
+                if (!$.isEmptyObject(headers))
+                {
+                    formViewModelObject.topLevelForm.findByXmlNode("ShowAdvanceOption").value = "True";
+                    var ctlShowAdvanceOption = formViewModelObject.topLevelForm.findByXmlNode("ShowAdvanceOption");
+                    onAdvanceDesignDataChanged(ctlShowAdvanceOption);
+                }
+                $.each(headers, function (key, value)
+                {
+                    var dataObj = {
+                        Optional: value.Optional === "True" ? "YES" : "NO",
+                        Key: value.Key,
+                        Value: value.Value
+                    };
+                    headerForm.addRecord(dataObj);
+                });
+            }
+            EnableDisableHeaderItems();
+        }
+
+        function validateHeaderKey(control, currentValue)
+        {
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue))
+            {
+                return new ValidationOptions(false, skelta.localize.getString("lkp_webapi_Header_Required"));
+            }
+            else
+            {
+                return new ValidationOptions(true, '');
+            }
+        }
+
+        function validateHeaderValue(control, currentValue)
+        {
+            if (skelta.utilities.isUndefinedNullOrEmpty(currentValue))
+            {
+                var optional = control.findByXmlNode("Optional")._value.peek();
+                if (optional === 'NO')
+                {
+                    return new ValidationOptions(false, skelta.localize.getString("lkp_webapi_Header_Required"));
+                }
+            }
+
+            return new ValidationOptions(true, "");
+        }
+
+        function checkFormsAccessRights(lcsuri, deviceType)
+        {
+            var params = skeltaUtils.createJsonRequestHelper({
+                "secUri": lcsuri,
+                "rightCodes": ["ActionCreate"],
+                "deviceType": deviceType
+            });
+
+            skeltaUtils.callServerMethod("GET",
+                "../../NextGenForms/NextGenFormService.aspx/GetCurrentContextWithSecurityCheck",
+                "application/json; charset=utf-8",
+                params,
+                "json",
+                checkFormsAccessRightsSucceeded,
+                null,
+                null,
+                false);
+        }
+
+        function checkFormsAccessRightsSucceeded(successData)
+        {
+            var result = JSON.parse(successData.d);
+            if (result.IsSuccess === false)
+            {
+                skeltaUtils.showError(document.title, result.ErrorMessage);
+                skeltaUtils.pageLoadComplete("");
+                return false;
+            } else
+            {
+                var clientData = $.parseJSON(result.Result);
+                skelta.userContext.setUserContextFor("appN", clientData.fAppName);
+                skelta.userContext.setUserContextFor("uId", clientData.fUserId);
+                skeltaUtils.loadPageDefault();
+                loadWebAPILookupForm();
+            }
+        }
+
+        $(document).ready(function ()
+        {
+            try
+            {
+                pageTitle = skelta.localize.getString("lkp_webapi_form_title");
+                var oWindow = GetRadWindow();
+                if (!skelta.utilities.isUndefinedNullOrEmpty(oWindow))
+                {
+                    oWindow.set_title(pageTitle);
+                }
+                paramlcsuri = skeltaFormsUtils.getUrlParameterValue(window, 'lcsuri');
+                var spinnerEl = skeltaFormsUtils.getLoaderObject();
+                $("#skloader")[0].appendChild(spinnerEl);
+                checkFormsAccessRights(paramlcsuri, "Web");
+            }
+            catch (exception)
+            {
+                var loaderrormsg = skelta.localize.getString("lkp_webapi_formload_error");
+                skeltaFormsUtils.showError(skelta.localize.getString("lkp_webapi_form_title"), loaderrormsg, null, exception.message);
+                logger.logError(loaderrormsg + ' ' + exception.message);
+            }
+        });
+
+    </script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        se.ui.messageDialog.setGlobalOptions({
+            localization: {
+                closeButtonCaption: skelta.localize.getString("se_ui_messagedialog_close_caption"),
+                okButtonCaption: skelta.localize.getString("se_ui_messagedialog_ok_caption"),
+                cancelButtonCaption: skelta.localize.getString("se_ui_messagedialog_cancel_caption"),
+                showDetailsCaption: skelta.localize.getString("se_ui_messagedialog_showdetails_caption"),
+                hideDetailsCaption: skelta.localize.getString("se_ui_messagedialog_hidedetails_caption")
+            }
+        });
+    </script>
+    <div id="skloader" class="skloader" data-skloader="1" style="height: 100%; width: 100%; position: absolute;"></div>
+    <form class="sksa">
+        <div id="viewModel" style="display: none;">
+        </div>
+    </form>
+</body>
+
+</html>

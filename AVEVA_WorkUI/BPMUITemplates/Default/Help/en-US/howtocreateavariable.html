@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> How to Create a Variable? </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t50220" class="heading5">How to Create a Variable?</h5>
+<p class="paragraph">The below example shows how the user can create a Variable.</p>
+<p class="subheading">Creating a Variable</p>
+<ol class="step"><li class="step">Create a variable of type 'Object' in the Start Activity, for e.g. 'ProductObject'. This variable will hold the 'Product' object in the process. This variable is also used for object mapping. Mapping of an object to a variable will store the object state in the variable. This will enhance the capability of persisting the real time entities in the long running workflow.<p class="stepinfo">The following steps will explain how to create an instance of object (Approach (a)), and how to map an object to a variable (Approach (b)).</p>
+<p class="stepinfo">'Product' object with all the available constructors will be displayed in the 'SOA Objects'. Objects that can be serialized will have the option 'Map to Variable'.</p>
+<p class="stepinfo"><strong class="notelabel">Note:</strong> 'Mappped variable' feature gets enabled only for objects that are marked as 'Serializable'.</p>
+</li><li class="step">Create a 'Product' object instance by selecting a constructor and pass the appropriate parameters to it.</li><li class="step">Click 'Set' to set the expression to the constructor.</li><li class="step">Pass the valid parameters to the constructor. E.g.: &nbsp;&quot;Rad01&quot;,&quot;Radiator&quot;,&quot;Spare Part Automobile&quot;, 20000<p class="stepinfo">Map the variable to the object. The Mapped variable will get automatically filled with the real time entity whenever the object gets instantiated. This happens for the first time, and further invoking the object will get the object state stored in the variable.</p>
+</li><li class="step">Click 'Map to Variable' to map a variable to the instance. Only object type variables can be mapped to SOA Objects. A pop-up with 'Map to Variable' will get displayed.</li><li class="step">Select the variable to be mapped and click 'Map'. This will map the variable to the SOA Object. It is possible to create a variable of type object by clicking 'New' and mapping the variables.</li><li class="step">The Mapped variable will get displayed in the 'Mapped Variable' field.</li><li class="step">After the variable is mapped, click 'Save' to save the instance.</li><li class="step">Create an instance of 'OrderLineCalculator' class. This object will be used for calculating the total amount.</li></ol><p class="paragraph"><br></p>
+<p class="paragraph"><br></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="SOAObjectSupport.html" target="_self">SOA Object Support</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

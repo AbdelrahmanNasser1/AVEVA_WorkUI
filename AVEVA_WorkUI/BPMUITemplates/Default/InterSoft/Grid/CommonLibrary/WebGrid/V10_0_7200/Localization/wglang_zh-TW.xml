@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Localization culture="zh-TW" description="">
+    <CommonText>
+        <Ready>準備.</Ready>
+        <More>正在載入資料…</More>
+        <LoadGroup>正在載入分組…</LoadGroup>
+        <Sort>正在對當前列排序…</Sort>
+        <Group>正在列分組…</Group>
+        <Ungroup>正在取消列分組…</Ungroup>
+        <ChangeGroup>正在改變分組列…</ChangeGroup>
+        <FilterText>正在過濾列…</FilterText>
+        <LoadChild>正在載入子行…</LoadChild>
+        <ColumnChange>正在改變列…</ColumnChange>
+        <Refresh>正在更新資料…</Refresh>
+        <RefreshAll>正在更新資料與結構…</RefreshAll>
+        <RefreshChild>正在更新子表…</RefreshChild>
+        <AddRow>正在添加新行…</AddRow>
+        <UpdateRow>正在更新行…</UpdateRow>
+        <DeleteRow>正在刪除行…</DeleteRow>
+        <ReadyError>準備上一次請求中未處理的錯誤,按一下獲取更多資訊</ReadyError>
+        <ColumnMove>正在移除列…</ColumnMove>
+        <Loaded>已經載入 [total] 分之 [n]  </Loaded>
+        <ExportText>正在匯出…</ExportText>
+        <NoData>在當前視圖中沒有任何行</NoData>
+        <NewRowInfo>請點擊這裡添加新行…</NewRowInfo>
+        <GroupByBoxInfo>拖動列標頭到這裡實現對該列的分組</GroupByBoxInfo>
+        <LoadSelfRefChild>載入自身相關子行…</LoadSelfRefChild>
+        <CalendarToday>今天</CalendarToday>
+        <CalendarNone>無</CalendarNone>
+        <Filtered>已過濾</Filtered>
+        <Unfiltered>取消過濾</Unfiltered>
+        <LoadPreviewRow>載入前一行...</LoadPreviewRow>
+        <InputRequiredStatus>請輸入一個或多個儲存格值.</InputRequiredStatus>
+        <UpdateSuccess>已成功更新記錄.</UpdateSuccess>
+        <AddSuccess>已成功添加記錄.</AddSuccess>
+        <DeleteSuccess>已成功刪除記錄.</DeleteSuccess>
+        <ReadOnlyCell>此儲存格唯讀.</ReadOnlyCell>
+        <ModifiedCell>此儲存格已修改.</ModifiedCell>
+        <EditedCell>此儲存格正在編輯.</EditedCell>
+        <PagingLoading>載入 {0}頁...</PagingLoading>
+        <PagingStatus>第 {0} / {1} 頁 </PagingStatus>
+        <PagingPartialGroup>(第 {0}-{1} / {2} 條記錄)</PagingPartialGroup>
+        <BatchUpdate>提交所有更新到伺服器...</BatchUpdate>
+        <PendingChanges>{0} 待修改.</PendingChanges>
+        <DeletedRowNoEdit>標記為已刪除的行不能編輯.</DeletedRowNoEdit>
+        <DeletedRowNoExpand>標記為已刪除的行不能展開.</DeletedRowNoExpand>
+        <BatchUpdateSuccess>所有修改已成功更新到伺服器.</BatchUpdateSuccess>
+        <BatchUpdateSuccessWithPartialErrors>由於伺服器處理錯誤，一個或多個更新失敗.</BatchUpdateSuccessWithPartialErrors>
+        <LoadingData>從伺服器載入資料...</LoadingData>
+        <LoadingDataClient>從web服務載入資料.....</LoadingDataClient>
+        <GroupRowPagingStatus>已載入 {0} / {1} 行</GroupRowPagingStatus>
+        <GroupRowLoadMore>在這組載入更多行</GroupRowLoadMore>
+        <GroupRowPartialCount>{0}/{1}</GroupRowPartialCount>
+    </CommonText>
+    <MessageBoxText>
+        <NoChildRow>目前記錄沒有子行</NoChildRow>
+        <InProgress>表格當前正在處理請求，請等待…</InProgress>
+        <UnhandledError>出現未處理異常，細節如下</UnhandledError>
+        <LoadMoreException>當表格沒有分組列時才能載入更多資料</LoadMoreException>
+        <AddNewRow>新行已經被編輯，是否需要新增行？</AddNewRow>
+        <UpdateRow>當前選擇行已經改變，是否需要更新？</UpdateRow>
+        <DeleteRow>是否確認刪除該行？</DeleteRow>
+        <DeleteSelectedRows>是否確認刪除多行？</DeleteSelectedRows>
+        <SelectColumnException>至少指定一列可見!</SelectColumnException>
+        <ClipboardException>剪貼板無數據.</ClipboardException>
+        <ClipboardDataUnmatch>剪貼板資料與此表結構不匹配.\n仍然繼續嗎?</ClipboardDataUnmatch>
+        <UnsavedPendingChanges>某些地方已改變. 任何未保存的改變都將丟失.</UnsavedPendingChanges>
+        <NotifyPendingChanges>有{0}個改變的地方待更新 . 按一下右下角‘Accept Changes button’按鈕更新修改.</NotifyPendingChanges>
+        <UndoPendingChanges>是否確定取消所有改變?</UndoPendingChanges>
+        <UndoSelectedPendingChanges>是否確定取消已選擇的改變?</UndoSelectedPendingChanges>
+        <DeletedRowEditException>你不能刪除此行，因為其父行已標記為已刪除的行.</DeletedRowEditException>
+        <DuplicateKeyException>待修改的記錄包含鍵值 '{0}'</DuplicateKeyException>
+        <PrimaryKeyEditException>不允許修改主鍵.</PrimaryKeyEditException>
+        <BatchUpdateException>批次處理更新時發生異常. 請改正或取消更改.\n\n更多異常資訊:\n{0}</BatchUpdateException>
+        <BatchUpdatePartialException>某些錯誤導致表格更新{0}/{1}個改變失敗.請更正錯誤.\n\n以下記錄未更新:\n{2}</BatchUpdatePartialException>
+
+    </MessageBoxText>
+    <Tooltip>
+        <Refresh>刷新表格資料</Refresh>
+        <LoadMore>載入更多資料</LoadMore>
+        <ExportText>匯出表格</ExportText>
+        <Help>表格用戶端説明</Help>
+        <RemoveFilters>移除所有過濾</RemoveFilters>
+        <RestoreFilters>使用最後一次保存的過濾</RestoreFilters>
+        <NoFilter>沒有過濾</NoFilter>
+        <InputRequired>此儲存格不能為空</InputRequired>
+        <PagingFirst>首頁</PagingFirst>
+        <PagingPrev>上一頁</PagingPrev>
+        <PagingNext>下一頁</PagingNext>
+        <PagingLast>末頁</PagingLast>
+        <PagingGoTo>跳越網頁面</PagingGoTo>
+        <PagingSlider>拖動或按一下這裡改變資料頁檢視</PagingSlider>
+        <GridView>選擇grid視圖</GridView>
+        <PivotChartView>選擇PivotChart視圖</PivotChartView>
+        <ModifiedRowState>已修改的行</ModifiedRowState>
+        <AddedRowState>已添加的行</AddedRowState>
+        <DeletedRowState>已刪除的行</DeletedRowState>
+        <PendingChangesEmpty>當前頁面沒有待改變的地方</PendingChangesEmpty>
+        <PendingChangesExisted>有{0}個待改變: {1}個 插入, {2}個編輯, {3}個刪除</PendingChangesExisted>
+        <ReviewChanges>預覽待改變的地方</ReviewChanges>
+        <UndoChanges>取消所用改變</UndoChanges>
+        <AcceptChanges>接受所用改變</AcceptChanges>
+    </Tooltip>
+    <Grouping>
+        <Today>今天</Today>
+        <Yesterday>昨天</Yesterday>
+        <LastWeek>上周</LastWeek>
+        <TwoWeeksAgo>兩周前</TwoWeeksAgo>
+        <ThreeWeeksAgo>三周前</ThreeWeeksAgo>
+        <LastMonth>上月</LastMonth>
+        <EarlierThisMonth>本月之前</EarlierThisMonth>
+        <Older>更早</Older>
+    </Grouping>
+    <ContextMenu>
+        <Column>
+            <SortAsc>昇冪排列</SortAsc>
+            <SortDesc>降冪排列</SortDesc>
+            <GroupByThisField>使用當前欄位分組</GroupByThisField>
+            <UngroupField>取消當前欄位分組</UngroupField>
+            <GroupByBox>顯示/隱藏分組盒</GroupByBox>
+            <RemoveColumn>移除當前列</RemoveColumn>
+            <BestFit>最佳匹配</BestFit>
+            <FilterBar>過濾條</FilterBar>
+            <SelectColumns>選擇列</SelectColumns>
+            <ApplyChanges>應用改變</ApplyChanges>
+            <Reset>重新設置</Reset>
+            <FreezePane>凍結列</FreezePane>
+            <UnfreezePane>取消凍結列</UnfreezePane>
+            <SortAscText>按A到Z排序</SortAscText>
+            <SortAscNumber>按小到大排序</SortAscNumber>
+            <SortAscDate>按時間昇冪排序</SortAscDate>
+            <SortAscBool>按不選擇到選擇排序</SortAscBool>
+            <SortDescText>按Z到A排序</SortDescText>
+            <SortDescNumber>按小到大排序</SortDescNumber>
+            <SortDescDate>按時間降冪排序</SortDescDate>
+            <SortDescBool>按選擇到不選擇排序</SortDescBool>
+            <ClearFilter>清除所有過濾</ClearFilter>
+            <TextFilters>文本過濾</TextFilters>
+            <NumberFilters>數字過濾</NumberFilters>
+            <DateFilters>日期過濾</DateFilters>
+            <BoolFilters>篩檢程式</BoolFilters>
+        </Column>
+        <Row>
+            <CopySelection>複製當前選擇的物件</CopySelection>
+            <CopyCell>複製目前的儲存格</CopyCell>
+            <CopyRow>複製當前行</CopyRow>
+            <CopyTable>複製當前表</CopyTable>
+            <Update>提交修改</Update>
+            <Cancel>取消修改</Cancel>
+            <Undo>取消改變</Undo>
+            <UndoSelection>取消選擇</UndoSelection>
+            <AcceptAll>接受所有改變</AcceptAll>
+            <ShowChildRows>顯示子行</ShowChildRows>
+            <HideChildRows>隱藏子行</HideChildRows>
+            <Edit>修改</Edit>
+            <Delete>刪除</Delete>
+            <DeleteSelection>刪除選擇的行</DeleteSelection>
+            <Expand>展開</Expand>
+            <Collapse>收攏</Collapse>
+            <ExpandAll>全部展開</ExpandAll>
+            <CollapseAll>全部收攏</CollapseAll>
+            <PerformAdd>完成添加</PerformAdd>
+            <CancelAdd>取消添加</CancelAdd>
+            <ApplyFilter>應用所有篩檢程式</ApplyFilter>
+            <ClearFilter>清除所有篩檢程式</ClearFilter>
+            <AddNewRow>添加新行</AddNewRow>
+            <PasteToNewRow>粘貼</PasteToNewRow>
+            <GotoFilterRow>移至過濾行</GotoFilterRow>
+            <ClearFilterCell>清除該列過濾</ClearFilterCell>
+            <Refresh>刷新Grid</Refresh>
+            <LoadMore>載入更多資料</LoadMore>
+            <Export>匯出數據</Export>
+            <Help>顯示用戶端説明</Help>
+            <UndoChanges>取消改變</UndoChanges>
+            <UndoAllChanges>取消所有改變</UndoAllChanges>
+            <AcceptAllChanges>接受所有改變</AcceptAllChanges>
+            <ReviewChanges>預覽已改變的地方...</ReviewChanges>
+            <PasteMultipleRows>粘貼多行</PasteMultipleRows>
+        </Row>
+        <FilterSuggest>
+            <ET>等於{0}</ET>
+            <NET>不等於{0}</NET>
+            <Contain>包含{0}</Contain>
+            <NotContain>不包含{0}</NotContain>
+            <LTET>小於等於{0}</LTET>
+            <GTET>大於等於{0}</GTET>
+            <OnBefore>在{0}或之前</OnBefore>
+            <OnAfter>在{0}或之後</OnAfter>
+            <Checked>已選擇(為真)</Checked>
+            <NotChecked>未選擇(為假)</NotChecked>
+            <Tomorrow>明天</Tomorrow>
+            <Today>今天</Today>
+            <Yesterday>昨天</Yesterday>
+            <NextWeek>下周</NextWeek>
+            <ThisWeek>這周</ThisWeek>
+            <LastWeek>上周</LastWeek>
+            <NextMonth>下月</NextMonth>
+            <ThisMonth>這月</ThisMonth>
+            <LastMonth>上月</LastMonth>
+            <Past>過去</Past>
+            <Future>將來</Future>
+            <Blank>空白值</Blank>
+        </FilterSuggest>
+        <Filter>
+            <NotSet>未設置</NotSet>
+            <GTET>大於或等於</GTET>
+            <GT>大於</GT>
+            <ET>等於</ET>
+            <NET>不等於</NET>
+            <LTET>小於或等於</LTET>
+            <LT>小於</LT>
+            <Like>相似</Like>
+            <NotLike>不相似</NotLike>
+            <Between>在此範圍內</Between>
+            <NotBetween>不在此範圍內</NotBetween>
+            <IsNull>為空值</IsNull>
+            <NotIsNull>不為空值</NotIsNull>
+            <IsEmpty>空</IsEmpty>
+            <NotIsEmpty>非空</NotIsEmpty>
+            <ApplyAll>應用所有的篩檢程式</ApplyAll>
+            <Clear>清除該篩檢程式</Clear>
+            <ClearAll>清除所有篩檢程式</ClearAll>
+        </Filter>
+        <Export>
+            <ExportRoot>匯出表格</ExportRoot>
+            <ExportChild>輸出選定的子表</ExportChild>
+            <Portrait>縱向</Portrait>
+            <Landscape>橫向</Landscape>
+            <DoExport>立即匯出</DoExport>
+        </Export>
+        <Paging>
+            <PageFormat>第{0}頁</PageFormat>
+        </Paging>
+        <PendingChanges>
+            <Review>預覽改變...</Review>
+            <Undo>取消所有改變</Undo>
+            <Accept>接受所有改變</Accept>
+        </PendingChanges>
+        <Custom description="在這裡添加您自訂的功能表文字">
+            <CustomText1>
+            </CustomText1>
+            <CustomText2>
+            </CustomText2>
+        </Custom>
+    </ContextMenu>
+    <Charting>
+        <Loading>正在載入圖表...</Loading>
+
+        <DropFilterField>添加過濾欄位</DropFilterField>
+        <DropDataField>添加資料欄位</DropDataField>
+        <DropSeriesField>添加連續欄位</DropSeriesField>
+        <DropCategoryField>添加類別欄位</DropCategoryField>
+
+        <DropXData>X 值</DropXData>
+        <DropYData>Y 值</DropYData>
+        <DropBubbleData>冒泡式數據</DropBubbleData>
+        <DropHighData>高數據</DropHighData>
+        <DropLowData>低數據</DropLowData>
+        <DropOpenData>打開資料</DropOpenData>
+        <DropCloseData>關閉數據</DropCloseData>
+        <DropThetaData>數據消耗</DropThetaData>
+        <DropRadiusData>半徑</DropRadiusData>
+
+        <ShowHideRibbon>顯示/隱藏</ShowHideRibbon>
+        <FilterSortRibbon>過濾 / 排序</FilterSortRibbon>
+        <ChartRibbon>報表</ChartRibbon>
+        <TitlesRibbon>標題</TitlesRibbon>
+
+        <FieldListButton>欄位清單</FieldListButton>
+        <DropZoneButton>顯示/隱藏拖拽區</DropZoneButton>
+        <LegendButton>顯示/隱藏說明</LegendButton>
+        <AutoFilterButton><![CDATA[自動<br/>過濾]]></AutoFilterButton>
+        <AscendingButton>昇冪</AscendingButton>
+        <DescendingButton>降冪</DescendingButton>
+        <ChartTypeButton><![CDATA[報表<br/>類型]]></ChartTypeButton>
+        <SwitchRowColumnButton>選擇行/列</SwitchRowColumnButton>
+        <UpdateButton>刷新</UpdateButton>
+
+        <TitleXAxis>X 座標 :</TitleXAxis>
+        <TitleYAxis>Y 座標 :</TitleYAxis>
+        <TitleZAxis>Z 座標 :</TitleZAxis>
+
+        <ErrorDuplicateData>該報表資料已存在于報表集合中</ErrorDuplicateData>
+        <ErrorAddToData>不能添加該欄位到欄位區</ErrorAddToData>
+        <ErrorAddToFilter>不能添加該欄位到篩檢程式</ErrorAddToFilter>
+        <ErrorAddToCategory>不能添加該欄位到類別</ErrorAddToCategory>
+        <ErrorAddToSeries>不能添加該欄位到連續欄位</ErrorAddToSeries>
+    </Charting>
+</Localization>

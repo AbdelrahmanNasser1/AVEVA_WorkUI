@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Enabling Xcopy Deployment </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t602238" class="heading2">Enabling Xcopy Deployment</h2>
+<p class="paragraph">AVEVA Work Tasks enables Xcopy deployment of dlls. Xcopy enables direct replacement of dlls by ensuring that they are not locked by the processes. Xcopy deployment is not applicable to the Windows Services, Workflow.NET.dll, Workflow.NET.Communication.dll, and Custom dlls configured for getting connection string.</p>
+<p class="paragraph">Complete the following steps to enable Xcopy deployment:</p>
+<ol class="step"><li class="step">Stop all the AVEVA Work Tasks Services</li><li class="step">Ensure that the custom application folders have been configured in the  Repository Settings in the Central Configuration Site.</li><li class="step">Reference the &quot;Workflow.NET.Web.SkeltaXcopy.dll&quot; from &quot;bin&quot; folder of the AVEVA Work Tasks installation directory.</li><li class="step">Ensure that the file watcher has been configured for the application in the Repository Settings.</li><li class="step">Enable AVEVA Work Tasks Xcopy in the Application_Start method in the Global.asax.cs of the application.<p class="stepinfo"></p>
+<p class="stepinfo"> <br><br><img id="f52339" src="52339.jpg" class="embeddedimage100%scalinglive" alt="" height="276" width="389" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"></p>
+</li><li class="step">After configuring Xcopy, the dlls will not be locked by the processes and can be replaced directly.</li><li class="step">Restart all AVEVA Work Tasks Services.</li></ol><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="UsingWonderwareSkeltaBPMActivities.html" target="_self">Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

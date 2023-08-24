@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Using 'XML Iterator' Type Variables </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h5 id="t601931" class="heading5">Using 'XML Iterator' Type Variables</h5>
+<p class="paragraph">XML Iterator Variables can be used in any of the following ways:</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Building conditions for setting Activity Properties</b>&nbsp;- XML Iterator Variables can be used like an XML Variable to build conditions for setting Activity Properties. However, when you select the XML Variable of XML Iterator type, only the nodes under the selected node of the parent variable are shown.</li><li class="ulitem"><b class="uicontrol">In For-Each Loop activity</b>&nbsp;- XML Iterator variables can be used in the For-Each Loop activity to loop through an activity till it executes for the entire collection in the XMLIterator variable. Example of XML Iterator Variable in For-Each Loop</li><li class="ulitem"><b class="uicontrol">Navigate to a specific node in the collection</b>&nbsp;- XML Iterator variables can be used in the XML Navigator Activity to go to a specific node in the collection and then perform an action. Example of XML Navigator Activity</li></ul><p class="subheading">Example of XML Iterator Variable in For-Each Loop</p>
+<p class="paragraph">In this example, the XML Iterator Variable is used to get approval from all managers in the Managers.XML file containing the list of all the users who are managers.</p>
+<p class="subheading">Managers.XML file</p>
+<p class="codeblock1">&lt;Managers&gt;</p>
+<p class="codeblock1">&lt;Users&gt;</p>
+<p class="codeblock1">&lt;User id=1&gt;</p>
+<p class="codeblock1">&lt;Name&gt;John&lt;/name&gt;         </p>
+<p class="codeblock1">&lt;/User&gt;</p>
+<p class="codeblock1">&lt;User id=2&gt;</p>
+<p class="codeblock1">&lt;Name&gt;Jim&lt;/name&gt;         </p>
+<p class="codeblock1">&lt;/User&gt;</p>
+<p class="codeblock1">&lt;User id=3&gt;</p>
+<p class="codeblock1">&lt;Name&gt;Victor&lt;/name&gt;         </p>
+<p class="codeblock1">&lt;/User&gt;</p>
+<p class="codeblock1">&lt;User id=4&gt;</p>
+<p class="codeblock1">&lt;Name&gt;Andy&lt;/name&gt;         </p>
+<p class="codeblock1">&lt;/User&gt;</p>
+<p class="codeblock1">&lt;/Users&gt;</p>
+<p class="codeblock1">&lt;/ Managers &gt;</p>
+<p class="paragraph"><strong class="strong">Step 1:</strong>&nbsp;XML Iterator Variable is defined for users. The node Users holds the collection of managers.</p>
+<p class="paragraph"><strong class="strong">XML Iterator Variable for Managerial Users</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50448" src="50448.png" class="embeddedimage100%scalinglive" alt="" height="198" width="567" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 2:&nbsp;</strong> The approval activity is set within a For-Each Loop activity.</p>
+<p class="paragraph"><strong class="strong">For-Each Loop Activity for Looping Approvals</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50449" src="50449.png" class="embeddedimage100%scalinglive" alt="" height="489" width="232" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 3:</strong>&nbsp;The XML Iterator Variable 'Users' is defined in XML Iterator field of For-Each Loop properties. The Execution type is set to Serial as the approval is to be processed serially.</p>
+<p class="note"><strong class="notelabel">Note:</strong> The Execution type is set to Parallel as the approval is to be processed simultaneously by all approvers. When the Execution type is Parallel, the Next Loop activity is not required.</p>
+<p class="paragraph"><strong class="strong">For-Each Loop Property for XML Iterator</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50452" src="50452.png" class="embeddedimage100%scalinglive" alt="" height="491" width="261" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 4:</strong>&nbsp;The XML Iterator variable is specified in the condition for selecting actors for the approval.</p>
+<p class="paragraph"><strong class="strong">Actor Selection for Approval Activity</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50453" src="50453.png" class="embeddedimage100%scalinglive" alt="" height="252" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 5:</strong>&nbsp;When the above workflow is invoked, the Workflow Engine resolves &quot;XMLVariables.users.user.ID&quot;. It gets the ID of each manager and assigns the task to that manager.</p>
+<p class="paragraph"></p>
+<p class="paragraph"></p>
+<p class="subheading">Example of XML Navigator Activity</p>
+<p class="paragraph">A company allocates new laptops to employees as and when new inventories are received based on date of requisition. Allotments are to be approved by the manager of the requisitions user. Users with requisitions are added to a waiting list  by the Facilities Management System. Allotments are made to the user at the top of the list. When the allotment is complete, the user is removed from the list. If a manager rejects the allotment,  the allotment is made to the next person in the waiting list. This example demonstrates how the XML Navigator Activity is used to automate a process.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 1:</strong> A global XML Iterator variable is defined for the node users.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">XML Iterator Variable for Users</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50448_1" src="50448.png" class="embeddedimage100%scalinglive" alt="" height="198" width="567" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 2:</strong> The XML Navigator activity is added to the workflow with <b class="uicontrol">Location</b> set to First.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">XML Navigator Properties</strong></p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50454" src="50454.png" class="embeddedimage100%scalinglive" alt="" height="609" width="275" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 3:</strong> An Approval activity is added after the XML Navigator Activity that sends an approval task to the manager of the user at the top of the list. The  XMLNavigator links to Approval only if a record is found in the waiting list.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 4:</strong> The Approval task is linked to another XML Navigator Activity with the property set to <b class="uicontrol">Next</b>.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Step 5:</strong>  The following figure depicts the workflow after adding these two properties.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><img id="f50455" src="50455.png" class="embeddedimage100%scalinglive" alt="" height="550" width="122" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="introductiontoxmliteratorxmlvariable.html" target="_self">Introduction to 'XML Iterator' XML Variable</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

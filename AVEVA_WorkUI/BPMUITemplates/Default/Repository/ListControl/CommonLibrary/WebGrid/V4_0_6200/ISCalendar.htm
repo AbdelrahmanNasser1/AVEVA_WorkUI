@@ -1,0 +1,119 @@
+<html>
+	<HEAD>
+		<title>IS Date Picker</title>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<style> .backgroundStyle { FONT-SIZE: 8pt; FONT-FAMILY: Verdana }
+	.topPanelStyle { FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #5f76b1 }
+	.dayDescStyle { BORDER-RIGHT: silver 1px solid; BORDER-TOP: silver 1px solid; FONT-SIZE: 7pt; BORDER-LEFT: silver 1px solid; BORDER-BOTTOM: silver 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fffbf7 }
+	.selectStyle { FONT-SIZE: 8pt; FONT-FAMILY: Verdana }
+	.todayStyle { BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid; FONT-FAMILY: Verdana }
+	.selectedDayStyle { FONT-SIZE: 8pt; COLOR: white; FONT-FAMILY: Verdana; BACKGROUND-COLOR: darkblue }
+	.buttonStyle { BORDER-RIGHT: darkblue 1px solid; BORDER-TOP: darkblue 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: darkblue 1px solid; BORDER-BOTTOM: darkblue 1px solid; FONT-FAMILY: Verdana }
+	.bottomPanelStyle { BORDER-TOP: silver 1px solid }
+		</style>
+	</HEAD>
+	<body leftMargin="0" style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" scroll="no" topMargin="0" onload2="loadDatePicker()">
+		<table border="0" cellPadding="0" cellSpacing="0" width="170" style="BORDER-RIGHT: navy 1px solid; BORDER-TOP: navy 1px solid; BORDER-LEFT: navy 1px solid; BORDER-BOTTOM: navy 1px solid" class="backgroundStyle">
+			<tr>
+				<td vAlign="top">
+					<table border="0" cellPadding="0" cellSpacing="1" width="100%" bgColor="#5f76b1" class="topPanelStyle">
+						<tr>
+							<td><IMG id="btnPrev" onclick="parent.goPrev()" src="BtnPrev.gif" style="CURSOR: hand" title="Previous Month"></td>
+							<td width="100%" align="middle"><select id="cbMonth" name="cbMonth" onkeydown="parent.calKBHandler()" onchange="parent.getCalendar( cbMonth.value, cbYear.value ); parent.ensureVisible()" class="selectStyle">
+									<option selected value="1">Jan</option>
+									<option value="2">Feb</option>
+									<option value="3">Mar</option>
+									<option value="4">Apr</option>
+									<option value="5">May</option>
+									<option value="6">Jun</option>
+									<option value="7">Jul</option>
+									<option value="8">Aug</option>
+									<option value="9">Sep</option>
+									<option value="10">Oct</option>
+									<option value="11">Nov</option>
+									<option value="12">Dec</option>
+								</select>&nbsp;<select id="cbYear" name="cbYear" onkeydown="parent.calKBHandler()" onchange="parent.getCalendar( cbMonth.value, cbYear.value ); parent.ensureVisible()" class="selectStyle">
+								</select></td>
+							<td><IMG id="btnNext" onclick="parent.goNext()" src="BtnNext.gif" style="CURSOR: hand" title="Next Month"></td>
+						</tr>
+					</table>
+					<table border="0" cellPadding="0" style="table-layout: fixed" cellSpacing="1" class="dayDescStyle" width="100%">
+						<tr id="trDayDesc">
+							<td align="middle" width="22" style="overflow-x:hidden; width:22px">Sun</td>
+							<td align="middle" width="22" style="overflow-x:hidden; width:22px">Mon</td>
+							<td align="middle" width="22" style="overflow-x:hidden; width:22px">Tue</td>
+							<td align="middle" width="22" style="overflow-x:hidden; width:22px">Wed</td>
+							<td align="middle" width="22" style="overflow-x:hidden; width:22px">Thu</td>
+							<td align="middle" width="22" style="overflow-x:hidden; width:22px">Fri</td>
+							<td align="middle">Sat</td>
+						</tr>
+					</table>
+					<table border="0" cellPadding="0" cellSpacing="1" class="backgroundStyle" width="100%" id="dpCalGrid" onClick="parent.dayClick()" style="CURSOR: hand">
+						<tr>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+						</tr>
+						<tr>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+						</tr>
+						<tr>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+						</tr>
+						<tr>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+						</tr>
+						<tr>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+						</tr>
+						<tr>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+							<td align="middle" width="22"></td>
+						</tr>
+					</table>
+					<TABLE id="Table1" class="bottomPanelStyle" cellSpacing="0" cellPadding="2" width="100%" border="0">
+						<TR>
+							<TD noWrap align="middle">
+								<INPUT id="Button1" type="button" onclick="parent.setToday()" value="Today" name="Button1" class="buttonStyle" style="WIDTH: 60px"></TD>
+							<TD noWrap align="middle">
+								<INPUT id="Button2" type="button" onclick="parent.setNone()" value="None" name="Button1" class="buttonStyle" style="WIDTH: 60px"></TD>
+						</TR>
+					</TABLE>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

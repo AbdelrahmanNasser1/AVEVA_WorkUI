@@ -1,0 +1,29 @@
+﻿/*
+
+	This CSS file (SkeltaCustomControlDesigner.css) helps you to to add an icon to a custom control in the Forms Designer toolbox.
+
+	To add an icon to a custom control
+
+	1. Add a custom icon (a normal icon and a hover icon) in the <Wonderware Skelta BPM Install Path>\Web\BPMUITemplates\Default\Themes\<ThemeName>\NextGenForms\images folder.
+	2. Copy the commented style (given below) and paste it at the end.
+	3. Delete the CSS comments tags.
+	4. Replace <namespace.classname> with the custom control namespace and class name.
+	5. Replace <custom_icon> with the file name for the normal icon.
+	6. Replace <custom_icon_hover> with the file name for the hover icon.
+
+*/
+
+
+/*
+
+.sktbci[data-skttp="<namespace.classname>"]
+	{
+		background-image: url(../../images/<custom_icon>.png);
+	}
+
+.sktbc:hover > .sktbci[data-skttp="<namespace.classname>"] 
+	{
+		background-image: url(../../images/<custom_icon_hover>.png);
+	}
+
+*/

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Set Custom Timer: Schedule Time </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t488923" class="heading4">Set Custom Timer: Schedule Time</h4>
+<p class="subheading">Schedule Time Property window</p>
+<p class="paragraph">You can set the schedule time property for the Set Custom Timer activity, used to execute some other activity, in this property window. To open this window, click the button for the 'Schedule Time' property. The time is assigned to workflow variables in this window. It displays the settings for the variables in a grid, which also has a blank row where you can enter the settings for a new variable.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f51227" src="51227.png" class="embeddedimage100%scalinglive" alt="" height="165" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraphimage"></p>
+<p class="paragraph"><strong class="strong">Schedule Time property</strong></p>
+<p class="paragraph">The window has two tabs at the top to manage the rows of schedule settings in the grid.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Add Row</b>&nbsp;- You can click this tab to add the newly entered schedule settings and display a new row to the grid where you can add another schedule setting</li><li class="ulitem"><b class="uicontrol">Remove Selected</b>&nbsp;- You can click this tab to remove the schedule setting selected in the grid.</li></ul><p class="paragraph"></p>
+<p class="paragraph">The grid has the following parameters that you need to specify for the new schedule.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Variable Description</b>&nbsp;- You can select the workflow variable, which holds the schedule time for the execution of &nbsp;the specified workflow activity, from the drop down for this field.</li><li class="ulitem"><b class="uicontrol">Recurring?</b>&nbsp;- You can select &quot;Yes&quot; in this drop down to indicate that the schedule is recurring.</li><li class="ulitem"><b class="uicontrol">Output</b>&nbsp;- You can enter the output message for this activity in this field.</li></ul><p class="paragraph"></p>
+<p class="paragraph">There are two buttons and a check box at the bottom of the screen.</p>
+<ul class="ulitem"><li class="ulitem"><b class="uicontrol">Update</b>&nbsp;- You can click this button to save the newly added schedule settings.</li><li class="ulitem"><b class="uicontrol">Close</b>&nbsp;- You can click this to close the property window without saving the newly added schedule settings.</li><li class="ulitem"><b class="uicontrol">Last Row needs to be added</b>&nbsp;- You need to select this check box to save the last row added.</li></ul><table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="customtimerset11.html" target="_self">Set Custom Timer Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

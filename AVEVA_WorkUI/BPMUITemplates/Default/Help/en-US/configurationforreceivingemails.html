@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Configuring Farm Configuration Wizard for Receiving Emails </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t601992" class="heading4">Configuring Farm Configuration Wizard for Receiving Emails</h4>
+<p class="paragraph">To configure the AVEVA Work Tasks Communication Service for processing emails, you must set attributes. The properties can be set from the Farm Configuration wizard by clicking the Settings&nbsp;<img id="f51283" src="51283.png" class="embeddedimage100%scalinglive" alt="" height="18" width="20" vspace="0" hspace="0" align="bottom" border="0">image next to&nbsp;<strong class="strong">Communication Service</strong>.</p>
+<p class="paragraph">On clicking icon, the&nbsp;<b class="uicontrol">Communication Service Settings</b>&nbsp;window is displayed.</p>
+<p class="paragraph"></p>
+<p class="paragraph"><strong class="strong">Communication Server</strong></p>
+<p class="paragraph">Under the&nbsp;<b class="uicontrol">Communication Server</b>&nbsp;tab, you need to configure the following fields:</p>
+<ol class="step"><li class="step"><b class="uicontrol">Listener IP Address</b> &nbsp;-&nbsp;The IP Address of the Service.</li><li class="step"><b class="uicontrol">Port</b> -&nbsp;The Port assigned to the Service.</li><li class="step"><b class="uicontrol">Wait Task Handler Path</b> -&nbsp;The Assembly path for handling timeout task &amp; handler for received email (this is used for customization).</li><li class="step"><b class="uicontrol">Wait Task Handler Class</b> -&nbsp;The Class name for handling timeout task &amp; handler for received email (this is used for customization).</li><li class="step"><b class="uicontrol">Block mail Addresses</b> -&nbsp;The Communication Service will not process mails coming from these addresses like abc@dom1.com.</li></ol><p class="paragraph"><strong class="strong"> </strong></p>
+<p class="paragraph"><strong class="strong">Enterprise Server</strong></p>
+<p class="paragraph">Under the&nbsp;<b class="uicontrol">Enterprise Server settings</b>&nbsp;section of the<b class="uicontrol">&nbsp;Communication Server</b>&nbsp;tab, you need to configure the following fields:</p>
+<ol class="step"><li class="step"><b class="uicontrol">Load Balanced</b> &nbsp;-&nbsp;This field is used to set load balancing for AVEVA Work Tasks. This field is enabled only for the Enterprise Edition installation. To enable load balancing set the Load Balanced value to true.</li><li class="step"><b class="uicontrol">Load Balanced Server Port</b> -&nbsp;This field denotes the port number used by Enterprise Server. This value must be modified if the default port value is in use.</li><li class="step"><b class="uicontrol">Load Balanced Client Port</b> -&nbsp;This field is used to enter the port number for the Client.</li></ol><p class="paragraph"></p>
+<p class="subheading">Mail Server</p>
+<p class="paragraph">Under the&nbsp;<b class="uicontrol">Mail Server</b>&nbsp;tab, you need to configure the following fields:</p>
+<p class="paragraph">This node determines which option is chosen for receiving emails. Currently two options are supported &#8211;&nbsp;<b class="uicontrol">Default</b>&nbsp;and&nbsp;<b class="uicontrol">POP3</b>.</p>
+<p class="paragraph"><b class="uicontrol">Default</b> - &nbsp;If you choose Default, the Communication Service will act like a mail server. All mails received by the&nbsp;<b class="uicontrol">Communication Service</b>&nbsp;will be forwarded to the specific Workflow for processing.</p>
+<p class="paragraph">If&nbsp;<b class="uicontrol">POP3</b>&nbsp;is not enabled in mail server then&nbsp;<b class="uicontrol">Default</b>&nbsp;option can be used for getting the emails. </p>
+<p class="paragraph">Do the following settings for configuring&nbsp;Default&nbsp;option:</p>
+<ol class="step"><li class="step">Select&nbsp;<b class="uicontrol">Default</b>&nbsp;option.</li><li class="step">Set&nbsp;<b class="uicontrol">Listener IP Address</b>&nbsp;under&nbsp;<b class="uicontrol">Communication Server</b>&nbsp;tab and <b class="uicontrol">Communication Service Server IP</b>&nbsp;under&nbsp;<b class="uicontrol">Mail Server</b>&nbsp;tab with the IP address of the machine where Communication Service is installed(i.e Server).</li><li class="step">Create an Email id in exchange server.</li><li class="step">Forward all mails coming to this Email id to a new Email id. The new mail id should be in&nbsp;user@[IPAddressOfSkeltaMachine]&nbsp;format.</li></ol><p class="paragraph"><b class="uicontrol">user</b>&nbsp;- Name of the user.</p>
+<p class="paragraph"><b class="uicontrol">IPAddressOfSkeltaMachine</b>&nbsp;- This should be the one configured in step 2.</p>
+<p class="paragraph"><strong class="strong">POP3 </strong>- &nbsp;If you choose POP3, you must configure POP3 settings as shown below.</p>
+<ol class="olitem"><li class="olitem"><b class="uicontrol">POP Mail Host</b> -&nbsp;The POP3 Mail Server IP Address.</li><li class="olitem"><b class="uicontrol">POP Mail Port</b> -&nbsp;The POP3 Mail Server Port.</li><li class="olitem"><b class="uicontrol">POP Time Interval</b> -&nbsp;The periodic Time interval for checking emails in the POP3 Server. Specify a time span (e.g. 0.00:01:30 = 1 minute 30 secs).</li><li class="olitem"><b class="uicontrol">POP Users</b> -&nbsp;The User configuration for getting the mail from the POP3 server. You can add multiple user accounts here by adding new POPUser tags for each user.<ol class="olsubitem"><li class="olsubitem"><b class="uicontrol">UserName</b> -&nbsp;The User Name.</li><li class="olsubitem"><b class="uicontrol">Password</b> -&nbsp;The Password.</li></ol></li><li class="olitem"><b class="uicontrol">Is SPA Enabled</b> -&nbsp;Set it to&nbsp;<b class="uicontrol">True</b>, if SPA(Secured Password Authentication) is enabled on the mail server.</li></ol><p class="subheading">Supporting Matrix POP3 Service:</p>
+<p class="paragraph">Assume that, &nbsp;there are two POP3 service providers are running. By default, the first POP3 service is being used. &nbsp;If this POP3 service is stopped and can not be restarted then use the alternate Matrix POP3 service which is running.</p>
+<p class="paragraph">To do so, the machine name/IP address of the machine where the Matrix POP3 service is running needs to be provided in the&nbsp;<b class="uicontrol">POP Mail Host</b>&nbsp;field of the&nbsp;Mail Server&nbsp;tab of the&nbsp;<b class="uicontrol">Farm Configuration wizard</b>&nbsp;window.</p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="configuringcommunicationactivities1.html" target="_self">Configuring Communication Activities</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>

@@ -1,0 +1,141 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: italic;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: bold;
+    src: url("../../../../../Common/fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+.RadWindow_SkeltaEditor {
+  font-family: "Roboto", "Segoe UI", "Arial", "Verdana";
+  font-size: 12px;
+  /* Window Background */
+  /* Horiznotal */
+  /* Vertical */
+  /* Window Shadows */
+  /* Horiznotal */
+  /* Vertical */
+  /* Shadows End */
+  /* Loading Indicators */
+  /* When ShowContentDuringLoad="true" */
+  /* When ShowContentDuringLoad="false" */
+  /* Shadow Control Buttons */
+  /* ctrl buttons when winodw is minimized */
+  /* Icon when winodw is minimized */
+  /*title buttons when winodw is minimized */ }
+  .RadWindow_SkeltaEditor .rwTopLeft,
+  .RadWindow_SkeltaEditor .rwTopRight,
+  .RadWindow_SkeltaEditor .rwTitlebar,
+  .RadWindow_SkeltaEditor .rwFooterLeft,
+  .RadWindow_SkeltaEditor .rwFooterRight,
+  .RadWindow_SkeltaEditor .rwFooterCenter,
+  .RadWindow_SkeltaEditor .rwTopResize,
+  .RadWindow_SkeltaEditor .rwStatusbar div,
+  .RadWindow_SkeltaEditor .rwStatusbar,
+  .RadWindow_SkeltaEditor .rwPopupButton,
+  .RadWindow_SkeltaEditor .rwPopupButton span, .RadWindow_SkeltaEditor.rwMinimizedWindow .rwCorner {
+     }
+  .RadWindow_SkeltaEditor .rwBodyLeft,
+  .RadWindow_SkeltaEditor .rwBodyRight,
+  .RadWindow_SkeltaEditor .rwStatusbarRow .rwCorner {
+    }
+  .RadWindow_SkeltaEditor .rwShadow .rwTopLeft,
+  .RadWindow_SkeltaEditor .rwShadow .rwTopRight,
+  .RadWindow_SkeltaEditor .rwShadow .rwTitlebar,
+  .RadWindow_SkeltaEditor .rwShadow .rwFooterLeft,
+  .RadWindow_SkeltaEditor .rwShadow .rwFooterRight,
+  .RadWindow_SkeltaEditor .rwShadow .rwFooterCenter,
+  .RadWindow_SkeltaEditor .rwShadow .rwTopResize,
+  .RadWindow_SkeltaEditor .rwShadow .rwStatusbar div,
+  .RadWindow_SkeltaEditor .rwShadow .rwStatusbar,
+  .RadWindow_SkeltaEditor .rwShadow .rwPopupButton,
+  .RadWindow_SkeltaEditor .rwShadow .rwPopupButton span,
+  .RadWindow_SkeltaEditor .rwShadow .rwBodyLeft,
+  .RadWindow_SkeltaEditor .rwShadow .rwBodyRight,
+  .RadWindow_SkeltaEditor .rwShadow .rwStatusbarRow .rwBodyLeft,
+  .RadWindow_SkeltaEditor .rwShadow .rwStatusbarRow .rwBodyRight {
+    }
+  .RadWindow_SkeltaEditor .rwShadow .rwBodyLeft,
+  .RadWindow_SkeltaEditor .rwShadow .rwBodyRight,
+  .RadWindow_SkeltaEditor .rwShadow .rwStatusbarRow .rwBodyLeft,
+  .RadWindow_SkeltaEditor .rwShadow .rwStatusbarRow .rwBodyRight {
+     }
+  .RadWindow_SkeltaEditor .rwStatusbar input {
+    background-color: white; }
+  .RadWindow_SkeltaEditor .rwControlButtons a {
+    background-image: url('Window/CommandButtonSprites.gif'); }
+  .RadWindow_SkeltaEditor a.rwIcon {
+     }
+  .RadWindow_SkeltaEditor .rwTable .rwTitlebarControls em {
+    color: #fff; }
+  .RadWindow_SkeltaEditor .rwTable .rwDialogInput {
+    border: 1px solid #8e8e8e; }
+  .RadWindow_SkeltaEditor .rwTable .rwDialogInput:hover {
+    border: 1px solid #515151;
+    color: black; }
+  .RadWindow_SkeltaEditor td.rwWindowContent {
+    background-color: white; 
+    
+  }
+  .RadWindow_SkeltaEditor .rwTable tr td.rwLoading {
+    background-color: white; 
+    border:1px solid #666;
+  }
+  .RadWindow_SkeltaEditor td.rwWindowContent.rwLoading {
+    background-image: url('Common/loading.gif'); }
+  .RadWindow_SkeltaEditor input.rwLoading {
+    background-image: url('Common/loading_small.gif'); }
+  .RadWindow_SkeltaEditor .rwTable a.rwCancel,
+  .RadWindow_SkeltaEditor .rwTable a.rwCancel span {
+    background: none;
+    cursor: pointer; }
+  .RadWindow_SkeltaEditor .rwTable a.rwCancel span span {
+    color: #333333;
+    text-decoration: underline; }
+  .RadWindow_SkeltaEditor .rwShadow .rwControlButtons {
+    margin: 5px -2px 0 0; }
+  .RadWindow_SkeltaEditor .rwShadow .rwControlButtons {
+    margin: 5px -1px 0 0\9; }
+  .RadWindow_SkeltaEditor.rwMinimizedWindowShadow .rwShadow .rwControlButtons {
+    margin: 7px -8px 0 0; }
+  .RadWindow_SkeltaEditor.rwMinimizedWindowShadow .rwShadow .rwIcon {
+    margin: 9px 6px 0 0; }
+  .RadWindow_SkeltaEditor.rwMinimizedWindowShadow .rwShadow em {
+    margin: 4px 0 0 -1px; }
+  .RadWindow_SkeltaEditor .rwShadow .rwControlButtons li {
+    float: left;
+    padding: 0; }
+  .RadWindow_SkeltaEditor .rwShadow .rwControlButtons a {
+    width: 26px; }
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwTopLeft,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwTopRight,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwTitlebar,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwFooterLeft,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwFooterRight,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwFooterCenter,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwTopResize,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwStatusbar div,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwStatusbar,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwPopupButton,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwPopupButton span,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow.rwMinimizedWindow .rwCorner, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwTopLeft, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwTitlebar, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwTopRight, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwFooterLeft, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwFooterCenter, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwFooterRight {
+    }
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwBodyLeft,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwBodyRight,
+  .RadWindow_SkeltaEditor .rwInactiveWindow .rwShadow .rwStatusbarRow .rwCorner, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwBodyLeft, .RadWindow_SkeltaEditor.rwNoTitleBar.rwInactiveWindow .rwShadow .rwBodyRight {
+     }

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Synchronize Roles </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h2 id="t608829" class="heading2">Synchronize Roles</h2>
+<p class="paragraph">If you want cross domain users and roles mapping across active directory provider, then use the <strong class="strong">Synchronize Roles</strong> option to map the roles.</p>
+<p class="paragraph">Example: Users 'John' and 'Jim' of domain 'TelematicsUS' and users 'Mike' and 'Bob' from the domain 'TelematicsAU' are added to the role &quot;Team HR&quot; of the domain 'TelematicsMain'.</p>
+<p class="paragraph"></p>
+<p class="paragraph">You can see the Synchronize Roles list item in the Enterprise Console menu that you can use to map the cross domain provider roles. This list item is not available by default in the Enterprise Console menu. While creating a repository, if you choose&nbsp;<b class="uicontrol">Resource Provider</b>&nbsp;as&nbsp;<b class="uicontrol">Active Directory</b>&nbsp;and enable the <b class="uicontrol">'Is Cross Domain Role Provider'</b> option for cross domain users and roles mapping, then the&nbsp;<b class="uicontrol">Synchronize Roles</b>&nbsp;sub-menu appears in <b class="uicontrol">Enterprise Console</b> &gt; <b class="uicontrol">Tools</b>. This menu is available only for users with administrative&nbsp;rights.</p>
+<p class="paragraph"></p>
+<p class="paragraphimage"><img id="f194553" src="194553.png" class="embeddedimage100%scalinglive" alt="" height="649" width="532" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph"></p>
+<p class="procedureheading">Steps to synchronize roles:</p>
+<p class="paragraph"></p>
+<ol class="step"><li class="step">In the Enterprise console, click the <strong class="strong">menu </strong>icon, click <b class="uicontrol">Tools,</b> and then click <b class="uicontrol">Synchronize Roles</b>. <p class="stepresult">The&nbsp;<b class="windowtitle">Synchronize Roles</b>&nbsp;window appears.</p>
+</li><li class="step">Enter the role name in the&nbsp;<b class="uicontrol">Search Role</b>&nbsp;text box.</li><li class="step">Click&nbsp;<b class="uicontrol">Search</b>.<p class="stepresult">The available roles will be listed in&nbsp;<b class="uicontrol">Choose Roles</b>. </p>
+</li><li class="step">Choose the required role to be synchronized. <p class="stepinfo">For example, search for 'team' role and it will list the available roles.</p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Synchronize</b>. <p class="stepinfo">Once the synchronization of the selected role(s) is complete, a confirmation message about successful synchronization appears.</p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td width= "616">
+<p class="relatedheading">In This Chapter</p><p class="relateditem"><a href="howtodeletesynchronizationcross-domaintasks.html" target="_self">Deleting Synchronization Cross Domain Tasks</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+</body>
+ </html>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title> Retrieving Multiple Records from Database Using SOA </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="plain.css" />
+
+</head>
+
+<body>
+<p id="BetaStatement" class="heading1" style="color:red;background-color:#FFFFFF;border-bottom:none;"></p>
+<script type="text/javascript">
+var elem = document.getElementById("BetaStatement");
+if(elem.innerHTML == "") {
+	elem.parentNode.removeChild(elem);
+}
+</script>
+<p id="IncludeRelatedTopics" class="paragraph" style="color: teal; font-weight: bolder;">No</p>
+  
+<h4 id="t602007" class="heading4">Retrieving Multiple Records from Database Using SOA</h4>
+<p class="paragraph">This example illustrates, how to get the multiple records from database by using SOA.</p>
+<p class="paragraph">Assume that the following are the database details:</p>
+<p class="paragraph"><img id="f52830" src="52830.png" class="embeddedimage100%scalinglive" alt="" height="199" width="335" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="paragraph">The following is the SQL script:</p>
+<p class="codeblock1">USE [EmployeeDetails]</p>
+<p class="codeblock1">GO</p>
+<p class="codeblock1">/****** Object: &nbsp;Table [dbo].[Employee]   &nbsp;Script Date: 10/09/2008 14:56:15 ******/</p>
+<p class="codeblock1">SET ANSI_NULLS ON</p>
+<p class="codeblock1">GO</p>
+<p class="codeblock1">SET QUOTED_IDENTIFIER ON</p>
+<p class="codeblock1">GO</p>
+<p class="codeblock1">CREATE TABLE [dbo].[Employee](</p>
+<p class="codeblock1">      &nbsp;[Id] [uniqueidentifier] NULL,</p>
+<p class="codeblock1">      &nbsp;[FirstName] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,</p>
+<p class="codeblock1">      &nbsp;[MiddleName] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,</p>
+<p class="codeblock1">      &nbsp;[LastName] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,</p>
+<p class="codeblock1">      &nbsp;[Designation] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,</p>
+<p class="codeblock1">      &nbsp;[Address] [nvarchar](500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,</p>
+<p class="codeblock1">      &nbsp;[Salary] [decimal](18, 2) NULL,</p>
+<p class="codeblock1">      &nbsp;[DateOfJoining] [datetime] NULL</p>
+<p class="codeblock1">) ON [PRIMARY]</p>
+<p class="paragraph">Assume that there are three records in the Employee Table of EmployeeDetails Database.</p>
+<p class="paragraph">To get the multiple records from database through SOA, follow the steps given below:</p>
+<ol class="step"><li class="step">Prepare an Assembly with the following sample code for getting multiple records.<p class="codeblock1">using System;</p>
+<p class="codeblock1">using System.Collections.Generic;</p>
+<p class="codeblock1">using System.Text;</p>
+<p class="codeblock1">using System.Data;</p>
+<p class="codeblock1">using System.Data.SqlClient;</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">namespace EmployeeDetails</p>
+<p class="codeblock1">{</p>
+<p class="codeblock1">    public class Employee</p>
+<p class="codeblock1">    {</p>
+<p class="codeblock1">        private string _connectionString = string.Empty;</p>
+<p class="codeblock1">        public string ConnectionString</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            get</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                return _connectionString;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">            set</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                _connectionString = value;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        private string _tableName = string.Empty;</p>
+<p class="codeblock1">        public string TableName</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            get</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                return _tableName;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">            set</p>
+<p class="codeblock1">            {</p>
+<p class="codeblock1">                _tableName = value;</p>
+<p class="codeblock1">            }</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">public Employee(string server, string database, string tablename)</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">this.ConnectionString = &quot;server=&quot; + server + &quot;;database=&quot; + database + &quot;;Integrated Security=true;pooling=false;&quot;;</p>
+<p class="codeblock1">              this.TableName = tablename;</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        public string GetEmployeeDetails()</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            string connectionString = this.ConnectionString;</p>
+<p class="codeblock1">            string strQry = @&quot;SELECT * FROM &quot; + this.TableName;</p>
+<p class="codeblock1">            SqlConnection connection = new SqlConnection(connectionString);</p>
+<p class="codeblock1">            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();</p>
+<p class="codeblock1">            sqlDataAdapter.SelectCommand = new SqlCommand(strQry, connection);</p>
+<p class="codeblock1">            connection.Open();</p>
+<p class="codeblock1">            DataSet dataSet = new DataSet();</p>
+<p class="codeblock1">            sqlDataAdapter.Fill(dataSet, this.TableName);</p>
+<p class="codeblock1">            connection.Close();</p>
+<p class="codeblock1">            return dataSet.GetXml();</p>
+<p class="codeblock1">        }</p>
+<p class="codeblock1"><br></p>
+<p class="codeblock1">        public string GetEmployeeSchema()</p>
+<p class="codeblock1">        {</p>
+<p class="codeblock1">            string connectionString = this.ConnectionString;</p>
+<p class="codeblock1">            string strQry = @&quot;SELECT * FROM &quot; + this.TableName;</p>
+<p class="codeblock1">            SqlConnection connection = new SqlConnection(connectionString);</p>
+<p class="codeblock1">            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();</p>
+<p class="codeblock1">            sqlDataAdapter.SelectCommand = new SqlCommand(strQry, connection);</p>
+<p class="codeblock1">            connection.Open();</p>
+<p class="codeblock1">            DataSet dataSet = new DataSet();</p>
+<p class="codeblock1">            sqlDataAdapter.Fill(dataSet, this.TableName);</p>
+<p class="codeblock1">            connection.Close();</p>
+<p class="codeblock1">            return dataSet.GetXmlSchema();         &nbsp;</p>
+<p class="codeblock1">        }     &nbsp;</p>
+<p class="codeblock1">    }</p>
+<p class="codeblock1">}</p>
+<p class="stepinfo">The above code having two methods. One method is to get the Database Schema and other method is to get the raw XML. By passing the Server, Database and the Table name to the constructor it will create the object by that you can access the data from the database.</p>
+</li><li class="step">You have to register the assembly in AVEVA Work Tasks SOA Assembly.</li><li class="step">To register a assembly, select&nbsp;<b class="uicontrol">Settings&nbsp;&reg;&nbsp;SOA Folder&nbsp;&reg;&nbsp;New Assembly Folder</b>&nbsp;from the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;pull-down menu. Register a assembly called 'EmployeeDetails'.<p class="stepinfo"><img id="f52831" src="52831.png" class="embeddedimage100%scalinglive" alt="" height="233" width="600" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;<b class="uicontrol">Save</b>. Now the EmployeeDetails assembly has been registered as shown below.<p class="stepinfo"><img id="f52832" src="52832.png" class="embeddedimage100%scalinglive" alt="" height="149" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Select&nbsp;<b class="uicontrol">Tools &gt; SOA Assembly &gt; From Assembly Folder</b>&nbsp;from the&nbsp;<b class="uicontrol">Enterprise Console</b>&nbsp;pull-down menu. Expand EmployeeDetails and select dll and then click&nbsp;Next. </li><li class="step">The<b class="uicontrol">&nbsp;Object Setup</b>&nbsp;screen is displayed. Expand all class, methods and properties as shown below.<p class="stepinfo"><img id="f52833" src="52833.png" class="embeddedimage100%scalinglive" alt="" height="432" width="558" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;Finish &amp; Publish&nbsp;to save the assembly. This will be listed in the Assembly List.</li><li class="step">Design a workflow called 'Employee Details' as shown below.<p class="stepinfo"><img id="f52834" src="52834.png" class="embeddedimage100%scalinglive" alt="" height="409" width="550" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Right-click the&nbsp;Start&nbsp;Activity and then select&nbsp;Activity Properties.</li><li class="step">Select the&nbsp;SOA Object Instances&nbsp;property.</li><li class="step">The SOA Object Instance screen is displayed. Drag and drop the constructor of the class in SOA Property editor. Here, the constructor takes three parameters with Server name, Database name, and Table name.<p class="stepinfo"><img id="f52835" src="52835.png" class="embeddedimage100%scalinglive" alt="" height="330" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Pass the parameter to the constructor.&nbsp;Save&nbsp;the constructor. After saving the instance details, all the members of the class will be listed in the Expression Editor.<p class="stepinfo"><img id="f52836" src="52836.png" class="embeddedimage100%scalinglive" alt="" height="150" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><br><img id="f52837" src="52837.png" class="embeddedimage100%scalinglive" alt="" height="336" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;Save&nbsp;in the&nbsp;Activity Properties&nbsp;window.</li><li class="step">Make use of the&nbsp;SOAExecute&nbsp;activity to execute the method and update the AVEVA Work Tasks Variable with the Schema and the Raw XML details.</li><li class="step">Right-click the&nbsp;SOA Execute&nbsp;activity and select&nbsp;Activity Properties.</li><li class="step">Select&nbsp;Execute an SOA Expression&nbsp;property to build the expression.<p class="stepinfo"><img id="f52838" src="52838.png" class="embeddedimage100%scalinglive" alt="" height="292" width="555" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><br><img id="f52839" src="52839.png" class="embeddedimage100%scalinglive" alt="" height="262" width="575" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="stepinfo"><br><img id="f52840" src="52840.png" class="embeddedimage100%scalinglive" alt="" height="212" width="560" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">Click&nbsp;OK&nbsp;and then click&nbsp;Save&nbsp;in the&nbsp;Activity Properties&nbsp;window.</li><li class="step">Display the value in the logger using&nbsp;Logger&nbsp;activity. Right-click the&nbsp;Logger&nbsp;activity and then select&nbsp;Activity Properties.</li><li class="step">Select&nbsp;LogMessage&nbsp;property and then type the logger message in the&nbsp;Logger Message&nbsp;window.</li><li class="step">Execute the workflow. </li><li class="step">The following figure shows the logger with the Schema XML.<p class="stepinfo"><img id="f52841" src="52841.png" class="embeddedimage100%scalinglive" alt="" height="325" width="551" vspace="0" hspace="0" align="bottom" border="0"></p>
+</li><li class="step">The following figure shows the logger with the Raw XML:<p class="stepinfo"><img id="f52842" src="52842.png" class="embeddedimage100%scalinglive" alt="" height="362" width="543" vspace="0" hspace="0" align="bottom" border="0"></p>
+<p class="note"><strong class="notelabel">Note:</strong> You can even create an XML Variable with the Schema XML and you can bind the data with the Raw XML.</p>
+</li></ol><p class="paragraph"></p>
+<table class="relatedtopics belowtopictext" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+<td>
+<p class="relatedheading">Related Topics</p><p class="relateditem"><a href="483180.html" target="_self">SOA Execute Activity</a></p></td>
+</tr>
+</table>
+
+
+
+<script type="text/javascript">
+// Get value of the <IncludeRelatedTopics> variable from AIT
+	var IncludeRelTopics = document.getElementById("IncludeRelatedTopics");
+//Get all table elements in book and then get all table of the specified class. If you're using IE 9 or later, use following line instead of this code block. 
+//	var RelTopics = document.getElementsByClassName("relatedtopics belowtopictext");
+    var TableClass = "relatedtopics belowtopictext";
+	var arrElements = document.getElementsByTagName("table");
+	var RelTopics = new Array();
+	for(var i=0; i < arrElements.length; i++){
+		if(arrElements[i].className == TableClass){
+			RelTopics.push(arrElements[i]);
+		}
+	}
+
+
+// Remove Related Topics sections if the <IncludeRelatedTopics> variable is No and the Related Topics section appears in the topic.
+	if (IncludeRelTopics.innerHTML == "No" && RelTopics.length != 0) {
+		for (var j=0; j < RelTopics.length; j++) {
+			RelTopics[j].parentNode.removeChild(RelTopics[j]);
+		}
+	}
+// Remove paragraph used to hold the value of the <IncludeRelatedTopics> variable.
+	IncludeRelTopics.parentNode.removeChild(IncludeRelTopics); 
+ </script>	
+
+ </body>
+ </html>
